@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: headz.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>SalsaTigerRegXML</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+name: Module <a href="../Headz.html">Headz</a> auth: albu@coli.uni-sb.de
+</p>
+<p>
+modified KE Sept 04: changed from old Sentence pkg to new <a
+href="../SalsaTigerSentence.html">SalsaTigerSentence</a> pkg
+</p>
+<p>
+modified KE April 05: suppress the flood of warnings
+</p>
+<p>
+modified SP June 05: added some more cases; change to SalsTigerRegXML
+</p>
+<p>
+INIT: REXML TIGER sentence,  FUNC: syn_nodes(term/non_term) -> heads   
+</p>
+<pre>
+ 
+</pre>
+<p>
+usage:
+</p>
+<p>
+h = Headz.new() 
+</p>
+<p>
+hash = h.get_sem_head(node) # node is a <a
+href="../SalsaTigerXmlNode.html">SalsaTigerXmlNode</a> obj
+</p>
+<p>
+head = hash[&#8220;head&#8221;] prep = hash[&#8220;prep&#8221;]
+</p>
+<p>
+if h.complex(head)
+</p>
+<pre>
+  print &quot;preposition of conjunction involved&quot;
+</pre>
+<p>
+end
+</p>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

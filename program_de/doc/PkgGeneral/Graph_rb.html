@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: Graph.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+GraphNode: describes one node in a graph.
+</p>
+<p>
+A node may have an arbitrary number of parents (sources of incoming edges)
+and an arbitrary number of children (targets of outgoing edges)
+</p>
+<p>
+All edges are labeled and directed
+</p>
+<p>
+The add_parent, add_child, remove_parent, remove_child methods take care of
+both ends of an edge  (i.e. n1.add_child(n2, label) also adds n1 as parent
+of n2 with edge label &#8216;label&#8217;
+</p>
+<p>
+It is possible to create a &#8216;pointer&#8217; rather than an edge:
+</p>
+<pre>
+    n1.add_child(n2, label, pointer_insteadof_edge =&gt; true) 
+</pre>
+<p>
+will create an edge from n1 to n2 labeled &#8216;label&#8217; that is
+listed under the outgoing edges of n1, but not among the incoming edges of
+n2 The same option is available for add_parent, remove_parent,
+remove_child.
+</p>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

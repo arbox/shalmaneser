@@ -1,0 +1,1940 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: MiniparInterpreter</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/MiniparInterface_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/MiniparInterface.rb">Pkg/MiniparInterface.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="SynInterpreter.html">SynInterpreter</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-aux_or_modal%3F">::aux_or_modal?</a></li>
+					
+					<li><a href="#method-c-auxiliary%3F">::auxiliary?</a></li>
+					
+					<li><a href="#method-c-category">::category</a></li>
+					
+					<li><a href="#method-c-each_reachable_node">::each_reachable_node</a></li>
+					
+					<li><a href="#method-c-empty_terminal%3F">::empty_terminal?</a></li>
+					
+					<li><a href="#method-c-ensure_terminal">::ensure_terminal</a></li>
+					
+					<li><a href="#method-c-ensure_upper">::ensure_upper</a></li>
+					
+					<li><a href="#method-c-gfs">::gfs</a></li>
+					
+					<li><a href="#method-c-head_terminal">::head_terminal</a></li>
+					
+					<li><a href="#method-c-informative_content_node">::informative_content_node</a></li>
+					
+					<li><a href="#method-c-max_constituents">::max_constituents</a></li>
+					
+					<li><a href="#method-c-modal%3F">::modal?</a></li>
+					
+					<li><a href="#method-c-optional_systems">::optional_systems</a></li>
+					
+					<li><a href="#method-c-path_between">::path_between</a></li>
+					
+					<li><a href="#method-c-pt">::pt</a></li>
+					
+					<li><a href="#method-c-relative_pronoun%3F">::relative_pronoun?</a></li>
+					
+					<li><a href="#method-c-surrounding_nodes">::surrounding_nodes</a></li>
+					
+					<li><a href="#method-c-systems">::systems</a></li>
+					
+					<li><a href="#method-c-voice">::voice</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">MiniparInterpreter</h1>
+
+		<div id="description">
+			<pre>
+                                              
+</pre>
+<p>
+Interpreter class
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="auxiliary--method" class="method-detail ">
+				<a name="method-c-auxiliary%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">auxiliary?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+auxiliary?
+</p>
+<p>
+returns true if the given node is an auxiliary
+</p>
+<p>
+returns: boolean
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="auxiliary--source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 888</span>
+888:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">auxiliary?</span>(<span class="ruby-identifier">node</span>)
+889:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">aux_or_modal?</span>(<span class="ruby-identifier">node</span>) <span class="ruby-keyword kw">and</span>
+890:         <span class="ruby-keyword kw">not</span>(<span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">modal?</span>(<span class="ruby-identifier">node</span>))
+891:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+892:     <span class="ruby-keyword kw">else</span>
+893:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+894:     <span class="ruby-keyword kw">end</span>
+895:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="category-method" class="method-detail ">
+				<a name="method-c-category"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">category</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+generalize over POS tags.
+</p>
+<p>
+returns one of:
+</p>
+<p>
+adj:  adjective (phrase) adv:  adverb (phrase) card: numbers, quantity
+phrases con:  conjunction det:  determiner, including
+possessive/demonstrative pronouns etc. for:  foreign material noun: noun
+(phrase), including personal pronouns, proper names, expletives part:
+particles, truncated words (German compound parts) prep: preposition
+(phrase) pun:  punctuation, brackets, etc. sent: sentence top:  top node of
+a sentence verb: verb (phrase) nil:  something went wrong
+</p>
+<p>
+returns: string, or nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="category-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 806</span>
+806:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>) <span class="ruby-comment cmt"># SynNode</span>
+807:     <span class="ruby-identifier">node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">node</span>)
+808: 
+809:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/NUM/</span>
+810:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;card&quot;</span>
+811:     <span class="ruby-keyword kw">end</span>
+812: 
+813:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;U&quot;</span> <span class="ruby-keyword kw">and</span>
+814:         <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent_label</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;lex-mod&quot;</span> <span class="ruby-keyword kw">and</span>
+815:         <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span> <span class="ruby-keyword kw">and</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>
+816:       <span class="ruby-comment cmt"># this node is part of a complex verb</span>
+817:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;part&quot;</span>
+818:     <span class="ruby-keyword kw">end</span>
+819: 
+820:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^[!?;`'&quot;,(){}\[\]\.\:]+$/</span> 
+821:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;pun&quot;</span>
+822:     <span class="ruby-keyword kw">end</span>
+823: 
+824:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span>
+825:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;top&quot;</span>
+826:     <span class="ruby-keyword kw">end</span>    
+827: 
+828:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>()
+829: 
+830:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;A&quot;</span>  <span class="ruby-comment cmt"># same POS for adjectives and adverbs</span>
+831:       <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>
+832:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent</span> 
+833:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">parent</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>
+834:           <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;adv&quot;</span>
+835:         <span class="ruby-keyword kw">else</span>
+836:           <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;adj&quot;</span>
+837:         <span class="ruby-keyword kw">end</span>
+838:       <span class="ruby-keyword kw">else</span>
+839:         <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;adj&quot;</span>
+840:       <span class="ruby-keyword kw">end</span>
+841: 
+842:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;Det&quot;</span>
+843:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;det&quot;</span>
+844:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;N&quot;</span>
+845:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;noun&quot;</span>
+846: 
+847:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;Prep&quot;</span>
+848:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;prep&quot;</span>
+849: 
+850:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;C&quot;</span>
+851:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;sent&quot;</span>
+852: 
+853:     <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^V/</span>
+854:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;verb&quot;</span>
+855:       
+856:     <span class="ruby-keyword kw">else</span>
+857:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+858:     <span class="ruby-keyword kw">end</span>
+859:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-reachable-node-method" class="method-detail ">
+				<a name="method-c-each_reachable_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_reachable_node</span><span
+						class="method-args">(from_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+for all nodes reachable from a given from_node: compute the path from
+from_node, using both tree edges and coreference edges
+</p>
+<p>
+compute a widening circle of nodes from from_node outward, following all
+antecedent links as 0-length paths.
+</p>
+<p>
+yields tuples
+</p>
+<pre>
+ [
+  minipar node, 
+  array: other minipar node(s) reached from this one solely via antecedent edges,
+  array: minimal paths from start_node to this node as Path objects
+  minipar node 2: last stop on path from start_node to minipar_node
+ ]</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="each-reachable-node-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1251</span>
+1251:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">each_reachable_node</span>(<span class="ruby-identifier">from_node</span>)   <span class="ruby-comment cmt"># SynNode</span>
+1252: 
+1253:     <span class="ruby-identifier">from_node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">from_node</span>)
+1254: 
+1255:     <span class="ruby-comment cmt"># rim: array:SynNode, current outermost nodes</span>
+1256:     <span class="ruby-identifier">rim</span> = [ <span class="ruby-identifier">from_node</span> ]
+1257:     <span class="ruby-comment cmt"># seen: hash SynNode-&gt;Path, mapping (seen) minipar nodes to</span>
+1258:     <span class="ruby-comment cmt"># the path leading from the target to them</span>
+1259:     <span class="ruby-identifier">seen</span> = {
+1260:       <span class="ruby-identifier">from_node</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-constant">Path</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from_node</span>)]
+1261:     }
+1262:     
+1263:     <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">rim</span>.<span class="ruby-identifier">empty?</span>)
+1264:       <span class="ruby-comment cmt"># remove node from the beginning of the rim</span>
+1265:       <span class="ruby-identifier">minipar_node</span> = <span class="ruby-identifier">rim</span>.<span class="ruby-identifier">shift</span>()
+1266:       
+1267:       <span class="ruby-comment cmt"># make tuples:</span>
+1268:       <span class="ruby-comment cmt"># [&quot;D&quot; for down from minipar_node, or &quot;U&quot; for up,</span>
+1269:       <span class="ruby-comment cmt">#  parent or child of minipar_node, </span>
+1270:       <span class="ruby-comment cmt">#  edgelabel between minipar_node and that parent or child,</span>
+1271:       <span class="ruby-comment cmt">#  POS of that parent or child,</span>
+1272:       <span class="ruby-comment cmt">#  preposition</span>
+1273:       <span class="ruby-comment cmt">#  ]</span>
+1274:       <span class="ruby-identifier">surrounding_n</span> = <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> 
+1275:         [<span class="ruby-value str">&quot;D&quot;</span>, <span class="ruby-identifier">child</span>, 
+1276:          <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">child_label</span>(<span class="ruby-identifier">child</span>), <span class="ruby-identifier">child</span>.<span class="ruby-identifier">part_of_speech</span>()]
+1277:       }
+1278:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">parent</span>
+1279:         <span class="ruby-identifier">surrounding_n</span>.<span class="ruby-identifier">push</span>([
+1280:                                  <span class="ruby-value str">&quot;U&quot;</span>, <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">parent</span>, 
+1281:                                  <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">parent_label</span>(), 
+1282:                                  <span class="ruby-identifier">minipar_node</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">part_of_speech</span>()
+1283:                                ])
+1284:       <span class="ruby-keyword kw">end</span>
+1285:     
+1286:       <span class="ruby-identifier">surrounding_n</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">direction</span>, <span class="ruby-identifier">new_node</span>, <span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">nodelabel</span><span class="ruby-operator">|</span>
+1287:         
+1288:         <span class="ruby-comment cmt"># node we are actually using: the antecedent, if it's there</span>
+1289:         <span class="ruby-comment cmt"># the coref chain may have a length &gt; 1</span>
+1290:         <span class="ruby-identifier">actual_new_node</span> = <span class="ruby-identifier">new_node</span>
+1291:         <span class="ruby-identifier">antecedents</span> = []
+1292:         <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">actual_new_node</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>)
+1293:           <span class="ruby-identifier">antecedents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">actual_new_node</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>)
+1294:           <span class="ruby-identifier">actual_new_node</span> = <span class="ruby-identifier">actual_new_node</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>)
+1295:         <span class="ruby-keyword kw">end</span>
+1296:         
+1297:         <span class="ruby-comment cmt"># node seen before, and  seen with shorter path?</span>
+1298:         <span class="ruby-comment cmt"># all paths in seen[actual_new_node] have the same length</span>
+1299:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">actual_new_node</span>] <span class="ruby-keyword kw">and</span>
+1300:             <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">actual_new_node</span>].<span class="ruby-identifier">first</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">minipar_node</span>].<span class="ruby-identifier">first</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+1301:           <span class="ruby-comment cmt"># yes, seen with a shorter path. discard</span>
+1302:           <span class="ruby-keyword kw">next</span>
+1303:         <span class="ruby-keyword kw">end</span>
+1304:         
+1305:         <span class="ruby-comment cmt"># make paths for this new_node</span>
+1306:         <span class="ruby-identifier">paths</span> = <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">minipar_node</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">previous_path</span><span class="ruby-operator">|</span> 
+1307:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">previous_path</span>.<span class="ruby-identifier">deep_clone</span>
+1308:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_node</span>.<span class="ruby-identifier">part_of_speech</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Prep&quot;</span>
+1309:             <span class="ruby-comment cmt"># preposition? add to path too</span>
+1310:             <span class="ruby-identifier">new_path</span>.<span class="ruby-identifier">add_last_step</span>(<span class="ruby-identifier">direction</span>, 
+1311:                                    <span class="ruby-identifier">edgelabel</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">new_node</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>), 
+1312:                                    <span class="ruby-identifier">nodelabel</span>,
+1313:                                    <span class="ruby-identifier">new_node</span>)
+1314:           <span class="ruby-keyword kw">else</span>
+1315:             <span class="ruby-identifier">new_path</span>.<span class="ruby-identifier">add_last_step</span>(<span class="ruby-identifier">direction</span>, <span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">nodelabel</span>, <span class="ruby-identifier">new_node</span>)
+1316:           <span class="ruby-keyword kw">end</span>
+1317:           <span class="ruby-identifier">new_path</span>
+1318:         }
+1319:         
+1320:         <span class="ruby-comment cmt"># node not seen before: record</span>
+1321:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">actual_new_node</span>]
+1322:           <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">actual_new_node</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1323:         <span class="ruby-keyword kw">end</span>
+1324:         <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">actual_new_node</span>].<span class="ruby-identifier">concat</span> <span class="ruby-identifier">paths</span>
+1325:         
+1326:         <span class="ruby-identifier">keepthisnode</span> = <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">new_node</span>, <span class="ruby-identifier">antecedents</span>, <span class="ruby-identifier">paths</span>, <span class="ruby-identifier">minipar_node</span>)
+1327:         
+1328:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">keepthisnode</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">rim</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">actual_new_node</span>))
+1329:           <span class="ruby-identifier">rim</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">actual_new_node</span>
+1330:         <span class="ruby-keyword kw">end</span>
+1331:         
+1332:       } <span class="ruby-comment cmt"># each parent or child of the current rim node</span>
+1333:     <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># while new rim nodes keep being discovered</span>
+1334:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gfs-method" class="method-detail ">
+				<a name="method-c-gfs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gfs</span><span
+						class="method-args">(start_node, sent)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+gfs
+</p>
+<p>
+grammatical functions of a constituent:
+</p>
+<p>
+returns: a list of pairs [relation(string), node(<a
+href="SynNode.html">SynNode</a>)] where <node> stands in the relation
+<relation> to the parameter that the method was called with
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="gfs-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 993</span>
+ 993:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">gfs</span>(<span class="ruby-identifier">start_node</span>,    <span class="ruby-comment cmt"># SynNode</span>
+ 994:                              <span class="ruby-identifier">sent</span>)    <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+ 995: 
+ 996:     <span class="ruby-identifier">start_node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">start_node</span>)
+ 997:     
+ 998:     <span class="ruby-identifier">retv</span> =  <span class="ruby-identifier">start_node</span>.<span class="ruby-identifier">children_with_edgelabel</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+ 999:       [<span class="ruby-value str">&quot;Head&quot;</span>,  <span class="ruby-comment cmt"># head of the target node -- not really bearer of a GF</span>
+1000:         <span class="ruby-value str">&quot;-&quot;</span>,
+1001:         <span class="ruby-value str">&quot;aux&quot;</span>,
+1002:         <span class="ruby-value str">&quot;have&quot;</span>,
+1003:         <span class="ruby-value str">&quot;be&quot;</span>
+1004:       ].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">edgelabel</span>
+1005:     }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">edgelabel</span>,<span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+1006:         
+1007:       <span class="ruby-comment cmt"># map node to suitable other node</span>
+1008:       <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">ant_id</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>))
+1009:         
+1010:         <span class="ruby-comment cmt"># Antecedent node for empty nodes and relative pronouns</span>
+1011:           
+1012:         <span class="ruby-identifier">new_node</span> = <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">syn_node_with_id</span>(<span class="ruby-identifier">ant_id</span>)
+1013:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_node</span>
+1014:           <span class="ruby-identifier">node</span> = <span class="ruby-identifier">new_node</span>
+1015:         <span class="ruby-keyword kw">else</span>
+1016:           <span class="ruby-comment cmt"># error. stop seeking</span>
+1017:           <span class="ruby-comment cmt">#         $stderr.puts &quot;Antecedent ID not matching any node: #{ant_id}&quot;</span>
+1018:           <span class="ruby-keyword kw">break</span>
+1019:         <span class="ruby-keyword kw">end</span>
+1020:       <span class="ruby-keyword kw">end</span>
+1021:       
+1022:       <span class="ruby-comment cmt"># PP -- i.e. edgelabel == mod and node.POS == Prep?</span>
+1023:       <span class="ruby-comment cmt"># then add the preposition to the edgelabel,</span>
+1024:       <span class="ruby-comment cmt"># and take the node's head as head instead of the node</span>
+1025:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">edgelabel</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;mod&quot;</span> <span class="ruby-keyword kw">and</span>
+1026:           <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Prep&quot;</span>
+1027:         <span class="ruby-identifier">edgelabel</span> = <span class="ruby-identifier">edgelabel</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>().<span class="ruby-identifier">to_s</span>
+1028:       <span class="ruby-keyword kw">end</span>
+1029: 
+1030:       [<span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">node</span>]
+1031:     }
+1032: 
+1033:     <span class="ruby-comment cmt"># duplicate entries?</span>
+1034:     <span class="ruby-comment cmt"># s is often coreferent with either subj or obj</span>
+1035:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">voice</span>(<span class="ruby-identifier">start_node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;active&quot;</span> <span class="ruby-keyword kw">and</span>
+1036:         (<span class="ruby-identifier">s_entry</span> = <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-value str">&quot;s&quot;</span>)) <span class="ruby-keyword kw">and</span>
+1037:         (<span class="ruby-identifier">subj_entry</span> = <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-value str">&quot;subj&quot;</span>)) <span class="ruby-keyword kw">and</span>
+1038:         <span class="ruby-identifier">s_entry</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">subj_entry</span>.<span class="ruby-identifier">last</span>
+1039:       <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">s_entry</span>)
+1040: 
+1041:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">voice</span>(<span class="ruby-identifier">start_node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;passive&quot;</span> <span class="ruby-keyword kw">and</span>
+1042:         (<span class="ruby-identifier">s_entry</span> = <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-value str">&quot;s&quot;</span>)) <span class="ruby-keyword kw">and</span>
+1043:         (<span class="ruby-identifier">obj_entry</span> = <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">assoc</span>(<span class="ruby-value str">&quot;obj&quot;</span>)) <span class="ruby-keyword kw">and</span>
+1044:         <span class="ruby-identifier">s_entry</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">obj_entry</span>.<span class="ruby-identifier">last</span>
+1045:       <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">s_entry</span>)
+1046:     <span class="ruby-keyword kw">end</span>
+1047:         
+1048: <span class="ruby-comment cmt">#    $stderr.puts &quot;blip &quot; + retv.map { |l, n| l}.join(&quot; &quot;)</span>
+1049:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+1050:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="head-terminal-method" class="method-detail ">
+				<a name="method-c-head_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">head_terminal</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="MiniparInterpreter.html#method-c-head_terminal">head_terminal</a>
+</p>
+<p>
+given a constituent, return the terminal node that describes its headword
+</p>
+<p>
+returns: a <a href="SynNode.html">SynNode</a> object if successful, else
+nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="head-terminal-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 924</span>
+924:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">node</span>)
+925:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">is_terminal?</span>
+926:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>
+927:     <span class="ruby-keyword kw">else</span>
+928:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;Head&quot;</span>]).<span class="ruby-identifier">first</span>
+929:     <span class="ruby-keyword kw">end</span>
+930:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="informative-content-node-method" class="method-detail ">
+				<a name="method-c-informative_content_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">informative_content_node</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="MiniparInterpreter.html#method-c-informative_content_node">informative_content_node</a>
+</p>
+<p>
+for most constituents: the head for a PP, the NP for an SBAR, the VP for a
+VP, the embedded VP 
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="informative-content-node-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1059</span>
+1059:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">informative_content_node</span>(<span class="ruby-identifier">node</span>)
+1060:     <span class="ruby-identifier">node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">node</span>)
+1061: 
+1062:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Prep&quot;</span>
+1063:       <span class="ruby-comment cmt"># use complement of this constituent </span>
+1064:       <span class="ruby-identifier">children</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;pcomp-n&quot;</span>, 
+1065:                                               <span class="ruby-value str">&quot;vpsc_pcomp-c&quot;</span>, 
+1066:                                               <span class="ruby-value str">&quot;pcomp-c&quot;</span>])
+1067: 
+1068:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">empty?</span>
+1069:         <span class="ruby-comment cmt"># no suitable child found</span>
+1070: <span class="ruby-comment cmt">#        $stderr.puts &quot;Prep node without suitable child.&quot;</span>
+1071: <span class="ruby-comment cmt">#        $stderr.puts &quot;Outgoing edges: &quot; + node.child_labels().join(&quot;, &quot;)</span>
+1072:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1073:         
+1074:       <span class="ruby-keyword kw">else</span>
+1075: <span class="ruby-comment cmt">#         if children.length() &gt; 1</span>
+1076: <span class="ruby-comment cmt">#           $stderr.puts &quot;Too many suitable children for prep node: &quot;</span>
+1077: <span class="ruby-comment cmt">#           $stderr.puts &quot;Outgoing edges: &quot; + node.child_labels().join(&quot;, &quot;)</span>
+1078: <span class="ruby-comment cmt">#         end</span>
+1079:         
+1080:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">first</span>
+1081:       <span class="ruby-keyword kw">end</span>  
+1082: 
+1083: 
+1084:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;SentAdjunct&quot;</span>
+1085:       <span class="ruby-comment cmt"># use complement of this constituent </span>
+1086:       <span class="ruby-identifier">children</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;comp1&quot;</span>])
+1087: 
+1088:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">empty?</span>
+1089:         <span class="ruby-comment cmt"># no suitable child found</span>
+1090: <span class="ruby-comment cmt">#        $stderr.puts &quot;SentAdjunct node without suitable child.&quot;</span>
+1091: <span class="ruby-comment cmt">#        $stderr.puts &quot;Outgoing edges: &quot; + node.child_labels().join(&quot;, &quot;)</span>
+1092:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1093: 
+1094:       <span class="ruby-keyword kw">else</span>
+1095: <span class="ruby-comment cmt">#         if children.length() &gt; 1</span>
+1096: <span class="ruby-comment cmt">#           $stderr.puts &quot;Too many suitable children for sent. adjunct node: &quot;</span>
+1097: <span class="ruby-comment cmt">#           $stderr.puts &quot;Outgoing edges: &quot; + node.child_labels().join(&quot;, &quot;)</span>
+1098: <span class="ruby-comment cmt">#         end</span>
+1099: 
+1100:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">first</span>
+1101:       <span class="ruby-keyword kw">end</span>  
+1102:     
+1103:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>().<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>().<span class="ruby-identifier">empty?</span>
+1104:       <span class="ruby-comment cmt"># no word for this node: use child instead</span>
+1105: 
+1106:       <span class="ruby-identifier">children</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;i&quot;</span>])
+1107:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+1108: <span class="ruby-comment cmt">#         if children.length() &gt; 1</span>
+1109: <span class="ruby-comment cmt">#           $stderr.puts &quot;Too many i edges from empty node.&quot;</span>
+1110: <span class="ruby-comment cmt">#         end</span>
+1111: 
+1112:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">first</span>
+1113:       <span class="ruby-keyword kw">end</span>
+1114: 
+1115:       <span class="ruby-identifier">children</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;nn&quot;</span>])
+1116:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+1117: <span class="ruby-comment cmt">#         if children.length() &gt; 1</span>
+1118: <span class="ruby-comment cmt">#           $stderr.puts &quot;Too many nn edges from empty node.&quot;</span>
+1119: <span class="ruby-comment cmt">#         end</span>
+1120: 
+1121:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">first</span>
+1122:       <span class="ruby-keyword kw">end</span>
+1123:     
+1124:       <span class="ruby-comment cmt"># no children for this node: try antecedent</span>
+1125:       <span class="ruby-identifier">ant</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>)
+1126:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ant</span>
+1127:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ant</span>
+1128:       <span class="ruby-keyword kw">end</span>
+1129: 
+1130:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1131:     <span class="ruby-keyword kw">end</span>
+1132:     
+1133:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="max-constituents-method" class="method-detail ">
+				<a name="method-c-max_constituents"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">max_constituents</span><span
+						class="method-args">(nodeset, sent, idealize_maxconst = false)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+      
+</pre>
+<p>
+max constituents: given a set of nodes, compute the maximal constituents
+that exactly cover them
+</p>
+<p>
+overwrite default: ignore empty terminals, both in nodeset
+</p>
+<pre>
+ and in the nodes that are tested as potential maximal constituents</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="max-constituents-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1223</span>
+1223:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">max_constituents</span>(<span class="ruby-identifier">nodeset</span>, <span class="ruby-comment cmt"># Array:SynNode</span>
+1224:                                           <span class="ruby-identifier">sent</span>,    <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+1225:                                           <span class="ruby-identifier">idealize_maxconst</span> = <span class="ruby-keyword kw">false</span>) <span class="ruby-comment cmt"># boolean</span>
+1226:   
+1227:     <span class="ruby-identifier">my_nodeset</span> = <span class="ruby-identifier">nodeset</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">empty_terminal?</span>(<span class="ruby-identifier">n</span>)}
+1228:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">idealize_maxconst</span>
+1229:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">max_constituents_smc</span>(<span class="ruby-identifier">my_nodeset</span>, <span class="ruby-identifier">idealize_maxconst</span>, <span class="ruby-keyword kw">true</span>)
+1230:     <span class="ruby-keyword kw">else</span>
+1231:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">max_constituents_for_nodes</span>(<span class="ruby-identifier">my_nodeset</span>, <span class="ruby-keyword kw">true</span>)
+1232:     <span class="ruby-keyword kw">end</span>
+1233:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="modal--method" class="method-detail ">
+				<a name="method-c-modal%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">modal?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+modal?
+</p>
+<p>
+returns true if the given node is a modal verb
+</p>
+<p>
+returns: boolean
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="modal--source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 903</span>
+903:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">modal?</span>(<span class="ruby-identifier">node</span>)
+904:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">aux_or_modal?</span>(<span class="ruby-identifier">node</span>) <span class="ruby-keyword kw">and</span>
+905:         [<span class="ruby-value str">&quot;can&quot;</span>,
+906:          <span class="ruby-value str">&quot;could&quot;</span>,
+907:          <span class="ruby-value str">&quot;must&quot;</span>,
+908:          <span class="ruby-value str">&quot;should&quot;</span>,
+909:          <span class="ruby-value str">&quot;shall&quot;</span>
+910:       ].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>()
+911:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+912:     <span class="ruby-keyword kw">else</span>
+913:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+914:     <span class="ruby-keyword kw">end</span>
+915:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="optional-systems-method" class="method-detail ">
+				<a name="method-c-optional_systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">optional_systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+names of additional systems that may be interpreted by this class returns a
+hash service(string) -> system name(string) same as names()
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="optional-systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 781</span>
+781:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">optional_systems</span>()
+782:     <span class="ruby-keyword kw">return</span> {}
+783:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="path-between-method" class="method-detail ">
+				<a name="method-c-path_between"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">path_between</span><span
+						class="method-args">(from_node, to_node, use_nontree_edges = false)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="MiniparInterpreter.html#method-c-path_between">path_between</a>
+</p>
+<p>
+construct path in syntactic structure between two nodes,  using 
+</p>
+<ul>
+<li><p>
+node labels
+</p>
+</li>
+<li><p>
+edge labels
+</p>
+</li>
+<li><p>
+direction Up, Down
+</p>
+</li>
+</ul>
+<p>
+use_nontree_edges: set to true to use coreference edges and other non-tree
+edges returned by the parser in path computation. 
+</p>
+<p>
+returns: <a href="Path.html">Path</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="path-between-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1149</span>
+1149:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">path_between</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-comment cmt"># SynNode</span>
+1150:                                       <span class="ruby-identifier">to_node</span>,   <span class="ruby-comment cmt"># SynNode</span>
+1151:                                       <span class="ruby-identifier">use_nontree_edges</span> = <span class="ruby-keyword kw">false</span>) <span class="ruby-comment cmt"># boolean</span>
+1152:     <span class="ruby-identifier">from_node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">from_node</span>)
+1153:     <span class="ruby-identifier">to_node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">to_node</span>)
+1154: 
+1155:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">use_nontree_edges</span>
+1156:       <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">each_reachable_node</span>(<span class="ruby-identifier">from_node</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span>, <span class="ruby-identifier">ant</span>, <span class="ruby-identifier">paths</span>, <span class="ruby-identifier">prev</span><span class="ruby-operator">|</span>
+1157:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">to_node</span>
+1158:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">first</span>
+1159:         <span class="ruby-keyword kw">end</span>
+1160:         <span class="ruby-keyword kw">true</span> <span class="ruby-comment cmt"># each_reachable_node requires boolean to determine</span>
+1161:              <span class="ruby-comment cmt"># whether to continue the path beyond node</span>
+1162:       }
+1163:     <span class="ruby-keyword kw">else</span>
+1164:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-identifier">to_node</span>)
+1165:     <span class="ruby-keyword kw">end</span>
+1166:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="pt-method" class="method-detail ">
+				<a name="method-c-pt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">pt</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+phrase type: constituent label for nonterminals, part of speech for
+terminals
+</p>
+<p>
+returns: string
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="pt-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 878</span>
+878:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">pt</span>(<span class="ruby-identifier">node</span>)
+879:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>()
+880:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="relative-pronoun--method" class="method-detail ">
+				<a name="method-c-relative_pronoun%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">relative_pronoun?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+is relative pronoun?
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="relative-pronoun--source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 864</span>
+864:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">relative_pronoun?</span>(<span class="ruby-identifier">node</span>) <span class="ruby-comment cmt"># SynNode</span>
+865:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent_label</span>() <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^wh/</span>
+866:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+867:     <span class="ruby-keyword kw">else</span>
+868:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+869:     <span class="ruby-keyword kw">end</span>
+870:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="surrounding-nodes-method" class="method-detail ">
+				<a name="method-c-surrounding_nodes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">surrounding_nodes</span><span
+						class="method-args">(node, use_nontree_edges = false)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="MiniparInterpreter.html#method-c-surrounding_nodes">surrounding_nodes</a>:
+</p>
+<p>
+construct paths in syntactic structure between a node and each of its
+neighbors path construction as in path_between. Neighbors: parent, child,
+plus potentially neighbors by nontree edges use_nontree_edges: again, same
+as in <a
+href="MiniparInterpreter.html#method-c-path_between">path_between</a>
+</p>
+<p>
+returns: list of pairs [neighbor(<a href="SynNode.html">SynNode</a>),
+path(<a href="Path.html">Path</a>)]
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="surrounding-nodes-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1177</span>
+1177:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">surrounding_nodes</span>(<span class="ruby-identifier">node</span>, <span class="ruby-comment cmt"># SynNode</span>
+1178:                                            <span class="ruby-identifier">use_nontree_edges</span> = <span class="ruby-keyword kw">false</span>) <span class="ruby-comment cmt"># boolean</span>
+1179:     <span class="ruby-identifier">normal_neighbors</span> = <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">node</span>, <span class="ruby-identifier">use_nontree_edges</span>)
+1180:     <span class="ruby-comment cmt"># add antecedents</span>
+1181:     <span class="ruby-identifier">more_neighbors</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1182:     <span class="ruby-identifier">normal_neighbors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">neighbor</span>, <span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+1183:       <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">n</span> = (<span class="ruby-identifier">neighbor</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>))
+1184:         <span class="ruby-identifier">more_neighbors</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">n</span>, <span class="ruby-identifier">path</span>]
+1185:         <span class="ruby-identifier">neighbor</span> = <span class="ruby-identifier">n</span>
+1186:       <span class="ruby-keyword kw">end</span>
+1187:     }
+1188:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">normal_neighbors</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">more_neighbors</span>
+1189:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="systems-method" class="method-detail ">
+				<a name="method-c-systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+names of the systems interpreted by this class: returns a hash
+service(string) -> system name (string), e.g. { &#8220;parser&#8221; =>
+&#8220;collins&#8221;, &#8220;lemmatizer&#8221; => &#8220;treetagger&#8221;
+}
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 771</span>
+771:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">systems</span>()
+772:     <span class="ruby-keyword kw">return</span> {
+773:       <span class="ruby-value str">&quot;parser&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;minipar&quot;</span>
+774:     }
+775:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="voice-method" class="method-detail ">
+				<a name="method-c-voice"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">voice</span><span
+						class="method-args">(verb_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+voice
+</p>
+<p>
+given a constituent, return 
+</p>
+<ul>
+<li><p>
+&#8220;active&#8221;/&#8220;passive&#8221; if it is a verb
+</p>
+</li>
+<li><p>
+nil, else
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="voice-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 938</span>
+938:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">voice</span>(<span class="ruby-identifier">verb_node</span>)
+939:     
+940:     <span class="ruby-comment cmt"># am I a terminal added to make minipar representations</span>
+941:     <span class="ruby-comment cmt"># more TigerXML-like? then move to my parent</span>
+942:     <span class="ruby-identifier">verb_node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">verb_node</span>)
+943: 
+944:     <span class="ruby-comment cmt"># verb has to have part of speech V or VBE</span>
+945:     <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">&quot;V&quot;</span>, <span class="ruby-value str">&quot;VBE&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">part_of_speech</span>()
+946:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+947:     <span class="ruby-keyword kw">end</span>
+948: 
+949:     <span class="ruby-comment cmt"># outgoing edge &quot;by_subj&quot;? </span>
+950:     <span class="ruby-comment cmt"># then assume passive</span>
+951:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;by_subj&quot;</span>]).<span class="ruby-identifier">empty?</span>
+952: <span class="ruby-comment cmt">#      $stderr.puts &quot;passive #{verb_node.id()} by_subj&quot;</span>
+953:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;passive&quot;</span>
+954:     <span class="ruby-keyword kw">end</span>
+955: 
+956:     <span class="ruby-comment cmt"># outgoing edge to auxiliary &quot;be&quot;, and not &quot;be ....ing&quot;?</span>
+957:     <span class="ruby-comment cmt"># then assume passive</span>
+958:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;be&quot;</span>]).<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword kw">and</span>
+959:         <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">word</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/ing$/</span>
+960: <span class="ruby-comment cmt">#      $stderr.puts &quot;passive #{verb_node.id()} be&quot;</span>
+961:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;passive&quot;</span>
+962:     <span class="ruby-keyword kw">end</span>
+963: 
+964:     <span class="ruby-comment cmt"># vrel incoming edge? then assume passive</span>
+965:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">parent_label</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;vrel&quot;</span>
+966: <span class="ruby-comment cmt">#      $stderr.puts &quot;passive #{verb_node.id()} vrel&quot;</span>
+967:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;passive&quot;</span>
+968:     <span class="ruby-keyword kw">end</span>
+969: 
+970:     <span class="ruby-comment cmt"># obj child coreferent with s child? </span>
+971:     <span class="ruby-comment cmt"># then assume passive</span>
+972:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">obj_ch</span> = <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;obj&quot;</span>]).<span class="ruby-identifier">first</span>)
+973:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">s_ch</span> = <span class="ruby-identifier">verb_node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;s&quot;</span>]).<span class="ruby-identifier">first</span>)
+974:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj_ch</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;antecedent&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">s_ch</span>
+975: <span class="ruby-comment cmt">#          $stderr.puts &quot;passive #{verb_node.id()} obj=s&quot;</span>
+976:           <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;passive&quot;</span>
+977:         <span class="ruby-keyword kw">end</span>
+978:       <span class="ruby-keyword kw">end</span>
+979:     <span class="ruby-keyword kw">end</span>
+980: 
+981:     <span class="ruby-comment cmt"># okay, assume active voice</span>
+982:     <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;active&quot;</span>
+983:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-class-method-details" class="method-section section">
+			<h3 class="section-header">Private Class Methods</h3>
+
+		
+			<div id="aux-or-modal--method" class="method-detail ">
+				<a name="method-c-aux_or_modal%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">aux_or_modal?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+auxiliaries and modals share this characteristic
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="aux-or-modal--source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1341</span>
+1341:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">aux_or_modal?</span>(<span class="ruby-identifier">node</span>)
+1342:     <span class="ruby-identifier">node</span> = <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">node</span>)
+1343:     
+1344:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">l</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent_label</span>()) <span class="ruby-keyword kw">and</span>
+1345:         [<span class="ruby-value str">&quot;be&quot;</span>, <span class="ruby-value str">&quot;have&quot;</span>, <span class="ruby-value str">&quot;aux&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">l</span> <span class="ruby-keyword kw">and</span>
+1346:         (<span class="ruby-identifier">p</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>()) <span class="ruby-keyword kw">and</span>
+1347:         <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">p</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>
+1348:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+1349:     <span class="ruby-keyword kw">else</span>
+1350:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1351:     <span class="ruby-keyword kw">end</span>
+1352:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="empty-terminal--method" class="method-detail ">
+				<a name="method-c-empty_terminal%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">empty_terminal?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+is this an empty terminal?
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="empty-terminal--source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1380</span>
+1380:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">empty_terminal?</span>(<span class="ruby-identifier">node</span>)
+1381:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">is_terminal?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>().<span class="ruby-identifier">empty?</span>
+1382:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+1383:     <span class="ruby-keyword kw">else</span>
+1384:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1385:     <span class="ruby-keyword kw">end</span>
+1386:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="ensure-terminal-method" class="method-detail ">
+				<a name="method-c-ensure_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">ensure_terminal</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a node: if it has a Head child, return that, else return the node
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="ensure-terminal-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1357</span>
+1357:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_terminal</span>(<span class="ruby-identifier">node</span>)
+1358:     <span class="ruby-identifier">headchildren</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_by_edgelabels</span>([<span class="ruby-value str">&quot;Head&quot;</span>])
+1359:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">headchildren</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">headchildren</span>.<span class="ruby-identifier">empty?</span>)
+1360:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">headchildren</span>.<span class="ruby-identifier">first</span>
+1361:     <span class="ruby-keyword kw">else</span>
+1362:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>
+1363:     <span class="ruby-keyword kw">end</span>
+1364:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="ensure-upper-method" class="method-detail ">
+				<a name="method-c-ensure_upper"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">ensure_upper</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a node: if it is a terminal that is linked to its parent by a Head
+edge, return the parent, else return the node
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="ensure-upper-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/MiniparInterface.rb, line 1370</span>
+1370:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">MiniparInterpreter</span>.<span class="ruby-identifier">ensure_upper</span>(<span class="ruby-identifier">node</span>)
+1371:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent_label</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Head&quot;</span>
+1372:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>
+1373:     <span class="ruby-keyword kw">else</span>
+1374:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>
+1375:     <span class="ruby-keyword kw">end</span>
+1376:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

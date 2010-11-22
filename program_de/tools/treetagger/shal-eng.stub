@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Set these paths appropriately
+
+BIN=TREETAGGER-BASE/bin
+CMD=TREETAGGER-BASE/cmd
+LIB=TREETAGGER-BASE/lib
+
+TOKENIZER=${BIN}/separate-punctuation
+TAGGER=${BIN}/tree-tagger
+ABBR_LIST=${LIB}/english-abbreviations
+PARFILE=${LIB}/english.par
+
+# put all on one line
+cat $* |
+# do tokenization
+#$TOKENIZER +1 +s +l $ABBR_LIST |
+# separate clitics from preceding words
+#sed -e "s/'s"'$'"/ 's/g" \
+#-e "s/s'"'$'"/ '/g" \
+#-e "s/n't"'$'"/ n't/g" \
+#-e "s/'re"'$'"/ 're/g" \
+#-e "s/'ve"'$'"/ 've/g" \
+#-e "s/'d"'$'"/ 'd/g" \
+#-e "s/'m"'$'"/ 'm/g" \
+#-e "s/'em"'$'"/ 'em/g" \
+#-e "s/'ll"'$'"/ 'll/g" \
+#-e '/^$/d' |
+#tr ' ' '\n' |
+# remove empty lines
+#grep -v '^$' |
+# tagging
+$TAGGER $PARFILE -token -lemma -sgml 
+

@@ -1,0 +1,1665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: GfiGfPathMapping</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/GfInduce_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/GfInduce.rb">PkgGeneral/GfInduce.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-enter_path">#enter_path</a></li>
+					
+					<li><a href="#method-i-finish_inducing">#finish_inducing</a></li>
+					
+					<li><a href="#method-i-potential_gfs_of_lemma">#potential_gfs_of_lemma</a></li>
+					
+					<li><a href="#method-i-potential_gfs_of_node">#potential_gfs_of_node</a></li>
+					
+					<li><a href="#method-i-print_entries">#print_entries</a></li>
+					
+					<li><a href="#method-i-remove_gfs">#remove_gfs</a></li>
+					
+					<li><a href="#method-i-restrict_pathhash_len">#restrict_pathhash_len</a></li>
+					
+					<li><a href="#method-i-restrict_pathhash_to_downpaths">#restrict_pathhash_to_downpaths</a></li>
+					
+					<li><a href="#method-i-restrict_pathlen">#restrict_pathlen</a></li>
+					
+					<li><a href="#method-i-restrict_to_downpaths">#restrict_to_downpaths</a></li>
+					
+					<li><a href="#method-i-store_mapping">#store_mapping</a></li>
+					
+					<li><a href="#method-i-string_lemmapos">#string_lemmapos</a></li>
+					
+					<li><a href="#method-i-string_step">#string_step</a></li>
+					
+					<li><a href="#method-i-test_output">#test_output</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">GfiGfPathMapping</h1>
+
+		<div id="description">
+			<pre>
+                                                                   
+</pre>
+<p>
+Management of mapping from GFs to paths
+</p>
+<pre>
+                                                                   </pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(interpreter_class)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">interpreter_class</span>)
+25: 
+26:     <span class="ruby-ivar">@interpreter</span> = <span class="ruby-identifier">interpreter_class</span>
+27: 
+28:     <span class="ruby-comment cmt"># hash: POS(string) -&gt; hash gf(string) -&gt; hash: path_string -&gt; frequency(int)</span>
+29:     <span class="ruby-ivar">@gf_to_paths</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+30: 
+31:     <span class="ruby-comment cmt"># hash: POS(string)-&gt; hash: gf(string) -&gt; hash: one edge of a path -&gt; </span>
+32:     <span class="ruby-comment cmt">#  frequency(int) | hash: one edge of a path -&gt; ...</span>
+33:     <span class="ruby-ivar">@gf_to_edgelabel</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+34: 
+35:     <span class="ruby-comment cmt"># hash: word(string) -&gt; array: [gf, prep, head_category]</span>
+36:     <span class="ruby-ivar">@word_to_gflist</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+37: 
+38:     <span class="ruby-comment cmt"># hash: path as string(string) -&gt; array of steps</span>
+39:     <span class="ruby-comment cmt"># where a step is a tuple of stringss [{U, D}, edgelabel, nodelabel}</span>
+40:     <span class="ruby-ivar">@pathstring_to_path</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+41:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="finish-inducing-method" class="method-detail ">
+				<a name="method-i-finish_inducing"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">finish_inducing</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+finish up inducing:
+</p>
+<pre>
+ reencode information in a fashion
+ that makes apply() faster</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="finish-inducing-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 100</span>
+100:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finish_inducing</span>()
+101:     <span class="ruby-comment cmt"># make sure gf_to_edgelabel is empty at the start</span>
+102:     <span class="ruby-ivar">@gf_to_edgelabel</span>.<span class="ruby-identifier">clear</span>()
+103:     
+104:     <span class="ruby-ivar">@gf_to_paths</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos</span>, <span class="ruby-identifier">gf_to_paths_to_freq</span><span class="ruby-operator">|</span>
+105:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>]
+106:         <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+107:       <span class="ruby-keyword kw">end</span>
+108: 
+109:       <span class="ruby-identifier">gf_to_paths_to_freq</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">paths_to_freq</span><span class="ruby-operator">|</span>
+110:         <span class="ruby-identifier">paths_to_freq</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pathstring</span>, <span class="ruby-identifier">freq</span><span class="ruby-operator">|</span>
+111: 
+112:           <span class="ruby-identifier">steps</span> = <span class="ruby-ivar">@pathstring_to_path</span>[<span class="ruby-identifier">pathstring</span>]
+113:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">empty?</span>
+114:             <span class="ruby-comment cmt"># do not list empty paths</span>
+115:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;found empty path for #{gf}, frequency #{freq}. Skipping.&quot;</span>
+116:             <span class="ruby-keyword kw">next</span>
+117:           <span class="ruby-keyword kw">end</span>
+118:         
+119:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">freq</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">5</span> <span class="ruby-keyword kw">or</span>
+120:               <span class="ruby-identifier">gf</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Head|Appositive|Quant|Protagonist/</span>
+121:             <span class="ruby-comment cmt"># path frequent enough: list it</span>
+122: 
+123:             <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>]
+124:               <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+125:             <span class="ruby-keyword kw">end</span>
+126:             
+127:             <span class="ruby-identifier">enter_path</span>(<span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>], <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">clone</span>(), <span class="ruby-identifier">freq</span>)
+128:           <span class="ruby-keyword kw">end</span>
+129:         }
+130:       }
+131:     }
+132:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="potential-gfs-of-node-method" class="method-detail ">
+				<a name="method-i-potential_gfs_of_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">potential_gfs_of_node</span><span
+						class="method-args">(start_node, lemma, pos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a <a href="SynNode.html">SynNode</a>, return all its potential GFs by
+comparing paths in the parse tree against the GF/path mappings stored in
+@gf_to_edgelabel
+</p>
+<p>
+returns:  hash: <a href="SynNode.html">SynNode</a> -> tuple [GF(string),
+preposition(string), frequency(integer)]
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="potential-gfs-of-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 254</span>
+254:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">potential_gfs_of_node</span>(<span class="ruby-identifier">start_node</span>,  <span class="ruby-comment cmt"># SynNode</span>
+255:                             <span class="ruby-identifier">lemma</span>,       <span class="ruby-comment cmt"># string: lemma for start_node</span>
+256:                             <span class="ruby-identifier">pos</span>)
+257: 
+258: 
+259:     <span class="ruby-comment cmt"># determine possible GFs of a SynNode:</span>
+260:     <span class="ruby-comment cmt"># </span>
+261:     <span class="ruby-comment cmt"># hash: SynNode(some node in this sentence) -&gt; list of tuples [gf label, prep, headcat, hash of steps]</span>
+262:     <span class="ruby-comment cmt"># initialize with just the entry for the start node</span>
+263:     <span class="ruby-identifier">potential_gfs</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+264:     <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">start_node</span>] = <span class="ruby-identifier">potential_gfs_of_lemma</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>)
+265: <span class="ruby-comment cmt">#     $stderr.puts &quot;HIER #{lemma} &quot; + potential_gfs_of_lemma(lemma, pos).map { |gf, prep, hc, hash|</span>
+266: <span class="ruby-comment cmt">#       &quot;#{gf}:#{prep}:#{hc} &quot;</span>
+267: <span class="ruby-comment cmt">#     }.join(&quot; &quot;)</span>
+268: 
+269:     <span class="ruby-comment cmt"># agenda: list of SynNode objects</span>
+270:     <span class="ruby-comment cmt">#  that have been considered as potential GFs in the previous step</span>
+271:     <span class="ruby-comment cmt">#  next: consider their surrounding nodes</span>
+272:     <span class="ruby-comment cmt">#</span>
+273:     <span class="ruby-comment cmt"># so, we never assign a GF to the start node</span>
+274:     <span class="ruby-identifier">agenda</span> = [<span class="ruby-identifier">start_node</span>]
+275:     <span class="ruby-comment cmt"># been_there: list of SynNode objects</span>
+276:     <span class="ruby-comment cmt">#  that have been considered already and needn't be visited again</span>
+277:     <span class="ruby-identifier">been_there</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+278:     <span class="ruby-identifier">been_there</span>[<span class="ruby-identifier">start_node</span>] = <span class="ruby-keyword kw">true</span>
+279: 
+280:     <span class="ruby-comment cmt"># hash: SynNode -&gt; tuple [GF(string), preposition(string), frequency(integer)]</span>
+281:     <span class="ruby-comment cmt">#      node identified for this sentence for GF,</span>
+282:     <span class="ruby-comment cmt">#      frequency: frequency with which the path from verb to GF has</span>
+283:     <span class="ruby-comment cmt">#                 been seen in the FN data (such that we can keep</span>
+284:     <span class="ruby-comment cmt">#                 the best path and discard others)</span>
+285:     <span class="ruby-identifier">node_to_label_and_freq</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+286: 
+287:     <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">agenda</span>.<span class="ruby-identifier">empty?</span>)
+288:       <span class="ruby-identifier">prev_node</span> = <span class="ruby-identifier">agenda</span>.<span class="ruby-identifier">shift</span>()
+289: 
+290:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">prev_node</span>]
+291:         <span class="ruby-comment cmt"># no further GFs to be reached from prev_node:</span>
+292:         <span class="ruby-comment cmt"># shouldn't be here, but never mind, just ignore</span>
+293:         <span class="ruby-keyword kw">next</span>
+294:       <span class="ruby-keyword kw">end</span>
+295:       
+296:       <span class="ruby-comment cmt"># surrounding_nodes returns a list of pairs [SynNode, Path object]</span>
+297:       <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">surrounding_nodes</span>(<span class="ruby-identifier">prev_node</span>, <span class="ruby-keyword kw">true</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span>, <span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+298:         <span class="ruby-identifier">myprep</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">preposition</span>(<span class="ruby-identifier">node</span>)
+299:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myprep</span>
+300:           <span class="ruby-identifier">myprep</span>.<span class="ruby-identifier">downcase!</span>
+301:         <span class="ruby-keyword kw">end</span>
+302:         <span class="ruby-identifier">h</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">node</span>)
+303:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">h</span>
+304:           <span class="ruby-identifier">my_headcat</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">h</span>)
+305:         <span class="ruby-keyword kw">else</span>
+306:           <span class="ruby-identifier">my_headcat</span> = <span class="ruby-keyword kw">nil</span>
+307:         <span class="ruby-keyword kw">end</span>
+308: 
+309:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">been_there</span>[<span class="ruby-identifier">node</span>]
+310:           <span class="ruby-keyword kw">next</span>
+311:         <span class="ruby-keyword kw">end</span>
+312: 
+313:         <span class="ruby-identifier">been_there</span>[<span class="ruby-identifier">node</span>] = <span class="ruby-keyword kw">true</span>
+314: 
+315:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">node</span>]
+316:           <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">node</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+317:         <span class="ruby-keyword kw">end</span>
+318:       
+319:         <span class="ruby-identifier">path</span>.<span class="ruby-identifier">each_step</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span>
+320:           <span class="ruby-comment cmt"># each edge from prev_node to node:</span>
+321:           <span class="ruby-comment cmt"># see whether we can walk this edge to reach some of the GFs</span>
+322:           <span class="ruby-comment cmt"># still to be reached</span>
+323: 
+324:           <span class="ruby-identifier">step_s</span> = <span class="ruby-identifier">string_step</span>(<span class="ruby-identifier">step</span>)
+325: 
+326:           <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">prev_node</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>, <span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+327: 
+328:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">step_s</span>]
+329:               <span class="ruby-comment cmt"># yes, there is still a possibility of reaching gf </span>
+330:               <span class="ruby-comment cmt"># from our current node</span>
+331: 
+332:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">step_s</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Integer</span>
+333:                 <span class="ruby-comment cmt"># actually, we have reached gf,</span>
+334:                 <span class="ruby-comment cmt"># and hash[last_edge] is the frequency with which</span>
+335:                 <span class="ruby-comment cmt"># this path has led to this GF in the FN data</span>
+336: 
+337:                 <span class="ruby-identifier">freq</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">step_s</span>]
+338:                 
+339:                 <span class="ruby-comment cmt"># check whether node has the right preposition</span>
+340:                 <span class="ruby-comment cmt"># and the right head category</span>
+341:                 <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">myprep</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">prep</span> <span class="ruby-keyword kw">or</span>
+342:                     <span class="ruby-identifier">my_headcat</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">headcat</span>
+343:                   <span class="ruby-comment cmt"># we were supposed to find a preposition</span>
+344:                   <span class="ruby-comment cmt"># but didn't , or didn't find the right one;</span>
+345:                   <span class="ruby-comment cmt"># or we got the wrong head category</span>
+346:                   <span class="ruby-comment cmt"># discard current entry</span>
+347: 
+348:                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">node_to_label_and_freq</span>[<span class="ruby-identifier">node</span>]) <span class="ruby-keyword kw">or</span>
+349:                     <span class="ruby-identifier">node_to_label_and_freq</span>[<span class="ruby-identifier">node</span>].<span class="ruby-identifier">last</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">freq</span>
+350:                   <span class="ruby-comment cmt"># this node has not been assigned any GF before,</span>
+351:                   <span class="ruby-comment cmt"># or the old frequency was lower than the current one:</span>
+352:                   <span class="ruby-comment cmt"># keep the new entry</span>
+353:                   <span class="ruby-identifier">node_to_label_and_freq</span>[<span class="ruby-identifier">node</span>] = [<span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">freq</span>]
+354:                   
+355:                 <span class="ruby-keyword kw">else</span>
+356:                   <span class="ruby-comment cmt"># this node has been assigned a GF before, and the </span>
+357:                   <span class="ruby-comment cmt"># other frequency was higher:</span>
+358:                   <span class="ruby-comment cmt"># discard the current entry</span>
+359:                 <span class="ruby-keyword kw">end</span>
+360:                 
+361:               <span class="ruby-keyword kw">else</span>
+362:                 <span class="ruby-comment cmt"># we have not yet reached gf, but we still might</span>
+363:                 <span class="ruby-comment cmt"># at the next node we meet from here</span>
+364:                 <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">node</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">step_s</span>]]
+365:               <span class="ruby-keyword kw">end</span>
+366:             <span class="ruby-keyword kw">end</span>
+367:           } <span class="ruby-comment cmt"># each gf/hash pair for prev_node</span>
+368:         } <span class="ruby-comment cmt"># each edge leading from prev_node to node</span>
+369: 
+370:         <span class="ruby-comment cmt"># further explore the parse from this node?</span>
+371:         <span class="ruby-comment cmt"># only if there are still GFs to be reached from here</span>
+372:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">potential_gfs</span>[<span class="ruby-identifier">node</span>].<span class="ruby-identifier">empty?</span>
+373:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">agenda</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">node</span>
+374:             <span class="ruby-identifier">agenda</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">node</span>
+375:           <span class="ruby-keyword kw">end</span>
+376:         <span class="ruby-keyword kw">end</span>
+377:       } <span class="ruby-comment cmt"># each surrounding node of prev_node</span>
+378:     <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># while agenda nonempty</span>
+379: 
+380:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node_to_label_and_freq</span>
+381:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-gfs-method" class="method-detail ">
+				<a name="method-i-remove_gfs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_gfs</span><span
+						class="method-args">(gf_list)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+restrict gf_to_edgelabel hashes: remove GFs that are often incorrect
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="remove-gfs-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 229</span>
+229:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_gfs</span>(<span class="ruby-identifier">gf_list</span>)
+230:     <span class="ruby-identifier">gf_list</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span><span class="ruby-operator">|</span>
+231:       <span class="ruby-comment cmt"># test output</span>
+232:       <span class="ruby-ivar">@gf_to_edgelabel</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos_specific</span><span class="ruby-operator">|</span>
+233:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pos_specific</span>[<span class="ruby-identifier">gf</span>]
+234: <span class="ruby-comment cmt">#          puts &quot;Remove GFs: removing #{gf}&quot;</span>
+235:         <span class="ruby-keyword kw">end</span>
+236:         <span class="ruby-identifier">pos_specific</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">gf</span>)
+237:       }
+238:     }
+239:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="restrict-pathlen-method" class="method-detail ">
+				<a name="method-i-restrict_pathlen"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">restrict_pathlen</span><span
+						class="method-args">(n)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+restrict gf_to_edgelabel hashes: only keep paths up to length n
+</p>
+<p>
+changes @gf_to_edgelabel, not reversible
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="restrict-pathlen-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 218</span>
+218:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">restrict_pathlen</span>(<span class="ruby-identifier">n</span>)  <span class="ruby-comment cmt"># integer: maximum length to keep</span>
+219:     <span class="ruby-ivar">@gf_to_edgelabel</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos_specific</span><span class="ruby-operator">|</span>
+220:       <span class="ruby-identifier">pos_specific</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash_or_val</span><span class="ruby-operator">|</span>
+221:         <span class="ruby-identifier">restrict_pathhash_len</span>(<span class="ruby-identifier">hash_or_val</span>, <span class="ruby-identifier">n</span>)
+222:       }
+223:     }
+224:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="restrict-to-downpaths-method" class="method-detail ">
+				<a name="method-i-restrict_to_downpaths"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">restrict_to_downpaths</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+restrict gf_to_edgelabel hashes: exclude all paths that include an Up edge
+</p>
+<p>
+changes @gf_to_edgelabel, not reversible
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="restrict-to-downpaths-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 205</span>
+205:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">restrict_to_downpaths</span>()
+206:     <span class="ruby-ivar">@gf_to_edgelabel</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos_specific</span><span class="ruby-operator">|</span>
+207:       <span class="ruby-identifier">pos_specific</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash_or_val</span><span class="ruby-operator">|</span>
+208:         <span class="ruby-identifier">restrict_pathhash_to_downpaths</span>(<span class="ruby-identifier">hash_or_val</span>)
+209:       }
+210:     }
+211:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="store-mapping-method" class="method-detail ">
+				<a name="method-i-store_mapping"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">store_mapping</span><span
+						class="method-args">(gf, path, node, lemma, pos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="store-mapping-source">
+<pre>
+    <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 48</span>
+48:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">store_mapping</span>(<span class="ruby-identifier">gf</span>,   <span class="ruby-comment cmt"># grammatical function: string</span>
+49:                     <span class="ruby-identifier">path</span>, <span class="ruby-comment cmt"># Path object (from AbstractSynInterface)</span>
+50:                     <span class="ruby-identifier">node</span>, <span class="ruby-comment cmt"># SynNode associated with GF and reached via path</span>
+51:                     <span class="ruby-identifier">lemma</span>,<span class="ruby-comment cmt"># lemma: string</span>
+52:                     <span class="ruby-identifier">pos</span>)  <span class="ruby-comment cmt"># part of speech: string</span>
+53: 
+54:     <span class="ruby-identifier">path_s</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">print</span>(<span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">true</span>)
+55:     <span class="ruby-identifier">lemmapos</span> = <span class="ruby-identifier">string_lemmapos</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>)
+56:     <span class="ruby-identifier">prep</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">preposition</span>(<span class="ruby-identifier">node</span>)
+57:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prep</span>
+58:       <span class="ruby-identifier">prep</span>.<span class="ruby-identifier">downcase!</span>
+59:     <span class="ruby-keyword kw">end</span>
+60:     <span class="ruby-identifier">h</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">node</span>)
+61:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">h</span>
+62:       <span class="ruby-identifier">headcat</span> = <span class="ruby-ivar">@interpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">h</span>)
+63:     <span class="ruby-keyword kw">else</span>
+64:       <span class="ruby-identifier">headcat</span> = <span class="ruby-keyword kw">nil</span>
+65:     <span class="ruby-keyword kw">end</span>
+66: 
+67:     <span class="ruby-comment cmt"># remember the path as an array of triples [direction, edgelabel, nodelabel]</span>
+68:     <span class="ruby-comment cmt"># as hash value of the path-as-string</span>
+69:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@pathstring_to_path</span>[<span class="ruby-identifier">path_s</span>]
+70:       <span class="ruby-ivar">@pathstring_to_path</span>[<span class="ruby-identifier">path_s</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+71:       <span class="ruby-identifier">path</span>.<span class="ruby-identifier">each_step</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">direction</span>, <span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">nodelabel</span>, <span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+72:         <span class="ruby-ivar">@pathstring_to_path</span>[<span class="ruby-identifier">path_s</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">direction</span>, <span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">nodelabel</span>]
+73:       }
+74:     <span class="ruby-keyword kw">end</span>
+75: 
+76:     <span class="ruby-comment cmt"># store the mapping in the</span>
+77:     <span class="ruby-comment cmt"># gf -&gt; path hash</span>
+78:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>]
+79:       <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+80:     <span class="ruby-keyword kw">end</span>
+81:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>]
+82:       <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+83:     <span class="ruby-keyword kw">end</span>
+84:     <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>][<span class="ruby-identifier">path_s</span>] = <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>][<span class="ruby-identifier">path_s</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+85: 
+86: 
+87:     <span class="ruby-comment cmt"># remember this gf/pt tuple as possible GF of the current lemma</span>
+88:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>]
+89:       <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+90:     <span class="ruby-keyword kw">end</span>
+91:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>].<span class="ruby-identifier">include?</span> [<span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>]
+92:       <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>]
+93:     <span class="ruby-keyword kw">end</span>
+94:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="test-output-method" class="method-detail ">
+				<a name="method-i-test_output"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">test_output</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+test output
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="test-output-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 140</span>
+140:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_output</span>()
+141:     <span class="ruby-comment cmt"># gf_to_paths:</span>
+142:     <span class="ruby-comment cmt"># sum frequencies, compare frequency against average path length</span>
+143:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============================&quot;</span>
+144:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;GF_TO_PATHS&quot;</span>
+145:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============================&quot;</span>
+146: <span class="ruby-comment cmt">#     @gf_to_paths.each_key { |pos|</span>
+147: <span class="ruby-comment cmt">#       @gf_to_paths[pos].each_key { |gf|</span>
+148: <span class="ruby-comment cmt">#         puts &quot;================&quot;</span>
+149: <span class="ruby-comment cmt">#         puts &quot;POS #{pos} GF #{gf}:&quot;</span>
+150: <span class="ruby-comment cmt">#         @gf_to_paths[pos][gf].each_pair { |path_s, freq|</span>
+151: <span class="ruby-comment cmt">#           puts &quot;#{path_s} freq:#{freq} len:#{@pathstring_to_path[path_s].length()}&quot;</span>
+152: <span class="ruby-comment cmt">#         }</span>
+153: <span class="ruby-comment cmt">#       }</span>
+154: <span class="ruby-comment cmt">#     }  </span>
+155:     <span class="ruby-ivar">@gf_to_paths</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos</span><span class="ruby-operator">|</span>
+156:       <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>].<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span><span class="ruby-operator">|</span>
+157:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;================&quot;</span>
+158:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;POS #{pos} GF #{gf}:&quot;</span>
+159:   
+160:         <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>].<span class="ruby-identifier">values</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">a</span>}.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frequency</span><span class="ruby-operator">|</span>
+161:           <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span>
+162:           <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+163:           <span class="ruby-ivar">@gf_to_paths</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>].<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path_s</span>, <span class="ruby-identifier">otherfreq</span><span class="ruby-operator">|</span>
+164:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">otherfreq</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">frequency</span>
+165:               <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+166:               <span class="ruby-identifier">sum</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@pathstring_to_path</span>[<span class="ruby-identifier">path_s</span>].<span class="ruby-identifier">length</span>()
+167:             <span class="ruby-keyword kw">end</span>
+168:           }
+169:           <span class="ruby-identifier">avg_pathlen</span> = <span class="ruby-identifier">sum</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_f</span>
+170:           
+171:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;     Frequency #{frequency}: #{count} path(s)&quot;</span>
+172:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;                  #{avg_pathlen} avg. path len&quot;</span>
+173:         }
+174:         <span class="ruby-identifier">puts</span>
+175:       }
+176:     }
+177:     <span class="ruby-identifier">puts</span>
+178:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;WORD_TO_GFLIST&quot;</span>
+179:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============================&quot;</span>
+180:     <span class="ruby-ivar">@word_to_gflist</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span>, <span class="ruby-identifier">gflist</span><span class="ruby-operator">|</span>
+181:       <span class="ruby-identifier">print</span> <span class="ruby-identifier">word</span>, <span class="ruby-value str">&quot; &quot;</span>, <span class="ruby-identifier">gflist</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">hc</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;GF:[#{gf}] PREP:#{prep} HEADCAT:#{hc}&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>), <span class="ruby-value str">&quot;\n&quot;</span>
+182:     }
+183:     <span class="ruby-identifier">puts</span>
+184:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============================&quot;</span>
+185:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;GF TO EDGELABEL&quot;</span>
+186:     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;=============================&quot;</span>
+187:     <span class="ruby-ivar">@gf_to_edgelabel</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">pos</span><span class="ruby-operator">|</span>
+188:       <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>].<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">entries</span><span class="ruby-operator">|</span>
+189:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;POS #{pos} GF #{gf}&quot;</span>
+190:         <span class="ruby-identifier">print_entries</span>(<span class="ruby-identifier">entries</span>, <span class="ruby-value">2</span>)
+191:       }
+192:     }
+193:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="enter-path-method" class="method-detail ">
+				<a name="method-i-enter_path"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">enter_path</span><span
+						class="method-args">(hash, chainlinks, frequency)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+build up linked hashes that map paths to frequencies
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="enter-path-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 419</span>
+419:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enter_path</span>(<span class="ruby-identifier">hash</span>,       <span class="ruby-comment cmt"># partial result of enter_path</span>
+420:                  <span class="ruby-identifier">chainlinks</span>, <span class="ruby-comment cmt"># array: string*string*string</span>
+421:                  <span class="ruby-identifier">frequency</span>)  <span class="ruby-comment cmt"># integer: frequency of this mapping</span>
+422:     <span class="ruby-comment cmt"># take off first chain link</span>
+423:     <span class="ruby-identifier">key</span> = <span class="ruby-identifier">string_step</span>(<span class="ruby-identifier">chainlinks</span>.<span class="ruby-identifier">shift</span>())
+424:     
+425:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">chainlinks</span>.<span class="ruby-identifier">empty?</span>
+426:       <span class="ruby-comment cmt"># that was the last link, actually</span>
+427:       <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">frequency</span>
+428:     <span class="ruby-keyword kw">else</span>
+429:       <span class="ruby-comment cmt"># more links available</span>
+430:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>]
+431:         <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+432:       <span class="ruby-keyword kw">end</span>
+433:       
+434:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Integer</span>
+435:         <span class="ruby-comment cmt"># there is a shorter path for the same GF, </span>
+436:         <span class="ruby-comment cmt"># ending at the point where we are now.</span>
+437:         <span class="ruby-comment cmt"># which frequency is higher?</span>
+438:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frequency</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>]
+439:           <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+440:         <span class="ruby-keyword kw">else</span>
+441:           <span class="ruby-keyword kw">return</span>
+442:         <span class="ruby-keyword kw">end</span>
+443:       <span class="ruby-keyword kw">end</span>
+444:       
+445:       <span class="ruby-identifier">enter_path</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>], <span class="ruby-identifier">chainlinks</span>, <span class="ruby-identifier">frequency</span>)
+446:     <span class="ruby-keyword kw">end</span>
+447:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="potential-gfs-of-lemma-method" class="method-detail ">
+				<a name="method-i-potential_gfs_of_lemma"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">potential_gfs_of_lemma</span><span
+						class="method-args">(lemma, pos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a lemma, look in its list of all GFs that we have ever found for that
+lemma
+</p>
+<p>
+returns: array of pairs [gf label, point in gf_to_edgelabel hash]
+</p>
+<pre>
+  all the labels of GFs of this word, 
+  and for each GF, the matching GF-to-path hash</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="potential-gfs-of-lemma-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 532</span>
+532:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">potential_gfs_of_lemma</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>)
+533: 
+534:     <span class="ruby-identifier">lemmapos</span> = <span class="ruby-identifier">string_lemmapos</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>)
+535: 
+536:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>]
+537:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@word_to_gflist</span>[<span class="ruby-identifier">lemmapos</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span><span class="ruby-operator">|</span>
+538:         [<span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>, <span class="ruby-ivar">@gf_to_edgelabel</span>[<span class="ruby-identifier">pos</span>][<span class="ruby-identifier">gf</span>]]
+539:       }.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">gf</span>, <span class="ruby-identifier">prep</span>, <span class="ruby-identifier">headcat</span>, <span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+540: <span class="ruby-comment cmt">#         if hash.nil?</span>
+541: <span class="ruby-comment cmt">#           $stderr.puts &quot;Mapping words to GF lists: no entry for GF &gt;&gt;#{gf}&lt;&lt; for POS #{pos}&quot;</span>
+542: <span class="ruby-comment cmt">#         end</span>
+543:         <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">nil?</span>)
+544:       }
+545:     <span class="ruby-keyword kw">else</span>
+546:       <span class="ruby-keyword kw">return</span> []
+547:     <span class="ruby-keyword kw">end</span>
+548:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="print-entries-method" class="method-detail ">
+				<a name="method-i-print_entries"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">print_entries</span><span
+						class="method-args">(hash, num_spaces)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+test output: print results of <a
+href="GfiGfPathMapping.html#method-i-enter_path">enter_path</a>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="print-entries-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 457</span>
+457:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_entries</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">num_spaces</span>)
+458:     <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">first_link</span>, <span class="ruby-identifier">rest</span><span class="ruby-operator">|</span>
+459:       <span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; &quot;</span>*<span class="ruby-identifier">num_spaces</span>, <span class="ruby-identifier">first_link</span>
+460:       
+461:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rest</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Integer</span>
+462:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;  #{rest}&quot;</span>
+463:       <span class="ruby-keyword kw">else</span>
+464:         <span class="ruby-identifier">puts</span>
+465:         <span class="ruby-identifier">print_entries</span>(<span class="ruby-identifier">rest</span>, <span class="ruby-identifier">num_spaces</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>)
+466:       <span class="ruby-keyword kw">end</span>
+467:     }
+468:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="restrict-pathhash-len-method" class="method-detail ">
+				<a name="method-i-restrict_pathhash_len"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">restrict_pathhash_len</span><span
+						class="method-args">(hash_or_val, n)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+recursive function: if the argument is a hash and  the remaining path
+length is 0, kill all entries else go into recursion for all entries with
+reduced path length
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="restrict-pathhash-len-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 504</span>
+504:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">restrict_pathhash_len</span>(<span class="ruby-identifier">hash_or_val</span>,  <span class="ruby-comment cmt"># path hash or integer freq</span>
+505:                             <span class="ruby-identifier">n</span>)            <span class="ruby-comment cmt"># restrict paths from what length?</span>
+506:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Integer</span>
+507:       <span class="ruby-keyword kw">return</span>
+508:     <span class="ruby-keyword kw">end</span>
+509: 
+510:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+511:       <span class="ruby-comment cmt"># test output</span>
+512:  <span class="ruby-comment cmt">#     hash_or_val.keys.each { |k| puts &quot;deleting because of path len: #{k}&quot; }</span>
+513:       <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">k</span>) }
+514:     <span class="ruby-keyword kw">else</span>
+515:       <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">next_hash</span><span class="ruby-operator">|</span>
+516:         <span class="ruby-identifier">restrict_pathhash_len</span>(<span class="ruby-identifier">next_hash</span>, <span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)
+517:       }
+518:     <span class="ruby-keyword kw">end</span>
+519:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="restrict-pathhash-to-downpaths-method" class="method-detail ">
+				<a name="method-i-restrict_pathhash_to_downpaths"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">restrict_pathhash_to_downpaths</span><span
+						class="method-args">(hash_or_val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+recursive function: if the argument is a hash, kill all entries whose keys
+describe an Up step in the path, go into recursion for remaining entries
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="restrict-pathhash-to-downpaths-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 480</span>
+480:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">restrict_pathhash_to_downpaths</span>(<span class="ruby-identifier">hash_or_val</span>) <span class="ruby-comment cmt"># path hash or integer freq</span>
+481:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Integer</span>
+482:       <span class="ruby-keyword kw">return</span>
+483:     <span class="ruby-keyword kw">end</span>
+484: 
+485:     <span class="ruby-comment cmt"># remove up edges</span>
+486:     <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+487:       <span class="ruby-comment cmt"># test output</span>
+488: <span class="ruby-comment cmt">#      if key =~ /^U/</span>
+489: <span class="ruby-comment cmt">#        puts &quot;Deleting up path&quot;</span>
+490: <span class="ruby-comment cmt">#      end</span>
+491:       <span class="ruby-identifier">key</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^U/</span>
+492:     }
+493: 
+494:     <span class="ruby-identifier">hash_or_val</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">next_hash</span><span class="ruby-operator">|</span>
+495:       <span class="ruby-identifier">restrict_pathhash_to_downpaths</span>(<span class="ruby-identifier">next_hash</span>)
+496:     }
+497:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="string-lemmapos-method" class="method-detail ">
+				<a name="method-i-string_lemmapos"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">string_lemmapos</span><span
+						class="method-args">(lemma, pos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                                       
+</pre>
+<p>
+Strings for hashing
+</p>
+<pre>
+                                       </pre>
+					
+
+					
+					<div class="method-source-code"
+						id="string-lemmapos-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 393</span>
+393:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">string_lemmapos</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>)
+394:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;!&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pos</span>.<span class="ruby-identifier">to_s</span>
+395:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="string-step-method" class="method-detail ">
+				<a name="method-i-string_step"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">string_step</span><span
+						class="method-args">(step)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+make key for gf_to_edgelabel hash
+</p>
+<p>
+step: array of things, the first 3 being strings
+</p>
+<pre>
+     direction, edgelabel, nodelabel
+</pre>
+<p>
+returns: string, the key
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="string-step-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/GfInduce.rb, line 404</span>
+404:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">string_step</span>(<span class="ruby-identifier">step</span>) 
+405:     <span class="ruby-identifier">direction</span> = <span class="ruby-identifier">step</span>[<span class="ruby-value">0</span>]
+406:     <span class="ruby-identifier">edgelabel</span> = <span class="ruby-identifier">step</span>[<span class="ruby-value">1</span>]
+407:     <span class="ruby-identifier">nodelabel</span> = <span class="ruby-identifier">step</span>[<span class="ruby-value">2</span>]
+408: 
+409:     <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;#{direction} #{edgelabel} #{nodelabel}&quot;</span>
+410:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

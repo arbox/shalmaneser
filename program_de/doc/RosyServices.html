@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: RosyServices</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./RosyServices_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="RosyServices.rb">RosyServices.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="RosyTask.html">RosyTask</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-aux_dump">#aux_dump</a></li>
+					
+					<li><a href="#method-i-aux_read_colnames">#aux_read_colnames</a></li>
+					
+					<li><a href="#method-i-aux_read_columns">#aux_read_columns</a></li>
+					
+					<li><a href="#method-i-aux_transfer_to_table">#aux_transfer_to_table</a></li>
+					
+					<li><a href="#method-i-del_experiment">#del_experiment</a></li>
+					
+					<li><a href="#method-i-del_runs">#del_runs</a></li>
+					
+					<li><a href="#method-i-del_split">#del_split</a></li>
+					
+					<li><a href="#method-i-del_table">#del_table</a></li>
+					
+					<li><a href="#method-i-del_tables">#del_tables</a></li>
+					
+					<li><a href="#method-i-dump_experiment">#dump_experiment</a></li>
+					
+					<li><a href="#method-i-load_experiment">#load_experiment</a></li>
+					
+					<li><a href="#method-i-perform">#perform</a></li>
+					
+					<li><a href="#method-i-write_features">#write_features</a></li>
+					
+					<li><a href="#method-i-write_features_aux">#write_features_aux</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">RosyServices</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(exp, opts, ttt_obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File RosyServices.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">exp</span>,      <span class="ruby-comment cmt"># RosyConfigData object: experiment description</span>
+26:                  <span class="ruby-identifier">opts</span>,     <span class="ruby-comment cmt"># hash: runtime argument option (string) -&gt; value (string)</span>
+27:                  <span class="ruby-identifier">ttt_obj</span>)  <span class="ruby-comment cmt"># RosyTrainingTestTable object</span>
+28: 
+29:     <span class="ruby-comment cmt">##</span>
+30:     <span class="ruby-comment cmt"># remember the experiment description</span>
+31: 
+32:     <span class="ruby-ivar">@exp</span> = <span class="ruby-identifier">exp</span>
+33:     <span class="ruby-ivar">@ttt_obj</span> = <span class="ruby-identifier">ttt_obj</span>
+34: 
+35:     <span class="ruby-comment cmt">##</span>
+36:     <span class="ruby-comment cmt"># check runtime options</span>
+37: 
+38:     <span class="ruby-ivar">@tasks</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+39:     <span class="ruby-comment cmt"># defaults:</span>
+40:     <span class="ruby-ivar">@step</span> = <span class="ruby-value str">&quot;onestep&quot;</span>
+41:     <span class="ruby-ivar">@splitID</span> = <span class="ruby-keyword kw">nil</span>
+42:     <span class="ruby-ivar">@testID</span> = <span class="ruby-identifier">default_test_ID</span>()
+43: 
+44: 
+45:     <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>,<span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+46:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+47:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--deltable&quot;</span>, <span class="ruby-value str">&quot;--delexp&quot;</span>, <span class="ruby-value str">&quot;--delruns&quot;</span>, <span class="ruby-value str">&quot;--delsplit&quot;</span>, <span class="ruby-value str">&quot;--deltables&quot;</span>
+48:         <span class="ruby-comment cmt">#####</span>
+49:         <span class="ruby-comment cmt"># In enduser mode, you cannot delete things</span>
+50:         <span class="ruby-identifier">in_enduser_mode_unavailable</span>()
+51:         <span class="ruby-ivar">@tasks</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span>]
+52:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--dump&quot;</span>, <span class="ruby-value str">&quot;--load&quot;</span>, <span class="ruby-value str">&quot;--writefeatures&quot;</span>
+53:         <span class="ruby-ivar">@tasks</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span>]
+54:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--step&quot;</span>
+55:         <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">&quot;argrec&quot;</span>, <span class="ruby-value str">&quot;arglab&quot;</span>, <span class="ruby-value str">&quot;both&quot;</span>, <span class="ruby-value str">&quot;onestep&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">arg</span>
+56:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Classification step must be one of: argrec, arglab, both, onestep. I got: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_s</span>
+57:         <span class="ruby-keyword kw">end</span>
+58:         <span class="ruby-ivar">@step</span> = <span class="ruby-identifier">arg</span>
+59: 
+60:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--logID&quot;</span>
+61:         <span class="ruby-ivar">@splitID</span> = <span class="ruby-identifier">arg</span>
+62: 
+63:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--testID&quot;</span>
+64:         <span class="ruby-ivar">@testID</span> = <span class="ruby-identifier">arg</span>
+65: 
+66:       <span class="ruby-keyword kw">else</span>
+67:         <span class="ruby-comment cmt"># this is an option that is okay but has already been read and used by rosy.rb</span>
+68:       <span class="ruby-keyword kw">end</span>       
+69:     <span class="ruby-keyword kw">end</span>
+70:     <span class="ruby-comment cmt"># announce the task</span>
+71:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;---------&quot;</span>
+72:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Rosy experiment #{@exp.get(&quot;experiment_ID&quot;)}: Services.&quot;</span>
+73:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;---------&quot;</span>
+74:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="perform-method" class="method-detail ">
+				<a name="method-i-perform"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">perform</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+perform
+</p>
+<p>
+do each of the inspection tasks set as options
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="perform-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 80</span>
+ 80:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">perform</span>()
+ 81:     <span class="ruby-ivar">@tasks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+ 82:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+ 83:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--deltable&quot;</span>
+ 84:         <span class="ruby-identifier">del_table</span>(<span class="ruby-identifier">arg</span>)
+ 85:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--deltables&quot;</span>
+ 86:         <span class="ruby-identifier">del_tables</span>()
+ 87:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--delexp&quot;</span>
+ 88:         <span class="ruby-identifier">del_experiment</span>()
+ 89:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--delruns&quot;</span>
+ 90:         <span class="ruby-identifier">del_runs</span>()
+ 91:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--delsplit&quot;</span>
+ 92:         <span class="ruby-identifier">del_split</span>(<span class="ruby-identifier">arg</span>)
+ 93:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--dump&quot;</span>
+ 94:         <span class="ruby-identifier">dump_experiment</span>(<span class="ruby-identifier">arg</span>)
+ 95:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--load&quot;</span>
+ 96:         <span class="ruby-identifier">load_experiment</span>(<span class="ruby-identifier">arg</span>)
+ 97:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;--writefeatures&quot;</span>
+ 98:         <span class="ruby-identifier">write_features</span>(<span class="ruby-identifier">arg</span>)
+ 99:       <span class="ruby-keyword kw">end</span>
+100:     }
+101:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="aux-dump-method" class="method-detail ">
+				<a name="method-i-aux_dump"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">aux_dump</span><span
+						class="method-args">(iterator, file, table_obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+              3
+</pre>
+<p>
+<a href="RosyServices.html#method-i-aux_dump">aux_dump</a>
+</p>
+<p>
+auxiliary method for <a
+href="RosyServices.html#method-i-dump_experiment">dump_experiment</a>()
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="aux-dump-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 503</span>
+503:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">aux_dump</span>(<span class="ruby-identifier">iterator</span>, <span class="ruby-comment cmt"># RosyIterator object, refers to table to write</span>
+504:                <span class="ruby-identifier">file</span>, <span class="ruby-comment cmt"># stream: write to this file</span>
+505:                <span class="ruby-identifier">table_obj</span>) <span class="ruby-comment cmt"># DB table to be written</span>
+506:     
+507:     <span class="ruby-comment cmt"># write all columns except the autoincrement index</span>
+508:     <span class="ruby-comment cmt"># columns_to_write: array:string*string column name, column SQL type</span>
+509:     <span class="ruby-identifier">columns_to_write</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+510:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">list_column_formats</span>(<span class="ruby-identifier">table_obj</span>.<span class="ruby-identifier">table_name</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">column_type</span><span class="ruby-operator">|</span>
+511:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">column_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">table_obj</span>.<span class="ruby-identifier">index_name</span>
+512:         <span class="ruby-comment cmt"># check: when loading we make assumptions on the field types that can happen.</span>
+513:         <span class="ruby-comment cmt"># check here that we don't get any unexpected field types</span>
+514:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">column_type</span>
+515:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^varchar\d*\(\d+\)$/</span>, <span class="ruby-regexp re">/^char\d*\(\d+\)$/</span>, <span class="ruby-regexp re">/^tinyint(\(\d+\))*$/</span>, <span class="ruby-regexp re">/^int/</span>
+516:         <span class="ruby-keyword kw">else</span>
+517:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Problem with SQL type #{column_type} of column #{column_name}:&quot;</span>
+518:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Won't be able to handle it when loading.&quot;</span>
+519:         <span class="ruby-keyword kw">end</span>
+520:         <span class="ruby-identifier">columns_to_write</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">column_type</span>]
+521:       <span class="ruby-keyword kw">end</span>
+522:     }
+523:     <span class="ruby-identifier">columns_as_array</span> = <span class="ruby-identifier">columns_to_write</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span>}
+524:     
+525:     <span class="ruby-comment cmt"># write column names and types</span>
+526:     <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">columns_to_write</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">name</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+527:     <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">columns_to_write</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">type</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+528:     
+529:     <span class="ruby-comment cmt"># access groups and write data</span>
+530:     
+531:     <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">each_group</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>, <span class="ruby-identifier">framename</span><span class="ruby-operator">|</span>
+532:       <span class="ruby-identifier">view</span> = <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">get_a_view_for_current_group</span>(<span class="ruby-identifier">columns_as_array</span>)
+533: 
+534:       <span class="ruby-comment cmt"># write instances</span>
+535:       <span class="ruby-identifier">view</span>.<span class="ruby-identifier">each_hash</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">instance</span><span class="ruby-operator">|</span>
+536:         <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">columns_to_write</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">|</span> 
+537:           <span class="ruby-comment cmt"># get column entries in order of column names</span>
+538:           <span class="ruby-identifier">instance</span>[<span class="ruby-identifier">name</span>] 
+539:         }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span>
+540:           <span class="ruby-comment cmt"># remove commas</span>
+541:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/,/</span>, <span class="ruby-value str">&quot;COMMA&quot;</span>) 
+542:         }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+543:       }
+544:       <span class="ruby-identifier">view</span>.<span class="ruby-identifier">close</span>()
+545:     }
+546:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="aux-read-colnames-method" class="method-detail ">
+				<a name="method-i-aux_read_colnames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">aux_read_colnames</span><span
+						class="method-args">(file, exp_colnames)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+<a
+href="RosyServices.html#method-i-aux_read_colnames">aux_read_colnames</a>
+</p>
+<p>
+auxiliary method for <a
+href="RosyServices.html#method-i-load_experiment">load_experiment</a>
+</p>
+<p>
+read column names from dumped DB table file, compare to given set of column
+names, complain if they don&#8217;t match
+</p>
+<p>
+returns: array*array, first array(strings): column names
+</p>
+<pre>
+  second array(strings): column SQL types</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="aux-read-colnames-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 670</span>
+670:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">aux_read_colnames</span>(<span class="ruby-identifier">file</span>, <span class="ruby-comment cmt"># stream: file to read DB table info from</span>
+671:                         <span class="ruby-identifier">exp_colnames</span>) <span class="ruby-comment cmt"># array:string, column names defined in the experiment file</span>
+672:     <span class="ruby-identifier">colnames</span> = <span class="ruby-identifier">aux_read_columns</span>(<span class="ruby-identifier">file</span>)
+673:     <span class="ruby-comment cmt"># sanity check: features here the same as in the experiment file?</span>
+674:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exp_colnames</span>
+675:       <span class="ruby-identifier">feature_colnames</span> = <span class="ruby-identifier">colnames</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">!~</span> <span class="ruby-node">/^#{@exp.get(&quot;classif_column_name&quot;)}/</span> }
+676:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">feature_colnames</span>.<span class="ruby-identifier">sort</span>() <span class="ruby-operator">==</span> <span class="ruby-identifier">exp_colnames</span>.<span class="ruby-identifier">sort</span>()
+677:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Feature name mismatch!\nIn the experiment file, you have specified:\n&quot;</span> <span class="ruby-operator">+</span>
+678:             <span class="ruby-identifier">exp_colnames</span>.<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>) <span class="ruby-operator">+</span>
+679:             <span class="ruby-value str">&quot;\nIn the table I'm reading from file I got:\n&quot;</span> <span class="ruby-operator">+</span>
+680:             <span class="ruby-identifier">feature_colnames</span>.<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+681:       <span class="ruby-keyword kw">end</span>
+682:     <span class="ruby-keyword kw">else</span>
+683:       <span class="ruby-comment cmt"># no check of column name match requested</span>
+684:     <span class="ruby-keyword kw">end</span>
+685:     <span class="ruby-identifier">coltypes</span> = <span class="ruby-identifier">aux_read_columns</span>(<span class="ruby-identifier">file</span>)
+686:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">colnames</span>, <span class="ruby-identifier">coltypes</span>]
+687:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="aux-read-columns-method" class="method-detail ">
+				<a name="method-i-aux_read_columns"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">aux_read_columns</span><span
+						class="method-args">(file)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+aux_transfer_columns
+</p>
+<p>
+auxiliary method for <a
+href="RosyServices.html#method-i-load_experiment">load_experiment</a>: read
+a line from file, split it at commas
+</p>
+<pre>
+  to arrive at the contents</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="aux-read-columns-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 696</span>
+696:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">aux_read_columns</span>(<span class="ruby-identifier">file</span>) <span class="ruby-comment cmt"># stream: file</span>
+697:     <span class="ruby-identifier">line</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">gets</span>()
+698:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">nil?</span>
+699:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+700:     <span class="ruby-keyword kw">end</span>
+701:     <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp!</span>
+702:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+703:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="aux-transfer-to-table-method" class="method-detail ">
+				<a name="method-i-aux_transfer_to_table"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">aux_transfer_to_table</span><span
+						class="method-args">(file, table_obj, col_names, col_types)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RosyServices.html#method-i-aux_transfer_to_table">aux_transfer_to_table</a>
+</p>
+<p>
+auxiliary method for <a
+href="RosyServices.html#method-i-load_experiment">load_experiment</a>: read
+columns from file, write to table, omitting nil values
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="aux-transfer-to-table-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 711</span>
+711:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">aux_transfer_to_table</span>(<span class="ruby-identifier">file</span>, <span class="ruby-comment cmt"># stream: read from this file</span>
+712:                             <span class="ruby-identifier">table_obj</span>, <span class="ruby-comment cmt"># DBTable object: write to this table</span>
+713:                             <span class="ruby-identifier">col_names</span>, <span class="ruby-comment cmt"># array:string: these are the column names</span>
+714:                             <span class="ruby-identifier">col_types</span>) <span class="ruby-comment cmt"># array:string: SQL column types</span>
+715: 
+716: 
+717:     <span class="ruby-comment cmt"># sp workaround Tue Aug 23</span>
+718:     <span class="ruby-comment cmt"># table may have too few classification columns since it has been created with only</span>
+719:     <span class="ruby-comment cmt"># the standard set of classification columns. Add more if needed</span>
+720: 
+721:     <span class="ruby-identifier">col_names</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">col_name</span><span class="ruby-operator">|</span>
+722:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">table_obj</span>.<span class="ruby-identifier">list_column_names</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">col_name</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">col_name</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{@exp.get(&quot;classif_column_name&quot;)}/</span>
+723:         <span class="ruby-identifier">table_obj</span>.<span class="ruby-identifier">change_format_add_columns</span>([[<span class="ruby-identifier">col_name</span>, <span class="ruby-value str">&quot;VARCHAR(20)&quot;</span>]])
+724:       <span class="ruby-keyword kw">end</span>
+725:     }
+726: 
+727:     <span class="ruby-comment cmt"># write file contents to the DB table</span>
+728:     <span class="ruby-identifier">names_and_values</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+729:     <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">row</span> =  <span class="ruby-identifier">aux_read_columns</span>(<span class="ruby-identifier">file</span>)
+730:       <span class="ruby-identifier">names_and_values</span>.<span class="ruby-identifier">clear</span>()
+731:       <span class="ruby-identifier">col_names</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">ix</span><span class="ruby-operator">|</span>
+732:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">row</span>[<span class="ruby-identifier">ix</span>].<span class="ruby-identifier">nil?</span>
+733:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">col_types</span>[<span class="ruby-identifier">ix</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(TINYINT|tinyint)/</span> 
+734:             <span class="ruby-comment cmt"># integer value: map!</span>
+735:             <span class="ruby-identifier">names_and_values</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">name</span>, <span class="ruby-identifier">row</span>[<span class="ruby-identifier">ix</span>].<span class="ruby-identifier">to_i</span>]
+736:           <span class="ruby-keyword kw">else</span>
+737:             <span class="ruby-comment cmt"># string value: leave as is</span>
+738:             <span class="ruby-identifier">names_and_values</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">name</span>, <span class="ruby-identifier">row</span>[<span class="ruby-identifier">ix</span>]]
+739:           <span class="ruby-keyword kw">end</span>
+740:         <span class="ruby-keyword kw">end</span>
+741:       }
+742:       <span class="ruby-identifier">table_obj</span>.<span class="ruby-identifier">insert_row</span>(<span class="ruby-identifier">names_and_values</span>)
+743:     <span class="ruby-keyword kw">end</span>
+744:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="del-experiment-method" class="method-detail ">
+				<a name="method-i-del_experiment"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">del_experiment</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="RosyServices.html#method-i-del_experiment">del_experiment</a>
+</p>
+<p>
+remove the experiment described by the experiment file @exp The method
+verifies whether the experiment should be deleted. If the user gives an
+answer starting in &#8220;y&#8221;, the experiment is deleted.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="del-experiment-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 173</span>
+173:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">del_experiment</span>()
+174:     <span class="ruby-identifier">data_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">instantiate</span>(<span class="ruby-value str">&quot;rosy_dir&quot;</span>, <span class="ruby-value str">&quot;exp_ID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;experiment_ID&quot;</span>)))
+175: 
+176:     <span class="ruby-comment cmt"># no data? then don't do anything</span>
+177:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">train_table_exists?</span>) <span class="ruby-keyword kw">and</span>
+178:         <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>().<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">and</span>
+179:         <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>().<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">and</span>
+180:         <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">data_dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*&quot;</span>].<span class="ruby-identifier">empty?</span>
+181:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;No data to delete for experiment #{@exp.get(&quot;experiment_ID&quot;)}.&quot;</span>
+182:       <span class="ruby-comment cmt"># we have just made the directory data_dir by calling @exp.new_dir</span>
+183:       <span class="ruby-comment cmt"># undo that</span>
+184:       <span class="ruby-node">%{rmdir #{data_dir}}</span>
+185:       <span class="ruby-keyword kw">return</span>
+186:     <span class="ruby-keyword kw">end</span>       
+187:         
+188: 
+189:     <span class="ruby-comment cmt"># really delete?</span>
+190:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Really delete experiment #{@exp.get(&quot;experiment_ID&quot;)}? [y/n] &quot;</span>
+191:     <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+192:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^y/</span>
+193:       <span class="ruby-keyword kw">return</span>
+194:     <span class="ruby-keyword kw">end</span>
+195: 
+196:     <span class="ruby-comment cmt"># remove main table</span>
+197:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_train_table</span>()
+198: 
+199:     <span class="ruby-comment cmt"># remove test tables</span>
+200:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">testID</span><span class="ruby-operator">|</span>
+201:       <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_test_table</span>(<span class="ruby-identifier">testID</span>)
+202:     }
+203: 
+204: 
+205:     <span class="ruby-comment cmt"># remove split tables</span>
+206:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">splitID</span><span class="ruby-operator">|</span>
+207:       <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-value str">&quot;train&quot;</span>)
+208:       <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-value str">&quot;test&quot;</span>)
+209:     }
+210: 
+211:     <span class="ruby-comment cmt"># remove files</span>
+212:     <span class="ruby-node">%{rm -rf #{data_dir}}</span>
+213: 
+214:     <span class="ruby-comment cmt"># done.</span>
+215:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Deleted experiment #{@exp.get(&quot;experiment_ID&quot;)}.&quot;</span>
+216:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="del-runs-method" class="method-detail ">
+				<a name="method-i-del_runs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">del_runs</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+          
+</pre>
+<p>
+<a href="RosyServices.html#method-i-del_runs">del_runs</a>
+</p>
+<p>
+interactively remove runs from the current experiment
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="del-runs-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 222</span>
+222:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">del_runs</span>()
+223:     <span class="ruby-comment cmt"># iterate through all tables and runs</span>
+224:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">runlog_to_s_list</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">table_descr</span><span class="ruby-operator">|</span>
+225:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">table_descr</span>[<span class="ruby-value str">&quot;runlist&quot;</span>].<span class="ruby-identifier">empty?</span>
+226:         <span class="ruby-comment cmt"># print description of the table</span>
+227:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">table_descr</span>[<span class="ruby-value str">&quot;header&quot;</span>]
+228:         
+229:         <span class="ruby-identifier">table_descr</span>[<span class="ruby-value str">&quot;runlist&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">run_id</span>, <span class="ruby-identifier">run_descr</span><span class="ruby-operator">|</span>
+230:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">run_descr</span>
+231:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Delete this run? [y/n] &quot;</span>
+232:           <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+233:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^[yY]/</span>
+234:             <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">delete_runlog</span>(<span class="ruby-identifier">table_descr</span>[<span class="ruby-value str">&quot;table_name&quot;</span>], <span class="ruby-identifier">run_id</span>)
+235:           <span class="ruby-keyword kw">end</span>
+236:         }
+237:       <span class="ruby-keyword kw">end</span>
+238:     }
+239:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="del-split-method" class="method-detail ">
+				<a name="method-i-del_split"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">del_split</span><span
+						class="method-args">(splitID)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+            
+</pre>
+<p>
+<a href="RosyServices.html#method-i-del_split">del_split</a>
+</p>
+<p>
+remove the split with the given ID from the current experiment: delete
+split tables, remove from list of test and split tables
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="del-split-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 247</span>
+247:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">del_split</span>(<span class="ruby-identifier">splitID</span>)
+248:     <span class="ruby-comment cmt"># does the split exist?</span>
+249:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">splitID</span>
+250:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;del_split:&quot;</span>
+251:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sorry, I don't have a split with ID #{splitID} in experiment #{exp.get(&quot;experiment_ID&quot;)}.&quot;</span>
+252:       <span class="ruby-keyword kw">return</span>
+253:     <span class="ruby-keyword kw">end</span>
+254: 
+255:     <span class="ruby-comment cmt"># really delete?</span>
+256:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Really delete split #{splitID} of experiment #{@exp.get(&quot;experiment_ID&quot;)}? [y/n] &quot;</span>
+257:     <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+258:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^y/</span>
+259:       <span class="ruby-keyword kw">return</span>
+260:     <span class="ruby-keyword kw">end</span>
+261: 
+262:     <span class="ruby-comment cmt"># remove split tables</span>
+263:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-value str">&quot;train&quot;</span>)
+264:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">remove_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-value str">&quot;test&quot;</span>)
+265: 
+266:     <span class="ruby-comment cmt"># remove classifiers for split</span>
+267:     [<span class="ruby-value str">&quot;argrec&quot;</span>, <span class="ruby-value str">&quot;arglab&quot;</span>, <span class="ruby-value str">&quot;onestep&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">step</span><span class="ruby-operator">|</span>
+268:       <span class="ruby-identifier">classif_dir</span> = <span class="ruby-identifier">classifier_directory_name</span>(<span class="ruby-ivar">@exp</span>,<span class="ruby-identifier">step</span>, <span class="ruby-identifier">splitID</span>)
+269:       <span class="ruby-node">%{rm -rf #{classif_dir}}</span>
+270:     }
+271:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="del-table-method" class="method-detail ">
+				<a name="method-i-del_table"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">del_table</span><span
+						class="method-args">(table_name)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="RosyServices.html#method-i-del_table">del_table</a>
+</p>
+<p>
+remove one DB table specified by its name The method verifies whether the
+table should be deleted. If the user gives an answer starting in
+&#8220;y&#8221;, the table is deleted.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="del-table-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 112</span>
+112:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">del_table</span>(<span class="ruby-identifier">table_name</span>) <span class="ruby-comment cmt"># string: name of DB table</span>
+113:     <span class="ruby-comment cmt"># check if we have this table</span>
+114:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">list_tables</span>().<span class="ruby-identifier">include?</span> <span class="ruby-identifier">table_name</span>
+115:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Cannot find DB table #{table_name}.&quot;</span>
+116:       <span class="ruby-keyword kw">return</span>
+117:     <span class="ruby-keyword kw">end</span>
+118: 
+119:     <span class="ruby-comment cmt"># really delete?</span>
+120:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Really delete DB table #{table_name}? [y/n] &quot;</span>
+121:     <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+122:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^y/</span>
+123:       <span class="ruby-keyword kw">return</span>
+124:     <span class="ruby-keyword kw">end</span>
+125: 
+126:     <span class="ruby-keyword kw">begin</span>
+127:       <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">drop_table</span>(<span class="ruby-identifier">table_name</span>)
+128:     <span class="ruby-keyword kw">rescue</span>
+129:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: Removal of #{table_name} failed.&quot;</span>
+130:       <span class="ruby-keyword kw">return</span>
+131:     <span class="ruby-keyword kw">end</span>
+132: 
+133:     <span class="ruby-comment cmt"># done.</span>
+134:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Deleted table #{table_name}.&quot;</span>
+135:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="del-tables-method" class="method-detail ">
+				<a name="method-i-del_tables"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">del_tables</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+    
+</pre>
+<p>
+<a href="RosyServices.html#method-i-del_tables">del_tables</a>
+</p>
+<p>
+for all the tables in the database, present their name and size, and ask if
+it should be deleted. this is good for cleaning up!
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="del-tables-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 144</span>
+144:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">del_tables</span>() 
+145:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">list_tables</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">table_name</span><span class="ruby-operator">|</span>
+146: 
+147:       <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Delete table #{table_name} (num. rows #{@ttt_obj.database.num_rows(table_name)})? [y/n] &quot;</span>
+148:       <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+149: 
+150:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^y/</span>
+151:         <span class="ruby-identifier">deletion_worked</span> = <span class="ruby-keyword kw">false</span>
+152:         <span class="ruby-keyword kw">begin</span>
+153:           <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">drop_table</span>(<span class="ruby-identifier">table_name</span>)
+154:           <span class="ruby-identifier">deletion_worked</span> = <span class="ruby-keyword kw">true</span>
+155:         <span class="ruby-keyword kw">rescue</span>
+156:           <span class="ruby-identifier">deletion_worked</span> = <span class="ruby-keyword kw">false</span>
+157:         <span class="ruby-keyword kw">end</span>
+158:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">deletion_worked</span> 
+159:           <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Table #{name} removed.&quot;</span>
+160:         <span class="ruby-keyword kw">else</span>
+161:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: Removal of #{name} failed.&quot;</span>          
+162:         <span class="ruby-keyword kw">end</span>
+163:       <span class="ruby-keyword kw">end</span>
+164:     }
+165:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="dump-experiment-method" class="method-detail ">
+				<a name="method-i-dump_experiment"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">dump_experiment</span><span
+						class="method-args">(directory)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+            3
+</pre>
+<p>
+<a href="RosyServices.html#method-i-dump_experiment">dump_experiment</a>
+</p>
+<p>
+dump to file:
+</p>
+<ul>
+<li><p>
+main table. filename: main
+</p>
+</li>
+<li><p>
+test tables. filename: test.<testID>
+</p>
+</li>
+<li><p>
+split tables. filenames: split.train.<ID>, split.test.<ID>
+</p>
+</li>
+</ul>
+<p>
+of the experiment given in @exp.
+</p>
+<p>
+Each table is dumped in a separate file: The first line describes column
+names, each following line is one row of the DB.
+</p>
+<p>
+Files are written to <rosy_dir>/tables
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="dump-experiment-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 405</span>
+405:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dump_experiment</span>(<span class="ruby-identifier">directory</span>) <span class="ruby-comment cmt">#string: directory to write to, may be nil</span>
+406:     <span class="ruby-comment cmt">###</span>
+407:     <span class="ruby-comment cmt"># prepare:</span>
+408: 
+409:     <span class="ruby-comment cmt"># directory to write to</span>
+410:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">directory</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
+411:       <span class="ruby-comment cmt"># the user has given a directory.</span>
+412:       <span class="ruby-comment cmt"># make sure it ends in /</span>
+413:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-identifier">directory</span>)
+414:     <span class="ruby-keyword kw">else</span>
+415:       <span class="ruby-comment cmt"># use the default directory: &lt;rosy_dir&gt;/tables</span>
+416:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">instantiate</span>(<span class="ruby-value str">&quot;rosy_dir&quot;</span>, 
+417:                                           <span class="ruby-value str">&quot;exp_ID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;experiment_ID&quot;</span>)),
+418:                          <span class="ruby-value str">&quot;tables&quot;</span>)
+419:     <span class="ruby-keyword kw">end</span>
+420:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing experiment data to directory &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dir</span>
+421: 
+422:     <span class="ruby-comment cmt">###</span>
+423:     <span class="ruby-comment cmt"># dump main table</span>
+424:     
+425:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Dumping main table&quot;</span>
+426:     <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;main&quot;</span>
+427:     <span class="ruby-keyword kw">begin</span>
+428:       <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+429:     <span class="ruby-keyword kw">rescue</span>
+430:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sorry, couldn't write to #{filename}&quot;</span>
+431:       <span class="ruby-keyword kw">return</span>
+432:     <span class="ruby-keyword kw">end</span>
+433: 
+434:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">train_table_exists?</span>
+435:       <span class="ruby-identifier">iterator</span> = <span class="ruby-constant">RosyIterator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@ttt_obj</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;train&quot;</span>, <span class="ruby-value str">&quot;xwise&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;frame&quot;</span>)
+436:       <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_train_table</span>()
+437:       <span class="ruby-identifier">aux_dump</span>(<span class="ruby-identifier">iterator</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>)
+438:     <span class="ruby-keyword kw">end</span>
+439: 
+440:     <span class="ruby-comment cmt">###</span>
+441:     <span class="ruby-comment cmt"># dump test tables</span>
+442:     
+443:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>.<span class="ruby-identifier">empty?</span>
+444:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Dumping test tables: &quot;</span>
+445:     <span class="ruby-keyword kw">end</span>
+446:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">testID</span><span class="ruby-operator">|</span>
+447: 
+448:       <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;test.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">testID</span>
+449:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot; &quot;</span>
+450:       <span class="ruby-keyword kw">begin</span>
+451:         <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+452:       <span class="ruby-keyword kw">rescue</span>
+453:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sorry, couldn't write to #{filename}&quot;</span>
+454:         <span class="ruby-keyword kw">return</span>
+455:       <span class="ruby-keyword kw">end</span>
+456:       
+457:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">test_table_exists?</span>(<span class="ruby-identifier">testID</span>)
+458:         <span class="ruby-identifier">iterator</span> = <span class="ruby-constant">RosyIterator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@ttt_obj</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;test&quot;</span>, <span class="ruby-value str">&quot;testID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">testID</span>, <span class="ruby-value str">&quot;xwise&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;frame&quot;</span>)
+459:         <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_test_table</span>(<span class="ruby-identifier">testID</span>)
+460:         <span class="ruby-identifier">aux_dump</span>(<span class="ruby-identifier">iterator</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>)
+461:       <span class="ruby-keyword kw">end</span>
+462:     }
+463:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>.<span class="ruby-identifier">empty?</span>
+464:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+465:     <span class="ruby-keyword kw">end</span>
+466: 
+467:     <span class="ruby-comment cmt"># dump split tables</span>
+468:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>.<span class="ruby-identifier">empty?</span>
+469:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Dumping split tables: &quot;</span>
+470:     <span class="ruby-keyword kw">end</span>
+471:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">splitID</span><span class="ruby-operator">|</span>
+472:       [<span class="ruby-value str">&quot;train&quot;</span>, <span class="ruby-value str">&quot;test&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dataset</span><span class="ruby-operator">|</span>
+473:         
+474:         <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;split.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dataset</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">splitID</span>
+475:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot; &quot;</span>
+476:         <span class="ruby-keyword kw">begin</span>
+477:           <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+478:         <span class="ruby-keyword kw">rescue</span>
+479:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sorry, couldn't write to #{filename}&quot;</span>
+480:           <span class="ruby-keyword kw">return</span>
+481:         <span class="ruby-keyword kw">end</span>
+482: 
+483:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">split_table_exists?</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-identifier">dataset</span>)
+484:           <span class="ruby-identifier">iterator</span> = <span class="ruby-constant">RosyIterator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@ttt_obj</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-value str">&quot;splitID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">splitID</span>, <span class="ruby-value str">&quot;xwise&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;frame&quot;</span>)
+485:           <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">split_index_colname</span>())
+486:           <span class="ruby-identifier">aux_dump</span>(<span class="ruby-identifier">iterator</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>)
+487:         <span class="ruby-keyword kw">end</span>
+488:       }
+489:     }
+490:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>.<span class="ruby-identifier">empty?</span>
+491:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+492:     <span class="ruby-keyword kw">end</span>
+493: 
+494:     <span class="ruby-comment cmt">###</span>
+495:     <span class="ruby-comment cmt"># dump classification run logs</span>
+496:     <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">to_file</span>(<span class="ruby-identifier">dir</span>)    
+497:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="load-experiment-method" class="method-detail ">
+				<a name="method-i-load_experiment"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">load_experiment</span><span
+						class="method-args">(directory)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+            3
+</pre>
+<p>
+<a href="RosyServices.html#method-i-load_experiment">load_experiment</a>
+</p>
+<p>
+load from file:
+</p>
+<ul>
+<li><p>
+main table
+</p>
+</li>
+<li><p>
+test tables
+</p>
+</li>
+<li><p>
+split tables
+</p>
+</li>
+</ul>
+<p>
+Filenames: see <a
+href="RosyServices.html#method-i-dump_experiment">dump_experiment</a>()
+</p>
+<p>
+Data is loaded into the current experiment, previous experiment data is
+removed
+</p>
+<p>
+Each table is loaded from a separate file: The first line describes column
+names, each following line is one row of the DB.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="load-experiment-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 564</span>
+564:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_experiment</span>(<span class="ruby-identifier">directory</span>) <span class="ruby-comment cmt"># string: directory to read from, may be nil</span>
+565: 
+566:     <span class="ruby-comment cmt">###</span>
+567:     <span class="ruby-comment cmt"># ask whether this is what the user intended</span>
+568:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Load experiment data from files into the current experiment:&quot;</span>
+569:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;This will overwrite existing data of experiment #{@exp.get(&quot;experiment_ID&quot;)}.&quot;</span>
+570:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Proceed? [y/n] &quot;</span>
+571:     <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>()
+572:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">answer</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^y/</span>
+573:       <span class="ruby-keyword kw">return</span>
+574:     <span class="ruby-keyword kw">end</span>
+575: 
+576:     <span class="ruby-comment cmt">##</span>
+577:     <span class="ruby-comment cmt"># adjoin preprocessing experiment file to find out about the language of the data</span>
+578:     <span class="ruby-comment cmt"># for this it is irrelevant whether we take the training or test</span>
+579:     <span class="ruby-comment cmt"># preprocessing experiment file. Take the training file.</span>
+580:     <span class="ruby-identifier">preproc_expname</span> = <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;preproc_descr_file_train&quot;</span>)
+581:     <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">preproc_expname</span>)
+582:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Please set the name of the preprocessing exp. file name&quot;</span>
+583:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;in the experiment file, parameter preproc_descr_file_train.&quot;</span>
+584:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+585:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">readable?</span>(<span class="ruby-identifier">preproc_expname</span>))
+586:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error in the experiment file:&quot;</span>
+587:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Parameter preproc_descr_file_train has to be a readable file.&quot;</span>
+588:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+589:     <span class="ruby-keyword kw">end</span>
+590:     <span class="ruby-identifier">preproc_exp</span> = <span class="ruby-constant">FrPrepConfigData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">preproc_expname</span>)
+591:     <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">adjoin</span>(<span class="ruby-identifier">preproc_exp</span>)
+592: 
+593:     <span class="ruby-comment cmt">###</span>
+594:     <span class="ruby-comment cmt"># read the data where?</span>
+595:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">directory</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
+596:       <span class="ruby-comment cmt"># the user has given a directory</span>
+597:       <span class="ruby-comment cmt"># make sure it exists</span>
+598:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">existing_dir</span>(<span class="ruby-identifier">directory</span>)
+599:     <span class="ruby-keyword kw">else</span>
+600:       <span class="ruby-comment cmt"># default: &lt;rosy_dir&gt;/tables</span>
+601:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">existing_dir</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">instantiate</span>(<span class="ruby-value str">&quot;rosy_dir&quot;</span>, 
+602:                                                <span class="ruby-value str">&quot;exp_ID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;experiment_ID&quot;</span>)), 
+603:                               <span class="ruby-value str">&quot;tables&quot;</span>)
+604:     <span class="ruby-keyword kw">end</span>
+605:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Reading experiment data from directory &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dir</span>
+606: 
+607:     <span class="ruby-comment cmt">###</span>
+608:     <span class="ruby-comment cmt"># read tables</span>
+609:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">dir</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+610:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">filename</span>
+611:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;main&quot;</span>
+612:         <span class="ruby-comment cmt"># read main file</span>
+613:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing main DB table&quot;</span>
+614: 
+615:         <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filename</span>)
+616:         <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span> = <span class="ruby-identifier">aux_read_colnames</span>(<span class="ruby-identifier">file</span>, <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">feature_names</span>)
+617: 
+618:         <span class="ruby-comment cmt"># start new main table, removing the old</span>
+619:         <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">new_train_table</span>()
+620:         <span class="ruby-comment cmt"># write file contents to the DB table</span>
+621:         <span class="ruby-identifier">aux_transfer_to_table</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>, <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span>)
+622: 
+623:       <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^test\.(.+)$/</span>
+624:         <span class="ruby-comment cmt"># read test file</span>
+625:         <span class="ruby-identifier">testID</span> = <span class="ruby-node">$1</span>
+626:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing test DB table with ID #{testID}&quot;</span>
+627: 
+628:         <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filename</span>)
+629:         <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span> = <span class="ruby-identifier">aux_read_colnames</span>(<span class="ruby-identifier">file</span>, <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">feature_names</span>)
+630: 
+631:         <span class="ruby-comment cmt"># start new test table, removing the old</span>
+632:         <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">new_test_table</span>(<span class="ruby-identifier">testID</span>)
+633:         <span class="ruby-comment cmt"># write file contents to the DB table</span>
+634:         <span class="ruby-identifier">aux_transfer_to_table</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>, <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span>)
+635: 
+636:       <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^split\.(train|test)\.(.+)$/</span>
+637:         <span class="ruby-identifier">dataset</span> = <span class="ruby-node">$1</span>
+638:         <span class="ruby-identifier">splitID</span> = <span class="ruby-node">$2</span>
+639:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing split #{dataset} DB table with ID #{splitID}&quot;</span>
+640: 
+641:         <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filename</span>)
+642:         <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span> = <span class="ruby-identifier">aux_read_colnames</span>(<span class="ruby-identifier">file</span>, <span class="ruby-keyword kw">nil</span>)
+643:         <span class="ruby-identifier">table_obj</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">new_split_table</span>(<span class="ruby-identifier">splitID</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">split_index_colname</span>())
+644:         <span class="ruby-comment cmt"># write file contents to the DB table</span>
+645:         <span class="ruby-identifier">aux_transfer_to_table</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">table_obj</span>, <span class="ruby-identifier">col_names</span>, <span class="ruby-identifier">col_types</span>)
+646: 
+647:       <span class="ruby-keyword kw">else</span>
+648:         <span class="ruby-comment cmt"># not a filename we recognize</span>
+649:         <span class="ruby-comment cmt"># don't do anything with it        </span>
+650:       <span class="ruby-keyword kw">end</span>
+651:     }
+652: 
+653:     <span class="ruby-identifier">success</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">from_file</span>(<span class="ruby-identifier">dir</span>)
+654:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">success</span>
+655:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Could not read previous classification runs, assume empty.&quot;</span>
+656:     <span class="ruby-keyword kw">end</span>
+657:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-features-method" class="method-detail ">
+				<a name="method-i-write_features"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_features</span><span
+						class="method-args">(directory)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+            
+</pre>
+<p>
+write features to files: use
+</p>
+<pre>
+ @step, @testID, @splitID to determine feature set to write</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="write-features-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 277</span>
+277:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_features</span>(<span class="ruby-identifier">directory</span>) <span class="ruby-comment cmt"># string: directory to write to, may be nil</span>
+278: 
+279:     <span class="ruby-comment cmt">###</span>
+280:     <span class="ruby-comment cmt"># prepare directory to write to</span>
+281:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">directory</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;&quot;</span>
+282:       <span class="ruby-comment cmt"># the user has given a directory.</span>
+283:       <span class="ruby-comment cmt"># make sure it ends in /</span>
+284:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-identifier">directory</span>)
+285:     <span class="ruby-keyword kw">else</span>
+286:       <span class="ruby-comment cmt"># use the default directory: &lt;rosy_dir&gt;/tables</span>
+287:       <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">instantiate</span>(<span class="ruby-value str">&quot;rosy_dir&quot;</span>, 
+288:                                           <span class="ruby-value str">&quot;exp_ID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;experiment_ID&quot;</span>)),
+289:                          <span class="ruby-value str">&quot;your_feature_files&quot;</span>)
+290:     <span class="ruby-keyword kw">end</span>
+291:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing feature files to directory &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dir</span>
+292: 
+293:     <span class="ruby-comment cmt">##</span>
+294:     <span class="ruby-comment cmt"># check: if this is about a split, do we have it?</span>
+295:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@splitID</span>
+296:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">splitIDs</span>().<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@splitID</span>)
+297:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Sorry, I have no data for split ID #{@splitID}.&quot;</span>
+298:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+299:       <span class="ruby-keyword kw">end</span>
+300:     <span class="ruby-keyword kw">end</span>
+301: 
+302:     <span class="ruby-comment cmt">##</span>
+303:     <span class="ruby-comment cmt"># inform the user on what we are writing</span>
+304:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@splitID</span>
+305:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing data according to split '#{@splitID}'&quot;</span>
+306:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@testID</span>
+307:       <span class="ruby-comment cmt"># do we have this test set? else write only training set</span>
+308:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">testIDs</span>().<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@testID</span>)
+309:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing training data, and test data with ID '#{@testID}'&quot;</span>
+310:       <span class="ruby-keyword kw">else</span>
+311:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: no data for test ID '#{@testID}', writing only training data.&quot;</span>
+312:         <span class="ruby-ivar">@testID</span> = <span class="ruby-keyword kw">nil</span>
+313:       <span class="ruby-keyword kw">end</span>
+314:     <span class="ruby-keyword kw">end</span>
+315:     
+316:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing data for classification step '#{@step}'.&quot;</span>
+317:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+318: 
+319:     <span class="ruby-comment cmt">##</span>
+320:     <span class="ruby-comment cmt"># write training data</span>
+321:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing training sets&quot;</span>
+322:     <span class="ruby-identifier">iterator</span> = <span class="ruby-constant">RosyIterator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@ttt_obj</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;train&quot;</span>, 
+323:                                 <span class="ruby-value str">&quot;step&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>, 
+324:                                 <span class="ruby-value str">&quot;splitID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@splitID</span>,
+325:                                 <span class="ruby-value str">&quot;prune&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+326: 
+327:     <span class="ruby-comment cmt"># get the list of relevant features,</span>
+328:     <span class="ruby-comment cmt"># remove the features that describe the unit by which we train, </span>
+329:     <span class="ruby-comment cmt"># since they are going to be constant throughout the training file</span>
+330:     <span class="ruby-identifier">features</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">feature_info</span>.<span class="ruby-identifier">get_model_features</span>(<span class="ruby-ivar">@step</span>) <span class="ruby-operator">-</span> 
+331:       <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">get_xwise_column_names</span>()
+332: 
+333:     <span class="ruby-comment cmt"># but add the gold feature</span>
+334:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">features</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">&quot;gold&quot;</span>
+335:       <span class="ruby-identifier">features</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;gold&quot;</span>
+336:     <span class="ruby-keyword kw">end</span>
+337: 
+338: 
+339:     <span class="ruby-identifier">write_features_aux</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-value str">&quot;training&quot;</span>, <span class="ruby-ivar">@step</span>, <span class="ruby-identifier">iterator</span>, <span class="ruby-identifier">features</span>)
+340: 
+341:     <span class="ruby-comment cmt">## </span>
+342:     <span class="ruby-comment cmt"># write test data</span>
+343:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@testID</span>
+344:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing test sets&quot;</span>
+345:       <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;test.data&quot;</span>
+346:       <span class="ruby-identifier">iterator</span> = <span class="ruby-constant">RosyIterator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@ttt_obj</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;test&quot;</span>, 
+347:                                   <span class="ruby-value str">&quot;step&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@step</span>, 
+348:                                   <span class="ruby-value str">&quot;testID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@testID</span>, 
+349:                                   <span class="ruby-value str">&quot;splitID&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@splitID</span>,
+350:                                   <span class="ruby-value str">&quot;prune&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+351:       <span class="ruby-identifier">write_features_aux</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-value str">&quot;test&quot;</span>, <span class="ruby-ivar">@step</span>, <span class="ruby-identifier">iterator</span>, <span class="ruby-identifier">features</span>)
+352:     <span class="ruby-keyword kw">end</span>
+353:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-features-aux-method" class="method-detail ">
+				<a name="method-i-write_features_aux"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_features_aux</span><span
+						class="method-args">(dir, dataset, step, iterator, features)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+      
+</pre>
+<p>
+<a
+href="RosyServices.html#method-i-write_features_aux">write_features_aux</a>:
+actually do the writing
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="write-features-aux-source">
+<pre>
+     <span class="ruby-comment cmt"># File RosyServices.rb, line 357</span>
+357:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_features_aux</span>(<span class="ruby-identifier">dir</span>,      <span class="ruby-comment cmt"># string: directory to write to</span>
+358:                          <span class="ruby-identifier">dataset</span>,  <span class="ruby-comment cmt"># string: training or test</span>
+359:                          <span class="ruby-identifier">step</span>,     <span class="ruby-comment cmt"># string: argrec, arglab, onestep</span>
+360:                          <span class="ruby-identifier">iterator</span>, <span class="ruby-comment cmt"># RosyIterator tuned to what we're writing</span>
+361:                          <span class="ruby-identifier">features</span>) <span class="ruby-comment cmt"># array:string: list of features to include in views</span>
+362: 
+363:     <span class="ruby-comment cmt"># proceed one group at a time</span>
+364:     <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">each_group</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group_descr_hash</span>, <span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+365:       <span class="ruby-comment cmt"># get data for this group</span>
+366:       <span class="ruby-identifier">view</span> = <span class="ruby-identifier">iterator</span>.<span class="ruby-identifier">get_a_view_for_current_group</span>(<span class="ruby-identifier">features</span>)
+367:       
+368:       <span class="ruby-comment cmt">#filename: e.g. directory/training.Statement.data</span>
+369:       <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dataset</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> 
+370:         <span class="ruby-identifier">step</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> 
+371:         <span class="ruby-identifier">group</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\s/</span>, <span class="ruby-value str">&quot;_&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.data&quot;</span>
+372: 
+373:       <span class="ruby-keyword kw">begin</span>
+374:         <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+375:       <span class="ruby-keyword kw">rescue</span>
+376:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: Could not write to file #{filename}, exiting.&quot;</span>
+377:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+378:       <span class="ruby-keyword kw">end</span>
+379: 
+380:       <span class="ruby-identifier">view</span>.<span class="ruby-identifier">each_instance_s</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">instance_string</span><span class="ruby-operator">|</span>
+381:         <span class="ruby-comment cmt"># change punctuation to _PUNCT_</span>
+382:         <span class="ruby-comment cmt"># and change empty space to _</span>
+383:         <span class="ruby-comment cmt"># because otherwise some classifiers may spit</span>
+384:         <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">prepare_output_for_classifiers</span>(<span class="ruby-identifier">instance_string</span>)
+385:       }
+386:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">close</span>()
+387:       <span class="ruby-identifier">view</span>.<span class="ruby-identifier">close</span>()
+388:     }
+389:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

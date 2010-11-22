@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: RulesFE::RuleKeeper</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../PkgGeneral/RulesFE_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/RulesFE.rb">PkgGeneral/RulesFE.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="../Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-get_end_node">::get_end_node</a></li>
+					
+					<li><a href="#method-c-get_id">::get_id</a></li>
+					
+					<li><a href="#method-c-get_main_id">::get_main_id</a></li>
+					
+					<li><a href="#method-c-get_main_node">::get_main_node</a></li>
+					
+					<li><a href="#method-c-get_nodes">::get_nodes</a></li>
+					
+					<li><a href="#method-c-get_path">::get_path</a></li>
+					
+					<li><a href="#method-c-get_rule_fe_name">::get_rule_fe_name</a></li>
+					
+					<li><a href="#method-c-get_rule_frame_name">::get_rule_frame_name</a></li>
+					
+					<li><a href="#method-c-get_rule_part_fe">::get_rule_part_fe</a></li>
+					
+					<li><a href="#method-c-get_rule_part_fee">::get_rule_part_fee</a></li>
+					
+					<li><a href="#method-c-get_rule_part_feemain">::get_rule_part_feemain</a></li>
+					
+					<li><a href="#method-c-make_rule">::make_rule</a></li>
+					
+					<li><a href="#method-c-make_rule_part_fe">::make_rule_part_fe</a></li>
+					
+					<li><a href="#method-c-make_rule_part_fee">::make_rule_part_fee</a></li>
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-c-set_end_node">::set_end_node</a></li>
+					
+					<li><a href="#method-c-set_id">::set_id</a></li>
+					
+					<li><a href="#method-c-set_main_id">::set_main_id</a></li>
+					
+					<li><a href="#method-c-set_main_node">::set_main_node</a></li>
+					
+					<li><a href="#method-c-set_nodes">::set_nodes</a></li>
+					
+					<li><a href="#method-c-set_path">::set_path</a></li>
+					
+					<li><a href="#method-i-add_rule">#add_rule</a></li>
+					
+					<li><a href="#method-i-each_id">#each_id</a></li>
+					
+					<li><a href="#method-i-each_rule">#each_rule</a></li>
+					
+					<li><a href="#method-i-each_rule_with_id">#each_rule_with_id</a></li>
+					
+					<li><a href="#method-i-read_rules">#read_rules</a></li>
+					
+					<li><a href="#method-i-write_rule">#write_rule</a></li>
+					
+					<li><a href="#method-i-write_rules">#write_rules</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="../rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="../tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="../tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="../RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="../RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="../RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="../RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="../RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="../DBView.html">DBView</a></li>
+				
+					<li><a href="../DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="../EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="../EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="../NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="../NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="../AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="../AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="../AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="../AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="../AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="../AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="../AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="../AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="../Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="../AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="../AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="../Array.html">Array</a></li>
+				
+					<li><a href="../AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="../Baseline.html">Baseline</a></li>
+				
+					<li><a href="../BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="../BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="../Classifier.html">Classifier</a></li>
+				
+					<li><a href="../ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="../CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="../CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="../CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="../CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="../ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="../ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="../ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="../ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="../ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="../Counter.html">Counter</a></li>
+				
+					<li><a href="../DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="../DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="../DBResult.html">DBResult</a></li>
+				
+					<li><a href="../DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="../DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="../DBTable.html">DBTable</a></li>
+				
+					<li><a href="../DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="../DoParses.html">DoParses</a></li>
+				
+					<li><a href="../DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="../EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="../EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="../EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="../EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="../EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="../Eval.html">Eval</a></li>
+				
+					<li><a href="../ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="../ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="../FE.html">FE</a></li>
+				
+					<li><a href="../FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="../FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="../FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="../FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="../FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="../FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="../FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="../FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="../FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="../FeNode.html">FeNode</a></li>
+				
+					<li><a href="../File.html">File</a></li>
+				
+					<li><a href="../FileParser.html">FileParser</a></li>
+				
+					<li><a href="../FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="../FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="../FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="../FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="../FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="../FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="../Float.html">Float</a></li>
+				
+					<li><a href="../FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="../FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="../Frame.html">Frame</a></li>
+				
+					<li><a href="../FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="../FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="../FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="../FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="../FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="../FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="../FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="../FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="../FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="../FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="../FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="../FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="../FredEval.html">FredEval</a></li>
+				
+					<li><a href="../FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="../FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="../FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="../FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="../FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="../FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="../FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="../FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="../FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="../FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="../FredTest.html">FredTest</a></li>
+				
+					<li><a href="../FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="../FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="../FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="../FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="../GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="../GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="../GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="../GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="../GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="../GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="../GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="../GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="../GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="../GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="../GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="../GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="../GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="../GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="../HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="../HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="../Headz.html">Headz</a></li>
+				
+					<li><a href="../HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="../IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="../InputData.html">InputData</a></li>
+				
+					<li><a href="../IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="../LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="../LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="../MD5.html">MD5</a></li>
+				
+					<li><a href="../Mallet.html">Mallet</a></li>
+				
+					<li><a href="../Malouf.html">Malouf</a></li>
+				
+					<li><a href="../MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="../MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="../Maxent.html">Maxent</a></li>
+				
+					<li><a href="../MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="../MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="../MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="../MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="../NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="../NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="../NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="../NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="../NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="../NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="../Object.html">Object</a></li>
+				
+					<li><a href="../OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="../Optimise.html">Optimise</a></li>
+				
+					<li><a href="../PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="../Path.html">Path</a></li>
+				
+					<li><a href="../PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="../PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="../PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="../PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="../PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="../ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="../PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="../Pruning.html">Pruning</a></li>
+				
+					<li><a href="../ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="../RegXML.html">RegXML</a></li>
+				
+					<li><a href="../RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="../RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="../RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="../RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="../RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="../RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="../RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="../RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="../RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="../RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="../RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="../RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="../RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="../RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="../RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="../RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="../RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="../RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="../RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="../SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="../SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="../SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="../SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="../SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="../SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="../SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="../SemNode.html">SemNode</a></li>
+				
+					<li><a href="../SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="../SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="../SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="../SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="../SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="../String.html">String</a></li>
+				
+					<li><a href="../StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="../Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="../SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="../SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="../SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="../SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="../SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="../SynNode.html">SynNode</a></li>
+				
+					<li><a href="../TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="../TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="../TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="../TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="../TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="../TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="../TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="../TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="../Targets.html">Targets</a></li>
+				
+					<li><a href="../TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="../TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="../Tiger.html">Tiger</a></li>
+				
+					<li><a href="../TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="../TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="../Timbl.html">Timbl</a></li>
+				
+					<li><a href="../TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="../ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="../TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="../TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="../TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="../TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="../TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="../UspNode.html">UspNode</a></li>
+				
+					<li><a href="../UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="../ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="../VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="../WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="../WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="../WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="../WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="../WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="../WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="../XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">RulesFE::RuleKeeper</h1>
+
+		<div id="description">
+			<pre>
+                                                      
+</pre>
+<p>
+Class <a href="RuleKeeper.html">RuleKeeper</a>
+</p>
+<p>
+keeps frame and frame element assignment rules The internal format of rules
+is:
+</p>
+<p>
+{&#8216;sid&#8217; => ID of the sentence that this rule stems from
+</p>
+<pre>
+ 'premise_fee' =&gt; { 'main' =&gt; node description for main node of the FEE
+                    'descr' =&gt; list of node descriptions, one for each node of the FEE }
+ 'premise_fe' =&gt; array of hashes
+                 { 'path' =&gt; path description of path from main FEE node to an FE node 
+                   'end' =&gt; node_description of the FE node at which the path ends }
+ 'conclusion_fe' =&gt; name of the frame element, a string
+ 'conclusion_frame' =&gt; name of the frame, a string  }
+</pre>
+<p>
+&#8216;premise_fe&#8217; contains more than one entry if there are several
+syntactic constituents which together make up the frame element
+&#8216;conclusion_fe&#8216;
+</p>
+<p>
+&#8216;premise_fee&#8217;-&#8217;descr&#8217; contains more than one entry
+if there are several syntactic constituents which together are the FEE of
+the frame &#8216;conclusion_frame&#8216;
+</p>
+<p>
+Methods:
+</p>
+<p>
+new  clears the rule list
+</p>
+<p>
+<a href="RuleKeeper.html#method-i-read_rules">read_rules</a>(file_handle)
+reads rules from the given file. The format is the one written by <a
+href="RuleKeeper.html#method-i-write_rules">write_rules</a>
+</p>
+<p>
+<a href="RuleKeeper.html#method-i-write_rules">write_rules</a>(file_handle)
+writes all rules currently known to the object to the given file
+</p>
+<pre>
+           Format of a rule:
+           ## rule
+           ID : [sentence ID of the sentence the rule was derived from]
+           PREMISE
+           FEE : [node description of main FEE node]
+           (FEE all : [node description of an FEE node])*
+           (FE : [node description of FE node] by [path description from main FEE to this node])*
+           CONCLUSION
+           Then Frame : [frame name]
+           Then FE : [fe name]
+
+           'FEE all' lines occur if there is more than one node to the FEE. 
+              There may be 0 or more lines of this type.
+           'FE' lines describe one node of the FE.
+              There may be 1 or more lines of this type -- more than one if the FE consists of more than one synt. node
+</pre>
+<p>
+<a href="RuleKeeper.html#method-i-add_rule">add_rule</a>(rule)
+&#8216;rule&#8217; is a rule in the internal format of <a
+href="RuleKeeper.html">RuleKeeper</a>. 
+</p>
+<pre>
+           The rule 'rule' is added to the rule list
+</pre>
+<p>
+<a href="RuleKeeper.html#method-i-each_rule">each_rule</a>  yields each
+rule of the list
+</p>
+<p>
+<a href="RuleKeeper.html#method-i-each_id">each_id</a>    yields each
+sentence ID occurring for rules in the rule list
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-i-each_rule_with_id">each_rule_with_id</a>(id)
+yields each rule of the list that has sentence ID &#8216;id&#8217;
+</p>
+<p>
+Class Methods:
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-c-make_rule_part_fee">make_rule_part_fee</a>(main_id,
+main, descr_list) constructs and returns a part of a rule, 
+</p>
+<pre>
+           the part that describes the FEE -- in the internal format
+           'main_id' is the id of the main FEE node,
+           'main' is a node description of the main FEE node,
+           'descr_list' is a list of node descriptions of all FEE nodes
+</pre>
+<p>
+<a
+href="RuleKeeper.html#method-c-make_rule_part_fe">make_rule_part_fe</a>(id,
+node_descr, path_descr) constructs and returns a part of a rule,
+</p>
+<pre>
+           the part that describes one node of the FE -- in the internal format
+           'id'         is the id of the FE node
+           'node_descr' is a description of the FE node,
+           'path_descr' is a description of the path from the main FEE node to this FE node
+</pre>
+<p>
+<a href="RuleKeeper.html#method-c-make_rule">make_rule</a>(sid, fee_descr,
+fe_descr, frame_name, fe_name) constructs and returns a rule in the
+internal format
+</p>
+<pre>
+           'sid' is the sentence ID of the sentence from which the rule stems
+           'fee_descr' is a part of a rule in internal format, the part that describes the FEE,
+           'fe_descr' is a part of a rule in internal format, the part that describes the FE,
+           'frame_name' is a string, the name of the frame
+           'fe_name' is a string, the name of the FE
+</pre>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_rule_part_fee">get_rule_part_fee</a>(rule)
+returns a list of node descriptions: the list of all node descriptions for
+the FEE
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_rule_part_feemain">get_rule_part_feemain</a>(rule)
+returns a node description of the main FEE node
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_rule_part_fe">get_rule_part_fe</a>(rule)
+returns a list of pairs: [path_description, node_description]
+</p>
+<pre>
+            where path_description describes a path from the main FEE node to a node,
+            and node_description describes this end node of the path
+</pre>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_rule_frame_name">get_rule_frame_name</a>(rule)
+returns the name of the frame as given in &#8216;rule&#8217;
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_rule_fe_name">get_rule_fe_name</a>(rule)
+returns the name of the frame element as given in &#8216;rule&#8217;
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-get_id">get_id</a>(fe_descr) returns the
+id of an fe description
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-set_id">set_id</a>(id, fe_descr) sets the
+id of an fe description to id
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-get_path">get_path</a>(fe_descr) returns
+the path of an fe description
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-set_path">set_path</a>(path, fe_descr)
+sets the path of an fe description to path
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-get_end_node">get_end_node</a>(fe_descr)
+returns the end node description of an fe description
+</p>
+<p>
+<a href="RuleKeeper.html#method-c-set_end_node">set_end_node</a>(end,
+fe_descr) sets the end node description of an fe description to end
+</p>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_main_node">get_main_node</a>(fee_description)
+returns the main node description of an fee
+</p>
+<pre>
+                               description
+</pre>
+<p>
+<a href="RuleKeeper.html#method-c-set_main_node">set_main_node</a>(mnd,
+fee_description) sets the main node description of an fee
+</p>
+<pre>
+                               to mnd
+</pre>
+<p>
+<a href="RuleKeeper.html#method-c-get_nodes">get_nodes</a>(fee_description)
+returns a list of the descriptions of the 
+</p>
+<pre>
+                               main nodes of an fee
+                               description
+</pre>
+<p>
+<a href="RuleKeeper.html#method-c-set_nodes">set_nodes</a>(descrs,
+fee_description) sets the main node description of an fee
+</p>
+<pre>
+                               to descrs
+</pre>
+<p>
+<a
+href="RuleKeeper.html#method-c-get_main_id">get_main_id</a>(fee_description)
+returns the id of the main node of  
+</p>
+<pre>
+                               an fee
+                               description
+</pre>
+<p>
+<a href="RuleKeeper.html#method-c-set_main_id">set_main_id</a>(id,
+fee_description) sets the id of the main node 
+</p>
+<pre>
+                               to id</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="get-end-node-method" class="method-detail ">
+				<a name="method-c-get_end_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_end_node</span><span
+						class="method-args">(fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-end-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 281</span>
+281:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_end_node</span>(<span class="ruby-identifier">fe_descr</span>)
+282:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'end'</span>]
+283:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-id-method" class="method-detail ">
+				<a name="method-c-get_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_id</span><span
+						class="method-args">(fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 272</span>
+272:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_id</span>(<span class="ruby-identifier">fe_descr</span>)
+273:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'id'</span>]
+274:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-main-id-method" class="method-detail ">
+				<a name="method-c-get_main_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_main_id</span><span
+						class="method-args">(fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-main-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 235</span>
+235:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_main_id</span>(<span class="ruby-identifier">fee_descr</span>)
+236:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'main id'</span>]
+237:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-main-node-method" class="method-detail ">
+				<a name="method-c-get_main_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_main_node</span><span
+						class="method-args">(fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-main-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 240</span>
+240:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_main_node</span>(<span class="ruby-identifier">fee_descr</span>)
+241:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'main'</span>]
+242:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-nodes-method" class="method-detail ">
+				<a name="method-c-get_nodes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_nodes</span><span
+						class="method-args">(fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-nodes-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 245</span>
+245:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_nodes</span>(<span class="ruby-identifier">fee_descr</span>)
+246:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'descr'</span>]
+247:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-path-method" class="method-detail ">
+				<a name="method-c-get_path"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_path</span><span
+						class="method-args">(fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-path-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 277</span>
+277:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-identifier">fe_descr</span>)
+278:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'path'</span>]
+279:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-rule-fe-name-method" class="method-detail ">
+				<a name="method-c-get_rule_fe_name"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_rule_fe_name</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-rule-fe-name-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 334</span>
+334:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_fe_name</span>(<span class="ruby-identifier">rule</span>)
+335:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'conclusion_fe'</span>]
+336:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-rule-frame-name-method" class="method-detail ">
+				<a name="method-c-get_rule_frame_name"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_rule_frame_name</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-rule-frame-name-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 329</span>
+329:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_frame_name</span>(<span class="ruby-identifier">rule</span>)
+330:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'conclusion_frame'</span>]
+331:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-rule-part-fe-method" class="method-detail ">
+				<a name="method-c-get_rule_part_fe"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_rule_part_fe</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-rule-part-fe-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 320</span>
+320:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_part_fe</span>(<span class="ruby-identifier">rule</span>)
+321:       <span class="ruby-identifier">ret</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+322:       <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fe'</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path_and_end</span><span class="ruby-operator">|</span>
+323:         <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">path_and_end</span>[<span class="ruby-value str">'path'</span>], <span class="ruby-identifier">path_and_end</span>[<span class="ruby-value str">'end'</span>]]
+324:       }
+325:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ret</span>
+326:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-rule-part-fee-method" class="method-detail ">
+				<a name="method-c-get_rule_part_fee"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_rule_part_fee</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-rule-part-fee-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 310</span>
+310:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_part_fee</span>(<span class="ruby-identifier">rule</span>)
+311:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fee'</span>][<span class="ruby-value str">'descr'</span>]
+312:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-rule-part-feemain-method" class="method-detail ">
+				<a name="method-c-get_rule_part_feemain"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_rule_part_feemain</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="get-rule-part-feemain-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 315</span>
+315:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_part_feemain</span>(<span class="ruby-identifier">rule</span>)
+316:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fee'</span>][<span class="ruby-value str">'main'</span>]
+317:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="make-rule-method" class="method-detail ">
+				<a name="method-c-make_rule"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">make_rule</span><span
+						class="method-args">(sid, fee_descr, fe_descr, frame_name, fe_name)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="make-rule-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 300</span>
+300:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">make_rule</span>(<span class="ruby-identifier">sid</span>, <span class="ruby-identifier">fee_descr</span>, <span class="ruby-identifier">fe_descr</span>, <span class="ruby-identifier">frame_name</span>, <span class="ruby-identifier">fe_name</span>)
+301:       <span class="ruby-keyword kw">return</span> {<span class="ruby-value str">'sid'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sid</span>, 
+302:           <span class="ruby-value str">'premise_fee'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fee_descr</span>,
+303:           <span class="ruby-value str">'premise_fe'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fe_descr</span>,
+304:           <span class="ruby-value str">'conclusion_fe'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fe_name</span>,
+305:           <span class="ruby-value str">'conclusion_frame'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">frame_name</span>
+306:       }
+307:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="make-rule-part-fe-method" class="method-detail ">
+				<a name="method-c-make_rule_part_fe"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">make_rule_part_fe</span><span
+						class="method-args">(node_id, node_descr, path_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="make-rule-part-fe-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 265</span>
+265:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">make_rule_part_fe</span>(<span class="ruby-identifier">node_id</span>, <span class="ruby-identifier">node_descr</span>, <span class="ruby-identifier">path_descr</span>)
+266:       <span class="ruby-keyword kw">return</span> {<span class="ruby-value str">'id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">node_id</span>,
+267:           <span class="ruby-value str">'path'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">path_descr</span>,
+268:           <span class="ruby-value str">'end'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">node_descr</span> }
+269:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="make-rule-part-fee-method" class="method-detail ">
+				<a name="method-c-make_rule_part_fee"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">make_rule_part_fee</span><span
+						class="method-args">(id, main, descr_list)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="make-rule-part-fee-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 227</span>
+227:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">make_rule_part_fee</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">main</span>, <span class="ruby-identifier">descr_list</span>)
+228:       <span class="ruby-keyword kw">return</span> {<span class="ruby-value str">'main id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>,
+229:           <span class="ruby-value str">'main'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">main</span>,
+230:           <span class="ruby-value str">'descr'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">descr_list</span>
+231:       }
+232:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 149</span>
+149:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+150:       <span class="ruby-ivar">@rules</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+151:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-end-node-method" class="method-detail ">
+				<a name="method-c-set_end_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_end_node</span><span
+						class="method-args">(end_node, fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-end-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 295</span>
+295:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_end_node</span>(<span class="ruby-identifier">end_node</span>, <span class="ruby-identifier">fe_descr</span>)
+296:       <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'end'</span>] = <span class="ruby-identifier">end_node</span>
+297:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-id-method" class="method-detail ">
+				<a name="method-c-set_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_id</span><span
+						class="method-args">(id, fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 286</span>
+286:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_id</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">fe_descr</span>)
+287:       <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'id'</span>] = <span class="ruby-identifier">id</span>
+288:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-main-id-method" class="method-detail ">
+				<a name="method-c-set_main_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_main_id</span><span
+						class="method-args">(id, fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-main-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 250</span>
+250:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_main_id</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">fee_descr</span>)
+251:       <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'main id'</span>] = <span class="ruby-identifier">id</span>
+252:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-main-node-method" class="method-detail ">
+				<a name="method-c-set_main_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_main_node</span><span
+						class="method-args">(main, fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-main-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 255</span>
+255:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_main_node</span>(<span class="ruby-identifier">main</span>, <span class="ruby-identifier">fee_descr</span>)
+256:       <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'main'</span>] = <span class="ruby-identifier">main</span>
+257:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-nodes-method" class="method-detail ">
+				<a name="method-c-set_nodes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_nodes</span><span
+						class="method-args">(descr_list, fee_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-nodes-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 260</span>
+260:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_nodes</span>(<span class="ruby-identifier">descr_list</span>, <span class="ruby-identifier">fee_descr</span>)
+261:       <span class="ruby-identifier">fee_descr</span>[<span class="ruby-value str">'descr'</span>] = <span class="ruby-identifier">descr_list</span>
+262:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-path-method" class="method-detail ">
+				<a name="method-c-set_path"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_path</span><span
+						class="method-args">(path, fe_descr)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="set-path-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 291</span>
+291:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">set_path</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">fe_descr</span>)
+292:       <span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'path'</span>] = <span class="ruby-identifier">path</span>
+293:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="add-rule-method" class="method-detail ">
+				<a name="method-i-add_rule"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_rule</span><span
+						class="method-args">(rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="add-rule-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 200</span>
+200:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_rule</span>(<span class="ruby-identifier">rule</span>)
+201:       <span class="ruby-ivar">@rules</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">rule</span>
+202:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-id-method" class="method-detail ">
+				<a name="method-i-each_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_id</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 210</span>
+210:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_id</span>
+211:       <span class="ruby-identifier">ids</span> = <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'sid'</span>] }
+212:       <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">uniq!</span>
+213:       
+214:       <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">id</span>)}
+215:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-rule-method" class="method-detail ">
+				<a name="method-i-each_rule"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_rule</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-rule-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 205</span>
+205:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_rule</span>
+206:       <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">rule</span>) }
+207:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-rule-with-id-method" class="method-detail ">
+				<a name="method-i-each_rule_with_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_rule_with_id</span><span
+						class="method-args">(id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-rule-with-id-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 218</span>
+218:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_rule_with_id</span>(<span class="ruby-identifier">id</span>)
+219:       <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span> 
+220:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'sid'</span>]<span class="ruby-operator">==</span><span class="ruby-identifier">id</span>
+221:           <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">rule</span>
+222:         <span class="ruby-keyword kw">end</span>
+223:       }
+224:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="read-rules-method" class="method-detail ">
+				<a name="method-i-read_rules"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">read_rules</span><span
+						class="method-args">(file_handle)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="read-rules-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 154</span>
+154:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_rules</span>(<span class="ruby-identifier">file_handle</span>)
+155:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-rule-method" class="method-detail ">
+				<a name="method-i-write_rule"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_rule</span><span
+						class="method-args">(file_handle, rule)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="write-rule-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 165</span>
+165:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_rule</span>(<span class="ruby-identifier">file_handle</span>, <span class="ruby-identifier">rule</span>)
+166:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'## rule'</span>
+167: 
+168:       <span class="ruby-comment cmt"># sentence ID</span>
+169:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">'ID : '</span>, <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'sid'</span>], <span class="ruby-value str">&quot;\n&quot;</span>
+170:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'PREMISE'</span>
+171:       
+172:       <span class="ruby-comment cmt"># premise: form of FEE nodes</span>
+173:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">'FEE : '</span>
+174:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-constant">DescribeNodeAndPath</span><span class="ruby-operator">::</span><span class="ruby-constant">NodeDescription</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fee'</span>][<span class="ruby-value str">'main'</span>]), <span class="ruby-value str">&quot;\n&quot;</span>
+175:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fee'</span>][<span class="ruby-value str">'descr'</span>].<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+176:         <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fee'</span>][<span class="ruby-value str">'descr'</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fee_descr</span><span class="ruby-operator">|</span>
+177:           <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">'FEE all : '</span>
+178:           <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-constant">DescribeNodeAndPath</span><span class="ruby-operator">::</span><span class="ruby-constant">NodeDescription</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">fee_descr</span>), <span class="ruby-value str">&quot;\n&quot;</span>
+179:         }        
+180:       <span class="ruby-keyword kw">end</span>
+181:       
+182:       <span class="ruby-comment cmt"># premise: path to FE node, form of FE node</span>
+183:       <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'premise_fe'</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fe_descr</span><span class="ruby-operator">|</span>
+184:         <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;FE : &quot;</span>
+185:         <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-constant">DescribeNodeAndPath</span><span class="ruby-operator">::</span><span class="ruby-constant">NodeDescription</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'end'</span>]), <span class="ruby-value str">&quot;\n   by\n&quot;</span>
+186:         <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-constant">DescribeNodeAndPath</span><span class="ruby-operator">::</span><span class="ruby-constant">PathDescription</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">fe_descr</span>[<span class="ruby-value str">'path'</span>]), <span class="ruby-value str">&quot;\n&quot;</span>
+187:       } 
+188:       
+189:       <span class="ruby-comment cmt"># conclusion: Frame</span>
+190:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">'CONCLUSION'</span>
+191:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Then Frame : &quot;</span>, <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'conclusion_frame'</span>], <span class="ruby-value str">&quot;\n&quot;</span>
+192:       
+193:       <span class="ruby-comment cmt"># conclusion: frame element</span>
+194:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Then FE : &quot;</span>, <span class="ruby-identifier">rule</span>[<span class="ruby-value str">'conclusion_fe'</span>], <span class="ruby-value str">&quot;\n&quot;</span>
+195:       <span class="ruby-identifier">file_handle</span>.<span class="ruby-identifier">puts</span>
+196:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-rules-method" class="method-detail ">
+				<a name="method-i-write_rules"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_rules</span><span
+						class="method-args">(file_handle)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="write-rules-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 158</span>
+158:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_rules</span>(<span class="ruby-identifier">file_handle</span>)
+159:       <span class="ruby-ivar">@rules</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+160:         <span class="ruby-identifier">write_rule</span>(<span class="ruby-identifier">file_handle</span>, <span class="ruby-identifier">rule</span>)
+161:       }
+162:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

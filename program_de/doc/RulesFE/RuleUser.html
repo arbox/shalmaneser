@@ -1,0 +1,1859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: RulesFE::RuleUser</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../PkgGeneral/RulesFE_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/RulesFE.rb">PkgGeneral/RulesFE.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="../Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-apply">#apply</a></li>
+					
+					<li><a href="#method-i-apply_one_rule">#apply_one_rule</a></li>
+					
+					<li><a href="#method-i-apply_sloppy">#apply_sloppy</a></li>
+					
+					<li><a href="#method-i-apply_strict">#apply_strict</a></li>
+					
+					<li><a href="#method-i-array_eq">#array_eq</a></li>
+					
+					<li><a href="#method-i-assignments_2_frames">#assignments_2_frames</a></li>
+					
+					<li><a href="#method-i-check_single_fe">#check_single_fe</a></li>
+					
+					<li><a href="#method-i-check_single_frame">#check_single_frame</a></li>
+					
+					<li><a href="#method-i-fes_subsume_new_fes">#fes_subsume_new_fes</a></li>
+					
+					<li><a href="#method-i-filter_subsumed_assignments">#filter_subsumed_assignments</a></li>
+					
+					<li><a href="#method-i-frame_subsumes_assignment">#frame_subsumes_assignment</a></li>
+					
+					<li><a href="#method-i-group_into_frames">#group_into_frames</a></li>
+					
+					<li><a href="#method-i-read_off">#read_off</a></li>
+					
+					<li><a href="#method-i-remove_duplicate_fes">#remove_duplicate_fes</a></li>
+					
+					<li><a href="#method-i-write_rules">#write_rules</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="../rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="../tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="../tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="../tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="../RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="../RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="../RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="../RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="../RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="../DBView.html">DBView</a></li>
+				
+					<li><a href="../DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="../EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="../EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="../NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="../NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="../AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="../AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="../AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="../AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="../AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="../AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="../AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="../AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="../Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="../AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="../AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="../Array.html">Array</a></li>
+				
+					<li><a href="../AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="../Baseline.html">Baseline</a></li>
+				
+					<li><a href="../BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="../BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="../Classifier.html">Classifier</a></li>
+				
+					<li><a href="../ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="../CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="../CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="../CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="../CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="../ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="../ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="../ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="../ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="../ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="../Counter.html">Counter</a></li>
+				
+					<li><a href="../DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="../DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="../DBResult.html">DBResult</a></li>
+				
+					<li><a href="../DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="../DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="../DBTable.html">DBTable</a></li>
+				
+					<li><a href="../DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="../DoParses.html">DoParses</a></li>
+				
+					<li><a href="../DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="../EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="../EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="../EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="../EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="../EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="../Eval.html">Eval</a></li>
+				
+					<li><a href="../ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="../ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="../FE.html">FE</a></li>
+				
+					<li><a href="../FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="../FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="../FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="../FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="../FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="../FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="../FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="../FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="../FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="../FeNode.html">FeNode</a></li>
+				
+					<li><a href="../File.html">File</a></li>
+				
+					<li><a href="../FileParser.html">FileParser</a></li>
+				
+					<li><a href="../FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="../FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="../FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="../FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="../FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="../FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="../Float.html">Float</a></li>
+				
+					<li><a href="../FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="../FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="../Frame.html">Frame</a></li>
+				
+					<li><a href="../FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="../FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="../FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="../FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="../FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="../FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="../FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="../FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="../FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="../FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="../FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="../FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="../FredEval.html">FredEval</a></li>
+				
+					<li><a href="../FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="../FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="../FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="../FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="../FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="../FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="../FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="../FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="../FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="../FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="../FredTest.html">FredTest</a></li>
+				
+					<li><a href="../FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="../FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="../FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="../FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="../GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="../GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="../GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="../GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="../GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="../GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="../GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="../GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="../GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="../GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="../GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="../GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="../GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="../GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="../HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="../HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="../Headz.html">Headz</a></li>
+				
+					<li><a href="../HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="../IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="../InputData.html">InputData</a></li>
+				
+					<li><a href="../IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="../LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="../LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="../MD5.html">MD5</a></li>
+				
+					<li><a href="../Mallet.html">Mallet</a></li>
+				
+					<li><a href="../Malouf.html">Malouf</a></li>
+				
+					<li><a href="../MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="../MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="../Maxent.html">Maxent</a></li>
+				
+					<li><a href="../MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="../MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="../MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="../MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="../NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="../NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="../NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="../NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="../NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="../NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="../Object.html">Object</a></li>
+				
+					<li><a href="../OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="../Optimise.html">Optimise</a></li>
+				
+					<li><a href="../PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="../Path.html">Path</a></li>
+				
+					<li><a href="../PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="../PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="../PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="../PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="../PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="../ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="../PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="../Pruning.html">Pruning</a></li>
+				
+					<li><a href="../ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="../RegXML.html">RegXML</a></li>
+				
+					<li><a href="../RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="../RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="../RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="../RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="../RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="../RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="../RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="../RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="../RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="../RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="../RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="../RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="../RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="../RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="../RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="../RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="../RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="../RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="../RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="../SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="../SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="../SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="../SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="../SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="../SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="../SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="../SemNode.html">SemNode</a></li>
+				
+					<li><a href="../SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="../SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="../SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="../SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="../SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="../String.html">String</a></li>
+				
+					<li><a href="../StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="../Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="../SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="../SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="../SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="../SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="../SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="../SynNode.html">SynNode</a></li>
+				
+					<li><a href="../TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="../TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="../TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="../TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="../TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="../TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="../TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="../TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="../Targets.html">Targets</a></li>
+				
+					<li><a href="../TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="../TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="../Tiger.html">Tiger</a></li>
+				
+					<li><a href="../TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="../TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="../Timbl.html">Timbl</a></li>
+				
+					<li><a href="../TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="../ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="../TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="../TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="../TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="../TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="../TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="../UspNode.html">UspNode</a></li>
+				
+					<li><a href="../UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="../ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="../VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="../WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="../WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="../WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="../WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="../WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="../WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="../XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">RulesFE::RuleUser</h1>
+
+		<div id="description">
+			<pre>
+                                                      
+</pre>
+<p>
+Class <a href="RuleUser.html">RuleUser</a>
+</p>
+<p>
+deals with rules that assign frames and frame elements on the basis of  the
+syntactic structure of a sentence
+</p>
+<p>
+this is the <em>only</em> class of this module that should be used from
+outside!
+</p>
+<p>
+Methods:
+</p>
+<p>
+new(parameters)  initializes the rule-keeping object, empties the table of
+known rules,
+</p>
+<pre>
+                 initializes the rule-generalizing object
+                 remembers the parameters for rule usage:
+                 'parameters' is a hash with the following possible keys and values:
+
+              parameters:
+              ------------
+              'strategy' =&gt; 'strict' or 'sloppy'
+                 'strict' means that there is an additional filter: Rules come in groups. A group consists of all rules
+                    read off one and the same example sentence, i.e. all rules generated by one call to 
+                    read_off(sobj). 
+                    A rule is ruled out by the filter unless _all_ rules
+                     of a group match the sentence 'sobj'. 
+                 'sloppy' means that this additional filter is not applied. 
+
+              'single_frame' =&gt; true or false
+                 true means that there is an additional filter: 
+                    Only if all rules that apply predict the same frame name
+                    are they applied.
+                 false means that this additional filter is not applied.
+
+               'single_fe' =&gt; true or false
+                  true means that there is an additional filter: 
+                    For each frame element name, only if all rules that predict
+                    this frame name assign it to exactly the same nodes is this frame element assigned
+                  false means that this additional filter is not applied
+</pre>
+<p>
+<a href="RuleUser.html#method-i-read_off">read_off</a>(sobj)
+&#8216;sobj&#8217; is a ManageSynSem::Sentence object, a sentence
+</p>
+<pre>
+               If there are frames annotated in 'sobj', rules for 
+               frame and frame element assignment are read off those frames.
+               These rules are kept in a RuleKeeper object. For the construction of the rules, 
+               a RulePartFEE object is used to read off the part of the rules that
+               concerns FEEs, and a RulePartFE object is used to read off the part of the rules
+               that concerns FEs.
+
+               One such rule describes the constituents that form the FEE, the constituents that form 
+               the FE, and the path from the FEE to the FE as rule premises, and the frame name and
+               frame element name as the rule conclusion.
+
+               The descriptions of nodes and paths are provided by the DescribeNodeAndPath module.
+
+               Currently, a node description comprises:
+               for terminal nodes: the part of speech
+               for nonterminal nodes: the category, and, if the category is PP, the preposition
+
+               Currently a path description consists of a set of steps. Each step comprises:
+               the category of the start node, the edge label of the edge between start and end node, 
+               and the category of the end node.
+</pre>
+<p>
+<a href="RuleUser.html#method-i-write_rules">write_rules</a>(file) write
+rules to a file. &#8216;file&#8217; is a file handle.
+</p>
+<pre>
+               A RuleUser object contains a RuleKeeper object for remembering rules.
+               When write_rules is evoked, all rules that have been entered 
+               since the RuleUser object was initialized
+               -- entering rules can be done by using read_off -- are written to 'file'
+</pre>
+<p>
+apply(sobj)   apply to a sentence all rules that have been read up to now.
+</p>
+<pre>
+              'sobj' is a ManageSynSem::Sentence object, a sentence
+              All rules that have been entered since the RuleUser object was initialized
+              are applied to the sentence given by 'sobj'. 
+              'sobj' is modified. 
+              Return value : true if some rule applied, false else
+              
+              First all rules are tested for applicability, 
+              and the frame and frame elements they predict
+              (if they are applicable) are collected.
+
+              Then these new frame and frame element assignments are filtered and grouped:
+
+              - All single frame element assignments that the rules propose are grouped into frames,
+                i.e. all frame element assignment rules that have the 
+                same frame name in the conclusion
+                are grouped into a single new frame.
+
+              - If 'sobj' already contains a frame that subsumes one proposed by the rules, 
+                the subsumed new frame is not added. 
+                Subsumption means: the frame name is the same, and each frame element of the new frame
+                is already present in the old frame
+ </pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(parameters)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1499</span>
+1499:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">parameters</span>)
+1500:       <span class="ruby-ivar">@parameters</span> = <span class="ruby-identifier">parameters</span>
+1501:       <span class="ruby-ivar">@keeper</span> = <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">new</span>()
+1502:       <span class="ruby-ivar">@generalizer</span> = <span class="ruby-constant">RuleGeneralizer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parameters</span>)
+1503:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="apply-method" class="method-detail ">
+				<a name="method-i-apply"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">apply</span><span
+						class="method-args">(sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="apply-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1545</span>
+1545:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply</span>(<span class="ruby-identifier">sobj</span>)
+1546: 
+1547:       <span class="ruby-comment cmt"># test if this sentence is in the wrong subcorpus</span>
+1548:       <span class="ruby-comment cmt"># if yes, don't assign anything</span>
+1549:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">is_wrongsubcorpus?</span>()
+1550:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1551:       <span class="ruby-keyword kw">end</span>
+1552: 
+1553:       <span class="ruby-comment cmt"># find prospective new frames and frame elements</span>
+1554:       <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value str">'strategy'</span>]
+1555:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'sloppy'</span>
+1556:         <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">apply_sloppy</span>(<span class="ruby-identifier">sobj</span>)
+1557:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'strict'</span>
+1558:         <span class="ruby-identifier">assignments</span> = <span class="ruby-identifier">apply_strict</span>(<span class="ruby-identifier">sobj</span>)
+1559:       <span class="ruby-keyword kw">else</span>
+1560:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">'ERROR in RulesFe: Don\t know strategy '</span>, <span class="ruby-identifier">strategy</span>, <span class="ruby-value str">&quot;\n&quot;</span>
+1561:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1562:       <span class="ruby-keyword kw">end</span>
+1563: 
+1564:       <span class="ruby-comment cmt"># filter out incompatible assignments</span>
+1565: 
+1566:       <span class="ruby-comment cmt"># Single frame, or multiple frames?</span>
+1567:       <span class="ruby-comment cmt"># Do we only use the new assignments if they predict a single frame?</span>
+1568:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value str">'single_frame'</span>]
+1569:         <span class="ruby-identifier">assignments1</span> = <span class="ruby-identifier">check_single_frame</span>(<span class="ruby-identifier">assignments</span>, <span class="ruby-identifier">sobj</span>)
+1570:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assignments1</span>.<span class="ruby-identifier">nil?</span>
+1571:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1572:         <span class="ruby-keyword kw">end</span>
+1573:       <span class="ruby-keyword kw">else</span>
+1574:         <span class="ruby-identifier">assignments1</span> = <span class="ruby-identifier">group_into_frames</span>(<span class="ruby-identifier">assignments</span>)
+1575:       <span class="ruby-keyword kw">end</span>
+1576: 
+1577:       <span class="ruby-comment cmt"># Single FE assignment or multiple FE assignments?</span>
+1578:       <span class="ruby-comment cmt"># What if a FE is assigned to two different groups of constituents?</span>
+1579:       <span class="ruby-comment cmt"># Do we assign both, or neither?</span>
+1580:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value str">'single_fe'</span>]
+1581:         <span class="ruby-identifier">assignments2</span> = <span class="ruby-identifier">check_single_fe</span>(<span class="ruby-identifier">assignments1</span>, <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sid</span>())
+1582:       <span class="ruby-keyword kw">else</span>
+1583:         <span class="ruby-identifier">assignments2</span> = <span class="ruby-identifier">remove_duplicate_fes</span>(<span class="ruby-identifier">assignments1</span>)
+1584:       <span class="ruby-keyword kw">end</span>
+1585: 
+1586:       <span class="ruby-comment cmt"># all remaining assignments are okay</span>
+1587:       <span class="ruby-comment cmt"># turn them into frames and add them to sobj, if they are not already there</span>
+1588:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">assignments_2_frames</span>(<span class="ruby-identifier">filter_subsumed_assignments</span>(<span class="ruby-identifier">assignments2</span>, <span class="ruby-identifier">sobj</span>), <span class="ruby-identifier">sobj</span>)
+1589:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="read-off-method" class="method-detail ">
+				<a name="method-i-read_off"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">read_off</span><span
+						class="method-args">(sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="read-off-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1506</span>
+1506:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_off</span>(<span class="ruby-identifier">sobj</span>)
+1507:       <span class="ruby-comment cmt"># get objects that deal with parts of the readoff</span>
+1508:       <span class="ruby-identifier">rules_part_fee</span> = <span class="ruby-constant">RulePartFEE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1509:       <span class="ruby-identifier">rules_part_fe</span> = <span class="ruby-constant">RulePartFE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1510:       <span class="ruby-comment cmt"># handle each frame in turn</span>
+1511: 
+1512:       <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">frames</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">frame</span><span class="ruby-operator">|</span>
+1513:         <span class="ruby-comment cmt"># determine FEE info</span>
+1514:         <span class="ruby-identifier">fee_descr</span> = <span class="ruby-identifier">rules_part_fee</span>.<span class="ruby-identifier">read_off</span>(<span class="ruby-identifier">frame_id</span>)
+1515: 
+1516:         <span class="ruby-identifier">target_id</span> = <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_main_id</span>(<span class="ruby-identifier">fee_descr</span>)
+1517: 
+1518:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_id</span>.<span class="ruby-identifier">nil?</span>
+1519:           <span class="ruby-keyword kw">return</span>
+1520:         <span class="ruby-keyword kw">end</span>
+1521: 
+1522:         <span class="ruby-comment cmt"># determine FE info for each FE</span>
+1523:         <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">frames</span>[<span class="ruby-identifier">frame_id</span>].<span class="ruby-identifier">fes</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fe_id</span><span class="ruby-operator">|</span>
+1524: 
+1525:           <span class="ruby-identifier">fe_descr</span> = <span class="ruby-identifier">rules_part_fe</span>.<span class="ruby-identifier">read_off</span>(<span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">fe_id</span>, <span class="ruby-identifier">target_id</span>)
+1526: 
+1527:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">fe_descr</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">fe_descr</span>.<span class="ruby-identifier">empty?</span>
+1528:             <span class="ruby-comment cmt"># make rule</span>
+1529:             <span class="ruby-ivar">@keeper</span>.<span class="ruby-identifier">add_rule</span>(<span class="ruby-ivar">@generalizer</span>.<span class="ruby-identifier">generalize</span>(<span class="ruby-identifier">sobj</span>,
+1530:                                                      <span class="ruby-identifier">fee_descr</span>, 
+1531:                                                      <span class="ruby-identifier">fe_descr</span>,
+1532:                                                      <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">frame_name</span>(), 
+1533:                                                      <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">fe_name</span>(<span class="ruby-identifier">fe_id</span>)))
+1534:           <span class="ruby-keyword kw">end</span>
+1535:         }
+1536:       }
+1537:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-rules-method" class="method-detail ">
+				<a name="method-i-write_rules"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_rules</span><span
+						class="method-args">(file)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="write-rules-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1540</span>
+1540:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_rules</span>(<span class="ruby-identifier">file</span>)
+1541:       <span class="ruby-ivar">@keeper</span>.<span class="ruby-identifier">write_rules</span>(<span class="ruby-identifier">file</span>)
+1542:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="apply-one-rule-method" class="method-detail ">
+				<a name="method-i-apply_one_rule"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">apply_one_rule</span><span
+						class="method-args">(sobj, rule, fee_tester, fe_tester)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="RuleUser.html#method-i-apply_one_rule">apply_one_rule</a>(sobj,
+rule, fee_tester, fe_tester)
+</p>
+<pre>
+  sobj is a ManageSynSem::Sentence object
+  rule is a rule in the RuleKeeper internal format
+  fee_tester is a RulePartFEE object
+  fe_tester is a RulePartFE object
+</pre>
+<p>
+apply one rule to a given sentence
+</p>
+<p>
+returns a list of hashes, one hash per match that was found:
+</p>
+<pre>
+ { 'frame_name' =&gt; name of new frame to be assigned, a string
+   'fe_name' =&gt; name of new frame element to be assigned, a string
+   'fee_ids' =&gt; list of node IDs of syntactic nodes belonging to the FEE
+   'fe_ids' =&gt; list of node IDs of syntactic nodes belonging to the FE }</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="apply-one-rule-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1672</span>
+1672:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply_one_rule</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">rule</span>, <span class="ruby-identifier">fee_tester</span>, <span class="ruby-identifier">fe_tester</span>)
+1673:       <span class="ruby-comment cmt"># first try to match the FEE</span>
+1674:       <span class="ruby-identifier">fee_id_lists</span> = <span class="ruby-identifier">fee_tester</span>.<span class="ruby-identifier">apply</span>(<span class="ruby-identifier">rule</span>)
+1675:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fee_id_lists</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-comment cmt"># rule not applicable</span>
+1676:         <span class="ruby-keyword kw">return</span> []
+1677:       <span class="ruby-keyword kw">end</span>
+1678: 
+1679:       <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1680: 
+1681:       <span class="ruby-comment cmt"># iterate over all FEEs in the sentence</span>
+1682:       <span class="ruby-identifier">fee_id_lists</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fee_ids</span><span class="ruby-operator">|</span>
+1683: 
+1684:         <span class="ruby-identifier">main_fee_id</span> = <span class="ruby-identifier">fee_tester</span>.<span class="ruby-identifier">get_main_fee</span>(<span class="ruby-identifier">rule</span>, <span class="ruby-identifier">fee_ids</span>)
+1685:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">main_fee_id</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-comment cmt">#something went wrong</span>
+1686:           <span class="ruby-keyword kw">next</span>
+1687:         <span class="ruby-keyword kw">end</span>
+1688:       
+1689:         <span class="ruby-comment cmt"># now for the frame element</span>
+1690:         <span class="ruby-identifier">list_of_fe_id_groups</span> = <span class="ruby-identifier">fe_tester</span>.<span class="ruby-identifier">apply</span>(<span class="ruby-identifier">rule</span>, <span class="ruby-identifier">main_fee_id</span>)
+1691:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">list_of_fe_id_groups</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">list_of_fe_id_groups</span>.<span class="ruby-identifier">empty?</span>
+1692:           <span class="ruby-keyword kw">next</span>
+1693:         <span class="ruby-keyword kw">end</span>
+1694:         <span class="ruby-comment cmt"># return each new assignment as a hash</span>
+1695:         <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">list_of_fe_id_groups</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fe_id_group</span><span class="ruby-operator">|</span>
+1696:           {<span class="ruby-value str">'frame_name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_frame_name</span>(<span class="ruby-identifier">rule</span>), 
+1697:             <span class="ruby-value str">'fe_name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RuleKeeper</span>.<span class="ruby-identifier">get_rule_fe_name</span>(<span class="ruby-identifier">rule</span>), 
+1698:             <span class="ruby-value str">'fee_ids'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fee_ids</span>,
+1699:             <span class="ruby-value str">'fe_ids'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fe_id_group</span>
+1700:           }
+1701:         }
+1702:       }
+1703:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+1704:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="apply-sloppy-method" class="method-detail ">
+				<a name="method-i-apply_sloppy"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">apply_sloppy</span><span
+						class="method-args">(sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="RuleUser.html#method-i-apply_sloppy">apply_sloppy</a>(sobj) sobj
+is a ManageSynSem::Sentence object
+</p>
+<p>
+apply rules, no &#8216;strategy&#8217;=&#8217;strict&#8217; filter
+</p>
+<p>
+returns a list of hashes, one hash per match that was found:
+</p>
+<pre>
+ for the format of the hashes, see procedure apply_one_rule</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="apply-sloppy-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1599</span>
+1599:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply_sloppy</span>(<span class="ruby-identifier">sobj</span>)
+1600:       <span class="ruby-comment cmt"># get objects that deal with parts of the rules to be applied</span>
+1601:       <span class="ruby-identifier">rule_part_fee</span> = <span class="ruby-constant">RulePartFEE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1602:       <span class="ruby-identifier">rule_part_fe</span> = <span class="ruby-constant">RulePartFE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1603:       
+1604:       <span class="ruby-identifier">new_assignments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1605:       
+1606:       <span class="ruby-comment cmt"># try all rules, store matches in new_assignments</span>
+1607:       <span class="ruby-ivar">@keeper</span>.<span class="ruby-identifier">each_rule</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+1608:         <span class="ruby-identifier">new_assignments</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">apply_one_rule</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">rule</span>, <span class="ruby-identifier">rule_part_fee</span>, <span class="ruby-identifier">rule_part_fe</span>)
+1609:       }
+1610:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">new_assignments</span>
+1611:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="apply-strict-method" class="method-detail ">
+				<a name="method-i-apply_strict"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">apply_strict</span><span
+						class="method-args">(sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="RuleUser.html#method-i-apply_strict">apply_strict</a>(sobj) sobj
+is a ManageSynSem::Sentence object
+</p>
+<p>
+apply rules, with &#8216;strategy&#8217;=&#8217;strict&#8217; filter
+</p>
+<pre>
+  use apply_one_rule to see for each rule if it matches
+  pass on results only for rules belonging to a group such that all rules of the group match
+  a group is the set of all rules derived from the same example sentence
+</pre>
+<p>
+returns a list of hashes, one hash per match that was found:
+</p>
+<pre>
+ for the format of the hashes, see procedure apply_one_rule</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="apply-strict-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1625</span>
+1625:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply_strict</span>(<span class="ruby-identifier">sobj</span>)
+1626:       <span class="ruby-comment cmt"># get objects that deal with parts of the rules to be applied</span>
+1627:       <span class="ruby-identifier">rule_part_fee</span> = <span class="ruby-constant">RulePartFEE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1628:       <span class="ruby-identifier">rule_part_fe</span> = <span class="ruby-constant">RulePartFE</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sobj</span>)
+1629:       
+1630:       <span class="ruby-identifier">new_assignments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1631: 
+1632:       <span class="ruby-comment cmt"># try rules group-wise, store matches in new_assignments</span>
+1633:       <span class="ruby-ivar">@keeper</span>.<span class="ruby-identifier">each_id</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group_id</span><span class="ruby-operator">|</span> 
+1634:         <span class="ruby-identifier">group_assignments</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+1635:         <span class="ruby-identifier">all_matching</span> = <span class="ruby-keyword kw">true</span>
+1636:         <span class="ruby-ivar">@keeper</span>.<span class="ruby-identifier">each_rule_with_id</span>(<span class="ruby-identifier">group_id</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">rule</span><span class="ruby-operator">|</span>
+1637:           <span class="ruby-identifier">result</span> = <span class="ruby-identifier">apply_one_rule</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">rule</span>, <span class="ruby-identifier">rule_part_fee</span>, <span class="ruby-identifier">rule_part_fe</span>)
+1638:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">empty?</span>  <span class="ruby-comment cmt"># rule did not match</span>
+1639:             <span class="ruby-identifier">all_matching</span> = <span class="ruby-keyword kw">false</span>
+1640:             <span class="ruby-keyword kw">break</span>
+1641:           <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># rule did match</span>
+1642:             <span class="ruby-identifier">group_assignments</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">result</span>
+1643:           <span class="ruby-keyword kw">end</span>
+1644:         }
+1645:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">all_matching</span> <span class="ruby-comment cmt"># use matching rules only if all rules of the group matched</span>
+1646:           <span class="ruby-identifier">new_assignments</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">group_assignments</span>
+1647:         <span class="ruby-keyword kw">end</span>
+1648:       }
+1649:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">new_assignments</span>
+1650:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="array-eq-method" class="method-detail ">
+				<a name="method-i-array_eq"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">array_eq</span><span
+						class="method-args">(a1, a2)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="RuleUser.html#method-i-array_eq">array_eq</a>(a1, a2)
+</p>
+<p>
+a1, a2 are arrays
+</p>
+<p>
+returns true if a1, a2 contain the same elements, possibly in different
+order else false
+</p>
+<p>
+this function works only if a1, a2 don&#8217;t contain duplicate elements 
+or if duplicate elements don&#8217;t matter in the comparison
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="array-eq-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 2015</span>
+2015:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">array_eq</span>(<span class="ruby-identifier">a1</span>, <span class="ruby-identifier">a2</span>)
+2016:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">a1</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">a2</span> <span class="ruby-operator">==</span> [] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">a2</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">a1</span> <span class="ruby-operator">==</span> []
+2017:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+2018:       <span class="ruby-keyword kw">else</span>
+2019:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+2020:       <span class="ruby-keyword kw">end</span>
+2021:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="assignments-frames-method" class="method-detail ">
+				<a name="method-i-assignments_2_frames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">assignments_2_frames</span><span
+						class="method-args">(assignments, sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-assignments_2_frames">assignments_2_frames</a>(assignments,
+sobj)
+</p>
+<pre>
+  assignments is a list of lists of hashes as produced by apply_one_rule
+      in each element of the list of lists, all hashes predict the same frame name
+  sobj is a ManageSynSem::Sentence object
+</pre>
+<p>
+for each frame description in &#8216;assignments&#8217;, a new frame as an
+extended TIGEr XML structure is constructed and added to sobj
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="assignments-frames-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1979</span>
+1979:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assignments_2_frames</span>(<span class="ruby-identifier">assignments</span>, <span class="ruby-identifier">sobj</span>)
+1980:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">empty?</span>
+1981:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1982:       <span class="ruby-keyword kw">end</span>
+1983:       <span class="ruby-identifier">something_applied</span> = <span class="ruby-keyword kw">false</span>
+1984:       <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">new_frame</span><span class="ruby-operator">|</span>
+1985:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">empty?</span>
+1986:           <span class="ruby-keyword kw">next</span>
+1987:         <span class="ruby-keyword kw">end</span>
+1988:         <span class="ruby-identifier">something_applied</span> = <span class="ruby-keyword kw">true</span>
+1989:         <span class="ruby-identifier">frame_id</span> = <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">add_frame</span>(<span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sid</span>(), 
+1990:                                       <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">'frame_name'</span>], 
+1991:                                       <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">'fee_ids'</span>])
+1992:         <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">new_fe</span><span class="ruby-operator">|</span>
+1993:           <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">add_fe</span>(<span class="ruby-identifier">frame_id</span>, 
+1994:                           <span class="ruby-identifier">new_fe</span>[<span class="ruby-value str">'fe_name'</span>],
+1995:                           <span class="ruby-identifier">new_fe</span>[<span class="ruby-value str">'fe_ids'</span>])
+1996:         }
+1997:       }
+1998:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">something_applied</span>
+1999:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="check-single-fe-method" class="method-detail ">
+				<a name="method-i-check_single_fe"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">check_single_fe</span><span
+						class="method-args">(assignments_framewise, sentence_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-check_single_fe">check_single_fe</a>(assignments_framewise,
+sentence_id)
+</p>
+<pre>
+  assignments_framewise is a list of lists of hashes as produced by apply_one_rule
+      in each element of the list of lists, all hashes predict the same frame name
+  sentence_id is the ID of the sentence concerned in the TIGER XML structure
+</pre>
+<p>
+In each member of assignments_framewise, the elements are filtered:
+</p>
+<pre>
+ If there are two or more elements that predict the same FE name, but
+ with different node ID lists, they are removed.
+ If there are two or more elements that predict the same FE name with the
+ same node ID list, only one of them is retained
+</pre>
+<p>
+If this filtering has made a member of assignments_framewise empty, it is
+removed.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="check-single-fe-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1785</span>
+1785:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check_single_fe</span>(<span class="ruby-identifier">assignments_framewise</span>, <span class="ruby-identifier">sentence_id</span>)
+1786:       <span class="ruby-comment cmt"># each member of assignments_framewise describes one frame</span>
+1787:       <span class="ruby-comment cmt"># in each frame, each FE may appear at most once</span>
+1788:       <span class="ruby-comment cmt"># new_list is new list of assignments-describing-one-frame-each</span>
+1789:       <span class="ruby-identifier">new_list</span> = <span class="ruby-identifier">assignments_framewise</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">assignment</span><span class="ruby-operator">|</span>
+1790:         <span class="ruby-identifier">fe_names</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fe_name'</span>]}.<span class="ruby-identifier">uniq</span>
+1791:         <span class="ruby-comment cmt"># new_a will consist of those assignments from a</span>
+1792:         <span class="ruby-comment cmt"># that describe an unambiguous FE assignment</span>
+1793:         <span class="ruby-identifier">new_a</span> = []
+1794:         <span class="ruby-comment cmt"># check each FE in turn</span>
+1795:         <span class="ruby-identifier">fe_names</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fe_name</span><span class="ruby-operator">|</span>
+1796:           <span class="ruby-identifier">this_fe_1</span>, *<span class="ruby-identifier">this_fe_rest</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fe_name'</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">fe_name</span>}
+1797:           <span class="ruby-identifier">is_good</span> = <span class="ruby-keyword kw">true</span>
+1798:           <span class="ruby-identifier">this_fe_rest</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">this_fe_2</span><span class="ruby-operator">|</span>
+1799:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">array_eq</span>( <span class="ruby-identifier">this_fe_1</span>[<span class="ruby-value str">'fe_ids'</span>] , <span class="ruby-identifier">this_fe_2</span>[<span class="ruby-value str">'fe_ids'</span>])  <span class="ruby-comment cmt"># same IDs in both lists</span>
+1800:               <span class="ruby-identifier">is_good</span> = <span class="ruby-keyword kw">false</span>
+1801:             <span class="ruby-keyword kw">end</span>              
+1802:           }
+1803:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_good</span>
+1804:             <span class="ruby-identifier">new_a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">this_fe_1</span>
+1805:           <span class="ruby-keyword kw">else</span>
+1806:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;WARNING: sentence &quot;</span>, <span class="ruby-identifier">sentence_id</span>, <span class="ruby-value str">&quot;, FE &quot;</span>, <span class="ruby-identifier">fe_name</span>
+1807:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;: conflicting assignments, did not assign this FE\n&quot;</span>
+1808:           <span class="ruby-keyword kw">end</span>
+1809:         }        
+1810:         <span class="ruby-identifier">new_a</span>
+1811:       }
+1812:       <span class="ruby-comment cmt"># new_list may still contain empty assignments</span>
+1813:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">new_list</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">empty?</span>}
+1814:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="check-single-frame-method" class="method-detail ">
+				<a name="method-i-check_single_frame"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">check_single_frame</span><span
+						class="method-args">(assignments, sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-check_single_frame">check_single_frame</a>(assignments)
+</p>
+<pre>
+   assignments is a list of hashes as produced by apply_one_rule
+</pre>
+<p>
+if all frame names in &#8216;assignments&#8217; that pertain to the same
+FEE are the same, returns a list of lists, each of which are the
+assignments for one FEE, else returns nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="check-single-frame-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1719</span>
+1719:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check_single_frame</span>(<span class="ruby-identifier">assignments</span>, <span class="ruby-identifier">sobj</span>)
+1720:       <span class="ruby-identifier">retv</span> = []
+1721:       <span class="ruby-identifier">fees</span> = <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fee_ids'</span>].<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">to_s</span>}.<span class="ruby-identifier">uniq</span>
+1722:       <span class="ruby-identifier">fees</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fee_string</span><span class="ruby-operator">|</span>
+1723:         <span class="ruby-identifier">assignments_this_fee</span> = <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> 
+1724:           <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fee_ids'</span>].<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">fee_string</span>
+1725:         }
+1726:         <span class="ruby-identifier">frame_names</span> = <span class="ruby-identifier">assignments_this_fee</span>.<span class="ruby-identifier">collect</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'frame_name'</span>]}.<span class="ruby-identifier">uniq</span>
+1727:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame_names</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+1728:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">'WARNING: Conflicting frame assignments for sentence '</span>
+1729:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sid</span>(), <span class="ruby-value str">&quot; -- did not assign any frame\n&quot;</span>
+1730:           <span class="ruby-keyword kw">next</span>
+1731:         <span class="ruby-keyword kw">else</span>
+1732:           <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">assignments_this_fee</span>
+1733:         <span class="ruby-keyword kw">end</span>
+1734:       }
+1735:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">retv</span>.<span class="ruby-identifier">empty?</span>
+1736:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1737:       <span class="ruby-keyword kw">else</span>
+1738:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+1739:       <span class="ruby-keyword kw">end</span>
+1740:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="fes-subsume-new-fes-method" class="method-detail ">
+				<a name="method-i-fes_subsume_new_fes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">fes_subsume_new_fes</span><span
+						class="method-args">(sobj, frame, frame_id, new_frame)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-fes_subsume_new_fes">fes_subsume_new_fes</a>(sobj,
+frame, frame_id, new_frame)
+</p>
+<pre>
+ sobj is a ManageSynSem::Sentence object
+ frame is a ManageSynSem::Frame object, part of sobj
+ frame_id is the ID of 'frame' as given in the extended TIGER XML structure
+ new_frame is a list of hashes as produced by apply_one_rule, all
+   assigning the same frame name
+</pre>
+<p>
+aux procedure of <a
+href="RuleUser.html#method-i-filter_subsumed_assignments">filter_subsumed_assignments</a>
+tests whether all hashes in &#8216;new_frame&#8217; describe FEs that are
+present in &#8216;frame&#8217;
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="fes-subsume-new-fes-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1946</span>
+1946:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fes_subsume_new_fes</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">frame</span>, <span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">new_frame</span>)
+1947:       <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">new_fe</span><span class="ruby-operator">|</span>
+1948: 
+1949:         <span class="ruby-identifier">this_fe_subsumed</span> = <span class="ruby-keyword kw">false</span>
+1950: 
+1951:         <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">fes</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fe_id</span><span class="ruby-operator">|</span>
+1952:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">fe_name</span>(<span class="ruby-identifier">fe_id</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">new_fe</span>[<span class="ruby-value str">'fe_name'</span>] <span class="ruby-keyword kw">and</span>
+1953:               <span class="ruby-identifier">array_eq</span>(<span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">get_fe_nodeids</span>(<span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">fe_id</span>), <span class="ruby-identifier">new_fe</span>[<span class="ruby-value str">'fe_ids'</span>])
+1954: 
+1955:             <span class="ruby-identifier">this_fe_subsumed</span> = <span class="ruby-keyword kw">true</span>
+1956:             <span class="ruby-keyword kw">break</span>
+1957:           <span class="ruby-keyword kw">end</span>
+1958:         } 
+1959:           
+1960:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">this_fe_subsumed</span>
+1961:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1962:         <span class="ruby-keyword kw">end</span>
+1963:       } 
+1964:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+1965:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="filter-subsumed-assignments-method" class="method-detail ">
+				<a name="method-i-filter_subsumed_assignments"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">filter_subsumed_assignments</span><span
+						class="method-args">(assignments, sobj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-filter_subsumed_assignments">filter_subsumed_assignments</a>(assignments,
+sobj)
+</p>
+<pre>
+  assignments is a list of lists of hashes as produced by apply_one_rule
+      in each element of the list of lists, all hashes predict the same frame name
+  sobj is a ManageSynSem::Sentence object
+
+ Each list in &quot;assignments&quot; describes a single frame
+ In each frame description, each frame element description occurs only once. But this could mean
+</pre>
+<ul>
+<li><p>
+either that each frame element name is assigned only once
+</p>
+</li>
+<li><p>
+or that a frame element name can be assigned twice, but to different node
+ID sets
+</p>
+</li>
+</ul>
+<p>
+Tests for each member of &#8216;assignments&#8217; if it is subsumed by a
+frame annotated in &#8216;sobj&#8217;
+</p>
+<p>
+Subsumption means: 
+</p>
+<pre>
+  if @parameters['add_to_old_frames'] == true:
+    the frame name is the same, and for each frame element assignment 
+    in the member of 'assignments', the same frame element assignment 
+    is already present in that frame
+  if @parameters['add_to_old_frames'] == false:
+    there is at least one frame that is evoked by this FEE in sobj</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="filter-subsumed-assignments-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1876</span>
+1876:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filter_subsumed_assignments</span>(<span class="ruby-identifier">assignments</span>, <span class="ruby-identifier">sobj</span>)
+1877:       <span class="ruby-identifier">filtered_assignments</span> = []
+1878:       <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">new_frame</span><span class="ruby-operator">|</span>
+1879: 
+1880:         <span class="ruby-comment cmt"># check back with sobj if this frame is already there</span>
+1881:         <span class="ruby-identifier">new_frame_subsumed</span> = <span class="ruby-keyword kw">false</span>
+1882: 
+1883:         <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">frames</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">frame</span><span class="ruby-operator">|</span>
+1884:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame_subsumes_assignment</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">frame</span>, <span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">new_frame</span>)
+1885:             <span class="ruby-identifier">new_frame_subsumed</span> = <span class="ruby-keyword kw">true</span>
+1886:             <span class="ruby-keyword kw">break</span>
+1887:           <span class="ruby-keyword kw">end</span>
+1888:         }
+1889:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">new_frame_subsumed</span>
+1890:           <span class="ruby-identifier">filtered_assignments</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_frame</span>
+1891:         <span class="ruby-keyword kw">end</span>
+1892:       }
+1893:       <span class="ruby-identifier">filtered_assignments</span>
+1894:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="frame-subsumes-assignment-method" class="method-detail ">
+				<a name="method-i-frame_subsumes_assignment"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">frame_subsumes_assignment</span><span
+						class="method-args">(sobj, frame, frame_id, new_frame)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-frame_subsumes_assignment">frame_subsumes_assignment</a>(sobj,
+frame, frame_id, new_frame)
+</p>
+<pre>
+ sobj is a ManageSynSem::Sentence object
+ frame is a ManageSynSem::Frame object, part of sobj
+ frame_id is the ID of 'frame' as given in the extended TIGER XML structure
+ new_frame is a list of hashes as produced by apply_one_rule, all
+   assigning the same frame name
+</pre>
+<p>
+aux procedure of <a
+href="RuleUser.html#method-i-filter_subsumed_assignments">filter_subsumed_assignments</a>
+tests if the frame name FEE IDS in frame and new_frame are the same
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="frame-subsumes-assignment-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1911</span>
+1911:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frame_subsumes_assignment</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">frame</span>, <span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">new_frame</span>)
+1912:       <span class="ruby-comment cmt"># subsumption only if we have the same frame and FEE</span>
+1913:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@parameters</span>[<span class="ruby-value str">'add_to_old_frame'</span>]
+1914:         <span class="ruby-comment cmt"># same frame and FEE?</span>
+1915:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">frame_name</span>() <span class="ruby-operator">==</span> <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">'frame_name'</span>] <span class="ruby-keyword kw">and</span>
+1916:             <span class="ruby-identifier">array_eq</span>( <span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">get_target_nodeids</span>(<span class="ruby-identifier">frame_id</span>), <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">'fee_ids'</span>]) <span class="ruby-keyword kw">and</span>
+1917:             <span class="ruby-identifier">fes_subsume_new_fes</span>(<span class="ruby-identifier">sobj</span>, <span class="ruby-identifier">frame</span>, <span class="ruby-identifier">frame_id</span>, <span class="ruby-identifier">new_frame</span>)
+1918:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+1919:         <span class="ruby-keyword kw">else</span>
+1920:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1921:         <span class="ruby-keyword kw">end</span>
+1922:       <span class="ruby-keyword kw">else</span>
+1923:         <span class="ruby-comment cmt"># subsumption already if we have the same FEE</span>
+1924:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">array_eq</span>(<span class="ruby-identifier">sobj</span>.<span class="ruby-identifier">sem</span>.<span class="ruby-identifier">get_target_nodeids</span>(<span class="ruby-identifier">frame_id</span>), <span class="ruby-identifier">new_frame</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">'fee_ids'</span>])
+1925:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+1926:         <span class="ruby-keyword kw">else</span>
+1927:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1928:         <span class="ruby-keyword kw">end</span>
+1929:       <span class="ruby-keyword kw">end</span>
+1930:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="group-into-frames-method" class="method-detail ">
+				<a name="method-i-group_into_frames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">group_into_frames</span><span
+						class="method-args">(assignments)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-group_into_frames">group_into_frames</a>(assignments)
+</p>
+<pre>
+  assignments is a list of hashes as produced by apply_one_rule
+</pre>
+<p>
+returns a list of lists L; the union of the lists L is
+&#8216;assignments&#8217; The hashes in &#8216;assignments&#8217; are
+grouped according to the frame name they predict
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="group-into-frames-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1752</span>
+1752:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">group_into_frames</span>(<span class="ruby-identifier">assignments</span>)
+1753:       <span class="ruby-identifier">fees</span> = <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fee_ids'</span>].<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">to_s</span>}.<span class="ruby-identifier">uniq</span>
+1754:       <span class="ruby-identifier">frame_names</span> = <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'frame_name'</span>]}.<span class="ruby-identifier">uniq</span>
+1755:       <span class="ruby-identifier">retv</span> = []
+1756:       <span class="ruby-identifier">fees</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fee_string</span><span class="ruby-operator">|</span>
+1757:         <span class="ruby-identifier">assignments_this_fee</span> = <span class="ruby-identifier">assignments</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> 
+1758:           <span class="ruby-identifier">a</span>[<span class="ruby-value str">'fee_ids'</span>].<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">fee_string</span>
+1759:         }
+1760:         <span class="ruby-identifier">frame_names</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+1761:           <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">assignments_this_fee</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value str">'frame_name'</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">name</span>}
+1762:         }
+1763:       }
+1764:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ret</span>
+1765:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-duplicate-fes-method" class="method-detail ">
+				<a name="method-i-remove_duplicate_fes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_duplicate_fes</span><span
+						class="method-args">(assignments_framewise)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="RuleUser.html#method-i-remove_duplicate_fes">remove_duplicate_fes</a>(assignments_framewise)
+</p>
+<pre>
+  assignments_framewise is a list of lists of hashes as produced by apply_one_rule
+      in each element of the list of lists, all hashes predict the same frame name
+</pre>
+<p>
+In each member of assignments_framewise, the elements are filtered:
+</p>
+<pre>
+ If there are two or more elements that predict the same FE name with the
+ same node ID list, only one of them is retained</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="remove-duplicate-fes-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/RulesFE.rb, line 1829</span>
+1829:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_duplicate_fes</span>(<span class="ruby-identifier">assignments_framewise</span>)
+1830:       <span class="ruby-identifier">new_list</span> = <span class="ruby-identifier">assignments_framewise</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">assignment</span><span class="ruby-operator">|</span>
+1831:         <span class="ruby-identifier">new_a</span> = []
+1832:         <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">each_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ix</span><span class="ruby-operator">|</span>
+1833:           <span class="ruby-identifier">is_good</span> = <span class="ruby-keyword kw">true</span>
+1834:           <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">ix1</span> <span class="ruby-keyword kw">in</span> (<span class="ruby-identifier">ix</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">length</span>
+1835:             <span class="ruby-comment cmt"># if the assignments at ix and at ix1 describe the same assignment,</span>
+1836:             <span class="ruby-comment cmt"># don't keep the one at ix</span>
+1837:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assignment</span>[<span class="ruby-identifier">ix</span>][<span class="ruby-value str">'fe_name'</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">assignment</span>[<span class="ruby-identifier">ix1</span>][<span class="ruby-value str">'fe_name'</span>] <span class="ruby-keyword kw">and</span>
+1838:                 <span class="ruby-identifier">array_eq</span>( <span class="ruby-identifier">assignment</span>[<span class="ruby-identifier">ix</span>][<span class="ruby-value str">'fe_ids'</span>], <span class="ruby-identifier">assignment</span>[<span class="ruby-identifier">ix1</span>][<span class="ruby-value str">'fe_ids'</span>])
+1839:               <span class="ruby-identifier">is_good</span> = <span class="ruby-keyword kw">false</span>
+1840:               <span class="ruby-keyword kw">break</span>
+1841:             <span class="ruby-keyword kw">end</span>
+1842:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_good</span>
+1843:               <span class="ruby-identifier">new_a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">assignment</span>[<span class="ruby-identifier">ix</span>]
+1844:             <span class="ruby-keyword kw">end</span>
+1845:           <span class="ruby-keyword kw">end</span>
+1846:         }
+1847:         <span class="ruby-identifier">new_a</span>
+1848:       }
+1849:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">new_list</span>
+1850:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

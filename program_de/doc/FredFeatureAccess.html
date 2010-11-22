@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: FredFeatureAccess</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/FredFeatures_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/FredFeatures.rb">Pkg/FredFeatures.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-each_feature_file">::each_feature_file</a></li>
+					
+					<li><a href="#method-c-feature_dir">::feature_dir</a></li>
+					
+					<li><a href="#method-c-legend_filename">::legend_filename</a></li>
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-c-remove_feature_files">::remove_feature_files</a></li>
+					
+					<li><a href="#method-i-collect_feature_list">#collect_feature_list</a></li>
+					
+					<li><a href="#method-i-each_sensegroup">#each_sensegroup</a></li>
+					
+					<li><a href="#method-i-flush">#flush</a></li>
+					
+					<li><a href="#method-i-parse_temp_itemline">#parse_temp_itemline</a></li>
+					
+					<li><a href="#method-i-to_feature_list">#to_feature_list</a></li>
+					
+					<li><a href="#method-i-write_item">#write_item</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">FredFeatureAccess</h1>
+
+		<div id="description">
+			<pre>
+                                      
+</pre>
+<p>
+FredFeatureWriter: write chosen features (according to the experiment file)
+to
+</p>
+<ul>
+<li><p>
+one file per lemma for n-ary classification
+</p>
+</li>
+<li><p>
+one file per lemma/sense pair for binary classification
+</p>
+</li>
+</ul>
+<p>
+format: CSV, last entry is target class
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="each-feature-file-method" class="method-detail ">
+				<a name="method-c-each_feature_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_feature_file</span><span
+						class="method-args">(exp, dataset)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+each feature file: iterate through feature files, yield pairs [filename,
+values] where &#8216;values&#8217; is a hash containing keys
+&#8216;lemma&#8217; and potentially &#8216;sense&#8217;
+</p>
+<p>
+filenames are sorted alphabetically before being yielded
+</p>
+<p>
+available in read and write mode
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-feature-file-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 279</span>
+279:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">each_feature_file</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+280:     <span class="ruby-identifier">feature_dir</span> = <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">feature_dir</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+281:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">feature_dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*&quot;</span>].<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+282:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">values</span> = <span class="ruby-identifier">deconstruct_fred_feature_filename</span>(<span class="ruby-identifier">filename</span>))
+283:         <span class="ruby-keyword kw">yield</span> [<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">values</span>]
+284:       <span class="ruby-keyword kw">end</span>
+285:     }
+286:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="feature-dir-method" class="method-detail ">
+				<a name="method-c-feature_dir"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">feature_dir</span><span
+						class="method-args">(exp, dataset)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="feature-dir-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 265</span>
+265:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">feature_dir</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+266:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">WriteFeaturesNaryOrBinary</span>.<span class="ruby-identifier">feature_dir</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-value str">&quot;new&quot;</span>)
+267:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="legend-filename-method" class="method-detail ">
+				<a name="method-c-legend_filename"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">legend_filename</span><span
+						class="method-args">(lemmapos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="legend-filename-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 260</span>
+260:   <span class="ruby-keyword kw">def</span>  <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">legend_filename</span>(<span class="ruby-identifier">lemmapos</span>)
+261:     <span class="ruby-keyword kw">return</span> <span class="ruby-node">&quot;fred.feature_legend.#{lemmapos}&quot;</span>
+262:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(exp, dataset, mode)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 236</span>
+236:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-identifier">mode</span>)
+237:     <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>, <span class="ruby-identifier">mode</span>)
+238: 
+239:     <span class="ruby-comment cmt"># write to auxiliary files first,</span>
+240:     <span class="ruby-comment cmt"># to sort items by lemma</span>
+241:     <span class="ruby-ivar">@w_tmp</span> = <span class="ruby-constant">AuxKeepWriters</span>.<span class="ruby-identifier">new</span>()
+242: 
+243:     <span class="ruby-comment cmt"># which features has the user requested?</span>
+244:     <span class="ruby-identifier">feature_info_obj</span> = <span class="ruby-constant">FredFeatureInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@exp</span>)
+245:     <span class="ruby-ivar">@feature_extractors</span> = <span class="ruby-identifier">feature_info_obj</span>.<span class="ruby-identifier">get_extractor_objects</span>()
+246: 
+247:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-feature-files-method" class="method-detail ">
+				<a name="method-c-remove_feature_files"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_feature_files</span><span
+						class="method-args">(exp, dataset)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-feature-files-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 250</span>
+250:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">remove_feature_files</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+251:     
+252:     <span class="ruby-comment cmt"># remove feature files</span>
+253:     <span class="ruby-constant">WriteFeaturesNaryOrBinary</span>.<span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+254: 
+255:     <span class="ruby-comment cmt"># remove key files</span>
+256:     <span class="ruby-constant">AnswerKeyAccess</span>.<span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">exp</span>, <span class="ruby-identifier">dataset</span>)
+257:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="flush-method" class="method-detail ">
+				<a name="method-i-flush"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">flush</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="flush-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 343</span>
+343:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flush</span>()
+344:     <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">&quot;w&quot;</span>, <span class="ruby-value str">&quot;a&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-ivar">@mode</span>
+345:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;FredFeatureAccess error: cannot write to feature file opened for reading&quot;</span>
+346:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+347:     <span class="ruby-keyword kw">end</span>
+348: 
+349:     <span class="ruby-comment cmt"># elements in the feature vector: get fixed with the training data, </span>
+350:     <span class="ruby-comment cmt"># get read with the test data.</span>
+351:     <span class="ruby-comment cmt"># get stored in feature_legend_dir</span>
+352:     <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@dataset</span>
+353:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;train&quot;</span>
+354:       <span class="ruby-identifier">feature_legend_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new_dir</span>(<span class="ruby-identifier">fred_classifier_directory</span>(<span class="ruby-ivar">@exp</span>), 
+355:                                         <span class="ruby-value str">&quot;legend&quot;</span>)
+356:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;test&quot;</span>
+357:       <span class="ruby-identifier">feature_legend_dir</span>= <span class="ruby-constant">File</span>.<span class="ruby-identifier">existing_dir</span>(<span class="ruby-identifier">fred_classifier_directory</span>(<span class="ruby-ivar">@exp</span>), 
+358:                                         <span class="ruby-value str">&quot;legend&quot;</span>)
+359:     <span class="ruby-keyword kw">end</span>      
+360: 
+361:     <span class="ruby-comment cmt"># now really write features</span>
+362:     <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">flush</span>()
+363:     <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">get_lemmas</span>().<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">lemmapos</span><span class="ruby-operator">|</span>
+364:    
+365:       <span class="ruby-comment cmt"># inform user</span>
+366:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Writing #{lemmapos}...&quot;</span>
+367: 
+368:       <span class="ruby-comment cmt"># prepare list of features to use in the feature vector:</span>
+369:       <span class="ruby-identifier">legend_filename</span> = <span class="ruby-identifier">feature_legend_dir</span> <span class="ruby-operator">+</span> <span class="ruby-constant">FredFeatureAccess</span>.<span class="ruby-identifier">legend_filename</span>(<span class="ruby-identifier">lemmapos</span>)
+370: 
+371:       <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@dataset</span>
+372:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;train&quot;</span>
+373:         <span class="ruby-comment cmt"># training data: </span>
+374:         <span class="ruby-comment cmt"># determine feature list and sense list from the data,</span>
+375:         <span class="ruby-comment cmt"># and store in the relevant file</span>
+376:         <span class="ruby-identifier">feature_list</span>, <span class="ruby-identifier">sense_list</span> = <span class="ruby-identifier">collect_feature_list</span>(<span class="ruby-identifier">lemmapos</span>)
+377:         <span class="ruby-keyword kw">begin</span>
+378:           <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">legend_filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+379:         <span class="ruby-keyword kw">rescue</span>
+380:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: Could not write to feature legend file #{legend_filename}: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$!</span>
+381:           <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+382:         <span class="ruby-keyword kw">end</span>
+383:         <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">feature_list</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/,/</span>, <span class="ruby-value str">&quot;COMMA&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+384:         <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">sense_list</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/,/</span>, <span class="ruby-value str">&quot;COMMA&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>)
+385:         <span class="ruby-identifier">f</span>.<span class="ruby-identifier">close</span>()
+386: 
+387:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;test&quot;</span>
+388:         <span class="ruby-comment cmt"># test data:</span>
+389:         <span class="ruby-comment cmt"># read feature list and sense list from the relevant file</span>
+390:       
+391:         <span class="ruby-keyword kw">begin</span>
+392:           <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">legend_filename</span>)
+393:         <span class="ruby-keyword kw">rescue</span>
+394:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: Could not read feature legend file #{legend_filename}: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$!</span>
+395:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping this lemma.&quot;</span>
+396:           <span class="ruby-keyword kw">next</span>
+397:         <span class="ruby-keyword kw">end</span>
+398:         <span class="ruby-identifier">feature_list</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>().<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/COMMA/</span>, <span class="ruby-value str">&quot;,&quot;</span>) }
+399:         <span class="ruby-identifier">sense_list</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">gets</span>().<span class="ruby-identifier">chomp</span>().<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;,&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/COMMA/</span>, <span class="ruby-value str">&quot;,&quot;</span>) }
+400:       <span class="ruby-keyword kw">end</span>
+401: 
+402:       <span class="ruby-comment cmt"># write</span>
+403:       <span class="ruby-comment cmt"># - featurization file</span>
+404:       <span class="ruby-comment cmt"># - answer key file</span>
+405: 
+406:       <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">get_for_reading</span>(<span class="ruby-identifier">lemmapos</span>)
+407:       <span class="ruby-identifier">answer_obj</span> = <span class="ruby-constant">AnswerKeyAccess</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@exp</span>, <span class="ruby-ivar">@dataset</span>, <span class="ruby-identifier">lemmapos</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+408: 
+409:       <span class="ruby-identifier">obj_out</span> = <span class="ruby-constant">WriteFeaturesNaryOrBinary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">lemmapos</span>, <span class="ruby-ivar">@exp</span>, <span class="ruby-ivar">@dataset</span>)
+410: 
+411:       <span class="ruby-identifier">f</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> 
+412: 
+413:         <span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>, <span class="ruby-identifier">ids</span>, <span class="ruby-identifier">sid</span>, <span class="ruby-identifier">senses</span>, <span class="ruby-identifier">features</span> = <span class="ruby-identifier">parse_temp_itemline</span>(<span class="ruby-identifier">line</span>)
+414:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">lemma</span> 
+415:           <span class="ruby-comment cmt"># something went wrong in parsing the line</span>
+416:           <span class="ruby-keyword kw">next</span>
+417:         <span class="ruby-keyword kw">end</span>
+418:         <span class="ruby-identifier">each_sensegroup</span>(<span class="ruby-identifier">senses</span>, <span class="ruby-identifier">sense_list</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">senses_for_item</span>, <span class="ruby-identifier">original_senses</span><span class="ruby-operator">|</span>
+419:           <span class="ruby-comment cmt"># write answer key</span>
+420:           <span class="ruby-identifier">answer_obj</span>.<span class="ruby-identifier">write_line</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>, 
+421:                                 <span class="ruby-identifier">ids</span>, <span class="ruby-identifier">sid</span>, <span class="ruby-identifier">original_senses</span>, <span class="ruby-identifier">senses_for_item</span>)
+422: 
+423:           <span class="ruby-comment cmt"># write item: features, senses</span>
+424:           <span class="ruby-identifier">obj_out</span>.<span class="ruby-identifier">write_instance</span>(<span class="ruby-identifier">to_feature_list</span>(<span class="ruby-identifier">features</span>, <span class="ruby-identifier">feature_list</span>),
+425:                                  <span class="ruby-identifier">senses_for_item</span>)
+426:         } <span class="ruby-comment cmt"># each sensegroup</span>
+427:       } <span class="ruby-comment cmt"># each input line</span>
+428:       <span class="ruby-identifier">obj_out</span>.<span class="ruby-identifier">close</span>()
+429:       <span class="ruby-identifier">answer_obj</span>.<span class="ruby-identifier">close</span>()
+430:       <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">discard</span>(<span class="ruby-identifier">lemmapos</span>)
+431:     } <span class="ruby-comment cmt"># each lemma</span>
+432: 
+433: 
+434:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-item-method" class="method-detail ">
+				<a name="method-i-write_item"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_item</span><span
+						class="method-args">(lemma, pos, ids, sid, senses, features)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+write item: 
+</p>
+<ul>
+<li><p>
+transform meta-features into actual features as requested in the experiment
+file
+</p>
+</li>
+<li><p>
+write item to tempfile, don&#8217;t really write yet
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="write-item-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 293</span>
+293:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_item</span>(<span class="ruby-identifier">lemma</span>,  <span class="ruby-comment cmt"># string: target lemma</span>
+294:                  <span class="ruby-identifier">pos</span>,    <span class="ruby-comment cmt"># string: target pos</span>
+295:                  <span class="ruby-identifier">ids</span>,    <span class="ruby-comment cmt"># array:string: unique IDs of this occurrence of the lemma</span>
+296:                  <span class="ruby-identifier">sid</span>,    <span class="ruby-comment cmt"># string: sentence ID</span>
+297:                  <span class="ruby-identifier">senses</span>,  <span class="ruby-comment cmt"># array:string: sense</span>
+298:                  <span class="ruby-identifier">features</span>) <span class="ruby-comment cmt"># features: hash feature type-&gt; features (string-&gt; array:string)</span>
+299: 
+300: 
+301:     <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">&quot;w&quot;</span>, <span class="ruby-value str">&quot;a&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-ivar">@mode</span>
+302:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;FredFeatures error: cannot write to feature file opened for reading&quot;</span>
+303:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+304:     <span class="ruby-keyword kw">end</span>
+305: 
+306:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">empty?</span>
+307:       <span class="ruby-comment cmt"># nothing to write</span>
+308:       <span class="ruby-keyword kw">return</span>
+309:     <span class="ruby-keyword kw">end</span>
+310:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pos</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">pos</span>.<span class="ruby-identifier">empty?</span>
+311:       <span class="ruby-comment cmt"># POS unknown</span>
+312:       <span class="ruby-identifier">pos</span> = <span class="ruby-value str">&quot;&quot;</span>
+313:     <span class="ruby-keyword kw">end</span>
+314: 
+315:     <span class="ruby-comment cmt"># falsch! noval nicht zulässig für fred! (nur für rosy!) - Warum steht das hier???</span>
+316:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">senses</span>
+317:       <span class="ruby-identifier">senses</span> = [ <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;noval&quot;</span>) ]
+318:     <span class="ruby-keyword kw">end</span>
+319: 
+320:     <span class="ruby-comment cmt"># modified by ines, 19.7.2010</span>
+321:     <span class="ruby-comment cmt"># senses should be empty, but they are not - why?</span>
+322:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">senses</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">senses</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">eql?</span> <span class="ruby-value str">&quot;&quot;</span> 
+323:         <span class="ruby-identifier">senses</span> = <span class="ruby-value str">&quot;NONE&quot;</span> 
+324:     <span class="ruby-keyword kw">end</span>
+325: 
+326:     <span class="ruby-identifier">writer</span> = <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">get_writer_for</span>(<span class="ruby-identifier">fred_lemmapos_combine</span>(<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>))
+327:     <span class="ruby-identifier">ids_s</span> = <span class="ruby-identifier">ids</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/:/</span>, <span class="ruby-value str">&quot;COLON&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;::&quot;</span>)
+328:     <span class="ruby-identifier">senses_s</span> = <span class="ruby-identifier">senses</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/:/</span>, <span class="ruby-value str">&quot;COLON&quot;</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;::&quot;</span>)
+329: 
+330:     <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{lemma} #{pos} #{ids_s} #{sid} #{senses_s} &quot;</span>
+331: 
+332:     <span class="ruby-comment cmt"># write all features</span>
+333:     <span class="ruby-ivar">@feature_extractors</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">extractor</span><span class="ruby-operator">|</span>
+334:       <span class="ruby-identifier">extractor</span>.<span class="ruby-identifier">each_feature</span>(<span class="ruby-identifier">features</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">feature</span><span class="ruby-operator">|</span>
+335:         <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">feature</span>, <span class="ruby-value str">&quot; &quot;</span>
+336:       }
+337:     }
+338:     <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">puts</span>
+339:     <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">flush</span>()
+340:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-instance-method-details" class="method-section section">
+			<h3 class="section-header">Protected Instance Methods</h3>
+
+		
+			<div id="collect-feature-list-method" class="method-detail ">
+				<a name="method-i-collect_feature_list"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">collect_feature_list</span><span
+						class="method-args">(lemmapos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+read temp feature file for the given lemma/pos and determine the list of
+all features and the list of all senses, each sorted alphabetically
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="collect-feature-list-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 443</span>
+443:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">collect_feature_list</span>(<span class="ruby-identifier">lemmapos</span>)
+444:     <span class="ruby-comment cmt"># read entries for this lemma</span>
+445:     <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@w_tmp</span>.<span class="ruby-identifier">get_for_reading</span>(<span class="ruby-identifier">lemmapos</span>)
+446: 
+447:     <span class="ruby-comment cmt"># keep a record of all senses and features</span>
+448:     <span class="ruby-comment cmt"># senses: binary.</span>
+449:     <span class="ruby-comment cmt"># features: keep the max. number of times a given feature occurred</span>
+450:     <span class="ruby-comment cmt">#         in an instance</span>
+451:     <span class="ruby-identifier">all_senses</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+452:     <span class="ruby-identifier">all_features</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+453:     <span class="ruby-identifier">features_this_instance</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+454:     <span class="ruby-comment cmt"># record how often each feature occurred all in all</span>
+455:     <span class="ruby-identifier">num_occ</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+456:     <span class="ruby-identifier">num_lines</span> = <span class="ruby-value">0</span>
+457: 
+458:     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+459:       <span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>, <span class="ruby-identifier">id_string</span>, <span class="ruby-identifier">sid</span>, <span class="ruby-identifier">senses</span>, <span class="ruby-identifier">features</span> = <span class="ruby-identifier">parse_temp_itemline</span>(<span class="ruby-identifier">line</span>)
+460: 
+461:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">lemma</span>
+462:         <span class="ruby-comment cmt"># something went wrong in parsing the line</span>
+463:         <span class="ruby-comment cmt"># print out the file contents for reference, then leave</span>
+464:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Could not read temporary feature file #{f.path()} for #{lemmapos}.&quot;</span>
+465:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+466:       <span class="ruby-keyword kw">end</span>
+467:       <span class="ruby-identifier">num_lines</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+468:       <span class="ruby-identifier">senses</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">all_senses</span>[<span class="ruby-identifier">s</span>] = <span class="ruby-keyword kw">true</span> }
+469:       <span class="ruby-identifier">features_this_instance</span>.<span class="ruby-identifier">clear</span>()
+470:       <span class="ruby-identifier">features</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">fea</span><span class="ruby-operator">|</span> 
+471:         <span class="ruby-identifier">features_this_instance</span>[<span class="ruby-identifier">fea</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> 
+472:         <span class="ruby-identifier">num_occ</span>[<span class="ruby-identifier">fea</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+473:       }
+474:       
+475:       <span class="ruby-identifier">features_this_instance</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+476:         <span class="ruby-identifier">all_features</span>[<span class="ruby-identifier">feature</span>] = [ <span class="ruby-identifier">all_features</span>[<span class="ruby-identifier">feature</span>], <span class="ruby-identifier">features_this_instance</span>[<span class="ruby-identifier">feature</span>] ].<span class="ruby-identifier">max</span>()
+477:       }
+478:     }
+479: 
+480:     <span class="ruby-comment cmt"># HIER </span>
+481:     <span class="ruby-comment cmt"># if num_lines &gt; 2</span>
+482:     <span class="ruby-comment cmt">#  num_occ.each_pair { |feature, num_occ|</span>
+483:     <span class="ruby-comment cmt">#    if num_occ &lt; 2</span>
+484:     <span class="ruby-comment cmt">#      all_features.delete(feature)</span>
+485:     <span class="ruby-comment cmt">#    end</span>
+486:     <span class="ruby-comment cmt">#  }</span>
+487:     <span class="ruby-comment cmt"># end</span>
+488:     
+489: 
+490: 
+491:     <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;numerical_features&quot;</span>)
+492:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;keep&quot;</span>
+493:       <span class="ruby-comment cmt"># leave numerical features as they are, or </span>
+494:       <span class="ruby-comment cmt"># don't do numerical features</span>
+495:       <span class="ruby-keyword kw">return</span> [ <span class="ruby-identifier">all_features</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>(),
+496:                <span class="ruby-identifier">all_senses</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>()
+497:              ]
+498: 
+499:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;repeat&quot;</span>
+500:       <span class="ruby-comment cmt"># repeat: turn numerical feature with max. value N</span>
+501:       <span class="ruby-comment cmt"># into N binary features</span>
+502:       <span class="ruby-identifier">feature_list</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+503:       <span class="ruby-identifier">all_features</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature</span><span class="ruby-operator">|</span>
+504:         <span class="ruby-identifier">all_features</span>[<span class="ruby-identifier">feature</span>].<span class="ruby-identifier">times</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span> 
+505:           <span class="ruby-identifier">feature_list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">feature</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; #{index}/#{all_features[feature]}&quot;</span> 
+506:         }
+507:       }
+508:       <span class="ruby-keyword kw">return</span> [ <span class="ruby-identifier">feature_list</span>, 
+509:                <span class="ruby-identifier">all_senses</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>()
+510:              ]
+511: 
+512:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bin&quot;</span>
+513:       <span class="ruby-comment cmt"># make bins:</span>
+514:       <span class="ruby-comment cmt"># number of bins = (max. number of occurrences of a feature per item) / 10</span>
+515:       <span class="ruby-identifier">feature_list</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+516:       <span class="ruby-identifier">all_features</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>().<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature</span><span class="ruby-operator">|</span>
+517:         <span class="ruby-identifier">num_bins_this_feature</span> = (<span class="ruby-identifier">all_features</span>[<span class="ruby-identifier">feature</span>].<span class="ruby-identifier">to_f</span>() <span class="ruby-operator">/</span> <span class="ruby-value">10.0</span>).<span class="ruby-identifier">ceil</span>().<span class="ruby-identifier">to_i</span>()
+518: 
+519:         <span class="ruby-identifier">num_bins_this_feature</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span> 
+520:           <span class="ruby-identifier">feature_list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">feature</span>  <span class="ruby-operator">+</span> <span class="ruby-node">&quot; #{index}/#{num_bins_this_feature}&quot;</span>
+521:         }
+522:       }
+523:       <span class="ruby-keyword kw">return</span> [ <span class="ruby-identifier">feature_list</span>,
+524:                <span class="ruby-identifier">all_senses</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">sort</span>()
+525:              ]
+526:     <span class="ruby-keyword kw">else</span>
+527:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here&quot;</span>
+528:     <span class="ruby-keyword kw">end</span>
+529:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-sensegroup-method" class="method-detail ">
+				<a name="method-i-each_sensegroup"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_sensegroup</span><span
+						class="method-args">(senses, full_sense_list)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+how to treat instances with multiple senses?
+</p>
+<ul>
+<li><p>
+either write one item per sense
+</p>
+</li>
+<li><p>
+or combine all senses into one string
+</p>
+</li>
+<li><p>
+or keep as separate senses
+</p>
+</li>
+</ul>
+<p>
+according to &#8216;handle_multilabel&#8217; in the experiment file
+</p>
+<p>
+yields pairs of [senses, original_senses] both are arrays of strings
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-sensegroup-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 620</span>
+620:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_sensegroup</span>(<span class="ruby-identifier">senses</span>, <span class="ruby-identifier">full_sense_list</span>)
+621:     <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;handle_multilabel&quot;</span>)
+622:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;keep&quot;</span>
+623:       <span class="ruby-keyword kw">yield</span> [<span class="ruby-identifier">senses</span>, <span class="ruby-identifier">senses</span>]
+624:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;join&quot;</span>
+625:       <span class="ruby-keyword kw">yield</span> [ [<span class="ruby-identifier">fred_join_senses</span>(<span class="ruby-identifier">senses</span>)], <span class="ruby-identifier">senses</span>]
+626:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;repeat&quot;</span>
+627:       <span class="ruby-identifier">senses</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+628:         <span class="ruby-keyword kw">yield</span> [ [<span class="ruby-identifier">s</span>], <span class="ruby-identifier">senses</span>]
+629:       }
+630:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;binarize&quot;</span>
+631:       <span class="ruby-keyword kw">yield</span> [ <span class="ruby-identifier">senses</span>, <span class="ruby-identifier">senses</span> ]
+632:     <span class="ruby-keyword kw">else</span>
+633:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: unknown setting #{exp.get(&quot;handle_multilabel&quot;)}&quot;</span>
+634:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;for 'handle_multilabel' in the experiment file.&quot;</span>
+635:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Please choose one of 'binary', 'keep', 'join', 'repeat'&quot;</span>
+636:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;or leave unset -- default is 'binary'.&quot;</span>
+637:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+638:     <span class="ruby-keyword kw">end</span>
+639:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="parse-temp-itemline-method" class="method-detail ">
+				<a name="method-i-parse_temp_itemline"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">parse_temp_itemline</span><span
+						class="method-args">(line)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="parse-temp-itemline-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 642</span>
+642:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_temp_itemline</span>(<span class="ruby-identifier">line</span>)
+643:     <span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>, <span class="ruby-identifier">ids_s</span>, <span class="ruby-identifier">sid</span>, <span class="ruby-identifier">senses_s</span>, *<span class="ruby-identifier">features</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>()
+644:     <span class="ruby-comment cmt"># fix me! senses is empty, takes context features instead</span>
+645:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">senses_s</span>
+646:       <span class="ruby-comment cmt"># features may be empty, but we need senses</span>
+647:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;FredFeatures Error in word sense item line: too short.&quot;</span>
+648:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;&gt;&gt;#{line}&lt;&lt;&quot;</span>
+649:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+650:     <span class="ruby-keyword kw">end</span>
+651:     
+652:     <span class="ruby-identifier">ids</span> = <span class="ruby-identifier">ids_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;::&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/COLON/</span>, <span class="ruby-value str">&quot;:&quot;</span>) }
+653:     <span class="ruby-identifier">senses</span> = <span class="ruby-identifier">senses_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;::&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/COLON/</span>, <span class="ruby-value str">&quot;:&quot;</span>) }
+654: 
+655:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">lemma</span>, <span class="ruby-identifier">pos</span>, <span class="ruby-identifier">ids</span>, <span class="ruby-identifier">sid</span>, <span class="ruby-identifier">senses</span>, <span class="ruby-identifier">features</span>]
+656:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="to-feature-list-method" class="method-detail ">
+				<a name="method-i-to_feature_list"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_feature_list</span><span
+						class="method-args">(partial, full, handle_numerical_features = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a full sorted list of items and a partial list of items, match the
+partial list to the full list, that is, produce as many items as the full
+list has yielding 0 where the partial entry is not in the full list,  and >
+0 otherwise
+</p>
+<p>
+Note that if partial contains items not in full, they will not occur on the
+feature list returned!
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="to-feature-list-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredFeatures.rb, line 541</span>
+541:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_feature_list</span>(<span class="ruby-identifier">partial</span>, <span class="ruby-identifier">full</span>,
+542:                       <span class="ruby-identifier">handle_numerical_features</span> = <span class="ruby-keyword kw">nil</span>)
+543: 
+544:     <span class="ruby-comment cmt">#print &quot;FULL: &quot;, full, &quot;\n&quot;</span>
+545:     <span class="ruby-comment cmt">#print &quot;PART: &quot;, partial, &quot;\n&quot;</span>
+546:     <span class="ruby-comment cmt"># count occurrences of each feature in the partial list</span>
+547:     <span class="ruby-identifier">occ_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+548:     <span class="ruby-identifier">partial</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+549:       <span class="ruby-identifier">occ_hash</span>[<span class="ruby-identifier">p</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+550:     }
+551: 
+552:     <span class="ruby-comment cmt"># what to do with our counts?</span>
+553:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">handle_numerical_features</span>
+554:       <span class="ruby-comment cmt"># no pre-set value given when this function was called</span>
+555:       <span class="ruby-identifier">handle_numerical_features</span> = <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;numerical_features&quot;</span>)
+556:     <span class="ruby-keyword kw">end</span>
+557: 
+558:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">handle_numerical_features</span>
+559:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;keep&quot;</span>
+560:       <span class="ruby-comment cmt"># leave numerical features as numerical features</span>
+561:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">full</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span>
+562:         <span class="ruby-identifier">occ_hash</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">to_s</span>()
+563:       }
+564: 
+565:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;repeat&quot;</span>
+566:       <span class="ruby-comment cmt"># repeat each numerical feature up to a max. number of occurrences</span>
+567:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">full</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature_plus_count</span><span class="ruby-operator">|</span>
+568:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">feature_plus_count</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*) (\d+)\/(\d+)$/</span>
+569:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: could not parse feature: #{feature_plus_count}, bailing out.&quot;</span>
+570:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here.&quot;</span>
+571:         <span class="ruby-keyword kw">end</span>
+572: 
+573:         <span class="ruby-identifier">feature</span> = <span class="ruby-node">$1</span>
+574:         <span class="ruby-identifier">current_count</span> = <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>()
+575:         <span class="ruby-identifier">max_num</span> = <span class="ruby-node">$3</span>.<span class="ruby-identifier">to_i</span>()
+576: 
+577:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">occ_hash</span>[<span class="ruby-identifier">feature</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_count</span>
+578:           <span class="ruby-value">1</span>
+579:         <span class="ruby-keyword kw">else</span>
+580:           <span class="ruby-value">0</span>
+581:         <span class="ruby-keyword kw">end</span>
+582:       }    
+583: 
+584:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bin&quot;</span>
+585:       <span class="ruby-comment cmt"># group numerical feature values into N bins.</span>
+586:       <span class="ruby-comment cmt"># number of bins varies from feature to feature</span>
+587:       <span class="ruby-comment cmt"># each bin contains 10 different counts</span>
+588:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">full</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature_plus_count</span><span class="ruby-operator">|</span>
+589:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">feature_plus_count</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*) (\d+)\/(\d+)$/</span>
+590:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: could not parse feature: #{feature_plus_count}, bailing out.&quot;</span>
+591:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here.&quot;</span>
+592:         <span class="ruby-keyword kw">end</span>
+593: 
+594:         <span class="ruby-identifier">feature</span> = <span class="ruby-node">$1</span>
+595:         <span class="ruby-identifier">current_count</span> = <span class="ruby-node">$2</span>.<span class="ruby-identifier">to_i</span>()
+596:         <span class="ruby-identifier">max_num</span> = <span class="ruby-node">$3</span>.<span class="ruby-identifier">to_i</span>()
+597: 
+598:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">occ_hash</span>[<span class="ruby-identifier">feature</span>] <span class="ruby-operator">%</span> <span class="ruby-value">10</span> <span class="ruby-operator">&gt;</span> (<span class="ruby-value">10</span> * <span class="ruby-identifier">current_count</span>)
+599:           <span class="ruby-value">1</span>
+600:         <span class="ruby-keyword kw">else</span>
+601:           <span class="ruby-value">0</span>
+602:         <span class="ruby-keyword kw">end</span>
+603:       }
+604:     <span class="ruby-keyword kw">else</span>
+605:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here&quot;</span>
+606:     <span class="ruby-keyword kw">end</span>
+607:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

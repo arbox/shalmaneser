@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: BerkeleyInterpreter</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/BerkeleyInterface_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/BerkeleyInterface.rb">Pkg/BerkeleyInterface.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Tiger.html">Tiger</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-optional_systems">::optional_systems</a></li>
+					
+					<li><a href="#method-c-systems">::systems</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">BerkeleyInterpreter</h1>
+
+		<div id="description">
+			<pre>
+                                              
+</pre>
+<p>
+Interpreter class
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="optional-systems-method" class="method-detail ">
+				<a name="method-c-optional_systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">optional_systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+names of additional systems that may be interpreted by this class returns a
+hash service(string) -> system name(string) same as names()
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="optional-systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/BerkeleyInterface.rb, line 365</span>
+365:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">BerkeleyInterpreter</span>.<span class="ruby-identifier">optional_systems</span>()
+366:     <span class="ruby-keyword kw">return</span> {
+367:       <span class="ruby-value str">&quot;lemmatizer&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;treetagger&quot;</span>
+368:     }
+369:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="systems-method" class="method-detail ">
+				<a name="method-c-systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+names of the systems interpreted by this class: returns a hash
+service(string) -> system name (string), e.g. { &#8220;parser&#8221; =>
+&#8220;collins&#8221;, &#8220;lemmatizer&#8221; => &#8220;treetagger&#8221;
+}
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/BerkeleyInterface.rb, line 355</span>
+355:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">BerkeleyInterpreter</span>.<span class="ruby-identifier">systems</span>()
+356:     <span class="ruby-keyword kw">return</span> {
+357:         <span class="ruby-value str">&quot;parser&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;berkeley&quot;</span>
+358:     }
+359:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# For the purpose of SHALMANESER, disable the normal TreeTagger tokenisation
+
+# Set these paths appropriately
+
+BIN=/opt/TreeTagger/bin
+CMD=/opt/TreeTagger/cmd
+LIB=/opt/TreeTagger/lib
+
+TOKENIZER=${BIN}/separate-punctuation
+TAGGER=${BIN}/tree-tagger
+ABBR_LIST=${LIB}/german-abbreviations
+PARFILE=${LIB}/german.par
+FILTER=${CMD}/filter-german-tags
+
+# put all on one line
+cat $* |
+# do tokenization
+#$TOKENIZER +1 +s +l $ABBR_LIST |
+# remove empty lines
+grep -v '^$' |
+# tagging
+$TAGGER -token -lemma -sgml $PARFILE  | 
+# error correction
+$FILTER
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: FnHierarchy.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>Graph</li>
+				
+					<li>rexml/document</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+FNHierarchy KE March 2004
+</p>
+<p>
+provides class <a href="../FramesAndRelations.html">FramesAndRelations</a>
+which reads the FN frame relations into a graph and manages the graph.
+</p>
+<p>
+initialization: with an XML file, the file frames.xml
+</p>
+<p>
+augmenting with frame relations: method add_relations, parameter is the
+file frRelations.xml
+</p>
+<p>
+Graph nodes are as defined in Graph.rb <a href="../Frame.html">Frame</a>
+names are used as IDs for frame graph nodes. For FEs, the IDs have the form
+&#8220;Frame_name FE_name&#8220; with a space inbetween. 
+</p>
+<p>
+access methods:
+</p>
+<p>
+frames() returns a list of all frames as graph nodes fes() returns a list
+of all frame elements as graph nodes get_frame(name) returns the graph node
+for that frame get_fe(frame_name, fe_name) returns the graph node for that
+<a href="../FE.html">FE</a>. add_frame_relation(relation, frame1, frame2)
+adds a link named by this relation btw 
+</p>
+<pre>
+       the frames with names frame1 and frame2
+</pre>
+<p>
+add_fe_relation(relation, fename1, framename1, fename2, framename2) adds a
+link named
+</p>
+<pre>
+       by this relation between these FEs of these frames.</pre>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

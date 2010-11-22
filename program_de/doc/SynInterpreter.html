@@ -1,0 +1,2416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: SynInterpreter</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/AbstractSynInterface_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/AbstractSynInterface.rb">PkgGeneral/AbstractSynInterface.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-announce_me">::announce_me</a></li>
+					
+					<li><a href="#method-c-auxiliary%3F">::auxiliary?</a></li>
+					
+					<li><a href="#method-c-category">::category</a></li>
+					
+					<li><a href="#method-c-gfs">::gfs</a></li>
+					
+					<li><a href="#method-c-governing_verbs">::governing_verbs</a></li>
+					
+					<li><a href="#method-c-head_terminal">::head_terminal</a></li>
+					
+					<li><a href="#method-c-informative_content_node">::informative_content_node</a></li>
+					
+					<li><a href="#method-c-leftmost_terminal">::leftmost_terminal</a></li>
+					
+					<li><a href="#method-c-lemma_backoff">::lemma_backoff</a></li>
+					
+					<li><a href="#method-c-main_node_of_expr">::main_node_of_expr</a></li>
+					
+					<li><a href="#method-c-max_constituents">::max_constituents</a></li>
+					
+					<li><a href="#method-c-modal%3F">::modal?</a></li>
+					
+					<li><a href="#method-c-optional_systems">::optional_systems</a></li>
+					
+					<li><a href="#method-c-particle_of_verb">::particle_of_verb</a></li>
+					
+					<li><a href="#method-c-path_between">::path_between</a></li>
+					
+					<li><a href="#method-c-preposition">::preposition</a></li>
+					
+					<li><a href="#method-c-prune%3F">::prune?</a></li>
+					
+					<li><a href="#method-c-pt">::pt</a></li>
+					
+					<li><a href="#method-c-relative_position">::relative_position</a></li>
+					
+					<li><a href="#method-c-relative_pronoun%3F">::relative_pronoun?</a></li>
+					
+					<li><a href="#method-c-rightmost_terminal">::rightmost_terminal</a></li>
+					
+					<li><a href="#method-c-search_down">::search_down</a></li>
+					
+					<li><a href="#method-c-search_up">::search_up</a></li>
+					
+					<li><a href="#method-c-simplified_pt">::simplified_pt</a></li>
+					
+					<li><a href="#method-c-surrounding_nodes">::surrounding_nodes</a></li>
+					
+					<li><a href="#method-c-systems">::systems</a></li>
+					
+					<li><a href="#method-c-verbs">::verbs</a></li>
+					
+					<li><a href="#method-c-voice">::voice</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">SynInterpreter</h1>
+
+		<div id="description">
+			<pre>
+                           
+</pre>
+<p>
+abstract class, to be inherited:
+</p>
+<p>
+interpretation for a POS tagger/lemmatizer/parser combination
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="auxiliary--method" class="method-detail ">
+				<a name="method-c-auxiliary%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">auxiliary?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+auxiliary?
+</p>
+<p>
+returns true if the given node is an auxiliary default: no recognition of
+auxiliaries
+</p>
+<p>
+returns: boolean
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="auxiliary--source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 633</span>
+633:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">auxiliary?</span>(<span class="ruby-identifier">node</span>)
+634:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+635:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="category-method" class="method-detail ">
+				<a name="method-c-category"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">category</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+generalize over POS tags.
+</p>
+<p>
+returns one of:
+</p>
+<p>
+adj:  adjective (phrase) adv:  adverb (phrase) card: numbers, quantity
+phrases con:  conjunction det:  determiner, including
+possessive/demonstrative pronouns etc. for:  foreign material noun: noun
+(phrase), including personal pronouns, proper names, expletives part:
+particles, truncated words (German compound parts) prep: preposition
+(phrase) pun:  punctuation, brackets, etc. sent: sentence top:  top node of
+a sentence verb: verb (phrase) nil:  something went wrong
+</p>
+<p>
+default: return phrase type as is
+</p>
+<p>
+returns: string or nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="category-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 542</span>
+542:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>) <span class="ruby-comment cmt"># SynNode</span>
+543:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+544:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+545:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+546:     <span class="ruby-keyword kw">end</span>
+547: 
+548:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">pt</span>(<span class="ruby-identifier">node</span>)
+549:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gfs-method" class="method-detail ">
+				<a name="method-c-gfs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gfs</span><span
+						class="method-args">(node, sent)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+gfs
+</p>
+<p>
+grammatical functions of a constituent:
+</p>
+<p>
+returns: a list of pairs [relation(string), node(<a
+href="SynNode.html">SynNode</a>)] where <node> stands in the relation
+<relation> to the parameter that the method was called with
+</p>
+<p>
+default: children of this node, with edge labels as relations, prepositions
+tacked on for pps
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="gfs-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 710</span>
+710:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">gfs</span>(<span class="ruby-identifier">node</span>,    <span class="ruby-comment cmt"># SynNode</span>
+711:                          <span class="ruby-identifier">sent</span>)    <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+712:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+713:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+714:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+715:     <span class="ruby-keyword kw">end</span>
+716: 
+717:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children_with_edgelabel</span>().<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rel</span>, <span class="ruby-identifier">gf_node</span><span class="ruby-operator">|</span>
+718:  
+719:      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">gf_node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;prep&quot;</span>
+720:         [<span class="ruby-identifier">rel</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">preposition</span>(<span class="ruby-identifier">gf_node</span>).<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">gf_node</span>]
+721: 
+722:       <span class="ruby-keyword kw">else</span>
+723:         [<span class="ruby-identifier">rel</span>, <span class="ruby-identifier">gf_node</span>]
+724:       <span class="ruby-keyword kw">end</span>
+725:     }
+726:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="governing-verbs-method" class="method-detail ">
+				<a name="method-c-governing_verbs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">governing_verbs</span><span
+						class="method-args">(node, sent)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+governing verbs
+</p>
+<p>
+returns a list of pairs [rel, verb_node] such that the given node fills the
+grammatical function rel for this verb_node or an empty list if there is no
+such verb
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="governing-verbs-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 780</span>
+780:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">governing_verbs</span>(<span class="ruby-identifier">node</span>,
+781:                                      <span class="ruby-identifier">sent</span>)
+782:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+783:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+784:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+785:     <span class="ruby-keyword kw">end</span>
+786: 
+787:     <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+788: 
+789:     <span class="ruby-comment cmt"># each verb of the sentence:</span>
+790:     <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">verbs</span>(<span class="ruby-identifier">sent</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">verb_node</span>, <span class="ruby-identifier">prefix_node</span><span class="ruby-operator">|</span>
+791:       <span class="ruby-comment cmt"># each gf of this verb:</span>
+792:       <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">gfs</span>(<span class="ruby-identifier">verb_node</span>, <span class="ruby-identifier">sent</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rel</span>, <span class="ruby-identifier">other_node</span><span class="ruby-operator">|</span>
+793:         <span class="ruby-comment cmt"># if it points to the given node, record</span>
+794:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">other_node</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">node</span> <span class="ruby-keyword kw">or</span>
+795:             <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">informative_content_node</span>(<span class="ruby-identifier">other_node</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">node</span>
+796:           <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">rel</span>, <span class="ruby-identifier">verb_node</span>]
+797:           <span class="ruby-keyword kw">break</span>
+798:         <span class="ruby-keyword kw">end</span>
+799:       }
+800:     }
+801: 
+802:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+803:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="head-terminal-method" class="method-detail ">
+				<a name="method-c-head_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">head_terminal</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="SynInterpreter.html#method-c-head_terminal">head_terminal</a>
+</p>
+<p>
+given a constituent, return the terminal node that describes its headword
+default: a heuristic that assumes the existence of a &#8216;head&#8217; 
+</p>
+<pre>
+  attribute on nodes:
+  find the first node in my yield corresponding to my head attribute..
+</pre>
+<p>
+returns: a <a href="SynNode.html">SynNode</a> object if successful, else
+nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="head-terminal-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 658</span>
+658:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">node</span>)
+659:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+660:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+661:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+662:     <span class="ruby-keyword kw">end</span>
+663: 
+664:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">is_terminal?</span>
+665:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>
+666:     <span class="ruby-keyword kw">end</span>
+667: 
+668:     <span class="ruby-identifier">head</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;head&quot;</span>)
+669:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">head</span>
+670:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+671:     <span class="ruby-keyword kw">end</span>
+672:       
+673:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">yield_nodes</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+674:       <span class="ruby-identifier">t</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;word&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">head</span>
+675:     }
+676:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="informative-content-node-method" class="method-detail ">
+				<a name="method-c-informative_content_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">informative_content_node</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-informative_content_node">informative_content_node</a>
+</p>
+<p>
+for most constituents: the head for a PP, the NP for an SBAR, the VP for a
+VP, the embedded VP 
+</p>
+<p>
+Default: returns the first non-head child
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="informative-content-node-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 737</span>
+737:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">informative_content_node</span>(<span class="ruby-identifier">node</span>)
+738:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+739:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+740:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+741:     <span class="ruby-keyword kw">end</span>
+742: 
+743:     <span class="ruby-identifier">headlemma</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">node</span>)
+744: 
+745:     <span class="ruby-identifier">first_nonhead_child</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> 
+746:       <span class="ruby-identifier">nnh</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">n</span>)
+747:       <span class="ruby-identifier">nnh</span> <span class="ruby-keyword kw">and</span> 
+748:         <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">nnh</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">headlemma</span> 
+749:     }
+750: 
+751:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">first_nonhead_child</span>
+752:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="leftmost-terminal-method" class="method-detail ">
+				<a name="method-c-leftmost_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">leftmost_terminal</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-leftmost_terminal">leftmost_terminal</a>
+</p>
+<p>
+given a constituent, determine its leftmost terminal,  excluding
+punctuation
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="leftmost-terminal-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 921</span>
+921:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">leftmost_terminal</span>(<span class="ruby-identifier">node</span>)
+922:     <span class="ruby-identifier">leftmost</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">yield_nodes_ordered</span>().<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">n</span>) <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;pun&quot;</span>}
+923:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">leftmost</span>
+924:       <span class="ruby-identifier">leftmost</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">yield_nodes_ordered</span>().<span class="ruby-identifier">first</span>
+925:     <span class="ruby-keyword kw">end</span>
+926:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">leftmost</span>
+927:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="lemma-backoff-method" class="method-detail ">
+				<a name="method-c-lemma_backoff"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">lemma_backoff</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="SynInterpreter.html#method-c-lemma_backoff">lemma_backoff</a>:
+</p>
+<p>
+if we have lemma information, return that, and failing that, return the
+word
+</p>
+<p>
+returns: string or nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="lemma-backoff-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 566</span>
+566:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">node</span>)
+567:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+568:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+569:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+570:     <span class="ruby-keyword kw">end</span>
+571: 
+572:     <span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) 
+573:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">lemma</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/unknown/</span>) <span class="ruby-keyword kw">and</span>
+574:         <span class="ruby-identifier">node</span>.<span class="ruby-identifier">is_terminal?</span>
+575:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">word</span>()
+576:     <span class="ruby-keyword kw">else</span>
+577:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">lemma</span>
+578:     <span class="ruby-keyword kw">end</span>
+579:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="main-node-of-expr-method" class="method-detail ">
+				<a name="method-c-main_node_of_expr"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">main_node_of_expr</span><span
+						class="method-args">(nodelist, no_mwes = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+main node of expression
+</p>
+<p>
+returns: <a href="SynNode.html">SynNode</a>, main node, if found else nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="main-node-of-expr-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 981</span>
+ 981:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">main_node_of_expr</span>(<span class="ruby-identifier">nodelist</span>, 
+ 982:                                        <span class="ruby-identifier">no_mwes</span> = <span class="ruby-keyword kw">nil</span>) <span class="ruby-comment cmt"># non-nil: don't handle multiword expressions beyond verbs with separate particles</span>
+ 983: 
+ 984:     <span class="ruby-comment cmt"># map nodes to terminals</span>
+ 985:     <span class="ruby-identifier">nodelist1</span> = <span class="ruby-identifier">nodelist</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">yield_nodes</span>() }.<span class="ruby-identifier">flatten</span>
+ 986: 
+ 987:     <span class="ruby-comment cmt"># single node? return it</span>
+ 988:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodelist1</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+ 989:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">nodelist1</span>.<span class="ruby-identifier">first</span>
+ 990:     <span class="ruby-keyword kw">end</span>
+ 991: 
+ 992:     <span class="ruby-comment cmt"># more than one word</span>
+ 993: 
+ 994:     <span class="ruby-comment cmt"># see if we can get a headword of a single constituent</span>
+ 995:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodelist</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span>
+ 996:         (<span class="ruby-identifier">headword</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">nodelist</span>.<span class="ruby-identifier">first</span>()))
+ 997:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">headword</span>
+ 998:     <span class="ruby-keyword kw">end</span>
+ 999: 
+1000:     <span class="ruby-comment cmt"># filter out auxiliaries and modals, see if only one node remains</span>
+1001:     <span class="ruby-identifier">nodelist2</span> = <span class="ruby-identifier">nodelist1</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> 
+1002:       <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">auxiliary?</span>(<span class="ruby-identifier">t</span>) <span class="ruby-keyword kw">or</span>
+1003:         <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">modal?</span>(<span class="ruby-identifier">t</span>)
+1004:     }
+1005: 
+1006:     <span class="ruby-comment cmt"># one verb, one prep or particle? then </span>
+1007:     <span class="ruby-comment cmt"># assume we have a separate verb prefix, and take the lemma of the verb</span>
+1008:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+1009:       <span class="ruby-identifier">verbs</span> = <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">t</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>}
+1010:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">verbs</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+1011:         <span class="ruby-comment cmt"># found exactly one verb, so we have one verb, one other</span>
+1012:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">particle_of_verb</span>(<span class="ruby-identifier">verbs</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">nodelist2</span>)
+1013:           <span class="ruby-comment cmt"># we have found a particle/separate verb prefix</span>
+1014:           <span class="ruby-comment cmt"># take verb as main node</span>
+1015:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">verbs</span>.<span class="ruby-identifier">first</span>
+1016:         <span class="ruby-keyword kw">end</span>
+1017:       <span class="ruby-keyword kw">end</span>
+1018:     <span class="ruby-keyword kw">end</span>
+1019: 
+1020:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">no_mwes</span>
+1021:       <span class="ruby-comment cmt"># I was told only to look for separate verb particles,</span>
+1022:       <span class="ruby-comment cmt"># not for anything else, so return nil at this point</span>
+1023:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1024:     <span class="ruby-keyword kw">end</span>
+1025: 
+1026:     <span class="ruby-comment cmt"># filtered out everything? oops -- return to previous node list</span>
+1027:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">empty?</span>
+1028:       <span class="ruby-identifier">nodelist2</span> = <span class="ruby-identifier">nodelist1</span>
+1029:     <span class="ruby-keyword kw">end</span>
+1030: 
+1031:     <span class="ruby-comment cmt"># if the nodelist describes an mwe, try to find its headword:</span>
+1032:     <span class="ruby-comment cmt"># look for the lowest common ancestor of all nodes in nodelist2</span>
+1033:     <span class="ruby-comment cmt"># if its head terminal is in nodelist2, return that</span>
+1034:     <span class="ruby-identifier">lca</span> = <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">first</span>
+1035:     <span class="ruby-identifier">lca_found</span> = <span class="ruby-keyword kw">false</span>
+1036:     <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">lca</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">lca_found</span>)
+1037:       <span class="ruby-identifier">yn</span> = <span class="ruby-identifier">lca</span>.<span class="ruby-identifier">yield_nodes</span>()
+1038:       <span class="ruby-comment cmt"># lca's yield nodes include all nodes in nodelist2? </span>
+1039:       <span class="ruby-comment cmt"># then lca is indeed the lowest common ancestor</span>
+1040:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">big_and</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">yn</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">t</span> }
+1041:         <span class="ruby-identifier">lca_found</span> = <span class="ruby-keyword kw">true</span>
+1042:       <span class="ruby-keyword kw">else</span>
+1043:         <span class="ruby-identifier">lca</span> = <span class="ruby-identifier">lca</span>.<span class="ruby-identifier">parent</span>()
+1044:       <span class="ruby-keyword kw">end</span>
+1045:     <span class="ruby-keyword kw">end</span>
+1046:     <span class="ruby-comment cmt"># nodelist2 includes lca's head terminal? then return that</span>
+1047:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lca_found</span> <span class="ruby-keyword kw">and</span> 
+1048:         (<span class="ruby-identifier">h</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">lca</span>)) <span class="ruby-keyword kw">and</span>
+1049:         <span class="ruby-identifier">nodelist2</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">h</span>
+1050:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">h</span>
+1051:     <span class="ruby-keyword kw">end</span>
+1052:       
+1053: 
+1054:     <span class="ruby-comment cmt"># try first verb, then first noun, then first adjective</span>
+1055:     [<span class="ruby-value str">&quot;verb&quot;</span>, <span class="ruby-value str">&quot;noun&quot;</span>, <span class="ruby-value str">&quot;adj&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cat</span><span class="ruby-operator">|</span>
+1056:       <span class="ruby-identifier">nodelist</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+1057:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">t</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">cat</span>
+1058:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">t</span>
+1059:         <span class="ruby-keyword kw">end</span>
+1060:       }
+1061:     }
+1062: 
+1063:     <span class="ruby-comment cmt"># return first node</span>
+1064:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">nodelist</span>.<span class="ruby-identifier">first</span>
+1065:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="max-constituents-method" class="method-detail ">
+				<a name="method-c-max_constituents"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">max_constituents</span><span
+						class="method-args">(nodeset, sent, idealize_maxconst = false, accept_anyway_proc = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+      
+</pre>
+<p>
+max constituents: given a set of nodes, compute the maximal constituents
+that exactly cover them
+</p>
+<p>
+If include_single_missing_children is set to true, then a node that has at
+least one child whose yield is in nodelist,
+</p>
+<pre>
+  and has only one child whose yield is not in nodelist,
+  will be considered as having its yield in nodelist.
+</pre>
+<p>
+Optionally, a procedure accept_anyway_proc can be given. Like the option
+include_single_missing_children, it can lead to nodes being included in the
+list of nodes whose yield nodes are all also yield nodes of node_list
+(NYNAAYNN) even though not all of their yield nodes are yield nodes of the
+node_list. accept_anyway_proc can implement arbitrary rules for including
+nodes in NYAAYNN. The procedure is called with three arguments:
+</p>
+<pre>
+  accept_anyway_proc(node, ch_in, ch_out)
+</pre>
+<p>
+node is a <a href="SynNode.html">SynNode</a> that would not normally be in
+NYAAYNN. ch_in is the list of its children that are in NYAAYNN. ch_out is
+the list of its children that are not. If the procedure exists and returns
+true, node is put into NYAAYNN.
+</p>
+<p>
+default: use the <a href="SalsaTigerSentence.html">SalsaTigerSentence</a>
+method for this
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="max-constituents-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 1091</span>
+1091:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">max_constituents</span>(<span class="ruby-identifier">nodeset</span>, <span class="ruby-comment cmt"># Array:SynNode</span>
+1092:                                       <span class="ruby-identifier">sent</span>,    <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+1093:                                       <span class="ruby-identifier">idealize_maxconst</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-comment cmt"># boolean</span>
+1094:                                       <span class="ruby-identifier">accept_anyway_proc</span> = <span class="ruby-keyword kw">nil</span>)  <span class="ruby-comment cmt"># procedure</span>
+1095: 
+1096:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">idealize_maxconst</span>
+1097:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">max_constituents_smc</span>(<span class="ruby-identifier">nodeset</span>, <span class="ruby-identifier">idealize_maxconst</span>, 
+1098:                                        <span class="ruby-keyword kw">false</span>, <span class="ruby-comment cmt"># do not ignore empty terminals</span>
+1099:                                        <span class="ruby-identifier">accept_anyway_proc</span>)
+1100:     <span class="ruby-keyword kw">else</span>
+1101:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">max_constituents_for_nodes</span>(<span class="ruby-identifier">nodeset</span>)
+1102:     <span class="ruby-keyword kw">end</span>
+1103:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="modal--method" class="method-detail ">
+				<a name="method-c-modal%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">modal?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+modal?
+</p>
+<p>
+returns true if the given node is a modal verb default: no recognition of
+modals
+</p>
+<p>
+returns: boolean
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="modal--source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 644</span>
+644:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">modal?</span>(<span class="ruby-identifier">node</span>)
+645:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+646:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="optional-systems-method" class="method-detail ">
+				<a name="method-c-optional_systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">optional_systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+names of additional systems that may be interpreted by this class returns a
+hash service(string) -> system name(string) same as names()
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="optional-systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 515</span>
+515:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">optional_systems</span>()
+516:     <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Overwrite me&quot;</span>
+517:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="particle-of-verb-method" class="method-detail ">
+				<a name="method-c-particle_of_verb"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">particle_of_verb</span><span
+						class="method-args">(node, node_list)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-particle_of_verb">particle_of_verb</a>:
+</p>
+<p>
+given a node and a nodelist, if the node represents a verb: see if the verb
+has a particle among the nodes in nodelist if so, return it default: no
+recognition of separate particles
+</p>
+<p>
+returns: <a href="SynNode.html">SynNode</a> object if successful, else nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="particle-of-verb-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 621</span>
+621:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">particle_of_verb</span>(<span class="ruby-identifier">node</span>,
+622:                                       <span class="ruby-identifier">node_list</span>)
+623:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+624:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="path-between-method" class="method-detail ">
+				<a name="method-c-path_between"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">path_between</span><span
+						class="method-args">(from_node, to_node, use_nontree_edges = false)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="SynInterpreter.html#method-c-path_between">path_between</a>
+</p>
+<p>
+construct path in syntactic structure between two nodes,  using 
+</p>
+<ul>
+<li><p>
+node labels
+</p>
+</li>
+<li><p>
+edge labels
+</p>
+</li>
+<li><p>
+direction Up, Down
+</p>
+</li>
+</ul>
+<p>
+use_nontree_edges: set to true to use coreference edges and other non-tree
+edges returned by the parser in path computation. (Will produce no change
+if the parser does not produce any non-tree edges.)
+</p>
+<p>
+returns: <a href="Path.html">Path</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="path-between-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 820</span>
+820:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">path_between</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-comment cmt"># SynNode</span>
+821:                                   <span class="ruby-identifier">to_node</span>,   <span class="ruby-comment cmt"># SynNode</span>
+822:                                   <span class="ruby-identifier">use_nontree_edges</span> = <span class="ruby-keyword kw">false</span>) <span class="ruby-comment cmt"># boolean</span>
+823:     
+824:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">from_node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">to_node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+825:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+826:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+827:     <span class="ruby-keyword kw">end</span>
+828: 
+829:     <span class="ruby-identifier">path</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">search_up</span>(<span class="ruby-identifier">from_node</span>,<span class="ruby-identifier">to_node</span>, <span class="ruby-keyword kw">nil</span>)
+830:     
+831:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>
+832:       <span class="ruby-comment cmt"># no path found</span>
+833: <span class="ruby-comment cmt">#      STDERR.puts &quot;Warning: no path found between #{to_node.id} and #{from_node.id}&quot;</span>
+834:     <span class="ruby-keyword kw">end</span>
+835: 
+836:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">path</span>
+837:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="preposition-method" class="method-detail ">
+				<a name="method-c-preposition"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">preposition</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+preposition
+</p>
+<p>
+if the given node represents a PP, return the preposition
+</p>
+<p>
+default: assume that either the PP node will have the preposition as its
+lemma, or that the head terminal of the PP will be the preposition
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="preposition-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 949</span>
+949:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">preposition</span>(<span class="ruby-identifier">node</span>)
+950:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+951:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+952:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+953:     <span class="ruby-keyword kw">end</span>
+954: 
+955:     <span class="ruby-comment cmt"># preposition as lemma of this node?</span>
+956:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;prep&quot;</span> <span class="ruby-keyword kw">and</span>
+957:         (<span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">node</span>)) <span class="ruby-keyword kw">and</span>
+958:         <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">empty?</span>)
+959:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">lemma</span>
+960:     <span class="ruby-keyword kw">end</span>
+961: 
+962:     <span class="ruby-comment cmt"># head terminal is preposition and has a lemma?</span>
+963:     <span class="ruby-identifier">hl</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">node</span>)
+964:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hl</span> <span class="ruby-keyword kw">and</span>
+965:         <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">hl</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;prep&quot;</span> <span class="ruby-keyword kw">and</span>
+966:         (<span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">hl</span>)) <span class="ruby-keyword kw">and</span>
+967:         <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">lemma</span>.<span class="ruby-identifier">empty?</span>)
+968:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">lemma</span>
+969:     <span class="ruby-keyword kw">end</span>
+970: 
+971:     <span class="ruby-comment cmt"># no luck</span>
+972:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+973:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="prune--method" class="method-detail ">
+				<a name="method-c-prune%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">prune?</span><span
+						class="method-args">(node, paths_to_target, terminal_index)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+      
+</pre>
+<p>
+prune? given a target node t and another node n of the syntactic structure,
+decide whether n is likely to instantiate a semantic role of t. If not,
+recommend n for pruning. 
+</p>
+<p>
+This method is supposed to implement a method similar to the one proposed
+by Xue and Palmer (EMNLP 2004).
+</p>
+<p>
+returns: true to recommend n for pruning, else false
+</p>
+<p>
+Since the implementation is highly parser-specific, all that we can do in
+the default method is  always to return false.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="prune--source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 1119</span>
+1119:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">prune?</span>(<span class="ruby-identifier">node</span>, <span class="ruby-comment cmt"># SynNode</span>
+1120:                             <span class="ruby-identifier">paths_to_target</span>, <span class="ruby-comment cmt"># hash: node ID -&gt; Path object: paths from nodes to target</span>
+1121:                             <span class="ruby-identifier">terminal_index</span>)  <span class="ruby-comment cmt"># hash: terminal node -&gt; word index in sentence</span>
+1122: 
+1123:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+1124:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+1125:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1126:     <span class="ruby-keyword kw">end</span>
+1127: 
+1128:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1129:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="pt-method" class="method-detail ">
+				<a name="method-c-pt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">pt</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+phrase type: constituent label for nonterminals, part of speech for
+terminals
+</p>
+<p>
+returns: string
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="pt-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 587</span>
+587:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">pt</span>(<span class="ruby-identifier">node</span>)
+588:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+589:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+590:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+591:     <span class="ruby-keyword kw">end</span>
+592: 
+593:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">is_terminal?</span>
+594:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">part_of_speech</span>
+595:     <span class="ruby-keyword kw">else</span>
+596:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">category</span>
+597:     <span class="ruby-keyword kw">end</span>
+598:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="relative-position-method" class="method-detail ">
+				<a name="method-c-relative_position"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">relative_position</span><span
+						class="method-args">(node, anchor_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-relative_position">relative_position</a>
+of a node with respect to an (anchor) node: left, right, dom
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="relative-position-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 883</span>
+883:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">relative_position</span>(<span class="ruby-identifier">node</span>,        <span class="ruby-comment cmt"># SynNode</span>
+884:                                        <span class="ruby-identifier">anchor_node</span>) <span class="ruby-comment cmt"># SynNode</span>
+885: 
+886:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">anchor_node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+887:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+888:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+889:     <span class="ruby-keyword kw">end</span>
+890: 
+891:     <span class="ruby-comment cmt"># compute up to a root node</span>
+892:     <span class="ruby-identifier">root</span> = <span class="ruby-identifier">node</span>
+893:     <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">p</span> = <span class="ruby-identifier">root</span>.<span class="ruby-identifier">parent</span>())
+894:       <span class="ruby-identifier">root</span> = <span class="ruby-identifier">p</span>
+895:     <span class="ruby-keyword kw">end</span>
+896: 
+897:     <span class="ruby-comment cmt"># determine position of {leftmost, rightmost} terminal of </span>
+898:     <span class="ruby-comment cmt"># {node, anchor_node} in the list of all terminals</span>
+899:     <span class="ruby-identifier">all_yieldnodes</span> = <span class="ruby-identifier">root</span>.<span class="ruby-identifier">yield_nodes_ordered</span>()
+900: 
+901:     <span class="ruby-identifier">pos_nodefirst</span> = <span class="ruby-identifier">all_yieldnodes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">leftmost_terminal</span>(<span class="ruby-identifier">node</span>))
+902:     <span class="ruby-identifier">pos_anchorfirst</span> = <span class="ruby-identifier">all_yieldnodes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">leftmost_terminal</span>(<span class="ruby-identifier">anchor_node</span>))
+903:     <span class="ruby-identifier">pos_nodelast</span> = <span class="ruby-identifier">all_yieldnodes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">rightmost_terminal</span>(<span class="ruby-identifier">node</span>))
+904:     <span class="ruby-identifier">pos_anchorlast</span> = <span class="ruby-identifier">all_yieldnodes</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">rightmost_terminal</span>(<span class="ruby-identifier">anchor_node</span>))
+905: 
+906:     <span class="ruby-comment cmt"># determine relative position</span>
+907:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pos_nodefirst</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">pos_anchorfirst</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">pos_nodefirst</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">pos_anchorfirst</span>
+908:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;LEFT&quot;</span>
+909:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">pos_nodelast</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">pos_anchorlast</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">pos_anchorlast</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">pos_nodelast</span>
+910:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;RIGHT&quot;</span>
+911:     <span class="ruby-keyword kw">else</span>
+912:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;DOM&quot;</span> 
+913:     <span class="ruby-keyword kw">end</span>
+914:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="relative-pronoun--method" class="method-detail ">
+				<a name="method-c-relative_pronoun%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">relative_pronoun?</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+is relative pronoun?
+</p>
+<p>
+default: false
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="relative-pronoun--source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 555</span>
+555:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">relative_pronoun?</span>(<span class="ruby-identifier">node</span>) <span class="ruby-comment cmt"># SynNode</span>
+556:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+557:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="rightmost-terminal-method" class="method-detail ">
+				<a name="method-c-rightmost_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">rightmost_terminal</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-rightmost_terminal">rightmost_terminal</a>
+</p>
+<p>
+given a constituent, determine its rightmost terminal,  excluding
+punctuation
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="rightmost-terminal-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 934</span>
+934:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">rightmost_terminal</span>(<span class="ruby-identifier">node</span>)
+935:     <span class="ruby-identifier">rightmost</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">yield_nodes_ordered</span>().<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">n</span>) <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;pun&quot;</span>}
+936:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">rightmost</span>
+937:       <span class="ruby-identifier">rightmost</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">yield_nodes_ordered</span>().<span class="ruby-identifier">last</span>
+938:     <span class="ruby-keyword kw">end</span>
+939:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rightmost</span>
+940:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="simplified-pt-method" class="method-detail ">
+				<a name="method-c-simplified_pt"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">simplified_pt</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+simplified phrase type: like phrase type, but may simplify the constituent
+label default: just the same as pt()
+</p>
+<p>
+returns: string or nil
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="simplified-pt-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 607</span>
+607:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">simplified_pt</span>(<span class="ruby-identifier">node</span>)
+608:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">pt</span>(<span class="ruby-identifier">node</span>)
+609:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="surrounding-nodes-method" class="method-detail ">
+				<a name="method-c-surrounding_nodes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">surrounding_nodes</span><span
+						class="method-args">(node, use_nontree_edges = false)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="SynInterpreter.html#method-c-surrounding_nodes">surrounding_nodes</a>:
+</p>
+<p>
+construct paths in syntactic structure between a node and each of its
+neighbors path construction as in path_between. Neighbors: parent, child,
+plus potentially neighbors by nontree edges use_nontree_edges: again, same
+as in <a href="SynInterpreter.html#method-c-path_between">path_between</a>
+</p>
+<p>
+returns: list of pairs [neighbor(<a href="SynNode.html">SynNode</a>),
+path(<a href="Path.html">Path</a>)]
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="surrounding-nodes-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 848</span>
+848:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">surrounding_nodes</span>(<span class="ruby-identifier">node</span>, <span class="ruby-comment cmt"># SynNode</span>
+849:                                        <span class="ruby-identifier">use_nontree_edges</span> = <span class="ruby-keyword kw">false</span>) <span class="ruby-comment cmt"># boolean</span>
+850:   
+851:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+852:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+853:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+854:     <span class="ruby-keyword kw">end</span>
+855: 
+856:     <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+857: 
+858:     <span class="ruby-comment cmt"># parent</span>
+859:     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">p</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span>)
+860:       <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> [
+861:         <span class="ruby-identifier">p</span>, 
+862:         <span class="ruby-constant">Path</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">node</span>).<span class="ruby-identifier">add_last_step</span>(<span class="ruby-value str">&quot;U&quot;</span>, <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent_label</span>(),
+863:                                      <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">simplified_pt</span>(<span class="ruby-identifier">p</span>), <span class="ruby-identifier">p</span>)
+864:       ]
+865:     <span class="ruby-keyword kw">end</span>
+866: 
+867:     <span class="ruby-comment cmt"># children</span>
+868:     <span class="ruby-identifier">node</span>.<span class="ruby-identifier">each_child_with_edgelabel</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">label</span>, <span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+869:       <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> [
+870:         <span class="ruby-identifier">c</span>,
+871:         <span class="ruby-constant">Path</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">node</span>).<span class="ruby-identifier">add_last_step</span>(<span class="ruby-value str">&quot;D&quot;</span>, <span class="ruby-identifier">label</span>, 
+872:                                      <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">simplified_pt</span>(<span class="ruby-identifier">c</span>), <span class="ruby-identifier">c</span>)
+873:       ]
+874:     }
+875: 
+876:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+877:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="systems-method" class="method-detail ">
+				<a name="method-c-systems"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">systems</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+systems interpreted by this class: returns a hash service(string) -> system
+name (string), e.g. { &#8220;parser&#8221; => &#8220;collins&#8221;,
+&#8220;lemmatizer&#8221; => &#8220;treetagger&#8221; }
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="systems-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 507</span>
+507:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">systems</span>()
+508:     <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Overwrite me&quot;</span>
+509:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="verbs-method" class="method-detail ">
+				<a name="method-c-verbs"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">verbs</span><span
+						class="method-args">(sent)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                                   
+</pre>
+<p>
+verbs(sent)  sent is a sentence in <a
+href="SalsaTigerSentence.html">SalsaTigerSentence</a> format
+</p>
+<p>
+return a list of the nodes of full verbs in a given sentence: it is a list
+of lists. An item in that list is
+</p>
+<ul>
+<li><p>
+either a pair [verb, svp] of the node of a verb with separable prefix  and
+the node of its separate prefix
+</p>
+</li>
+<li><p>
+or a singleton [verb] of the node of a verb without separate prefix 
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="verbs-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 764</span>
+764:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">verbs</span>(<span class="ruby-identifier">sent</span>)
+765: 
+766:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">syn_nodes</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+767:       <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>
+768:     }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+769:       [<span class="ruby-identifier">node</span>]
+770:     }
+771:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="voice-method" class="method-detail ">
+				<a name="method-c-voice"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">voice</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+voice
+</p>
+<p>
+given a constituent, return 
+</p>
+<ul>
+<li><p>
+&#8220;active&#8221;/&#8220;passive&#8221; if it is a verb
+</p>
+</li>
+<li><p>
+nil, else
+</p>
+</li>
+</ul>
+<p>
+default: treat all as active
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="voice-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 686</span>
+686:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">voice</span>(<span class="ruby-identifier">node</span>)
+687:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">SynNode</span>
+688:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: unexpected input class #{node.class} to SynInterpreter&quot;</span>
+689:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+690:     <span class="ruby-keyword kw">end</span>
+691: 
+692:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;verb&quot;</span>
+693:       <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;active&quot;</span>
+694:     <span class="ruby-keyword kw">else</span>
+695:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+696:     <span class="ruby-keyword kw">end</span>
+697:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-class-method-details" class="method-section section">
+			<h3 class="section-header">Protected Class Methods</h3>
+
+		
+			<div id="announce-me-method" class="method-detail ">
+				<a name="method-c-announce_me"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">announce_me</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+3
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="announce-me-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 1135</span>
+1135:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">announce_me</span>()
+1136:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Module</span>.<span class="ruby-identifier">constants</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">&quot;SynInterfaces&quot;</span>
+1137:       <span class="ruby-comment cmt"># yup, we have a class to which we can announce ourselves</span>
+1138:       <span class="ruby-constant">SynInterfaces</span>.<span class="ruby-identifier">add_interpreter</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()))
+1139:     <span class="ruby-keyword kw">else</span>
+1140:       <span class="ruby-comment cmt"># no interface collector class</span>
+1141: <span class="ruby-comment cmt">#      $stderr.puts &quot;Interface #{self.name()} not announced: no SynInterfaces.&quot;</span>
+1142:     <span class="ruby-keyword kw">end</span>
+1143:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-class-method-details" class="method-section section">
+			<h3 class="section-header">Private Class Methods</h3>
+
+		
+			<div id="search-down-method" class="method-detail ">
+				<a name="method-c-search_down"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">search_down</span><span
+						class="method-args">(from_node, to_node, already_explored)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+search in tree
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="search-down-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 1197</span>
+1197:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">search_down</span>(<span class="ruby-identifier">from_node</span>,        <span class="ruby-comment cmt"># SynNode</span>
+1198:                                  <span class="ruby-identifier">to_node</span>,          <span class="ruby-comment cmt"># SynNode</span>
+1199:                                  <span class="ruby-identifier">already_explored</span>) <span class="ruby-comment cmt"># SynNode</span>
+1200: 
+1201:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">from_node</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">to_node</span>
+1202:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Path</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from_node</span>)
+1203: 
+1204:     <span class="ruby-keyword kw">else</span>
+1205: 
+1206:       <span class="ruby-identifier">from_node</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+1207: 
+1208:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">already_explored</span>
+1209:           <span class="ruby-comment cmt"># we have done this subtree,</span>
+1210:           <span class="ruby-comment cmt"># don't do it again</span>
+1211:           <span class="ruby-keyword kw">next</span>
+1212:         <span class="ruby-keyword kw">end</span>
+1213: 
+1214:         <span class="ruby-identifier">path</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">search_down</span>(<span class="ruby-identifier">c</span>, <span class="ruby-identifier">to_node</span>, <span class="ruby-identifier">already_explored</span>)
+1215:         
+1216:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>
+1217:           <span class="ruby-identifier">c_pt</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">simplified_pt</span>(<span class="ruby-identifier">c</span>)
+1218:           <span class="ruby-identifier">path</span>.<span class="ruby-identifier">add_first_step</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-value str">&quot;D&quot;</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">parent_label</span>(), <span class="ruby-identifier">c_pt</span>)
+1219:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">path</span>
+1220:         <span class="ruby-keyword kw">end</span>
+1221:       }
+1222: 
+1223:       <span class="ruby-comment cmt"># no path found for any of the children</span>
+1224:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1225:     <span class="ruby-keyword kw">end</span>
+1226:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="search-up-method" class="method-detail ">
+				<a name="method-c-search_up"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">search_up</span><span
+						class="method-args">(from_node, to_node, already_covered)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+search upward: look for path from from_node to to_node already_covered is
+either nil or a node whose subtree we have already searched
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="search-up-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/AbstractSynInterface.rb, line 1153</span>
+1153:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SynInterpreter</span>.<span class="ruby-identifier">search_up</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-comment cmt"># SynNode</span>
+1154:                                <span class="ruby-identifier">to_node</span>,   <span class="ruby-comment cmt"># SynNode      </span>
+1155:                                <span class="ruby-identifier">already_covered</span>) <span class="ruby-comment cmt"># SynNode</span>
+1156:     <span class="ruby-comment cmt"># returns (1) the path from from_node to to_node, </span>
+1157:     <span class="ruby-comment cmt">#         (2) just the part from the lca down to the node</span>
+1158:     <span class="ruby-comment cmt">#         (3) the lowest common ancestor as node</span>
+1159: 
+1160:     <span class="ruby-identifier">path</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">search_down</span>(<span class="ruby-identifier">from_node</span>,<span class="ruby-identifier">to_node</span>, <span class="ruby-identifier">already_covered</span>)
+1161: 
+1162:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>
+1163:       <span class="ruby-comment cmt"># search down unsuccessful</span>
+1164: 
+1165:       <span class="ruby-identifier">parent</span> = <span class="ruby-identifier">from_node</span>.<span class="ruby-identifier">parent</span>
+1166:       <span class="ruby-identifier">edgelabel</span> = <span class="ruby-identifier">from_node</span>.<span class="ruby-identifier">parent_label</span>
+1167:       <span class="ruby-comment cmt"># puts &quot;Going up from &quot;+from_node.id.to_s+&quot; to &quot;+parent.id.to_s</span>
+1168: 
+1169:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span>
+1170:         <span class="ruby-comment cmt"># no path found</span>
+1171:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1172: 
+1173:       <span class="ruby-keyword kw">else</span>
+1174:         <span class="ruby-comment cmt"># search up </span>
+1175:         <span class="ruby-identifier">path</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">search_up</span>(<span class="ruby-identifier">parent</span>,<span class="ruby-identifier">to_node</span>, <span class="ruby-identifier">from_node</span>)
+1176: 
+1177:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span> 
+1178:           <span class="ruby-comment cmt"># no path found</span>
+1179:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+1180: 
+1181:         <span class="ruby-keyword kw">else</span>
+1182:           <span class="ruby-comment cmt"># search up was successful</span>
+1183:           <span class="ruby-identifier">parent_pt</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>()).<span class="ruby-identifier">simplified_pt</span>(<span class="ruby-identifier">parent</span>)
+1184:           <span class="ruby-identifier">path</span>.<span class="ruby-identifier">add_first_step</span>(<span class="ruby-identifier">from_node</span>, <span class="ruby-value str">&quot;U&quot;</span>, <span class="ruby-identifier">edgelabel</span>, <span class="ruby-identifier">parent_pt</span>)
+1185:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">path</span>
+1186:         <span class="ruby-keyword kw">end</span>
+1187:       <span class="ruby-keyword kw">end</span>
+1188: 
+1189:     <span class="ruby-keyword kw">else</span>
+1190:       <span class="ruby-comment cmt"># search down successful</span>
+1191:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">path</span>
+1192:     <span class="ruby-keyword kw">end</span>
+1193:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

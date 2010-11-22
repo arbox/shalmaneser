@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: RosyIterator.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:44 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>StandardPkgExtensions</li>
+				
+					<li>View</li>
+				
+					<li>RosyConventions</li>
+				
+					<li>RosyPruning</li>
+				
+					<li>RosySplit</li>
+				
+					<li>RosyTrainingTestTable</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+<a href="../RosyIterator.html">RosyIterator</a> KE May 2005
+</p>
+<p>
+<a href="../RosyIterator.html">RosyIterator</a> is a class that 
+</p>
+<ul>
+<li><p>
+reads the &#8220;xwise&#8221; parameters in the experiment file to 
+determine the portions in which data is to be fed to classifiers, and
+offers an iterator that iterates through every group to  be trained/tested
+on
+</p>
+</li>
+<li><p>
+constructs views matching the given &#8220;xwise&#8221; group.
+</p>
+</li>
+</ul>
+<p>
+<a href="../RosyIterator.html">RosyIterator</a> incorporates the following
+services:
+</p>
+<ul>
+<li><p>
+choosing the right DB table, depending on  whether training/test data is
+being accessed, and with or without a splitlog
+</p>
+</li>
+<li><p>
+making and adding all currently available Dynamic Gold objects (i.e.
+objects that are capable of mapping the gold column to  something else)
+</p>
+</li>
+<li><p>
+initializing a view, potentially modified depending on the assignment step:
+argrec -> use dynamic gold, mapping gold labels to &#8220;FE&#8221; or
+&#8220;NONE&#8221; arglab -> use only those rows that have &#8220;FE&#8221;
+assigned from the argrec step
+</p>
+</li>
+</ul>
+<p>
+Setting &#8220;xwise&#8221;: An &#8220;xwise&#8221; entry in the hash
+passed on to RosyIterator.new() overrides all other settings. If that
+isn&#8217;t given, the &#8220;xwise_&#8221; + step  (xwise_argrec,
+xwise_arglab, xwise_onestep) from the experiment file is read. If that
+hasn&#8217;t been set either, the default is frame-wise.
+</p>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

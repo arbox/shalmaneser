@@ -1,0 +1,2366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: FrprepHelper</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/FrprepHelper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/FrprepHelper.rb">Pkg/FrprepHelper.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-add_head_attributes">::add_head_attributes</a></li>
+					
+					<li><a href="#method-c-add_lemmas_from_tab">::add_lemmas_from_tab</a></li>
+					
+					<li><a href="#method-c-add_semantics_from_tab">::add_semantics_from_tab</a></li>
+					
+					<li><a href="#method-c-bnc_to_plain_file">::bnc_to_plain_file</a></li>
+					
+					<li><a href="#method-c-group_words">::group_words</a></li>
+					
+					<li><a href="#method-c-handle_multiword_targets">::handle_multiword_targets</a></li>
+					
+					<li><a href="#method-c-handle_unknown_framenames">::handle_unknown_framenames</a></li>
+					
+					<li><a href="#method-c-integrate_stxml_semantics_and_lemmas">::integrate_stxml_semantics_and_lemmas</a></li>
+					
+					<li><a href="#method-c-note_salsa_targetlemma">::note_salsa_targetlemma</a></li>
+					
+					<li><a href="#method-c-plain_to_tab_file">::plain_to_tab_file</a></li>
+					
+					<li><a href="#method-c-remove_deprecated_frames">::remove_deprecated_frames</a></li>
+					
+					<li><a href="#method-c-split_dir">::split_dir</a></li>
+					
+					<li><a href="#method-c-stxml_split_dir">::stxml_split_dir</a></li>
+					
+					<li><a href="#method-c-stxml_to_tab_file">::stxml_to_tab_file</a></li>
+					
+					<li><a href="#method-c-to_utf8_file">::to_utf8_file</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">FrprepHelper</h1>
+
+		<div id="description">
+			<pre>
+                                          3
+</pre>
+<p>
+Module FrprepHelper:
+</p>
+<p>
+diverse transformation methods for <a href="frprep_rb.html">frprep.rb</a>
+moved over here to make the main file less crowded
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="add-head-attributes-method" class="method-detail ">
+				<a name="method-c-add_head_attributes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_head_attributes</span><span
+						class="method-args">(st_sent, interpreter)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                  
+</pre>
+<p>
+add head attributes to each nonterminal in each  SalsaTigerXML file in a
+directory
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="add-head-attributes-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 1104</span>
+1104:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">add_head_attributes</span>(<span class="ruby-identifier">st_sent</span>,      <span class="ruby-comment cmt"># SalsaTigerSentence object</span>
+1105:                                        <span class="ruby-identifier">interpreter</span>)  <span class="ruby-comment cmt"># SynInterpreter class</span>
+1106:     <span class="ruby-identifier">st_sent</span>.<span class="ruby-identifier">each_nonterminal</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">nt_node</span><span class="ruby-operator">|</span>
+1107:      <span class="ruby-identifier">head_term</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">head_terminal</span>(<span class="ruby-identifier">nt_node</span>)
+1108:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">head_term</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">head_term</span>.<span class="ruby-identifier">word</span>()
+1109:         <span class="ruby-identifier">nt_node</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;head&quot;</span>, <span class="ruby-identifier">head_term</span>.<span class="ruby-identifier">word</span>())
+1110:       <span class="ruby-keyword kw">else</span>
+1111:         <span class="ruby-identifier">nt_node</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;head&quot;</span>, <span class="ruby-value str">&quot;--&quot;</span>)
+1112:       <span class="ruby-keyword kw">end</span>
+1113:     } <span class="ruby-comment cmt"># each nonterminal</span>
+1114:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-lemmas-from-tab-method" class="method-detail ">
+				<a name="method-c-add_lemmas_from_tab"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_lemmas_from_tab</span><span
+						class="method-args">(st_sent, tab_sent, mapping)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+add lemma information to each terminal in a given <a
+href="SalsaTigerSentence.html">SalsaTigerSentence</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="add-lemmas-from-tab-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 1117</span>
+1117:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">add_lemmas_from_tab</span>(<span class="ruby-identifier">st_sent</span>, <span class="ruby-comment cmt"># SalsaTigerSentence object</span>
+1118:                                        <span class="ruby-identifier">tab_sent</span>,<span class="ruby-comment cmt"># FNTabFormatSentence object</span>
+1119:                                        <span class="ruby-identifier">mapping</span>) <span class="ruby-comment cmt"># hash: tab lineno -&gt; array:SynNode</span>
+1120:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tab_sent</span>.<span class="ruby-identifier">nil?</span>
+1121:       <span class="ruby-comment cmt"># tab sentence not found</span>
+1122:       <span class="ruby-keyword kw">return</span>
+1123:     <span class="ruby-keyword kw">end</span>
+1124: 
+1125:     <span class="ruby-comment cmt"># produce list with word, lemma pairs</span>
+1126:     <span class="ruby-identifier">lemmat</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>        
+1127:     <span class="ruby-identifier">tab_sent</span>.<span class="ruby-identifier">each_line_parsed</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+1128:       <span class="ruby-identifier">word</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;word&quot;</span>)
+1129:       <span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;lemma&quot;</span>)
+1130:       <span class="ruby-identifier">lemmat</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">word</span>,<span class="ruby-identifier">lemma</span>]
+1131:     }
+1132:     
+1133:     <span class="ruby-comment cmt"># match with st_sent terminal list and add lemma attributes</span>
+1134:     <span class="ruby-comment cmt"># KE Jan 07: if word mismatch,</span>
+1135:     <span class="ruby-comment cmt"># set to Lemmatizer file version,</span>
+1136:     <span class="ruby-comment cmt"># but count mismatches</span>
+1137:     <span class="ruby-identifier">word_mismatches</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+1138: 
+1139:     <span class="ruby-identifier">st_sent</span>.<span class="ruby-identifier">each_terminal_sorted</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+1140:       <span class="ruby-identifier">matching_lineno</span> = (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">lemmat</span>.<span class="ruby-identifier">length</span>()<span class="ruby-operator">-</span><span class="ruby-value">1</span>).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tab_lineno</span><span class="ruby-operator">|</span>
+1141:         <span class="ruby-identifier">mapping</span>[<span class="ruby-identifier">tab_lineno</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">t</span>
+1142:       }
+1143:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">matching_lineno</span>
+1144:         <span class="ruby-keyword kw">next</span>
+1145:       <span class="ruby-keyword kw">end</span>
+1146:       <span class="ruby-identifier">word</span>, <span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">lemmat</span>[<span class="ruby-identifier">matching_lineno</span>]
+1147:           
+1148:       <span class="ruby-comment cmt"># transform characters to XML-friendly form</span>
+1149:       <span class="ruby-comment cmt"># for comparison with st_word, which is also escaped</span>
+1150:       <span class="ruby-identifier">word</span> = <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">word</span>)
+1151:       <span class="ruby-identifier">st_word</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">word</span>()
+1152:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">word</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">st_word</span> <span class="ruby-keyword kw">and</span>
+1153:           <span class="ruby-identifier">word</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">st_word</span>)
+1154:         <span class="ruby-comment cmt"># true mismatch.</span>
+1155:         <span class="ruby-comment cmt"># use the Lemmatizer version of the word, remember the mismatch</span>
+1156:         <span class="ruby-identifier">word_mismatches</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">st_word</span>, <span class="ruby-identifier">word</span>]
+1157:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;word&quot;</span>, <span class="ruby-identifier">word</span>)
+1158:       <span class="ruby-keyword kw">end</span>
+1159:       
+1160:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lemma</span>
+1161:         <span class="ruby-comment cmt"># we actually do have lemma information</span>
+1162:         <span class="ruby-identifier">lemmatised_head</span> = <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">lemma</span>)
+1163:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>,<span class="ruby-identifier">lemmatised_head</span>)
+1164:       <span class="ruby-keyword kw">end</span>
+1165:     } <span class="ruby-comment cmt"># each terminal</span>
+1166: 
+1167:     <span class="ruby-comment cmt"># did we have mismatches? then report them</span>
+1168:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">word_mismatches</span>.<span class="ruby-identifier">empty?</span>
+1169:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: Word mismatches found between Lemmatizer file and SalsaTigerXML file generalted from parser output.&quot;</span>
+1170:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;(May be due to failed reencoding of special character in the parser output.)&quot;</span>
+1171:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;I am using the Lemmatizer version by default.&quot;</span>
+1172:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Version used:&quot;</span>
+1173:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\t&quot;</span>
+1174:       <span class="ruby-identifier">st_sent</span>.<span class="ruby-identifier">each_terminal_sorted</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;&gt;&gt;#{t}&lt;&lt;&quot;</span> }
+1175:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+1176:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;SalsaTigerXML file had: &quot;</span>
+1177:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">word_mismatches</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">st_word</span>, <span class="ruby-identifier">tab_word</span><span class="ruby-operator">|</span>
+1178:         <span class="ruby-node">&quot;#{st_word} instead of #{tab_word}&quot;</span>
+1179:       }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>)
+1180:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+1181:     <span class="ruby-keyword kw">end</span>
+1182:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-semantics-from-tab-method" class="method-detail ">
+				<a name="method-c-add_semantics_from_tab"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_semantics_from_tab</span><span
+						class="method-args">(st_sent, tab_sent, mapping, interpreter_class, exp)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+add semantics from tab:
+</p>
+<p>
+add information about semantics from a FN tab sentence to a <a
+href="SalsaTigerSentence.html">SalsaTigerSentence</a> object:
+</p>
+<ul>
+<li><p>
+frames (one frame per sentence)
+</p>
+</li>
+<li><p>
+roles
+</p>
+</li>
+<li><p>
+FrameNet grammatical functions
+</p>
+</li>
+<li><p>
+FrameNet POS of target
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="add-semantics-from-tab-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 650</span>
+650:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">add_semantics_from_tab</span>(<span class="ruby-identifier">st_sent</span>,  <span class="ruby-comment cmt"># SalsaTigerSentence object</span>
+651:                                           <span class="ruby-identifier">tab_sent</span>, <span class="ruby-comment cmt"># FNTabFormatSentence object</span>
+652:                                           <span class="ruby-identifier">mapping</span>,  <span class="ruby-comment cmt"># hash: tab lineno -&gt; array:SynNode</span>
+653:                                           <span class="ruby-identifier">interpreter_class</span>, <span class="ruby-comment cmt"># SynInterpreter class</span>
+654:                                           <span class="ruby-identifier">exp</span>)      <span class="ruby-comment cmt"># FrprepConfigData</span>
+655: 
+656:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tab_sent</span>.<span class="ruby-identifier">nil?</span>
+657:       <span class="ruby-comment cmt"># tab sentence not found</span>
+658:       <span class="ruby-keyword kw">return</span>
+659:     <span class="ruby-keyword kw">end</span>
+660: 
+661:     <span class="ruby-comment cmt"># iterate through frames in the tabsent</span>
+662:     <span class="ruby-identifier">frame_index</span> = <span class="ruby-value">0</span>
+663:     <span class="ruby-identifier">tab_sent</span>.<span class="ruby-identifier">each_frame</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tab_frame_obj</span><span class="ruby-operator">|</span>
+664:       <span class="ruby-identifier">frame_name</span> = <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">get_frame</span>() <span class="ruby-comment cmt"># string</span>
+665:         
+666:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame_name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">frame_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^-*$/</span>
+667:         <span class="ruby-comment cmt"># weird: a frame without a frame</span>
+668:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: frame entry without a frame in tab sentence #{st_sent.id}.&quot;</span>
+669:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping&quot;</span>
+670:         <span class="ruby-keyword kw">next</span>
+671:       <span class="ruby-keyword kw">end</span>
+672:         
+673:       <span class="ruby-identifier">frame_node</span> = <span class="ruby-identifier">st_sent</span>.<span class="ruby-identifier">add_frame</span>(<span class="ruby-identifier">frame_name</span>, <span class="ruby-identifier">tab_sent</span>.<span class="ruby-identifier">get_sent_id</span>() <span class="ruby-operator">+</span> <span class="ruby-node">&quot;_f#{frame_index}&quot;</span>)
+674:       <span class="ruby-identifier">frame_index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+675:     
+676:       <span class="ruby-comment cmt"># target</span>
+677:       <span class="ruby-identifier">target_nodes</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+678:       <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">get_target_indices</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">terminal_id</span><span class="ruby-operator">|</span> 
+679:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mapping</span>[<span class="ruby-identifier">terminal_id</span>]
+680:           <span class="ruby-identifier">target_nodes</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">mapping</span>[<span class="ruby-identifier">terminal_id</span>]
+681:         <span class="ruby-keyword kw">end</span>
+682:       }
+683: 
+684:       <span class="ruby-comment cmt"># let the interpreter class decide on how to determine the maximum constituents</span>
+685:       <span class="ruby-identifier">target_maxnodes</span> = <span class="ruby-identifier">interpreter_class</span>.<span class="ruby-identifier">max_constituents</span>(<span class="ruby-identifier">target_nodes</span>, <span class="ruby-identifier">st_sent</span>)
+686:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_maxnodes</span>.<span class="ruby-identifier">empty?</span>
+687:         <span class="ruby-comment cmt"># HIEr</span>
+688:         <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span>  <span class="ruby-node">&quot;Warning: no target in frame entry, sentence #{st_sent.id}.&quot;</span>
+689:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;frame is #{frame_name}, frame no #{frame_index}&quot;</span>
+690:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping.&quot;</span>
+691:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;target indices: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">get_target_indices</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>)
+692:         <span class="ruby-comment cmt">#tab_sent.each_line { |line|</span>
+693:         <span class="ruby-comment cmt">#  $stderr.puts line</span>
+694:         <span class="ruby-comment cmt">#  $stderr.puts &quot;--&quot;</span>
+695:         <span class="ruby-comment cmt">#}</span>
+696:         <span class="ruby-keyword kw">next</span>
+697:       <span class="ruby-keyword kw">end</span>
+698:       <span class="ruby-identifier">frame_node</span>.<span class="ruby-identifier">add_fe</span>(<span class="ruby-value str">&quot;target&quot;</span>,<span class="ruby-identifier">target_maxnodes</span>)
+699:         
+700:       <span class="ruby-comment cmt"># set features on target: target lemma, target POS</span>
+701:       <span class="ruby-identifier">target_lemma</span> = <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">get_target</span>()
+702:       <span class="ruby-identifier">target_pos</span> = <span class="ruby-keyword kw">nil</span>
+703:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_lemma</span>
+704:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;origin&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;FrameNet&quot;</span>
+705:           <span class="ruby-comment cmt"># FrameNet data: here the lemma in the tab file has the form</span>
+706:           <span class="ruby-comment cmt"># &lt;lemma&gt;.&lt;POS&gt;</span>
+707:           <span class="ruby-comment cmt"># separate the two</span>
+708:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_lemma</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*)\.(.*)$/</span>
+709:             <span class="ruby-identifier">target_lemma</span> = <span class="ruby-node">$1</span>
+710:             <span class="ruby-identifier">target_pos</span> = <span class="ruby-node">$2</span>
+711:           <span class="ruby-keyword kw">end</span>
+712:         <span class="ruby-keyword kw">end</span>
+713:         <span class="ruby-identifier">frame_node</span>.<span class="ruby-identifier">target</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>, <span class="ruby-identifier">target_lemma</span>)
+714:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_pos</span>
+715:           <span class="ruby-identifier">frame_node</span>.<span class="ruby-identifier">target</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;pos&quot;</span>, <span class="ruby-identifier">target_pos</span>)
+716:         <span class="ruby-keyword kw">end</span>
+717:       <span class="ruby-keyword kw">end</span>
+718:         
+719:       <span class="ruby-comment cmt"># roles, GF, PT</span>
+720:       <span class="ruby-comment cmt"># synnode_markable_label: </span>
+721:       <span class="ruby-comment cmt">#   hash &quot;role&quot; | &quot;gf&quot; | &quot;pt&quot; -&gt; SynNode -&gt; array: label(string)</span>
+722:       <span class="ruby-identifier">layer_synnode_label</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+723:       [<span class="ruby-value str">&quot;gf&quot;</span>, <span class="ruby-value str">&quot;pt&quot;</span>, <span class="ruby-value str">&quot;role&quot;</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">layer</span><span class="ruby-operator">|</span>
+724:         <span class="ruby-identifier">termids2labels</span> = <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">markables</span>(<span class="ruby-identifier">layer</span>)
+725: 
+726:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-identifier">layer</span>]
+727:           <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-identifier">layer</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+728:         <span class="ruby-keyword kw">end</span>
+729: 
+730:         <span class="ruby-identifier">termids2labels</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">terminal_indices</span>, <span class="ruby-identifier">label</span><span class="ruby-operator">|</span>
+731:           <span class="ruby-identifier">terminal_indices</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t_i</span><span class="ruby-operator">|</span>
+732: 
+733:             <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">mapping</span>[<span class="ruby-identifier">t_i</span>])
+734: 
+735:               <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+736:                 <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-identifier">layer</span>][<span class="ruby-identifier">node</span>]
+737:                   <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-identifier">layer</span>][<span class="ruby-identifier">node</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+738:                 <span class="ruby-keyword kw">end</span>
+739: 
+740:                 <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-identifier">layer</span>][<span class="ruby-identifier">node</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">label</span>
+741:               } <span class="ruby-comment cmt"># each node that t_i maps to</span>
+742:             <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># if t_i maps to anything</span>
+743: 
+744:           } <span class="ruby-comment cmt"># each terminal index</span>
+745:         } <span class="ruby-comment cmt"># each mapping terminal indices -&gt; label</span>
+746:       } <span class="ruby-comment cmt"># each layer</span>
+747: 
+748:       <span class="ruby-comment cmt"># 'stuff' (Support and other things)</span>
+749:       <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;stuff&quot;</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+750:       <span class="ruby-identifier">tab_frame_obj</span>.<span class="ruby-identifier">each_line_parsed</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line_obj</span><span class="ruby-operator">|</span>
+751:         <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">label</span> = <span class="ruby-identifier">line_obj</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;stuff&quot;</span>)) <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;-&quot;</span>
+752:           <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">mapping</span>[<span class="ruby-identifier">line_obj</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;lineno&quot;</span>)])
+753:             <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+754:               <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;stuff&quot;</span>][<span class="ruby-identifier">node</span>]
+755:                 <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;stuff&quot;</span>][<span class="ruby-identifier">node</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+756:               <span class="ruby-keyword kw">end</span>
+757:               <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;stuff&quot;</span>][<span class="ruby-identifier">node</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">label</span> 
+758:             }
+759:           <span class="ruby-keyword kw">end</span>
+760:         <span class="ruby-keyword kw">end</span>
+761:       }
+762: 
+763:       <span class="ruby-comment cmt"># reencode:</span>
+764:       <span class="ruby-comment cmt">#  hash role_label(string) -&gt; array of tuples [synnodes, gflabels, ptlabels]</span>
+765:       <span class="ruby-comment cmt">#   synnodes: array:SynNode.  gflabels, ptlabels: array:String</span>
+766:       <span class="ruby-comment cmt">#</span>
+767:       <span class="ruby-comment cmt"># note that in this step, any gf or pt labels that have been</span>
+768:       <span class="ruby-comment cmt"># assigned to a SynNode that has not also been assigned a role</span>
+769:       <span class="ruby-comment cmt"># will be lost</span>
+770:       <span class="ruby-identifier">role2nodes_labels</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+771:       <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;role&quot;</span>].<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">synnode</span>, <span class="ruby-identifier">labels</span><span class="ruby-operator">|</span>
+772:         <span class="ruby-identifier">labels</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span> <span class="ruby-identifier">rolelabel</span><span class="ruby-operator">|</span>
+773:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">role2nodes_labels</span>[<span class="ruby-identifier">rolelabel</span>]
+774:             <span class="ruby-identifier">role2nodes_labels</span>[<span class="ruby-identifier">rolelabel</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+775:           <span class="ruby-keyword kw">end</span>
+776:           
+777:           <span class="ruby-identifier">role2nodes_labels</span>[<span class="ruby-identifier">rolelabel</span>] <span class="ruby-operator">&lt;&lt;</span> [
+778:             <span class="ruby-identifier">synnode</span>, 
+779:             <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;gf&quot;</span>][<span class="ruby-identifier">synnode</span>], 
+780:             <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;pt&quot;</span>][<span class="ruby-identifier">synnode</span>]
+781:           ]
+782:         } <span class="ruby-comment cmt"># each role label</span>
+783:       } <span class="ruby-comment cmt"># each pair SynNode/role labels</span>
+784: 
+785:       <span class="ruby-comment cmt"># reencode &quot;stuff&quot;, but only the support cases</span>
+786:       <span class="ruby-identifier">role2nodes_labels</span>[<span class="ruby-value str">&quot;Support&quot;</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+787: 
+788:       <span class="ruby-identifier">layer_synnode_label</span>[<span class="ruby-value str">&quot;stuff&quot;</span>].<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">synnode</span>, <span class="ruby-identifier">labels</span><span class="ruby-operator">|</span>
+789:         <span class="ruby-identifier">labels</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">stufflabel</span><span class="ruby-operator">|</span>
+790:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stufflabel</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Supp/</span>
+791:             <span class="ruby-comment cmt"># some sort of support</span>
+792:             <span class="ruby-identifier">role2nodes_labels</span>[<span class="ruby-value str">&quot;Support&quot;</span>] <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">synnode</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>]
+793:           <span class="ruby-keyword kw">end</span>
+794:         }
+795:       }
+796: 
+797:       <span class="ruby-comment cmt">##</span>
+798:       <span class="ruby-comment cmt"># each role label: </span>
+799:       <span class="ruby-comment cmt"># make FeNode for the current frame</span>
+800:       <span class="ruby-identifier">role2nodes_labels</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rolelabel</span>, <span class="ruby-identifier">node_gf_pt</span><span class="ruby-operator">|</span>
+801:         
+802:         <span class="ruby-comment cmt"># get list of syn nodes, GF and PT labels for this role</span>
+803:         <span class="ruby-comment cmt"># shortcut for GF and PT labels: take any labels that have</span>
+804:         <span class="ruby-comment cmt"># been assigned for _some_ Synnode of this role</span>
+805:         <span class="ruby-identifier">synnodes</span> = <span class="ruby-identifier">node_gf_pt</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ngp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ngp</span>[<span class="ruby-value">0</span>] } 
+806:         <span class="ruby-identifier">gflabels</span> = <span class="ruby-identifier">node_gf_pt</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ngp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ngp</span>[<span class="ruby-value">1</span>] }.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
+807:         <span class="ruby-identifier">ptlabels</span> = <span class="ruby-identifier">node_gf_pt</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ngp</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ngp</span>[<span class="ruby-value">2</span>] }.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>
+808: 
+809: 
+810:         <span class="ruby-comment cmt"># let the interpreter class decide on how to </span>
+811:         <span class="ruby-comment cmt"># determine the maximum constituents</span>
+812:         <span class="ruby-identifier">maxnodes</span> = <span class="ruby-identifier">interpreter_class</span>.<span class="ruby-identifier">max_constituents</span>(<span class="ruby-identifier">synnodes</span>, <span class="ruby-identifier">st_sent</span>)
+813: 
+814:         <span class="ruby-identifier">fe_node</span> = <span class="ruby-identifier">st_sent</span>.<span class="ruby-identifier">add_fe</span>(<span class="ruby-identifier">frame_node</span>, <span class="ruby-identifier">rolelabel</span>, <span class="ruby-identifier">maxnodes</span>)
+815:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">gflabels</span>.<span class="ruby-identifier">empty?</span>
+816:           <span class="ruby-identifier">fe_node</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;gf&quot;</span>, <span class="ruby-identifier">gflabels</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>))
+817:         <span class="ruby-keyword kw">end</span>
+818:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">ptlabels</span>.<span class="ruby-identifier">empty?</span>
+819:           <span class="ruby-identifier">fe_node</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;pt&quot;</span>, <span class="ruby-identifier">ptlabels</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;,&quot;</span>))
+820:         <span class="ruby-keyword kw">end</span>
+821:       } <span class="ruby-comment cmt"># each role label</span>
+822:     } <span class="ruby-comment cmt"># each frame</span>
+823:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="bnc-to-plain-file-method" class="method-detail ">
+				<a name="method-c-bnc_to_plain_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">bnc_to_plain_file</span><span
+						class="method-args">(input_filename, output_filename)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+transform BNC format file to plaintext file
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="bnc-to-plain-file-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 46</span>
+ 46:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">bnc_to_plain_file</span>(<span class="ruby-identifier">input_filename</span>, <span class="ruby-comment cmt"># string: name of input file</span>
+ 47:                                      <span class="ruby-identifier">output_filename</span>) <span class="ruby-comment cmt"># string: name of output file</span>
+ 48:     <span class="ruby-keyword kw">begin</span>
+ 49:       <span class="ruby-identifier">infile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input_filename</span>)
+ 50:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">output_filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+ 51:     <span class="ruby-keyword kw">rescue</span>
+ 52:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not read #{input_filename}, or could not write to #{output_filename}.&quot;</span>
+ 53:     <span class="ruby-keyword kw">end</span>
+ 54: 
+ 55:     <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+ 56:     <span class="ruby-comment cmt"># does this line contain a sentence?</span>
+ 57:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\s*&lt;s\s+n=/</span>
+ 58:       <span class="ruby-comment cmt"># remove all tags, replace by spaces, </span>
+ 59:       <span class="ruby-comment cmt"># then remove superfluous spaces</span>
+ 60:       <span class="ruby-identifier">textline</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&lt;.+?&gt;/</span>, <span class="ruby-value str">&quot; &quot;</span>).<span class="ruby-identifier">strip</span>().<span class="ruby-identifier">squeeze</span>(<span class="ruby-value str">&quot; &quot;</span>)
+ 61: 
+ 62: 
+ 63:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;bquo;/</span>, <span class="ruby-value str">'&quot;'</span>)
+ 64:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;equo;/</span>, <span class="ruby-value str">'&quot;'</span>)
+ 65:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;mdash;/</span>, <span class="ruby-value str">&quot;-&quot;</span>)
+ 66:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ndash;/</span>, <span class="ruby-value str">&quot;-&quot;</span>)
+ 67:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;percnt;/</span>, <span class="ruby-value str">&quot;%&quot;</span>)
+ 68:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;pound;/</span>, <span class="ruby-value str">&quot; pounds &quot;</span>)
+ 69:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;amp;/</span>, <span class="ruby-value str">&quot; and &quot;</span>)
+ 70:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;hellip;/</span>, <span class="ruby-value str">&quot;...&quot;</span>)
+ 71:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;copy;/</span>, <span class="ruby-value str">&quot;(copyright)&quot;</span>)
+ 72:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;eacute;/</span>, <span class="ruby-value str">&quot;e&quot;</span>)
+ 73:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;bull;/</span>, <span class="ruby-value str">&quot;*&quot;</span>)
+ 74:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;dollar;/</span>, <span class="ruby-value str">&quot;$&quot;</span>)
+ 75:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;deg;/</span>, <span class="ruby-value str">&quot; degree &quot;</span>)
+ 76: 
+ 77:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;frac12;/</span>, <span class="ruby-value str">&quot;1/2&quot;</span>)
+ 78:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;frac34;/</span>, <span class="ruby-value str">&quot;3/4&quot;</span>)
+ 79: 
+ 80:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;lsqb;/</span>, <span class="ruby-value str">&quot;[&quot;</span>)
+ 81:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;rsqb;/</span>, <span class="ruby-value str">&quot;]&quot;</span>)
+ 82: 
+ 83:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ins;/</span>, <span class="ruby-value str">&quot;i&quot;</span>)
+ 84:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ft;/</span>, <span class="ruby-value str">&quot;ft&quot;</span>)
+ 85: 
+ 86:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;rarr;/</span>, <span class="ruby-value str">&quot;&gt;&quot;</span>)
+ 87:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;larr;/</span>, <span class="ruby-value str">&quot;&lt;&quot;</span>)
+ 88: 
+ 89: 
+ 90:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;aacute;/</span>, <span class="ruby-value str">&quot;a&quot;</span>)
+ 91:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;auml;/</span>, <span class="ruby-value str">&quot;a&quot;</span>)
+ 92:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;agrave;/</span>, <span class="ruby-value str">&quot;a&quot;</span>)
+ 93:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;atilde;/</span>, <span class="ruby-value str">&quot;a&quot;</span>)
+ 94:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;acirc;/</span>, <span class="ruby-value str">&quot;a&quot;</span>)
+ 95:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Aacute;/</span>, <span class="ruby-value str">&quot;A&quot;</span>)
+ 96:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Auml;/</span>, <span class="ruby-value str">&quot;A&quot;</span>)
+ 97:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Agrave;/</span>, <span class="ruby-value str">&quot;A&quot;</span>)
+ 98:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Atilde;/</span>, <span class="ruby-value str">&quot;A&quot;</span>)
+ 99:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Acirc;/</span>, <span class="ruby-value str">&quot;A&quot;</span>)
+100: 
+101:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;eacute;/</span>, <span class="ruby-value str">&quot;e&quot;</span>)
+102:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;egrave;/</span>, <span class="ruby-value str">&quot;e&quot;</span>)
+103:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ecirc;/</span>, <span class="ruby-value str">&quot;e&quot;</span>)
+104:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;euml;/</span>, <span class="ruby-value str">&quot;e&quot;</span>)
+105:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Eacute;/</span>, <span class="ruby-value str">&quot;E&quot;</span>)
+106:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Egrave;/</span>, <span class="ruby-value str">&quot;E&quot;</span>)
+107:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ecirc;/</span>, <span class="ruby-value str">&quot;E&quot;</span>)
+108:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Euml;/</span>, <span class="ruby-value str">&quot;E&quot;</span>)
+109: 
+110:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;iacute;/</span>, <span class="ruby-value str">&quot;i&quot;</span>)
+111:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;igrave;/</span>, <span class="ruby-value str">&quot;i&quot;</span>)
+112:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;icirc;/</span>, <span class="ruby-value str">&quot;i&quot;</span>)
+113:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;iuml;/</span>, <span class="ruby-value str">&quot;i&quot;</span>)
+114:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Iacute;/</span>, <span class="ruby-value str">&quot;I&quot;</span>)
+115:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Igrave;/</span>, <span class="ruby-value str">&quot;I&quot;</span>)
+116:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Icirc;/</span>, <span class="ruby-value str">&quot;I&quot;</span>)
+117: 
+118:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;oacute;/</span>, <span class="ruby-value str">&quot;o&quot;</span>)
+119:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ograve;/</span>, <span class="ruby-value str">&quot;o&quot;</span>)
+120:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ocirc;/</span>, <span class="ruby-value str">&quot;o&quot;</span>)
+121:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ouml;/</span>, <span class="ruby-value str">&quot;o&quot;</span>)
+122:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Oacute;/</span>, <span class="ruby-value str">&quot;O&quot;</span>)
+123:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ograve;/</span>, <span class="ruby-value str">&quot;O&quot;</span>)
+124:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ocirc;/</span>, <span class="ruby-value str">&quot;O&quot;</span>)
+125:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ouml;/</span>, <span class="ruby-value str">&quot;O&quot;</span>)
+126: 
+127:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;uacute;/</span>, <span class="ruby-value str">&quot;u&quot;</span>)
+128:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ugrave;/</span>, <span class="ruby-value str">&quot;u&quot;</span>)
+129:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ucirc;/</span>, <span class="ruby-value str">&quot;u&quot;</span>)
+130:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;uuml;/</span>, <span class="ruby-value str">&quot;u&quot;</span>)
+131:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Uacute;/</span>, <span class="ruby-value str">&quot;U&quot;</span>)
+132:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ugrave;/</span>, <span class="ruby-value str">&quot;U&quot;</span>)
+133:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ucirc;/</span>, <span class="ruby-value str">&quot;U&quot;</span>)
+134:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Uuml;/</span>, <span class="ruby-value str">&quot;U&quot;</span>)
+135: 
+136:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;yuml;/</span>, <span class="ruby-value str">&quot;y&quot;</span>)
+137:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Yuml;/</span>, <span class="ruby-value str">&quot;Y&quot;</span>)
+138: 
+139:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ntilde;/</span>, <span class="ruby-value str">&quot;n&quot;</span>)
+140:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ntilde;/</span>, <span class="ruby-value str">&quot;N&quot;</span>)
+141: 
+142:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;ccedil;/</span>, <span class="ruby-value str">&quot;c&quot;</span>)
+143:       <span class="ruby-identifier">textline</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/&amp;Ccedil;/</span>, <span class="ruby-value str">&quot;C&quot;</span>)
+144: 
+145: 
+146:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">textline</span>
+147:     <span class="ruby-keyword kw">end</span>
+148:     }
+149:     <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">close</span>()
+150:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>()
+151:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="group-words-method" class="method-detail ">
+				<a name="method-c-group_words"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">group_words</span><span
+						class="method-args">(nodes, interpreter)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                      
+</pre>
+<p>
+<a href="FrprepHelper.html#method-c-group_words">group_words</a>
+</p>
+<p>
+auxiliary of transform_multiword targets
+</p>
+<p>
+Group terminals:  At the moment, just find separate prefixes and particles
+for verbs
+</p>
+<p>
+returns: list of pairs [descr, nodes] descr: string, &#8220;none&#8221; (no
+group), &#8220;part&#8221; (separate verb particle) nodes: array:<a
+href="SynNode.html">SynNode</a>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="group-words-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 913</span>
+913:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">group_words</span>(<span class="ruby-identifier">nodes</span>,    <span class="ruby-comment cmt"># array: SynNode</span>
+914:                                <span class="ruby-identifier">interpreter</span>) <span class="ruby-comment cmt"># SynInterpreter object</span>
+915: 
+916:     <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># array of groups, array:array:SynNode</span>
+917:     <span class="ruby-identifier">done</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># remember nodes already covered</span>
+918: 
+919:     <span class="ruby-identifier">nodes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">terminal_node</span><span class="ruby-operator">|</span>
+920:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">done</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">terminal_node</span>
+921:         <span class="ruby-comment cmt"># we have already included this node in one of the groups</span>
+922:         <span class="ruby-keyword kw">next</span>
+923:       <span class="ruby-keyword kw">end</span>
+924: 
+925:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">svp</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">particle_of_verb</span>(<span class="ruby-identifier">terminal_node</span>, <span class="ruby-identifier">nodes</span>))
+926:         <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">&quot;part&quot;</span>, [<span class="ruby-identifier">terminal_node</span>, <span class="ruby-identifier">svp</span>]]
+927:         <span class="ruby-identifier">done</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">terminal_node</span>
+928:         <span class="ruby-identifier">done</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">svp</span>
+929:       <span class="ruby-keyword kw">else</span>
+930:         <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">&quot;none&quot;</span>, [<span class="ruby-identifier">terminal_node</span>]]
+931:         <span class="ruby-identifier">done</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">terminal_node</span>
+932:       <span class="ruby-keyword kw">end</span>
+933: 
+934:     }
+935: 
+936:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+937:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="handle-multiword-targets-method" class="method-detail ">
+				<a name="method-c-handle_multiword_targets"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">handle_multiword_targets</span><span
+						class="method-args">(sent, interpreter, language)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+    
+</pre>
+<p>
+handle multiword targets: if you find a verb with a separate prefix, 
+change the verb&#8217;s lemma information accordingly and add an attribute
+&#8220;other_words&#8220; to the verb node pointing to the other node
+</p>
+<p>
+In general, it will be assumed that &#8220;other_words&#8220; contains a
+list of node IDs for other nodes belonging to the same  group, node IDs
+separated by spaces, and that  each node of a group has the
+&#8220;other_words&#8220; attribute.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="handle-multiword-targets-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 838</span>
+838:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">handle_multiword_targets</span>(<span class="ruby-identifier">sent</span>,  <span class="ruby-comment cmt"># SalsaTigerSentence object</span>
+839:                                             <span class="ruby-identifier">interpreter</span>, <span class="ruby-comment cmt"># SynInterpreter object</span>
+840:                                             <span class="ruby-identifier">language</span>) <span class="ruby-comment cmt"># string: en, de</span>
+841:     <span class="ruby-comment cmt">##</span>
+842:     <span class="ruby-comment cmt"># only retain the interesting words of the sentence:</span>
+843:     <span class="ruby-comment cmt"># content words and prepositions</span>
+844:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">nil?</span>
+845:         <span class="ruby-keyword kw">return</span>
+846:     <span class="ruby-keyword kw">end</span>
+847: 
+848:     <span class="ruby-identifier">nodes</span> = <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">terminals</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+849:       [  
+850:         <span class="ruby-value str">&quot;adj&quot;</span>, <span class="ruby-value str">&quot;adv&quot;</span>, <span class="ruby-value str">&quot;card&quot;</span>, <span class="ruby-value str">&quot;noun&quot;</span>, <span class="ruby-value str">&quot;part&quot;</span>, <span class="ruby-value str">&quot;prep&quot;</span>, <span class="ruby-value str">&quot;verb&quot;</span>
+851:       ].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">category</span>(<span class="ruby-identifier">node</span>)
+852:     }
+853: 
+854:     <span class="ruby-comment cmt">##</span>
+855:     <span class="ruby-comment cmt"># group:</span>
+856:     <span class="ruby-comment cmt"># group verbs with their separate particles</span>
+857:     <span class="ruby-comment cmt"># (at a later point, other types of grouping can be inserted here)</span>
+858:     <span class="ruby-identifier">groups</span> = <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">group_words</span>(<span class="ruby-identifier">nodes</span>, <span class="ruby-identifier">interpreter</span>)
+859: 
+860:     <span class="ruby-comment cmt">##</span>
+861:     <span class="ruby-comment cmt"># record grouping information as attributes on the terminals.</span>
+862:     <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">descr</span>, <span class="ruby-identifier">group_of_nodes</span><span class="ruby-operator">|</span>
+863:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">descr</span>
+864:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;none&quot;</span>
+865:         <span class="ruby-comment cmt"># no grouping</span>
+866:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;part&quot;</span>
+867:         <span class="ruby-comment cmt"># separate particle belonging to a verb</span>
+868:         
+869:         <span class="ruby-comment cmt"># group_of_nodes is a pair [verb, particle]</span>
+870:         <span class="ruby-identifier">verb</span>, <span class="ruby-identifier">particle</span> = <span class="ruby-identifier">group_of_nodes</span>
+871: 
+872:         <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;other_words&quot;</span>, <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">id</span>())
+873:         <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;other_words&quot;</span>, <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">id</span>())
+874:         
+875:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>)
+876:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">language</span>
+877:           <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;de&quot;</span>
+878:             <span class="ruby-comment cmt"># German: prepend SVP to get the real lemma of the verb</span>
+879:             <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>, 
+880:                                <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) <span class="ruby-operator">+</span> 
+881:                                <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>))
+882:           <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;en&quot;</span>
+883:             <span class="ruby-comment cmt"># English: append particle as separate word after the lemma of the verb</span>
+884:             <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>, 
+885:                                <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> 
+886:                                <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>))
+887:           <span class="ruby-keyword kw">else</span>
+888:             <span class="ruby-comment cmt"># default</span>
+889:             <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>,
+890:                                <span class="ruby-identifier">verb</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> 
+891:                                <span class="ruby-identifier">particle</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>))
+892:           <span class="ruby-keyword kw">end</span>
+893:         <span class="ruby-keyword kw">end</span>
+894: 
+895:       <span class="ruby-keyword kw">else</span>
+896:         <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Shouldn't be here: unexpected description #{descr}&quot;</span>
+897:       <span class="ruby-keyword kw">end</span>
+898:     }
+899:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="handle-unknown-framenames-method" class="method-detail ">
+				<a name="method-c-handle_unknown_framenames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">handle_unknown_framenames</span><span
+						class="method-args">(sent, interpreter)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+    
+</pre>
+<p>
+handle unknown framenames
+</p>
+<p>
+For all frames with names matching Unknownd+, rename them to
+<lemma>_Unknownd+
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="handle-unknown-framenames-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 945</span>
+945:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">handle_unknown_framenames</span>(<span class="ruby-identifier">sent</span>,     <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+946:                                              <span class="ruby-identifier">interpreter</span>) <span class="ruby-comment cmt"># SynInterpreter class</span>
+947:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">nil?</span>
+948:         <span class="ruby-keyword kw">return</span>
+949:     <span class="ruby-keyword kw">end</span>
+950: 
+951:     <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">each_frame</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame</span><span class="ruby-operator">|</span>
+952:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^Unknown/</span>
+953:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">target</span>
+954:           <span class="ruby-identifier">maintarget</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">main_node_of_expr</span>(<span class="ruby-identifier">frame</span>.<span class="ruby-identifier">target</span>.<span class="ruby-identifier">children</span>(), <span class="ruby-value str">&quot;no_mwe&quot;</span>)
+955:         <span class="ruby-keyword kw">else</span>
+956:           <span class="ruby-identifier">maintarget</span> = <span class="ruby-keyword kw">nil</span>
+957:         <span class="ruby-keyword kw">end</span>
+958:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">maintarget</span>
+959:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: Unknown frame, and I could not determine the target lemma: Frame #{frame.id()}&quot;</span>
+960:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Cannot repair frame name, leaving it as is.&quot;</span>
+961:           <span class="ruby-keyword kw">return</span>
+962:         <span class="ruby-keyword kw">end</span>
+963:           
+964:         <span class="ruby-comment cmt"># get lemma, if it exists, otherwise get word</span>
+965:         <span class="ruby-comment cmt"># also, if the lemmatizer has returned a disjunction of lemmas,</span>
+966:         <span class="ruby-comment cmt"># get the first disjunct</span>
+967:         <span class="ruby-identifier">lemma</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">lemma_backoff</span>(<span class="ruby-identifier">maintarget</span>)
+968:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">lemma</span>
+969:           <span class="ruby-comment cmt"># we have a lemma</span>
+970:           <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">set_name</span>(<span class="ruby-identifier">lemma</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">name</span>())
+971:         <span class="ruby-keyword kw">else</span>
+972:           <span class="ruby-comment cmt"># the main target word has no lemma attribute,</span>
+973:           <span class="ruby-comment cmt"># and somehow I couldn't even get the target word</span>
+974:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: Salsa 'Unknown' frame.&quot;</span>
+975:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Trying to make its lemma-specificity explicit, but&quot;</span>
+976:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I could not determine the target lemma nor the target word: frame #{frame.id()}&quot;</span>
+977:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Leaving 'Unknown' as it is.&quot;</span>
+978:         <span class="ruby-keyword kw">end</span>
+979:       <span class="ruby-keyword kw">end</span>
+980:     } 
+981:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="integrate-stxml-semantics-and-lemmas-method" class="method-detail ">
+				<a name="method-c-integrate_stxml_semantics_and_lemmas"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">integrate_stxml_semantics_and_lemmas</span><span
+						class="method-args">(oldsent, newsent, interpreter_class, exp)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                   
+</pre>
+<p>
+Integrate the semantic annotation of an old sentence into the corresponding
+new sentence At the same time, integrate the lemma information from the old
+sentence into the new sentence
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="integrate-stxml-semantics-and-lemmas-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 990</span>
+ 990:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">integrate_stxml_semantics_and_lemmas</span>(<span class="ruby-identifier">oldsent</span>, 
+ 991:                                                         <span class="ruby-identifier">newsent</span>,
+ 992:                                                         <span class="ruby-identifier">interpreter_class</span>,
+ 993:                                                         <span class="ruby-identifier">exp</span>)
+ 994:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oldsent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">nil?</span>
+ 995:         <span class="ruby-keyword kw">return</span>
+ 996:     <span class="ruby-keyword kw">end</span>
+ 997:     <span class="ruby-comment cmt">##</span>
+ 998:     <span class="ruby-comment cmt"># match old and new sentence via terminals</span>
+ 999:     <span class="ruby-identifier">newterminals</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">terminals_sorted</span>()
+1000:     <span class="ruby-identifier">oldterminals</span> = <span class="ruby-identifier">oldsent</span>.<span class="ruby-identifier">terminals_sorted</span>()
+1001:     <span class="ruby-comment cmt"># sanity check: exact match on terminals?</span>
+1002:     <span class="ruby-identifier">newterminals</span>.<span class="ruby-identifier">interleave</span>(<span class="ruby-identifier">oldterminals</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">newnode</span>, <span class="ruby-identifier">oldnode</span><span class="ruby-operator">|</span>
+1003:         <span class="ruby-comment cmt">#print &quot;old &quot;, oldnode.word, &quot;  &quot;, newnode.word, &quot;\n&quot;</span>
+1004:       <span class="ruby-comment cmt"># new and old word: use both unescaped and escaped variant</span>
+1005:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">newnode</span>
+1006:         <span class="ruby-identifier">newwords</span> = [ <span class="ruby-identifier">newnode</span>.<span class="ruby-identifier">word</span>, <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">newnode</span>.<span class="ruby-identifier">word</span>) ]
+1007:       <span class="ruby-keyword kw">else</span>
+1008:         <span class="ruby-identifier">newwords</span> = [<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>]
+1009:       <span class="ruby-keyword kw">end</span>
+1010:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oldnode</span>
+1011:         <span class="ruby-identifier">oldwords</span> = [ <span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">word</span>, <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">word</span>) ]
+1012:       <span class="ruby-keyword kw">else</span>
+1013:         <span class="ruby-identifier">oldwords</span> = [ <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>]
+1014:       <span class="ruby-keyword kw">end</span>
+1015: 
+1016:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">newwords</span> &amp; <span class="ruby-identifier">oldwords</span>).<span class="ruby-identifier">empty?</span>
+1017:         <span class="ruby-comment cmt"># old and new word don't match, either escaped or non-escaped</span>
+1018: 
+1019:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Warning: could not match terminals of sentence #{newsent.id()}&quot;</span>
+1020:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;This means that I cannot match the semantic annotation&quot;</span>
+1021:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;to the newly parsed sentence. Skipping.&quot;</span>
+1022:         <span class="ruby-comment cmt">#$stderr.puts &quot;Old sentence: &quot;</span>
+1023:         <span class="ruby-comment cmt">#$stderr.puts oldterminals.map { |n| n.word }.join(&quot;--&quot;)</span>
+1024:         <span class="ruby-comment cmt">#$stderr.puts &quot;New sentence: &quot;</span>
+1025:         <span class="ruby-comment cmt">#$stderr.puts newterminals.map { |n| n.word }.join(&quot;--&quot;)</span>
+1026:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+1027:       <span class="ruby-keyword kw">end</span>
+1028:     }
+1029: 
+1030:     <span class="ruby-comment cmt">##</span>
+1031:     <span class="ruby-comment cmt"># copy lemma information</span>
+1032:     <span class="ruby-identifier">oldterminals</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">oldnode</span>, <span class="ruby-identifier">ix</span><span class="ruby-operator">|</span>
+1033:       <span class="ruby-identifier">newnode</span> = <span class="ruby-identifier">newterminals</span>[<span class="ruby-identifier">ix</span>]
+1034:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>)
+1035:         <span class="ruby-identifier">newnode</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>, <span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">get_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>))
+1036:       <span class="ruby-keyword kw">end</span>
+1037:     }
+1038: 
+1039:     <span class="ruby-comment cmt">##</span>
+1040:     <span class="ruby-comment cmt"># copy frames</span>
+1041:     <span class="ruby-identifier">oldsent</span>.<span class="ruby-identifier">each_frame</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">oldframe</span><span class="ruby-operator">|</span>
+1042:       <span class="ruby-comment cmt"># make new frame with same ID</span>
+1043:       <span class="ruby-identifier">newframe</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">add_frame</span>(<span class="ruby-identifier">oldframe</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">oldframe</span>.<span class="ruby-identifier">id</span>())
+1044:       <span class="ruby-comment cmt"># copy FEs</span>
+1045:       <span class="ruby-identifier">oldframe</span>.<span class="ruby-identifier">each_child</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">oldfe</span><span class="ruby-operator">|</span>
+1046:         <span class="ruby-comment cmt"># new nodes: map old terminals to new terminals,</span>
+1047:         <span class="ruby-comment cmt"># then find max constituents covering them</span>
+1048:         <span class="ruby-identifier">newnodes</span> = <span class="ruby-identifier">oldfe</span>.<span class="ruby-identifier">descendants</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> 
+1049:           <span class="ruby-identifier">n</span>.<span class="ruby-identifier">is_terminal?</span> 
+1050:         }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+1051:           <span class="ruby-identifier">oldterminals</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">n</span>)
+1052:         }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ix</span><span class="ruby-operator">|</span>
+1053:           <span class="ruby-identifier">newterminals</span>[<span class="ruby-identifier">ix</span>]
+1054:         }
+1055: 
+1056:         <span class="ruby-comment cmt"># let the interpreter class decide on how to determine the maximum constituents</span>
+1057:         <span class="ruby-identifier">newnodes</span> = <span class="ruby-identifier">interpreter_class</span>.<span class="ruby-identifier">max_constituents</span>(<span class="ruby-identifier">newnodes</span>, <span class="ruby-identifier">newsent</span>)
+1058: 
+1059:         <span class="ruby-comment cmt"># make new FE with same ID</span>
+1060:         <span class="ruby-identifier">new_fe</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">add_fe</span>(<span class="ruby-identifier">newframe</span>, <span class="ruby-identifier">oldfe</span>.<span class="ruby-identifier">name</span>(), <span class="ruby-identifier">newnodes</span>, <span class="ruby-identifier">oldfe</span>.<span class="ruby-identifier">id</span>())
+1061:         <span class="ruby-comment cmt"># keep all attributes of the FE</span>
+1062:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oldfe</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;attributes&quot;</span>)
+1063:           <span class="ruby-identifier">oldfe</span>.<span class="ruby-identifier">get_f</span>(<span class="ruby-value str">&quot;attributes&quot;</span>).<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">attr</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+1064:             <span class="ruby-identifier">new_fe</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-identifier">attr</span>, <span class="ruby-identifier">value</span>)
+1065:           }
+1066:         <span class="ruby-keyword kw">end</span>
+1067:       }
+1068:     }
+1069: 
+1070:     <span class="ruby-comment cmt">##</span>
+1071:     <span class="ruby-comment cmt">### changed by ines =&gt; appears twice in stxml file</span>
+1072: 
+1073:     <span class="ruby-comment cmt"># copy underspecification</span>
+1074:     <span class="ruby-comment cmt"># keep as is, since we've kept all frame and FE IDs</span>
+1075:     <span class="ruby-identifier">oldsent</span>.<span class="ruby-identifier">each_usp_frameblock</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">olduspframe</span><span class="ruby-operator">|</span>
+1076:       <span class="ruby-identifier">newuspframe</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">add_usp</span>(<span class="ruby-value str">&quot;frame&quot;</span>)
+1077:       <span class="ruby-identifier">olduspframe</span>.<span class="ruby-identifier">each_child</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">oldnode</span><span class="ruby-operator">|</span>
+1078:         <span class="ruby-identifier">newnode</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">sem_node_with_id</span>(<span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">id</span>())
+1079:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">newnode</span>
+1080:           <span class="ruby-identifier">newuspframe</span>.<span class="ruby-identifier">add_child</span>(<span class="ruby-identifier">newnode</span>)
+1081:         <span class="ruby-keyword kw">else</span>
+1082:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: unknown frame with ID #{oldnode.id()}&quot;</span>
+1083:         <span class="ruby-keyword kw">end</span>
+1084:       }
+1085:     }
+1086:     <span class="ruby-identifier">oldsent</span>.<span class="ruby-identifier">each_usp_feblock</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">olduspfe</span><span class="ruby-operator">|</span>
+1087:       <span class="ruby-identifier">newuspfe</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">add_usp</span>(<span class="ruby-value str">&quot;fe&quot;</span>)
+1088:       <span class="ruby-identifier">olduspfe</span>.<span class="ruby-identifier">each_child</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">oldnode</span><span class="ruby-operator">|</span>
+1089:         <span class="ruby-identifier">newnode</span> = <span class="ruby-identifier">newsent</span>.<span class="ruby-identifier">sem_node_with_id</span>(<span class="ruby-identifier">oldnode</span>.<span class="ruby-identifier">id</span>())
+1090:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">newnode</span>
+1091:           <span class="ruby-identifier">newuspfe</span>.<span class="ruby-identifier">add_child</span>(<span class="ruby-identifier">newnode</span>)
+1092:         <span class="ruby-keyword kw">else</span>
+1093:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: unknown FE with ID #{oldnode.id()}&quot;</span>
+1094:         <span class="ruby-keyword kw">end</span>
+1095:       }
+1096:     }
+1097: 
+1098:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="note-salsa-targetlemma-method" class="method-detail ">
+				<a name="method-c-note_salsa_targetlemma"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">note_salsa_targetlemma</span><span
+						class="method-args">(old_dir, new_dir)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+note salsa targetlemma
+</p>
+<p>
+old_dir contains xml files whose name starts with the target lemma for all
+frames in the file record that target lemma in the <target> element of each
+frame
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="note-salsa-targetlemma-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 318</span>
+318:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">note_salsa_targetlemma</span>(<span class="ruby-identifier">old_dir</span>, <span class="ruby-comment cmt"># string ending in /</span>
+319:                                           <span class="ruby-identifier">new_dir</span>) <span class="ruby-comment cmt"># string ending in /</span>
+320: 
+321:     
+322:     <span class="ruby-comment cmt"># each input file: extract target lemma from filename,</span>
+323:     <span class="ruby-comment cmt"># not this lemma in the &lt;target&gt; element of each frame</span>
+324:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">old_dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*.xml&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+325:       <span class="ruby-identifier">changedfilename</span> = <span class="ruby-identifier">new_dir</span> <span class="ruby-operator">+</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">filename</span>)
+326: 
+327:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">filename</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*?)[_\.]/</span>
+328:         <span class="ruby-identifier">lemma</span> = <span class="ruby-node">$1</span>
+329:           
+330:         <span class="ruby-identifier">infile</span> = <span class="ruby-constant">FilePartsParser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>)
+331:         <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">changedfilename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+332: 
+333:         <span class="ruby-comment cmt"># write header</span>
+334:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">head</span>()
+335: 
+336:         <span class="ruby-comment cmt"># iterate through sentences, yield as SalsaTigerSentence objects</span>
+337:         <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">scan_s</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">sent_string</span><span class="ruby-operator">|</span>
+338:           <span class="ruby-identifier">sent</span> = <span class="ruby-constant">SalsaTigerSentence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+339:           <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">each_frame</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame</span><span class="ruby-operator">|</span>
+340:             <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">target</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">&quot;lemma&quot;</span>, <span class="ruby-identifier">lemma</span>)
+341:           }
+342: 
+343:           <span class="ruby-comment cmt"># write changed sentence</span>
+344:           <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">get</span>()
+345:         } <span class="ruby-comment cmt"># each sentence</span>
+346:         
+347:         <span class="ruby-comment cmt"># write footer</span>
+348:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">tail</span>()
+349:         <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">close</span>()
+350:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>()
+351:       
+352:       <span class="ruby-keyword kw">else</span>
+353:         <span class="ruby-comment cmt"># couldn't determine lemma</span>
+354:         <span class="ruby-comment cmt"># just copy the file</span>
+355:         <span class="ruby-node">`cp #{filename} #{changedfilename}`</span>
+356:       <span class="ruby-keyword kw">end</span>
+357:     }
+358:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="plain-to-tab-file-method" class="method-detail ">
+				<a name="method-c-plain_to_tab_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">plain_to_tab_file</span><span
+						class="method-args">(input_filename, output_filename)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+transform plaintext file to Tab format file
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="plain-to-tab-file-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 156</span>
+156:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">plain_to_tab_file</span>(<span class="ruby-identifier">input_filename</span>,<span class="ruby-comment cmt"># string: name of input file</span>
+157:                                      <span class="ruby-identifier">output_filename</span>)    <span class="ruby-comment cmt"># string: name of output file</span>
+158:     <span class="ruby-keyword kw">begin</span>
+159:       <span class="ruby-identifier">infile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input_filename</span>)
+160:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">output_filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+161:     <span class="ruby-keyword kw">rescue</span>
+162:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not read #{input_filename}, or could not write to #{output_filename}.&quot;</span>
+163:     <span class="ruby-keyword kw">end</span>
+164: 
+165:     <span class="ruby-identifier">filename_core</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">input_filename</span>, <span class="ruby-value str">&quot;txt&quot;</span>)
+166: 
+167:     <span class="ruby-comment cmt"># array(string): keep the words of each sentence</span>
+168:     <span class="ruby-identifier">sentence</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+169:     <span class="ruby-comment cmt"># sentence number for making the sentence ID:</span>
+170:     <span class="ruby-comment cmt"># global count, over all input files</span>
+171:     <span class="ruby-identifier">sentno</span> = <span class="ruby-value">0</span>
+172:     
+173:     <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">gets</span>())
+174:       
+175:       <span class="ruby-comment cmt"># make a sentence ID for the next sentence: running number</span>
+176:       <span class="ruby-identifier">sentid</span> = <span class="ruby-identifier">filename_core</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sentno</span>.<span class="ruby-identifier">to_s</span>
+177:       <span class="ruby-identifier">sentno</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+178:       
+179:       <span class="ruby-comment cmt"># read words into the sentence array,</span>
+180:       <span class="ruby-comment cmt"># separating out punctuation attached to the beginning or end of words</span>
+181:       <span class="ruby-identifier">sentence</span>.<span class="ruby-identifier">clear</span>()
+182:       <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+183:         <span class="ruby-comment cmt"># punctuation at the beginning of the word</span>
+184:         <span class="ruby-comment cmt">#if word =~ /^([\(\[`'\&quot;-]+)(.*)$/</span>
+185:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">word</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^([\(\[`\&quot;-]+)(.*)$/</span>
+186:         <span class="ruby-identifier">punct</span> = <span class="ruby-node">$1</span>
+187:           <span class="ruby-identifier">word</span> = <span class="ruby-node">$2</span>
+188:           <span class="ruby-identifier">punct</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/./</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">single_punct</span><span class="ruby-operator">|</span>
+189:             <span class="ruby-identifier">sentence</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">single_punct</span>
+190:           }
+191:    
+192:         <span class="ruby-keyword kw">end</span>
+193:         <span class="ruby-comment cmt"># punctuation at the end of the word</span>
+194:         <span class="ruby-comment cmt">#if word =~ /[,:;-\`?!'\&quot;\.\)\]]+$/</span>
+195:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">word</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/[,:;-\`?!\&quot;\.\)\]]+$/</span>
+196:           <span class="ruby-identifier">sentence</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">$`</span>  <span class="ruby-comment cmt"># part before the match: the word</span>
+197:           <span class="ruby-identifier">punct</span> = <span class="ruby-node">$&amp;</span>
+198:           <span class="ruby-identifier">punct</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/./</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">single_punct</span><span class="ruby-operator">|</span>
+199:             <span class="ruby-identifier">sentence</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">single_punct</span>
+200:           }
+201:              
+202:         <span class="ruby-keyword kw">else</span>
+203:           <span class="ruby-comment cmt"># no punctuation recognized</span>
+204:           <span class="ruby-identifier">sentence</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">word</span>
+205:         <span class="ruby-keyword kw">end</span>
+206:       }
+207: 
+208: 
+209:       <span class="ruby-comment cmt"># remove empty words</span>
+210:       <span class="ruby-identifier">sentence</span>.<span class="ruby-identifier">reject!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span> }
+211: 
+212:       <span class="ruby-comment cmt"># write words to tab file</span>
+213:       <span class="ruby-comment cmt"># KE Dec 06: TabFormat changed</span>
+214:       <span class="ruby-identifier">sentence</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span>
+215:         <span class="ruby-comment cmt"># for each word, one line, entries in the line tab-separated</span>
+216:         <span class="ruby-comment cmt"># the 'word' entry is the word, the 'lu_sent_ids' entry is the sentence ID sentid,</span>
+217:         <span class="ruby-comment cmt"># all other entries (gf, pt, frame etc.) are not set</span>
+218:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">FNTabFormatFile</span>.<span class="ruby-identifier">format_str</span>({ 
+219:                                                   <span class="ruby-value str">&quot;word&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">word</span>,
+220:                                                   <span class="ruby-value str">&quot;sent_id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sentid</span>
+221:                                                 })
+222:       }
+223:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span>
+224:     <span class="ruby-keyword kw">end</span>
+225:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>()
+226:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-deprecated-frames-method" class="method-detail ">
+				<a name="method-c-remove_deprecated_frames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_deprecated_frames</span><span
+						class="method-args">(sent, exp)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+                 3
+</pre>
+<p>
+given a <a href="SalsaTigerSentence.html">SalsaTigerSentence</a>, look for
+FrameNet frames that are  test frames, and remove them
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="remove-deprecated-frames-source">
+<pre>
+      <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 1188</span>
+1188:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">remove_deprecated_frames</span>(<span class="ruby-identifier">sent</span>,  <span class="ruby-comment cmt"># SalsaTigerSentence</span>
+1189:                                             <span class="ruby-identifier">exp</span>)   <span class="ruby-comment cmt"># FrprepConfigData</span>
+1190: 
+1191:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;origin&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;FrameNet&quot;</span>
+1192:       <span class="ruby-keyword kw">return</span>
+1193:     <span class="ruby-keyword kw">end</span>
+1194: 
+1195:     <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">frames</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame_obj</span><span class="ruby-operator">|</span>
+1196:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frame_obj</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;Boulder&quot;</span> <span class="ruby-keyword kw">or</span>
+1197:           <span class="ruby-identifier">frame_obj</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^Test/</span>
+1198:         <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">remove_frame</span>(<span class="ruby-identifier">frame_obj</span>)
+1199:       <span class="ruby-keyword kw">end</span>
+1200:     }
+1201:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="split-dir-method" class="method-detail ">
+				<a name="method-c-split_dir"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">split_dir</span><span
+						class="method-args">(indir, outdir, suffix, sent_num, sent_leng=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+         
+</pre>
+<p>
+class method <a href="FrprepHelper.html#method-c-split_dir">split_dir</a>: 
+read all files in one directory and produce chunk files *#{suffix} in
+outdir with a certain number of files in them (sent_num). Optionally,
+remove all sentences longer than sent_leng
+</p>
+<p>
+produces output files 1.<suffix>, 2.<suffix>, etc.
+</p>
+<p>
+assumes TabFormat sentences
+</p>
+<p>
+example:
+split_all(&#8220;/tmp/in&#8220;,&#8220;/tmp/out&#8220;,&#8221;.tab&#8221;,2000,80)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="split-dir-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 241</span>
+241:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">split_dir</span>(<span class="ruby-identifier">indir</span>,
+242:                              <span class="ruby-identifier">outdir</span>,
+243:                              <span class="ruby-identifier">suffix</span>,
+244:                              <span class="ruby-identifier">sent_num</span>,
+245:                              <span class="ruby-identifier">sent_leng</span>=<span class="ruby-keyword kw">nil</span>)
+246: 
+247:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">indir</span>[<span class="ruby-value">1</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;/&quot;</span>
+248:       <span class="ruby-identifier">indir</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;/&quot;</span>
+249:     <span class="ruby-keyword kw">end</span>
+250:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outdir</span>[<span class="ruby-value">1</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;/&quot;</span>
+251:       <span class="ruby-identifier">outdir</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;/&quot;</span>
+252:     <span class="ruby-keyword kw">end</span>
+253: 
+254:     <span class="ruby-identifier">outfile_counter</span> = <span class="ruby-value">0</span>
+255:     <span class="ruby-identifier">line_stack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+256:     <span class="ruby-identifier">sent_stack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+257:     
+258:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">indir</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;*#{suffix}&quot;</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">infilename</span><span class="ruby-operator">|</span>
+259:       <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Now splitting #{infilename}&quot;</span>
+260:       <span class="ruby-identifier">infile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">infilename</span>)
+261:       
+262:       <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">gets</span>
+263:         <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp!</span>        
+264:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">line</span>
+265:         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># end of sentence</span>
+266:           <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">sent_leng</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">line_stack</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">sent_leng</span>) <span class="ruby-comment cmt"># record sentence</span>
+267:             <span class="ruby-comment cmt"># suppress multiple empty lines</span>
+268:             <span class="ruby-comment cmt"># to avoid problems with lemmatiser</span>
+269:             <span class="ruby-comment cmt"># only record sent_stack if it is not empty.</span>
+270: 
+271:             <span class="ruby-comment cmt"># change (sp 15 01 07): just cut off sentence at sent_leng.            </span>
+272:             
+273:             <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Cutting off long sentence #{line_stack.last.split(&quot;\t&quot;).last}&quot;</span> 
+274:             <span class="ruby-identifier">line_stack</span> = <span class="ruby-identifier">line_stack</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">sent_leng</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+275:           <span class="ruby-keyword kw">end</span>          
+276:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line_stack</span>.<span class="ruby-identifier">empty?</span>
+277:             <span class="ruby-identifier">sent_stack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line_stack</span>
+278:             <span class="ruby-comment cmt"># reset line_stack</span>
+279:             <span class="ruby-identifier">line_stack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+280:           <span class="ruby-keyword kw">end</span>
+281:         
+282: 
+283:           <span class="ruby-comment cmt"># check if we have to empty the sent stack</span>
+284:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sent_stack</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sent_num</span> <span class="ruby-comment cmt"># enough sentences for new outfile? </span>
+285:             <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outdir</span><span class="ruby-operator">+</span><span class="ruby-identifier">outfile_counter</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;#{suffix}&quot;</span>,<span class="ruby-value str">&quot;w&quot;</span>)
+286:             <span class="ruby-identifier">sent_stack</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">l_stack</span><span class="ruby-operator">|</span>
+287:               <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">l_stack</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)              
+288:               <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span>              
+289:             }
+290:             <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>
+291:             <span class="ruby-identifier">outfile_counter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+292:             <span class="ruby-identifier">sent_stack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+293:           <span class="ruby-keyword kw">end</span>
+294:         
+295:         <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># for any other line</span>
+296:           <span class="ruby-identifier">line_stack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+297:         <span class="ruby-keyword kw">end</span>
+298:       <span class="ruby-keyword kw">end</span>
+299:       <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">close</span>
+300:     }
+301:     <span class="ruby-comment cmt"># the last remaining sentences</span>
+302:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sent_stack</span>.<span class="ruby-identifier">empty?</span>
+303:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">outdir</span><span class="ruby-operator">+</span><span class="ruby-identifier">outfile_counter</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;#{suffix}&quot;</span>,<span class="ruby-value str">&quot;w&quot;</span>)
+304:       <span class="ruby-identifier">sent_stack</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">l_stack</span><span class="ruby-operator">|</span>
+305:         <span class="ruby-identifier">l_stack</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+306:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">l_stack</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+307:       }
+308:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>
+309:     <span class="ruby-keyword kw">end</span>
+310:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="stxml-split-dir-method" class="method-detail ">
+				<a name="method-c-stxml_split_dir"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">stxml_split_dir</span><span
+						class="method-args">(input_dir, split_dir, max_sentnum, max_sentlen)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a href="FrprepHelper.html#method-c-stxml_split_dir">stxml_split_dir</a>
+</p>
+<p>
+split SalsaTigerXML files into new files of given length, skipping
+sentences that are too long
+</p>
+<p>
+At the same time, sentences that occur several times (i.e. sentences which
+are  annotated by SALSA for more than one predicate) are compacted into one
+occurrence with combined semantics.
+</p>
+<p>
+assumes that all files in input_dir with  extension .xml are SalsaTigerXMl
+files
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="stxml-split-dir-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 372</span>
+372:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">stxml_split_dir</span>(<span class="ruby-identifier">input_dir</span>, <span class="ruby-comment cmt"># string: input directory with STXML files</span>
+373:                                    <span class="ruby-identifier">split_dir</span>, <span class="ruby-comment cmt"># string: output directory</span>
+374:                                    <span class="ruby-identifier">max_sentnum</span>, <span class="ruby-comment cmt"># integer: max num of sentences per file</span>
+375:                                    <span class="ruby-identifier">max_sentlen</span>) <span class="ruby-comment cmt"># integer: max num of terminals per sentence</span>
+376:     
+377:     <span class="ruby-identifier">filenames</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">input_dir</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;*.xml&quot;</span>].<span class="ruby-identifier">to_a</span>
+378:     
+379:     <span class="ruby-identifier">graph_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># for each sentence id, keep &lt;s...&lt;/graph&gt;</span>
+380:     <span class="ruby-identifier">frame_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># for each sentence id , keep the &lt;frame...  &lt;/frame&gt; string</span>
+381:     <span class="ruby-identifier">uspfes_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># for each sentence id, keep the uspfes stuff</span>
+382:     <span class="ruby-identifier">uspframes_hash</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># for each sentence id, keep the uspframes stuff</span>
+383: 
+384:     <span class="ruby-comment cmt">########################</span>
+385:     <span class="ruby-comment cmt"># Traverse of file(s): compute an index of all frames for each sentence, with unique identifiers </span>
+386:     
+387:     <span class="ruby-identifier">filenames</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+388:       
+389:       <span class="ruby-identifier">infile</span> = <span class="ruby-constant">FilePartsParser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>)      
+390:       <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">scan_s</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">sent_str</span><span class="ruby-operator">|</span>
+391:         
+392:         <span class="ruby-identifier">sentlen</span> = <span class="ruby-value">0</span>
+393:         <span class="ruby-identifier">sent_str</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;\n&quot;</span>).<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/&lt;t\s/</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">occ</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sentlen</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>}
+394:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sentlen</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">max_sentlen</span>
+395:           <span class="ruby-identifier">sent</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_str</span>)
+396:           <span class="ruby-comment cmt"># revisit handling of long sentences</span>
+397:           <span class="ruby-comment cmt"># $stderr.puts &quot;I would have skipped overly long sentence &quot; + sent.attributes[&quot;id&quot;]+&quot; but Sebastian forbade me.&quot;.to_s          </span>
+398:           <span class="ruby-comment cmt"># next</span>
+399:         <span class="ruby-keyword kw">end</span>
+400: 
+401:         <span class="ruby-comment cmt"># substitute old frame identifiers with new, unique ones</span>
+402:         
+403:         <span class="ruby-comment cmt"># problem: we may have several frames per sentence, and need to keep track of them</span>
+404:         <span class="ruby-comment cmt"># if we rename etc sxx_f1 to sxx_f2 and there is already a sxx_f2, then</span>
+405:         <span class="ruby-comment cmt"># we cannot distinguish between these frames </span>
+406:         
+407:         <span class="ruby-comment cmt"># therefore, we substitute temporary identifiers until we have substituted </span>
+408:         <span class="ruby-comment cmt"># all ids with temporary ones, and re-substitute final ones at the end.</span>
+409:         
+410:         <span class="ruby-identifier">this_frames</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+411:         
+412:         <span class="ruby-identifier">temp_subs</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+413:         <span class="ruby-identifier">final_subs</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+414:         
+415:         <span class="ruby-identifier">sent</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_str</span>)
+416:         <span class="ruby-identifier">sentid</span> = <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;id&quot;</span>].<span class="ruby-identifier">to_s</span>
+417:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sentid</span>.<span class="ruby-identifier">nil?</span>
+418:           <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;[frprep] Warning: cannot find sentence id, skipping sentence:&quot;</span>
+419:           <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">sent_str</span>
+420:           <span class="ruby-comment cmt"># strange sentence, no ID? skip</span>
+421:           <span class="ruby-keyword kw">next</span>
+422:         <span class="ruby-keyword kw">end</span>
+423:         
+424:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">frame_hash</span>.<span class="ruby-identifier">key?</span> <span class="ruby-identifier">sentid</span>
+425:           <span class="ruby-identifier">frame_hash</span>[<span class="ruby-identifier">sentid</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>      
+426:           <span class="ruby-identifier">uspfes_hash</span>[<span class="ruby-identifier">sentid</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+427:           <span class="ruby-identifier">uspframes_hash</span>[<span class="ruby-identifier">sentid</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+428:         <span class="ruby-keyword kw">end</span>
+429:         
+430:         <span class="ruby-comment cmt"># find everything up to and including the graph</span>
+431:         <span class="ruby-identifier">sent_children</span> = <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">children_and_text</span>()
+432:         <span class="ruby-identifier">graph</span> = <span class="ruby-identifier">sent_children</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;graph&quot;</span> }
+433:         <span class="ruby-identifier">graph_hash</span>[<span class="ruby-identifier">sentid</span>] = <span class="ruby-value str">&quot;&lt;s &quot;</span> <span class="ruby-operator">+</span> 
+434:                                <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">at</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{at}=\'#{val}\'&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-operator">+</span>
+435:                                <span class="ruby-value str">&quot;&gt;&quot;</span> <span class="ruby-operator">+</span> 
+436:                                <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">to_s</span>
+437:         
+438:         <span class="ruby-comment cmt"># find the usp block</span>
+439:         
+440:         <span class="ruby-identifier">sem</span> = <span class="ruby-identifier">sent_children</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;sem&quot;</span>}
+441:         <span class="ruby-identifier">usp</span> = <span class="ruby-value str">&quot;&quot;</span>
+442:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sem</span>
+443:           <span class="ruby-identifier">usp</span> = <span class="ruby-identifier">sem</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;usp&quot;</span> }
+444:           <span class="ruby-identifier">usp</span> = <span class="ruby-identifier">usp</span>.<span class="ruby-identifier">to_s</span>
+445:         <span class="ruby-keyword kw">end</span>
+446:         
+447:         <span class="ruby-comment cmt"># find all frames</span>
+448:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sem</span>
+449:           <span class="ruby-identifier">frames</span> = <span class="ruby-identifier">sem</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;frames&quot;</span> }
+450:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frames</span>
+451:             <span class="ruby-identifier">frames</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">frame</span><span class="ruby-operator">|</span>
+452:               <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;frame&quot;</span>
+453:                 <span class="ruby-keyword kw">next</span>
+454:               <span class="ruby-keyword kw">end</span>
+455:               <span class="ruby-identifier">frameid</span> = <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;id&quot;</span>]
+456:               
+457:               <span class="ruby-identifier">temp_frameid</span> = <span class="ruby-node">&quot;#{sentid}_temp_f#{frame_hash[sentid].length+this_frames.length+1}&quot;</span>
+458:               <span class="ruby-identifier">final_frameid</span> = <span class="ruby-node">&quot;#{sentid}_f#{frame_hash[sentid].length+this_frames.length+1}&quot;</span>
+459:               
+460:               <span class="ruby-identifier">temp_subs</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">frameid</span>,<span class="ruby-identifier">temp_frameid</span>]
+461:               <span class="ruby-identifier">final_subs</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">temp_frameid</span>,<span class="ruby-identifier">final_frameid</span>]
+462:               
+463:               <span class="ruby-identifier">this_frames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">to_s</span>
+464:             }
+465:           <span class="ruby-keyword kw">end</span>
+466:         <span class="ruby-keyword kw">end</span>
+467:         
+468:         <span class="ruby-comment cmt"># now first rename all the frames to temporary names</span>
+469:         
+470:         <span class="ruby-identifier">temp_subs</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">orig_frameid</span>, <span class="ruby-identifier">temp_frameid</span><span class="ruby-operator">|</span>
+471:           <span class="ruby-identifier">this_frames</span>.<span class="ruby-identifier">map!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">frame_str</span><span class="ruby-operator">|</span>
+472:         <span class="ruby-comment cmt">#print &quot;orig &quot;, orig_frameid, &quot; temp &quot;, temp_frameid, &quot;\n&quot;</span>
+473:             <span class="ruby-identifier">frame_str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">orig_frameid</span>,<span class="ruby-identifier">temp_frameid</span>)
+474:           }
+475:       
+476:           <span class="ruby-identifier">usp</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">orig_frameid</span>,<span class="ruby-identifier">temp_frameid</span>)
+477:         }
+478:         
+479:         <span class="ruby-comment cmt"># and re-rename the temporary names</span>
+480:         
+481:         <span class="ruby-identifier">final_subs</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">temp_frameid</span>, <span class="ruby-identifier">final_frameid</span><span class="ruby-operator">|</span>
+482:           <span class="ruby-identifier">this_frames</span>.<span class="ruby-identifier">map!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">frame_str</span><span class="ruby-operator">|</span>
+483:             <span class="ruby-identifier">frame_str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">temp_frameid</span>,<span class="ruby-identifier">final_frameid</span>)
+484:           }
+485:           <span class="ruby-identifier">usp</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">temp_frameid</span>, <span class="ruby-identifier">final_frameid</span>)
+486:         }
+487:         
+488:         <span class="ruby-comment cmt"># store frames in data structure</span>
+489:         <span class="ruby-identifier">this_frames</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">frame_str</span><span class="ruby-operator">|</span>
+490:           <span class="ruby-identifier">frame_hash</span>[<span class="ruby-identifier">sentid</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">frame_str</span>
+491:         }
+492:         
+493:         <span class="ruby-comment cmt"># store uspfes in data structure</span>
+494:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">usp</span>.<span class="ruby-identifier">empty?</span>
+495:           <span class="ruby-identifier">usp_elt</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">usp</span>)
+496:           <span class="ruby-identifier">uspfes</span> = <span class="ruby-identifier">usp_elt</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;uspfes&quot;</span> }
+497:           <span class="ruby-identifier">uspfes</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+498:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;uspblock&quot;</span>
+499:               <span class="ruby-keyword kw">next</span>
+500:             <span class="ruby-keyword kw">end</span>
+501:             <span class="ruby-identifier">uspfes_hash</span>[<span class="ruby-identifier">sentid</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_s</span>
+502:           }
+503:         
+504:           <span class="ruby-comment cmt"># store uspframes in data structure</span>
+505:           <span class="ruby-identifier">uspframes</span> = <span class="ruby-identifier">usp_elt</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;uspframes&quot;</span> }
+506:           <span class="ruby-identifier">uspframes</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+507:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;uspblock&quot;</span>
+508:               <span class="ruby-keyword kw">next</span>
+509:             <span class="ruby-keyword kw">end</span>
+510:             <span class="ruby-identifier">uspframes_hash</span>[<span class="ruby-identifier">sentid</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_s</span>
+511:           }
+512:         <span class="ruby-keyword kw">end</span>
+513:       }
+514:     }
+515: 
+516:     <span class="ruby-comment cmt"># now write everything in the data structure back to a file</span>
+517:     
+518:     <span class="ruby-identifier">filecounter</span> = <span class="ruby-value">0</span>
+519:     <span class="ruby-identifier">sentcounter</span> = <span class="ruby-value">0</span>
+520:     <span class="ruby-identifier">outfile</span> = <span class="ruby-keyword kw">nil</span>
+521:     <span class="ruby-identifier">sent_stack</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+522:         
+523:     <span class="ruby-identifier">graph_hash</span>.<span class="ruby-identifier">sort</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span>}.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">sentid</span>,<span class="ruby-identifier">graph_str</span><span class="ruby-operator">|</span>
+524:       
+525:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sentcounter</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">max_sentnum</span>
+526:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">get_footer</span>
+527:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>
+528:         <span class="ruby-identifier">outfile</span> = <span class="ruby-keyword kw">nil</span>
+529:       <span class="ruby-keyword kw">end</span>
+530:       
+531:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">outfile</span>
+532:         <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">split_dir</span><span class="ruby-operator">+</span><span class="ruby-identifier">filecounter</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;.xml&quot;</span>,<span class="ruby-value str">&quot;w&quot;</span>)
+533:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">get_header</span>    
+534:         <span class="ruby-identifier">filecounter</span> <span class="ruby-operator">+=</span><span class="ruby-value">1</span>
+535:         <span class="ruby-identifier">sentcounter</span> = <span class="ruby-value">0</span>
+536:       <span class="ruby-keyword kw">end</span>
+537:             
+538:       <span class="ruby-identifier">xml</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+539:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">graph_str</span>
+540:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;sem&gt;&quot;</span>
+541:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;globals&gt;&quot;</span>
+542:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/globals&gt;&quot;</span>
+543:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;frames&gt;&quot;</span>
+544:       <span class="ruby-identifier">frame_hash</span>[<span class="ruby-identifier">sentid</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">frame_str</span><span class="ruby-operator">|</span>
+545:         <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">frame_str</span>
+546:       }
+547:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/frames&gt;&quot;</span>
+548:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;usp&gt;&quot;</span>
+549:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;uspframes&gt;&quot;</span>
+550:       <span class="ruby-identifier">uspframes_hash</span>[<span class="ruby-identifier">sentid</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">uspblock_str</span><span class="ruby-operator">|</span>
+551:         <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">uspblock_str</span>
+552:       }
+553:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/uspframes&gt;&quot;</span>
+554:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;uspfes&gt;&quot;</span>
+555:       <span class="ruby-identifier">uspfes_hash</span>[<span class="ruby-identifier">sentid</span>].<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">uspblock_str</span><span class="ruby-operator">|</span>
+556:         <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">uspblock_str</span>
+557:       }
+558:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/uspfes&gt;&quot;</span>
+559:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/usp&gt;&quot;</span>
+560:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/sem&gt;&quot;</span>
+561:       <span class="ruby-identifier">xml</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&lt;/s&gt;&quot;</span>
+562:       
+563:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+564:       <span class="ruby-identifier">sentcounter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+565:     }
+566:     
+567:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">outfile</span> 
+568:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">get_footer</span>
+569:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>
+570:       <span class="ruby-identifier">outfile</span> = <span class="ruby-keyword kw">nil</span>
+571:     <span class="ruby-keyword kw">end</span>   
+572:     
+573:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="stxml-to-tab-file-method" class="method-detail ">
+				<a name="method-c-stxml_to_tab_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">stxml_to_tab_file</span><span
+						class="method-args">(input_filename, output_filename, exp)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+transform SalsaTigerXML file to Tab format file
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="stxml-to-tab-file-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 578</span>
+578:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">stxml_to_tab_file</span>(<span class="ruby-identifier">input_filename</span>,   <span class="ruby-comment cmt"># string: name of input file</span>
+579:                                      <span class="ruby-identifier">output_filename</span>,  <span class="ruby-comment cmt"># string: name of output file</span>
+580:                                      <span class="ruby-identifier">exp</span>)              <span class="ruby-comment cmt"># FrprepConfigData</span>
+581:     <span class="ruby-identifier">infile</span> = <span class="ruby-constant">FilePartsParser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input_filename</span>)
+582:     <span class="ruby-keyword kw">begin</span>
+583:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">output_filename</span>,<span class="ruby-value str">&quot;w&quot;</span>)
+584:     <span class="ruby-keyword kw">rescue</span>
+585:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Stxml to tab: could not write to tab file #{output_filename}&quot;</span>
+586:     <span class="ruby-keyword kw">end</span>
+587: 
+588:     <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">scan_s</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">sent_string</span><span class="ruby-operator">|</span>        
+589: 
+590:       <span class="ruby-comment cmt"># determine sentence ID</span>
+591:       <span class="ruby-identifier">sentid</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>).<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;id&quot;</span>]
+592:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sentid</span>
+593:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;No sentence ID in sentence:\n &quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">sent_string</span>
+594:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Making a new one up.&quot;</span>
+595:         <span class="ruby-identifier">sentid</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>().<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">to_s</span>
+596:       <span class="ruby-keyword kw">end</span>
+597: 
+598:       <span class="ruby-comment cmt"># find terminals and process them</span>
+599:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sent_string</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;\n&quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/&lt;terminals[ &gt;].+&lt;\/terminals&gt;/</span>
+600:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: could not find terminals in sentence:&quot;</span>
+601:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">sent_string</span>
+602:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping&quot;</span>
+603:         <span class="ruby-keyword kw">next</span>
+604:       <span class="ruby-keyword kw">end</span>
+605: 
+606:         <span class="ruby-comment cmt"># modified by ines, 27/08/08</span>
+607:         <span class="ruby-comment cmt"># for Berkeley =&gt; convert ( ) to -LRB- -RRB-</span>
+608:        
+609:         <span class="ruby-identifier">text</span> = <span class="ruby-node">$&amp;</span>
+610:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;parser&quot;</span>) <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;berkeley&quot;</span>
+611:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/word='\('/</span>, <span class="ruby-value str">&quot;word='*LRB*'&quot;</span>)
+612:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/word='\)'/</span>, <span class="ruby-value str">&quot;word='*RRB*'&quot;</span>)
+613:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/word=['&quot;]``['&quot;]/</span>, <span class="ruby-value str">&quot;word='\&quot;'&quot;</span>)
+614:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/word=['&quot;]''['&quot;]/</span>,  <span class="ruby-value str">&quot;word='\&quot;'&quot;</span>)
+615:           <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/word=['&quot;]\&amp;apos;\&amp;apos;['&quot;]/</span>,  <span class="ruby-value str">&quot;word='\&quot;'&quot;</span>)
+616:           <span class="ruby-comment cmt">#text.gsub!(/word=['&quot;]\(['&quot;]/,  &quot;word='-LRB-'&quot;)</span>
+617:           <span class="ruby-comment cmt">#text.gsub!(/word=['&quot;]\)['&quot;]/,  &quot;word='-RRB-'&quot;)</span>
+618: 
+619:         <span class="ruby-keyword kw">end</span>
+620:       <span class="ruby-identifier">terminals</span> = <span class="ruby-identifier">text</span>
+621:       <span class="ruby-comment cmt">#terminals = sent_string</span>
+622:       <span class="ruby-identifier">terminals</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">terminals</span>)
+623:       <span class="ruby-identifier">terminals</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">terminal</span><span class="ruby-operator">|</span>
+624:  
+625:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">terminal</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;t&quot;</span>
+626:           <span class="ruby-comment cmt"># not a terminal after all</span>
+627:           <span class="ruby-keyword kw">next</span>
+628:         <span class="ruby-keyword kw">end</span>
+629:   
+630: 
+631:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">FNTabFormatFile</span>.<span class="ruby-identifier">format_str</span>({
+632:                                                   <span class="ruby-value str">&quot;word&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">terminal</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-value str">&quot;word&quot;</span>]),
+633:                                                   <span class="ruby-value str">&quot;sent_id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">sentid</span>
+634:                                                 })
+635:       } <span class="ruby-comment cmt"># each terminal</span>
+636:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span>
+637:     } <span class="ruby-comment cmt"># each sentence</span>
+638:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>
+639:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="to-utf-file-method" class="method-detail ">
+				<a name="method-c-to_utf8_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_utf8_file</span><span
+						class="method-args">(input_filename, output_filename, encoding)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+transform a file to UTF-8 from a given encoding
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="to-utf-file-source">
+<pre>
+    <span class="ruby-comment cmt"># File Pkg/FrprepHelper.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FrprepHelper</span>.<span class="ruby-identifier">to_utf8_file</span>(<span class="ruby-identifier">input_filename</span>, <span class="ruby-comment cmt"># string: name of input file</span>
+21:                            <span class="ruby-identifier">output_filename</span>, <span class="ruby-comment cmt"># string: name of output file</span>
+22:                            <span class="ruby-identifier">encoding</span>) <span class="ruby-comment cmt"># string: &quot;iso&quot;, &quot;hex&quot;</span>
+23:     <span class="ruby-keyword kw">begin</span>
+24:       <span class="ruby-identifier">infile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">input_filename</span>)
+25:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">output_filename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+26:     <span class="ruby-keyword kw">rescue</span>
+27:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not read #{input_filename}, or could not write to #{output_filename}.&quot;</span>
+28:     <span class="ruby-keyword kw">end</span>
+29: 
+30:     <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">gets</span>())
+31:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">encoding</span>
+32:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;iso&quot;</span>
+33:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">UtfIso</span>.<span class="ruby-identifier">from_iso_8859_1</span>(<span class="ruby-identifier">line</span>)
+34:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;hex&quot;</span>
+35:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-constant">UtfIso</span>.<span class="ruby-identifier">from_iso_8859_1</span>(<span class="ruby-constant">Ampersand</span>.<span class="ruby-identifier">hex_to_iso</span>(<span class="ruby-identifier">line</span>))
+36:       <span class="ruby-keyword kw">else</span>
+37:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here.&quot;</span>
+38:       <span class="ruby-keyword kw">end</span>
+39:     <span class="ruby-keyword kw">end</span> 
+40:     <span class="ruby-identifier">infile</span>.<span class="ruby-identifier">close</span>()
+41:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">close</span>()
+42:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

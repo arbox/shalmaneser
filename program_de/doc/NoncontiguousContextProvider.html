@@ -1,0 +1,1498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: NoncontiguousContextProvider</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/FredBOWContext_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/FredBOWContext.rb">Pkg/FredBOWContext.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="AbstractContextProvider.html">AbstractContextProvider</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-checksum">#checksum</a></li>
+					
+					<li><a href="#method-i-each_infile">#each_infile</a></li>
+					
+					<li><a href="#method-i-each_unmatched">#each_unmatched</a></li>
+					
+					<li><a href="#method-i-each_window">#each_window</a></li>
+					
+					<li><a href="#method-i-get_stxml_sent">#get_stxml_sent</a></li>
+					
+					<li><a href="#method-i-initialize_match_check">#initialize_match_check</a></li>
+					
+					<li><a href="#method-i-make_index">#make_index</a></li>
+					
+					<li><a href="#method-i-register_matched">#register_matched</a></li>
+					
+					<li><a href="#method-i-remove_files">#remove_files</a></li>
+					
+					<li><a href="#method-i-write_frprep_experiment_file">#write_frprep_experiment_file</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">NoncontiguousContextProvider</h1>
+
+		<div id="description">
+			<pre>
+                                  
+</pre>
+<p>
+NoncontiguousContextProvider: subclass of <a
+href="AbstractContextProvider.html">AbstractContextProvider</a>
+</p>
+<p>
+This class assumes that the input text consists of single sentences drawn
+from a larger corpus. It first constructs an index to the sentences of the
+input text, then reads the larger corpus
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="each-window-method" class="method-detail ">
+				<a name="method-i-each_window"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_window</span><span
+						class="method-args">(dir)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="NoncontiguousContextProvider.html#method-i-each_window">each_window</a>:
+iterator
+</p>
+<p>
+given a directory with Salsa/Tiger XML data, iterate through the data and
+construct an index to the sentences.
+</p>
+<p>
+Then iterate through the larger corpus, yielding contexts.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-window-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 395</span>
+395:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_window</span>(<span class="ruby-identifier">dir</span>) <span class="ruby-comment cmt"># string: directory containing Salsa/Tiger XML data</span>
+396: 
+397:     <span class="ruby-comment cmt"># sanity check: do we know where the larger corpus is?</span>
+398:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;larger_corpus_dir&quot;</span>)
+399:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error: 'noncontiguous_input' has been set in the experiment file&quot;</span>
+400:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;but no location for the larger corpus has been given.&quot;</span>
+401:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Please set 'larger_corpus_dir' in the experiment file&quot;</span>
+402:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;to indicate the larger corpus from which the input corpus sentences are drawn.&quot;</span>
+403:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+404:     <span class="ruby-keyword kw">end</span>
+405: 
+406:     <span class="ruby-comment cmt">##</span>
+407:     <span class="ruby-comment cmt"># remember all sentences from the main corpus</span>
+408:     <span class="ruby-identifier">temptable_obj</span>, <span class="ruby-identifier">sentkeys</span> = <span class="ruby-identifier">make_index</span>(<span class="ruby-identifier">dir</span>)
+409: 
+410:     <span class="ruby-comment cmt">##</span>
+411:     <span class="ruby-comment cmt"># make frprep experiment file</span>
+412:     <span class="ruby-comment cmt"># for lemmatization and POS-tagging of larger corpus files</span>
+413:     <span class="ruby-identifier">tf_exp_frprep</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;fred_bow_context&quot;</span>)
+414:     <span class="ruby-identifier">frprep_in</span>, <span class="ruby-identifier">frprep_out</span>, <span class="ruby-identifier">frprep_dir</span> = <span class="ruby-identifier">write_frprep_experiment_file</span>(<span class="ruby-identifier">tf_exp_frprep</span>)
+415: 
+416:     <span class="ruby-comment cmt">##</span>
+417:     <span class="ruby-comment cmt"># Iterate through the files of the larger corpus,</span>
+418:     <span class="ruby-comment cmt"># check for each sentence whether it is also in the input corpus</span>
+419:     <span class="ruby-comment cmt"># and yield it if it does.</span>
+420:     <span class="ruby-comment cmt"># larger corpus may contain subdirectories</span>
+421:     <span class="ruby-identifier">initialize_match_check</span>()
+422: 
+423:     <span class="ruby-identifier">each_infile</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;larger_corpus_dir&quot;</span>)) { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+424:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Larger corpus: reading #{filename}&quot;</span>
+425: 
+426:       <span class="ruby-comment cmt"># remove previous data from temp directories</span>
+427:       <span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">frprep_in</span>)
+428:       <span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">frprep_out</span>)
+429:       <span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">frprep_dir</span>)
+430: 
+431:       <span class="ruby-comment cmt"># link the input file to input directory for frprep</span>
+432:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">symlink</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">frprep_in</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;infile&quot;</span>)
+433: 
+434:       <span class="ruby-comment cmt"># call frprep</span>
+435:       <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;ruby frprep.rb -e #{tf_exp_frprep.path()}&quot;</span>)
+436:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">retv</span>
+437:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error analyzing #{filename}. Exiting.&quot;</span>
+438:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+439:       <span class="ruby-keyword kw">end</span>
+440:       
+441: 
+442:       <span class="ruby-comment cmt"># read the resulting Tab format file, one sentence at a time:</span>
+443:       <span class="ruby-comment cmt"># - check to see if the checksum of the sentence is in sentkeys </span>
+444:       <span class="ruby-comment cmt">#   (which means it is an input sentence)</span>
+445:       <span class="ruby-comment cmt">#   If it is, retrieve the sentence and determine targets</span>
+446:       <span class="ruby-comment cmt"># - shift the sentence through the context window</span>
+447:       <span class="ruby-comment cmt"># - whenever a target word comes to be in the center of the context window,</span>
+448:       <span class="ruby-comment cmt">#   yield.</span>
+449:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Computing context features from frprep output.&quot;</span>
+450:       <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">frprep_out</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*.tab&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tabfilename</span><span class="ruby-operator">|</span>
+451:         <span class="ruby-identifier">tabfile</span> = <span class="ruby-constant">FNTabFormatFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tabfilename</span>, <span class="ruby-value str">&quot;.pos&quot;</span>, <span class="ruby-value str">&quot;.lemma&quot;</span>)
+452:         <span class="ruby-identifier">tabfile</span>.<span class="ruby-identifier">each_sentence</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">tabsent</span><span class="ruby-operator">|</span>
+453:           
+454:           <span class="ruby-comment cmt"># get as Salsa/Tiger XML sentence, or TabSentence</span>
+455:           <span class="ruby-identifier">sent</span> = <span class="ruby-identifier">get_stxml_sent</span>(<span class="ruby-identifier">tabsent</span>, <span class="ruby-identifier">sentkeys</span>, <span class="ruby-identifier">temptable_obj</span>)
+456: 
+457:           <span class="ruby-comment cmt"># shift sentence through context window</span>
+458:           <span class="ruby-identifier">each_window_for_sent</span>(<span class="ruby-identifier">sent</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span> 
+459:             <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">result</span> 
+460:           }
+461: 
+462:         } <span class="ruby-comment cmt"># each tab sent</span>
+463:       } <span class="ruby-comment cmt"># each tab file</span>
+464:     } <span class="ruby-comment cmt"># each infile from the larger corpus</span>
+465: 
+466:     <span class="ruby-comment cmt"># empty the context array</span>
+467:     <span class="ruby-identifier">each_remaining_target</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">result</span> }
+468:     <span class="ruby-identifier">each_unmatched</span>(<span class="ruby-identifier">sentkeys</span>, <span class="ruby-identifier">temptable_obj</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">result</span> }
+469:     
+470:     <span class="ruby-comment cmt"># remove temporary data</span>
+471:     <span class="ruby-identifier">temptable_obj</span>.<span class="ruby-identifier">drop_temp_table</span>()
+472:     <span class="ruby-node">%{rm -rf #{frprep_in}}</span>
+473:     <span class="ruby-node">%{rm -rf #{frprep_out}}</span>
+474:     <span class="ruby-node">%{rm -rf #{frprep_dir}}</span>
+475:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="checksum-method" class="method-detail ">
+				<a name="method-i-checksum"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">checksum</span><span
+						class="method-args">(words)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+    
+</pre>
+<p>
+compute checksum from the given sentence, and return as string
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="checksum-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 570</span>
+570:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checksum</span>(<span class="ruby-identifier">words</span>) <span class="ruby-comment cmt"># array: string</span>
+571:     <span class="ruby-identifier">string</span> = <span class="ruby-value str">&quot;&quot;</span>
+572: 
+573:     <span class="ruby-comment cmt"># HIER removed sort() after downcase</span>
+574:     <span class="ruby-identifier">words</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span> }.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span>
+575:       <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[^a-z]/</span>, <span class="ruby-value str">&quot;&quot;</span>)
+576:     }
+577:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">MD5</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>).<span class="ruby-identifier">hexdigest</span>
+578:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-infile-method" class="method-detail ">
+				<a name="method-i-each_infile"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_infile</span><span
+						class="method-args">(indir)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+yield each file of the given directory or one of its subdirectories
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-infile-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 583</span>
+583:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_infile</span>(<span class="ruby-identifier">indir</span>)
+584:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">indir</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\/$/</span>
+585:       <span class="ruby-identifier">indir</span> = <span class="ruby-identifier">indir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span>
+586:     <span class="ruby-keyword kw">end</span>
+587: 
+588:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">indir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+589:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">filename</span>)
+590:         <span class="ruby-keyword kw">yield</span>  <span class="ruby-identifier">filename</span>
+591:       <span class="ruby-keyword kw">end</span>
+592:     }
+593: 
+594:     <span class="ruby-comment cmt"># enter recursion</span>
+595:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">indir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;**&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">subdir</span><span class="ruby-operator">|</span>
+596:       <span class="ruby-comment cmt"># same directory we had before? don't redo</span>
+597:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">indir</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">subdir</span>
+598:         <span class="ruby-keyword kw">next</span>
+599:       <span class="ruby-keyword kw">end</span>
+600: 
+601:       <span class="ruby-keyword kw">begin</span>
+602:         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">subdir</span>).<span class="ruby-identifier">directory?</span> 
+603:           <span class="ruby-keyword kw">next</span>
+604:         <span class="ruby-keyword kw">end</span>
+605:       <span class="ruby-keyword kw">rescue</span>
+606:         <span class="ruby-comment cmt"># no access, I assume</span>
+607:         <span class="ruby-keyword kw">next</span>
+608:       <span class="ruby-keyword kw">end</span>
+609:     
+610:       <span class="ruby-identifier">each_infile</span>(<span class="ruby-identifier">subdir</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">inf</span><span class="ruby-operator">|</span>
+611:         <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">inf</span>
+612:       }
+613:     }
+614:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-unmatched-method" class="method-detail ">
+				<a name="method-i-each_unmatched"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_unmatched</span><span
+						class="method-args">(all_keys, temptable_obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+Call this method after all sentences from the larger corpus have been
+checked against the smaller corpus. This method prints a warning message
+for each sentence from the smaller corpus that has not been matched, and
+yields it in the same format as <a
+href="NoncontiguousContextProvider.html#method-i-each_window">each_window</a>(),
+such that the unmatched sentences can still be processed, but without a
+larger context.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-unmatched-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 818</span>
+818:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_unmatched</span>(<span class="ruby-identifier">all_keys</span>,
+819:                       <span class="ruby-identifier">temptable_obj</span>)
+820: 
+821:     <span class="ruby-identifier">num_unmatched</span> = <span class="ruby-value">0</span>
+822: 
+823:     <span class="ruby-identifier">all_keys</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash_key</span><span class="ruby-operator">|</span>
+824:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@index_matched</span>[<span class="ruby-identifier">hash_key</span>]
+825:         <span class="ruby-comment cmt"># unmatched sentence:</span>
+826: 
+827:         <span class="ruby-identifier">num_unmatched</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+828: 
+829:         <span class="ruby-comment cmt"># retrieve</span>
+830:         <span class="ruby-identifier">query_result</span> = <span class="ruby-identifier">temptable_obj</span>.<span class="ruby-identifier">query</span>(<span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">select</span>([ <span class="ruby-constant">SelectTableAndColumns</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">temptable_obj</span>, [<span class="ruby-value str">&quot;sent&quot;</span>]) ], 
+831:                                                            [ <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;hashkey&quot;</span>, <span class="ruby-identifier">hash_key</span>) ]))
+832: 
+833:         <span class="ruby-comment cmt"># report and yield</span>
+834:         <span class="ruby-identifier">query_result</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+835: 
+836:           <span class="ruby-identifier">sent_string</span> = <span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">unstringify_value</span>(<span class="ruby-identifier">row</span>.<span class="ruby-identifier">first</span>().<span class="ruby-identifier">to_s</span>())
+837:           <span class="ruby-keyword kw">begin</span>
+838:             <span class="ruby-comment cmt"># report on unmatched sentence</span>
+839:             <span class="ruby-identifier">sent</span> = <span class="ruby-constant">SalsaTigerSentence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+840:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Unmatched sentence from noncontiguous input:\n&quot;</span> <span class="ruby-operator">+</span> 
+841:               <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">id</span>().<span class="ruby-identifier">to_s</span>() <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">sent</span>.<span class="ruby-identifier">to_s</span>()
+842: 
+843:             <span class="ruby-comment cmt"># push the sentence through the context window,</span>
+844:             <span class="ruby-comment cmt"># filling it up with &quot;nil&quot;,</span>
+845:             <span class="ruby-comment cmt"># and yield when we reach the target at center position.</span>
+846:             <span class="ruby-identifier">each_window_for_stsent</span>(<span class="ruby-identifier">sent</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">result</span> }
+847:             <span class="ruby-identifier">each_remaining_target</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">result</span> }
+848: 
+849:           <span class="ruby-keyword kw">rescue</span>
+850:             <span class="ruby-comment cmt"># Couldn't turn it into a SalsaTigerSentence object:</span>
+851:             <span class="ruby-comment cmt"># just report, don't yield</span>
+852:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Unmatched sentence from noncontiguous input (raw):\n&quot;</span> <span class="ruby-operator">+</span> 
+853:               <span class="ruby-identifier">sent_string</span>
+854:             <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;ERROR: cannot process this sentence, skipping.&quot;</span>
+855:           <span class="ruby-keyword kw">end</span>
+856:         }
+857:       <span class="ruby-keyword kw">end</span>
+858:     }
+859: 
+860:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unmatched sentences: #{num_unmatched} all in all.&quot;</span>
+861:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-stxml-sent-method" class="method-detail ">
+				<a name="method-i-get_stxml_sent"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_stxml_sent</span><span
+						class="method-args">(tabsent, sentkeys, temptable_obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+get SalsaTigerXML sentence and targets:
+</p>
+<p>
+given a Tab format sentence:
+</p>
+<ul>
+<li><p>
+check whether it is in the table of input sentences. if so, retrieve it.
+</p>
+</li>
+<li><p>
+otherwise, fashion a makeshift <a
+href="SalsaTigerSentence.html">SalsaTigerSentence</a> object from the
+words, lemmas and POS
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="get-stxml-sent-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 732</span>
+732:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_stxml_sent</span>(<span class="ruby-identifier">tabsent</span>,
+733:                      <span class="ruby-identifier">sentkeys</span>,
+734:                      <span class="ruby-identifier">temptable_obj</span>)
+735: 
+736:     <span class="ruby-comment cmt"># SalsaTigerSentence object</span>
+737:     <span class="ruby-identifier">sent</span> = <span class="ruby-keyword kw">nil</span>
+738: 
+739:     <span class="ruby-comment cmt"># make checksum</span>
+740:     <span class="ruby-identifier">words</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+741:     <span class="ruby-identifier">words2</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+742:     <span class="ruby-identifier">tabsent</span>.<span class="ruby-identifier">each_line_parsed</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line_obj</span><span class="ruby-operator">|</span>
+743:       <span class="ruby-identifier">words</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">line_obj</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;word&quot;</span>))
+744:       <span class="ruby-identifier">words2</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line_obj</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;word&quot;</span>)
+745:     }
+746:     <span class="ruby-comment cmt"># $stderr.puts &quot;HIER calling checksum from larger corpus&quot;</span>
+747:     <span class="ruby-identifier">hashkey_this_sentence</span> = <span class="ruby-identifier">checksum</span>(<span class="ruby-identifier">words</span>)
+748: 
+749:     <span class="ruby-comment cmt"># HIER</span>
+750:     <span class="ruby-comment cmt"># $stderr.puts &quot;HIER2 &quot; + words.join(&quot; &quot;)</span>
+751:     <span class="ruby-comment cmt"># $stderr.puts &quot;HIER3 &quot; + words2.join(&quot; &quot;)</span>
+752: 
+753: 
+754:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sentkeys</span>[<span class="ruby-identifier">hashkey_this_sentence</span>]  
+755:       <span class="ruby-comment cmt"># sentence from the input corpus.</span>
+756: 
+757:       <span class="ruby-comment cmt"># register</span>
+758:       <span class="ruby-identifier">register_matched</span>(<span class="ruby-identifier">hashkey_this_sentence</span>)
+759: 
+760: 
+761:       <span class="ruby-comment cmt"># select &quot;sent&quot; columns from temp table</span>
+762:       <span class="ruby-comment cmt"># where &quot;hashkey&quot; == sent_checksum</span>
+763:       <span class="ruby-comment cmt"># returns a DBResult object</span>
+764:       <span class="ruby-identifier">query_result</span> = <span class="ruby-identifier">temptable_obj</span>.<span class="ruby-identifier">query</span>(<span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">select</span>([ <span class="ruby-constant">SelectTableAndColumns</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">temptable_obj</span>, [<span class="ruby-value str">&quot;sent&quot;</span>]) ], 
+765:                                                        [ <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;hashkey&quot;</span>, <span class="ruby-identifier">hashkey_this_sentence</span>) ]))
+766:       <span class="ruby-identifier">query_result</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+767: 
+768:         <span class="ruby-identifier">sent_string</span> = <span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">unstringify_value</span>(<span class="ruby-identifier">row</span>.<span class="ruby-identifier">first</span>().<span class="ruby-identifier">to_s</span>())
+769:         <span class="ruby-keyword kw">begin</span>
+770:           <span class="ruby-identifier">sent</span> = <span class="ruby-constant">SalsaTigerSentence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+771:         <span class="ruby-keyword kw">rescue</span>
+772:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error reading Salsa/Tiger XML sentence.&quot;</span>
+773:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+774:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;SQL-stored sentence was:&quot;</span>
+775:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">first</span>().<span class="ruby-identifier">to_s</span>()
+776:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span>
+777:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;===================&quot;</span>
+778:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;With restored quotes:&quot;</span>
+779:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">sent_string</span>
+780:           <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+781:         <span class="ruby-keyword kw">end</span>
+782:         <span class="ruby-keyword kw">break</span>
+783:       }
+784:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sent</span>
+785:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: could not retrieve input corpus sentence: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">words</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+786:       <span class="ruby-keyword kw">end</span>
+787:     <span class="ruby-keyword kw">end</span>
+788: 
+789:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sent</span>
+790:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sent</span>
+791:     <span class="ruby-keyword kw">else</span>
+792:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">tabsent</span>
+793:     <span class="ruby-keyword kw">end</span>
+794:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="initialize-match-check-method" class="method-detail ">
+				<a name="method-i-initialize_match_check"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">initialize_match_check</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+Keep track of which sentences from the smaller, noncontiguous corpus have
+been matched in the larger corpus
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="initialize-match-check-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 799</span>
+799:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_match_check</span>()
+800:     <span class="ruby-ivar">@index_matched</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+801:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="make-index-method" class="method-detail ">
+				<a name="method-i-make_index"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">make_index</span><span
+						class="method-args">(dir)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+for each sentence of each file in the given directory: remember the
+sentence in a temporary DB, indexed by a hash key computed from the
+plaintext sentence.
+</p>
+<p>
+return: 
+</p>
+<ul>
+<li><p>
+DBTempTable object containing the temporary DB
+</p>
+</li>
+<li><p>
+hash table containing all hash keys
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="make-index-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 488</span>
+488:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">make_index</span>(<span class="ruby-identifier">dir</span>)
+489: 
+490:     <span class="ruby-identifier">space_for_sentstring</span> = <span class="ruby-value">30000</span>
+491:     <span class="ruby-identifier">space_for_hashkey</span> = <span class="ruby-value">500</span>
+492: 
+493:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Indexing input corpus:&quot;</span>
+494: 
+495:     <span class="ruby-comment cmt"># start temporary table</span>
+496:     <span class="ruby-identifier">temptable_obj</span> = <span class="ruby-identifier">get_db_interface</span>(<span class="ruby-ivar">@exp</span>).<span class="ruby-identifier">make_temp_table</span>([
+497:                                                             [<span class="ruby-value str">&quot;hashkey&quot;</span>, <span class="ruby-node">&quot;varchar(#{space_for_hashkey})&quot;</span>], 
+498:                                                             [<span class="ruby-value str">&quot;sent&quot;</span>, <span class="ruby-node">&quot;varchar(#{space_for_sentstring})&quot;</span>]
+499:                                                            ],
+500:                                                            [<span class="ruby-value str">&quot;hashkey&quot;</span>],
+501:                                                            <span class="ruby-value str">&quot;autoinc_index&quot;</span>)
+502:     
+503:     <span class="ruby-comment cmt"># and hash table for the keys</span>
+504:     <span class="ruby-identifier">retv_keys</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+505: 
+506:     <span class="ruby-comment cmt"># iterate through files in the directory,</span>
+507:     <span class="ruby-comment cmt"># make an index for each sentence, and store</span>
+508:     <span class="ruby-comment cmt"># the sentence under that index</span>
+509:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">dir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*.xml&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+510:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\t#{filename}&quot;</span>
+511:       <span class="ruby-identifier">f</span> = <span class="ruby-constant">FilePartsParser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>)
+512:       <span class="ruby-identifier">f</span>.<span class="ruby-identifier">scan_s</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">sent_string</span><span class="ruby-operator">|</span>
+513: 
+514:         <span class="ruby-identifier">xml_obj</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+515: 
+516:         <span class="ruby-comment cmt"># make hash key from words of sentence</span>
+517:         <span class="ruby-identifier">graph</span> = <span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;graph&quot;</span> }
+518:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">graph</span>
+519:           <span class="ruby-keyword kw">next</span> 
+520:         <span class="ruby-keyword kw">end</span>
+521:         <span class="ruby-identifier">terminals</span> = <span class="ruby-identifier">graph</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;terminals&quot;</span> }
+522:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">terminals</span>
+523:           <span class="ruby-keyword kw">next</span>
+524:         <span class="ruby-keyword kw">end</span>
+525:         <span class="ruby-comment cmt"># in making a hash key, use special characters</span>
+526:         <span class="ruby-comment cmt"># rather than their escaped &amp;..; form</span>
+527:         <span class="ruby-comment cmt"># $stderr.puts &quot;HIER calling checksum for noncontig&quot;</span>
+528:         <span class="ruby-identifier">hashkey</span> = <span class="ruby-identifier">checksum</span>(<span class="ruby-identifier">terminals</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>() <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;t&quot;</span> 
+529:                            }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> 
+530:                              <span class="ruby-constant">SalsaTigerXMLHelper</span>.<span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">t</span>.<span class="ruby-identifier">attributes</span>()[<span class="ruby-value str">&quot;word&quot;</span>].<span class="ruby-identifier">to_s</span>() )
+531:                            })
+532:         <span class="ruby-comment cmt"># HIER</span>
+533:         <span class="ruby-comment cmt"># $stderr.puts &quot;HIER &quot; + terminals.children_and_text().select { |c| c.name() == &quot;t&quot;</span>
+534:         <span class="ruby-comment cmt"># }.map { |t| t.attributes()[&quot;word&quot;].to_s() }.join(&quot; &quot;)</span>
+535: 
+536:         <span class="ruby-comment cmt"># sanity check: if the sentence is longer than</span>
+537:         <span class="ruby-comment cmt"># the space currently allotted to sentence strings,</span>
+538:         <span class="ruby-comment cmt"># we won't be able to recover it.</span>
+539:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">stringify_value</span>(<span class="ruby-identifier">hashkey</span>).<span class="ruby-identifier">length</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">space_for_hashkey</span>
+540:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: sentence checksum too long, cannot store it.&quot;</span>
+541:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Max length: #{space_for_hashkey}. &quot;</span>
+542:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Required: #{SQLQuery.stringify_value(hashkey).length()}.&quot;</span>
+543:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping.&quot;</span>
+544:           <span class="ruby-keyword kw">next</span>
+545:         <span class="ruby-keyword kw">end</span>
+546: 
+547:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">stringify_value</span>(<span class="ruby-identifier">sent_string</span>).<span class="ruby-identifier">length</span>() <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">space_for_sentstring</span>
+548:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: sentence too long, cannot store it.&quot;</span>
+549:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;Max length: #{space_for_sentstring}. &quot;</span>
+550:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Required: #{SQLQuery.stringify_value(sent_string).length()}.&quot;</span>
+551:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Skipping.&quot;</span>
+552:           <span class="ruby-keyword kw">next</span>
+553:         <span class="ruby-keyword kw">end</span>
+554: 
+555:         <span class="ruby-comment cmt"># store</span>
+556:         <span class="ruby-identifier">temptable_obj</span>.<span class="ruby-identifier">query_noretv</span>(<span class="ruby-constant">SQLQuery</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">temptable_obj</span>.<span class="ruby-identifier">table_name</span>,
+557:                                                    [[<span class="ruby-value str">&quot;hashkey&quot;</span>, <span class="ruby-identifier">hashkey</span>],
+558:                                                     [<span class="ruby-value str">&quot;sent&quot;</span>, <span class="ruby-identifier">sent_string</span>]]))
+559:         <span class="ruby-identifier">retv_keys</span>[<span class="ruby-identifier">hashkey</span>] = <span class="ruby-keyword kw">true</span>
+560:       }
+561:     }    
+562:     <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Indexing finished.&quot;</span>
+563: 
+564:     <span class="ruby-keyword kw">return</span> [ <span class="ruby-identifier">temptable_obj</span>, <span class="ruby-identifier">retv_keys</span> ]
+565:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="register-matched-method" class="method-detail ">
+				<a name="method-i-register_matched"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">register_matched</span><span
+						class="method-args">(hash_key)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+Record a sentence from the smaller, noncontiguous corpus as matched in the
+larger corpus
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="register-matched-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 806</span>
+806:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_matched</span>(<span class="ruby-identifier">hash_key</span>)
+807:     <span class="ruby-ivar">@index_matched</span>[<span class="ruby-identifier">hash_key</span>] = <span class="ruby-keyword kw">true</span>
+808:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-files-method" class="method-detail ">
+				<a name="method-i-remove_files"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_files</span><span
+						class="method-args">(indir)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+remove files: remove all files and subdirectories in the given directory
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="remove-files-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 618</span>
+618:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">indir</span>)
+619:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">indir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;*&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+620:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">filename</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">symlink?</span>(<span class="ruby-identifier">filename</span>)
+621:         <span class="ruby-identifier">retv</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">filename</span>)
+622:       <span class="ruby-keyword kw">end</span>
+623:     }
+624: 
+625:     <span class="ruby-comment cmt"># enter recursion</span>
+626:     <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">indir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;**&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">subdir</span><span class="ruby-operator">|</span>
+627:       <span class="ruby-comment cmt"># same directory we had before? don't redo</span>
+628:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">indir</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">subdir</span>
+629:         <span class="ruby-keyword kw">next</span>
+630:       <span class="ruby-keyword kw">end</span>
+631: 
+632:       <span class="ruby-keyword kw">begin</span>
+633:         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">subdir</span>).<span class="ruby-identifier">directory?</span> 
+634:           <span class="ruby-keyword kw">next</span>
+635:         <span class="ruby-keyword kw">end</span>
+636:       <span class="ruby-keyword kw">rescue</span>
+637:         <span class="ruby-comment cmt"># no access, I assume</span>
+638:         <span class="ruby-keyword kw">next</span>
+639:       <span class="ruby-keyword kw">end</span>
+640:     
+641:       <span class="ruby-comment cmt"># subdir must end in slash</span>
+642:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">subdir</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\/$/</span>
+643:         <span class="ruby-identifier">subdir</span> = <span class="ruby-identifier">subdir</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;/&quot;</span>
+644:       <span class="ruby-keyword kw">end</span>
+645:       <span class="ruby-comment cmt"># and enter recursion</span>
+646:       <span class="ruby-identifier">remove_files</span>(<span class="ruby-identifier">subdir</span>)
+647:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">rm_f</span>(<span class="ruby-identifier">subdir</span>)
+648:     }
+649:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="write-frprep-experiment-file-method" class="method-detail ">
+				<a name="method-i-write_frprep_experiment_file"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">write_frprep_experiment_file</span><span
+						class="method-args">(tf_exp_frprep)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="write-frprep-experiment-file-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/FredBOWContext.rb, line 651</span>
+651:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_frprep_experiment_file</span>(<span class="ruby-identifier">tf_exp_frprep</span>) <span class="ruby-comment cmt"># Tempfile object</span>
+652: 
+653:     <span class="ruby-comment cmt"># make unique experiment ID</span>
+654:     <span class="ruby-identifier">experiment_id</span> = <span class="ruby-value str">&quot;larger_corpus&quot;</span>
+655:     <span class="ruby-comment cmt"># input and output directory for frprep</span>
+656:     <span class="ruby-identifier">frprep_in</span> = <span class="ruby-identifier">fred_dirname</span>(<span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;temp&quot;</span>, <span class="ruby-value str">&quot;in&quot;</span>, <span class="ruby-value str">&quot;new&quot;</span>)
+657:     <span class="ruby-identifier">frprep_out</span> = <span class="ruby-identifier">fred_dirname</span>(<span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;temp&quot;</span>, <span class="ruby-value str">&quot;out&quot;</span>, <span class="ruby-value str">&quot;new&quot;</span>)
+658:     <span class="ruby-identifier">frprep_dir</span> = <span class="ruby-identifier">fred_dirname</span>(<span class="ruby-ivar">@exp</span>, <span class="ruby-value str">&quot;temp&quot;</span>, <span class="ruby-value str">&quot;frprep&quot;</span>, <span class="ruby-value str">&quot;new&quot;</span>)
+659: 
+660:     <span class="ruby-comment cmt"># write file:</span>
+661: 
+662:     <span class="ruby-comment cmt"># experiment ID and directories</span>
+663:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;prep_experiment_ID = #{experiment_id}&quot;</span>
+664:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;directory_input = #{frprep_in}&quot;</span>
+665:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;directory_preprocessed = #{frprep_out}&quot;</span>
+666:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;frprep_directory = #{frprep_dir}&quot;</span>
+667: 
+668:     <span class="ruby-comment cmt"># output format: tab</span>
+669:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;tabformat_output = true&quot;</span>
+670: 
+671:     <span class="ruby-comment cmt"># corpus description: language, format, encoding</span>
+672:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;language&quot;</span>)
+673:       <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;language = #{@exp.get(&quot;language&quot;)}&quot;</span>
+674:     <span class="ruby-keyword kw">end</span>
+675:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;larger_corpus_format&quot;</span>)
+676:       <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;format = #{@exp.get(&quot;larger_corpus_format&quot;)}&quot;</span>
+677:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;format&quot;</span>)
+678:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: 'larger_corpus_format' not set in experiment file,&quot;</span>
+679:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;using 'format' setting of frprep experiment file instead.&quot;</span>
+680:       <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;format = #{@exp.get(&quot;format&quot;)}&quot;</span>
+681:     <span class="ruby-keyword kw">else</span>
+682:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: 'larger_corpus_format' not set in experiment file,&quot;</span>
+683:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;relying on default setting.&quot;</span>
+684:     <span class="ruby-keyword kw">end</span>
+685:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;larger_corpus_encoding&quot;</span>)
+686:       <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;encoding = #{@exp.get(&quot;larger_corpus_encoding&quot;)}&quot;</span>
+687:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;encoding&quot;</span>)
+688:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: 'larger_corpus_encoding' not set in experiment file,&quot;</span>
+689:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;using 'encoding' setting of frprep experiment file instead.&quot;</span>
+690:       <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;encoding = #{@exp.get(&quot;encoding&quot;)}&quot;</span>
+691:     <span class="ruby-keyword kw">else</span>
+692:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: 'larger_corpus_encoding' not set in experiment file,&quot;</span>
+693:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;relying on default setting.&quot;</span>
+694:     <span class="ruby-keyword kw">end</span>
+695: 
+696:     <span class="ruby-comment cmt"># processing: lemmatization, POS tagging, no parsing</span>
+697:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;do_lemmatize = true&quot;</span>
+698:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;do_postag = true&quot;</span>
+699:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;do_parse = false&quot;</span>
+700: 
+701:     <span class="ruby-comment cmt"># lemmatizer and POS tagger settings:</span>
+702:     <span class="ruby-comment cmt"># take verbatim from frprep file</span>
+703:     <span class="ruby-keyword kw">begin</span>
+704:       <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;preproc_descr_file_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@dataset</span>))
+705:     <span class="ruby-keyword kw">rescue</span>
+706:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Error: could not read frprep experiment file #{@exp.get(&quot;preproc_descr_file_&quot; + @dataset)}&quot;</span>
+707:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+708:     <span class="ruby-keyword kw">end</span>
+709:     <span class="ruby-identifier">f</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+710:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/pos_tagger\s*=/</span> <span class="ruby-keyword kw">or</span>
+711:           <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/pos_tagger_path\s*=/</span> <span class="ruby-keyword kw">or</span>
+712:           <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/lemmatizer\s*=/</span> <span class="ruby-keyword kw">or</span>
+713:           <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/lemmatizer_path\s*=/</span>
+714: 
+715:         <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
+716:       <span class="ruby-keyword kw">end</span>
+717:     }
+718:     <span class="ruby-comment cmt"># finalize frprep experiment file</span>
+719:     <span class="ruby-identifier">tf_exp_frprep</span>.<span class="ruby-identifier">close</span>()
+720: 
+721:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">frprep_in</span>, <span class="ruby-identifier">frprep_out</span>, <span class="ruby-identifier">frprep_dir</span>]
+722:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

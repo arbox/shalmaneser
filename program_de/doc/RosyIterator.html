@@ -1,0 +1,1436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: RosyIterator</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./Pkg/RosyIterator_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="Pkg/RosyIterator.rb">Pkg/RosyIterator.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-each_group">#each_group</a></li>
+					
+					<li><a href="#method-i-get_a_view">#get_a_view</a></li>
+					
+					<li><a href="#method-i-get_a_view_aux">#get_a_view_aux</a></li>
+					
+					<li><a href="#method-i-get_a_view_for_current_group">#get_a_view_for_current_group</a></li>
+					
+					<li><a href="#method-i-get_a_view_for_group">#get_a_view_for_group</a></li>
+					
+					<li><a href="#method-i-get_xwise_column_names">#get_xwise_column_names</a></li>
+					
+					<li><a href="#method-i-num_groups">#num_groups</a></li>
+					
+					<li><a href="#method-i-separate_into_1st_and_2nd_table_cols">#separate_into_1st_and_2nd_table_cols</a></li>
+					
+					<li><a href="#method-i-unique_values_of_columns">#unique_values_of_columns</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">RosyIterator</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(ttt_obj, exp, dataset, var_hash = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+new
+</p>
+<p>
+open the correct database table,  initialize Dynamic Gold objects
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 44</span>
+ 44:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">ttt_obj</span>, <span class="ruby-comment cmt"># RosyTrainingTestTable object </span>
+ 45:                  <span class="ruby-identifier">exp</span>,     <span class="ruby-comment cmt"># RosyConfigData object: experiment file</span>
+ 46:                  <span class="ruby-identifier">dataset</span>, <span class="ruby-comment cmt"># string: train/test</span>
+ 47:                  <span class="ruby-identifier">var_hash</span> = {}) <span class="ruby-comment cmt"># further arguments:</span>
+ 48:     <span class="ruby-comment cmt"># step: string: argrec/arglab/onestep, or nil (= no manipulation of the view)</span>
+ 49:     <span class="ruby-comment cmt"># testID: string: ID of test set, or nil</span>
+ 50:     <span class="ruby-comment cmt"># splitID string: splitlog ID, or nil if no split is to be used</span>
+ 51:     <span class="ruby-comment cmt"># xwise: string: containing any subset of frame/target_pos/target joined by spaces,</span>
+ 52:     <span class="ruby-comment cmt">#                overrides @exp.get(&quot;xwise_&quot; + @step) if non-nil</span>
+ 53:     <span class="ruby-comment cmt"># prune: boolean: if pruning has been chosen in the experiment file,</span>
+ 54:     <span class="ruby-comment cmt">#                make a value restriction that omits pruned instances</span>
+ 55: 
+ 56:     <span class="ruby-ivar">@exp</span> = <span class="ruby-identifier">exp</span>
+ 57:     <span class="ruby-ivar">@dataset</span> = <span class="ruby-identifier">dataset</span>
+ 58:     <span class="ruby-ivar">@ttt_obj</span> = <span class="ruby-identifier">ttt_obj</span>
+ 59:     <span class="ruby-ivar">@splitID</span> = <span class="ruby-identifier">var_hash</span>[<span class="ruby-value str">&quot;splitID&quot;</span>]
+ 60:     <span class="ruby-ivar">@step</span> = <span class="ruby-identifier">var_hash</span>[<span class="ruby-value str">&quot;step&quot;</span>]
+ 61:     <span class="ruby-ivar">@testID</span> = <span class="ruby-identifier">var_hash</span>[<span class="ruby-value str">&quot;testID&quot;</span>]
+ 62:     
+ 63:     <span class="ruby-comment cmt"># object variables we are going to use below</span>
+ 64:     <span class="ruby-ivar">@db_table</span> = <span class="ruby-keyword kw">nil</span>  <span class="ruby-comment cmt"># DB table we are working on</span>
+ 65:     <span class="ruby-ivar">@allcolnames</span> = <span class="ruby-keyword kw">nil</span>   <span class="ruby-comment cmt"># names of all columns of first and potentially second table</span>
+ 66: 
+ 67:     <span class="ruby-ivar">@dyn_gold_objects</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># list of dynamic gold-producing object</span>
+ 68:     <span class="ruby-ivar">@standard_dyngold_id</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># ID of standard dyngold obj to use</span>
+ 69: 
+ 70:     <span class="ruby-ivar">@standard_value_restrictions</span> = [] <span class="ruby-comment cmt">#value restrictions to use with each view</span>
+ 71: 
+ 72:     <span class="ruby-ivar">@second_table</span> = <span class="ruby-keyword kw">nil</span>      <span class="ruby-comment cmt"># read view from 2 tables? if so, DBTable object for 2nd table</span>
+ 73:     <span class="ruby-ivar">@use_cols_from_second_table</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># array: names of columns from 2nd table</span>
+ 74:     <span class="ruby-ivar">@second_table_colprefix</span> = <span class="ruby-keyword kw">nil</span>     <span class="ruby-comment cmt"># string: prefix for columns from 2nd table</span>
+ 75: 
+ 76:     <span class="ruby-ivar">@xwise</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># array: read data one X at a time (forms groups)</span>
+ 77:     <span class="ruby-ivar">@groups</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># distinct values for X from xwise</span>
+ 78:     <span class="ruby-ivar">@current_group</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># current group (will be set by iterator each_group)</span>
+ 79: 
+ 80:     <span class="ruby-comment cmt">##</span>
+ 81:     <span class="ruby-comment cmt"># open the right database table</span>
+ 82:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@dataset</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;train&quot;</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@splitID</span>
+ 83:       <span class="ruby-ivar">@db_table</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_train_table</span>()
+ 84: 
+ 85:     <span class="ruby-keyword kw">else</span>
+ 86:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@testID</span>
+ 87:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;cannot open the test table without test ID&quot;</span>
+ 88:       <span class="ruby-keyword kw">end</span>
+ 89:       <span class="ruby-ivar">@db_table</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_test_table</span>(<span class="ruby-ivar">@testID</span>)
+ 90:     <span class="ruby-keyword kw">end</span>
+ 91:     <span class="ruby-ivar">@allcolnames</span> = <span class="ruby-ivar">@db_table</span>.<span class="ruby-identifier">list_column_names</span>()
+ 92: 
+ 93:     <span class="ruby-comment cmt">##</span>
+ 94:     <span class="ruby-comment cmt"># make dynamic gold objects</span>
+ 95:     <span class="ruby-ivar">@dyn_gold_objects</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+ 96:     <span class="ruby-ivar">@dyn_gold_objects</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">DynGoldBinary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;noval&quot;</span>))
+ 97: 
+ 98:     <span class="ruby-comment cmt">###</span>
+ 99:     <span class="ruby-comment cmt"># what is the standard gold column to be returned?</span>
+100:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@step</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;argrec&quot;</span>
+101:       <span class="ruby-comment cmt"># argument recognition: distinguish just &quot;FE&quot;, &quot;NONE&quot; as gold</span>
+102:       <span class="ruby-ivar">@standard_dyngold_id</span> = <span class="ruby-value str">&quot;binary_gold&quot;</span>
+103:     <span class="ruby-keyword kw">end</span>
+104:       
+105:     <span class="ruby-comment cmt">##</span>
+106:     <span class="ruby-comment cmt"># if splitID has been set, </span>
+107:     <span class="ruby-comment cmt"># make additional restrictions on the column values</span>
+108:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@splitID</span>
+109:       <span class="ruby-comment cmt"># get split table name</span>
+110:       <span class="ruby-ivar">@second_table</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_split_table</span>(<span class="ruby-ivar">@splitID</span>, <span class="ruby-ivar">@dataset</span>, <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">split_index_colname</span>())
+111: 
+112:       <span class="ruby-comment cmt"># additional value restriction:</span>
+113:       <span class="ruby-comment cmt"># only use rows whose sentence ID also appears in the split table</span>
+114:       <span class="ruby-comment cmt"># (i.e. rows included in the split)</span>
+115:       <span class="ruby-ivar">@standard_value_restrictions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">make_join_restriction</span>(<span class="ruby-ivar">@splitID</span>, 
+116:                                                                       <span class="ruby-ivar">@db_table</span>,
+117:                                                                       <span class="ruby-ivar">@dataset</span>,
+118:                                                                       <span class="ruby-ivar">@ttt_obj</span>)
+119: 
+120:       <span class="ruby-comment cmt"># additional column names:</span>
+121:       <span class="ruby-comment cmt"># those of the second table (but remove duplicates)</span>
+122:       <span class="ruby-ivar">@allcolnames</span>.<span class="ruby-identifier">concat</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_split_table</span>(<span class="ruby-ivar">@splitID</span>, <span class="ruby-ivar">@dataset</span>, <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">split_index_colname</span>()).<span class="ruby-identifier">list_column_names</span>()
+123:       <span class="ruby-ivar">@allcolnames</span>.<span class="ruby-identifier">uniq!</span>
+124: 
+125: 
+126:       <span class="ruby-comment cmt"># if we're using a split, read the phase 2 features and the classification results</span>
+127:       <span class="ruby-comment cmt"># from the split table rather than from the main table:</span>
+128:       <span class="ruby-comment cmt"># @use_cols_from_second_table is a list of column names (strings) </span>
+129:       <span class="ruby-comment cmt">#     to take from the 2nd table</span>
+130:       <span class="ruby-comment cmt"># @second_table_colprefix is a string: all columns starting with this prefix</span>
+131:       <span class="ruby-comment cmt">#     are taken from the 2nd table</span>
+132:       <span class="ruby-ivar">@use_cols_from_second_table</span> = [ <span class="ruby-constant">RosySplit</span>.<span class="ruby-identifier">split_index_colname</span>() ]
+133:       <span class="ruby-ivar">@second_table_colprefix</span> = <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;classif_column_name&quot;</span>)
+134:     <span class="ruby-keyword kw">end</span>
+135:     
+136:     <span class="ruby-comment cmt">###</span>
+137:     <span class="ruby-comment cmt"># Any (row) value restrictions to be imposed</span>
+138:     <span class="ruby-comment cmt"># on all views we generate?</span>
+139:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@step</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;arglab&quot;</span>
+140:       <span class="ruby-comment cmt"># argument labeling: use as input only those lines</span>
+141:       <span class="ruby-comment cmt"># for which argrec-label is &quot;FE&quot;</span>
+142: 
+143:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;assume_argrec_perfect&quot;</span>)
+144:         <span class="ruby-comment cmt"># assume perfect argrec step:</span>
+145:         <span class="ruby-comment cmt"># take all rows where gold is not &quot;noval&quot;</span>
+146:         <span class="ruby-ivar">@standard_value_restrictions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@db_table</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.gold&quot;</span>, 
+147:                                                              <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;noval&quot;</span>), 
+148:                                                              <span class="ruby-value str">&quot;posneg&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;!=&quot;</span>)
+149:       <span class="ruby-keyword kw">else</span>
+150:         <span class="ruby-comment cmt"># use argrec step as is:</span>
+151:         <span class="ruby-comment cmt"># take all rows where the argrec result is &quot;FE&quot;</span>
+152: 
+153:         <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@dataset</span>
+154:         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;train&quot;</span>
+155:           <span class="ruby-identifier">run_column_name</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_runlog</span>(<span class="ruby-value str">&quot;argrec&quot;</span>, <span class="ruby-value str">&quot;train&quot;</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-ivar">@splitID</span>)
+156:         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;test&quot;</span>
+157:           <span class="ruby-identifier">run_column_name</span> = <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">existing_runlog</span>(<span class="ruby-value str">&quot;argrec&quot;</span>, <span class="ruby-value str">&quot;test&quot;</span>, <span class="ruby-ivar">@testID</span>, <span class="ruby-ivar">@splitID</span>)
+158:         <span class="ruby-keyword kw">else</span>
+159:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here&quot;</span>
+160:         <span class="ruby-keyword kw">end</span>
+161: 
+162:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">run_column_name</span>.<span class="ruby-identifier">nil?</span> 
+163:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Missing: argrec classification results on #{@dataset} data.&quot;</span>
+164:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;I have logs of the following runs: &quot;</span>
+165:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">runlog_to_s</span>()
+166:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Problem&quot;</span>
+167:         <span class="ruby-keyword kw">end</span>
+168: 
+169:         <span class="ruby-comment cmt"># run column where? split table, or the table we are mainly working with?</span>
+170:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@second_table</span>
+171:           <span class="ruby-identifier">run_column_name</span> = <span class="ruby-ivar">@second_table</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">run_column_name</span>
+172:         <span class="ruby-keyword kw">else</span>
+173:           <span class="ruby-identifier">run_column_name</span> = <span class="ruby-ivar">@db_table</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">run_column_name</span>
+174:         <span class="ruby-keyword kw">end</span>
+175: 
+176:         <span class="ruby-ivar">@standard_value_restrictions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">run_column_name</span>, <span class="ruby-value str">&quot;FE&quot;</span>)
+177:       <span class="ruby-keyword kw">end</span>
+178:     <span class="ruby-keyword kw">end</span>
+179: 
+180:     <span class="ruby-comment cmt"># pruning?</span>
+181:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">var_hash</span>[<span class="ruby-value str">&quot;prune&quot;</span>] <span class="ruby-keyword kw">and</span>    <span class="ruby-comment cmt"># pruning requested in RosyIterator initialization</span>
+182:         [<span class="ruby-value str">&quot;argrec&quot;</span>, <span class="ruby-value str">&quot;onestep&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-ivar">@step</span> <span class="ruby-keyword kw">and</span> <span class="ruby-comment cmt"># pruning only affects argument recognition</span>
+183:         <span class="ruby-constant">Pruning</span>.<span class="ruby-identifier">prune?</span>(<span class="ruby-ivar">@exp</span>)    <span class="ruby-comment cmt"># pruning has been set in the experiment file</span>
+184:        <span class="ruby-ivar">@standard_value_restrictions</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Pruning</span>.<span class="ruby-identifier">restriction_removing_pruned</span>(<span class="ruby-ivar">@exp</span>)
+185:     <span class="ruby-keyword kw">end</span>
+186: 
+187:     <span class="ruby-comment cmt">##</span>
+188:     <span class="ruby-comment cmt"># access &quot;xwise&quot; information</span>
+189:     <span class="ruby-comment cmt"># are we training by frame or by target POS or target lemma?</span>
+190: 
+191:     <span class="ruby-comment cmt"># xwise-value in var_hash overrides others</span>
+192:     <span class="ruby-ivar">@xwise</span> = <span class="ruby-identifier">var_hash</span>[<span class="ruby-value str">&quot;xwise&quot;</span>]
+193:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@xwise</span>
+194:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@step</span>
+195:         <span class="ruby-comment cmt"># read xwise from experiment file,</span>
+196:         <span class="ruby-comment cmt"># if we know what training/test step we're in</span>
+197:         <span class="ruby-ivar">@xwise</span> = <span class="ruby-ivar">@exp</span>.<span class="ruby-identifier">get</span>(<span class="ruby-value str">&quot;xwise_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@step</span>)
+198:       <span class="ruby-keyword kw">end</span>
+199:     <span class="ruby-keyword kw">end</span>
+200:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@xwise</span>.<span class="ruby-identifier">nil?</span>
+201:       <span class="ruby-comment cmt"># default: read one frame at a time</span>
+202:       <span class="ruby-ivar">@xwise</span> = <span class="ruby-value str">&quot;frame&quot;</span>
+203:     <span class="ruby-keyword kw">end</span>
+204: 
+205:     <span class="ruby-comment cmt"># xwise is a string consisting of any subset of </span>
+206:     <span class="ruby-comment cmt"># &quot;frame&quot;, &quot;target_pos&quot;, &quot;target&quot; joined by spaces.</span>
+207:     <span class="ruby-comment cmt"># transform to an array by splitting at spaces</span>
+208:     <span class="ruby-ivar">@xwise</span> = <span class="ruby-ivar">@xwise</span>.<span class="ruby-identifier">split</span>()
+209:     <span class="ruby-ivar">@xwise</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">xwise_entry</span><span class="ruby-operator">|</span>
+210:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">feature_names</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">xwise_entry</span>
+211:         <span class="ruby-comment cmt"># sanity check: valid xwise value?</span>
+212:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Unknown value for parameter 'xwise' in experiment file.\n&quot;</span> <span class="ruby-operator">+</span>
+213:               <span class="ruby-value str">&quot;Allowed: any subset of the list of features listed in the experiment file.\n&quot;</span> <span class="ruby-operator">+</span>
+214:               <span class="ruby-value str">&quot;This is the granularity of training and testing\n&quot;</span> <span class="ruby-operator">+</span>
+215:                <span class="ruby-value str">&quot;What I got was: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@xwise</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+216:       <span class="ruby-keyword kw">end</span>
+217:     }
+218: 
+219:     <span class="ruby-comment cmt"># list all frames/ all target POSs/all frame+target-pairs</span>
+220:     <span class="ruby-ivar">@groups</span> = <span class="ruby-identifier">unique_values_of_columns</span>(<span class="ruby-ivar">@xwise</span>)
+221:     <span class="ruby-ivar">@current_group</span> = <span class="ruby-keyword kw">nil</span>
+222:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="each-group-method" class="method-detail ">
+				<a name="method-i-each_group"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_group</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a href="RosyIterator.html#method-i-each_group">each_group</a>
+</p>
+<p>
+iterates through the &#8220;xwise&#8221; groups, sets internal values such
+that <a
+href="RosyIterator.html#method-i-get_a_view_for_current_group">get_a_view_for_current_group</a>()
+will get you the correct view
+</p>
+<p>
+yields: for each group, a pair of
+</p>
+<ul>
+<li><p>
+the hash describing the group, as returned by unique_values_of_column
+</p>
+</li>
+<li><p>
+plus an ID for the group, made up of its hash values concatenated into a
+string (values are connected by spaces)
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="each-group-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 253</span>
+253:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_group</span>()
+254:     <span class="ruby-ivar">@groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+255:       <span class="ruby-comment cmt"># hash is a hash column_name(string)-&gt; value(object)</span>
+256:       <span class="ruby-comment cmt"># this is the unique description of the current group</span>
+257:       <span class="ruby-ivar">@current_group</span> = <span class="ruby-identifier">hash</span>
+258:       <span class="ruby-keyword kw">yield</span> [<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)]
+259:     }
+260:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-a-view-method" class="method-detail ">
+				<a name="method-i-get_a_view"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_a_view</span><span
+						class="method-args">(columns, value_restrictions = [])</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a href="RosyIterator.html#method-i-get_a_view">get_a_view</a>
+</p>
+<p>
+construct a new View object,
+</p>
+<p>
+you give it: the names of the columns to be included in the view (or
+&#8220;*&#8221; for all columns) and a list of value restrictions on the
+rows (<a href="ValueRestriction.html">ValueRestriction</a> objects,
+equalities or inequalities column_name = value, columnb_name != value),
+which may be omitted
+</p>
+<p>
+returns: <a href="DBView.html">DBView</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-a-view-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 349</span>
+349:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_a_view</span>(<span class="ruby-identifier">columns</span>, <span class="ruby-comment cmt"># array:strings, list of column names</span>
+350:                            <span class="ruby-comment cmt"># or string &quot;*&quot; (all columns)</span>
+351:                  <span class="ruby-identifier">value_restrictions</span> = []) <span class="ruby-comment cmt"># array: ValueRestriction objects </span>
+352:                            <span class="ruby-comment cmt"># or [], nil for no restrictions</span>
+353: 
+354:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value_restrictions</span>.<span class="ruby-identifier">nil?</span>
+355:       <span class="ruby-identifier">value_restrictions</span> = []
+356:     <span class="ruby-keyword kw">end</span>
+357:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">get_a_view_aux</span>(<span class="ruby-identifier">columns</span>, <span class="ruby-identifier">value_restrictions</span>, 
+358:                           <span class="ruby-value str">&quot;gold&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;gold&quot;</span>, 
+359:                           <span class="ruby-value str">&quot;dynamic_feature_list&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@dyn_gold_objects</span>,
+360:                           <span class="ruby-value str">&quot;standard_dyngold_id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@standard_dyngold_id</span>,
+361:                           <span class="ruby-value str">&quot;sentence_id_feature&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;sentid&quot;</span>)
+362:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-a-view-for-current-group-method" class="method-detail ">
+				<a name="method-i-get_a_view_for_current_group"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_a_view_for_current_group</span><span
+						class="method-args">(columns, value_restrictions = [])</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a
+href="RosyIterator.html#method-i-get_a_view_for_current_group">get_a_view_for_current_group</a>
+</p>
+<p>
+constructs a new View object matching the last yielded group (of <a
+href="RosyIterator.html#method-i-each_group">each_group</a>)
+</p>
+<p>
+you give it: the names of the columns to be included in the view (or
+&#8220;*&#8221; for all columns) and a list of value restrictions on the
+rows (<a href="ValueRestriction.html">ValueRestriction</a> objects,
+equalities or inequalities column_name = value, columnb_name != value),
+which may be omitted
+</p>
+<p>
+returns: <a href="DBView.html">DBView</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-a-view-for-current-group-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 274</span>
+274:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_a_view_for_current_group</span>(<span class="ruby-identifier">columns</span>, <span class="ruby-comment cmt"># array:string, column names to include</span>
+275:                                    <span class="ruby-comment cmt"># or string: &quot;*&quot; for all columns</span>
+276:                                    <span class="ruby-identifier">value_restrictions</span> = []) <span class="ruby-comment cmt"># array:ValueRestriction objects</span>
+277:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">get_a_view_for_group</span>(<span class="ruby-ivar">@current_group</span>, <span class="ruby-identifier">columns</span>,
+278:                                 <span class="ruby-identifier">value_restrictions</span>)
+279:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-a-view-for-group-method" class="method-detail ">
+				<a name="method-i-get_a_view_for_group"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_a_view_for_group</span><span
+						class="method-args">(group, columns, value_restrictions = [])</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a
+href="RosyIterator.html#method-i-get_a_view_for_group">get_a_view_for_group</a>
+</p>
+<p>
+constructs a new View object matching the a group given by its row hash (as
+yielded by <a href="RosyIterator.html#method-i-each_group">each_group</a>)
+</p>
+<p>
+you give it: the group description hash, the names of the columns to be
+included in the view (or &#8220;*&#8221; for all columns) and a list of
+value restrictions on the rows (<a
+href="ValueRestriction.html">ValueRestriction</a> objects, equalities or
+inequalities column_name = value, columnb_name != value), which may be
+omitted
+</p>
+<p>
+returns: <a href="DBView.html">DBView</a> object
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-a-view-for-group-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 295</span>
+295:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_a_view_for_group</span>(<span class="ruby-identifier">group</span>,  <span class="ruby-comment cmt"># hash: column(string)-&gt;value(object)</span>
+296:                                    <span class="ruby-comment cmt"># describing the group</span>
+297:                            <span class="ruby-identifier">columns</span>, <span class="ruby-comment cmt"># array:string, column names to include</span>
+298:                                    <span class="ruby-comment cmt"># or string: &quot;*&quot; for all columns</span>
+299:                            <span class="ruby-identifier">value_restrictions</span> = []) <span class="ruby-comment cmt"># array:ValueRestriction objects</span>
+300: 
+301:     <span class="ruby-comment cmt"># value_restrictions needs to be an array</span>
+302:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value_restrictions</span>.<span class="ruby-identifier">nil?</span>
+303:       <span class="ruby-identifier">value_restrictions</span> = []
+304:     <span class="ruby-keyword kw">end</span>
+305: 
+306:     <span class="ruby-comment cmt"># we need to add value restrictions that say</span>
+307:     <span class="ruby-comment cmt"># that the group column names need to have the values for</span>
+308:     <span class="ruby-comment cmt"># the given group.</span>
+309:     <span class="ruby-comment cmt"># however, group column names may belong to either the first or</span>
+310:     <span class="ruby-comment cmt"># the second table</span>
+311: 
+312:     <span class="ruby-comment cmt"># separate group column names into two groups</span>
+313:     <span class="ruby-identifier">first_columns</span>, <span class="ruby-identifier">second_columns</span> = 
+314:          <span class="ruby-identifier">separate_into_1st_and_2nd_table_cols</span>(<span class="ruby-identifier">group</span>.<span class="ruby-identifier">keys</span>)
+315: 
+316:     <span class="ruby-comment cmt"># make separate value restrictions for the two groups</span>
+317:     <span class="ruby-identifier">value_restrictions</span> = <span class="ruby-identifier">value_restrictions</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">first_columns</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">column_name</span><span class="ruby-operator">|</span>
+318:       <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">group</span>[<span class="ruby-identifier">column_name</span>])
+319:     }
+320:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">second_columns</span>
+321:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@second_table</span>
+322:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Cannot use second table columns without second table&quot;</span>
+323:       <span class="ruby-keyword kw">end</span>
+324:       <span class="ruby-identifier">value_restrictions</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">second_columns</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">column_name</span><span class="ruby-operator">|</span>
+325:         <span class="ruby-constant">ValueRestriction</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@second_table</span>.<span class="ruby-identifier">table_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">column_name</span>, 
+326:                              <span class="ruby-identifier">group</span>[<span class="ruby-identifier">column_name</span>],
+327:                              <span class="ruby-value str">&quot;table_name_included&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+328:       }
+329:     <span class="ruby-keyword kw">end</span>
+330:   
+331:     <span class="ruby-comment cmt"># get a view with the given columns, given value restrictions</span>
+332:     <span class="ruby-comment cmt"># plus add more value restrictions: must be the current group</span>
+333:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">get_a_view</span>(<span class="ruby-identifier">columns</span>,<span class="ruby-identifier">value_restrictions</span>)
+334:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-xwise-column-names-method" class="method-detail ">
+				<a name="method-i-get_xwise_column_names"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_xwise_column_names</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a
+href="RosyIterator.html#method-i-get_xwise_column_names">get_xwise_column_names</a>
+</p>
+<p>
+get the column names used for determining the groups
+</p>
+<p>
+returns: an array of strings, [&#8220;frame&#8221;] or
+[&#8220;frame&#8221;, &#8220;target&#8221;],  or [&#8220;target_pos&#8220;]
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-xwise-column-names-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 231</span>
+231:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_xwise_column_names</span>()
+232:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@xwise</span>
+233:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="num-groups-method" class="method-detail ">
+				<a name="method-i-num_groups"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">num_groups</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a href="RosyIterator.html#method-i-num_groups">num_groups</a> returns:
+integer
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="num-groups-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 238</span>
+238:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">num_groups</span>()
+239:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@groups</span>.<span class="ruby-identifier">length</span>()
+240:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="unique-values-of-columns-method" class="method-detail ">
+				<a name="method-i-unique_values_of_columns"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">unique_values_of_columns</span><span
+						class="method-args">(columns)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a
+href="RosyIterator.html#method-i-unique_values_of_columns">unique_values_of_columns</a>
+</p>
+<p>
+construct a new View object for the given column and get all unique values
+for it
+</p>
+<p>
+returns: a list of hashes, one for each unique set of values
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="unique-values-of-columns-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 372</span>
+372:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unique_values_of_columns</span>(<span class="ruby-identifier">columns</span>) <span class="ruby-comment cmt"># array:string, several column names</span>
+373:     <span class="ruby-identifier">retv</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+374: 
+375:     <span class="ruby-identifier">view</span> = <span class="ruby-identifier">get_a_view_aux</span>(<span class="ruby-identifier">columns</span>, [],
+376:                           <span class="ruby-value str">&quot;distinct&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+377: 
+378:     <span class="ruby-identifier">view</span>.<span class="ruby-identifier">each_hash</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+379:       <span class="ruby-identifier">retv</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>
+380:     }
+381:     <span class="ruby-identifier">view</span>.<span class="ruby-identifier">close</span>()
+382:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">retv</span>
+383:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="get-a-view-aux-method" class="method-detail ">
+				<a name="method-i-get_a_view_aux"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_a_view_aux</span><span
+						class="method-args">(columns, value_restrictions, var_hash)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+access DB table: figure out which table, set of columns from that table,
+set of columns from secondary table
+</p>
+<p>
+columns: either array of strings or &#8220;*&#8220;
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-a-view-aux-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 427</span>
+427:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_a_view_aux</span>(<span class="ruby-identifier">columns</span>,
+428:                      <span class="ruby-identifier">value_restrictions</span>,
+429:                      <span class="ruby-identifier">var_hash</span>)
+430: 
+431:     <span class="ruby-comment cmt"># distinguish main table and split table columns</span>
+432:     <span class="ruby-identifier">first_columns</span>, <span class="ruby-identifier">second_columns</span> = <span class="ruby-identifier">separate_into_1st_and_2nd_table_cols</span>(<span class="ruby-identifier">columns</span>)
+433: 
+434:     <span class="ruby-comment cmt"># make pairs of a DB table and the columns from that table</span>
+435:     <span class="ruby-identifier">tables_and_cols</span> = [<span class="ruby-constant">SelectTableAndColumns</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@db_table</span>, <span class="ruby-identifier">first_columns</span>)]
+436:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@second_table</span>
+437:       <span class="ruby-identifier">tables_and_cols</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">SelectTableAndColumns</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@second_table</span>, <span class="ruby-identifier">second_columns</span>)
+438:     <span class="ruby-keyword kw">end</span>
+439: 
+440: 
+441:     <span class="ruby-comment cmt"># and get a view</span>
+442:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">DBView</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">tables_and_cols</span>, 
+443:                       <span class="ruby-identifier">value_restrictions</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@standard_value_restrictions</span>, 
+444:                       <span class="ruby-ivar">@ttt_obj</span>.<span class="ruby-identifier">database</span>,
+445:                       <span class="ruby-identifier">var_hash</span>)
+446:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="separate-into-st-and-nd-table-cols-method" class="method-detail ">
+				<a name="method-i-separate_into_1st_and_2nd_table_cols"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">separate_into_1st_and_2nd_table_cols</span><span
+						class="method-args">(columns)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+given a list of column names,  separate them into first table and second
+table columns
+</p>
+<p>
+columns may be either an array of string (column names) or the string
+&#8220;*&#8221; for &#8220;all columns&#8220;
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="separate-into-st-and-nd-table-cols-source">
+<pre>
+     <span class="ruby-comment cmt"># File Pkg/RosyIterator.rb, line 394</span>
+394:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">separate_into_1st_and_2nd_table_cols</span>(<span class="ruby-identifier">columns</span>)
+395: 
+396:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@use_cols_from_second_table</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@second_table_colprefix</span>
+397:       <span class="ruby-comment cmt"># if there are columns I'm supposed to take from the second</span>
+398:       <span class="ruby-comment cmt"># table rather than the first, let's do that</span>
+399:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">columns</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;*&quot;</span>
+400:         <span class="ruby-comment cmt"># we have simply been told to use all columns</span>
+401:         <span class="ruby-identifier">columns</span> = <span class="ruby-ivar">@allcolnames</span>
+402:       <span class="ruby-keyword kw">end</span>
+403: 
+404:       <span class="ruby-comment cmt"># second table columns either start with @second_table_colprefix</span>
+405:       <span class="ruby-comment cmt"># or are in the list @use_columns_from_second_table</span>
+406:       <span class="ruby-identifier">second_columns</span>, <span class="ruby-identifier">first_columns</span> = <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">distribute</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">colname</span><span class="ruby-operator">|</span>
+407:         (<span class="ruby-ivar">@second_table_colprefix</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">colname</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{@second_table_colprefix}/</span>) <span class="ruby-keyword kw">or</span>
+408:           (<span class="ruby-ivar">@use_cols_from_second_table</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@use_cols_from_second_table</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">colname</span>))
+409:       }
+410: 
+411:     <span class="ruby-keyword kw">else</span>
+412:       <span class="ruby-comment cmt"># no columns to take from a 2nd table</span>
+413:       <span class="ruby-identifier">first_columns</span> = <span class="ruby-identifier">columns</span>
+414:       <span class="ruby-identifier">second_columns</span> = <span class="ruby-keyword kw">nil</span>
+415:     <span class="ruby-keyword kw">end</span>
+416: 
+417:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">first_columns</span>, <span class="ruby-identifier">second_columns</span>]
+418:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

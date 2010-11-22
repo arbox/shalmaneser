@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: FrameXML.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>Ampersand</li>
+				
+					<li>ISO-8859-1</li>
+				
+					<li>RegXML</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+sp 18 06 2004
+</p>
+<p>
+access to FrameNet XML files, sentences, and annotation.
+</p>
+<p>
+sp 10 11 04: only data from the first layer with name XY is used for
+output. Other data is saved in layer XY.2nd, but is  currently not
+processed.
+</p>
+<p>
+sp 22 05 04: also, if two labels exist which cover the same span (ie there
+is a double annotation within the same layer), ignore all but the first
+label.
+</p>
+<p>
+ke 13 07 05: 
+</p>
+<pre>
+  - changed to RegXMl.rb
+  - fixed two problems in analyse_layer:
+    - Deleting problematic labels: 
+      For some reason, thisLayer[i+1..-1].each_index {|other_i|
+      included the index 0 in any case, resulting in the 1st
+      label being deleted in any case.
+    - Deleting problematic labels, checking for label overlap:
+      The old formulation worked only if labels occurred in the array
+      in the order they occurred in the sentence, but that was not the case.
+  - Change in deleting problematic labels:
+    No longer delete duplicate labels, since e.g. in the PT level there
+    may be more than one NP label, and we want to keep those
+</pre>
+<p>
+KE January 2007: write new adapted FNTab format ( &#8220;word&#8221;,
+(&#8220;pt&#8221;, &#8220;gf&#8221;, &#8220;role&#8221;,
+&#8220;target&#8221;, &#8220;frame&#8221;, &#8220;stuff&#8221;)*
+&#8220;ne&#8221;, &#8220;sent_id&#8220; )
+</p>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

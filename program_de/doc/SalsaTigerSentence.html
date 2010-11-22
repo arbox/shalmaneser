@@ -1,0 +1,2134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: SalsaTigerSentence</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/SalsaTigerRegXML_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/SalsaTigerRegXML.rb">PkgGeneral/SalsaTigerRegXML.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="XMLNode.html">XMLNode</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-empty_sentence">::empty_sentence</a></li>
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-add_fe">#add_fe</a></li>
+					
+					<li><a href="#method-i-add_flag">#add_flag</a></li>
+					
+					<li><a href="#method-i-add_frame">#add_frame</a></li>
+					
+					<li><a href="#method-i-add_syn">#add_syn</a></li>
+					
+					<li><a href="#method-i-add_usp">#add_usp</a></li>
+					
+					<li><a href="#method-i-each_frame">#each_frame</a></li>
+					
+					<li><a href="#method-i-each_nonterminal">#each_nonterminal</a></li>
+					
+					<li><a href="#method-i-each_syn_node">#each_syn_node</a></li>
+					
+					<li><a href="#method-i-each_terminal">#each_terminal</a></li>
+					
+					<li><a href="#method-i-each_terminal_sorted">#each_terminal_sorted</a></li>
+					
+					<li><a href="#method-i-each_usp_feblock">#each_usp_feblock</a></li>
+					
+					<li><a href="#method-i-each_usp_frameblock">#each_usp_frameblock</a></li>
+					
+					<li><a href="#method-i-flags">#flags</a></li>
+					
+					<li><a href="#method-i-frames">#frames</a></li>
+					
+					<li><a href="#method-i-get_syn">#get_syn</a></li>
+					
+					<li><a href="#method-i-get_xml_ofchildren">#get_xml_ofchildren</a></li>
+					
+					<li><a href="#method-i-nonterminals">#nonterminals</a></li>
+					
+					<li><a href="#method-i-remove_fe">#remove_fe</a></li>
+					
+					<li><a href="#method-i-remove_flag">#remove_flag</a></li>
+					
+					<li><a href="#method-i-remove_frame">#remove_frame</a></li>
+					
+					<li><a href="#method-i-remove_semantics">#remove_semantics</a></li>
+					
+					<li><a href="#method-i-remove_syn">#remove_syn</a></li>
+					
+					<li><a href="#method-i-remove_usp">#remove_usp</a></li>
+					
+					<li><a href="#method-i-sem_node_with_id">#sem_node_with_id</a></li>
+					
+					<li><a href="#method-i-syn_node_with_id">#syn_node_with_id</a></li>
+					
+					<li><a href="#method-i-syn_nodes">#syn_nodes</a></li>
+					
+					<li><a href="#method-i-syn_roots">#syn_roots</a></li>
+					
+					<li><a href="#method-i-terminals">#terminals</a></li>
+					
+					<li><a href="#method-i-terminals_sorted">#terminals_sorted</a></li>
+					
+					<li><a href="#method-i-to_s">#to_s</a></li>
+					
+					<li><a href="#method-i-usp_feblocks">#usp_feblocks</a></li>
+					
+					<li><a href="#method-i-usp_frameblocks">#usp_frameblocks</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><a class="include" href="MaxConst.html">MaxConst</a></li>
+				
+				
+				
+					<li><a class="include" href="ConvexComp.html">ConvexComp</a></li>
+				
+				
+				</ul>
+			</div>
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">SalsaTigerSentence</h1>
+
+		<div id="description">
+			<pre>
+           
+</pre>
+<p>
+class <a href="SalsaTigerSentence.html">SalsaTigerSentence</a>
+</p>
+<p>
+offers access methods to a SalsaTigerXML sentence given as a string
+</p>
+<p>
+Nodes of syntactic structure as well as frames and frame elements are kept
+(and returned) as <a href="XMLNode.html">XMLNode</a> objects,  or more
+specifically as <a href="SynNode.html">SynNode</a>, <a
+href="FrameNode.html">FrameNode</a> and <a href="FeNode.html">FeNode</a>
+objects.
+</p>
+<p>
+methods:
+</p>
+<p>
+new      initializes the object
+</p>
+<p>
+id       returns the sentence ID
+</p>
+<p>
+get      returns the REXML object describing the same sentence
+</p>
+<pre>
+         as this object
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-each_terminal">each_terminal</a> 
+yields each terminal of the sentence in turn.
+</p>
+<pre>
+         they are returned as SynNode objects
+</pre>
+<p>
+terminals returns all terminal node objects in an array
+</p>
+<p>
+<a
+href="SalsaTigerSentence.html#method-i-each_terminal_sorted">each_terminal_sorted</a>
+yields each terminal of the sentence in turn,
+</p>
+<pre>
+         making sure the terminal with the lowest ID is returned first.
+         use this if you need the terminal words in the right order!
+         nodes are returned as SynNode objects
+</pre>
+<p>
+<a
+href="SalsaTigerSentence.html#method-i-each_nonterminal">each_nonterminal</a>
+yields each nonterminal of the sentence in turn.
+</p>
+<pre>
+          nodes are returned as SynNode objects
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-each_frame">each_frame</a> yields
+each frame of the sentence in turn.
+</p>
+<pre>
+          nodes are returned as FrameNode objects
+</pre>
+<p>
+frames returns all frame objects in an array
+</p>
+<p>
+<a
+href="SalsaTigerSentence.html#method-i-each_usp_frameblock">each_usp_frameblock</a>
+</p>
+<pre>
+         yields each group of underspecified frames of the sentence
+         in turn, as an UspNode object. To see the frames involved
+         in this underspecification, use each_child on the UspNode object
+</pre>
+<p>
+<a
+href="SalsaTigerSentence.html#method-i-usp_frameblocks">usp_frameblocks</a>
+returns all groups of underspecified frames as an array
+</p>
+<pre>
+         of UspNode objects
+</pre>
+<p>
+<a
+href="SalsaTigerSentence.html#method-i-each_usp_feblock">each_usp_feblock</a>
+</p>
+<pre>
+         yields each group of underspecified frame elements 
+         of the sentence in turn, as an UspNode object. 
+         To see the frames involved
+         in this underspecification, use each_child on the UspNode object
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-usp_feblocks">usp_feblocks</a> 
+returns all groups of underspecified frame elements 
+</p>
+<pre>
+         as an array of UspNode objects
+</pre>
+<p>
+flags     returns a list of the sentence flags, as hashes.
+</p>
+<pre>
+          key &quot;type&quot;: a string, either REEXAMINE or WRONGSUBCORPUS
+                      or INTERESTING or LATER
+          key &quot;param&quot;: a string, the parameter. important for 
+                       REEXAMINE
+          key &quot;text&quot;: a string, the text of this flag. Will be
+                      nonempty only for INTERESTING cases
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-syn_roots">syn_roots</a> returns
+a list of all the roots of the syntactic trees
+</p>
+<pre>
+          in this sentence, as node objects. There may be more than
+          one, unfortunately.
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-add_syn">add_syn</a>  add a new
+syntactic node with the given category, word, POS,
+</p>
+<pre>
+         returns the new node
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-add_frame">add_frame</a> add a
+frame with a given name, returns the new frame node
+</p>
+<p>
+<a href="SalsaTigerSentence.html#method-i-add_usp">add_usp</a>  add a new
+underspecification block, either for frames or FEs
+</p>
+<p>
+<a href="SalsaTigerSentence.html#method-i-add_flag">add_flag</a>  adds a
+sentence flag to this sentence. 
+</p>
+<pre>
+  type: a string, must be REEXAMINE, INTERESTING, WRONGSUBCORPUS,
+        or LATER
+  param: optional parameter, a string, describes type of Reexamine
+         for REEXAMINE-type flags
+  text:  optional parameter, a string, arbitrary text commenting
+         on the flag, used mainly with INTERESTING
+</pre>
+<p>
+<a href="SalsaTigerSentence.html#method-i-remove_flag">remove_flag</a>
+removes a sentence flag to this sentence
+</p>
+<pre>
+         only removes flag in case of exact match of type, param, and text
+  type: a string, either REEXAMINE, INTERESTING, WRONGSUBCORPUS,
+        or LATER
+  param: optional parameter, a string, describes type of Reexamine
+         for REEXAMINE-type flags
+  text:  optional parameter, a string, arbitrary text commenting
+         on the flag, used mainly with INTERESTING</pre>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="empty-sentence-method" class="method-detail ">
+				<a name="method-c-empty_sentence"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">empty_sentence</span><span
+						class="method-args">(sentence_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="empty-sentence-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1886</span>
+1886:   <span class="ruby-keyword kw">def</span> <span class="ruby-constant">SalsaTigerSentence</span>.<span class="ruby-identifier">empty_sentence</span>(<span class="ruby-identifier">sentence_id</span>)  <span class="ruby-comment cmt"># string</span>
+1887:     <span class="ruby-identifier">sentence_id</span> = <span class="ruby-identifier">sentence_id</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/'/</span>, <span class="ruby-value str">&quot;&amp;apos;&quot;</span>)
+1888:     <span class="ruby-identifier">sent_string</span> = <span class="ruby-node">&quot;&lt;s id=\'#{sentence_id}\'&gt;\n&quot;</span> <span class="ruby-operator">+</span>
+1889:                   <span class="ruby-value str">&quot;&lt;graph/&gt;\n&quot;</span> <span class="ruby-operator">+</span> 
+1890:                   <span class="ruby-value str">&quot;&lt;sem/&gt;\n&quot;</span> <span class="ruby-operator">+</span> 
+1891:                   <span class="ruby-value str">&quot;&lt;/s&gt;&quot;</span>       
+1892:     <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SalsaTigerSentence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+1893:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1831</span>
+1831:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">string</span>)
+1832:     <span class="ruby-comment cmt"># parse string as an XML element</span>
+1833:     <span class="ruby-identifier">xml_obj</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>)
+1834: 
+1835:     <span class="ruby-comment cmt"># initialize this object as an XML node,</span>
+1836:     <span class="ruby-comment cmt"># i.e. remember the outermost element's name, attributes, </span>
+1837:     <span class="ruby-comment cmt"># and ID, and specify that it's not a text but an XML object</span>
+1838:     <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">attributes</span>, <span class="ruby-constant">SalsaTigerXmlNode</span>.<span class="ruby-identifier">xmlel_id</span>(<span class="ruby-identifier">xml_obj</span>), <span class="ruby-keyword kw">false</span>)
+1839: 
+1840:     <span class="ruby-comment cmt"># find XML element &quot;graph&quot;,</span>
+1841:     <span class="ruby-comment cmt"># which contains the syntactic info of the sentence.</span>
+1842:     <span class="ruby-comment cmt"># It is a child of the &lt;s&gt; element.</span>
+1843:     <span class="ruby-identifier">xml_syn_obj</span> = <span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">thing</span><span class="ruby-operator">|</span>
+1844:       <span class="ruby-identifier">thing</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;graph&quot;</span>
+1845:     }
+1846: 
+1847:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">xml_syn_obj</span>
+1848:       <span class="ruby-comment cmt"># no graph in this sentence -- fake one</span>
+1849:       <span class="ruby-identifier">xml_syn_obj</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&lt;graph/&gt;&quot;</span>)
+1850:     <span class="ruby-keyword kw">end</span>
+1851: 
+1852:     <span class="ruby-ivar">@syn</span> = <span class="ruby-constant">SalsaTigerSentenceGraph</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xml_syn_obj</span>, <span class="ruby-identifier">id</span>)
+1853: 
+1854:     <span class="ruby-comment cmt"># find XML element &quot;sem&quot;</span>
+1855:     <span class="ruby-comment cmt"># which contains the semantic info of the sentence.</span>
+1856:     <span class="ruby-comment cmt"># It is a child of the &lt;s&gt; element.</span>
+1857:     <span class="ruby-identifier">xml_sem_obj</span> = <span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">thing</span><span class="ruby-operator">|</span>
+1858:       <span class="ruby-identifier">thing</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;sem&quot;</span>
+1859:     }
+1860: 
+1861:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">xml_sem_obj</span>
+1862:       <span class="ruby-comment cmt"># no semantic info in this sentence -- fake one</span>
+1863:       <span class="ruby-identifier">xml_sem_obj</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&lt;sem/&gt;&quot;</span>)
+1864:     <span class="ruby-keyword kw">end</span>
+1865: 
+1866:     <span class="ruby-comment cmt"># add splitword info to @syn element</span>
+1867:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">add_splitwords</span>(<span class="ruby-constant">SalsaTigerSentenceSem</span>.<span class="ruby-identifier">get_splitwords</span>(<span class="ruby-identifier">xml_sem_obj</span>))
+1868:       
+1869:     <span class="ruby-ivar">@sem</span> = <span class="ruby-constant">SalsaTigerSentenceSem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xml_sem_obj</span>, <span class="ruby-identifier">id</span>, <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">node</span>)
+1870: 
+1871:     <span class="ruby-comment cmt"># go through the children of the &lt;s&gt; object again,</span>
+1872:     <span class="ruby-comment cmt"># remembering all children except &lt;graph&gt; and &lt;sem&gt;</span>
+1873:     <span class="ruby-comment cmt"># for later output</span>
+1874:     <span class="ruby-identifier">xml_obj</span>.<span class="ruby-identifier">children_and_text</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child_or_text</span><span class="ruby-operator">|</span>
+1875:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">child_or_text</span>.<span class="ruby-identifier">name</span>
+1876:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;graph&quot;</span>, <span class="ruby-value str">&quot;sem&quot;</span>
+1877:         <span class="ruby-comment cmt"># we have handled them already</span>
+1878:       <span class="ruby-keyword kw">else</span>
+1879:         <span class="ruby-identifier">add_kith</span>(<span class="ruby-identifier">child_or_text</span>)
+1880:       <span class="ruby-keyword kw">end</span>
+1881:     }
+1882: 
+1883:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="add-fe-method" class="method-detail ">
+				<a name="method-i-add_fe"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_fe</span><span
+						class="method-args">(frame_obj, name, fe_children, sem_id = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="add-fe-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2028</span>
+2028:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_fe</span>(<span class="ruby-identifier">frame_obj</span>,
+2029:              <span class="ruby-identifier">name</span>,
+2030:              <span class="ruby-identifier">fe_children</span>,
+2031:              <span class="ruby-identifier">sem_id</span> = <span class="ruby-keyword kw">nil</span>)
+2032:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">add_fe</span>(<span class="ruby-identifier">frame_obj</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">fe_children</span>, <span class="ruby-identifier">sem_id</span>)
+2033:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-flag-method" class="method-detail ">
+				<a name="method-i-add_flag"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_flag</span><span
+						class="method-args">(type, param=nil, text=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="add-flag-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2051</span>
+2051:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_flag</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">param</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">text</span>=<span class="ruby-keyword kw">nil</span>)
+2052:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">add_flag</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">text</span>)
+2053:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-frame-method" class="method-detail ">
+				<a name="method-i-add_frame"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_frame</span><span
+						class="method-args">(name, sem_id = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="add-frame-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2017</span>
+2017:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_frame</span>(<span class="ruby-identifier">name</span>,    <span class="ruby-comment cmt"># string: name of the frame</span>
+2018:                 <span class="ruby-identifier">sem_id</span> = <span class="ruby-keyword kw">nil</span>) <span class="ruby-comment cmt"># string: ID for the new node</span>
+2019:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">add_frame</span>(<span class="ruby-identifier">id</span>(), <span class="ruby-identifier">name</span>, <span class="ruby-identifier">sem_id</span>)
+2020:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-syn-method" class="method-detail ">
+				<a name="method-i-add_syn"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_syn</span><span
+						class="method-args">(label, cat = nil, word = nil, pos = nil, syn_id = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+add syntactic node, specified as terminal(t) or nonterminal(nt)
+</p>
+<p>
+returns the new node
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="add-syn-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2003</span>
+2003:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_syn</span>(<span class="ruby-identifier">label</span>,     <span class="ruby-comment cmt"># string: t or nt</span>
+2004:               <span class="ruby-identifier">cat</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-comment cmt"># string: category</span>
+2005:               <span class="ruby-identifier">word</span> = <span class="ruby-keyword kw">nil</span>,<span class="ruby-comment cmt"># string: word</span>
+2006:               <span class="ruby-identifier">pos</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-comment cmt"># string: part of speech</span>
+2007:               <span class="ruby-identifier">syn_id</span> = <span class="ruby-keyword kw">nil</span>)  <span class="ruby-comment cmt"># string: ID for the new node</span>
+2008:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">add_node</span>(<span class="ruby-identifier">id</span>(), <span class="ruby-identifier">label</span>, <span class="ruby-identifier">cat</span>, <span class="ruby-identifier">word</span>, <span class="ruby-identifier">pos</span>, <span class="ruby-identifier">syn_id</span>)
+2009:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="add-usp-method" class="method-detail ">
+				<a name="method-i-add_usp"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">add_usp</span><span
+						class="method-args">(frame_or_fe)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="add-usp-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2041</span>
+2041:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_usp</span>(<span class="ruby-identifier">frame_or_fe</span>)
+2042:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">add_usp</span>(<span class="ruby-identifier">frame_or_fe</span>)
+2043:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-frame-method" class="method-detail ">
+				<a name="method-i-each_frame"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_frame</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-frame-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1962</span>
+1962:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_frame</span> 
+1963:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">each_frame</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">f</span> }
+1964:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-nonterminal-method" class="method-detail ">
+				<a name="method-i-each_nonterminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_nonterminal</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-nonterminal-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1924</span>
+1924:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_nonterminal</span>
+1925:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">each_nonterminal</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">n</span> }
+1926:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-syn-node-method" class="method-detail ">
+				<a name="method-i-each_syn_node"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_syn_node</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-syn-node-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1934</span>
+1934:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_syn_node</span>
+1935:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">each_node</span> {  <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> 
+1936:       <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">n</span> 
+1937:     }
+1938:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-terminal-method" class="method-detail ">
+				<a name="method-i-each_terminal"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_terminal</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-terminal-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1904</span>
+1904:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_terminal</span>
+1905:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">each_terminal</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">n</span> }
+1906:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-terminal-sorted-method" class="method-detail ">
+				<a name="method-i-each_terminal_sorted"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_terminal_sorted</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-terminal-sorted-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1909</span>
+1909:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_terminal_sorted</span>
+1910:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">each_terminal_sorted</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">n</span> }
+1911:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-usp-feblock-method" class="method-detail ">
+				<a name="method-i-each_usp_feblock"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_usp_feblock</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-usp-feblock-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1982</span>
+1982:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_usp_feblock</span>
+1983:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">each_usp_feblock</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">b</span> }
+1984:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-usp-frameblock-method" class="method-detail ">
+				<a name="method-i-each_usp_frameblock"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_usp_frameblock</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="each-usp-frameblock-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1972</span>
+1972:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_usp_frameblock</span>
+1973:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">each_usp_frameblock</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">b</span> }
+1974:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="flags-method" class="method-detail ">
+				<a name="method-i-flags"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">flags</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="flags-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1992</span>
+1992:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flags</span>
+1993:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">flags</span>()
+1994:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="frames-method" class="method-detail ">
+				<a name="method-i-frames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">frames</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="frames-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1967</span>
+1967:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frames</span>
+1968:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">frames</span>
+1969:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-syn-method" class="method-detail ">
+				<a name="method-i-get_syn"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_syn</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+               33
+</pre>
+<p>
+output
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-syn-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2068</span>
+2068:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_syn</span>()
+2069:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">get</span>()
+2070:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="nonterminals-method" class="method-detail ">
+				<a name="method-i-nonterminals"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">nonterminals</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="nonterminals-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1929</span>
+1929:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">nonterminals</span>
+1930:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">nonterminals</span>()
+1931:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-fe-method" class="method-detail ">
+				<a name="method-i-remove_fe"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_fe</span><span
+						class="method-args">(fe_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-fe-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2036</span>
+2036:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_fe</span>(<span class="ruby-identifier">fe_node</span>)
+2037:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">remove_fe</span>(<span class="ruby-identifier">fe_node</span>)
+2038:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-flag-method" class="method-detail ">
+				<a name="method-i-remove_flag"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_flag</span><span
+						class="method-args">(type, param=nil, text=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-flag-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2056</span>
+2056:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_flag</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">param</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">text</span>=<span class="ruby-keyword kw">nil</span>)
+2057:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">remove_flag</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">text</span>)
+2058:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-frame-method" class="method-detail ">
+				<a name="method-i-remove_frame"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_frame</span><span
+						class="method-args">(frame_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-frame-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2023</span>
+2023:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_frame</span>(<span class="ruby-identifier">frame_node</span>) <span class="ruby-comment cmt"># FrameNode object</span>
+2024:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">remove_frame</span>(<span class="ruby-identifier">frame_node</span>)
+2025:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-semantics-method" class="method-detail ">
+				<a name="method-i-remove_semantics"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_semantics</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-semantics-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2061</span>
+2061:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_semantics</span>()
+2062:     <span class="ruby-identifier">empty_sem</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&lt;sem/&gt;&quot;</span>)
+2063:     <span class="ruby-ivar">@sem</span> = <span class="ruby-constant">SalsaTigerSentenceSem</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">empty_sem</span>, <span class="ruby-identifier">id</span>(), <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">node</span>)
+2064:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-syn-method" class="method-detail ">
+				<a name="method-i-remove_syn"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_syn</span><span
+						class="method-args">(node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-syn-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2012</span>
+2012:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_syn</span>(<span class="ruby-identifier">node</span>)
+2013:     <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">remove_node</span>(<span class="ruby-identifier">node</span>)
+2014:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="remove-usp-method" class="method-detail ">
+				<a name="method-i-remove_usp"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">remove_usp</span><span
+						class="method-args">(usp_node)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="remove-usp-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2046</span>
+2046:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_usp</span>(<span class="ruby-identifier">usp_node</span>) <span class="ruby-comment cmt"># UspNode object</span>
+2047:     <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">remove_usp</span>(<span class="ruby-identifier">usp_node</span>)
+2048:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="sem-node-with-id-method" class="method-detail ">
+				<a name="method-i-sem_node_with_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">sem_node_with_id</span><span
+						class="method-args">(sem_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="sem-node-with-id-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1957</span>
+1957:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sem_node_with_id</span>(<span class="ruby-identifier">sem_id</span>)
+1958:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">node</span>[<span class="ruby-identifier">sem_id</span>]
+1959:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="syn-node-with-id-method" class="method-detail ">
+				<a name="method-i-syn_node_with_id"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">syn_node_with_id</span><span
+						class="method-args">(syn_id)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="syn-node-with-id-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1952</span>
+1952:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">syn_node_with_id</span>(<span class="ruby-identifier">syn_id</span>)
+1953:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">node</span>[<span class="ruby-identifier">syn_id</span>]
+1954:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="syn-nodes-method" class="method-detail ">
+				<a name="method-i-syn_nodes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">syn_nodes</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="syn-nodes-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1941</span>
+1941:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">syn_nodes</span>
+1942:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">nodes</span>()
+1943:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="syn-roots-method" class="method-detail ">
+				<a name="method-i-syn_roots"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">syn_roots</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="syn-roots-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1946</span>
+1946:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">syn_roots</span>
+1947:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">syn_roots</span>()
+1948:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="terminals-method" class="method-detail ">
+				<a name="method-i-terminals"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">terminals</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="terminals-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1914</span>
+1914:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">terminals</span>
+1915:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">terminals</span>()
+1916:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="terminals-sorted-method" class="method-detail ">
+				<a name="method-i-terminals_sorted"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">terminals_sorted</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="terminals-sorted-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1919</span>
+1919:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">terminals_sorted</span>
+1920:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">terminals_sorted</span>()
+1921:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="to-s-method" class="method-detail ">
+				<a name="method-i-to_s"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_s</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="to-s-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1899</span>
+1899:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
+1900:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">to_s</span>
+1901:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="usp-feblocks-method" class="method-detail ">
+				<a name="method-i-usp_feblocks"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">usp_feblocks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="usp-feblocks-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1987</span>
+1987:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usp_feblocks</span>()
+1988:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">usp_feblocks</span>()
+1989:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="usp-frameblocks-method" class="method-detail ">
+				<a name="method-i-usp_frameblocks"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">usp_frameblocks</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="usp-frameblocks-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 1977</span>
+1977:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usp_frameblocks</span>()
+1978:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">usp_frameblocks</span>()
+1979:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-instance-method-details" class="method-section section">
+			<h3 class="section-header">Protected Instance Methods</h3>
+
+		
+			<div id="get-xml-ofchildren-method" class="method-detail ">
+				<a name="method-i-get_xml_ofchildren"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_xml_ofchildren</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+3
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-xml-ofchildren-source">
+<pre>
+      <span class="ruby-comment cmt"># File PkgGeneral/SalsaTigerRegXML.rb, line 2075</span>
+2075:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_xml_ofchildren</span>()
+2076:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@syn</span>.<span class="ruby-identifier">get</span>() <span class="ruby-operator">+</span> <span class="ruby-ivar">@sem</span>.<span class="ruby-identifier">get</span>()
+2077:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

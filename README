@@ -1,0 +1,57 @@
+# Before running the programs you should make sure that all components
+# needed by shalmaneser are installed and that all paths in the 
+# configuration files/code are adapted accordingly
+# (maybe iterate over all files and grep for "rehbein" to find hard-
+# coded paths; have a look at all configuration files in SampleExperimentFiles.salsa)
+
+
+# Directories 
+
+# program_de	-> ruby source code and additional stuff for the German
+#		   version of shalmaneser
+# program_de/SampleExperimentFiles.salsa
+#		-> configuration files for shalmaneser 
+# input		-> includes test data in plain text format
+# output	-> all temporary files and output files, including the
+#		   classifiers
+# 
+# directory output:
+# prp_test 	-> output of frprep.rb (parsed/tagged/lemmatised data)  
+# preprocessed	-> output of frprep.rb (data converted to SalsaTiGerXML)
+# exp_fred_salsa-> temp files/output of fred.rb (classifiers, features, ...)
+# exp_fred/output/stxml/  -> output of fred.rb (SalsaTigerXML file with
+# 		   frames)
+# exp_rosy_salsa-> temp files/output of rosy.rb (classifiers, features, ...)
+# exp_rosy_salsa/output	  -> output of rosy.rb
+
+# Set some variables
+# => adapt to your program paths
+DIR=/proj/llx/Annotation/experiments/test/shalmaneser
+EXP=$DIR/program_de/SampleExperimentFiles.salsa
+
+export CLASSPATH=/proj/llx/Software/MachineLearning/maxent-2.4.0/lib/trove.jar:/proj/llx/Software/MachineLearning/maxent-2.4.0/output/maxent-2.4.0.jar:/proj/llx/Annotation/experiments/sfischer_bachelor/shalmaneser/program/tools/maxent
+
+
+
+# change to shalmaneser directory
+cd $DIR/program_de
+
+# Preprocessing
+# (result: parsed file in SalsaTiGerXML format
+#  when running on SalsaTiGerXML data: gold frames/roles included
+#  when running on plain text: without frames/roles)
+
+ruby frprep.rb -e $EXP/prp_test.salsa  
+
+
+# Frame assignment with fred
+ruby fred.rb -t featurize -e $EXP/fred_test.salsa -d test
+
+ruby fred.rb -t test -e $EXP/fred_test.salsa    
+
+
+# Role assignment with rosy
+ruby rosy.rb -t featurize -e $EXP/rosy.salsa -d test
+
+ruby rosy.rb -t test -e $EXP/rosy.salsa
+

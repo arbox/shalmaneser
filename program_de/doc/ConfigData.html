@@ -1,0 +1,1625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: ConfigData</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/ConfigData_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/ConfigData.rb">PkgGeneral/ConfigData.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-adjoin">#adjoin</a></li>
+					
+					<li><a href="#method-i-extract_def">#extract_def</a></li>
+					
+					<li><a href="#method-i-get">#get</a></li>
+					
+					<li><a href="#method-i-get_all_filenames">#get_all_filenames</a></li>
+					
+					<li><a href="#method-i-get_contents">#get_contents</a></li>
+					
+					<li><a href="#method-i-get_filename">#get_filename</a></li>
+					
+					<li><a href="#method-i-get_lf">#get_lf</a></li>
+					
+					<li><a href="#method-i-get_type">#get_type</a></li>
+					
+					<li><a href="#method-i-instantiate">#instantiate</a></li>
+					
+					<li><a href="#method-i-is_defined">#is_defined</a></li>
+					
+					<li><a href="#method-i-set_entry">#set_entry</a></li>
+					
+					<li><a href="#method-i-set_list_feature_access">#set_list_feature_access</a></li>
+					
+					<li><a href="#method-i-set_test_print">#set_test_print</a></li>
+					
+					<li><a href="#method-i-unset_list_entry">#unset_list_entry</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><a class="include" href="ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+				
+				</ul>
+			</div>
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">ConfigData</h1>
+
+		<div id="description">
+			<pre>
+                                                   
+                                                  
+</pre>
+<p>
+<a href="ConfigData.html">ConfigData</a> is the main class in this package.
+It manages config files.
+</p>
+<p>
+To use it, inherit from it and just make a new new() method that only takes
+as input the name of the config file and that declares all the feature
+types and variable names needed for the given application.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(filename, feature_types, variables)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+         
+</pre>
+<p>
+new()
+</p>
+<p>
+reads the config file
+</p>
+<p>
+Input parameters: the name of the config file, a hash declaring all 
+features by mapping feature names to their types, and an array of all
+variables that may occur in pattern type features
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 114</span>
+114:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-comment cmt"># string: name of config file</span>
+115:                  <span class="ruby-identifier">feature_types</span>, <span class="ruby-comment cmt"># hash: feature_name =&gt; feature_type</span>
+116:                  <span class="ruby-identifier">variables</span>) <span class="ruby-comment cmt"># array of strings: list of variables used in pattern features</span>
+117: 
+118:     <span class="ruby-ivar">@test_print</span> = <span class="ruby-keyword kw">false</span>
+119:     <span class="ruby-ivar">@variables</span> = <span class="ruby-identifier">variables</span>
+120:     <span class="ruby-ivar">@original_filename</span> = <span class="ruby-identifier">filename</span>
+121: 
+122:     <span class="ruby-comment cmt">##</span>
+123:     <span class="ruby-comment cmt"># open config file</span>
+124:     <span class="ruby-keyword kw">begin</span>
+125:       <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>)
+126:     <span class="ruby-keyword kw">rescue</span>
+127:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error: I could not open the experiment file &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filename</span>
+128:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+129:     <span class="ruby-keyword kw">end</span>
+130: 
+131:     <span class="ruby-comment cmt"># feature_types: hash: feature_name =&gt; feature_type</span>
+132:     <span class="ruby-comment cmt"># features: hash: feature_name =&gt; value</span>
+133:     <span class="ruby-ivar">@feature_types</span> = <span class="ruby-identifier">feature_types</span>
+134:     <span class="ruby-ivar">@features</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+135: 
+136:     <span class="ruby-comment cmt"># @list_feature_access: hash feature_name =&gt; Proc</span>
+137:     <span class="ruby-comment cmt"># access method for list features</span>
+138:     <span class="ruby-ivar">@list_feature_access</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+139: 
+140:     <span class="ruby-comment cmt"># pre-initialize list features to an empty array</span>
+141:     <span class="ruby-ivar">@feature_types</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">feature_name</span>, <span class="ruby-identifier">feature_type</span><span class="ruby-operator">|</span>
+142:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">feature_type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;list&quot;</span>
+143:         <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+144:       <span class="ruby-keyword kw">end</span>
+145:     }
+146: 
+147:     <span class="ruby-comment cmt">##</span>
+148:     <span class="ruby-comment cmt"># examine the config file contents</span>
+149: 
+150:     <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">gets</span>())
+151:       <span class="ruby-identifier">line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>().<span class="ruby-identifier">strip</span>()
+152:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#/</span>   <span class="ruby-comment cmt"># comment</span>
+153:         <span class="ruby-keyword kw">next</span>
+154:       <span class="ruby-keyword kw">end</span>
+155:       
+156:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-comment cmt"># nothing to be seen here</span>
+157:         <span class="ruby-keyword kw">next</span>
+158:       <span class="ruby-keyword kw">end</span>
+159: 
+160:       <span class="ruby-identifier">feature_name</span>, <span class="ruby-identifier">rhs</span> = <span class="ruby-identifier">extract_def</span>(<span class="ruby-identifier">line</span>)
+161:       <span class="ruby-identifier">set_entry</span>(<span class="ruby-identifier">feature_name</span>, <span class="ruby-identifier">rhs</span>)
+162:     <span class="ruby-keyword kw">end</span>
+163:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="adjoin-method" class="method-detail ">
+				<a name="method-i-adjoin"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">adjoin</span><span
+						class="method-args">(config_obj)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+adjoin
+</p>
+<p>
+adds the information from a second <a href="ConfigData.html">ConfigData</a>
+object to this one. Disjointness of feature names is assumed.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="adjoin-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 263</span>
+263:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">adjoin</span>(<span class="ruby-identifier">config_obj</span>)  <span class="ruby-comment cmt"># ConfigData object</span>
+264: 
+265:     <span class="ruby-comment cmt">##</span>
+266:     <span class="ruby-comment cmt"># sanity checks:</span>
+267:     <span class="ruby-comment cmt"># the other object must be a ConfigData object</span>
+268:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">config_obj</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">ConfigData</span>
+269:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;I can only adjoin another ConfigData object&quot;</span>
+270:     <span class="ruby-keyword kw">end</span>
+271: 
+272:     <span class="ruby-comment cmt"># if feature name sets are not disjoint,</span>
+273:     <span class="ruby-comment cmt"># ignore the feature names that I already have</span>
+274:     <span class="ruby-identifier">other_features</span>, <span class="ruby-identifier">other_feature_types</span>, <span class="ruby-identifier">other_list_feature_access</span> = <span class="ruby-identifier">config_obj</span>.<span class="ruby-identifier">get_contents</span>()
+275:     <span class="ruby-keyword kw">unless</span> (<span class="ruby-ivar">@feature_types</span>.<span class="ruby-identifier">keys</span> &amp; <span class="ruby-identifier">other_feature_types</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">empty?</span>
+276:       <span class="ruby-identifier">other_features</span> = <span class="ruby-identifier">other_features</span>.<span class="ruby-identifier">clone</span>()
+277:       <span class="ruby-identifier">other_feature_types</span> = <span class="ruby-identifier">other_feature_types</span>.<span class="ruby-identifier">clone</span>()
+278:       <span class="ruby-identifier">other_list_feature_access</span> = <span class="ruby-identifier">other_list_feature_access</span>.<span class="ruby-identifier">clone</span>()
+279: 
+280:       (<span class="ruby-ivar">@feature_types</span>.<span class="ruby-identifier">keys</span>() &amp; <span class="ruby-identifier">other_feature_types</span>.<span class="ruby-identifier">keys</span>()).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">overlap_feature</span><span class="ruby-operator">|</span>
+281:         <span class="ruby-identifier">other_features</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">overlap_feature</span>)
+282:         <span class="ruby-identifier">other_feature_types</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">overlap_feature</span>)
+283:         <span class="ruby-identifier">other_list_feature_access</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">overlap_feature</span>)
+284:       }
+285:     <span class="ruby-keyword kw">end</span>
+286:     
+287:     <span class="ruby-comment cmt"># now adjoin the contents of the other config objects to mine</span>
+288:     <span class="ruby-ivar">@features</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">other_features</span>)
+289:     <span class="ruby-ivar">@feature_types</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">other_feature_types</span>)
+290:     <span class="ruby-ivar">@list_feature_access</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">other_list_feature_access</span>)
+291:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-method" class="method-detail ">
+				<a name="method-i-get"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get</span><span
+						class="method-args">(name)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+get()
+</p>
+<p>
+returns the value of a given feature raises an error if no feature of this
+name has been declared to the new() method
+</p>
+<p>
+returns: a feature value. the type of the return value
+</p>
+<pre>
+   depends on the type of the feature.
+   returns nil if the feature has not been set in the config file.</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="get-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 303</span>
+303:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">name</span>) <span class="ruby-comment cmt"># string: name of the feature to access</span>
+304:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">nil?</span>
+305:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Unknown feature &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span>
+306:     <span class="ruby-keyword kw">end</span>
+307: 
+308:     <span class="ruby-comment cmt"># may return nil if something has not been set</span>
+309:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">name</span>]
+310:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-all-filenames-method" class="method-detail ">
+				<a name="method-i-get_all_filenames"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_all_filenames</span><span
+						class="method-args">(dir, key, var_hash={})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-get_all_filenames">get_all_filenames</a>
+</p>
+<p>
+given a directory, a pattern type feature, and a hash mapping some of the
+pattern&#8217;s variables to values, return all filenames in the given
+directory that match the partially instantiated pattern
+</p>
+<p>
+returns: an array of pairs [filename(string), matches(hash)] where the
+matches hash maps all variables of the pattern to their values as
+instantiated in the given filename The filename doesn&#8217;t include the
+directory.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-all-filenames-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 390</span>
+390:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_all_filenames</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-comment cmt">#string: directory name</span>
+391:                         <span class="ruby-identifier">key</span>, <span class="ruby-comment cmt"># string: name of pattern type feature</span>
+392:                         <span class="ruby-identifier">var_hash</span>={}) <span class="ruby-comment cmt"># hash: variable name(string) =&gt; value(string)</span>
+393: 
+394:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;pattern&quot;</span>
+395:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Nothing known about file format &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>
+396:     <span class="ruby-keyword kw">end</span>
+397:     
+398:     <span class="ruby-comment cmt"># array of pairs [filename(string), matches(hash)]</span>
+399:     <span class="ruby-identifier">filenames</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+400: 
+401:     <span class="ruby-comment cmt"># iterate through all files of this directory</span>
+402:     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">dir</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+403:       <span class="ruby-comment cmt"># does the filename match the pattern of the feature &quot;key&quot;?</span>
+404:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">match</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">var_hash</span>))
+405:         <span class="ruby-comment cmt"># do the variable values for this filename conform</span>
+406:         <span class="ruby-comment cmt"># to the variable values given in var_hash?</span>
+407:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@test_print</span>
+408:           <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;got &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">filename</span>
+409:         <span class="ruby-keyword kw">end</span>
+410:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">var_hash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">var</span><span class="ruby-operator">|</span>
+411:             <span class="ruby-identifier">matches</span>[<span class="ruby-identifier">var</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">var_hash</span>[<span class="ruby-identifier">var</span>]
+412:           }.<span class="ruby-identifier">empty?</span>
+413:           <span class="ruby-identifier">filenames</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">filename</span>, <span class="ruby-identifier">matches</span>]
+414:         <span class="ruby-keyword kw">else</span>
+415:           <span class="ruby-comment cmt"># mismatch for given variables</span>
+416:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@test_print</span>
+417:             <span class="ruby-identifier">var_hash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">var</span><span class="ruby-operator">|</span>
+418:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span>[<span class="ruby-identifier">var</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">var_hash</span>[<span class="ruby-identifier">var</span>]
+419:                 <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Mismatch for &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">var</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;: &quot;</span> <span class="ruby-operator">+</span>
+420:                   <span class="ruby-identifier">matches</span>[<span class="ruby-identifier">var</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; vs. &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">var_hash</span>[<span class="ruby-identifier">var</span>]
+421:               <span class="ruby-keyword kw">end</span>
+422:             }
+423:           <span class="ruby-keyword kw">end</span>
+424:         <span class="ruby-keyword kw">end</span>      
+425:       <span class="ruby-keyword kw">end</span>
+426:     }
+427: 
+428:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">filenames</span>
+429:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-filename-method" class="method-detail ">
+				<a name="method-i-get_filename"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_filename</span><span
+						class="method-args">(key, var_hash={})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-get_filename">get_filename</a>:
+</p>
+<p>
+synonym for instantiate()
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-filename-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 362</span>
+362:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_filename</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">var_hash</span>={})
+363:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">instantiate</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">var_hash</span>)
+364:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-lf-method" class="method-detail ">
+				<a name="method-i-get_lf"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_lf</span><span
+						class="method-args">(feature_name, *parameters)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-get_lf">get_lf</a>
+</p>
+<p>
+access a list type feature for which an access function has been set using
+<a
+href="ConfigData.html#method-i-set_list_feature_access">set_list_feature_access</a>
+</p>
+<p>
+returns: whatever the access function returns
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-lf-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 460</span>
+460:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_lf</span>(<span class="ruby-identifier">feature_name</span>, <span class="ruby-comment cmt"># string: name of list feature</span>
+461:              *<span class="ruby-identifier">parameters</span>)  <span class="ruby-comment cmt"># parameters for access function, collapsed into an array here</span>
+462: 
+463:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@list_feature_access</span>[<span class="ruby-identifier">feature_name</span>]
+464:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;I have no list feature access method for #{feature_name}.&quot;</span>
+465:     <span class="ruby-keyword kw">end</span>
+466: 
+467:     <span class="ruby-comment cmt"># call access function, re-exploding the collapsed parameters and</span>
+468:     <span class="ruby-comment cmt"># adding the list of values for the list feature as first parameter</span>
+469:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list_feature_access</span>[<span class="ruby-identifier">feature_name</span>].<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>], *<span class="ruby-identifier">parameters</span>)
+470:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-type-method" class="method-detail ">
+				<a name="method-i-get_type"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_type</span><span
+						class="method-args">(feature_name)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+<a href="ConfigData.html#method-i-get_type">get_type</a>
+</p>
+<p>
+returns the type of a given feature, or nil if it is undefined
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-type-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 317</span>
+317:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_type</span>(<span class="ruby-identifier">feature_name</span>)
+318:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">feature_name</span>]
+319:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="instantiate-method" class="method-detail ">
+				<a name="method-i-instantiate"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">instantiate</span><span
+						class="method-args">(key, var_hash={})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+instantiate
+</p>
+<p>
+given a pattern type feature, and a hash mapping all variables occurring in
+the pattern to values, instantiate the pattern
+</p>
+<p>
+returns: string, the pattern with all variables
+</p>
+<pre>
+ instantiated with their values</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="instantiate-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 343</span>
+343:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instantiate</span>(<span class="ruby-identifier">key</span>,  <span class="ruby-comment cmt"># string: feature name</span>
+344:                   <span class="ruby-identifier">var_hash</span>={}) <span class="ruby-comment cmt"># hash: variable name(string) =&gt; value(string)</span>
+345: 
+346:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;pattern&quot;</span>
+347:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Nothing known about pattern &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>
+348:     <span class="ruby-keyword kw">end</span>
+349:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">key</span>]
+350:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Please define pattern in configuration file: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>
+351:     <span class="ruby-keyword kw">end</span>
+352: 
+353:     <span class="ruby-comment cmt"># piece together the file name</span>
+354:     <span class="ruby-comment cmt"># expand in case it is a filename/directory</span>
+355:     <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">instantiate</span>(<span class="ruby-identifier">var_hash</span>)
+356:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="is-defined-method" class="method-detail ">
+				<a name="method-i-is_defined"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">is_defined</span><span
+						class="method-args">(feature)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-is_defined">is_defined</a>
+</p>
+<p>
+returns: true if a feature by this name has been set in the config file,
+</p>
+<pre>
+  false else</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="is-defined-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 326</span>
+326:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">is_defined</span>(<span class="ruby-identifier">feature</span>) <span class="ruby-comment cmt"># string: name of the feature</span>
+327:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature</span>] 
+328:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+329:     <span class="ruby-keyword kw">else</span>
+330:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+331:     <span class="ruby-keyword kw">end</span>
+332:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-entry-method" class="method-detail ">
+				<a name="method-i-set_entry"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_entry</span><span
+						class="method-args">(feature_name, rhs)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-set_entry">set_entry</a>
+</p>
+<p>
+set an entry in the experiment file, either an existing or a new one but it
+must conform to the feature types declared in the new() method
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="set-entry-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 170</span>
+170:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_entry</span>(<span class="ruby-identifier">feature_name</span>, <span class="ruby-identifier">rhs</span>)
+171: 
+172:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">feature_name</span>]
+173:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error in experiment file:&quot;</span>
+174:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unknown parameter #{feature_name} in #{@original_filename}.&quot;</span>
+175:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Expected features for this type of experiment file:&quot;</span>
+176:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-ivar">@feature_types</span>.<span class="ruby-identifier">keys</span>().<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;, &quot;</span>)
+177:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+178:     <span class="ruby-keyword kw">end</span>
+179: 
+180:     <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">feature_name</span>]
+181:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;pattern&quot;</span>
+182:       <span class="ruby-comment cmt"># file format specification</span>
+183:       
+184:       <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-constant">ConfigFormatElement</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">rhs</span>, <span class="ruby-ivar">@variables</span>)
+185:         
+186:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;list&quot;</span>
+187: 
+188:       <span class="ruby-comment cmt"># rhs is a string of space-separated words</span>
+189:       <span class="ruby-comment cmt"># the first of them is the key, the rest is the value, to be</span>
+190:       <span class="ruby-comment cmt"># stored as an array of words</span>
+191:       
+192:       <span class="ruby-comment cmt"># split rhs into words</span>
+193:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">empty?</span>
+194:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;WARNING: I got an empty value for list feature #{feature_name}.&quot;</span>
+195:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;I'll ignore it.&quot;</span>
+196:       <span class="ruby-keyword kw">else</span>
+197:         <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">split</span>()
+198:           <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">split</span>()
+199:         <span class="ruby-keyword kw">end</span>
+200:       <span class="ruby-keyword kw">end</span>
+201: 
+202:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;bool&quot;</span>
+203:       <span class="ruby-comment cmt"># boolean value</span>
+204:       <span class="ruby-keyword kw">unless</span> [<span class="ruby-value str">&quot;true&quot;</span>, <span class="ruby-value str">&quot;false&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">rhs</span>
+205:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error in experiment file:&quot;</span>
+206:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Value for #{feature_name} must be either 'true' or 'false'.&quot;</span>
+207:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;I got: &quot;</span><span class="ruby-operator">+</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">to_s</span>
+208:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+209:       <span class="ruby-keyword kw">end</span>
+210:       <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = (<span class="ruby-identifier">rhs</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;true&quot;</span>)
+211:       
+212:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;float&quot;</span>
+213:       <span class="ruby-comment cmt"># float value</span>
+214:       <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">to_f</span>
+215:       
+216:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;integer&quot;</span>
+217:       <span class="ruby-comment cmt"># integer value</span>
+218:       <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">to_i</span>
+219:       
+220:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;string&quot;</span>
+221:       <span class="ruby-comment cmt"># string value</span>
+222:       <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-identifier">rhs</span>
+223:       
+224:     <span class="ruby-keyword kw">else</span>
+225:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknown feature type for feature #{feature_name}: #{@feature_types[feature_name]}&quot;</span>
+226:     <span class="ruby-keyword kw">end</span>
+227:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-list-feature-access-method" class="method-detail ">
+				<a name="method-i-set_list_feature_access"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_list_feature_access</span><span
+						class="method-args">(feature_name, proc)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+set list feature access:
+</p>
+<p>
+for a given list type feature, set a method that should be used for
+accessing the feature.
+</p>
+<p>
+method signature: first parameter is an array of tuples of strings. for
+each experiment file entry
+</p>
+<pre>
+  feature = rhs
+</pre>
+<p>
+there will be a tuple rhs.split() in the list.
+</p>
+<p>
+The other parameters are not checked by <a
+href="ConfigData.html">ConfigData</a>, there may be arbitrarily many
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="set-list-feature-access-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 444</span>
+444:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_list_feature_access</span>(<span class="ruby-identifier">feature_name</span>, <span class="ruby-comment cmt"># string: name of the feature</span>
+445:                               <span class="ruby-identifier">proc</span>) <span class="ruby-comment cmt"># proc: access method for list feature</span>
+446:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">feature_name</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'list'</span>
+447:       <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Cannot set list feature access to non-list feature #{feature_name}&quot;</span>
+448:     <span class="ruby-keyword kw">end</span>
+449: 
+450:     <span class="ruby-ivar">@list_feature_access</span>[<span class="ruby-identifier">feature_name</span>] = <span class="ruby-identifier">proc</span>
+451:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="set-test-print-method" class="method-detail ">
+				<a name="method-i-set_test_print"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">set_test_print</span><span
+						class="method-args">(tf)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-set_test_print">set_test_print</a>
+</p>
+<p>
+set test output to on (true) or off (false)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="set-test-print-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 370</span>
+370:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_test_print</span>(<span class="ruby-identifier">tf</span>) <span class="ruby-comment cmt"># boolean</span>
+371:     <span class="ruby-keyword kw">unless</span> [<span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">tf</span>
+372:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here&quot;</span>
+373:     <span class="ruby-keyword kw">end</span>
+374:     <span class="ruby-ivar">@test_print</span> = <span class="ruby-identifier">tf</span>
+375:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="unset-list-entry-method" class="method-detail ">
+				<a name="method-i-unset_list_entry"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">unset_list_entry</span><span
+						class="method-args">(lhs, rhs)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+remove list entry in this config data structure: the lhs argument is the
+list feature name the rhs argument can be a string or a regexp.
+</p>
+<ul>
+<li><p>
+string: each entry exactly matching the string is removed
+</p>
+</li>
+<li><p>
+regexp: each entry matching the regexp is removed
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="unset-list-entry-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 235</span>
+235:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unset_list_entry</span>(<span class="ruby-identifier">lhs</span>, <span class="ruby-comment cmt">#string: feature name</span>
+236:                        <span class="ruby-identifier">rhs</span>) <span class="ruby-comment cmt"># string/regexp: righthand side</span>
+237:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@feature_types</span>[<span class="ruby-identifier">lhs</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;list&quot;</span>
+238:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error in experiment file: &quot;</span>
+239:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Feature #{lhs} unknown or not of type list.&quot;</span>
+240:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+241:     <span class="ruby-keyword kw">end</span>
+242: 
+243:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>
+244:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;String&quot;</span>
+245:       <span class="ruby-identifier">rhs_match</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;^&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">rhs</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;$&quot;</span>)
+246:     <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;Regexp&quot;</span>
+247:       <span class="ruby-identifier">rhs_match</span> = <span class="ruby-identifier">rhs</span>
+248:     <span class="ruby-keyword kw">else</span>
+249:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Shouldn't be here: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>
+250:     <span class="ruby-keyword kw">end</span>
+251: 
+252:     <span class="ruby-identifier">to_delete</span> = <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">lhs</span>].<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-operator">=~</span> <span class="ruby-identifier">rhs_match</span> }
+253:     <span class="ruby-identifier">to_delete</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@features</span>[<span class="ruby-identifier">lhs</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">entry</span>) }
+254:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-instance-method-details" class="method-section section">
+			<h3 class="section-header">Protected Instance Methods</h3>
+
+		
+			<div id="extract-def-method" class="method-detail ">
+				<a name="method-i-extract_def"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">extract_def</span><span
+						class="method-args">(line)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+   
+</pre>
+<p>
+<a href="ConfigData.html#method-i-extract_def">extract_def</a>
+</p>
+<p>
+given a line of the config file,  it is assumed that it has the structure
+</p>
+<pre>
+ [white space] string [white space] = [white space] stuff
+ 'stuff' may include further white space, 'string' may not.
+</pre>
+<p>
+returns: a pair of strings, the left-hand side and the right-hand side
+</p>
+<pre>
+ of the =, minus the [white space] in the places shown above</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="extract-def-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 486</span>
+486:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extract_def</span>(<span class="ruby-identifier">line</span>) <span class="ruby-comment cmt"># string: line from config file</span>
+487:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\s*(\w+)\s*=\s*([^\s].*)$/</span>
+488:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error in experiment file: &quot;</span>
+489:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;I couldn't analyze the following line: &quot;</span>
+490:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
+491:       <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+492:     <span class="ruby-keyword kw">end</span>
+493:     <span class="ruby-keyword kw">return</span> [<span class="ruby-node">$1</span>, <span class="ruby-node">$2</span>]
+494:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="get-contents-method" class="method-detail ">
+				<a name="method-i-get_contents"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">get_contents</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+  
+</pre>
+<p>
+access to the object variables
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="get-contents-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/ConfigData.rb, line 498</span>
+498:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_contents</span>()
+499:     <span class="ruby-keyword kw">return</span> [<span class="ruby-ivar">@features</span>, <span class="ruby-ivar">@feature_types</span>, <span class="ruby-ivar">@list_feature_access</span>]
+500:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

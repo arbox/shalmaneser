@@ -1,0 +1,63 @@
+#!/usr/bin/perl
+
+die unless @ARGV;
+$lexiconfile = $ARGV[0];
+
+foreach(`cat $lexiconfile`){
+    chomp;
+    $lexicon{$_} = 1;
+}
+
+#foreach $w (sort keys %lexicon){
+#    print "$w\n";
+#}
+
+
+while(<STDIN>){
+    for(split){
+    $word = $_;
+
+    # known words are their own signature
+    if ($lexicon{$word} == 1){
+	print "$word ";
+	next;
+    }
+
+    $sig = "UNK";
+    $lowered = lc($word);
+
+    if ($word =~ /^[A-Z]/) {
+	if (lcfirst($word) == $lowered) { # only 1st char is uppercase
+	    $sig = "$sig-INITC";
+	    $sig = "$sig-KNOWNLC", if $lexicon{$lowered}==1;
+	} else { $sig = "$sig-CAPS"; }
+    } else { if ($word ne $lowered) {
+	$sig = "sig-CAPS";
+    } else { $sig = "$sig-LC"; } }
+
+    $sig = "$sig-NUM", if ($word =~ /[0-9]/);
+    $sig = "$sig-DASH", if ($word =~ /[-]/);
+
+    $len = length($word);
+    if ($len>=3 && $lowered =~ /s$/){
+	$sig = "$sig-s", if !($lowered =~ /ss$/ || $lowered =~ /us$/ || $lowered =~ /is$/);
+    }
+
+
+    if ($len>=5) {
+	$sig = "$sig-ed", if ($lowered =~ /ed$/);
+	$sig = "$sig-ing", if ($lowered =~ /ing$/);
+	$sig = "$sig-ion", if ($lowered =~ /ion$/);
+	$sig = "$sig-er", if ($lowered =~ /er$/);
+	$sig = "$sig-est", if ($lowered =~ /est$/);
+	$sig = "$sig-al", if ($lowered =~ /al$/);
+	if ($lowerd =~ /y$/){
+	    if ($lowerd =~ /ly$/){ $sig = "$sig-ly"; }
+	    else { if ($lowered =~ /ity$/) {  $sig = "$sig-ity"; }
+	    else { $sig = "$sig-y"; } }
+	}
+    }
+    print "$sig ";
+    }
+    print "\n";
+}

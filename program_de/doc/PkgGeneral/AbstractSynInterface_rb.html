@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: AbstractSynInterface.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>tempfile</li>
+				
+					<li>StandardPkgExtensions</li>
+				
+					<li>ISO-8859-1</li>
+				
+					<li>Parser</li>
+				
+					<li>SalsaTigerRegXML</li>
+				
+					<li>TabFormat</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+Katrin Erk Oct/Nov 05
+</p>
+<p>
+Abstract classes for interfaces for systems that provide syntactic
+analysis.
+</p>
+<p>
+There are two types of interfaces to syntactic analysis systems:
+</p>
+<ul>
+<li><p>
+interfaces: offer methods for syntactic analysis.
+</p>
+<p>
+SynInterfaceTab: input and output format is (FN)TabFormat.
+SynInterfaceSTXML:
+</p>
+<pre>
+ input format is TabFormat, output format is 
+ Salsa/Tiger XML, also provided as 
+ SalsaTigerSentence objects
+</pre>
+</li>
+<li><p>
+interpreters: interpret the resulting Salsa/Tiger XML (represented as <a
+href="../SalsaTigerSentence.html">SalsaTigerSentence</a> and <a
+href="../SynNode.html">SynNode</a> objects), e.g. generalize over part of
+speech;  describe the path between a pair of nodes both as a path  and
+(potentially) as a grammatical function of one of the nodes; determine
+whether a node describes a verb, and in which voice; determine the head of
+a constituent
+</p>
+</li>
+</ul>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: FNCorpusXMLSentence</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/FNCorpusXML_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/FNCorpusXML.rb">PkgGeneral/FNCorpusXML.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-our_length">#our_length</a></li>
+					
+					<li><a href="#method-i-print_conll_style">#print_conll_style</a></li>
+					
+					<li><a href="#method-i-read_annotation_sets">#read_annotation_sets</a></li>
+					
+					<li><a href="#method-i-read_sentence">#read_sentence</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">FNCorpusXMLSentence</h1>
+
+		<div id="description">
+			<pre>
+                                     
+</pre>
+<p>
+Keep one sentence from FN corpus XML as a <a href="RegXML.html">RegXML</a>
+object, offer printout in tabular format
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(sent_string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/FNCorpusXML.rb, line 356</span>
+356:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">sent_string</span>)
+357:     <span class="ruby-ivar">@sent</span> = <span class="ruby-constant">RegXML</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">sent_string</span>)
+358:     <span class="ruby-ivar">@sent_id</span> = <span class="ruby-ivar">@sent</span>.<span class="ruby-identifier">attributes</span>()[<span class="ruby-value str">&quot;ID&quot;</span>]
+359:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="print-conll-style-method" class="method-detail ">
+				<a name="method-i-print_conll_style"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">print_conll_style</span><span
+						class="method-args">(file = $stdout)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+            
+</pre>
+<p>
+print to file in tabular format
+</p>
+<p>
+row format: word (pt gf role target frame stuff)* ne sent_id
+</p>
+<pre>
+  word: word
+  whole bracketed group: information about one frame annotation
+   pt: phrase type
+   gf: grammatical function
+   role: frame element
+   target: LU occurrence
+   frame: frame
+   stuff: support, and other things
+  ne:    named entity
+  sent_id: sentence ID </pre>
+					
+
+					
+					<div class="method-source-code"
+						id="print-conll-style-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/FNCorpusXML.rb, line 378</span>
+378:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_conll_style</span>(<span class="ruby-identifier">file</span> = <span class="ruby-identifier">$stdout</span>)
+379:     <span class="ruby-identifier">pos_text</span>, <span class="ruby-identifier">charidx</span> = <span class="ruby-identifier">read_sentence</span>()
+380:     <span class="ruby-identifier">asets</span> = <span class="ruby-identifier">read_annotation_sets</span>(<span class="ruby-identifier">charidx</span>)
+381: 
+382:     <span class="ruby-comment cmt"># aset -&gt; are we inside the target or not?</span>
+383:     <span class="ruby-identifier">in_target</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">false</span>)
+384:     <span class="ruby-comment cmt"># aset -&gt; are we in all sorts of other annotations, like Support?</span>
+385:     <span class="ruby-identifier">in_stuff</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+386:     <span class="ruby-comment cmt"># are we inside a named entity?</span>
+387:     <span class="ruby-identifier">in_ne</span> = <span class="ruby-keyword kw">nil</span>
+388: 
+389:     <span class="ruby-comment cmt"># record every opening and closing label we recognize,</span>
+390:     <span class="ruby-comment cmt"># to check later</span>
+391:     <span class="ruby-identifier">recognized_labels</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>()
+392: 
+393:     <span class="ruby-identifier">pos_text</span>.<span class="ruby-identifier">each_index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+394:       <span class="ruby-identifier">line</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+395:       <span class="ruby-identifier">word</span> = <span class="ruby-identifier">pos_text</span>[<span class="ruby-identifier">i</span>]
+396: 
+397:       <span class="ruby-comment cmt"># add: word</span>
+398:       <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">word</span>
+399: 
+400:       <span class="ruby-identifier">start</span>, <span class="ruby-identifier">stop</span> = <span class="ruby-identifier">charidx</span>[<span class="ruby-identifier">i</span>]
+401: 
+402:       <span class="ruby-comment cmt"># iterate over the frames we have</span>
+403:       <span class="ruby-comment cmt"># add: (pt gf role target frame stuff)</span>
+404:       <span class="ruby-identifier">asets</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">aset</span><span class="ruby-operator">|</span>
+405:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">aset_type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;frame&quot;</span>
+406:           <span class="ruby-comment cmt"># don't treat NEs as a frame here</span>
+407:           <span class="ruby-keyword kw">next</span>
+408:         <span class="ruby-keyword kw">end</span>
+409: 
+410:         <span class="ruby-comment cmt"># pt, gf, role</span>
+411:         [<span class="ruby-value str">&quot;PT&quot;</span>, <span class="ruby-value str">&quot;GF&quot;</span>, <span class="ruby-value str">&quot;FE&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">layer</span><span class="ruby-operator">|</span>
+412:           <span class="ruby-identifier">token</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+413:           <span class="ruby-identifier">hash</span> = <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>]
+414:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">start</span>,<span class="ruby-value str">&quot;start&quot;</span>])
+415:             <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+416: 
+417:             <span class="ruby-identifier">markables</span> = <span class="ruby-identifier">hash</span>[[<span class="ruby-identifier">start</span>,<span class="ruby-value str">&quot;start&quot;</span>]]
+418:             <span class="ruby-identifier">markables</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+419:               <span class="ruby-identifier">token</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;B-&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">element</span>
+420:             }
+421:           <span class="ruby-keyword kw">end</span>
+422:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">stop</span>,<span class="ruby-value str">&quot;stop&quot;</span>])
+423:             <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+424: 
+425:             <span class="ruby-identifier">markables</span> = <span class="ruby-identifier">hash</span>[[<span class="ruby-identifier">stop</span>,<span class="ruby-value str">&quot;stop&quot;</span>]]
+426:             <span class="ruby-identifier">markables</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+427:               <span class="ruby-identifier">token</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;E-&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">element</span>
+428:             }
+429:           <span class="ruby-keyword kw">end</span>
+430: 
+431:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">empty?</span>
+432:             <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-value str">&quot;-&quot;</span>
+433:           <span class="ruby-keyword kw">else</span>
+434:             <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span>  <span class="ruby-identifier">token</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;:&quot;</span>)
+435:           <span class="ruby-keyword kw">end</span>
+436:         }
+437:         
+438:         <span class="ruby-comment cmt"># target</span>
+439:         <span class="ruby-identifier">target</span> = <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;Target&quot;</span>]
+440:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">start</span>,<span class="ruby-value str">&quot;start&quot;</span>])
+441:           <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-value str">&quot;Target&quot;</span>, <span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+442:           <span class="ruby-identifier">in_target</span>[<span class="ruby-identifier">aset</span>] = <span class="ruby-keyword kw">true</span>
+443:         <span class="ruby-keyword kw">end</span>
+444:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">in_target</span>[<span class="ruby-identifier">aset</span>]
+445:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">lu</span>
+446:         <span class="ruby-keyword kw">else</span>
+447:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-&quot;</span>
+448:         <span class="ruby-keyword kw">end</span>
+449:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">stop</span>,<span class="ruby-value str">&quot;stop&quot;</span>])
+450:           <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-value str">&quot;Target&quot;</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+451:           <span class="ruby-identifier">in_target</span>[<span class="ruby-identifier">aset</span>] = <span class="ruby-keyword kw">false</span>
+452:         <span class="ruby-keyword kw">end</span>
+453: 
+454:         <span class="ruby-comment cmt"># frame</span>
+455:         <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">frame_name</span>
+456: 
+457:         <span class="ruby-comment cmt"># stuff</span>
+458:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">in_stuff</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">aset</span>)
+459:           <span class="ruby-identifier">in_stuff</span>[<span class="ruby-identifier">aset</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+460:         <span class="ruby-keyword kw">end</span>
+461:         <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">layer</span><span class="ruby-operator">|</span>
+462:           <span class="ruby-keyword kw">if</span> [<span class="ruby-value str">&quot;PT&quot;</span>, <span class="ruby-value str">&quot;GF&quot;</span>, <span class="ruby-value str">&quot;FE&quot;</span>, <span class="ruby-value str">&quot;Target&quot;</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">layer</span>
+463:             <span class="ruby-comment cmt"># already done those</span>
+464:             <span class="ruby-keyword kw">next</span>
+465:           <span class="ruby-keyword kw">end</span>
+466:           <span class="ruby-comment cmt"># all the rest goes in &quot;stuff&quot;</span>
+467:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>].<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>])
+468:             <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>][[<span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>]].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span>
+469:               <span class="ruby-identifier">in_stuff</span>[<span class="ruby-identifier">aset</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">layer</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">entry</span>
+470:             }
+471:             <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+472:           <span class="ruby-keyword kw">end</span>
+473:         }
+474:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">in_stuff</span>[<span class="ruby-identifier">aset</span>].<span class="ruby-identifier">empty?</span>
+475:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-&quot;</span>
+476:         <span class="ruby-keyword kw">else</span>
+477:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">in_stuff</span>[<span class="ruby-identifier">aset</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;:&quot;</span>)
+478:         <span class="ruby-keyword kw">end</span>
+479:         <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">layer</span><span class="ruby-operator">|</span>
+480:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>].<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>])
+481:             <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+482:             <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>][[<span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>]].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span>
+483:               <span class="ruby-identifier">in_stuff</span>[<span class="ruby-identifier">aset</span>].<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">layer</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">entry</span>)
+484:             }
+485:           <span class="ruby-keyword kw">end</span>
+486:         }
+487:       }
+488: 
+489:       <span class="ruby-comment cmt"># ne</span>
+490:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">ner</span> = <span class="ruby-identifier">asets</span>.<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">aset_type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;NER&quot;</span> })
+491:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ner</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;NER&quot;</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">ner</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;NER&quot;</span>].<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>])
+492:           <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-value str">&quot;NER&quot;</span>, <span class="ruby-identifier">start</span>, <span class="ruby-value str">&quot;start&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+493:           <span class="ruby-identifier">in_ne</span> = <span class="ruby-identifier">ner</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;NER&quot;</span>][[<span class="ruby-identifier">start</span>,<span class="ruby-value str">&quot;start&quot;</span>]]
+494:         <span class="ruby-keyword kw">end</span>
+495:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">in_ne</span>
+496:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">in_ne</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;:&quot;</span>)
+497:         <span class="ruby-keyword kw">else</span>
+498:           <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-&quot;</span>
+499:         <span class="ruby-keyword kw">end</span>
+500:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ner</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;NER&quot;</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">ner</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-value str">&quot;NER&quot;</span>].<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>])
+501:           <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-value str">&quot;NER&quot;</span>, <span class="ruby-identifier">stop</span>, <span class="ruby-value str">&quot;stop&quot;</span>]] = <span class="ruby-keyword kw">true</span>
+502:           <span class="ruby-identifier">in_ne</span> = <span class="ruby-keyword kw">nil</span>
+503:         <span class="ruby-keyword kw">end</span>
+504:       <span class="ruby-keyword kw">end</span>
+505: 
+506:       <span class="ruby-comment cmt"># sent id</span>
+507:       <span class="ruby-identifier">line</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@sent_id</span>
+508: 
+509:       <span class="ruby-comment cmt"># sanity check:</span>
+510:       <span class="ruby-comment cmt"># row format:</span>
+511:       <span class="ruby-comment cmt"># word (pt gf role target frame stuff)* ne sent_id</span>
+512:       <span class="ruby-comment cmt"># so number of columns must be 3 + 6x for some x &gt;= 0</span>
+513:       <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">line</span>.<span class="ruby-identifier">length</span>() <span class="ruby-operator">-</span> <span class="ruby-value">3</span>)<span class="ruby-operator">%</span><span class="ruby-value">6</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+514:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Something wrong with the line length.&quot;</span>
+515:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;I have #{asets.length() - 1} frames plus NEs, &quot;</span>
+516:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;but #{line.length()} columns.&quot;</span>
+517:         <span class="ruby-identifier">raise</span>
+518:       <span class="ruby-keyword kw">end</span>
+519: 
+520: 
+521:       <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\t&quot;</span>)
+522:     }
+523: 
+524:     <span class="ruby-comment cmt"># sanity check:</span>
+525:     <span class="ruby-comment cmt"># now count all labels,</span>
+526:     <span class="ruby-comment cmt"># to see if we've printed them all</span>
+527:     <span class="ruby-identifier">lost_labels</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+528:     <span class="ruby-identifier">asets</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">aset</span><span class="ruby-operator">|</span>
+529:       <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">layer</span><span class="ruby-operator">|</span>
+530:         <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>].<span class="ruby-identifier">each_key</span>() { <span class="ruby-operator">|</span><span class="ruby-identifier">offset</span>, <span class="ruby-identifier">start_or_stop</span><span class="ruby-operator">|</span> 
+531:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">recognized_labels</span>[[<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">start_or_stop</span>]]
+532:             <span class="ruby-identifier">lost_labels</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">layer</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">start_or_stop</span>, 
+533:                             <span class="ruby-identifier">aset</span>.<span class="ruby-identifier">layers</span>[<span class="ruby-identifier">layer</span>][[<span class="ruby-identifier">offset</span>, <span class="ruby-identifier">start_or_stop</span>]]]
+534:           <span class="ruby-keyword kw">end</span>
+535:         }
+536:       }
+537:     }
+538:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">lost_labels</span>.<span class="ruby-identifier">empty?</span>
+539:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Offsets: &quot;</span>
+540:       <span class="ruby-identifier">pos_text</span>.<span class="ruby-identifier">each_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+541:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\t#{pos_text[i]} #{charidx[i][0]} #{charidx[i][1]}&quot;</span>
+542:       }
+543: <span class="ruby-comment cmt">#       $stderr.puts &quot;Recognized:&quot;</span>
+544: <span class="ruby-comment cmt">#       recognized_labels.each_key { |k|</span>
+545: <span class="ruby-comment cmt">#         $stderr.puts &quot;\t&quot; + k.to_s()</span>
+546: <span class="ruby-comment cmt">#       }</span>
+547:       <span class="ruby-identifier">lost_labels</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">layer</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">start_or_stop</span>, <span class="ruby-identifier">labels</span><span class="ruby-operator">|</span>
+548:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;FNCorpusXML warning: lost label&quot;</span>
+549:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tLayer #{layer}&quot;</span>
+550:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tOffset #{offset}&quot;</span>
+551:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tStatus #{start_or_stop}&quot;</span>
+552:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tLabels #{labels.join(&quot; &quot;)}&quot;</span>
+553:       }
+554:     <span class="ruby-keyword kw">end</span>
+555: 
+556:     <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span>
+557:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="our-length-method" class="method-detail ">
+				<a name="method-i-our_length"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">our_length</span><span
+						class="method-args">(string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="our-length-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/FNCorpusXML.rb, line 639</span>
+639:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">our_length</span>(<span class="ruby-identifier">string</span>)   <span class="ruby-comment cmt"># (1) replace &amp;...; with 1 char and &quot; with two chars</span>
+640:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&amp;(.+?);/</span>,<span class="ruby-value str">&quot;X&quot;</span>).<span class="ruby-identifier">length</span>
+641:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="read-annotation-sets-method" class="method-detail ">
+				<a name="method-i-read_annotation_sets"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">read_annotation_sets</span><span
+						class="method-args">(charidx)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+read annotation sets: parse the annotation sets in the @sent object, return
+as: array of <a href="FNCorpusAset.html">FNCorpusAset</a> objects
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="read-annotation-sets-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/FNCorpusXML.rb, line 567</span>
+567:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_annotation_sets</span>(<span class="ruby-identifier">charidx</span>)
+568:     <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">annotation_sets</span> = <span class="ruby-ivar">@sent</span>.<span class="ruby-identifier">first_child_matching</span>(<span class="ruby-value str">&quot;annotationSets&quot;</span>))
+569:       <span class="ruby-keyword kw">return</span>
+570:     <span class="ruby-keyword kw">end</span>
+571: 
+572:     <span class="ruby-comment cmt"># return values</span>
+573:     <span class="ruby-identifier">frames</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>()
+574: 
+575:     <span class="ruby-identifier">annotation_sets</span>.<span class="ruby-identifier">each_child_matching</span>(<span class="ruby-value str">&quot;annotationSet&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">aset</span><span class="ruby-operator">|</span>
+576:       <span class="ruby-identifier">frames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">FNCorpusAset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">aset</span>, <span class="ruby-identifier">charidx</span>)
+577:     }
+578: 
+579:     <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">frames</span>
+580:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="read-sentence-method" class="method-detail ">
+				<a name="method-i-read_sentence"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">read_sentence</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+basically taken over from FrameXML.rb read sentence words, return as:
+sentence, indices
+</p>
+<ul>
+<li><p>
+sentence as array of strings, one word per string
+</p>
+</li>
+<li><p>
+indices: array of pairs [word start char.index, word end char.index]
+int*int
+</p>
+</li>
+</ul>
+					
+
+					
+					<div class="method-source-code"
+						id="read-sentence-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/FNCorpusXML.rb, line 588</span>
+588:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_sentence</span>()
+589:     <span class="ruby-comment cmt"># all text and pos_text have the same number of elements!</span>
+590:     <span class="ruby-identifier">charidx</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> <span class="ruby-comment cmt"># maps word indices on [start,stop]</span>
+591:     <span class="ruby-identifier">pos_text</span> = []
+592: 
+593:     <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">text_elt</span> = <span class="ruby-ivar">@sent</span>.<span class="ruby-identifier">first_child_matching</span>(<span class="ruby-value str">&quot;text&quot;</span>))
+594:       <span class="ruby-comment cmt"># no text found for this sentence</span>
+595:       <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">pos_text</span>, <span class="ruby-identifier">charidx</span>]
+596:     <span class="ruby-keyword kw">end</span>
+597: 
+598:     <span class="ruby-identifier">orig_text</span> = <span class="ruby-identifier">text_elt</span>.<span class="ruby-identifier">children_and_text</span>().<span class="ruby-identifier">detect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+599:       <span class="ruby-identifier">child</span>.<span class="ruby-identifier">text?</span>
+600:     }
+601:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">orig_text</span>
+602:       <span class="ruby-comment cmt"># take text out of RegXMl object</span>
+603:       <span class="ruby-identifier">orig_text</span> = <span class="ruby-identifier">orig_text</span>.<span class="ruby-identifier">to_s</span>()
+604:     <span class="ruby-keyword kw">end</span>
+605: 
+606:     <span class="ruby-identifier">pos_text</span> = <span class="ruby-constant">UtfIso</span>.<span class="ruby-identifier">to_iso_8859_1</span>(<span class="ruby-identifier">orig_text</span>).<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-comment cmt"># text with special char.s replaced by iso8859 char.s </span>
+607:     
+608:     <span class="ruby-identifier">double_space</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+609:     <span class="ruby-identifier">pos</span> = <span class="ruby-value">0</span>
+610:     <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">match</span> = <span class="ruby-identifier">orig_text</span>.<span class="ruby-identifier">index</span>(<span class="ruby-regexp re">/(\s\s+)/</span>,<span class="ruby-identifier">pos</span>))
+611:       <span class="ruby-identifier">double_space</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">match</span>
+612:       <span class="ruby-identifier">pos</span> = <span class="ruby-identifier">match</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+613:     <span class="ruby-keyword kw">end</span>
+614: 
+615:     <span class="ruby-comment cmt"># fill charidx array</span>
+616:     <span class="ruby-identifier">char_i</span> = <span class="ruby-value">0</span>
+617:     <span class="ruby-identifier">pos_text</span>.<span class="ruby-identifier">each_index</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">word_i</span><span class="ruby-operator">|</span>
+618:       <span class="ruby-identifier">startchar</span> = <span class="ruby-identifier">char_i</span>
+619:       <span class="ruby-comment cmt">#      puts &quot;Remembering &quot;+char_i.to_s+&quot; as start index of word &quot;+word_i.to_s</span>
+620:       <span class="ruby-identifier">char_i</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">our_length</span>(<span class="ruby-identifier">pos_text</span>[<span class="ruby-identifier">word_i</span>])
+621:       <span class="ruby-identifier">stopchar</span> = <span class="ruby-identifier">char_i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+622: 
+623:       <span class="ruby-comment cmt">#      puts &quot;Remembering &quot;+(char_i-1).to_s+&quot; as stop index of word &quot;+word_i.to_s</span>
+624:       
+625:       <span class="ruby-identifier">charidx</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">startchar</span>,<span class="ruby-identifier">stopchar</span>]
+626:       
+627:       <span class="ruby-comment cmt"># separators</span>
+628:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">double_space</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">char_i</span>) <span class="ruby-keyword kw">then</span>
+629:         <span class="ruby-identifier">char_i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">2</span>
+630:       <span class="ruby-keyword kw">else</span>       
+631:         <span class="ruby-identifier">char_i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+632:       <span class="ruby-keyword kw">end</span>
+633:     }
+634: 
+635:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">pos_text</span>, <span class="ruby-identifier">charidx</span>]
+636:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: FNCorpusXML.rb [RDoc Documentation]</title>
+
+	<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+	<div id="metadata">
+		<dl>
+			<dt class="modified-date">Last Modified</dt>
+			<dd class="modified-date">Thu Jul 22 14:42:42 +0200 2010</dd>
+
+			
+			<dt class="requires">Requires</dt>
+			<dd class="requires">
+				<ul>
+				
+					<li>Ampersand</li>
+				
+					<li>ISO-8859-1</li>
+				
+					<li>RegXML</li>
+				
+				</ul>
+			</dd>
+			
+
+			
+		</dl>
+	</div>
+
+	<div id="documentation">
+		
+		<div class="description">
+			<h2>Description</h2>
+			<p>
+KE Dec 2006 Access for FrameNet corpus XML file Mainly taken over from
+FramesXML
+</p>
+<p>
+changes:
+</p>
+<ul>
+<li><p>
+no single frame for the whole corpus
+</p>
+</li>
+<li><p>
+below <sentence> level there is an <annotationSet> level. One annotationSet
+may include a single frame,  or a reference to all named entities in a
+sentence
+</p>
+</li>
+</ul>
+<p>
+Write out in tab format, one line per word: Format:
+</p>
+<pre>
+   word (pt gf role target frame stuff)* ne sent_id
+</pre>
+<p>
+with
+</p>
+<pre>
+  word: word
+  whole bracketed group: information about one frame annotation
+   pt: phrase type
+   gf: grammatical function
+   role: frame element
+   target: LU occurrence
+   frame: frame
+   stuff: support, and other things
+  ne:    named entity
+  sent_id: sentence ID </pre>
+
+		</div>
+		
+	</div>
+</body>
+</html>
+

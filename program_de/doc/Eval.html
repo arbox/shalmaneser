@@ -1,0 +1,1651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Eval</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./PkgGeneral/Eval_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="PkgGeneral/Eval.rb">PkgGeneral/Eval.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link"><a href="Object.html">Object</a></p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-i-accuracy">#accuracy</a></li>
+					
+					<li><a href="#method-i-compute">#compute</a></li>
+					
+					<li><a href="#method-i-each_group">#each_group</a></li>
+					
+					<li><a href="#method-i-each_instance">#each_instance</a></li>
+					
+					<li><a href="#method-i-end_printlog">#end_printlog</a></li>
+					
+					<li><a href="#method-i-inject_gold_counts">#inject_gold_counts</a></li>
+					
+					<li><a href="#method-i-prec_rec_f">#prec_rec_f</a></li>
+					
+					<li><a href="#method-i-print_evaluation_result">#print_evaluation_result</a></li>
+					
+					<li><a href="#method-i-print_log">#print_log</a></li>
+					
+					<li><a href="#method-i-start_printlog">#start_printlog</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./rosy_medline_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./rosy_medline_rosy_main/main.html">main</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/Makefile.html">Makefile</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/README.html">README</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/edu/berkeley/nlp/PCFGLA/manifest_txt.html">manifest.txt</a></li>
+				
+					<li class="file"><a href="./tools/berkeleyParser/getSignature.html">getSignature</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-eng.html">shal-eng</a></li>
+				
+					<li class="file"><a href="./tools/treetagger/shal-ger.html">shal-ger</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./RulesFE.html">RulesFE</a></li>
+				
+					<li><a href="./RulesFE/RuleGeneralizer.html">RulesFE::RuleGeneralizer</a></li>
+				
+					<li><a href="./RulesFE/RuleKeeper.html">RulesFE::RuleKeeper</a></li>
+				
+					<li><a href="./RulesFE/RulePartFE.html">RulesFE::RulePartFE</a></li>
+				
+					<li><a href="./RulesFE/RulePartFEE.html">RulesFE::RulePartFEE</a></li>
+				
+					<li><a href="./RulesFE/RuleUser.html">RulesFE::RuleUser</a></li>
+				
+					<li><a href="./DBView.html">DBView</a></li>
+				
+					<li><a href="./DBView/dyn_gold_obj.html">DBView::dyn_gold_obj</a></li>
+				
+					<li><a href="./EmptyInterpreter.html">EmptyInterpreter</a></li>
+				
+					<li><a href="./EmptyInterpreter/SynInterpreter.html">EmptyInterpreter::SynInterpreter</a></li>
+				
+					<li><a href="./NonlocalFEModule.html">NonlocalFEModule</a></li>
+				
+					<li><a href="./NonlocalFEModule/NonlocalFEs.html">NonlocalFEModule::NonlocalFEs</a></li>
+				
+					<li><a href="./AbstractCombinedPathFeature.html">AbstractCombinedPathFeature</a></li>
+				
+					<li><a href="./AbstractContextProvider.html">AbstractContextProvider</a></li>
+				
+					<li><a href="./AbstractFeatureExtractor.html">AbstractFeatureExtractor</a></li>
+				
+					<li><a href="./AbstractFredFeatureAccess.html">AbstractFredFeatureAccess</a></li>
+				
+					<li><a href="./AbstractGVPathFeature.html">AbstractGVPathFeature</a></li>
+				
+					<li><a href="./AbstractPartialPathFeature.html">AbstractPartialPathFeature</a></li>
+				
+					<li><a href="./AbstractPathFeature.html">AbstractPathFeature</a></li>
+				
+					<li><a href="./AbstractSingleFeatureExtractor.html">AbstractSingleFeatureExtractor</a></li>
+				
+					<li><a href="./Ampersand.html">Ampersand</a></li>
+				
+					<li><a href="./AncestorRuleFeature.html">AncestorRuleFeature</a></li>
+				
+					<li><a href="./AnswerKeyAccess.html">AnswerKeyAccess</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./AuxKeepWriters.html">AuxKeepWriters</a></li>
+				
+					<li><a href="./Baseline.html">Baseline</a></li>
+				
+					<li><a href="./BerkeleyInterface.html">BerkeleyInterface</a></li>
+				
+					<li><a href="./BerkeleyInterpreter.html">BerkeleyInterpreter</a></li>
+				
+					<li><a href="./Classifier.html">Classifier</a></li>
+				
+					<li><a href="./ClassifierCombination.html">ClassifierCombination</a></li>
+				
+					<li><a href="./CollinsInterface.html">CollinsInterface</a></li>
+				
+					<li><a href="./CollinsTntInterpreter.html">CollinsTntInterpreter</a></li>
+				
+					<li><a href="./CollinsTreeTaggerInterpreter.html">CollinsTreeTaggerInterpreter</a></li>
+				
+					<li><a href="./CombinedPathFeature.html">CombinedPathFeature</a></li>
+				
+					<li><a href="./ConfigAlsoHandlingDirectories.html">ConfigAlsoHandlingDirectories</a></li>
+				
+					<li><a href="./ConfigData.html">ConfigData</a></li>
+				
+					<li><a href="./ConfigFormatElement.html">ConfigFormatElement</a></li>
+				
+					<li><a href="./ContextProvider.html">ContextProvider</a></li>
+				
+					<li><a href="./ConvexComp.html">ConvexComp</a></li>
+				
+					<li><a href="./Counter.html">Counter</a></li>
+				
+					<li><a href="./DBMySQL.html">DBMySQL</a></li>
+				
+					<li><a href="./DBMySQLResult.html">DBMySQLResult</a></li>
+				
+					<li><a href="./DBResult.html">DBResult</a></li>
+				
+					<li><a href="./DBSQLite.html">DBSQLite</a></li>
+				
+					<li><a href="./DBSQLiteResult.html">DBSQLiteResult</a></li>
+				
+					<li><a href="./DBTable.html">DBTable</a></li>
+				
+					<li><a href="./DBWrapper.html">DBWrapper</a></li>
+				
+					<li><a href="./DoParses.html">DoParses</a></li>
+				
+					<li><a href="./DynGoldBinary.html">DynGoldBinary</a></li>
+				
+					<li><a href="./EdgelabelCombinedPathFeature.html">EdgelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPartialPathFeature.html">EdgelabelPartialPathFeature</a></li>
+				
+					<li><a href="./EdgelabelPathFeature.html">EdgelabelPathFeature</a></li>
+				
+					<li><a href="./EnumerableBool.html">EnumerableBool</a></li>
+				
+					<li><a href="./EnumerableDistribute.html">EnumerableDistribute</a></li>
+				
+					<li><a href="./Eval.html">Eval</a></li>
+				
+					<li><a href="./ExternalConfigData.html">ExternalConfigData</a></li>
+				
+					<li><a href="./ExternalFeatureExtractor.html">ExternalFeatureExtractor</a></li>
+				
+					<li><a href="./FE.html">FE</a></li>
+				
+					<li><a href="./FNCorpusAset.html">FNCorpusAset</a></li>
+				
+					<li><a href="./FNCorpusXMLFile.html">FNCorpusXMLFile</a></li>
+				
+					<li><a href="./FNCorpusXMLSentence.html">FNCorpusXMLSentence</a></li>
+				
+					<li><a href="./FNDatabase.html">FNDatabase</a></li>
+				
+					<li><a href="./FNTabFormatFile.html">FNTabFormatFile</a></li>
+				
+					<li><a href="./FNTabFrame.html">FNTabFrame</a></li>
+				
+					<li><a href="./FNTabSentence.html">FNTabSentence</a></li>
+				
+					<li><a href="./FailedParses.html">FailedParses</a></li>
+				
+					<li><a href="./FatherPhraseTypeFeature.html">FatherPhraseTypeFeature</a></li>
+				
+					<li><a href="./FeNode.html">FeNode</a></li>
+				
+					<li><a href="./File.html">File</a></li>
+				
+					<li><a href="./FileParser.html">FileParser</a></li>
+				
+					<li><a href="./FilePartsParser.html">FilePartsParser</a></li>
+				
+					<li><a href="./FileZipped.html">FileZipped</a></li>
+				
+					<li><a href="./FindAllTargets.html">FindAllTargets</a></li>
+				
+					<li><a href="./FindTargetsFromFrames.html">FindTargetsFromFrames</a></li>
+				
+					<li><a href="./FirstWordFeature.html">FirstWordFeature</a></li>
+				
+					<li><a href="./FixSynSemMapping.html">FixSynSemMapping</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./FrPrep.html">FrPrep</a></li>
+				
+					<li><a href="./FrPrepConfigData.html">FrPrepConfigData</a></li>
+				
+					<li><a href="./Frame.html">Frame</a></li>
+				
+					<li><a href="./FrameFeature.html">FrameFeature</a></li>
+				
+					<li><a href="./FrameFromNode.html">FrameFromNode</a></li>
+				
+					<li><a href="./FrameHash.html">FrameHash</a></li>
+				
+					<li><a href="./FrameNode.html">FrameNode</a></li>
+				
+					<li><a href="./FrameXMLFile.html">FrameXMLFile</a></li>
+				
+					<li><a href="./FrameXMLSentence.html">FrameXMLSentence</a></li>
+				
+					<li><a href="./FramesAndRelations.html">FramesAndRelations</a></li>
+				
+					<li><a href="./FramesOfSentence.html">FramesOfSentence</a></li>
+				
+					<li><a href="./FredAbstractClassifier.html">FredAbstractClassifier</a></li>
+				
+					<li><a href="./FredConfigData.html">FredConfigData</a></li>
+				
+					<li><a href="./FredContextFeatureExtractor.html">FredContextFeatureExtractor</a></li>
+				
+					<li><a href="./FredContextPOSFeatureExtractor.html">FredContextPOSFeatureExtractor</a></li>
+				
+					<li><a href="./FredEval.html">FredEval</a></li>
+				
+					<li><a href="./FredFeatureAccess.html">FredFeatureAccess</a></li>
+				
+					<li><a href="./FredFeatureExtractor.html">FredFeatureExtractor</a></li>
+				
+					<li><a href="./FredFeatureInfo.html">FredFeatureInfo</a></li>
+				
+					<li><a href="./FredFeaturize.html">FredFeaturize</a></li>
+				
+					<li><a href="./FredNgramFeatureExtractor.html">FredNgramFeatureExtractor</a></li>
+				
+					<li><a href="./FredParameters.html">FredParameters</a></li>
+				
+					<li><a href="./FredSplit.html">FredSplit</a></li>
+				
+					<li><a href="./FredSplitPkg.html">FredSplitPkg</a></li>
+				
+					<li><a href="./FredSynFeatureExtractor.html">FredSynFeatureExtractor</a></li>
+				
+					<li><a href="./FredSynsemFeatureExtractor.html">FredSynsemFeatureExtractor</a></li>
+				
+					<li><a href="./FredTest.html">FredTest</a></li>
+				
+					<li><a href="./FredTrain.html">FredTrain</a></li>
+				
+					<li><a href="./FrprepFlatSyntax.html">FrprepFlatSyntax</a></li>
+				
+					<li><a href="./FrprepHelper.html">FrprepHelper</a></li>
+				
+					<li><a href="./FrprepReadStxml.html">FrprepReadStxml</a></li>
+				
+					<li><a href="./GFFeature.html">GFFeature</a></li>
+				
+					<li><a href="./GVEdgelabelPathFeature.html">GVEdgelabelPathFeature</a></li>
+				
+					<li><a href="./GVNodelabelPathFeature.html">GVNodelabelPathFeature</a></li>
+				
+					<li><a href="./GVPathFeature.html">GVPathFeature</a></li>
+				
+					<li><a href="./GetMorph.html">GetMorph</a></li>
+				
+					<li><a href="./GfFeMapping.html">GfFeMapping</a></li>
+				
+					<li><a href="./GfInduce.html">GfInduce</a></li>
+				
+					<li><a href="./GfInduceFeatureExtractor.html">GfInduceFeatureExtractor</a></li>
+				
+					<li><a href="./GfiGfPathMapping.html">GfiGfPathMapping</a></li>
+				
+					<li><a href="./GfiSubcatFrames.html">GfiSubcatFrames</a></li>
+				
+					<li><a href="./GoldlabelFeature.html">GoldlabelFeature</a></li>
+				
+					<li><a href="./GoverningVerbOfTargetFeature.html">GoverningVerbOfTargetFeature</a></li>
+				
+					<li><a href="./GrammaticalFunctionAccess.html">GrammaticalFunctionAccess</a></li>
+				
+					<li><a href="./GraphNode.html">GraphNode</a></li>
+				
+					<li><a href="./HeadFeature.html">HeadFeature</a></li>
+				
+					<li><a href="./HeadPosFeature.html">HeadPosFeature</a></li>
+				
+					<li><a href="./Headz.html">Headz</a></li>
+				
+					<li><a href="./HeadzHelpers.html">HeadzHelpers</a></li>
+				
+					<li><a href="./IcontLemmaFeature.html">IcontLemmaFeature</a></li>
+				
+					<li><a href="./InputData.html">InputData</a></li>
+				
+					<li><a href="./IsMaxProj.html">IsMaxProj</a></li>
+				
+					<li><a href="./LastWordFeature.html">LastWordFeature</a></li>
+				
+					<li><a href="./LeftSiblingFeature.html">LeftSiblingFeature</a></li>
+				
+					<li><a href="./MD5.html">MD5</a></li>
+				
+					<li><a href="./Mallet.html">Mallet</a></li>
+				
+					<li><a href="./Malouf.html">Malouf</a></li>
+				
+					<li><a href="./MapWithIndex.html">MapWithIndex</a></li>
+				
+					<li><a href="./MaxConst.html">MaxConst</a></li>
+				
+					<li><a href="./Maxent.html">Maxent</a></li>
+				
+					<li><a href="./MetaFeatureAccess.html">MetaFeatureAccess</a></li>
+				
+					<li><a href="./MiniparInterface.html">MiniparInterface</a></li>
+				
+					<li><a href="./MiniparInterpreter.html">MiniparInterpreter</a></li>
+				
+					<li><a href="./MiniparSentence.html">MiniparSentence</a></li>
+				
+					<li><a href="./NearestNodeFeature.html">NearestNodeFeature</a></li>
+				
+					<li><a href="./NodeIDFeature.html">NodeIDFeature</a></li>
+				
+					<li><a href="./NodelabelCombinedPathFeature.html">NodelabelCombinedPathFeature</a></li>
+				
+					<li><a href="./NodelabelPartialPathFeature.html">NodelabelPartialPathFeature</a></li>
+				
+					<li><a href="./NodelabelPathFeature.html">NodelabelPathFeature</a></li>
+				
+					<li><a href="./NoncontiguousContextProvider.html">NoncontiguousContextProvider</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./OneParsedFile.html">OneParsedFile</a></li>
+				
+					<li><a href="./Optimise.html">Optimise</a></li>
+				
+					<li><a href="./PartialPathFeature.html">PartialPathFeature</a></li>
+				
+					<li><a href="./Path.html">Path</a></li>
+				
+					<li><a href="./PathFeature.html">PathFeature</a></li>
+				
+					<li><a href="./PathLengthFeature.html">PathLengthFeature</a></li>
+				
+					<li><a href="./PhraseTypeFeature.html">PhraseTypeFeature</a></li>
+				
+					<li><a href="./PlotAndREval.html">PlotAndREval</a></li>
+				
+					<li><a href="./PrepFeature.html">PrepFeature</a></li>
+				
+					<li><a href="./ProcessDirectory.html">ProcessDirectory</a></li>
+				
+					<li><a href="./PruneFeature.html">PruneFeature</a></li>
+				
+					<li><a href="./Pruning.html">Pruning</a></li>
+				
+					<li><a href="./ReadDirectory.html">ReadDirectory</a></li>
+				
+					<li><a href="./RegXML.html">RegXML</a></li>
+				
+					<li><a href="./RelativePositionFeature.html">RelativePositionFeature</a></li>
+				
+					<li><a href="./RightSiblingFeature.html">RightSiblingFeature</a></li>
+				
+					<li><a href="./RosyConfigData.html">RosyConfigData</a></li>
+				
+					<li><a href="./RosyConfusability.html">RosyConfusability</a></li>
+				
+					<li><a href="./RosyEval.html">RosyEval</a></li>
+				
+					<li><a href="./RosyEvalTask.html">RosyEvalTask</a></li>
+				
+					<li><a href="./RosyFeatureExtractor.html">RosyFeatureExtractor</a></li>
+				
+					<li><a href="./RosyFeatureInfo.html">RosyFeatureInfo</a></li>
+				
+					<li><a href="./RosyFeaturize.html">RosyFeaturize</a></li>
+				
+					<li><a href="./RosyInspect.html">RosyInspect</a></li>
+				
+					<li><a href="./RosyIterator.html">RosyIterator</a></li>
+				
+					<li><a href="./RosyPhase2FeatureExtractor.html">RosyPhase2FeatureExtractor</a></li>
+				
+					<li><a href="./RosyServices.html">RosyServices</a></li>
+				
+					<li><a href="./RosySingleFeatureExtractor.html">RosySingleFeatureExtractor</a></li>
+				
+					<li><a href="./RosySplit.html">RosySplit</a></li>
+				
+					<li><a href="./RosyTask.html">RosyTask</a></li>
+				
+					<li><a href="./RosyTest.html">RosyTest</a></li>
+				
+					<li><a href="./RosyTrain.html">RosyTrain</a></li>
+				
+					<li><a href="./RosyTrainingTestTable.html">RosyTrainingTestTable</a></li>
+				
+					<li><a href="./SQLQuery.html">SQLQuery</a></li>
+				
+					<li><a href="./SalsaLemmaFromFilename.html">SalsaLemmaFromFilename</a></li>
+				
+					<li><a href="./SalsaTigerSentence.html">SalsaTigerSentence</a></li>
+				
+					<li><a href="./SalsaTigerSentenceGraph.html">SalsaTigerSentenceGraph</a></li>
+				
+					<li><a href="./SalsaTigerSentenceSem.html">SalsaTigerSentenceSem</a></li>
+				
+					<li><a href="./SalsaTigerXMLHelper.html">SalsaTigerXMLHelper</a></li>
+				
+					<li><a href="./SalsaTigerXmlNode.html">SalsaTigerXmlNode</a></li>
+				
+					<li><a href="./SemNode.html">SemNode</a></li>
+				
+					<li><a href="./SentidFeature.html">SentidFeature</a></li>
+				
+					<li><a href="./SingleSentContextProvider.html">SingleSentContextProvider</a></li>
+				
+					<li><a href="./SleepyInterface.html">SleepyInterface</a></li>
+				
+					<li><a href="./SleepyInterpreter.html">SleepyInterpreter</a></li>
+				
+					<li><a href="./SlideVar.html">SlideVar</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./StringTerminalsInRightOrder.html">StringTerminalsInRightOrder</a></li>
+				
+					<li><a href="./Subsumed.html">Subsumed</a></li>
+				
+					<li><a href="./SynInterface.html">SynInterface</a></li>
+				
+					<li><a href="./SynInterfaceSTXML.html">SynInterfaceSTXML</a></li>
+				
+					<li><a href="./SynInterfaceTab.html">SynInterfaceTab</a></li>
+				
+					<li><a href="./SynInterfaces.html">SynInterfaces</a></li>
+				
+					<li><a href="./SynInterpreter.html">SynInterpreter</a></li>
+				
+					<li><a href="./SynNode.html">SynNode</a></li>
+				
+					<li><a href="./TSSynNode.html">TSSynNode</a></li>
+				
+					<li><a href="./TabFormatFile.html">TabFormatFile</a></li>
+				
+					<li><a href="./TabFormatNamedArgs.html">TabFormatNamedArgs</a></li>
+				
+					<li><a href="./TabFormatSentence.html">TabFormatSentence</a></li>
+				
+					<li><a href="./TargetFineGrainedPOSFeature.html">TargetFineGrainedPOSFeature</a></li>
+				
+					<li><a href="./TargetLemmaFeature.html">TargetLemmaFeature</a></li>
+				
+					<li><a href="./TargetPOSFeature.html">TargetPOSFeature</a></li>
+				
+					<li><a href="./TargetVoiceFeature.html">TargetVoiceFeature</a></li>
+				
+					<li><a href="./Targets.html">Targets</a></li>
+				
+					<li><a href="./TargetsMostFrequentSc.html">TargetsMostFrequentSc</a></li>
+				
+					<li><a href="./TerminalFeature.html">TerminalFeature</a></li>
+				
+					<li><a href="./Tiger.html">Tiger</a></li>
+				
+					<li><a href="./TigerMaxProjection.html">TigerMaxProjection</a></li>
+				
+					<li><a href="./TigerPruneFeature.html">TigerPruneFeature</a></li>
+				
+					<li><a href="./Timbl.html">Timbl</a></li>
+				
+					<li><a href="./TntInterface.html">TntInterface</a></li>
+				
+					<li><a href="./ToggleVar.html">ToggleVar</a></li>
+				
+					<li><a href="./TreeNode.html">TreeNode</a></li>
+				
+					<li><a href="./TreetaggerInterface.html">TreetaggerInterface</a></li>
+				
+					<li><a href="./TreetaggerInterpreter.html">TreetaggerInterpreter</a></li>
+				
+					<li><a href="./TreetaggerModule.html">TreetaggerModule</a></li>
+				
+					<li><a href="./TreetaggerPOSInterface.html">TreetaggerPOSInterface</a></li>
+				
+					<li><a href="./UspNode.html">UspNode</a></li>
+				
+					<li><a href="./UtfIso.html">UtfIso</a></li>
+				
+					<li><a href="./ValueRestriction.html">ValueRestriction</a></li>
+				
+					<li><a href="./VarVarRestriction.html">VarVarRestriction</a></li>
+				
+					<li><a href="./WhereWasI.html">WhereWasI</a></li>
+				
+					<li><a href="./WordDistanceFeature.html">WordDistanceFeature</a></li>
+				
+					<li><a href="./WordLemmaPosNe.html">WordLemmaPosNe</a></li>
+				
+					<li><a href="./WriteFeaturesBinary.html">WriteFeaturesBinary</a></li>
+				
+					<li><a href="./WriteFeaturesNary.html">WriteFeaturesNary</a></li>
+				
+					<li><a href="./WriteFeaturesNaryOrBinary.html">WriteFeaturesNaryOrBinary</a></li>
+				
+					<li><a href="./XMLNode.html">XMLNode</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Eval</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="prec-group-class-attribute-method" class="method-detail">
+				<a name="prec_group_class"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">prec_group_class</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+<a href="Eval.html#prec_group_class">prec_group_class</a>, <a
+href="Eval.html#rec_group_class">rec_group_class</a>, <a
+href="Eval.html#f_group_class">f_group_class</a>:  values for each
+group/class pair hashes &#8220;group class&#8221;(string) => score(float)
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="rec-group-class-attribute-method" class="method-detail">
+				<a name="rec_group_class"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">rec_group_class</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+<a href="Eval.html#prec_group_class">prec_group_class</a>, <a
+href="Eval.html#rec_group_class">rec_group_class</a>, <a
+href="Eval.html#f_group_class">f_group_class</a>:  values for each
+group/class pair hashes &#8220;group class&#8221;(string) => score(float)
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="f-group-class-attribute-method" class="method-detail">
+				<a name="f_group_class"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">f_group_class</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+<a href="Eval.html#prec_group_class">prec_group_class</a>, <a
+href="Eval.html#rec_group_class">rec_group_class</a>, <a
+href="Eval.html#f_group_class">f_group_class</a>:  values for each
+group/class pair hashes &#8220;group class&#8221;(string) => score(float)
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="accuracy-group-attribute-method" class="method-detail">
+				<a name="accuracy_group"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">accuracy_group</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+<a href="Eval.html#accuracy_group">accuracy_group</a>: micro-averaged
+values for each group hash group(string) => score(float)
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="prec-attribute-method" class="method-detail">
+				<a name="prec"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">prec</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+prec, rec, f, accuracy: float micro-averaged overall values
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="rec-attribute-method" class="method-detail">
+				<a name="rec"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">rec</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+prec, rec, f, accuracy: float micro-averaged overall values
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="f-attribute-method" class="method-detail">
+				<a name="f"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">f</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+prec, rec, f, accuracy: float micro-averaged overall values
+</p>
+				
+				</div>
+			</div>
+			
+			<div id="accuracy-attribute-method" class="method-detail">
+				<a name="accuracy"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">accuracy</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p>
+prec, rec, f, accuracy: float micro-averaged overall values
+</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(outfilename = nil, logfilename = nil, consider_only_one_class = nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+new
+</p>
+<p>
+outfilename = name of file to print results to.
+</p>
+<pre>
+ nil: print_evaluation_result() will not do anything
+</pre>
+<p>
+logfilename: name of file to print instance-wise results to
+</p>
+<pre>
+ nil: no logfile output
+</pre>
+<p>
+consider_only_one_class:
+</p>
+<pre>
+ compute and print evaluation for only one of the class labels,
+ the one given as this argument.
+ In this case, overall precision/recall/f-score
+ is available instead of just accuracy, and 
+ no group-wise evaluation is done.
+ nil: consider all classes.</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 47</span>
+47:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">outfilename</span> = <span class="ruby-keyword kw">nil</span>, 
+48:                  <span class="ruby-identifier">logfilename</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-comment cmt"># string: </span>
+49:                  <span class="ruby-identifier">consider_only_one_class</span> = <span class="ruby-keyword kw">nil</span>) <span class="ruby-comment cmt"># string/nil: evaluate only one class?</span>
+50: 
+51:     <span class="ruby-comment cmt"># print logfile containing</span>
+52:     <span class="ruby-comment cmt"># results for every single instance?</span>
+53:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">logfilename</span>
+54:       <span class="ruby-ivar">@print_log</span> = <span class="ruby-keyword kw">true</span>
+55:       <span class="ruby-ivar">@logfilename</span> = <span class="ruby-identifier">logfilename</span>
+56:     <span class="ruby-keyword kw">else</span>
+57:       <span class="ruby-ivar">@print_log</span> = <span class="ruby-keyword kw">false</span>
+58:     <span class="ruby-keyword kw">end</span>
+59:     <span class="ruby-ivar">@outfilename</span> = <span class="ruby-identifier">outfilename</span>
+60:     <span class="ruby-ivar">@consider_only_one_class</span> = <span class="ruby-identifier">consider_only_one_class</span>
+61: 
+62:     <span class="ruby-comment cmt">###</span>
+63:     <span class="ruby-comment cmt"># initialize object data:</span>
+64:     <span class="ruby-comment cmt">#</span>
+65:     <span class="ruby-comment cmt"># num_assigned, num_truepos, num_gold:</span>
+66:     <span class="ruby-comment cmt"># hashes: [group class] (string*string) =&gt; value(integer):  number of times that...</span>
+67:     <span class="ruby-comment cmt">#                num_assigned: ...this &quot;group class&quot; pair has been </span>
+68:     <span class="ruby-comment cmt">#                              assigned by the classifier</span>
+69:     <span class="ruby-comment cmt">#                num_gold: ... this &quot;group class&quot; pair has been</span>
+70:     <span class="ruby-comment cmt">#                          annotated in the gold standard</span>
+71:     <span class="ruby-comment cmt">#                num_truepos:...this &quot;group class&quot; pair has been</span>
+72:     <span class="ruby-comment cmt">#                            assigned correctly by the classifier</span>
+73:     <span class="ruby-ivar">@num_assigned</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+74:     <span class="ruby-ivar">@num_truepos</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+75:     <span class="ruby-ivar">@num_gold</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+76: 
+77:     <span class="ruby-comment cmt"># num_instances:</span>
+78:     <span class="ruby-comment cmt"># hash: group(string) -&gt; value(integer): number of instances</span>
+79:     <span class="ruby-comment cmt">#                                for the given group</span>
+80:     <span class="ruby-ivar">@num_instances</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>)
+81: 
+82:     <span class="ruby-comment cmt"># precision, recall, f-score:</span>
+83:     <span class="ruby-comment cmt"># for the format of these, see above</span>
+84:     <span class="ruby-ivar">@prec_group_class</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0.0</span>)
+85:     <span class="ruby-ivar">@rec_group_class</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0.0</span>)
+86:     <span class="ruby-ivar">@f_group_class</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0.0</span>)
+87:     
+88:     <span class="ruby-ivar">@accuracy_group</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0.0</span>)
+89:     
+90:     <span class="ruby-ivar">@prec</span> = <span class="ruby-ivar">@rec</span> = <span class="ruby-ivar">@f</span> = <span class="ruby-ivar">@accuracy</span> = <span class="ruby-value">0.0</span>
+91:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="compute-method" class="method-detail ">
+				<a name="method-i-compute"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">compute</span><span
+						class="method-args">(printme = true)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+compute
+</p>
+<p>
+do the evaluation
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="compute-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 97</span>
+ 97:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compute</span>(<span class="ruby-identifier">printme</span> = <span class="ruby-keyword kw">true</span>) <span class="ruby-comment cmt"># boolean: print evaluation results to file?</span>
+ 98:     
+ 99:     <span class="ruby-identifier">start_printlog</span>()
+100: 
+101:     <span class="ruby-comment cmt"># hash: group =&gt; value(integer): number of true positives for a group</span>
+102:     <span class="ruby-identifier">num_truepos_group</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+103:     <span class="ruby-comment cmt"># integers: overall assigned/gold/truepos/instances</span>
+104:     <span class="ruby-identifier">num_assigned_all</span> = <span class="ruby-value">0</span>
+105:     <span class="ruby-identifier">num_gold_all</span> = <span class="ruby-value">0</span>
+106:     <span class="ruby-identifier">num_truepos_all</span> = <span class="ruby-value">0</span>
+107:     <span class="ruby-identifier">num_instances_all</span> = <span class="ruby-value">0</span>
+108: 
+109:     <span class="ruby-comment cmt">###</span>
+110:     <span class="ruby-comment cmt"># iterate through all training/test file pairs,</span>
+111:     <span class="ruby-comment cmt"># record correct/incorrect assignments</span>
+112:     <span class="ruby-identifier">each_group</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+113: 
+114:       <span class="ruby-comment cmt"># read gold file and classifier output file in parallel</span>
+115:       <span class="ruby-identifier">each_instance</span>(<span class="ruby-identifier">group</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">goldclass</span>, <span class="ruby-identifier">assigned_class</span><span class="ruby-operator">|</span>
+116: 
+117:         <span class="ruby-comment cmt"># make sure that there are no spaces in the group name:</span>
+118:         <span class="ruby-comment cmt"># later on we assume that by doing &quot;group class&quot;.split()</span>
+119:         <span class="ruby-comment cmt"># we can recover the group and the class, which won't work</span>
+120:         <span class="ruby-comment cmt"># in case the group name contains spaces</span>
+121:         <span class="ruby-identifier">mygroup</span> = <span class="ruby-identifier">group</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/ /</span>, <span class="ruby-value str">&quot;_&quot;</span>)
+122: 
+123:         <span class="ruby-identifier">print_log</span>(<span class="ruby-identifier">mygroup</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; gold: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">goldclass</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;assigned: &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">assigned_class</span>.<span class="ruby-identifier">to_s</span>)
+124: 
+125:         <span class="ruby-comment cmt"># record instance</span>
+126:         <span class="ruby-ivar">@num_instances</span>[<span class="ruby-identifier">mygroup</span>] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+127:         
+128:         <span class="ruby-comment cmt"># record gold standard class</span>
+129:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">goldclass</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">goldclass</span>.<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">goldclass</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;-&quot;</span>
+130:           <span class="ruby-ivar">@num_gold</span>[[<span class="ruby-identifier">mygroup</span>, <span class="ruby-identifier">goldclass</span>]] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+131:         <span class="ruby-keyword kw">end</span>
+132:         
+133:         <span class="ruby-comment cmt"># record assigned classes (if present)</span>
+134:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">assigned_class</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span>(<span class="ruby-identifier">assigned_class</span>.<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">assigned_class</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;-&quot;</span>
+135:           <span class="ruby-comment cmt"># some class has been assigned:</span>
+136:           <span class="ruby-comment cmt"># record it</span>
+137:           <span class="ruby-ivar">@num_assigned</span>[[<span class="ruby-identifier">mygroup</span>, <span class="ruby-identifier">assigned_class</span>]] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+138:         <span class="ruby-keyword kw">end</span>
+139: 
+140:         <span class="ruby-comment cmt"># is the assigned class included in the list of gold standard classes?</span>
+141:         <span class="ruby-comment cmt"># then count this as a match</span>
+142:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">goldclass</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">assigned_class</span>
+143:           <span class="ruby-comment cmt"># gold file class matches assigned class</span>
+144:           <span class="ruby-ivar">@num_truepos</span>[[<span class="ruby-identifier">mygroup</span>, <span class="ruby-identifier">assigned_class</span>]] <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+145: 
+146:           <span class="ruby-identifier">print_log</span>(<span class="ruby-value str">&quot; =&gt; correct\n&quot;</span>)
+147: 
+148:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">assigned_class</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">assigned_class</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">assigned_class</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;-&quot;</span>
+149:           <span class="ruby-identifier">print_log</span>(<span class="ruby-value str">&quot; =&gt; unassigned\n&quot;</span>)
+150:           
+151:         <span class="ruby-keyword kw">else</span>
+152:           <span class="ruby-identifier">print_log</span>(<span class="ruby-value str">&quot; =&gt; incorrect\n&quot;</span>)
+153:         <span class="ruby-keyword kw">end</span>
+154:       } <span class="ruby-comment cmt"># each instance for this group </span>
+155:     } <span class="ruby-comment cmt"># all groups</span>
+156: 
+157: 
+158:     <span class="ruby-comment cmt">####</span>
+159:     <span class="ruby-comment cmt"># compute precision, recall, f-score</span>
+160: 
+161:     <span class="ruby-comment cmt"># map each group to its classes.</span>
+162:     <span class="ruby-comment cmt"># groups: array of strings</span>
+163:     <span class="ruby-comment cmt"># group_classes: hash group(string) -&gt; array of classes(strings)</span>
+164:     <span class="ruby-comment cmt">#  if @consider_only_one_class has been set, only that class will be listed</span>
+165:     <span class="ruby-identifier">groups</span> = <span class="ruby-ivar">@num_gold</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span> <span class="ruby-identifier">group</span> }.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>
+166:     <span class="ruby-identifier">group_classes</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+167: 
+168:     <span class="ruby-comment cmt"># for all group/class pairs occurring either in the gold file or</span>
+169:     <span class="ruby-comment cmt"># the classifier output file: record it in the group_classes hash</span>
+170:     (<span class="ruby-ivar">@num_gold</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">concat</span> <span class="ruby-ivar">@num_assigned</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span>
+171:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">nil?</span>
+172:         <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+173:       <span class="ruby-keyword kw">end</span>
+174:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@consider_only_one_class</span> <span class="ruby-keyword kw">and</span> 
+175:           <span class="ruby-identifier">tclass</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@consider_only_one_class</span>
+176:         <span class="ruby-comment cmt"># we are computing results for only one target class,</span>
+177:         <span class="ruby-comment cmt"># and this is not it</span>
+178:         <span class="ruby-keyword kw">next</span>
+179:       <span class="ruby-keyword kw">end</span>
+180:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tclass</span> 
+181:         <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tclass</span>
+182:       <span class="ruby-keyword kw">end</span>
+183:     }
+184:     <span class="ruby-identifier">group_classes</span>.<span class="ruby-identifier">each_key</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+185:       <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>
+186:     }
+187: 
+188: 
+189:     <span class="ruby-comment cmt"># precision, recall, f for each group/class pair</span>
+190:     <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+191:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">nil?</span>
+192:         <span class="ruby-keyword kw">next</span>
+193:       <span class="ruby-keyword kw">end</span>
+194: 
+195:       <span class="ruby-comment cmt"># iterate through all classes of the group</span>
+196:       <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span>
+197:         
+198:         <span class="ruby-identifier">key</span> = [<span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span>]
+199:         
+200:         <span class="ruby-comment cmt"># compute precision, recall, f-score</span>
+201:         <span class="ruby-ivar">@prec_group_class</span>[<span class="ruby-identifier">key</span>], <span class="ruby-ivar">@rec_group_class</span>[<span class="ruby-identifier">key</span>], <span class="ruby-ivar">@f_group_class</span>[<span class="ruby-identifier">key</span>] = 
+202:           <span class="ruby-identifier">prec_rec_f</span>(<span class="ruby-ivar">@num_assigned</span>[<span class="ruby-identifier">key</span>], <span class="ruby-ivar">@num_gold</span>[<span class="ruby-identifier">key</span>], <span class="ruby-ivar">@num_truepos</span>[<span class="ruby-identifier">key</span>])
+203:       }
+204:     }
+205:     
+206:     
+207:     <span class="ruby-comment cmt"># micro-averaged accuracy for each group </span>
+208:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@consider_only_one_class</span>
+209:       <span class="ruby-comment cmt"># we are computing results for only one target class,</span>
+210:       <span class="ruby-comment cmt"># so precision/recall/f-score group-wise would be</span>
+211:       <span class="ruby-comment cmt"># exactly the same as group+class-wise.</span>
+212:     <span class="ruby-keyword kw">else</span>
+213:       <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+214:         <span class="ruby-comment cmt"># sum true positives over all target classes of the group</span>
+215:         <span class="ruby-identifier">num_truepos_group</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-ivar">@num_truepos</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">big_sum</span>(<span class="ruby-value">0</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">othergroup</span>, <span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span>
+216:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">othergroup</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">group</span>
+217:             <span class="ruby-ivar">@num_truepos</span>[[<span class="ruby-identifier">othergroup</span>, <span class="ruby-identifier">tclass</span>]]
+218:           <span class="ruby-keyword kw">else</span>
+219:             <span class="ruby-value">0</span>
+220:           <span class="ruby-keyword kw">end</span>
+221:         }
+222: 
+223:         <span class="ruby-ivar">@accuracy_group</span>[<span class="ruby-identifier">group</span>] = <span class="ruby-identifier">accuracy</span>(<span class="ruby-identifier">num_truepos_group</span>[<span class="ruby-identifier">group</span>], <span class="ruby-ivar">@num_instances</span>[<span class="ruby-identifier">group</span>])
+224:       }
+225:     <span class="ruby-keyword kw">end</span>
+226:     
+227: 
+228:     <span class="ruby-comment cmt"># overall values:</span>
+229:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@consider_only_one_class</span>
+230:       <span class="ruby-comment cmt"># we are computing results for only one target class,</span>
+231:       <span class="ruby-comment cmt"># so overall precision/recall/f-score (micro-average) make sense</span>
+232:       
+233:       <span class="ruby-comment cmt"># compute precision, recall, f-score, micro-averaged</span>
+234:       <span class="ruby-comment cmt"># but only include the target class we are interested in </span>
+235:       <span class="ruby-identifier">num_assigned_all</span>, <span class="ruby-identifier">num_gold_all</span>, <span class="ruby-identifier">num_truepos_all</span> = [<span class="ruby-ivar">@num_assigned</span>, <span class="ruby-ivar">@num_gold</span>, <span class="ruby-ivar">@num_truepos</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+236:         <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">big_sum</span>(<span class="ruby-value">0</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span> 
+237:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tclass</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@consider_only_one_class</span>
+238:             <span class="ruby-identifier">hash</span>[[<span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span>]] 
+239:           <span class="ruby-keyword kw">else</span>
+240:             <span class="ruby-value">0</span>
+241:           <span class="ruby-keyword kw">end</span>
+242:         }
+243:       }
+244:       
+245:       <span class="ruby-ivar">@prec</span>, <span class="ruby-ivar">@rec</span>, <span class="ruby-ivar">@f</span> = <span class="ruby-identifier">prec_rec_f</span>(<span class="ruby-identifier">num_assigned_all</span>, <span class="ruby-identifier">num_gold_all</span>, <span class="ruby-identifier">num_truepos_all</span>)
+246: 
+247:       <span class="ruby-comment cmt"># stderr output of global results</span>
+248:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Overall result: prec: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@prec</span>)
+249:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;  rec: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@rec</span>)
+250:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;  f: &quot;</span>,  <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@f</span>), <span class="ruby-value str">&quot;\n&quot;</span>
+251: 
+252:     <span class="ruby-keyword kw">else</span>
+253:       <span class="ruby-comment cmt"># we are computing results for all classes,</span>
+254:       <span class="ruby-comment cmt"># so use accuracy instead of precision/recall/f-score</span>
+255:       <span class="ruby-identifier">num_truepos_all</span>, <span class="ruby-identifier">num_instances_all</span> = [<span class="ruby-ivar">@num_truepos</span>, <span class="ruby-ivar">@num_instances</span>].<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span><span class="ruby-operator">|</span>
+256:         <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">big_sum</span>(<span class="ruby-value">0</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] }
+257:       }
+258:       <span class="ruby-ivar">@accuracy</span> = <span class="ruby-identifier">accuracy</span>(<span class="ruby-identifier">num_truepos_all</span>, <span class="ruby-identifier">num_instances_all</span>)
+259:       <span class="ruby-comment cmt"># stderr output of global results</span>
+260:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;Overall result: accuracy &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@accuracy</span>), <span class="ruby-value str">&quot;\n&quot;</span>
+261:     <span class="ruby-keyword kw">end</span>
+262: 
+263:     <span class="ruby-comment cmt">###</span>
+264:     <span class="ruby-comment cmt"># print precision, recall, f-score to file</span>
+265:     <span class="ruby-comment cmt"># (optional)</span>
+266:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">printme</span>
+267:       <span class="ruby-identifier">print_evaluation_result</span>(<span class="ruby-identifier">groups</span>, <span class="ruby-identifier">group_classes</span>, <span class="ruby-identifier">num_truepos_group</span>, <span class="ruby-identifier">num_instances_all</span>, <span class="ruby-identifier">num_assigned_all</span>, <span class="ruby-identifier">num_gold_all</span>, <span class="ruby-identifier">num_truepos_all</span>)
+268:     <span class="ruby-keyword kw">end</span>
+269: 
+270:     <span class="ruby-identifier">end_printlog</span>()
+271:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-instance-method-details" class="method-section section">
+			<h3 class="section-header">Protected Instance Methods</h3>
+
+		
+			<div id="accuracy-method" class="method-detail ">
+				<a name="method-i-accuracy"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">accuracy</span><span
+						class="method-args">(truepos, num_inst)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+accuracy:
+</p>
+<p>
+accuracy = true positives / instances
+</p>
+<p>
+returns: accuracy, a float
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="accuracy-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 472</span>
+472:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accuracy</span>(<span class="ruby-identifier">truepos</span>, <span class="ruby-identifier">num_inst</span>)
+473:     <span class="ruby-identifier">acc</span> = <span class="ruby-identifier">truepos</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">num_inst</span>.<span class="ruby-identifier">to_f</span>
+474:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">acc</span>.<span class="ruby-identifier">nan?</span>
+475:       <span class="ruby-keyword kw">return</span> <span class="ruby-value">0.0</span>
+476:     <span class="ruby-keyword kw">else</span>
+477:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">acc</span>
+478:     <span class="ruby-keyword kw">end</span>
+479:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-group-method" class="method-detail ">
+				<a name="method-i-each_group"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_group</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="Eval.html#method-i-each_group">each_group</a>
+</p>
+<p>
+yield each group name in turn
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-group-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 325</span>
+325:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_group</span>()
+326:     <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Abstract, please instantiate&quot;</span>
+327:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="each-instance-method" class="method-detail ">
+				<a name="method-i-each_instance"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">each_instance</span><span
+						class="method-args">(group)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="Eval.html#method-i-each_instance">each_instance</a>
+</p>
+<p>
+given a group name, yield each instance of this group in turn, or rather:
+yield pairs [gold_class(string), assigned_class(string)]
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="each-instance-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 334</span>
+334:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_instance</span>(<span class="ruby-identifier">group</span>) <span class="ruby-comment cmt"># string: group name</span>
+335:     <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Abstract, please instantiate&quot;</span>
+336:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="end-printlog-method" class="method-detail ">
+				<a name="method-i-end_printlog"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">end_printlog</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+print log? if so, end logfile
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="end-printlog-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 306</span>
+306:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_printlog</span>()
+307:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@print_log</span>
+308:       <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">close</span>()
+309:     <span class="ruby-keyword kw">end</span>
+310:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="inject-gold-counts-method" class="method-detail ">
+				<a name="method-i-inject_gold_counts"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">inject_gold_counts</span><span
+						class="method-args">(group, tclass, count)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a href="Eval.html#method-i-inject_gold_counts">inject_gold_counts</a>
+</p>
+<p>
+deal with instances that failed preprocessing: add more gold labels that
+occur in the missing instances these are added to @num_gold so they lower
+recall.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="inject-gold-counts-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 284</span>
+284:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inject_gold_counts</span>(<span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span>, <span class="ruby-identifier">count</span>)
+285:     <span class="ruby-ivar">@num_gold</span>[<span class="ruby-identifier">group</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">tclass</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">count</span>
+286:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="prec-rec-f-method" class="method-detail ">
+				<a name="method-i-prec_rec_f"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">prec_rec_f</span><span
+						class="method-args">(assigned, gold, truepos)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+method <a href="Eval.html#method-i-prec_rec_f">prec_rec_f</a> assigned,
+gold, truepos: counts(integers)
+</p>
+<p>
+compute precision, recall, f-score:
+</p>
+<p>
+precision: true positives / assigned positives recall:    true positives /
+gold positives f-score:  2*precision*recall / (precision + recall)
+</p>
+<p>
+return: precision, recall, f-score as floats
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="prec-rec-f-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 444</span>
+444:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prec_rec_f</span>(<span class="ruby-identifier">assigned</span>, <span class="ruby-identifier">gold</span>, <span class="ruby-identifier">truepos</span>)
+445:     <span class="ruby-comment cmt"># precision</span>
+446:     <span class="ruby-identifier">precision</span> = <span class="ruby-identifier">truepos</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">assigned</span>.<span class="ruby-identifier">to_f</span>
+447:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">precision</span>.<span class="ruby-identifier">nan?</span>
+448:       <span class="ruby-identifier">precision</span> = <span class="ruby-value">0.0</span>
+449:     <span class="ruby-keyword kw">end</span>
+450: 
+451:     <span class="ruby-comment cmt"># recall</span>
+452:     <span class="ruby-identifier">recall</span> = <span class="ruby-identifier">truepos</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">gold</span>.<span class="ruby-identifier">to_f</span>
+453:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">recall</span>.<span class="ruby-identifier">nan?</span>
+454:       <span class="ruby-identifier">recall</span> = <span class="ruby-value">0.0</span>
+455:     <span class="ruby-keyword kw">end</span>
+456: 
+457:     <span class="ruby-comment cmt"># fscore</span>
+458:     <span class="ruby-identifier">fscore</span> = (<span class="ruby-value">2</span> * <span class="ruby-identifier">precision</span> * <span class="ruby-identifier">recall</span>) <span class="ruby-operator">/</span> (<span class="ruby-identifier">precision</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">recall</span>)
+459:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fscore</span>.<span class="ruby-identifier">nan?</span>
+460:       <span class="ruby-identifier">fscore</span> = <span class="ruby-value">0.0</span>
+461:     <span class="ruby-keyword kw">end</span>
+462: 
+463:     <span class="ruby-keyword kw">return</span> [<span class="ruby-identifier">precision</span>, <span class="ruby-identifier">recall</span>, <span class="ruby-identifier">fscore</span>]
+464:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="print-evaluation-result-method" class="method-detail ">
+				<a name="method-i-print_evaluation_result"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">print_evaluation_result</span><span
+						class="method-args">(groups, group_classes, num_truepos_group, num_instances_all, num_assigned_all, num_gold_all, num_truepos_all)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+<a
+href="Eval.html#method-i-print_evaluation_result">print_evaluation_result</a>
+</p>
+<p>
+print out all info, sense-specific, lemma-specific and overall, micro- and
+macro-averaged, to a file
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="print-evaluation-result-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 344</span>
+344:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_evaluation_result</span>(<span class="ruby-identifier">groups</span>,          <span class="ruby-comment cmt"># array:string: group names</span>
+345:                               <span class="ruby-identifier">group_classes</span>,   <span class="ruby-comment cmt"># hash: group(string) =&gt; target classes (array:string)</span>
+346:                               <span class="ruby-identifier">num_truepos_group</span>, <span class="ruby-comment cmt"># hash: group(string) =&gt; num true positives(integer)</span>
+347:                               <span class="ruby-identifier">num_instances_all</span>, <span class="ruby-identifier">num_assigned_all</span>, <span class="ruby-identifier">num_gold_all</span>, <span class="ruby-identifier">num_truepos_all</span>) <span class="ruby-comment cmt"># integers</span>
+348:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@outfilename</span>.<span class="ruby-identifier">nil?</span>
+349:       <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Warning: Can't print evaluation results, got not outfile name.&quot;</span>
+350:       <span class="ruby-keyword kw">return</span> 
+351:     <span class="ruby-keyword kw">end</span>
+352: 
+353:     <span class="ruby-keyword kw">begin</span>
+354:       <span class="ruby-identifier">outfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@outfilename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+355:     <span class="ruby-keyword kw">rescue</span> 
+356:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Couldn't write to eval file &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@outfilename</span>
+357:     <span class="ruby-keyword kw">end</span>
+358: 
+359:     
+360:     <span class="ruby-comment cmt"># print out precision, recall, f-score for each group/class pair</span>
+361:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+362:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Evaluation per group/target class pair&quot;</span>
+363:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+364:     
+365:     <span class="ruby-comment cmt"># iterate through all groups</span>
+366:     <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+367:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">nil?</span>
+368:         <span class="ruby-keyword kw">next</span>
+369:       <span class="ruby-keyword kw">end</span>
+370: 
+371:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;==============&quot;</span>
+372:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">group</span>
+373: 
+374:       
+375:       <span class="ruby-comment cmt"># iterate through all classes of the group</span>
+376:       <span class="ruby-identifier">group_classes</span>[<span class="ruby-identifier">group</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tclass</span><span class="ruby-operator">|</span>
+377:         
+378:         <span class="ruby-identifier">key</span> = [<span class="ruby-identifier">group</span>, <span class="ruby-identifier">tclass</span>]
+379:         
+380:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">tclass</span>, <span class="ruby-value str">&quot;\t&quot;</span>, <span class="ruby-value str">&quot;prec: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@prec_group_class</span>[<span class="ruby-identifier">key</span>])
+381:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; (&quot;</span>, <span class="ruby-ivar">@num_truepos</span>[<span class="ruby-identifier">key</span>], <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-ivar">@num_assigned</span>[<span class="ruby-identifier">key</span>], <span class="ruby-value str">&quot;)&quot;</span>
+382: 
+383:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\trec: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@rec_group_class</span>[<span class="ruby-identifier">key</span>])
+384:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; (&quot;</span>, <span class="ruby-ivar">@num_truepos</span>[<span class="ruby-identifier">key</span>], <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-ivar">@num_gold</span>[<span class="ruby-identifier">key</span>], <span class="ruby-value str">&quot;)&quot;</span>
+385: 
+386:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\tfscore: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@f_group_class</span>[<span class="ruby-identifier">key</span>]), <span class="ruby-value str">&quot;\n&quot;</span>
+387:       }
+388:     }
+389:     
+390:     
+391:     <span class="ruby-comment cmt"># print out evaluation for each group</span>
+392:     <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@consider_only_one_class</span>
+393:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span>
+394:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+395:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Evaluation per group&quot;</span>
+396:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+397:     
+398:       <span class="ruby-comment cmt"># iterate through all groups</span>
+399:       <span class="ruby-identifier">groups</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">group</span><span class="ruby-operator">|</span>
+400: 
+401:         <span class="ruby-comment cmt"># micro-averaged accuracy</span>
+402:         <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">group</span>, <span class="ruby-value str">&quot;\t&quot;</span>, <span class="ruby-value str">&quot;accuracy: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@accuracy_group</span>[<span class="ruby-identifier">group</span>]), 
+403:         <span class="ruby-value str">&quot; (&quot;</span> , <span class="ruby-identifier">num_truepos_group</span>[<span class="ruby-identifier">group</span>], <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-ivar">@num_instances</span>[<span class="ruby-identifier">group</span>], <span class="ruby-value str">&quot;)\n&quot;</span>
+404:       }
+405:     <span class="ruby-keyword kw">end</span>
+406:     
+407:     <span class="ruby-comment cmt"># print out overall evaluation</span>
+408:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span>
+409:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+410:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Overall evaluation&quot;</span>
+411:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;-----------------------------&quot;</span>
+412:     
+413:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@consider_only_one_class</span>
+414: 
+415:       <span class="ruby-comment cmt"># micro average: precision, recall, f-score</span>
+416:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;prec: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@prec</span>)
+417:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; (&quot;</span>, <span class="ruby-identifier">num_truepos_all</span>, <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-identifier">num_assigned_all</span>, <span class="ruby-value str">&quot;)&quot;</span>
+418: 
+419:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\trec: &quot;</span>,  <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@rec</span>)
+420:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; (&quot;</span>, <span class="ruby-identifier">num_truepos_all</span>, <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-identifier">num_gold_all</span>, <span class="ruby-value str">&quot;)&quot;</span>
+421: 
+422:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;\tfscore: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@f</span>), <span class="ruby-value str">&quot;\n&quot;</span>
+423:       
+424:     <span class="ruby-keyword kw">else</span>
+425: 
+426:       <span class="ruby-comment cmt"># overall accuracy</span>
+427:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;accuracy: &quot;</span>, <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%.4f&quot;</span>, <span class="ruby-ivar">@accuracy</span>)
+428:       <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-value str">&quot; (&quot;</span>, <span class="ruby-identifier">num_truepos_all</span>, <span class="ruby-value str">&quot;/&quot;</span>, <span class="ruby-identifier">num_instances_all</span>, <span class="ruby-value str">&quot;)\n&quot;</span>
+429:     <span class="ruby-keyword kw">end</span>
+430:     <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">flush</span>()
+431:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="print-log-method" class="method-detail ">
+				<a name="method-i-print_log"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">print_log</span><span
+						class="method-args">(string)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+print log? If so, print this string to the logfile (no newline added)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="print-log-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 315</span>
+315:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_log</span>(<span class="ruby-identifier">string</span>) <span class="ruby-comment cmt"># string to be printed</span>
+316:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logfile</span>
+317:       <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">string</span>
+318:     <span class="ruby-keyword kw">end</span>
+319:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="start-printlog-method" class="method-detail ">
+				<a name="method-i-start_printlog"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">start_printlog</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<pre>
+ 
+</pre>
+<p>
+print log? if so, start logfile
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="start-printlog-source">
+<pre>
+     <span class="ruby-comment cmt"># File PkgGeneral/Eval.rb, line 290</span>
+290:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start_printlog</span>()
+291:     <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@print_log</span>
+292:       <span class="ruby-keyword kw">begin</span>
+293:         <span class="ruby-ivar">@logfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@logfilename</span>, <span class="ruby-value str">&quot;w&quot;</span>)
+294:         <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Writing evaluation log to &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@logfilename</span>
+295:       <span class="ruby-keyword kw">rescue</span>
+296:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Couldn't write to eval logfile&quot;</span>
+297:       <span class="ruby-keyword kw">end</span>
+298:     <span class="ruby-keyword kw">else</span>
+299:       <span class="ruby-ivar">@logfile</span> = <span class="ruby-keyword kw">nil</span>
+300:     <span class="ruby-keyword kw">end</span>
+301: 
+302:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
