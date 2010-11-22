@@ -54,7 +54,7 @@ verbose = true
 #   If you do not set this parameter, classifiers are written to
 #   <fred_directory>/<experiment_ID>/classifiers
 
-fred_directory = /home/arbox/work_space/shalm/german/prog/output
+fred_directory = /home/arbox/work_space/shalm/dev/trunk/output
 
 # - preproc_descr_file_train / ...test
 #   where the experiment file for frprep is located
@@ -65,8 +65,8 @@ fred_directory = /home/arbox/work_space/shalm/german/prog/output
 #   and one for the test data
 #   (If you only ever use test data in this experiment, you only
 #   need to give preproc_descr_file_test, and vice versa for training data.)
-preproc_descr_file_train = /home/arbox/work_space/shalm/german/prog/program_de/SampleExperimentFiles.salsa/prp_train.salsa
-preproc_descr_file_test = /home/arbox/work_space/shalm/german/prog/program_de/SampleExperimentFiles.salsa/prp_test.salsa
+preproc_descr_file_train = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_train.salsa
+preproc_descr_file_test = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_test.salsa
 
 #####################
 # noncontiguous input?
@@ -147,7 +147,7 @@ binary_classifiers = false
 #
 # for maxent, give first the path where maxent resides, 
 # then <where_shalmaneser_resides>/program/tools/maxent
-classifier = maxent /opt/OpenNLP-maxent/2.4.0 /home/arbox/work_space/shalm/german/prog/program_de/tools/maxent/
+classifier = maxent /opt/OpenNLP-maxent/2.4.0 /home/arbox/work_space/shalm/dev/trunk/program_de/tools/maxent/
 
 
 # for binary classifiers, you can set the pseudolabel
