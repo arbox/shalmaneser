@@ -20,25 +20,26 @@
 ##################################
 
 # my packages: in Pkg directory
-$:.push "./Pkg"
-$:.push "./PkgGeneral"
+#$:.push "./Pkg"
+#$:.push "./PkgGeneral"
 
+$LOAD_PATH.unshift('lib/frprep')
 
 # external packages
 require "getoptlong"
 
 # general packages provided by Salsa
-require "Ampersand"
-require "FNDatabase"
-require "FNCorpusXML"
-require "SalsaTigerRegXML"
-require "StandardPkgExtensions"
+require 'Ampersand'
+require 'FNDatabase'
+require 'FNCorpusXML'
+require 'SalsaTigerRegXML'
+require 'StandardPkgExtensions'
 
 # Fred-, Rosy- and Frprep-specific packages
-require "FrPrepConfigData"
-require "FrprepHelper"
-require "SynInterfaces"
-require "FixSynSemMapping"
+require 'FrPrepConfigData'
+require 'FrprepHelper'
+require 'SynInterfaces'
+require 'FixSynSemMapping'
 
 ##############################
 # help text
@@ -148,18 +149,18 @@ class DoParses
 
       if @parsed_files
         # reuse old parses
-
+        
         $stderr.puts "Frprep: using pre-computed parses in " + @parsed_files.to_s()
         $stderr.puts "Frprep: Postprocessing SalsaTigerXML data"
-
+        
         Dir[@parsed_files + "*"].each { |parsefilename|
- 
-        if File.stat(parsefilename).ftype != "file"
+          
+          if File.stat(parsefilename).ftype != "file"
             # something other than a file
             next
           end
-     
-        
+          
+          
           # core filename: remove directory and anything after the last "."
           filename_core = File.basename(parsefilename, ".*")
           #print "FN ", filename_core, " PN ", parsefilename, " sys ", sys, "\n"
@@ -520,11 +521,11 @@ class FrPrep
       unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
 	raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
       end
-
+      
       sys_class = SynInterfaces.get_interface("pos_tagger", 
 					      @exp.get("pos_tagger"))
-     print "pos tagger interface: ", sys_class, "\n" 
-	unless sys_class
+      print "pos tagger interface: ", sys_class, "\n" 
+      unless sys_class
         raise "Shouldn't be here"
       end
       sys = sys_class.new(@exp.get("pos_tagger_path"),

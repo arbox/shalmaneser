@@ -1,4 +1,4 @@
-require_relative 'ISO-8859-1'
+require 'ISO-8859-1'
 
 ####################3
 # Reformatting to and from 
