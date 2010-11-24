@@ -10,6 +10,9 @@
 
 $LOAD_PATH.unshift('lib/fred', 'lib/common')
 
+# only for testing require, remove later!!!
+$LOAD_PATH.unshift('../lib/fred', '../lib/common')
+
 require 'getoptlong'
 
 require "FredConfigData"
