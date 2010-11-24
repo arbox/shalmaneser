@@ -23,9 +23,6 @@
 #
 # where p(gf|fe) = f(gf, fe) / f(fe)
 
-$:.push "./Pkg"
-$:.push "."
-
 require "RosyConfigData"
 require "RosyIterator"
 require "RosyConventions"

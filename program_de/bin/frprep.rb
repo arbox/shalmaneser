@@ -19,10 +19,6 @@
 
 ##################################
 
-# my packages: in Pkg directory
-#$:.push "./Pkg"
-#$:.push "./PkgGeneral"
-
 $LOAD_PATH.unshift('lib/frprep', 'lib/common')
 
 

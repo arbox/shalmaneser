@@ -4,14 +4,7 @@
 # Frame disambiguation system:
 # frame assignment as word sense disambiguation
 
-#$:.push "./Pkg"
-#$:.push "./PkgGeneral"
-#$:.push "."
-
 $LOAD_PATH.unshift('lib/fred', 'lib/common')
-
-# only for testing require, remove later!!!
-$LOAD_PATH.unshift('../lib/fred', '../lib/common')
 
 require 'getoptlong'
 
