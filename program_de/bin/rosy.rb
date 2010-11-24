@@ -3,16 +3,8 @@
 #
 # Main file of the Rosy role assignment system.
 
-#beginmy
 require 'rubygems'
 require 'mysql'
-#endmy
-
-# Location of packages used
-#$:.push "./Pkg"
-#$:.push "./PkgGeneral"
-#$:.push "."
-#require "RubySQLPath"
 
 $LOAD_PATH.unshift('lib/rosy', 'lib/common')
 
