@@ -9,10 +9,12 @@ require 'mysql'
 #endmy
 
 # Location of packages used
-$:.push "./Pkg"
-$:.push "./PkgGeneral"
-$:.push "."
+#$:.push "./Pkg"
+#$:.push "./PkgGeneral"
+#$:.push "."
 #require "RubySQLPath"
+
+$LOAD_PATH.unshift('lib/rosy', 'lib/common')
 
 # Ruby standard library 
 require 'getoptlong'

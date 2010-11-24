@@ -44,16 +44,16 @@ enduser_mode = false
 #   are written. 
 #   Otherwise they are written to <data_dir>/<experiment_id>/classif_dir
 data_dir = /home/arbox/work_space/shalm/german/prog/output
-directory_input_train = /home/arbox/work_space/shalm/german/prog/output/prp_train/stxml_split
-directory_input_test = /home/arbox/work_space/shalm/german/prog/output/exp_fred_salsa/output/stxml
-directory_output = /home/arbox/work_space/shalm/german/prog/output/exp_rosy_salsa/output
+directory_input_train = /home/arbox/work_space/shalm/dev/trunk/output/prp_train/stxml_split
+directory_input_test = /home/arbox/work_space/shalm/dev/trunk/output/exp_fred_salsa/output/stxml
+directory_output = /home/arbox/work_space/shalm/dev/trunk/output/exp_rosy_salsa/output
 
 
 ##
 # Preprocessing settings:
 # frprep experiment files for training and test data.
-preproc_descr_file_train = /home/arbox/work_space/shalm/german/prog/program_de/SampleExperimentFiles.salsa/prp_train.salsa
-preproc_descr_file_test = /home/arbox/work_space/shalm/german/prog/program_de/SampleExperimentFiles.salsa/prp_test.salsa
+preproc_descr_file_train = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_train.salsa
+preproc_descr_file_test = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_test.salsa
 
 
 ########################
@@ -135,7 +135,7 @@ feature = prune
 # classifier = timbl /prog/MachineLearning/Timbl5/
 # classifier = maxent /prog/maxent-2.4.0 /prog/shalmaneser/program/tools/maxent
 
-classifier = maxent /opt/OpenNLP-maxent/2.4.0 /home/arbox/work_space/shalm/german/prog/program_de/tools/maxent/
+classifier = maxent /opt/OpenNLP-maxent/2.4.0 /home/arbox/work_space/shalm/dev/trunk/program_de/tools/maxent/
 
 ########################
 # further settings
