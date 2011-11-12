@@ -1,0 +1,8 @@
+# A sample Gemfile
+source "http://rubygems.org"
+
+group :development do
+  gem 'yard'
+  gem 'rdoc'
+  gem 'rake'
+end
