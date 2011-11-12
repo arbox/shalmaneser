@@ -1,0 +1,8 @@
+--private
+--protected
+--title 'SHALMANESER'
+lib/**/*
+bin/**/*
+-
+CHANGELOG.rdoc
+LICENSE.rdoc
