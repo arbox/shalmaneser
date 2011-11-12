@@ -143,22 +143,22 @@
 <globals>
 </globals>
 <frames>
-<frame name='Telling' id='sagen._0_f1290373706.0189'>
-<target id='sagen._0_f1290373706.0189_fe1290373706.01908' lemma='sagen' pos='verb'>
+<frame name='Telling' id='sagen._0_f1290638746.47845'>
+<target id='sagen._0_f1290638746.47845_fe1290638746.47862' lemma='sagen' pos='verb'>
 <fenode idref='sagen._0_7'/>
 </target>
-<fe name='Message' id='sagen._0_f1290373706.0189_fe1290374775.64145'>
+<fe name='Message' id='sagen._0_f1290638746.47845_fe1290638795.98909'>
 <fenode idref='sagen._0_504'/>
 </fe>
-<fe name='Speaker' id='sagen._0_f1290373706.0189_fe1290374775.64805'>
+<fe name='Speaker' id='sagen._0_f1290638746.47845_fe1290638795.99621'>
 <fenode idref='sagen._0_2'/>
 </fe>
 </frame>
-<frame name='Statement' id='sagen._0_f1290373706.0193'>
-<target id='sagen._0_f1290373706.0193_fe1290373706.01946' lemma='äußern' pos='verb'>
+<frame name='Statement' id='sagen._0_f1290638746.47883'>
+<target id='sagen._0_f1290638746.47883_fe1290638746.47898' lemma='äußern' pos='verb'>
 <fenode idref='sagen._0_20'/>
 </target>
-<fe name='Speaker' id='sagen._0_f1290373706.0193_fe1290374775.6561'>
+<fe name='Speaker' id='sagen._0_f1290638746.47883_fe1290638796.00547'>
 <fenode idref='sagen._0_15'/>
 </fe>
 </frame>
@@ -328,25 +328,25 @@
 <globals>
 </globals>
 <frames>
-<frame name='Statement' id='sagen._1_f1290373706.08706'>
-<target id='sagen._1_f1290373706.08706_fe1290373706.08722' lemma='meinen' pos='verb'>
+<frame name='Statement' id='sagen._1_f1290638746.53525'>
+<target id='sagen._1_f1290638746.53525_fe1290638746.5354' lemma='meinen' pos='verb'>
 <fenode idref='sagen._1_8'/>
 </target>
-<fe name='Message' id='sagen._1_f1290373706.08706_fe1290374775.76012'>
+<fe name='Message' id='sagen._1_f1290638746.53525_fe1290638796.11238'>
 <fenode idref='sagen._1_512'/>
 </fe>
-<fe name='Speaker' id='sagen._1_f1290373706.08706_fe1290374775.76438'>
+<fe name='Speaker' id='sagen._1_f1290638746.53525_fe1290638796.11677'>
 <fenode idref='sagen._1_504'/>
 </fe>
 </frame>
-<frame name='Telling' id='sagen._1_f1290373706.08741'>
-<target id='sagen._1_f1290373706.08741_fe1290373706.08755' lemma='sagen' pos='verb'>
+<frame name='Telling' id='sagen._1_f1290638746.53558'>
+<target id='sagen._1_f1290638746.53558_fe1290638746.53572' lemma='sagen' pos='verb'>
 <fenode idref='sagen._1_26'/>
 </target>
-<fe name='Speaker' id='sagen._1_f1290373706.08741_fe1290374775.76952'>
+<fe name='Speaker' id='sagen._1_f1290638746.53558_fe1290638796.12213'>
 <fenode idref='sagen._1_15'/>
 </fe>
-<fe name='Message' id='sagen._1_f1290373706.08741_fe1290374775.77521'>
+<fe name='Message' id='sagen._1_f1290638746.53558_fe1290638796.128'>
 <fenode idref='sagen._1_510'/>
 </fe>
 </frame>
@@ -465,14 +465,14 @@
 <globals>
 </globals>
 <frames>
-<frame name='Telling' id='sagen._3_f1290373706.12633'>
-<target id='sagen._3_f1290373706.12633_fe1290373706.12648' lemma='sagen' pos='verb'>
+<frame name='Telling' id='sagen._3_f1290638746.57417'>
+<target id='sagen._3_f1290638746.57417_fe1290638746.57432' lemma='sagen' pos='verb'>
 <fenode idref='sagen._3_7'/>
 </target>
-<fe name='Message' id='sagen._3_f1290373706.12633_fe1290374775.82292'>
+<fe name='Message' id='sagen._3_f1290638746.57417_fe1290638796.17551'>
 <fenode idref='sagen._3_507'/>
 </fe>
-<fe name='Speaker' id='sagen._3_f1290373706.12633_fe1290374775.82558'>
+<fe name='Speaker' id='sagen._3_f1290638746.57417_fe1290638796.1783'>
 <fenode idref='sagen._3_8'/>
 </fe>
 </frame>
@@ -639,24 +639,24 @@
 <globals>
 </globals>
 <frames>
-<frame name='Support' id='sagen._4_f1290373706.18013'>
-<target id='sagen._4_f1290373706.18013_fe1290373706.18029' lemma='nehmen' pos='verb'>
+<frame name='Support' id='sagen._4_f1290638746.62774'>
+<target id='sagen._4_f1290638746.62774_fe1290638746.6279' lemma='nehmen' pos='verb'>
 <fenode idref='sagen._4_4'/>
 </target>
-<fe name='Supported' id='sagen._4_f1290373706.18013_fe1290374775.89272'>
+<fe name='Supported' id='sagen._4_f1290638746.62774_fe1290638796.24953'>
 <fenode idref='sagen._4_500'/>
 </fe>
 </frame>
-<frame name='Telling' id='sagen._4_f1290373706.18047'>
-<target id='sagen._4_f1290373706.18047_fe1290373706.18062' lemma='sagen' pos='verb'>
+<frame name='Telling' id='sagen._4_f1290638746.62808'>
+<target id='sagen._4_f1290638746.62808_fe1290638746.62821' lemma='sagen' pos='verb'>
 <fenode idref='sagen._4_11'/>
 </target>
 </frame>
-<frame name='suchen1-salsa' id='sagen._4_f1290373706.18079'>
-<target id='sagen._4_f1290373706.18079_fe1290373706.18093' lemma='suchen' pos='verb'>
+<frame name='suchen1-salsa' id='sagen._4_f1290638746.6284'>
+<target id='sagen._4_f1290638746.6284_fe1290638746.62856' lemma='suchen' pos='verb'>
 <fenode idref='sagen._4_31'/>
 </target>
-<fe name='Sought_entity' id='sagen._4_f1290373706.18079_fe1290374775.89819'>
+<fe name='Sought_entity' id='sagen._4_f1290638746.6284_fe1290638796.25498'>
 <fenode idref='sagen._4_502'/>
 </fe>
 </frame>
