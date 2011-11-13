@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# -*- encoding: us-ascii -*-
+# -*- encoding: utf-8 -*-
 
 # AB, 2010-11-25
 
@@ -106,3 +106,13 @@ SynInterfaces.check_interfaces_abort_if_missing(exp)
 preprocessor =  FrPrep.new(exp)
 preprocessor.transform()
 
+__END__
+
+# It should look like:
+
+require 'frprep/opt_parser'
+require 'frpre/frprep'
+
+options = FrPrep::OptParser.parse(ARGV)
+preprocessor = FrPrep::FrPrep.new(options)
+preprocessor.transform
