@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     json (1.6.1)
+    mysql (2.8.1)
     rake (0.9.2.2)
     rdoc (3.11)
       json (~> 1.4)
@@ -11,6 +12,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  mysql
   rake
   rdoc
   yard

@@ -1,6 +1,8 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
+gem 'mysql'
+
 group :development do
   gem 'yard'
   gem 'rdoc'
