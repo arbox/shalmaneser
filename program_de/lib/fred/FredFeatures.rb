@@ -1,8 +1,8 @@
-# -*- coding: undecided -*-
+# -*- coding: utf-8 -*-
 require "tempfile"
 require "delegate"
 
-require "FredFeatureExtractors"
+require "fred/FredFeatureExtractors"
 
 ########################################
 ########################################

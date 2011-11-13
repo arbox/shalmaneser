@@ -6,8 +6,8 @@
 
 require "tempfile"
 
-require "FredDetermineTargets"
-require "FredConventions"
+require "fred/FredDetermineTargets"
+require "fred/FredConventions"
 
 class FredSplitPkg
   ###

@@ -5,10 +5,10 @@
 # always assign most frequent sense
 # The baseline doesn't do binary classifiers.
 
-require "FredConventions"
-require "FredSplitPkg"
-require "FredFeatures"
-require "FredDetermineTargets"
+require "fred/FredConventions"
+require "fred/FredSplitPkg"
+require "fred/FredFeatures"
+require "fred/FredDetermineTargets"
 
 class Baseline
   ###

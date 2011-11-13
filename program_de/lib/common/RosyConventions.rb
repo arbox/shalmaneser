@@ -4,9 +4,9 @@
 # Conventions to be used throughout the Rosy system
 # for greater consistency
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "EnduserMode"
+require "common/EnduserMode"
 
 #################################################################
 #################################################################

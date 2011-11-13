@@ -3,16 +3,16 @@
 #
 # Frame disambiguation system: train classifiers
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
 
 # Shalmaneser packages
-require "FredConventions"
-require "ML"
-require "FredDetermineTargets"
-require "FredSplitPkg"
-require "FredFeatures"
-require "FredNumTrainingSenses"
+require "fred/FredConventions"
+require "common/ML"
+require "fred/FredDetermineTargets"
+require "fred/FredSplitPkg"
+require "fred/FredFeatures"
+require "fred/FredNumTrainingSenses"
 
 class FredTrain
 

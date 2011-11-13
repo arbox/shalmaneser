@@ -4,7 +4,7 @@
 # Frame disambiguation system: 
 # access to a configuration and experiment description file
 
-require "ConfigData"
+require "common/ConfigData"
 
 ##############################
 # Class FredConfigData

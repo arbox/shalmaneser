@@ -11,7 +11,7 @@
 
 # part of contract: learner is not initialised unless it is either trained or read
 
-require "Optimise"
+require "common/Optimise"
 
 class Classifier
 
@@ -53,7 +53,7 @@ class Classifier
     end
 
     learner_name, learner_filename, learner_classname = learner_tuple
-    require learner_filename
+    require "common/#{learner_filename}"
     @learner = eval(learner_classname).new(program_path,params)
   end
 

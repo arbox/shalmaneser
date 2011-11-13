@@ -1,8 +1,8 @@
-require "FileZipped"
+require "fred/FileZipped"
 
-require "FredConfigData"
-require "SynInterfaces"
-require "FredConventions"
+require "fred/FredConfigData"
+require "common/SynInterfaces"
+require "fred/FredConventions"
 
 
 ########################################

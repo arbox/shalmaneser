@@ -14,14 +14,14 @@
 # Inherits from the Eval class that is not Fred-specific
 
 # Salsa packages
-require "Eval"
-require "StandardPkgExtensions"
+require "common/Eval"
+require "common/StandardPkgExtensions"
 
 # Fred packages
-require "FredConfigData"
-require "FredConventions"
-require "FredFeatures"
-require "FredDetermineTargets"
+require "fred/FredConfigData"
+require "fred/FredConventions"
+require "fred/FredFeatures"
+require "fred/FredDetermineTargets"
 
 class FredEval < Eval
 

@@ -23,21 +23,21 @@ require "delegate"
 
 #######
 
-require "FileZipped"
-require "Parser"
-require "RegXML"
-require "SalsaTigerRegXML"
-require "SalsaTigerXMLHelper"
+require "fred/FileZipped"
+require "common/Parser"
+require "common/RegXML"
+require "common/SalsaTigerRegXML"
+require "common/SalsaTigerXMLHelper"
 
-require "FredConfigData"
-require "FredConventions"
-require "FrPrepConfigData"
-require "FrprepHelper"
-require "SynInterfaces"
+require "fred/FredConfigData"
+require "fred/FredConventions"
+require "common/FrPrepConfigData"
+require "common/FrprepHelper"
+require "common/SynInterfaces"
 
-require "FredBOWContext"
-require "FredDetermineTargets"
-require "FredFeatures"
+require "fred/FredBOWContext"
+require "fred/FredDetermineTargets"
+require "fred/FredFeatures"
 
 ####################################
 # grammatical function computation:

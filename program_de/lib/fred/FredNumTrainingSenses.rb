@@ -1,4 +1,4 @@
-require "FredFeatures"
+require "fred/FredFeatures"
 
 def determine_training_senses(lemma, exp, lemmas_and_senses_obj, split_id)
   if split_id

@@ -4,9 +4,9 @@
 # several small things that should be uniform
 # throughout the system
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "EnduserMode"
+require "common/EnduserMode"
 
 ###
 # joining and breaking up senses

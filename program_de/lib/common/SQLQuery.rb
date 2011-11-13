@@ -4,9 +4,9 @@
 # provides static methods that generate SQL queries as strings
 # that can then be passed on to the database
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "RosyConventions"
+require "common/RosyConventions"
 
 class SQLQuery
   

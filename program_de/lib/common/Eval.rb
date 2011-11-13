@@ -10,7 +10,7 @@
 # individual evaluation results and allows for a flag that
 # suppresses evaluation output to a file
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
 class Eval
 

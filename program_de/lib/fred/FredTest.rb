@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # FredTest
 # Katrin Erk April 05
 #
@@ -9,20 +10,20 @@
 require "tempfile"
 
 # Salsa packages
-require "Parser"
-require "RegXML"
-require "SalsaTigerRegXML"
-require "StandardPkgExtensions"
+require "common/Parser"
+require "common/RegXML"
+require "common/SalsaTigerRegXML"
+require "common/StandardPkgExtensions"
 
 # Shalmaneser packages
-require "FrPrepConfigData"
-require "ML"
-require "Baseline"
-require "FredConventions"
-require "FredDetermineTargets"
-require "FredSplitPkg"
-require "FredFeatures"
-require "FredNumTrainingSenses"
+require "common/FrPrepConfigData"
+require "common/ML"
+require "fred/Baseline"
+require "fred/FredConventions"
+require "fred/FredDetermineTargets"
+require "fred/FredSplitPkg"
+require "fred/FredFeatures"
+require "fred/FredNumTrainingSenses"
 
 class FredTest
 
