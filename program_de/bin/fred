@@ -9,19 +9,10 @@
 # Frame disambiguation system:
 # frame assignment as word sense disambiguation
 
-$LOAD_PATH.unshift('lib/fred', 'lib/common')
 
 require 'getoptlong'
 
-require "FredConfigData"
-require "FredConventions"
-require "FredFeaturize"
-require "FredSplit"
-require "FredTrain"
-require "FredTest"
-require "FredEval"
-require "FredParameters"
-require "EnduserMode"
+require "fred/FredConfigData"
 
 ##############################
 
@@ -269,28 +260,20 @@ unless exp.get("numerical_features")
   exp.set_entry("numerical_features", "bin")
 end
 
+require 'fred/fred'
+fred = Fred::Fred.new([exp, opts])
 
-##
-# now perform the given task
+fred.assign
 
-# initialize task object
-case task
-when "featurize"
-  task_obj = FredFeaturize.new(exp, opts)
-when "refeaturize"
-  task_obj = FredFeaturize.new(exp, opts, "refeaturize" => true)
-when "split"
-  task_obj = FredSplit.new(exp, opts)
-when "train"
-  task_obj = FredTrain.new(exp, opts)
-when "test"
-  task_obj = FredTest.new(exp, opts)
-when "eval"
-  task_obj = FredEval.new(exp, opts)
-else
-  raise "Shouldn't be here"
-end
+__END__
 
-task_obj.compute()
+# AB: should look like:
 
-$stderr.puts "Fred: Done."
+require 'fred/opt_parser'
+require 'fred/fred'
+
+options = Fred::OptParser.parse(ARGV)
+
+fred = Fred::Fred.new(options)
+
+fred.assign
