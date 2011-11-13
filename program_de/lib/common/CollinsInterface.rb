@@ -9,12 +9,12 @@
 
 
 require "tempfile"
-require "TabFormat"
-require "SalsaTigerRegXML"
-require "SalsaTigerXMLHelper"
-require "Counter"
+require "common/TabFormat"
+require "common/SalsaTigerRegXML"
+require "common/SalsaTigerXMLHelper"
+require "common/Counter"
 
-require "AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 ################################################
 # Interface class

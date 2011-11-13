@@ -25,12 +25,12 @@
 
 require "tempfile"
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "ISO-8859-1"
-require "Parser"
-require "SalsaTigerRegXML"
-require "TabFormat"
+require "common/ISO-8859-1"
+require "common/Parser"
+require "common/SalsaTigerRegXML"
+require "common/TabFormat"
 
 #############################
 # abstract class, to be inherited:

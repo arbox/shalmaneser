@@ -6,11 +6,11 @@
 # class for interpreting the Salsa/Tiger XML data structures
 
 require "tempfile"
-require "TabFormat"
-require "SalsaTigerRegXML"
-require "SalsaTigerXMLHelper"
+require "common/TabFormat"
+require "common/SalsaTigerRegXML"
+require "common/SalsaTigerXMLHelper"
 
-require "AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 #########################################
 # MiniparSentence class

@@ -1,5 +1,5 @@
 require "tempfile"
-require "AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 ################################################
 # Interface class

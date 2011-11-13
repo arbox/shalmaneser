@@ -8,9 +8,9 @@
 # changed KE nov 05:
 # many methods moved to FrprepHelper
 
-require "SalsaTigerRegXML"
-require "headz"
-require "Parser"
+require "common/SalsaTigerRegXML"
+require "common/headz"
+require "common/Parser"
 require "tempfile"
 
 class SalsaTigerXMLHelper

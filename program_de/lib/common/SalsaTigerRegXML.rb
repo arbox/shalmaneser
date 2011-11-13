@@ -61,10 +61,10 @@
 # A frame element underspecification is an UspNode objects, its children are
 # FeNode objects. The edges to its children are unlabeled.
 
-require "Tree"
-require "STXmlTerminalOrder"
-require "RegXML"
-require "StandardPkgExtensions"
+require "common/Tree"
+require "common/STXmlTerminalOrder"
+require "common/RegXML"
+require "common/StandardPkgExtensions"
 
 #############
 # class XMLNode

@@ -9,13 +9,13 @@
 # underlying data structure for individual sentences: SalsaTigerSentence
 require "tempfile"
 
-require "SalsaTigerRegXML"
-require "SalsaTigerXMLHelper"
-require "TabFormat"
-require "Counter"
+require "common/SalsaTigerRegXML"
+require "common/SalsaTigerXMLHelper"
+require "common/TabFormat"
+require "common/Counter"
 
-require "AbstractSynInterface"
-require "Tiger.rb"
+require "common/AbstractSynInterface"
+require "common/Tiger.rb"
 
 ################################################
 # Interface class

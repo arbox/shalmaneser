@@ -27,7 +27,7 @@
 #   print "preposition of conjunction involved"
 # end
 
-require "SalsaTigerRegXML"
+require "common/SalsaTigerRegXML"
 
 class Headz 
 

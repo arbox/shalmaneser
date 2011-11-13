@@ -22,8 +22,8 @@
 
 require "tempfile"
 
-require "ISO-8859-1"
-require "StandardPkgExtensions"
+require "common/ISO-8859-1"
+require "common/StandardPkgExtensions"
 
 #######################
 # This function takes a variable number of arguments and

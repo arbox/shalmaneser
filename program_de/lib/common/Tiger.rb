@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-require "headz"
-require "SalsaTigerRegXML"
-require "StandardPkgExtensions"
+require "common/headz"
+require "common/SalsaTigerRegXML"
+require "common/StandardPkgExtensions"
 class Array
   include EnumerableDistribute
 end
 
 
-require "AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 #############################################
 #

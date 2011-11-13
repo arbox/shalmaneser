@@ -1,4 +1,4 @@
-require "Graph.rb"
+require 'common/Graph'
 
 class TreeNode < GraphNode
 
