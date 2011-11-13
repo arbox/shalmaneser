@@ -1,9 +1,10 @@
+#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
 # rosy.rb
 # KE, SP April 05
 #
 # Main file of the Rosy role assignment system.
 
-require 'rubygems'
 require 'mysql'
 
 $LOAD_PATH.unshift('lib/rosy', 'lib/common')
@@ -302,16 +303,16 @@ tasks = {
     [ '--split', GetoptLong::REQUIRED_ARGUMENT]                    # list sentence IDs for given splitlog 
   ],
   "services" => [['--deltable', GetoptLong::REQUIRED_ARGUMENT],    # delete database table
-    [ '--delexp', GetoptLong::NO_ARGUMENT],                        # delete experiment tables and files
-    [ '--deltables', GetoptLong::NO_ARGUMENT],                     # delete tables interactively
-    [ '--delruns', GetoptLong::NO_ARGUMENT],                       # delete runs
-    [ '--delsplit', GetoptLong::REQUIRED_ARGUMENT],                # delete split
-    [ '--dump', GetoptLong::OPTIONAL_ARGUMENT],                    # dump experiment to files
-    [ '--load', GetoptLong::OPTIONAL_ARGUMENT],                    # load experiment from files
-    [ '--writefeatures', GetoptLong::OPTIONAL_ARGUMENT],           # write feature files
-['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],     # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
-    [ '--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],            # test table ID: if given, test on this table
-    ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]              # splitlog ID: if given, test on this split. Cannot use both this and -i
+                 [ '--delexp', GetoptLong::NO_ARGUMENT],                        # delete experiment tables and files
+                 [ '--deltables', GetoptLong::NO_ARGUMENT],                     # delete tables interactively
+                 [ '--delruns', GetoptLong::NO_ARGUMENT],                       # delete runs
+                 [ '--delsplit', GetoptLong::REQUIRED_ARGUMENT],                # delete split
+                 [ '--dump', GetoptLong::OPTIONAL_ARGUMENT],                    # dump experiment to files
+                 [ '--load', GetoptLong::OPTIONAL_ARGUMENT],                    # load experiment from files
+                 [ '--writefeatures', GetoptLong::OPTIONAL_ARGUMENT],           # write feature files
+                 ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],     # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
+                 [ '--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],            # test table ID: if given, test on this table
+                 ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]              # splitlog ID: if given, test on this split. Cannot use both this and -i
   ]
 }
 
