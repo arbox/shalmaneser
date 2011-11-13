@@ -35,7 +35,7 @@ require 'rake/testtask'
 Rake::TestTask.new do |t|
   t.libs << 'test'
   t.warning
-  t.ruby_opts = ['-rubygems']
+#  t.ruby_opts = ['-rubygems'] # not necessary now
   t.test_files = FileList['test/**/*.rb']
 end
 
