@@ -1,6 +1,6 @@
 ##############################
 # The class that does all the work
-
+module FrPrep
 class FrPrep
 
   def initialize(exp)   # FrprepConfigData object
@@ -674,4 +674,5 @@ class FrPrep
       infile.close()
     }
   end
+end
 end
