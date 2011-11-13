@@ -1,5 +1,5 @@
 # AB: 2011-11-13
-
+# Initial import done, need to reimplement the whole interface.
 require 'fred/FredFeaturize'
 require 'fred/FredSplit'
 require 'fred/FredTrain'
