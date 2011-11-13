@@ -1,12 +1,12 @@
 # Salsa packages
-require "ISO-8859-1"
-require "Parser"
-require "RegXML"
-require "SalsaTigerRegXML"
-require "SalsaTigerXMLHelper"
-require "TabFormat"
-require "StandardPkgExtensions"
-require "AbstractSynInterface"
+require "common/ISO-8859-1"
+require "common/Parser"
+require "common/RegXML"
+require "common/SalsaTigerRegXML"
+require "common/SalsaTigerXMLHelper"
+require "common/TabFormat"
+require "common/StandardPkgExtensions"
+require "common/AbstractSynInterface"
 
 ############################################3
 # Module FrprepHelper:

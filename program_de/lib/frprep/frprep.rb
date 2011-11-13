@@ -1,3 +1,6 @@
+require 'frprep/do_parses'
+require 'common/FrprepHelper'
+
 ##############################
 # The class that does all the work
 module FrPrep

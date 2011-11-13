@@ -1,4 +1,4 @@
-# -*- encoding: us-ascii -*-
+# -*- encoding: utf-8 -*-
 
 # AB, 2010-11-25
 
@@ -10,6 +10,8 @@
 # a directory for putting parse files:
 # - parse, unless no parsing set in the experiment file
 # - for each parsed file: yield one OneParsedFile object
+require 'frprep/one_parsed_file'
+
 class DoParses
   def initialize(exp,           # FrPrepConfigData object
 		 file_suffixes, # hash: file type(string) -> suffix(string)
