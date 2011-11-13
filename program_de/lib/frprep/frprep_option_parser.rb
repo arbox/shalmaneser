@@ -1,15 +1,17 @@
+
 # -*- encoding: us-ascii -*-
 
 # AB, 2010-11-25
 
 require 'option_parser'
+module FrPrep
 
-# This class parses the option for FRPrep.
-class FRPrepOptionParser < OptionParser
+  # This class parses the option for FRPrep.
+  class OptParser
 
-
-  def usage
-    $stderr.puts "
+    
+    def usage
+      $stderr.puts "
 FrPrep: Preprocessing for Fred and Rosy
 (i.e. for frame/word sense assignment and semantic role assignment)
   
@@ -30,5 +32,6 @@ ruby frprep.rb --expfile|-e <e>
   see the file SAMPLE_EXPERIMENT_FILE in this directory.
 
 "
+    end
   end
 end
