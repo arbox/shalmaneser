@@ -20,6 +20,7 @@ require "common/Tiger.rb"
 ################################################
 # Interface class
 class BerkeleyInterface < SynInterfaceSTXML
+  $stderr.puts 'Announcing Berkeley Interface' if $DEBUG
   BerkeleyInterface.announce_me()
 
   ###
