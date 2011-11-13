@@ -4,7 +4,7 @@
 # AB, 2010-11-25
 
 require 'getoptlong'
-require 'option_parser'
+require 'optparse'
 module FrPrep
 
   # This class parses the option for FRPrep.
