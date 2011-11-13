@@ -9,7 +9,8 @@ include FrPrep
 class TestOptParser < Test::Unit::TestCase
 
   def setup
-    @valid_opts = ['--expfile', 'file.txt',
+    @exp_file = 'test/frprep/data/prp_test.salsa'
+    @valid_opts = ['--expfile', @exp_file,
                    '--help'
                   ]
   end
@@ -20,8 +21,7 @@ class TestOptParser < Test::Unit::TestCase
 
   # It should return a FrPrepConfigData object.
   def test_parse_method
-    file = 'test/frprep/data/prp_test.salsa'
-    input = ['-e', file]
+    input = ['-e', @exp_file]
     return_value = OptParser.parse(input)
     assert(return_value.instance_of?(FrPrepConfigData))
   end
@@ -32,6 +32,32 @@ class TestOptParser < Test::Unit::TestCase
       assert_raises(SystemExit) { OptParser.parse([]) }
     end
     assert_match(/You have to provide some options./, err)
+  end
+
+  # It should accept correct options.
+  # Invalid options is the matter of OptionParser itself,
+  # do not test it here.
+  # We test only, that OP exits and does not raise an exception.
+  def test_accept_correct_options
+    # this options we should treat separately
+    @valid_opts.delete('--help')
+    assert_nothing_raised { OptParser.parse(@valid_opts) }
+
+    stdout, stderr = intercept_output do 
+      assert_raises(SystemExit) { OptParser.parse(['--invalid-option']) }
+    end
+
+    assert_match(/You have provided an invalid option:/, stdout)
+  end
+
+  # It should successfully exit with some options.
+  def test_successful_exit
+    quietly do
+      success_args = ['-h', '--help']
+      success_args.each do |arg|
+        assert_raises(SystemExit) { OptParser.parse(arg.split) }
+      end
+    end
   end
 
 end
