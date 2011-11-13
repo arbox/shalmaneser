@@ -103,7 +103,7 @@ SynInterfaces.check_interfaces_abort_if_missing(exp)
 #############
 # preprocessing
 
-preprocessor =  FrPrep.new(exp)
+preprocessor =  FrPrep::FrPrep.new(exp)
 preprocessor.transform()
 
 __END__
