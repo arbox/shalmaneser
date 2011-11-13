@@ -24,7 +24,7 @@
 # Abstract classes for both interfaces and interpreters
 # are in AbstractSynInterface.rb
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 class Array
   include EnumerableBool
 end
@@ -239,12 +239,12 @@ class SynInterfaces
 end
 
 
-require "CollinsInterface"
-require "BerkeleyInterface"
-require "SleepyInterface"
-require "MiniparInterface"
-require "TntInterface"
-require "TreetaggerInterface"
+require "common/CollinsInterface"
+require "common/BerkeleyInterface"
+require "common/SleepyInterface"
+require "common/MiniparInterface"
+require "common/TntInterface"
+require "common/TreetaggerInterface"
 
 
 class EmptyInterpreter < SynInterpreter
