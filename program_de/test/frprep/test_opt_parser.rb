@@ -19,7 +19,7 @@ class TestOptParser < Test::Unit::TestCase
 
   # It should return a FrPrepConfigData object.
   def test_parse_method
-    file = 'frprep/data/prp_test.salsa'
+    file = 'test/frprep/data/prp_test.salsa'
     input = ['-e', file]
     return_value = OptParser.parse(input)
     assert(return_value.instance_of?(FrPrepConfigData))
