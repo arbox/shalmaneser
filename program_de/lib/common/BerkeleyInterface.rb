@@ -78,8 +78,11 @@ class BerkeleyInterface < SynInterfaceSTXML
       }
       tempfile.close
       # parse and remove comments in the parser output
-      print berkeley_prog+" <"+tempfile.path+" > "+parsefilename
-      Kernel.system(berkeley_prog+" <"+tempfile.path+" > "+parsefilename)      
+      STDERR.puts "#{berkeley_prog} < #{tempfile.path} > #{parsefilename}"
+
+      # AB: for testing we leave this step out, it takes too much time.
+      # Please keep the <parsefile> intact!!!
+      #Kernel.system(berkeley_prog+" <"+tempfile.path+" > "+parsefilename)      
 
     }
   end
