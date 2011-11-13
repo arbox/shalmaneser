@@ -2,17 +2,157 @@
 
 # AB, 2011-11-13
 
-require 'optparse'
+#require 'optparse' # for reimplementation
 require 'getoptlong'
+require "fred/FredConfigData"
+
 module Fred
 
   # This class parses options for Fred.
   class OptParser
-    def self.parse(cmd_args)
-    end
+    def self.parse(cmd_opts)
+      tasks = {
+        "featurize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
+                         [ "--append", "-A", GetoptLong::NO_ARGUMENT]
+                       ],
+        "refeaturize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
+                           [ "--append", "-A", GetoptLong::NO_ARGUMENT]
+                         ],
+        "split" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],  # splitlog ID, required, no default
+                     [ '--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]      # percentage training data, default: 90
+                   ],
+        "train" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT]  # splitlog ID; if given, will train on split
+                     # rather than all training data
+                   ],
+        "test" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],   # splitlog ID: if given, test on this split of 
+                    # the training data
+                    [ '--baseline', '-b', GetoptLong::NO_ARGUMENT],                # set this to compute baseline rather than
+                    # apply classifiers
+                    [ '--nooutput', '-N', GetoptLong::NO_ARGUMENT]               # set this to prevent output of disambiguated
+                    # test data
+                    
+                  ],
+        "eval" => [['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],    # splitlog ID: if given, evaluate this split. 
+                   ['--printLog', '-l', GetoptLong::NO_ARGUMENT]
+                  ]
+      }
+      
+      # general options
+      optnames = [[ '--help', '-h', GetoptLong::NO_ARGUMENT],            # get help
+                  [ '--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],             # experiment file name (and path), no default
+                  [ '--task', '-t', GetoptLong::REQUIRED_ARGUMENT ],               # task to perform: one of task.keys, no default
+                 ]
+      # append task-specific to general options
+      tasks.values.each { |more_optnames|
+        optnames.concat more_optnames
+      }
+      optnames.uniq!
+      
+      # asterisk: "explode" array into individual parameters
+      begin
+        opts = options_hash(GetoptLong.new(*optnames))
+      rescue
+        $stderr.puts "Error: unknown command line option: " + $!
+        exit 1
+      end
+      
+      experiment_filename = nil
+      
+      ##
+      # are we being asked for help?
+      if opts['--help']
+        help()
+        exit(0)
+      end
+      
+      ##
+      # now find the task
+      task = opts['--task']
+      # sanity checks for task
+      if task.nil?
+        help()
+        exit(0)
+      end
+      unless tasks.keys.include? task
+        $stderr.puts "Sorry, I don't know the task " + task
+        exit 1
+      end
+      
+      ##
+      # now evaluate the rest of the options
+      opts.each_pair { |opt,arg|
+        case opt
+        when '--help', '--task'
+          # we already handled this
+        when '--expfile'
+          experiment_filename = arg
+        else
+          # do we know this option?
+          unless tasks[task].assoc(opt)
+            $stderr.puts "Sorry, I don't know the option " + opt + " for task " + task
+            exit 1
+          end
+        end
+      }
+      
+      
+      
+      unless experiment_filename
+        $stderr.puts "I need an experiment file name, option --expfile|-e"
+        exit 1
+      end
+      
+      ##
+      # open config file
+      
+      exp = FredConfigData.new(experiment_filename)
+      
+      # sanity checks
+      unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
+        raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
+      end
+      
+      # enduser mode?
+      $ENDUSER_MODE = exp.get("enduser_mode") 
+      
+      # set defaults
+      unless exp.get("handle_multilabel")
+        if exp.get("binary_classifiers")
+          exp.set_entry("handle_multilabel", "binarize")
+        else
+          exp.set_entry("handle_multilabel", "repeat")
+        end
+      end
+      # sanity check: if we're using option 'binarize' for handling items
+      # with multiple labels, we have to have binary classifiers
+      if exp.get("handle_multilabel") == "binarize" and not(exp.get("binary_classifiers"))
+        $stderr.puts "Error: cannot use 'handle_multilabel=binarize' with n-ary classifiers."
+        exit(1)
+      end
+      unless exp.get("numerical_features")
+        exp.set_entry("numerical_features", "bin")
+      end
 
-    def self.help()
-      $stderr.puts "
+      [exp, opts]
+    end
+    private
+    ###
+    # options_hash:
+    #
+    # GetoptLong only allows you to access options via each(),
+    # not individually, and it only allows you to cycle through the options once.
+    # So we re-code the options as a hash
+    def self.options_hash(opts_obj) # GetoptLong object
+      opt_hash = Hash.new
+      
+      opts_obj.each do |opt, arg|
+        opt_hash[opt] = arg
+      end
+      
+      return opt_hash
+    end
+    def self.help
+        $stderr.puts "
 Fred: FRamE Disambiguation System Version 0.3
   
 Usage:
@@ -106,233 +246,5 @@ ruby fred.rb --task|-t test --expfile|-e <e>
 
 "
     end
-
-    ###
-    # options_hash:
-    #
-    # GetoptLong only allows you to access options via each(),
-    # not individually, and it only allows you to cycle through the options once.
-    # So we re-code the options as a hash
-    def self.options_hash(opts_obj) # GetoptLong object
-      opt_hash = Hash.new
-      
-      opts_obj.each do |opt, arg|
-        opt_hash[opt] = arg
-      end
-      
-      return opt_hash
-    end
-    
-    
-    ##############################
-    # main starts here
-    ##############################
-    
-    ##
-    # evaluate runtime arguments
-    
-    # task-specific options
-    @tasks = {
-      "featurize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
-                       [ "--append", "-A", GetoptLong::NO_ARGUMENT]
-                     ],
-      "refeaturize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
-                         [ "--append", "-A", GetoptLong::NO_ARGUMENT]
-                       ],
-      "split" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],  # splitlog ID, required, no default
-                   [ '--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]      # percentage training data, default: 90
-                 ],
-      "train" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT]  # splitlog ID; if given, will train on split
-                   # rather than all training data
-                 ],
-      "test" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],   # splitlog ID: if given, test on this split of 
-                  # the training data
-                  [ '--baseline', '-b', GetoptLong::NO_ARGUMENT],                # set this to compute baseline rather than
-                  # apply classifiers
-                  [ '--nooutput', '-N', GetoptLong::NO_ARGUMENT]               # set this to prevent output of disambiguated
-                  # test data
-
-                ],
-      "eval" => [['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],    # splitlog ID: if given, evaluate this split. 
-                 ['--printLog', '-l', GetoptLong::NO_ARGUMENT]
-                ]
-    }
-    
-    # general options
-    @optnames = [[ '--help', '-h', GetoptLong::NO_ARGUMENT],            # get help
-                [ '--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],             # experiment file name (and path), no default
-                [ '--task', '-t', GetoptLong::REQUIRED_ARGUMENT ],               # task to perform: one of task.keys, no default
-               ]
-    # append task-specific to general options
-    @tasks.values.each { |more_optnames|
-      @optnames.concat more_optnames
-    }
-    @optnames.uniq!
-    
-    # asterisk: "explode" array into individual parameters
-    begin
-      @opts = self.options_hash(GetoptLong.new(*@optnames))
-    rescue
-      $stderr.puts "Error: unknown command line option: " + $!
-      exit 1
-    end
-    
-    @experiment_filename = nil
-    
-    ##
-    # are we being asked for help?
-    if @opts['--help']
-      self.help()
-      exit(0)
-    end
-    
-    ##
-    # now find the task
-    @task = opts['--task']
-    # sanity checks for task
-    if @task.nil?
-      help()
-      exit(0)
-    end
-    unless @tasks.keys.include? @task
-      $stderr.puts "Sorry, I don't know the task " + @task
-      exit 1
-    end
-    
-    ##
-    # now evaluate the rest of the options
-    @opts.each_pair { |opt,arg|
-      case opt
-      when '--help', '--task'
-        # we already handled this
-      when '--expfile'
-        @experiment_filename = arg
-      else
-        # do we know this option?
-        unless @tasks[@task].assoc(opt)
-          $stderr.puts "Sorry, I don't know the option " + opt + " for task " + @task
-          exit 1
-        end
-      end
-    }
-    
-    
-    
-    unless @experiment_filename
-      $stderr.puts "I need an experiment file name, option --expfile|-e"
-      exit 1
-    end
-    
-    ##
-    # open config file
-    
-    exp = FredConfigData.new(experiment_filename)
-    
-    # sanity checks
-    unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
-      raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
-    end
-    
-    # enduser mode?
-    $ENDUSER_MODE = exp.get("enduser_mode") 
-    
-    # set defaults
-    unless exp.get("handle_multilabel")
-      if exp.get("binary_classifiers")
-        exp.set_entry("handle_multilabel", "binarize")
-      else
-        exp.set_entry("handle_multilabel", "repeat")
-      end
-    end
-    # sanity check: if we're using option 'binarize' for handling items
-    # with multiple labels, we have to have binary classifiers
-    if exp.get("handle_multilabel") == "binarize" and not(exp.get("binary_classifiers"))
-      $stderr.puts "Error: cannot use 'handle_multilabel=binarize' with n-ary classifiers."
-      exit(1)
-    end
-    unless exp.get("numerical_features")
-      exp.set_entry("numerical_features", "bin")
-    end
-    
-    # Main class method.
-    # OP expects cmd_args to be an array like ARGV.
-    def self.parse(cmd_args)
-      @prg_name = 'fred'
-      @@options = {}
-      
-      parser = create_parser
-      
-      # If no options provided print the help.
-      if cmd_args.empty?
-        $stderr.puts('You have to provide some options.',
-                     "Please start with <#{@prg_name} --help>.")
-        exit(1)
-      end
-      
-      # Parse ARGV and provide the options hash.
-      # Check if everything is correct and handle exceptions
-      begin
-        parser.parse(cmd_args)
-      rescue OptionParser::InvalidArgument => e
-        arg = e.message.split.last
-        $stderr.puts "The provided argument #{arg} is currently not supported!"
-        $stderr.puts "Please colsult <#{@prg_name} --help>."
-        exit(1)
-      rescue OptionParser::InvalidOption => e
-        $stderr.puts "You have provided an #{e.message}."
-        $stderr.puts "Please colsult <#{@prg_name} --help>."
-        exit(1)
-      rescue
-        raise
-      end
-      
-      
-      exp = FrPrepConfigData.new(@@options[:exp_file])
-      
-      # AB: this stuff should be move into FrPrepConfigData.
-      # sanity checks
-      unless exp.get("prep_experiment_ID") =~ /^[A-Za-z0-9_]+$/
-        raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
-      end
-
-      SynInterfaces.check_interfaces_abort_if_missing(exp)
-
-      exp
-    end
-
-    private
-    def self.create_parser
-      OptionParser.new do |opts|
-        opts.banner = <<STOP
-Fred Preprocessor <frprep>. Preprocessing stage before Fred and Rosy
-for further frame/word sense assignment and semantic role assignment.
-
-Usage: frprep -h|-e FILENAME'
-STOP
-        opts.separator ''
-        opts.separator 'Program specific options:'
-        
-        opts.on('-e', '--expfile FILENAME',
-                'Provide the path to an experiment file.',
-                'FrPrep will preprocess data according to the specifications',
-                'given in your experiment file.',
-                'This option is required!',
-                'Also consider the documentation on format and features.'
-                ) do |exp_file|
-          @@options[:exp_file] = File.expand_path(exp_file)
-        end
-
-        opts.separator ''
-        opts.separator 'Common options:'
-        
-        opts.on_tail('-h', '--help', 'Show this help message.') do
-          puts opts
-          exit
-        end
-        
-      end
-
-    end # def self.parse
-
   end # class OptParser
 end # module FrPrep
