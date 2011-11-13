@@ -47,7 +47,7 @@ class TestOptParser < Test::Unit::TestCase
       assert_raises(SystemExit) { OptParser.parse(['--invalid-option']) }
     end
 
-    assert_match(/You have provided an invalid option:/, stdout)
+    assert_match(/You have provided an invalid option:/, stderr)
   end
 
   # It should successfully exit with some options.
