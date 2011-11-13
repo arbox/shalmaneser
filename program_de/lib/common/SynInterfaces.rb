@@ -50,15 +50,21 @@ class SynInterfaces
   ###
   # add interface/interpreter
   def SynInterfaces.add_interface(class_name)
-#    $stderr.puts "Initializing interface #{class_name}"
+    $stderr.puts "Initializing interface #{class_name}" if $DEBUG
     @@interfaces << class_name
   end
   
   def SynInterfaces.add_interpreter(class_name)
-#    $stderr.puts "Initializing interpreter #{class_name}"
+    $stderr.puts "Initializing interpreter #{class_name}" if $DEBUG
     @@interpreters << class_name
   end
 
+  # AB: fake method to preview the interfaces table.
+  def SynInterfaces.explore
+    $stderr.puts "Exploring..."
+    $stderr.puts @@interfaces
+    $stderr.puts @@interpreters
+  end
   ###
   # check_interfaces_abort_if_missing:
   #
