@@ -56,7 +56,7 @@
 #
 #
 
-require "StandardPkgExtensions"
+require 'common/StandardPkgExtensions'
 
 #####################################################
 # helper module for ConfigData:
