@@ -41,7 +41,7 @@ require 'StandardPkgExtensions'
 require 'frprep'
 require 'do_parses'
 require 'one_parsed_file'
-require 'FrPrepConfigData'
+require 'FrPrepConfigData' # AB: move to frprep/opt_parser.rb
 require 'FrprepHelper'
 require 'SynInterfaces'
 require 'FixSynSemMapping'
