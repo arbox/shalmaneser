@@ -1,5 +1,4 @@
-
-# -*- encoding: us-ascii -*-
+# -*- encoding: utf-8 -*-
 
 # AB, 2010-11-25
 
@@ -8,7 +7,7 @@ require 'common/FrPrepConfigData'
 require 'common/SynInterfaces'
 module FrPrep
 
-  # This class parses the option for FRPrep.
+  # This class parses options for FrPrep.
   class OptParser
 
     # Main class method.
@@ -60,16 +59,21 @@ module FrPrep
     private
     def self.create_parser
       OptionParser.new do |opts|
-        opts.banner = 'Usage: frprep OPTIONS'
-        
+        opts.banner = <<STOP
+Fred Preprocessor <frprep>. Preprocessing stage before Fred and Rosy
+for further frame/word sense assignment and semantic role assignment.
+
+Usage: frprep -h|-e FILENAME'
+STOP
         opts.separator ''
         opts.separator 'Program specific options:'
         
         opts.on('-e', '--expfile FILENAME',
-                'Provide the path to an experiment file,',
-                'to test Yanser you can use <YahooDemo> as the APPID,',
-                'think in this case on limitations placed by Yahoo.',
-                'This option is required!'
+                'Provide the path to an experiment file.',
+                'FrPrep will preprocess data according to the specifications',
+                'given in your experiment file.',
+                'This option is required!',
+                'Also consider the documentation on format and features.'
                 ) do |exp_file|
           @@options[:exp_file] = File.expand_path(exp_file)
         end
@@ -77,35 +81,14 @@ module FrPrep
         opts.separator ''
         opts.separator 'Common options:'
         
-        opts.on_tail('-h', '--help', 'Show the help message.') do
+        opts.on_tail('-h', '--help', 'Show this help message.') do
           puts opts
           exit
         end
         
       end
-    end
 
-    def usage
-      $stderr.puts "
-FrPrep: Preprocessing for Fred and Rosy
-(i.e. for frame/word sense assignment and semantic role assignment)
-  
-Usage:
-----------------
+    end # def self.parse
 
-
-
-
-ruby frprep.rb --expfile|-e <e>
-  Preprocess data according to the specifications
-  of experiment file <e>.
-
-  <e>: path to experiment file
-
-  For specifics on the contents of the experiment file,
-  see the file SAMPLE_EXPERIMENT_FILE in this directory.
-
-"
-    end
-  end
-end
+  end # class OptParser
+end # module FrPrep
