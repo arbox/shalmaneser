@@ -97,7 +97,7 @@ class SynInterface
       SynInterfaces.add_interface(eval(self.name()))
     else
       # no interface collector class
-#      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
+      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
     end
   end
 end
@@ -1138,7 +1138,7 @@ class SynInterpreter
       SynInterfaces.add_interpreter(eval(self.name()))
     else
       # no interface collector class
-#      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
+      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
     end
   end
 
