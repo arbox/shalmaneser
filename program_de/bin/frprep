@@ -22,97 +22,13 @@
 # - "fn_gf": FrameNet grammatical function label, attached to the maximal
 #   constituents covering the terminals labeled with that label
 
-##################################
 
-$LOAD_PATH.unshift('lib/frprep', 'lib/common', 'lib')
-
-
-# external packages
-require "getoptlong"
-
-# general packages provided by Salsa
-require 'Ampersand'
-require 'FNDatabase'
-require 'FNCorpusXML'
-require 'SalsaTigerRegXML'
-require 'StandardPkgExtensions'
-
-# Fred-, Rosy- and Frprep-specific packages
-require 'frprep'
-require 'do_parses'
-require 'one_parsed_file'
-require 'FrPrepConfigData' # AB: move to frprep/opt_parser.rb
-require 'FrprepHelper'
-require 'SynInterfaces' # AB: move to frprep/opt_parser.rb
-require 'FixSynSemMapping'
-
- 
-
-
-
-
-
-
-
-#######################################
-# main starts here
-######################################
-
-#############
-# preliminaries:
-
-# evaluate runtime options
-begin
-  opts = GetoptLong.new([ '--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],
-			[ '--help', '-h', GetoptLong::NO_ARGUMENT])
-rescue
-  $stderr.puts "Error: unknown command line option: " + $!
-  exit 1
-end
-
-
-expfilename = nil
-
-opts.each do |opt, arg|
-  case opt
-  when '--expfile'
-    expfilename = File.expand_path(arg)
-  when '--help'
-    help()
-    exit 0
-  else
-    help()
-    exit 0
-  end
-end
-
-unless expfilename
-  raise "Please specify an experiment file, option --expfile|-e"
-end
-
-# read experiment file
-exp = FrPrepConfigData.new(expfilename)
-
-# sanity checks
-unless exp.get("prep_experiment_ID") =~ /^[A-Za-z0-9_]+$/
-  raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
-end
-
-SynInterfaces.check_interfaces_abort_if_missing(exp)
-
-#############
-# preprocessing
-
-preprocessor =  FrPrep::FrPrep.new(exp)
-preprocessor.transform()
-
-__END__
-
-# It should look like:
-
-require 'frprep/opt_parser'
 require 'frprep/frprep'
+require 'frprep/opt_parser'
+
 
 options = FrPrep::OptParser.parse(ARGV)
+
+
 preprocessor = FrPrep::FrPrep.new(options)
 preprocessor.transform
