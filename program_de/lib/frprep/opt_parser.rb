@@ -3,6 +3,7 @@
 
 # AB, 2010-11-25
 
+require 'getoptlong'
 require 'option_parser'
 module FrPrep
 
