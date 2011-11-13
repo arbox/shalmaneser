@@ -6,6 +6,7 @@ class FrPrep
   def initialize(exp)   # FrprepConfigData object
     @exp = exp
 
+    # AB: move to FRprepOptionParser    
     # remove previous contents of frprep internal data directory
     unless exp.get("frprep_directory")
       raise "Please set 'frprep_directory', the frprep internal data directory,\n" +
@@ -29,10 +30,12 @@ class FrPrep
     
     current_format = @exp.get("format")
 
+    # AB: move to FRprepOptionParser
     unless @exp.get("directory_input")
       $stderr.puts "Please specify 'directory_input' in the experiment file."
       exit 1
     end
+    # AB: move to FRprepOptionParser    
     unless @exp.get("directory_preprocessed")
       $stderr.puts "Please specify 'directory_preprocessed' in the experiment file."
       exit 1
