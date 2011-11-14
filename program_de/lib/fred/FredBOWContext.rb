@@ -1,6 +1,6 @@
 require "md5"
 require "tempfile"
-require "ftools"
+require 'fileutils'
 
 require "common/RegXML"
 require "common/SynInterfaces"

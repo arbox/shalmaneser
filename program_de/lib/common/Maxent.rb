@@ -4,7 +4,7 @@
 
 
 require "tempfile"
-require "ftools"
+require 'fileutils'
 
 class Maxent
 

@@ -6,7 +6,7 @@
 
 # Standard library packages
 require "tempfile"
-require "ftools"
+require 'fileutils'
 
 # Salsa packages
 require "common/Parser"

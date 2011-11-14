@@ -2,7 +2,7 @@
 #
 # useful extensions to standard classes
 
-require "ftools"
+require 'fileutils'
 
 class String
   def startswith(other_string)
