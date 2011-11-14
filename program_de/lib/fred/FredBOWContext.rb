@@ -1,4 +1,3 @@
-require "md5"
 require "tempfile"
 require 'fileutils'
 
@@ -8,6 +7,7 @@ require "common/TabFormat"
 require "common/SalsaTigerRegXML"
 require "common/SalsaTigerXMLHelper"
 
+require 'fred/md5'
 require "fred/FredConfigData"
 require "fred/FredConventions"
 require "fred/FredDetermineTargets"
