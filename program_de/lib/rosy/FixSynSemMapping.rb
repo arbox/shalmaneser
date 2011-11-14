@@ -39,7 +39,7 @@
 
 # KE Feb 08: rule 3 currently out of commission!
 
-require "SalsaTigerRegXML"
+require "common/SalsaTigerRegXML"
 
 module FixSynSemMapping
   ##

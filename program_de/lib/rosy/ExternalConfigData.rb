@@ -5,7 +5,7 @@
 # for Fred and Rosy:
 # access to configuration and experiment description file
 
-require "ConfigData"
+require 'common/ConfigData'
 
 ##############################
 # Class ExternalConfigData

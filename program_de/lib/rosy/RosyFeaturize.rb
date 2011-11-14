@@ -5,22 +5,22 @@
 # featurize data and store it in the database
 
 # Salsa packages
-require "SynInterfaces"
-require "StandardPkgExtensions"
+require "common/SynInterfaces"
+require "common/StandardPkgExtensions"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 # Rosy packages
-require "FailedParses"
-require "FeatureInfo"
-require "InputData"
-require "RosyConfigData"
-require "RosyConventions"
-require "RosySplit"
-require "RosyTask"
-require "RosyTrainingTestTable"
-require "View"
+require "rosy/FailedParses"
+require "rosy/FeatureInfo"
+require "rosy/InputData"
+require "rosy/RosyConfigData"
+require "common/RosyConventions"
+require "rosy/RosySplit"
+require "rosy/RosyTask"
+require "rosy/RosyTrainingTestTable"
+require "rosy/View"
 
 class RosyFeaturize < RosyTask
 

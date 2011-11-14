@@ -9,22 +9,22 @@ require "tempfile"
 require "ftools"
 
 # Salsa packages
-require "Parser"
-require "SalsaTigerRegXML"
-require "SynInterfaces"
-require "StandardPkgExtensions"
+require "common/Parser"
+require "common/SalsaTigerRegXML"
+require "common/SynInterfaces"
+require "common/StandardPkgExtensions"
 
 # Rosy packages
-require "FeatureInfo"
-require "ML"
-require "RosyConventions"
-require "RosyIterator"
-require "RosyTask"
-require "RosyTrainingTestTable"
-require "View"
+require "rosy/FeatureInfo"
+require "common/ML"
+require "common/RosyConventions"
+require "rosy/RosyIterator"
+require "rosy/RosyTask"
+require "rosy/RosyTrainingTestTable"
+require "rosy/View"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData" # AB: what the fuck???
 
 ##########################################################################
 # classifier combination class

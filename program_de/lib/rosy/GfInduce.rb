@@ -7,8 +7,8 @@
 # induce a mapping from parse tree paths to grammatical functions from this information
 # and apply it to new sentences
 
-require "AbstractSynInterface"
-require "StandardPkgExtensions"
+require "common/AbstractSynInterface"
+require "common/StandardPkgExtensions"
 
 #####################################################################
 # Management of mapping from GFs to paths

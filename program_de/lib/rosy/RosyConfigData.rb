@@ -1,4 +1,4 @@
-require "ConfigData"
+require 'common/ConfigData'
 
 ##############################
 # Class RosyConfigData

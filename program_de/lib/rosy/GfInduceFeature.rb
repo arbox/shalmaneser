@@ -4,9 +4,9 @@
 # use result of GfInduce.rb as
 # feature for Rosy
 
-require "GfInduce"
-require "AbstractFeatureAndExternal"
-require "StandardPkgExtensions"
+require "rosy/GfInduce"
+require "rosy/AbstractFeatureAndExternal"
+require "common/StandardPkgExtensions"
 
 ###
 # make filename for GfInduce picle file

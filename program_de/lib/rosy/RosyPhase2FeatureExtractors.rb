@@ -17,11 +17,11 @@
 
 
 # Salsa packages
-require "AbstractFeatureAndExternal.rb"
-require "SalsaTigerRegXML"
+require 'rosy/AbstractFeatureAndExternal'
+require 'common/SalsaTigerRegXML'
 
 # Fred and Rosy packages
-require "RosyConventions"
+require "common/RosyConventions"
 
 
 ################################

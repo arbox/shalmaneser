@@ -9,16 +9,16 @@ require "tempfile"
 
 
 # Rosy packages
-require "RosyTask"
-require "RosyTest"
-require "RosyConventions"
-require "RosyIterator"
-require "RosyTrainingTestTable"
-require "RosyPruning"
-require "ML"
+require "rosy/RosyTask"
+require "rosy/RosyTest"
+require "common/RosyConventions"
+require "rosy/RosyIterator"
+require "rosy/RosyTrainingTestTable"
+require "rosy/RosyPruning"
+require "common/ML"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 class RosyTrain < RosyTask
 

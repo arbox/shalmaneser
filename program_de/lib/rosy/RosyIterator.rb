@@ -24,13 +24,13 @@
 # (xwise_argrec, xwise_arglab, xwise_onestep) from the experiment file is read.
 # If that hasn't been set either, the default is frame-wise.
 
-require "StandardPkgExtensions"
+require 'common/StandardPkgExtensions'
 
-require "View"
-require "RosyConventions"
-require "RosyPruning"
-require "RosySplit"
-require "RosyTrainingTestTable"
+require 'rosy/View'
+require "common/RosyConventions"
+require "rosy/RosyPruning"
+require "rosy/RosySplit"
+require "rosy/RosyTrainingTestTable"
 
 class RosyIterator
 

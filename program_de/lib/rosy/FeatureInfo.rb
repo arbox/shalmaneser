@@ -1,4 +1,4 @@
-require "StandardPkgExtensions"
+require 'common/StandardPkgExtensions'
 
 class RosyFeatureInfo
   ###

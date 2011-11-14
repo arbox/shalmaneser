@@ -13,19 +13,19 @@
 # Phase 2 features are trained on training features and applied to
 # test features. They need to be retrained for each split.
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 # Rosy packages
-require "FailedParses"
-require "FeatureInfo"
-require "RosyConventions"
-require "RosyIterator"
-require "RosyTask"
-require "RosyTrainingTestTable"
-require "View"
+require "rosy/FailedParses"
+require "rosy/FeatureInfo"
+require "common/RosyConventions"
+require "rosy/RosyIterator"
+require "rosy/RosyTask"
+require "rosy/RosyTrainingTestTable"
+require "rosy/View"
 
 class RosySplit < RosyTask
 

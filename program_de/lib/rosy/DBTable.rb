@@ -6,8 +6,8 @@
 # Just creating a table, changing the table, and accessing it.
 #
 
-require "SQLQuery"
-require "RosyConventions"
+require "common/SQLQuery"
+require "common/RosyConventions"
 
 class DBTable
   attr_reader :index_name, :table_name

@@ -11,9 +11,9 @@
 # It can be returned directly, or modified by some "dynamic feature object", 
 # and its value (modified or unmodified) will always be last in the array representation of a row.
 
-require "SQLQuery"
-require "StandardPkgExtensions"
-require "RosyConventions"
+require "common/SQLQuery"
+require "common/StandardPkgExtensions"
+require "common/RosyConventions"
 
 class DBView
 

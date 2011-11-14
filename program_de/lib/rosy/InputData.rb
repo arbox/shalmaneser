@@ -7,18 +7,18 @@
 # featurization
 
 # Salsa packages
-require "Parser"
-require "SalsaTigerRegXML"
-require "StandardPkgExtensions"
+require "common/Parser"
+require "common/SalsaTigerRegXML"
+require "common/StandardPkgExtensions"
 
 # Fred/Rosy packages
-require "FailedParses"
-require "RosyConventions"
-require "RosyFeatureExtractors"
-require "RosyPhase2FeatureExtractors"
-require "RosyPruning"
-require "GfInduceFeature"
-require "FixSynSemMapping"
+require "rosy/FailedParses"
+require "common/RosyConventions"
+require "rosy/RosyFeatureExtractors"
+require "rosy/RosyPhase2FeatureExtractors"
+require "rosy/RosyPruning"
+require "rosy/GfInduceFeature"
+require "rosy/FixSynSemMapping"
 
 class InputData
 

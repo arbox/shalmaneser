@@ -20,7 +20,7 @@ def get_db_interface(exp, # experiment file object with 'dbtype' entry
   case exp.get("dbtype")
   when "mysql"
     begin
-      require "DBMySQL"
+      require 'rosy/DBMySQL'
     rescue
       $stderr.puts "Error loading DB interface."
       $stderr.puts "Make sure you have the Ruby MySQL package installed."
@@ -30,7 +30,7 @@ def get_db_interface(exp, # experiment file object with 'dbtype' entry
     
   when "sqlite"
     begin
-      require "DBSQLite"
+      require 'rosy/DBSQLite'
     rescue
       $stderr.puts "Error loading DB interface."
       $stderr.puts "Make sure you have the Ruby SQLite package installed."

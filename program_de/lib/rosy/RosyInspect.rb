@@ -5,14 +5,14 @@
 # inspect global data and experiment-specific data of the system
 
 # Rosy packages
-require "RosyConventions"
-require "RosySplit"
-require "RosyTask"
-require "RosyTrainingTestTable"
-require "View"
+require "common/RosyConventions"
+require "rosy/RosySplit"
+require "rosy/RosyTask"
+require "rosy/RosyTrainingTestTable"
+require "rosy/View"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 class RosyInspect < RosyTask
 

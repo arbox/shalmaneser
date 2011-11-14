@@ -8,12 +8,12 @@
 # Pruning currently available:
 # Both Xue/Palmer original and a modified version for FrameNet
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "RosyFeatureExtractors"
-require "RosyConventions"
-require "RosyConfigData"
-require "RosyIterator"
+require "rosy/RosyFeatureExtractors"
+require "common/RosyConventions"
+require "rosy/RosyConfigData"
+require "rosy/RosyIterator"
 
 ###
 # Pruning, derived from the Xue/Palmer algorithm

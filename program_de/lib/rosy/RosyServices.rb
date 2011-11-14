@@ -5,19 +5,18 @@
 # remove database tables and experiments,
 # dump experiment to files and load from files
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
 # Rosy packages
-require "RosyConventions"
-require "RosyIterator"
-require "RosySplit"
-require "RosyTask"
-require "RosyTrainingTestTable"
-require "View"
-require "StandardPkgExtensions"
+require "common/RosyConventions"
+require "rosy/RosyIterator"
+require "rosy/RosySplit"
+require "rosy/RosyTask"
+require "rosy/RosyTrainingTestTable"
+require "rosy/View"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 ###################################################
 class RosyServices < RosyTask

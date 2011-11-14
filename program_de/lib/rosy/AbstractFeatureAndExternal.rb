@@ -4,7 +4,7 @@
 # - Rosy features
 # - Rosy interface for external knowledge sources.
 
-require "ExternalConfigData"
+require 'rosy/ExternalConfigData'
 
 ####
 # Feature Extractor:

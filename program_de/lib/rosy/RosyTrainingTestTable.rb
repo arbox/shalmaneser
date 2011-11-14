@@ -31,10 +31,10 @@
 # The runlog for each DB table lists the conditions of each run 
 # (which model features, argrec/arglab/onestep, etc.)
 
-require "StandardPkgExtensions"
+require "common/StandardPkgExtensions"
 
-require "DBTable"
-require "FeatureInfo"
+require "rosy/DBTable"
+require "rosy/FeatureInfo"
 
 ######################
 class RosyTrainingTestTable

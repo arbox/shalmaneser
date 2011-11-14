@@ -4,11 +4,10 @@
 # Use a MySQL server to access a database.
 # Use the Ruby mysql interface package for that.
 
-require 'rubygems'
 require 'mysql'
 
 
-require "DBWrapper"
+require 'rosy/DBWrapper'
 
 #################
 class DBMySQLResult < DBResult

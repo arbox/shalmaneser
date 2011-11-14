@@ -9,17 +9,17 @@
 # Builds on the general Salsa Eval package
 
 # Salsa packages
-require "Eval"
-require "StandardPkgExtensions"
+require "common/Eval"
+require "common/StandardPkgExtensions"
 
 # Rosy packages
-require "RosyIterator"
-require "RosySplit"
-require "RosyTask"
-require "RosyPruning"
+require "rosy/RosyIterator"
+require "rosy/RosySplit"
+require "rosy/RosyTask"
+require "rosy/RosyPruning"
 
 # Frprep packages
-require "FrPrepConfigData"
+require "common/FrPrepConfigData"
 
 #######################################################################
 # This class is a subclass of the general evaluation class
