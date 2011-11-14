@@ -63,8 +63,8 @@ module Rosy
       # execute task
       begin
         task_obj.perform
-      rescue
-        fail "Error during task execution: " + $!
+      rescue => e
+        fail "Error during task execution: #{e.class}=>#{e.message}"
       ensure
         database.close
       end
