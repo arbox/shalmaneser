@@ -92,7 +92,7 @@ class SynInterface
   protected
 
   def SynInterface.announce_me()
-    if Module.constants.include? "SynInterfaces"
+    if defined?(SynInterfaces)
       # yup, we have a class to which we can announce ourselves
       SynInterfaces.add_interface(eval(self.name()))
     else
@@ -1133,7 +1133,7 @@ class SynInterpreter
   protected
 
   def SynInterpreter.announce_me()
-    if Module.constants.include? "SynInterfaces"
+    if defined?(SynInterfaces)
       # yup, we have a class to which we can announce ourselves
       SynInterfaces.add_interpreter(eval(self.name()))
     else
