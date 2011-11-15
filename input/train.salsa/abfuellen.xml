@@ -1,0 +1,981 @@
+<?xml version='1.0' encoding='UTF-8'?><corpus corpusname='TIGER-Gesamt-Juli03' target='abfüllen'>
+  <head>
+    <frames xmlns='http://www.clt-st.de/framenet/frame-database'>
+      <frame name='Filling'>
+        <element name='Agent'/>
+        <element name='Theme'/>
+        <element name='Goal'/>
+      </frame>
+      <frame name='Ingestion'>
+        <element name='Ingestor'/>
+        <element name='Ingestibles'/>
+      </frame>
+    </frames>
+    <wordtags xmlns='http://www.clt-st.de/salsa/wordtags'/>
+    <flags>
+      <flag name='Source' for='frame'/>
+      <flag name='Target' for='frame'/>
+    </flags>
+    <annotation>
+      <feature name='word' domain='T'/>
+      <feature name='cat' domain='NT'>
+        <value name='CCP'>coordinated complementiser</value>
+        <value name='VP'>verb phrase (non-finite)</value>
+        <value name='CAP'>coordinated adjektive phrase</value>
+        <value name='QL'>quasi-languag</value>
+        <value name='AP'>adjektive phrase</value>
+        <value name='--'>&lt;not bound&gt;</value>
+        <value name='CAVP'>coordinated adverbial phrase</value>
+        <value name='CNP'>coordinated noun phrase</value>
+        <value name='CO'>coordination</value>
+        <value name='CH'>chunk</value>
+        <value name='CAC'>coordinated adposition</value>
+        <value name='VZ'>zu-marked infinitive</value>
+        <value name='NP'>noun phrase</value>
+        <value name='AVP'>adverbial phrase</value>
+        <value name='PP'>adpositional phrase</value>
+        <value name='CVZ'>coordinated zu-marked infinitive</value>
+        <value name='DL'>discourse level constituent</value>
+        <value name='NM'>multi-token number</value>
+        <value name='S'>sentence</value>
+        <value name='PN'>proper noun</value>
+        <value name='VROOT'>unbound feature value of a virtual root</value>
+        <value name='CS'>coordinated sentence</value>
+        <value name='MTA'>multi-token adjective</value>
+        <value name='AA'>superlative phrase with "am"</value>
+        <value name='ISU'>idiosyncratis unit</value>
+        <value name='CPP'>coordinated adpositional phrase</value>
+        <value name='CVP'>coordinated verb phrase (non-finite)</value>
+      </feature>
+      <feature name='pos' domain='T'>
+        <value name='CARD'>Kardinalzahl</value>
+        <value name='UNKNOWN'>Unbekanntes Tag aus Einlesen aus Korpusdatei</value>
+        <value name='PTKA'>Partikel bei Adjektiv oder Adverb</value>
+        <value name='VVPP'>Partizip Perfekt, voll</value>
+        <value name='PTKNEG'>Negationspartikel</value>
+        <value name='$.'>Satzbeendende Interpunktion</value>
+        <value name='PIAT'>Attribuierendes Indefinitpronomen</value>
+        <value name='XY'>Nichtwort, Sonderzeichen</value>
+        <value name='PWAV'>Adverbiales Interrogativ- oder Relativpronomen</value>
+        <value name='VMFIN'>Finites Verb, modal</value>
+        <value name='$,'>Komma</value>
+        <value name='PIS'>Substituierendes Indefinitpronomen</value>
+        <value name='NNE'>Kombination aus Nomen und Eigenname</value>
+        <value name='NN'>Normales Nomen</value>
+        <value name='APPR'>Präposition; Zirkumposition links</value>
+        <value name='ART'>Bestimmter oder unbestimmter Artikel</value>
+        <value name='VMINF'>Infinitiv, modal</value>
+        <value name='KOKOM'>Vergleichspartikel, ohne Satz</value>
+        <value name='PRF'>Reflexives Personalpronomen</value>
+        <value name='VVIZU'>Infinitiv mit zu, voll</value>
+        <value name='KON'>Nebenordnende Konjunktion</value>
+        <value name='PPOSAT'>Attribuierendes Possessivpronomen</value>
+        <value name='PRELAT'>Attribuierendes Relativpronomen</value>
+        <value name='VAINF'>Infinitiv, aux</value>
+        <value name='ADJA'>Attributives Adjektiv</value>
+        <value name='APPO'>Postposition</value>
+        <value name='TRUNC'>Kompositions-Erstglied</value>
+        <value name='PWAT'>Attribuierendes Interrogativpronomen</value>
+        <value name='--'>--</value>
+        <value name='VVIMP'>Imperativ, voll</value>
+        <value name='VAFIN'>Finites Verb, aux</value>
+        <value name='APZR'>Zirkumposition rechts</value>
+        <value name='PTKVZ'>Abgetrennter Verbzusatz</value>
+        <value name='VVFIN'>Finites Verb, voll</value>
+        <value name='NE'>Eigennamen</value>
+        <value name='PTKANT'>Antwortpartikel</value>
+        <value name='ITJ'>Interjektion</value>
+        <value name='PROAV'>Pronominaladverb</value>
+        <value name='APPRART'>Präposition mit Artikel</value>
+        <value name='PRELS'>Substituierendes Relativpronomen</value>
+        <value name='VAIMP'>Imperativ, aux</value>
+        <value name='VAPP'>Partizip Perfekt, aux</value>
+        <value name='KOUS'>Unterordnende Konjunktion mit Satz</value>
+        <value name='VVINF'>Infinitiv, voll</value>
+        <value name='FM'>Fremdsprachliches Material</value>
+        <value name='ADV'>Adverb</value>
+        <value name='$('>Sonstige Satzzeichen; satzintern</value>
+        <value name='PTKZU'>zu vor Infinitiv</value>
+        <value name='PDAT'>Attribuierendes Demonstrativpronomen</value>
+        <value name='PDS'>Substituierendes Demonstrativpronomen</value>
+        <value name='PWS'>Substituierendes Interrogativpronomen</value>
+        <value name='VMPP'>Partizip Perfekt, modal</value>
+        <value name='PPOSS'>Substituierendes Possessivpronomen</value>
+        <value name='PPER'>Ersetzbares Personalpronomen</value>
+        <value name='KOUI'>Unterordnende Konjunktion mit zu und Infinitiv</value>
+        <value name='ADJD'>Adverbiales oder prädikatives Adjektiv</value>
+      </feature>
+      <feature name='morph' domain='T'>
+        <value name='Comp.Fem.Nom.Sg.Sw'/>
+        <value name='Masc.Gen.Pl.*'/>
+        <value name='Fem.Akk.Sg.*'/>
+        <value name='Fem.Dat.Sg.Sw'/>
+        <value name='Comp.*.Akk.Pl.St'/>
+        <value name='Def.Masc.Nom.Sg'/>
+        <value name='Comp.Fem.Dat.Sg.Sw'/>
+        <value name='Masc.Gen.Pl'/>
+        <value name='Pos.Masc.Gen.Sg.Mix'/>
+        <value name='Def.Fem.Gen.Sg'/>
+        <value name='Pos.*.Dat.Pl.Sw'/>
+        <value name='Sup.Fem.Dat.Sg.Sw'/>
+        <value name='1.Akk.Pl'/>
+        <value name='*.Fem.Gen.Sg.Sw'/>
+        <value name='Gen'/>
+        <value name='Pos.Neut.Akk.Sg.Mix'/>
+        <value name='3.Sg.Fem.Nom'/>
+        <value name='3.Dat.Pl'/>
+        <value name='*.Masc.Akk.Sg.Sw'/>
+        <value name='Indef.Fem.Dat.Sg'/>
+        <value name='2.Sg.Pres.Ind'/>
+        <value name='*.Masc.Nom.Sg.Mix'/>
+        <value name='1.Pl.Past.Konj'/>
+        <value name='Comp.Fem.Akk.Sg.St'/>
+        <value name='Masc.Dat.Pl.St'/>
+        <value name='Pos.*.Nom.Pl.St'/>
+        <value name='Sup.*.Dat.Pl.Sw'/>
+        <value name='Neut.Akk.Pl.*'/>
+        <value name='Comp.Masc.Dat.Sg.Sw'/>
+        <value name='*.*.Nom.Pl.St'/>
+        <value name='Pos.Masc.Dat.Sg.St'/>
+        <value name='3.Pl.*.Nom'/>
+        <value name='Pos.Masc.Gen.Sg.Sw'/>
+        <value name='*.Akk.Sg.St'/>
+        <value name='Masc.Dat.Pl.*'/>
+        <value name='*.*.Gen.Pl.St'/>
+        <value name='3.Pl.*.Akk'/>
+        <value name='--'>not bound</value>
+        <value name='Nom'>Nominativ</value>
+        <value name='Indef.Fem.Nom.Sg'/>
+        <value name='Sup.Neut.Akk.Sg.Sw'/>
+        <value name='*.Gen.Pl.St'/>
+        <value name='Masc.Nom.Sg.*'/>
+        <value name='Comp.Fem.Dat.Sg.Mix'/>
+        <value name='Pos.Fem.Gen.Sg.Mix'/>
+        <value name='Pos.*.Nom.Pl.Sw'/>
+        <value name='Comp.Fem.Gen.Sg.Sw'/>
+        <value name='*.Nom.Pl.Mix'/>
+        <value name='Comp.*.Dat.Pl.St'/>
+        <value name='*.Nom.Pl.Sw'/>
+        <value name='3.Sg.Fem.Dat'/>
+        <value name='*.Masc.Dat.Sg.Mix'/>
+        <value name='Sup.Fem.Nom.Sg.Sw'/>
+        <value name='Indef.Fem.Akk.Sg'/>
+        <value name='Comp.Neut.Dat.Sg.Mix'/>
+        <value name='Pos.Fem.Nom.Sg.Mix'/>
+        <value name='*.Nom.Sg'/>
+        <value name='Neut.Akk.Sg'/>
+        <value name='Pos.Masc.Akk.Sg.Mix'/>
+        <value name='Sup.Fem.Akk.Sg.St'/>
+        <value name='Pos.Neut.Nom.Sg.St'/>
+        <value name='Comp.Fem.Dat.Sg.St'/>
+        <value name='Def.Neut.Nom.Sg'/>
+        <value name='Masc.Dat.Sg.*'/>
+        <value name='*.Gen.Pl.Sw'/>
+        <value name='Pos.Neut.Dat.Sg.Sw'/>
+        <value name='3.Sg.Past.Ind'/>
+        <value name='Sup'/>
+        <value name='1.Dat.Sg'/>
+        <value name='Comp.*.Dat.Pl.Sw'/>
+        <value name='*.Akk.Pl.*'/>
+        <value name='Neut.Nom.Sg.*'/>
+        <value name='Masc.Nom.Sg'/>
+        <value name='Comp.Fem.Gen.Sg.Mix'/>
+        <value name='Masc.Akk.Sg.Mix'/>
+        <value name='Pos.Neut.Dat.Sg.Mix'/>
+        <value name='Def.Masc.Dat.Sg'/>
+        <value name='*.Neut.Gen.Sg.Sw'/>
+        <value name='Masc.Nom.Pl.*'/>
+        <value name='Sup.Fem.Dat.Sg.St'/>
+        <value name='Neut.Akk.Sg.Sw'/>
+        <value name='UNKNOWN'>unknown tag</value>
+        <value name='Comp.Masc.Nom.Sg.St'/>
+        <value name='1.Sg.*.Dat'/>
+        <value name='Def.*.Akk.Pl'/>
+        <value name='Sup.*.Dat.Pl.St'/>
+        <value name='2.Sg.*.Dat'/>
+        <value name='*.Dat.Pl.*'/>
+        <value name='Comp.*.Nom.Pl.St'/>
+        <value name='Pos.Neut.Gen.Sg.Sw'/>
+        <value name='Fem.Gen.Sg.*'/>
+        <value name='Masc.Akk.Sg'/>
+        <value name='*.*.Akk.Pl.St'/>
+        <value name='Comp'/>
+        <value name='Pos.Masc.Akk.Sg.St'/>
+        <value name='*.Gen.Sg'/>
+        <value name='Neut.Dat.Sg.St'/>
+        <value name='*.Neut.Dat.Sg.Mix'/>
+        <value name='Indef.Fem.Gen.Sg'/>
+        <value name='Dat.Fem'/>
+        <value name='Fem.Nom.Sg.St'/>
+        <value name='*.Fem.Dat.Sg.St'/>
+        <value name='*.Masc.Akk.Sg.Mix'/>
+        <value name='Sup.Neut.Nom.Sg.St'/>
+        <value name='3.Dat.Sg'/>
+        <value name='Def.Masc.Akk.Sg'/>
+        <value name='Pos.Masc.Akk.Sg.Sw'/>
+        <value name='2.Sg.Pres.Konj'/>
+        <value name='Sup.Neut.Nom.Sg.Sw'/>
+        <value name='Fem.Akk.Sg.St'/>
+        <value name='Masc.Gen.Sg.*'/>
+        <value name='Sup.*.Nom.Pl.Sw'/>
+        <value name='*.Masc.Nom.Sg.St'/>
+        <value name='Indef.Neut.Nom.Sg'/>
+        <value name='Dat/Akk/Nom'>Dativ oder Akkusativ oder Nominativ</value>
+        <value name='Comp.Fem.Nom.Sg.Mix'/>
+        <value name='Def.Fem.Dat.Sg'/>
+        <value name='Sup.*.Gen.Pl.Sw'/>
+        <value name='Neut.Akk.Sg.*'/>
+        <value name='Neut.Gen.Pl.*'/>
+        <value name='Masc.Gen.Sg.Sw'/>
+        <value name='Pos.Masc.Dat.Sg.Sw'/>
+        <value name='Pos.Fem.Nom.Sg.St'/>
+        <value name='Neut.Dat.Sg.Sw'/>
+        <value name='*.Dat.Sg'/>
+        <value name='2.Sg.*.Akk'/>
+        <value name='Pos.*.Gen.Pl.Sw'/>
+        <value name='Pos.*.Dat.Pl.Mix'/>
+        <value name='Pos.*.Nom.Pl.Mix'/>
+        <value name='3.Pl.Pres.Ind'/>
+        <value name='Akk/Nom'>Akkusativ oder Nominativ</value>
+        <value name='Fem.Dat.Pl.*'/>
+        <value name='Pos.*.Akk.Pl.Mix'/>
+        <value name='*.Dat.Pl'/>
+        <value name='3.Sg.Fem.Akk'/>
+        <value name='Fem.Akk.Pl.*'/>
+        <value name='Pos.Neut.Dat.Sg.St'/>
+        <value name='Pos.Masc.Dat.Sg.Mix'/>
+        <value name='*'/>
+        <value name='2.Pl.Pres.Ind'/>
+        <value name='*.*.*.*.*'/>
+        <value name='Sup.Fem.Akk.Sg.Sw'/>
+        <value name='*.Masc.Nom.Sg.Sw'/>
+        <value name='Pos.*.*.*.*'/>
+        <value name='Sup.Masc.Dat.Sg.Mix'/>
+        <value name='*.Fem.Dat.Sg.Sw'/>
+        <value name='Neut.Nom.Sg.St'/>
+        <value name='3.Sg.Pres.Ind'/>
+        <value name='*.*.Dat.Pl.St'/>
+        <value name='Neut.Nom.Sg.Sw'/>
+        <value name='Comp.Neut.Dat.Sg.St'/>
+        <value name='3.Sg.Masc.Akk'/>
+        <value name='Comp.Masc.Akk.Sg.Mix'/>
+        <value name='3.Sg.Past.Konj'/>
+        <value name='Pos.*.Gen.Pl.St'/>
+        <value name='Neut.Dat.Sg'/>
+        <value name='*.Gen.Pl.*'/>
+        <value name='*.Nom.Pl.*'/>
+        <value name='Dat/Gen'>Dativ oder Genitiv</value>
+        <value name='Pos.Neut.Akk.Sg.Sw'/>
+        <value name='3.Akk.Pl'/>
+        <value name='3.Sg.Masc.Dat'/>
+        <value name='Comp.Masc.Nom.Sg.Sw'/>
+        <value name='Fem.Nom.Sg'/>
+        <value name='*.Dat.Pl.Sw'/>
+        <value name='Pos.*.Akk.Pl.St'/>
+        <value name='3.Pl.Past.Ind'/>
+        <value name='*.Gen.Pl'/>
+        <value name='Def.Fem.Nom.Sg'/>
+        <value name='Pos.*.Gen.Pl.Mix'/>
+        <value name='Comp.Neut.Nom.Sg.Sw'/>
+        <value name='Masc.Akk.Pl'/>
+        <value name='Pos.Fem.Gen.Sg.Sw'/>
+        <value name='Neut.Dat.Pl.*'/>
+        <value name='3.Sg.Pres.Konj'/>
+        <value name='Neut.Nom.Pl.*'/>
+        <value name='*.Nom.Pl.St'/>
+        <value name='1.Sg.Past.Konj'/>
+        <value name='1.Pl.Past.Ind'/>
+        <value name='Dat.Neut'/>
+        <value name='*.Masc.Gen.Sg.Sw'/>
+        <value name='3.Sg.Masc.Nom'/>
+        <value name='Pos.Fem.Akk.Sg.Mix'/>
+        <value name='Sup.Masc.Akk.Sg.St'/>
+        <value name='Sup.Fem.Dat.Sg.Mix'/>
+        <value name='*.Nom.Pl'/>
+        <value name='Pos.Fem.Dat.Sg.St'/>
+        <value name='Pos.Fem.Akk.Sg.Sw'/>
+        <value name='Indef.Masc.Dat.Sg'/>
+        <value name='Comp.Masc.Dat.Sg.Mix'/>
+        <value name='Neut.Dat.Sg.*'/>
+        <value name='Sup.Masc.Akk.Sg.Sw'/>
+        <value name='Comp.Masc.Akk.Sg.Sw'/>
+        <value name='Masc.Nom.Sg.Mix'/>
+        <value name='Comp.Neut.Akk.Sg.St'/>
+        <value name='Sup.*.Akk.Pl.Sw'/>
+        <value name='Fem.Nom.Sg.*'/>
+        <value name='3.Pl.*.Dat'/>
+        <value name='Pos.Fem.Nom.Sg.Sw'/>
+        <value name='Comp.Neut.Akk.Sg.Sw'/>
+        <value name='Neut.Nom.Sg'/>
+        <value name='3.Akk.Sg'/>
+        <value name='*.Akk.Pl.Sw'/>
+        <value name='Sup.Fem.Gen.Sg.Sw'/>
+        <value name='Pos.Neut.Akk.Sg.St'/>
+        <value name='Fem.Nom.Sg.Sw'/>
+        <value name='Masc.Nom.Sg.Sw'/>
+        <value name='Pos.Neut.Gen.Sg.Mix'/>
+        <value name='*.Fem.Akk.Sg.St'/>
+        <value name='Fem.Dat.Sg'/>
+        <value name='1.Dat.Pl'/>
+        <value name='Comp.Neut.Akk.Sg.Mix'/>
+        <value name='*.Fem.Akk.Sg.Sw'/>
+        <value name='1.Pl.*.Akk'/>
+        <value name='Comp.*.Nom.Pl.Sw'/>
+        <value name='Sup.Masc.Nom.Sg.St'/>
+        <value name='Pos.Fem.Gen.Sg.St'/>
+        <value name='Dat'/>
+        <value name='*.Neut.Nom.Sg.Mix'/>
+        <value name='Comp.Masc.Akk.Sg.St'/>
+        <value name='1.Sg.*.Nom'/>
+        <value name='Sup.*.Akk.Pl.St'/>
+        <value name='Sup.Neut.Akk.Sg.Mix'/>
+        <value name='1.Sg.*.Akk'/>
+        <value name='*.Dat.Pl.St'/>
+        <value name='3.Sg.Neut.Nom'/>
+        <value name='Pos.*.Akk.Pl.Sw'/>
+        <value name='Akk'/>
+        <value name='Comp.*.Gen.Pl.St'/>
+        <value name='Def.Neut.Akk.Sg'/>
+        <value name='Neut.Akk.Sg.St'/>
+        <value name='2.Akk.Sg'/>
+        <value name='*.*.Dat.Pl.Sw'/>
+        <value name='*.Masc.Dat.Sg.Sw'/>
+        <value name='Indef.Neut.Akk.Sg'/>
+        <value name='1.Sg.Past.Ind'/>
+        <value name='Sup.Masc.Gen.Sg.Sw'/>
+        <value name='Pos.Fem.Dat.Sg.Mix'/>
+        <value name='Pos.*.Dat.Pl.St'/>
+        <value name='Indef.Masc.Akk.Sg'/>
+        <value name='Def.Neut.Gen.Sg'/>
+        <value name='Comp.Masc.Dat.Sg.St'/>
+        <value name='1.Pl.*.Dat'/>
+        <value name='*.*.Gen.Pl.Sw'/>
+        <value name='*.Neut.Nom.Sg.Sw'/>
+        <value name='Fem.Nom.Pl.*'/>
+        <value name='Sup.Neut.Dat.Sg.Sw'/>
+        <value name='Sup.Masc.Nom.Sg.Sw'/>
+        <value name='Neut.Gen.Sg.Sw'/>
+        <value name='Pos.Masc.Nom.Sg.Mix'/>
+        <value name='1.Sg.Pres.Ind'/>
+        <value name='Def.Masc.Gen.Sg'/>
+        <value name='1.Pl.Pres.Ind'/>
+        <value name='*.Fem.Nom.Sg.Sw'/>
+        <value name='1.Sg.Pres.Konj'/>
+        <value name='3.Sg.Neut.Akk'/>
+        <value name='Def.*.Dat.Pl'/>
+        <value name='Sg'/>
+        <value name='*.Masc.Gen.Sg.Mix'/>
+        <value name='Sup.Neut.Gen.Sg.St'/>
+        <value name='Comp.Neut.Nom.Sg.Mix'/>
+        <value name='Pos'/>
+        <value name='Masc.Gen.Sg'/>
+        <value name='*.Fem.Akk.Sg.Mix'/>
+        <value name='Pos.Neut.Nom.Sg.Sw'/>
+        <value name='Pos.Fem.Akk.Sg.St'/>
+        <value name='Comp.Fem.Akk.Sg.Mix'/>
+        <value name='Fem.Dat.Sg.Mix'/>
+        <value name='Masc.Nom.Sg.St'/>
+        <value name='Masc.Gen.Sg.Mix'/>
+        <value name='*.Fem.Nom.Sg.St'/>
+        <value name='2.Sg.*.Nom'/>
+        <value name='Masc.Dat.Pl'/>
+        <value name='Pos.Neut.Nom.Sg.Mix'/>
+        <value name='Comp.*.Akk.Pl.Mix'/>
+        <value name='Pos.Masc.Nom.Sg.Sw'/>
+        <value name='*.Neut.Akk.Sg.Sw'/>
+        <value name='Fem.Dat.Pl'/>
+        <value name='*.Neut.Nom.Sg.St'/>
+        <value name='*.*.*'/>
+        <value name='Def.Fem.Akk.Sg'/>
+        <value name='*.Fem.Dat.Sg.Mix'/>
+        <value name='Pos.Masc.Gen.Sg.St'/>
+        <value name='*.Akk.Sg'/>
+        <value name='Sup.Fem.Nom.Sg.Mix'/>
+        <value name='Pl'/>
+        <value name='Dat.Masc'/>
+        <value name='Indef.Masc.Nom.Sg'/>
+        <value name='2.Dat.Sg'/>
+        <value name='Fem.Gen.Pl.*'/>
+        <value name='Sup.Masc.Dat.Sg.Sw'/>
+        <value name='Sup.*.Nom.Pl.Mix'/>
+        <value name='*.Akk.Pl'/>
+        <value name='Masc.Akk.Pl.St'/>
+        <value name='Fem.Akk.Sg'/>
+        <value name='3.Pl.Past.Konj'/>
+        <value name='*.Neut.Dat.Sg.Sw'/>
+        <value name='Neut.Gen.Sg'/>
+        <value name='*.*.Nom.Pl.Sw'/>
+        <value name='Fem.Dat.Sg.*'/>
+        <value name='Fem.Gen.Sg'/>
+        <value name='Indef.Masc.Gen.Sg'/>
+        <value name='Def.*.Gen.Pl'/>
+        <value name='*.Akk.Pl.St'/>
+        <value name='Def.*.Nom.Pl'/>
+        <value name='Dat/Akk'>Dativ order Akkusativ</value>
+        <value name='Masc.Dat.Sg.Sw'/>
+        <value name='2.Pl.*.Nom'/>
+        <value name='Pos.Masc.Nom.Sg.St'/>
+        <value name='Masc.Dat.Sg'/>
+        <value name='Masc.Akk.Sg.*'/>
+        <value name='Masc.Akk.Pl.*'/>
+        <value name='Def.Neut.Dat.Sg'/>
+        <value name='3.Pl.Pres.Konj'/>
+        <value name='Masc.Akk.Sg.Sw'/>
+        <value name='Pos.Neut.Gen.Sg.St'/>
+        <value name='Indef.Neut.Dat.Sg'/>
+        <value name='Comp.Masc.Nom.Sg.Mix'/>
+        <value name='Sup.Fem.Nom.Sg.St'/>
+        <value name='2.Sg.Past.Ind'/>
+        <value name='Akk.Neut'/>
+        <value name='1.Akk.Sg'/>
+        <value name='Sup.Masc.Nom.Sg.Mix'/>
+        <value name='Neut.Gen.Sg.Mix'/>
+        <value name='Indef.Neut.Gen.Sg'/>
+        <value name='Pos.Fem.Dat.Sg.Sw'/>
+        <value name='*.*.Akk.Pl.Sw'/>
+        <value name='Sup.Fem.Gen.Sg.St'/>
+        <value name='Neut.Gen.Sg.*'/>
+        <value name='Comp.Fem.Akk.Sg.Sw'/>
+        <value name='1.Pl.*.Nom'/>
+        <value name='Fem.Gen.Sg.Mix'/>
+      </feature>
+      <edgelabel>
+        <value name='OA2'>second accusative object</value>
+        <value name='ADC'>adjective component</value>
+        <value name='NK'>noun kernel modifier</value>
+        <value name='SP'>subject or predicate</value>
+        <value name='GL'>prenominal genitive</value>
+        <value name='SB'>subject</value>
+        <value name='SBP'>passivised subject (PP)</value>
+        <value name='PAR'>parenthesis</value>
+        <value name='OC'>clausal object</value>
+        <value name='ML'>locative</value>
+        <value name='GR'>postnominal genitive</value>
+        <value name='RE'>repeated element</value>
+        <value name='MC'>comitative</value>
+        <value name='AG'>genitive attribute</value>
+        <value name='AVC'>adverbial phrase component</value>
+        <value name='CVC'>collocational verb construction (Funktionsverbgefüge)</value>
+        <value name='SVP'>separable verb prefix</value>
+        <value name='NG'>negation</value>
+        <value name='PNC'>proper noun component</value>
+        <value name='HD'>head</value>
+        <value name='CM'>comparative concjunction</value>
+        <value name='MNR'>postnominal modifier</value>
+        <value name='OG'>genitive object</value>
+        <value name='AMS'>measure argument of adj</value>
+        <value name='VO'>vocative</value>
+        <value name='DA'>dative</value>
+        <value name='--'>--</value>
+        <value name='NMC'>numerical component</value>
+        <value name='JU'>junctor</value>
+        <value name='CD'>coordinating conjunction</value>
+        <value name='RS'>reported speech</value>
+        <value name='CJ'>conjunct</value>
+        <value name='MW'>way (directional modifier)</value>
+        <value name='PM'>morphological particle</value>
+        <value name='OA'>accusative object</value>
+        <value name='OP'>prepositional object</value>
+        <value name='MI'>instrumental</value>
+        <value name='PG'>phrasal genitive</value>
+        <value name='CP'>complementizer</value>
+        <value name='MR'>rhetorical modifier</value>
+        <value name='PH'>placeholder</value>
+        <value name='EP'>expletive es</value>
+        <value name='DH'>discourse-level head</value>
+        <value name='APP'>apposition</value>
+        <value name='CC'>comparative complement</value>
+        <value name='UC'>unit component</value>
+        <value name='RC'>relative clause</value>
+        <value name='DM'>discourse marker</value>
+        <value name='MO'>modifier</value>
+        <value name='PD'>predicate</value>
+        <value name='AC'>adpositional case marker</value>
+      </edgelabel>
+      <secedgelabel>
+        <value name='OA2'>second accusative object</value>
+        <value name='ADC'>adjective component</value>
+        <value name='NK'>noun kernel modifier</value>
+        <value name='SP'>subject or predicate</value>
+        <value name='GL'>prenominal genitive</value>
+        <value name='SB'>subject</value>
+        <value name='SBP'>passivised subject (PP)</value>
+        <value name='OC'>clausal object</value>
+        <value name='ML'>locative</value>
+        <value name='GR'>postnominal genitive</value>
+        <value name='RE'>repeated element</value>
+        <value name='MC'>comitative</value>
+        <value name='AG'>genitive attribute</value>
+        <value name='AVC'>adverbial phrase component</value>
+        <value name='CVC'>collocational verb construction (Funktionsverbgefüge)</value>
+        <value name='SVP'>separable verb prefix</value>
+        <value name='NG'>negation</value>
+        <value name='PNC'>proper noun component</value>
+        <value name='HD'>head</value>
+        <value name='CM'>comparative concjunction</value>
+        <value name='MNR'>postnominal modifier</value>
+        <value name='OG'>genitive object</value>
+        <value name='AMS'>measure argument of adj</value>
+        <value name='VO'>vocative</value>
+        <value name='DA'>dative</value>
+        <value name='--'>--</value>
+        <value name='NMC'>numerical component</value>
+        <value name='JU'>junctor</value>
+        <value name='CD'>coordinating conjunction</value>
+        <value name='RS'>reported speech</value>
+        <value name='CJ'>conjunct</value>
+        <value name='MW'>way (directional modifier)</value>
+        <value name='PM'>morphological particle</value>
+        <value name='OA'>accusative object</value>
+        <value name='OP'>prepositional object</value>
+        <value name='MI'>instrumental</value>
+        <value name='PG'>phrasal genitive</value>
+        <value name='CP'>complementizer</value>
+        <value name='MR'>rhetorical modifier</value>
+        <value name='PH'>placeholder</value>
+        <value name='EP'>expletive es</value>
+        <value name='DH'>discourse-level head</value>
+        <value name='APP'>apposition</value>
+        <value name='CC'>comparative complement</value>
+        <value name='UC'>(idiosyncratic) unit component</value>
+        <value name='RC'>relative clause</value>
+        <value name='DM'>discourse marker</value>
+        <value name='MO'>modifier</value>
+        <value name='PD'>predicate</value>
+        <value name='AC'>adpositional case marker</value>
+      </secedgelabel>
+    </annotation>
+  </head>
+  <body>
+    <s id='s16528'>
+      <graph root='s16528_508'>
+        <terminals>
+          <t word='Die' id='s16528_1' lemma='der' morph='Nom.Pl.Masc' pos='ART'/>
+          <t word='Nebenerwerbswinzer' id='s16528_2' lemma='Nebenerwerbswinzer' morph='Nom.Pl.Masc' pos='NN'/>
+          <t word='bringen' id='s16528_3' lemma='bringen' morph='3.Pl.Pres.Ind' pos='VVFIN'/>
+          <t word='ihre' id='s16528_4' lemma='ihr' morph='Acc.Pl.Fem' pos='PPOSAT'/>
+          <t word='Meißner' id='s16528_5' lemma='Meißner' morph='Pos.Acc.Pl.Fem' pos='ADJA'/>
+          <t word='oder' id='s16528_6' lemma='oder' morph='--' pos='KON'/>
+          <t word='Pillnitzer' id='s16528_7' lemma='Pillnitzer' morph='Pos.Acc.Pl.Fem' pos='ADJA'/>
+          <t word='Gartentrauben' id='s16528_8' lemma='Gartentraube' morph='Acc.Pl.Fem' pos='NN'/>
+          <t word='zur' id='s16528_9' lemma='zu' morph='Dat.Sg.Fem' pos='APPRART'/>
+          <t word='Genossenschaft' id='s16528_10' lemma='Genossenschaft' morph='Dat.Sg.Fem' pos='NN'/>
+          <t word=',' id='s16528_11' lemma='--' morph='--' pos='$,'/>
+          <t word='wo' id='s16528_12' lemma='wo' morph='--' pos='PWAV'>
+            <secedge idref='s16528_503' label='MO'/>
+          </t>
+          <t word='sie' id='s16528_13' lemma='sie' morph='3.Nom.Pl.Fem' pos='PPER'/>
+          <t word='gekeltert' id='s16528_14' lemma='keltern' morph='Psp' pos='VVPP'/>
+          <t word='und' id='s16528_15' lemma='und' morph='--' pos='KON'/>
+          <t word='abgefüllt' id='s16528_16' lemma='abfüllen' morph='Psp' pos='VVPP'/>
+          <t word='werden' id='s16528_17' lemma='werden' morph='3.Pl.Pres.Ind' pos='VAFIN'/>
+          <t word='.' id='s16528_18' lemma='--' morph='--' pos='$.'/>
+        </terminals>
+        <nonterminals>
+          <nt cat='PP' id='s16528_507'>
+            <edge idref='s16528_9' label='AC'/>
+            <edge idref='s16528_10' label='NK'/>
+            <edge idref='s16528_506' label='RC'/>
+          </nt>
+          <nt cat='S' id='s16528_508'>
+            <edge idref='s16528_500' label='SB'/>
+            <edge idref='s16528_3' label='HD'/>
+            <edge idref='s16528_504' label='OA'/>
+            <edge idref='s16528_507' label='MO'/>
+          </nt>
+          <nt cat='NP' id='s16528_500'>
+            <edge idref='s16528_1' label='NK'/>
+            <edge idref='s16528_2' label='NK'/>
+          </nt>
+          <nt cat='CAP' id='s16528_501'>
+            <edge idref='s16528_5' label='CJ'/>
+            <edge idref='s16528_6' label='CD'/>
+            <edge idref='s16528_7' label='CJ'/>
+          </nt>
+          <nt cat='VP' id='s16528_502'>
+            <edge idref='s16528_12' label='MO'/>
+            <edge idref='s16528_14' label='HD'/>
+          </nt>
+          <nt cat='VP' id='s16528_503'>
+            <edge idref='s16528_16' label='HD'/>
+          </nt>
+          <nt cat='NP' id='s16528_504'>
+            <edge idref='s16528_4' label='NK'/>
+            <edge idref='s16528_501' label='NK'/>
+            <edge idref='s16528_8' label='NK'/>
+          </nt>
+          <nt cat='CVP' id='s16528_505'>
+            <edge idref='s16528_502' label='CJ'/>
+            <edge idref='s16528_15' label='CD'/>
+            <edge idref='s16528_503' label='CJ'/>
+          </nt>
+          <nt cat='S' id='s16528_506'>
+            <edge idref='s16528_505' label='OC'/>
+            <edge idref='s16528_13' label='SB'/>
+            <edge idref='s16528_17' label='HD'/>
+          </nt>
+        </nonterminals>
+      </graph>
+      <sem>
+        <globals/>
+        <frames>
+          <frame name='Filling' id='abfuellen_s16528_f1'>
+            <target lemma='abfüllen'>
+              <fenode idref='s16528_16'/>
+            </target>
+            <fe name='Theme' id='abfuellen_s16528_f1_e1'>
+              <fenode idref='s16528_13'/>
+            </fe>
+          </frame>
+        </frames>
+        <usp>
+          <uspframes/>
+          <uspfes/>
+        </usp>
+        <wordtags/>
+      </sem>
+      <matches>
+        
+      </matches>
+    </s>
+    <s id='s22711'>
+      <graph root='s22711_510'>
+        <terminals>
+          <t word='Während' id='s22711_1' lemma='während' morph='--' pos='KOUS'/>
+          <t word='in' id='s22711_2' lemma='in' morph='--' pos='APPR'/>
+          <t word='den' id='s22711_3' lemma='der' morph='Dat.Pl.Masc' pos='ART'/>
+          <t word='beschichteten' id='s22711_4' lemma='beschichten' morph='Pos.Dat.Pl.Masc' pos='ADJA'/>
+          <t word='Kartons' id='s22711_5' lemma='Karton' morph='Dat.Pl.Masc' pos='NN'/>
+          <t word='nur' id='s22711_6' lemma='nur' morph='--' pos='ADV'/>
+          <t word='kohlensäurefreie' id='s22711_7' lemma='kohlensäurefrei' morph='Pos.Nom.Pl.Neut' pos='ADJA'/>
+          <t word='Getränke' id='s22711_8' lemma='Getränk' morph='Nom.Pl.Neut' pos='NN'/>
+          <t word='verpackt' id='s22711_9' lemma='verpacken' morph='Psp' pos='VVPP'/>
+          <t word='werden' id='s22711_10' lemma='werden' morph='Inf' pos='VAINF'/>
+          <t word='können' id='s22711_11' lemma='können' morph='3.Pl.Pres.Ind' pos='VMFIN'/>
+          <t word=',' id='s22711_12' lemma='--' morph='--' pos='$,'/>
+          <t word='soll' id='s22711_13' lemma='sollen' morph='3.Sg.Pres.Ind' pos='VMFIN'/>
+          <t word='mit' id='s22711_14' lemma='mit' morph='--' pos='APPR'/>
+          <t word='Hilfe' id='s22711_15' lemma='Hilfe' morph='Dat.Sg.Fem' pos='NN'/>
+          <t word='der' id='s22711_16' lemma='der' morph='Gen.Pl.Masc' pos='ART'/>
+          <t word='Plastikbehälter' id='s22711_17' lemma='Plastikbehälter' morph='Gen.Pl.Masc' pos='NN'/>
+          <t word='nun' id='s22711_18' lemma='nun' morph='--' pos='ADV'/>
+          <t word='auch' id='s22711_19' lemma='auch' morph='--' pos='ADV'/>
+          <t word='Mineralwasser' id='s22711_20' lemma='Mineralwasser' morph='Nom.Sg.Neut' pos='NN'/>
+          <t word='abgefüllt' id='s22711_21' lemma='abfüllen' morph='Psp' pos='VVPP'/>
+          <t word='werden' id='s22711_22' lemma='werden' morph='Inf' pos='VAINF'/>
+          <t word='.' id='s22711_23' lemma='--' morph='--' pos='$.'/>
+        </terminals>
+        <nonterminals>
+          <nt cat='VP' id='s22711_506'>
+            <edge idref='s22711_504' label='OC'/>
+            <edge idref='s22711_10' label='HD'/>
+          </nt>
+          <nt cat='VP' id='s22711_507'>
+            <edge idref='s22711_505' label='MO'/>
+            <edge idref='s22711_18' label='MO'/>
+            <edge idref='s22711_21' label='HD'/>
+          </nt>
+          <nt cat='S' id='s22711_508'>
+            <edge idref='s22711_1' label='CP'/>
+            <edge idref='s22711_506' label='OC'/>
+            <edge idref='s22711_501' label='SB'/>
+            <edge idref='s22711_11' label='HD'/>
+          </nt>
+          <nt cat='S' id='s22711_510'>
+            <edge idref='s22711_508' label='MO'/>
+            <edge idref='s22711_13' label='HD'/>
+            <edge idref='s22711_509' label='OC'/>
+            <edge idref='s22711_503' label='SB'/>
+          </nt>
+          <nt cat='VP' id='s22711_509'>
+            <edge idref='s22711_507' label='OC'/>
+            <edge idref='s22711_22' label='HD'/>
+          </nt>
+          <nt cat='PP' id='s22711_500'>
+            <edge idref='s22711_2' label='AC'/>
+            <edge idref='s22711_3' label='NK'/>
+            <edge idref='s22711_4' label='NK'/>
+            <edge idref='s22711_5' label='NK'/>
+          </nt>
+          <nt cat='NP' id='s22711_501'>
+            <edge idref='s22711_6' label='MO'/>
+            <edge idref='s22711_7' label='NK'/>
+            <edge idref='s22711_8' label='NK'/>
+          </nt>
+          <nt cat='NP' id='s22711_502'>
+            <edge idref='s22711_16' label='NK'/>
+            <edge idref='s22711_17' label='NK'/>
+          </nt>
+          <nt cat='NP' id='s22711_503'>
+            <edge idref='s22711_19' label='MO'/>
+            <edge idref='s22711_20' label='NK'/>
+          </nt>
+          <nt cat='VP' id='s22711_504'>
+            <edge idref='s22711_500' label='MO'/>
+            <edge idref='s22711_9' label='HD'/>
+          </nt>
+          <nt cat='PP' id='s22711_505'>
+            <edge idref='s22711_14' label='AC'/>
+            <edge idref='s22711_15' label='NK'/>
+            <edge idref='s22711_502' label='AG'/>
+          </nt>
+        </nonterminals>
+      </graph>
+      <sem>
+        <globals/>
+        <frames>
+          <frame name='Filling' id='abfuellen_s22711_f1'>
+            <target lemma='abfüllen'>
+              <fenode idref='s22711_21'/>
+            </target>
+            <fe name='Theme' id='abfuellen_s22711_f1_e1'>
+              <fenode idref='s22711_503'/>
+            </fe>
+          </frame>
+        </frames>
+        <usp>
+          <uspframes/>
+          <uspfes/>
+        </usp>
+        <wordtags/>
+      </sem>
+      <matches>
+        
+      </matches>
+    </s>
+    <s id='s23673'>
+      <graph root='s23673_507'>
+        <terminals>
+          <t word='Insgesamt' id='s23673_1' lemma='insgesamt' morph='--' pos='ADV'/>
+          <t word='60' id='s23673_2' lemma='60' morph='--' pos='CARD'/>
+          <t word='Millionen' id='s23673_3' lemma='Million' morph='Nom.Pl.Fem' pos='NN'/>
+          <t word='Flaschen' id='s23673_4' lemma='Flasche' morph='Nom.Pl.Fem' pos='NN'/>
+          <t word='werden' id='s23673_5' lemma='werden' morph='3.Pl.Pres.Ind' pos='VAFIN'/>
+          <t word='1995' id='s23673_6' lemma='1995' morph='--' pos='CARD'/>
+          <t word='abgefüllt' id='s23673_7' lemma='abfüllen' morph='Psp' pos='VVPP'/>
+          <t word=',' id='s23673_8' lemma='--' morph='--' pos='$,'/>
+          <t word='die' id='s23673_9' lemma='der' morph='Nom.Sg.Fem' pos='ART'/>
+          <t word='Hälfte' id='s23673_10' lemma='Hälfte' morph='Nom.Sg.Fem' pos='NN'/>
+          <t word='davon' id='s23673_11' lemma='davon' morph='--' pos='PROAV'/>
+          <t word='für' id='s23673_12' lemma='für' morph='--' pos='APPR'/>
+          <t word='den' id='s23673_13' lemma='der' morph='Acc.Sg.Masc' pos='ART'/>
+          <t word='Export' id='s23673_14' lemma='Export' morph='Acc.Sg.Masc' pos='NN'/>
+          <t word='.' id='s23673_15' lemma='--' morph='--' pos='$.'/>
+        </terminals>
+        <nonterminals>
+          <nt cat='PP' id='s23673_502'>
+            <edge idref='s23673_12' label='AC'/>
+            <edge idref='s23673_13' label='NK'/>
+            <edge idref='s23673_14' label='NK'/>
+          </nt>
+          <nt cat='AP' id='s23673_503'>
+            <edge idref='s23673_1' label='MO'/>
+            <edge idref='s23673_500' label='HD'/>
+          </nt>
+          <nt cat='S' id='s23673_504'>
+            <edge idref='s23673_501' label='SB'/>
+            <edge idref='s23673_502' label='MO'/>
+          </nt>
+          <nt cat='NP' id='s23673_505'>
+            <edge idref='s23673_503' label='NK'/>
+            <edge idref='s23673_4' label='NK'/>
+          </nt>
+          <nt cat='VP' id='s23673_506'>
+            <edge idref='s23673_6' label='MO'/>
+            <edge idref='s23673_7' label='HD'/>
+            <edge idref='s23673_504' label='OP'/>
+          </nt>
+          <nt cat='S' id='s23673_507'>
+            <edge idref='s23673_505' label='SB'/>
+            <edge idref='s23673_5' label='HD'/>
+            <edge idref='s23673_506' label='OC'/>
+          </nt>
+          <nt cat='NM' id='s23673_500'>
+            <edge idref='s23673_2' label='NMC'/>
+            <edge idref='s23673_3' label='NMC'/>
+          </nt>
+          <nt cat='NP' id='s23673_501'>
+            <edge idref='s23673_9' label='NK'/>
+            <edge idref='s23673_10' label='NK'/>
+            <edge idref='s23673_11' label='MNR'/>
+          </nt>
+        </nonterminals>
+      </graph>
+      <sem>
+        <globals/>
+        <frames>
+          <frame name='Filling' id='abfuellen_s23673_f1'>
+            <target lemma='abfüllen'>
+              <fenode idref='s23673_7'/>
+            </target>
+            <fe name='Goal' id='abfuellen_s23673_f1_e1'>
+              <fenode idref='s23673_505'/>
+            </fe>
+          </frame>
+        </frames>
+        <usp>
+          <uspframes/>
+          <uspfes/>
+        </usp>
+        <wordtags/>
+      </sem>
+      <matches>
+        
+      </matches>
+    </s>
+    <s id='s32510'>
+      <graph root='s32510_513'>
+        <terminals>
+          <t word='Die' id='s32510_1' lemma='der' morph='Nom.Sg.Fem' pos='ART'/>
+          <t word='Rattanbar' id='s32510_2' lemma='Rattanbar' morph='Nom.Sg.Fem' pos='NN'/>
+          <t word='ist' id='s32510_3' lemma='sein' morph='3.Sg.Pres.Ind' pos='VAFIN'>
+            <secedge idref='s32510_512' label='HD'/>
+          </t>
+          <t word='abgewetzt' id='s32510_4' lemma='abwetzen' morph='Psp' pos='VVPP'/>
+          <t word='und' id='s32510_5' lemma='und' morph='--' pos='KON'/>
+          <t word='krumm' id='s32510_6' lemma='krumm' morph='Pos' pos='ADJD'/>
+          <t word='geworden' id='s32510_7' lemma='werden' morph='Psp' pos='VAPP'/>
+          <t word='von' id='s32510_8' lemma='von' morph='--' pos='APPR'/>
+          <t word='vielen' id='s32510_9' lemma='vieler' morph='Dat.Pl.Masc' pos='PIAT'/>
+          <t word='schweren' id='s32510_10' lemma='schwer' morph='Pos.Dat.Pl.Masc' pos='ADJA'/>
+          <t word='Körpern' id='s32510_11' lemma='Körper' morph='Dat.Pl.Masc' pos='NN'/>
+          <t word=',' id='s32510_12' lemma='--' morph='--' pos='$,'/>
+          <t word='die' id='s32510_13' lemma='der' morph='Nom.Pl.Masc' pos='PRELS'/>
+          <t word='sich' id='s32510_14' lemma='sich' morph='3.Acc.Pl' pos='PRF'/>
+          <t word='mit' id='s32510_15' lemma='mit' morph='--' pos='APPR'/>
+          <t word='Whisky' id='s32510_16' lemma='Whisky' morph='Dat.Sg.Masc' pos='NN'/>
+          <t word='abgefüllt' id='s32510_17' lemma='abfüllen' morph='Psp' pos='VVPP'/>
+          <t word='haben' id='s32510_18' lemma='haben' morph='3.Pl.Pres.Ind' pos='VAFIN'/>
+          <t word=',' id='s32510_19' lemma='--' morph='--' pos='$,'/>
+          <t word='bis' id='s32510_20' lemma='bis' morph='--' pos='KOUS'/>
+          <t word='sie' id='s32510_21' lemma='sie' morph='3.Nom.Pl.Masc' pos='PPER'/>
+          <t word='nicht' id='s32510_22' lemma='nicht' morph='--' pos='PTKNEG'/>
+          <t word='mehr' id='s32510_23' lemma='mehr' morph='--' pos='ADV'/>
+          <t word='spürten' id='s32510_24' lemma='spüren' morph='3.Pl.Past.Ind' pos='VVFIN'/>
+          <t word=',' id='s32510_25' lemma='--' morph='--' pos='$,'/>
+          <t word='daß' id='s32510_26' lemma='daß' morph='--' pos='KOUS'/>
+          <t word='der' id='s32510_27' lemma='der' morph='Nom.Sg.Masc' pos='ART'/>
+          <t word='Boden' id='s32510_28' lemma='Boden' morph='Nom.Sg.Masc' pos='NN'/>
+          <t word='unter' id='s32510_29' lemma='unter' morph='--' pos='APPR'/>
+          <t word='ihren' id='s32510_30' lemma='ihr' morph='Dat.Pl.Fem' pos='PPOSAT'/>
+          <t word='Füßen' id='s32510_31' lemma='Füßen' morph='Dat.Pl.Fem' pos='NN'/>
+          <t word='immerzu' id='s32510_32' lemma='immerzu' morph='--' pos='ADV'/>
+          <t word='schwankte' id='s32510_33' lemma='schwanken' morph='3.Sg.Past.Ind' pos='VVFIN'/>
+          <t word='.' id='s32510_34' lemma='--' morph='--' pos='$.'/>
+        </terminals>
+        <nonterminals>
+          <nt cat='VP' id='s32510_508'>
+            <edge idref='s32510_14' label='OA'/>
+            <edge idref='s32510_501' label='MO'/>
+            <edge idref='s32510_17' label='HD'/>
+            <edge idref='s32510_507' label='MO'/>
+          </nt>
+          <nt cat='PP' id='s32510_510'>
+            <edge idref='s32510_8' label='AC'/>
+            <edge idref='s32510_9' label='NK'/>
+            <edge idref='s32510_10' label='NK'/>
+            <edge idref='s32510_11' label='NK'/>
+            <edge idref='s32510_509' label='RC'/>
+          </nt>
+          <nt cat='S' id='s32510_509'>
+            <edge idref='s32510_13' label='SB'/>
+            <edge idref='s32510_508' label='OC'/>
+            <edge idref='s32510_18' label='HD'/>
+          </nt>
+          <nt cat='VP' id='s32510_511'>
+            <edge idref='s32510_6' label='PD'/>
+            <edge idref='s32510_7' label='HD'/>
+            <edge idref='s32510_510' label='MO'/>
+          </nt>
+          <nt cat='NP' id='s32510_500'>
+            <edge idref='s32510_1' label='NK'/>
+            <edge idref='s32510_2' label='NK'/>
+            <secedge idref='s32510_512' label='SB'/>
+          </nt>
+          <nt cat='S' id='s32510_512'>
+            <edge idref='s32510_511' label='OC'/>
+          </nt>
+          <nt cat='PP' id='s32510_501'>
+            <edge idref='s32510_15' label='AC'/>
+            <edge idref='s32510_16' label='NK'/>
+          </nt>
+          <nt cat='CS' id='s32510_513'>
+            <edge idref='s32510_504' label='CJ'/>
+            <edge idref='s32510_5' label='CD'/>
+            <edge idref='s32510_512' label='CJ'/>
+          </nt>
+          <nt cat='AVP' id='s32510_502'>
+            <edge idref='s32510_22' label='HD'/>
+            <edge idref='s32510_23' label='MO'/>
+          </nt>
+          <nt cat='PP' id='s32510_503'>
+            <edge idref='s32510_29' label='AC'/>
+            <edge idref='s32510_30' label='NK'/>
+            <edge idref='s32510_31' label='NK'/>
+          </nt>
+          <nt cat='S' id='s32510_504'>
+            <edge idref='s32510_500' label='SB'/>
+            <edge idref='s32510_3' label='HD'/>
+            <edge idref='s32510_4' label='PD'/>
+          </nt>
+          <nt cat='NP' id='s32510_505'>
+            <edge idref='s32510_27' label='NK'/>
+            <edge idref='s32510_28' label='NK'/>
+            <edge idref='s32510_503' label='MNR'/>
+          </nt>
+          <nt cat='S' id='s32510_506'>
+            <edge idref='s32510_26' label='CP'/>
+            <edge idref='s32510_505' label='SB'/>
+            <edge idref='s32510_32' label='MO'/>
+            <edge idref='s32510_33' label='HD'/>
+          </nt>
+          <nt cat='S' id='s32510_507'>
+            <edge idref='s32510_20' label='CP'/>
+            <edge idref='s32510_21' label='SB'/>
+            <edge idref='s32510_502' label='NG'/>
+            <edge idref='s32510_24' label='HD'/>
+            <edge idref='s32510_506' label='OC'/>
+          </nt>
+        </nonterminals>
+      </graph>
+      <sem>
+        <globals/>
+        <frames>
+          <frame name='Filling' id='abfuellen_s32510_f1'>
+            <target lemma='abfüllen'>
+              <fenode idref='s32510_17'/>
+            </target>
+            <fe name='Agent' id='abfuellen_s32510_f1_e1'>
+              <fenode idref='s32510_13'/>
+            </fe>
+            <fe name='Goal' id='abfuellen_s32510_f1_e2'>
+              <fenode idref='s32510_14'/>
+            </fe>
+            <fe name='Theme' id='abfuellen_s32510_f1_e3'>
+              <fenode idref='s32510_501'/>
+            </fe>
+          </frame>
+          <frame name='Ingestion' id='abfuellen_s32510_f2'>
+            <target lemma='abfüllen'>
+              <fenode idref='s32510_17'/>
+            </target>
+            <fe name='Ingestibles' id='abfuellen_s32510_f2_e1'>
+              <fenode idref='s32510_501'/>
+            </fe>
+            <fe name='Ingestor' id='abfuellen_s32510_f2_e2'>
+              <fenode idref='s32510_13'/>
+            </fe>
+          </frame>
+        </frames>
+        <usp>
+          <uspframes/>
+          <uspfes/>
+        </usp>
+        <wordtags/>
+      </sem>
+      <matches>
+        
+      </matches>
+    </s>
+  </body>
+</corpus>
