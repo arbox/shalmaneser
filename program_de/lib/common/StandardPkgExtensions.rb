@@ -28,7 +28,7 @@ class File
 
     dir_path, dummy = File.make_path(pieces, true)
     unless File.exists? dir_path
-      File.makedirs dir_path
+      FileUtils.mkdir_p dir_path
     end
     # check that all went well in creating the directory)
     File.existing_dir(dir_path)
@@ -41,7 +41,7 @@ class File
   def File.new_filename(*pieces)
     dir_path, whole_path = File.make_path(pieces, false)
     unless File.exists? dir_path
-      File.makedirs dir_path
+      FileUtils.mkdir_p dir_path
     end
     # check that all went well in creating the directory)
     File.existing_dir(dir_path)
