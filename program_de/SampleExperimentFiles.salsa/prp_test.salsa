@@ -122,7 +122,7 @@ fe_rel_repair = false
 #     parser_path = /proj/llx/Software/Parsers/minipar-linux/
 #
 pos_tagger = treetagger
-pos_tagger_path = /home/arbox/work_space/shalm/german/prog/program_de/tools/treetagger/shal-ger
+pos_tagger_path = /home/arbox/work_space/shalm/dev/trunk/program_de/tools/treetagger/shal-ger
 
 lemmatizer = treetagger
 lemmatizer_path = /home/arbox/work_space/shalm/dev/trunk/program_de/tools/treetagger/shal-ger
