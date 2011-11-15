@@ -18,7 +18,7 @@ require "rosy/RosyFeatureExtractors"
 require "rosy/RosyPhase2FeatureExtractors"
 require "rosy/RosyPruning"
 require "rosy/GfInduceFeature"
-require "rosy/FixSynSemMapping"
+require "common/FixSynSemMapping"
 
 class InputData
 
