@@ -1,4 +1,4 @@
-# -*- encoding: us-ascii -*-
+# -*- encoding: utf-8 -*-
 # AB, 2010-11-25
 
 
