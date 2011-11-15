@@ -1,5 +1,6 @@
 require 'frprep/do_parses'
 require 'common/FrprepHelper'
+require 'common/FixSynSemMapping'
 
 ##############################
 # The class that does all the work
