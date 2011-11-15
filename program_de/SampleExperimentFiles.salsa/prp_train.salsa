@@ -61,7 +61,7 @@ directory_preprocessed = /home/arbox/work_space/shalm/dev/trunk/output/preproces
 language = de
 #origin = 
 format = SalsaTigerXML
-encoding = iso
+encoding = utf8
 
 #############################
 # Which preprocessing steps to take?
