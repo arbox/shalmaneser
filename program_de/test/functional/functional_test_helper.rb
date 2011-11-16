@@ -3,11 +3,11 @@ require 'erb'
 module FunctionalTestHelper
 
   PRP_TEST_FILE   = 'test/functional/sample_experiment_files/prp_test.salsa'
-  PRP_TRAIN_FILE  = 'test/functional/sample_experiment_files/prp_test.salsa'
+  PRP_TRAIN_FILE  = 'test/functional/sample_experiment_files/prp_train.salsa'
   FRED_TEST_FILE  = 'test/functional/sample_experiment_files/fred_test.salsa'
-  FRED_TRAIN_FILE = 'test/functional/sample_experiment_files/fred_test.salsa'
+  FRED_TRAIN_FILE = 'test/functional/sample_experiment_files/fred_train.salsa'
   ROSY_TEST_FILE  = 'test/functional/sample_experiment_files/rosy_test.salsa'
-  ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_test.salsa'
+  ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_train.salsa'
 
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.

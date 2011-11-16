@@ -28,7 +28,7 @@ class TestFrprep < Test::Unit::TestCase
   def test_frprep_training
     create_exp_file(@train_file)
     execute("ruby -I lib bin/frprep -e #{@train_file}")
-    create_exp_file(@train_file)
+    remove_exp_file(@train_file)
   end
 
   private
