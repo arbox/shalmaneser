@@ -21,6 +21,6 @@ module FunctionalTestHelper
   end
 
   def remove_exp_file(file)
-    File.delete(file)
+#    File.delete(file)
   end
 end
