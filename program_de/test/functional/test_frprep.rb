@@ -10,8 +10,8 @@ class TestFrprep < Test::Unit::TestCase
 
   def setup
     @msg        = "FrPrep is doing bad, you've just broken something!"
-    @test_file  = 'test/functional/sample_experiment_files/prp_test.salsa'
-    @train_file = 'test/functional/sample_experiment_files/prp_train.salsa'
+    @test_file  = PRP_TEST_FILE
+    @train_file = PRP_TRAIN_FILE
     @ptb        = 'lib/common/BerkeleyInterface.rb'
     link_berkeley
   end

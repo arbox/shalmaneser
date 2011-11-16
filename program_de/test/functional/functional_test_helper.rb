@@ -1,6 +1,14 @@
 require 'erb'
 
 module FunctionalTestHelper
+
+  PRP_TEST_FILE   = 'test/functional/sample_experiment_files/prp_test.salsa'
+  PRP_TRAIN_FILE  = 'test/functional/sample_experiment_files/prp_test.salsa'
+  FRED_TEST_FILE  = 'test/functional/sample_experiment_files/fred_test.salsa'
+  FRED_TRAIN_FILE = 'test/functional/sample_experiment_files/fred_test.salsa'
+  ROSY_TEST_FILE  = 'test/functional/sample_experiment_files/rosy_test.salsa'
+  ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_test.salsa'
+
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.
   # <@msg> is defined for every test object.
@@ -21,6 +29,6 @@ module FunctionalTestHelper
   end
 
   def remove_exp_file(file)
-#    File.delete(file)
+    File.delete(file)
   end
 end
