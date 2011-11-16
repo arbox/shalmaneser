@@ -20,11 +20,15 @@ class TestFrprep < Test::Unit::TestCase
     unlink_berkeley
   end
   def test_frprep_testing
+    create_exp_file(@test_file)
     execute("ruby -I lib bin/frprep -e #{@test_file}")
+    remove_exp_file(@test_file)
   end
 
   def test_frprep_training
+    create_exp_file(@train_file)
     execute("ruby -I lib bin/frprep -e #{@train_file}")
+    create_exp_file(@train_file)
   end
 
   private
