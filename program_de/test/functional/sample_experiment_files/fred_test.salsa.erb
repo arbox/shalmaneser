@@ -31,8 +31,8 @@ fred_directory = <%= File.expand_path('test/functional/output') %>
 #   and one for the test data
 #   (If you only ever use test data in this experiment, you only
 #   need to give preproc_descr_file_test, and vice versa for training data.)
-preproc_descr_file_train = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_train.salsa
-preproc_descr_file_test = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_test.salsa
+preproc_descr_file_train = <%= File.expand_path('/test/functional/sample_experiment_files/prp_train.salsa') %>
+preproc_descr_file_test = <%= File.expand_path('/test/functional/sample_experiment_files/prp_test.salsa') %>
 
 #####################
 # noncontiguous input?
