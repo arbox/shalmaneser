@@ -26,8 +26,8 @@ prep_experiment_ID = prp_test
 # and write the results to directory_preprocessed.
 #
 # For input formats see the discussion of "format" below.
-directory_input = /home/arbox/work_space/shalm/dev/trunk/input/test.salsa
-directory_preprocessed = /home/arbox/work_space/shalm/dev/trunk/output/preprocessed/test.salsa
+directory_input = <%= File.expand_path('test/functional/input/test.salsa') %>
+directory_preprocessed = <%= File.expand_path('test/functional/output/preprocessed/test.salsa') %>
 
 ##
 # Experimental data is described by the following parameters:
@@ -81,7 +81,7 @@ do_parse = true
 # directory where frprep puts its internal data
 #
 
-frprep_directory = /home/arbox/work_space/shalm/dev/trunk/output/
+frprep_directory = <%= File.expand_path('test/functional/output/') %>
 
 #############################
 # Syntax/semantics interface repair:
@@ -122,13 +122,13 @@ fe_rel_repair = false
 #     parser_path = /proj/llx/Software/Parsers/minipar-linux/
 #
 pos_tagger = treetagger
-pos_tagger_path = /home/arbox/work_space/shalm/dev/trunk/program_de/tools/treetagger/shal-ger
+pos_tagger_path = <%= File.expand_path('tools/treetagger/shal-ger') %>
 
 lemmatizer = treetagger
-lemmatizer_path = /home/arbox/work_space/shalm/dev/trunk/program_de/tools/treetagger/shal-ger
+lemmatizer_path = <%= File.expand_path('tools/treetagger/shal-ger') %>
 
 parser = berkeley
-parser_path = /home/arbox/work_space/shalm/dev/trunk/program_de/tools/berkeleyParser
+parser_path = <%= File.expand_path('tools/berkeleyParser') %>
 
 # parser: 
 # maximum no. of sentences in a parse file,
