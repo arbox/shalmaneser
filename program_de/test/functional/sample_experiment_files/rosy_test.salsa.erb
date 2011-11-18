@@ -44,16 +44,16 @@ enduser_mode = false
 #   are written. 
 #   Otherwise they are written to <data_dir>/<experiment_id>/classif_dir
 data_dir = /home/arbox/work_space/shalm/german/prog/output
-directory_input_train = /home/arbox/work_space/shalm/dev/trunk/output/prp_train/stxml_split
-directory_input_test = /home/arbox/work_space/shalm/dev/trunk/output/exp_fred_salsa/output/stxml
-directory_output = /home/arbox/work_space/shalm/dev/trunk/output/exp_rosy_salsa/output
+directory_input_train = <%= File.expand_path('test/functional/output/prp_train/stxml_split') %>
+directory_input_test = <%= File.expand_path('test/functional/output/exp_fred_salsa/output/stxml') %>
+directory_output = <%= File.expand_path('test/functional/output/exp_rosy_salsa/output') %>
 
 
 ##
 # Preprocessing settings:
 # frprep experiment files for training and test data.
-preproc_descr_file_train = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_train.salsa
-preproc_descr_file_test = /home/arbox/work_space/shalm/dev/trunk/program_de/SampleExperimentFiles.salsa/prp_test.salsa
+preproc_descr_file_train = <%= File.expand_path('test/functional/sample_experiment_files/prp_train.salsa') %>
+preproc_descr_file_test = <%= File.expand_path('test/functional/sample_experiment_files/prp_test.salsa') %>
 
 
 ########################
