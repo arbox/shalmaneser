@@ -1,0 +1,632 @@
+<?xml version='1.0' encoding='UTF-8'?><corpus corpusname='TIGER-Gesamt-Juli03' target='abhören'>
+  <head>
+    <frames xmlns='http://www.clt-st.de/framenet/frame-database'>
+      <frame name='Perception_active'>
+        <element name='Perceiver_agentive'/>
+        <element name='Phenomenon'/>
+        <element name='Body_part'/>
+        <element name='Direction'/>
+      </frame>
+    </frames>
+    <wordtags xmlns='http://www.clt-st.de/salsa/wordtags'/>
+    <flags/>
+    <annotation>
+      <feature name='cat' domain='NT'>
+        <value name='--'>&lt;not bound&gt;</value>
+        <value name='AA'>superlative phrase with "am"</value>
+        <value name='AP'>adjektive phrase</value>
+        <value name='AVP'>adverbial phrase</value>
+        <value name='CAC'>coordinated adposition</value>
+        <value name='CAP'>coordinated adjektive phrase</value>
+        <value name='CAVP'>coordinated adverbial phrase</value>
+        <value name='CCP'>coordinated complementiser</value>
+        <value name='CH'>chunk</value>
+        <value name='CNP'>coordinated noun phrase</value>
+        <value name='CO'>coordination</value>
+        <value name='CPP'>coordinated adpositional phrase</value>
+        <value name='CS'>coordinated sentence</value>
+        <value name='CVP'>coordinated verb phrase (non-finite)</value>
+        <value name='CVZ'>coordinated zu-marked infinitive</value>
+        <value name='DL'>discourse level constituent</value>
+        <value name='ISU'>idiosyncratis unit</value>
+        <value name='MTA'>multi-token adjective</value>
+        <value name='NM'>multi-token number</value>
+        <value name='NP'>noun phrase</value>
+        <value name='PN'>proper noun</value>
+        <value name='PP'>adpositional phrase</value>
+        <value name='QL'>quasi-languag</value>
+        <value name='S'>sentence</value>
+        <value name='VP'>verb phrase (non-finite)</value>
+        <value name='VROOT'>unbound feature value of a virtual root</value>
+        <value name='VZ'>zu-marked infinitive</value>
+      </feature>
+      <feature name='morph' domain='T'>
+        <value name='*'/>
+        <value name='*.*.*'/>
+        <value name='*.*.*.*.*'/>
+        <value name='*.*.Akk.Pl.St'/>
+        <value name='*.*.Akk.Pl.Sw'/>
+        <value name='*.*.Dat.Pl.St'/>
+        <value name='*.*.Dat.Pl.Sw'/>
+        <value name='*.*.Gen.Pl.St'/>
+        <value name='*.*.Gen.Pl.Sw'/>
+        <value name='*.*.Nom.Pl.St'/>
+        <value name='*.*.Nom.Pl.Sw'/>
+        <value name='*.Akk.Pl'/>
+        <value name='*.Akk.Pl.*'/>
+        <value name='*.Akk.Pl.St'/>
+        <value name='*.Akk.Pl.Sw'/>
+        <value name='*.Akk.Sg'/>
+        <value name='*.Akk.Sg.St'/>
+        <value name='*.Dat.Pl'/>
+        <value name='*.Dat.Pl.*'/>
+        <value name='*.Dat.Pl.St'/>
+        <value name='*.Dat.Pl.Sw'/>
+        <value name='*.Dat.Sg'/>
+        <value name='*.Fem.Akk.Sg.Mix'/>
+        <value name='*.Fem.Akk.Sg.St'/>
+        <value name='*.Fem.Akk.Sg.Sw'/>
+        <value name='*.Fem.Dat.Sg.Mix'/>
+        <value name='*.Fem.Dat.Sg.St'/>
+        <value name='*.Fem.Dat.Sg.Sw'/>
+        <value name='*.Fem.Gen.Sg.Sw'/>
+        <value name='*.Fem.Nom.Sg.St'/>
+        <value name='*.Fem.Nom.Sg.Sw'/>
+        <value name='*.Gen.Pl'/>
+        <value name='*.Gen.Pl.*'/>
+        <value name='*.Gen.Pl.St'/>
+        <value name='*.Gen.Pl.Sw'/>
+        <value name='*.Gen.Sg'/>
+        <value name='*.Masc.Akk.Sg.Mix'/>
+        <value name='*.Masc.Akk.Sg.Sw'/>
+        <value name='*.Masc.Dat.Sg.Mix'/>
+        <value name='*.Masc.Dat.Sg.Sw'/>
+        <value name='*.Masc.Gen.Sg.Mix'/>
+        <value name='*.Masc.Gen.Sg.Sw'/>
+        <value name='*.Masc.Nom.Sg.Mix'/>
+        <value name='*.Masc.Nom.Sg.St'/>
+        <value name='*.Masc.Nom.Sg.Sw'/>
+        <value name='*.Neut.Akk.Sg.Sw'/>
+        <value name='*.Neut.Dat.Sg.Mix'/>
+        <value name='*.Neut.Dat.Sg.Sw'/>
+        <value name='*.Neut.Gen.Sg.Sw'/>
+        <value name='*.Neut.Nom.Sg.Mix'/>
+        <value name='*.Neut.Nom.Sg.St'/>
+        <value name='*.Neut.Nom.Sg.Sw'/>
+        <value name='*.Nom.Pl'/>
+        <value name='*.Nom.Pl.*'/>
+        <value name='*.Nom.Pl.Mix'/>
+        <value name='*.Nom.Pl.St'/>
+        <value name='*.Nom.Pl.Sw'/>
+        <value name='*.Nom.Sg'/>
+        <value name='--'>not bound</value>
+        <value name='1.Akk.Pl'/>
+        <value name='1.Akk.Sg'/>
+        <value name='1.Dat.Pl'/>
+        <value name='1.Dat.Sg'/>
+        <value name='1.Pl.*.Akk'/>
+        <value name='1.Pl.*.Dat'/>
+        <value name='1.Pl.*.Nom'/>
+        <value name='1.Pl.Past.Ind'/>
+        <value name='1.Pl.Past.Konj'/>
+        <value name='1.Pl.Pres.Ind'/>
+        <value name='1.Sg.*.Akk'/>
+        <value name='1.Sg.*.Dat'/>
+        <value name='1.Sg.*.Nom'/>
+        <value name='1.Sg.Past.Ind'/>
+        <value name='1.Sg.Past.Konj'/>
+        <value name='1.Sg.Pres.Ind'/>
+        <value name='1.Sg.Pres.Konj'/>
+        <value name='2.Akk.Sg'/>
+        <value name='2.Dat.Sg'/>
+        <value name='2.Pl.*.Nom'/>
+        <value name='2.Pl.Pres.Ind'/>
+        <value name='2.Sg.*.Akk'/>
+        <value name='2.Sg.*.Dat'/>
+        <value name='2.Sg.*.Nom'/>
+        <value name='2.Sg.Past.Ind'/>
+        <value name='2.Sg.Pres.Ind'/>
+        <value name='2.Sg.Pres.Konj'/>
+        <value name='3.Akk.Pl'/>
+        <value name='3.Akk.Sg'/>
+        <value name='3.Dat.Pl'/>
+        <value name='3.Dat.Sg'/>
+        <value name='3.Pl.*.Akk'/>
+        <value name='3.Pl.*.Dat'/>
+        <value name='3.Pl.*.Nom'/>
+        <value name='3.Pl.Past.Ind'/>
+        <value name='3.Pl.Past.Konj'/>
+        <value name='3.Pl.Pres.Ind'/>
+        <value name='3.Pl.Pres.Konj'/>
+        <value name='3.Sg.Fem.Akk'/>
+        <value name='3.Sg.Fem.Dat'/>
+        <value name='3.Sg.Fem.Nom'/>
+        <value name='3.Sg.Masc.Akk'/>
+        <value name='3.Sg.Masc.Dat'/>
+        <value name='3.Sg.Masc.Nom'/>
+        <value name='3.Sg.Neut.Akk'/>
+        <value name='3.Sg.Neut.Nom'/>
+        <value name='3.Sg.Past.Ind'/>
+        <value name='3.Sg.Past.Konj'/>
+        <value name='3.Sg.Pres.Ind'/>
+        <value name='3.Sg.Pres.Konj'/>
+        <value name='Akk'/>
+        <value name='Akk.Neut'/>
+        <value name='Comp'/>
+        <value name='Comp.*.Akk.Pl.Mix'/>
+        <value name='Comp.*.Akk.Pl.St'/>
+        <value name='Comp.*.Dat.Pl.St'/>
+        <value name='Comp.*.Dat.Pl.Sw'/>
+        <value name='Comp.*.Gen.Pl.St'/>
+        <value name='Comp.*.Nom.Pl.St'/>
+        <value name='Comp.*.Nom.Pl.Sw'/>
+        <value name='Comp.Fem.Akk.Sg.Mix'/>
+        <value name='Comp.Fem.Akk.Sg.St'/>
+        <value name='Comp.Fem.Akk.Sg.Sw'/>
+        <value name='Comp.Fem.Dat.Sg.Mix'/>
+        <value name='Comp.Fem.Dat.Sg.St'/>
+        <value name='Comp.Fem.Dat.Sg.Sw'/>
+        <value name='Comp.Fem.Gen.Sg.Mix'/>
+        <value name='Comp.Fem.Gen.Sg.Sw'/>
+        <value name='Comp.Fem.Nom.Sg.Mix'/>
+        <value name='Comp.Fem.Nom.Sg.Sw'/>
+        <value name='Comp.Masc.Akk.Sg.Mix'/>
+        <value name='Comp.Masc.Akk.Sg.St'/>
+        <value name='Comp.Masc.Akk.Sg.Sw'/>
+        <value name='Comp.Masc.Dat.Sg.Mix'/>
+        <value name='Comp.Masc.Dat.Sg.St'/>
+        <value name='Comp.Masc.Dat.Sg.Sw'/>
+        <value name='Comp.Masc.Nom.Sg.Mix'/>
+        <value name='Comp.Masc.Nom.Sg.St'/>
+        <value name='Comp.Masc.Nom.Sg.Sw'/>
+        <value name='Comp.Neut.Akk.Sg.Mix'/>
+        <value name='Comp.Neut.Akk.Sg.St'/>
+        <value name='Comp.Neut.Akk.Sg.Sw'/>
+        <value name='Comp.Neut.Dat.Sg.Mix'/>
+        <value name='Comp.Neut.Dat.Sg.St'/>
+        <value name='Comp.Neut.Nom.Sg.Mix'/>
+        <value name='Comp.Neut.Nom.Sg.Sw'/>
+        <value name='Dat'/>
+        <value name='Dat-Akk'>Dativ order Akkusativ</value>
+        <value name='Dat.Fem'/>
+        <value name='Dat.Masc'/>
+        <value name='Dat.Neut'/>
+        <value name='Def.*.Akk.Pl'/>
+        <value name='Def.*.Dat.Pl'/>
+        <value name='Def.*.Gen.Pl'/>
+        <value name='Def.*.Nom.Pl'/>
+        <value name='Def.Fem.Akk.Sg'/>
+        <value name='Def.Fem.Dat.Sg'/>
+        <value name='Def.Fem.Gen.Sg'/>
+        <value name='Def.Fem.Nom.Sg'/>
+        <value name='Def.Masc.Akk.Sg'/>
+        <value name='Def.Masc.Dat.Sg'/>
+        <value name='Def.Masc.Gen.Sg'/>
+        <value name='Def.Masc.Nom.Sg'/>
+        <value name='Def.Neut.Akk.Sg'/>
+        <value name='Def.Neut.Dat.Sg'/>
+        <value name='Def.Neut.Gen.Sg'/>
+        <value name='Def.Neut.Nom.Sg'/>
+        <value name='Fem.Akk.Pl.*'/>
+        <value name='Fem.Akk.Sg'/>
+        <value name='Fem.Akk.Sg.*'/>
+        <value name='Fem.Akk.Sg.St'/>
+        <value name='Fem.Dat.Pl'/>
+        <value name='Fem.Dat.Pl.*'/>
+        <value name='Fem.Dat.Sg'/>
+        <value name='Fem.Dat.Sg.*'/>
+        <value name='Fem.Dat.Sg.Mix'/>
+        <value name='Fem.Dat.Sg.Sw'/>
+        <value name='Fem.Gen.Pl.*'/>
+        <value name='Fem.Gen.Sg'/>
+        <value name='Fem.Gen.Sg.*'/>
+        <value name='Fem.Gen.Sg.Mix'/>
+        <value name='Fem.Nom.Pl.*'/>
+        <value name='Fem.Nom.Sg'/>
+        <value name='Fem.Nom.Sg.*'/>
+        <value name='Fem.Nom.Sg.St'/>
+        <value name='Fem.Nom.Sg.Sw'/>
+        <value name='Gen'/>
+        <value name='Gen-Dat'>Dativ oder Genitiv</value>
+        <value name='Indef.Fem.Akk.Sg'/>
+        <value name='Indef.Fem.Dat.Sg'/>
+        <value name='Indef.Fem.Gen.Sg'/>
+        <value name='Indef.Fem.Nom.Sg'/>
+        <value name='Indef.Masc.Akk.Sg'/>
+        <value name='Indef.Masc.Dat.Sg'/>
+        <value name='Indef.Masc.Gen.Sg'/>
+        <value name='Indef.Masc.Nom.Sg'/>
+        <value name='Indef.Neut.Akk.Sg'/>
+        <value name='Indef.Neut.Dat.Sg'/>
+        <value name='Indef.Neut.Gen.Sg'/>
+        <value name='Indef.Neut.Nom.Sg'/>
+        <value name='Masc.Akk.Pl'/>
+        <value name='Masc.Akk.Pl.*'/>
+        <value name='Masc.Akk.Pl.St'/>
+        <value name='Masc.Akk.Sg'/>
+        <value name='Masc.Akk.Sg.*'/>
+        <value name='Masc.Akk.Sg.Mix'/>
+        <value name='Masc.Akk.Sg.Sw'/>
+        <value name='Masc.Dat.Pl'/>
+        <value name='Masc.Dat.Pl.*'/>
+        <value name='Masc.Dat.Pl.St'/>
+        <value name='Masc.Dat.Sg'/>
+        <value name='Masc.Dat.Sg.*'/>
+        <value name='Masc.Dat.Sg.Sw'/>
+        <value name='Masc.Gen.Pl'/>
+        <value name='Masc.Gen.Pl.*'/>
+        <value name='Masc.Gen.Sg'/>
+        <value name='Masc.Gen.Sg.*'/>
+        <value name='Masc.Gen.Sg.Mix'/>
+        <value name='Masc.Gen.Sg.Sw'/>
+        <value name='Masc.Nom.Pl.*'/>
+        <value name='Masc.Nom.Sg'/>
+        <value name='Masc.Nom.Sg.*'/>
+        <value name='Masc.Nom.Sg.Mix'/>
+        <value name='Masc.Nom.Sg.St'/>
+        <value name='Masc.Nom.Sg.Sw'/>
+        <value name='Neut.Akk.Pl.*'/>
+        <value name='Neut.Akk.Sg'/>
+        <value name='Neut.Akk.Sg.*'/>
+        <value name='Neut.Akk.Sg.St'/>
+        <value name='Neut.Akk.Sg.Sw'/>
+        <value name='Neut.Dat.Pl.*'/>
+        <value name='Neut.Dat.Sg'/>
+        <value name='Neut.Dat.Sg.*'/>
+        <value name='Neut.Dat.Sg.St'/>
+        <value name='Neut.Dat.Sg.Sw'/>
+        <value name='Neut.Gen.Pl.*'/>
+        <value name='Neut.Gen.Sg'/>
+        <value name='Neut.Gen.Sg.*'/>
+        <value name='Neut.Gen.Sg.Mix'/>
+        <value name='Neut.Gen.Sg.Sw'/>
+        <value name='Neut.Nom.Pl.*'/>
+        <value name='Neut.Nom.Sg'/>
+        <value name='Neut.Nom.Sg.*'/>
+        <value name='Neut.Nom.Sg.St'/>
+        <value name='Neut.Nom.Sg.Sw'/>
+        <value name='Nom'>Nominativ</value>
+        <value name='Nom-Akk'>Akkusativ oder Nominativ</value>
+        <value name='Nom-Dat-Akk'>Dativ oder Akkusativ oder Nominativ</value>
+        <value name='Pl'/>
+        <value name='Pos'/>
+        <value name='Pos.*.*.*.*'/>
+        <value name='Pos.*.Akk.Pl.Mix'/>
+        <value name='Pos.*.Akk.Pl.St'/>
+        <value name='Pos.*.Akk.Pl.Sw'/>
+        <value name='Pos.*.Dat.Pl.Mix'/>
+        <value name='Pos.*.Dat.Pl.St'/>
+        <value name='Pos.*.Dat.Pl.Sw'/>
+        <value name='Pos.*.Gen.Pl.Mix'/>
+        <value name='Pos.*.Gen.Pl.St'/>
+        <value name='Pos.*.Gen.Pl.Sw'/>
+        <value name='Pos.*.Nom.Pl.Mix'/>
+        <value name='Pos.*.Nom.Pl.St'/>
+        <value name='Pos.*.Nom.Pl.Sw'/>
+        <value name='Pos.Fem.Akk.Sg.Mix'/>
+        <value name='Pos.Fem.Akk.Sg.St'/>
+        <value name='Pos.Fem.Akk.Sg.Sw'/>
+        <value name='Pos.Fem.Dat.Sg.Mix'/>
+        <value name='Pos.Fem.Dat.Sg.St'/>
+        <value name='Pos.Fem.Dat.Sg.Sw'/>
+        <value name='Pos.Fem.Gen.Sg.Mix'/>
+        <value name='Pos.Fem.Gen.Sg.St'/>
+        <value name='Pos.Fem.Gen.Sg.Sw'/>
+        <value name='Pos.Fem.Nom.Sg.Mix'/>
+        <value name='Pos.Fem.Nom.Sg.St'/>
+        <value name='Pos.Fem.Nom.Sg.Sw'/>
+        <value name='Pos.Masc.Akk.Sg.Mix'/>
+        <value name='Pos.Masc.Akk.Sg.St'/>
+        <value name='Pos.Masc.Akk.Sg.Sw'/>
+        <value name='Pos.Masc.Dat.Sg.Mix'/>
+        <value name='Pos.Masc.Dat.Sg.St'/>
+        <value name='Pos.Masc.Dat.Sg.Sw'/>
+        <value name='Pos.Masc.Gen.Sg.Mix'/>
+        <value name='Pos.Masc.Gen.Sg.St'/>
+        <value name='Pos.Masc.Gen.Sg.Sw'/>
+        <value name='Pos.Masc.Nom.Sg.Mix'/>
+        <value name='Pos.Masc.Nom.Sg.St'/>
+        <value name='Pos.Masc.Nom.Sg.Sw'/>
+        <value name='Pos.Neut.Akk.Sg.Mix'/>
+        <value name='Pos.Neut.Akk.Sg.St'/>
+        <value name='Pos.Neut.Akk.Sg.Sw'/>
+        <value name='Pos.Neut.Dat.Sg.Mix'/>
+        <value name='Pos.Neut.Dat.Sg.St'/>
+        <value name='Pos.Neut.Dat.Sg.Sw'/>
+        <value name='Pos.Neut.Gen.Sg.Mix'/>
+        <value name='Pos.Neut.Gen.Sg.St'/>
+        <value name='Pos.Neut.Gen.Sg.Sw'/>
+        <value name='Pos.Neut.Nom.Sg.Mix'/>
+        <value name='Pos.Neut.Nom.Sg.St'/>
+        <value name='Pos.Neut.Nom.Sg.Sw'/>
+        <value name='Sg'/>
+        <value name='Sup'/>
+        <value name='Sup.*.Akk.Pl.St'/>
+        <value name='Sup.*.Akk.Pl.Sw'/>
+        <value name='Sup.*.Dat.Pl.St'/>
+        <value name='Sup.*.Dat.Pl.Sw'/>
+        <value name='Sup.*.Gen.Pl.Sw'/>
+        <value name='Sup.*.Nom.Pl.Mix'/>
+        <value name='Sup.*.Nom.Pl.Sw'/>
+        <value name='Sup.Fem.Akk.Sg.St'/>
+        <value name='Sup.Fem.Akk.Sg.Sw'/>
+        <value name='Sup.Fem.Dat.Sg.Mix'/>
+        <value name='Sup.Fem.Dat.Sg.St'/>
+        <value name='Sup.Fem.Dat.Sg.Sw'/>
+        <value name='Sup.Fem.Gen.Sg.St'/>
+        <value name='Sup.Fem.Gen.Sg.Sw'/>
+        <value name='Sup.Fem.Nom.Sg.Mix'/>
+        <value name='Sup.Fem.Nom.Sg.St'/>
+        <value name='Sup.Fem.Nom.Sg.Sw'/>
+        <value name='Sup.Masc.Akk.Sg.St'/>
+        <value name='Sup.Masc.Akk.Sg.Sw'/>
+        <value name='Sup.Masc.Dat.Sg.Mix'/>
+        <value name='Sup.Masc.Dat.Sg.Sw'/>
+        <value name='Sup.Masc.Gen.Sg.Sw'/>
+        <value name='Sup.Masc.Nom.Sg.Mix'/>
+        <value name='Sup.Masc.Nom.Sg.St'/>
+        <value name='Sup.Masc.Nom.Sg.Sw'/>
+        <value name='Sup.Neut.Akk.Sg.Mix'/>
+        <value name='Sup.Neut.Akk.Sg.Sw'/>
+        <value name='Sup.Neut.Dat.Sg.Sw'/>
+        <value name='Sup.Neut.Gen.Sg.St'/>
+        <value name='Sup.Neut.Nom.Sg.St'/>
+        <value name='Sup.Neut.Nom.Sg.Sw'/>
+        <value name='UNKNOWN'>unknown tag</value>
+      </feature>
+      <feature name='pos' domain='T'>
+        <value name='$('>Sonstige Satzzeichen; satzintern</value>
+        <value name='$,'>Komma</value>
+        <value name='$.'>Satzbeendende Interpunktion</value>
+        <value name='--'>--</value>
+        <value name='ADJA'>Attributives Adjektiv</value>
+        <value name='ADJD'>Adverbiales oder prädikatives Adjektiv</value>
+        <value name='ADV'>Adverb</value>
+        <value name='APPO'>Postposition</value>
+        <value name='APPR'>Präposition; Zirkumposition links</value>
+        <value name='APPRART'>Präposition mit Artikel</value>
+        <value name='APZR'>Zirkumposition rechts</value>
+        <value name='ART'>Bestimmter oder unbestimmter Artikel</value>
+        <value name='CARD'>Kardinalzahl</value>
+        <value name='FM'>Fremdsprachliches Material</value>
+        <value name='ITJ'>Interjektion</value>
+        <value name='KOKOM'>Vergleichspartikel, ohne Satz</value>
+        <value name='KON'>Nebenordnende Konjunktion</value>
+        <value name='KOUI'>Unterordnende Konjunktion mit zu und Infinitiv</value>
+        <value name='KOUS'>Unterordnende Konjunktion mit Satz</value>
+        <value name='NE'>Eigennamen</value>
+        <value name='NN'>Normales Nomen</value>
+        <value name='NNE'>Kombination aus Nomen und Eigenname</value>
+        <value name='PDAT'>Attribuierendes Demonstrativpronomen</value>
+        <value name='PDS'>Substituierendes Demonstrativpronomen</value>
+        <value name='PIAT'>Attribuierendes Indefinitpronomen</value>
+        <value name='PIS'>Substituierendes Indefinitpronomen</value>
+        <value name='PPER'>Ersetzbares Personalpronomen</value>
+        <value name='PPOSAT'>Attribuierendes Possessivpronomen</value>
+        <value name='PPOSS'>Substituierendes Possessivpronomen</value>
+        <value name='PRELAT'>Attribuierendes Relativpronomen</value>
+        <value name='PRELS'>Substituierendes Relativpronomen</value>
+        <value name='PRF'>Reflexives Personalpronomen</value>
+        <value name='PROAV'>Pronominaladverb</value>
+        <value name='PTKA'>Partikel bei Adjektiv oder Adverb</value>
+        <value name='PTKANT'>Antwortpartikel</value>
+        <value name='PTKNEG'>Negationspartikel</value>
+        <value name='PTKVZ'>Abgetrennter Verbzusatz</value>
+        <value name='PTKZU'>zu vor Infinitiv</value>
+        <value name='PWAT'>Attribuierendes Interrogativpronomen</value>
+        <value name='PWAV'>Adverbiales Interrogativ- oder Relativpronomen</value>
+        <value name='PWS'>Substituierendes Interrogativpronomen</value>
+        <value name='TRUNC'>Kompositions-Erstglied</value>
+        <value name='UNKNOWN'>Unbekanntes Tag aus Einlesen aus Korpusdatei</value>
+        <value name='VAFIN'>Finites Verb, aux</value>
+        <value name='VAIMP'>Imperativ, aux</value>
+        <value name='VAINF'>Infinitiv, aux</value>
+        <value name='VAPP'>Partizip Perfekt, aux</value>
+        <value name='VMFIN'>Finites Verb, modal</value>
+        <value name='VMINF'>Infinitiv, modal</value>
+        <value name='VMPP'>Partizip Perfekt, modal</value>
+        <value name='VVFIN'>Finites Verb, voll</value>
+        <value name='VVIMP'>Imperativ, voll</value>
+        <value name='VVINF'>Infinitiv, voll</value>
+        <value name='VVIZU'>Infinitiv mit zu, voll</value>
+        <value name='VVPP'>Partizip Perfekt, voll</value>
+        <value name='XY'>Nichtwort, Sonderzeichen</value>
+      </feature>
+      <feature name='word' domain='T'/>
+      <edgelabel>
+        <value name='--'>--</value>
+        <value name='AC'>adpositional case marker</value>
+        <value name='ADC'>adjective component</value>
+        <value name='AG'>genitive attribute</value>
+        <value name='AMS'>measure argument of adj</value>
+        <value name='APP'>apposition</value>
+        <value name='AVC'>adverbial phrase component</value>
+        <value name='CC'>comparative complement</value>
+        <value name='CD'>coordinating conjunction</value>
+        <value name='CJ'>conjunct</value>
+        <value name='CM'>comparative concjunction</value>
+        <value name='CP'>complementizer</value>
+        <value name='CVC'>collocational verb construction (Funktionsverbgefüge)</value>
+        <value name='DA'>dative</value>
+        <value name='DH'>discourse-level head</value>
+        <value name='DM'>discourse marker</value>
+        <value name='EP'>expletive es</value>
+        <value name='GL'>prenominal genitive</value>
+        <value name='GR'>postnominal genitive</value>
+        <value name='HD'>head</value>
+        <value name='JU'>junctor</value>
+        <value name='MC'>comitative</value>
+        <value name='MI'>instrumental</value>
+        <value name='ML'>locative</value>
+        <value name='MNR'>postnominal modifier</value>
+        <value name='MO'>modifier</value>
+        <value name='MR'>rhetorical modifier</value>
+        <value name='MW'>way (directional modifier)</value>
+        <value name='NG'>negation</value>
+        <value name='NK'>noun kernel modifier</value>
+        <value name='NMC'>numerical component</value>
+        <value name='OA'>accusative object</value>
+        <value name='OA2'>second accusative object</value>
+        <value name='OC'>clausal object</value>
+        <value name='OG'>genitive object</value>
+        <value name='OP'>prepositional object</value>
+        <value name='PAR'>parenthesis</value>
+        <value name='PD'>predicate</value>
+        <value name='PG'>pseudo-genitive</value>
+        <value name='PH'>placeholder</value>
+        <value name='PM'>morphological particle</value>
+        <value name='PNC'>proper noun component</value>
+        <value name='RC'>relative clause</value>
+        <value name='RE'>repeated element</value>
+        <value name='RS'>reported speech</value>
+        <value name='SB'>subject</value>
+        <value name='SBP'>passivised subject (PP)</value>
+        <value name='SP'>subject or predicate</value>
+        <value name='SVP'>separable verb prefix</value>
+        <value name='UC'>unit component</value>
+        <value name='VO'>vocative</value>
+      </edgelabel>
+      <secedgelabel>
+        <value name='--'>--</value>
+        <value name='AC'>adpositional case marker</value>
+        <value name='ADC'>adjective component</value>
+        <value name='AMS'>measure argument of adj</value>
+        <value name='APP'>apposition</value>
+        <value name='AVC'>adverbial phrase component</value>
+        <value name='CC'>comparative complement</value>
+        <value name='CD'>coordinating conjunction</value>
+        <value name='CJ'>conjunct</value>
+        <value name='CM'>comparative concjunction</value>
+        <value name='CP'>complementizer</value>
+        <value name='CVC'>collocational verb construction (Funktionsverbgefüge)</value>
+        <value name='DA'>dative</value>
+        <value name='DH'>discourse-level head</value>
+        <value name='DM'>discourse marker</value>
+        <value name='EP'>expletive es</value>
+        <value name='GL'>prenominal genitive</value>
+        <value name='GR'>postnominal genitive</value>
+        <value name='HD'>head</value>
+        <value name='JU'>junctor</value>
+        <value name='MC'>comitative</value>
+        <value name='MI'>instrumental</value>
+        <value name='ML'>locative</value>
+        <value name='MNR'>postnominal modifier</value>
+        <value name='MO'>modifier</value>
+        <value name='MR'>rhetorical modifier</value>
+        <value name='MW'>way (directional modifier)</value>
+        <value name='NG'>negation</value>
+        <value name='NK'>noun kernel modifier</value>
+        <value name='NMC'>numerical component</value>
+        <value name='OA'>accusative object</value>
+        <value name='OA2'>second accusative object</value>
+        <value name='OC'>clausal object</value>
+        <value name='OG'>genitive object</value>
+        <value name='OP'>prepositional object</value>
+        <value name='PD'>predicate</value>
+        <value name='PG'>pseudo-genitive</value>
+        <value name='PH'>placeholder</value>
+        <value name='PM'>morphological particle</value>
+        <value name='PNC'>proper noun component</value>
+        <value name='RC'>relative clause</value>
+        <value name='RE'>repeated element</value>
+        <value name='RS'>reported speech</value>
+        <value name='SB'>subject</value>
+        <value name='SBP'>passivised subject (PP)</value>
+        <value name='SP'>subject or predicate</value>
+        <value name='SVP'>separable verb prefix</value>
+        <value name='UC'>(idiosyncratic) unit component</value>
+        <value name='VO'>vocative</value>
+      </secedgelabel>
+    </annotation>
+  </head>
+  <body>
+    <s id='s19144'>
+      <graph root='s19144_507'>
+        <terminals>
+          <t word='Die' id='s19144_1' lemma='der' morph='Nom.Sg.Fem' pos='ART'/>
+          <t word='Befugnis' id='s19144_2' lemma='Befugnis' morph='Nom.Sg.Fem' pos='NN'/>
+          <t word='für' id='s19144_3' lemma='für' morph='--' pos='APPR'/>
+          <t word='Strafermittler' id='s19144_4' lemma='Strafermittler' morph='Acc.Pl.Masc' pos='NN'/>
+          <t word=',' id='s19144_5' lemma='--' morph='--' pos='$,'/>
+          <t word='Telefone' id='s19144_6' lemma='Telefon' morph='Acc.Pl.Neut' pos='NN'/>
+          <t word='abzuhören' id='s19144_7' lemma='abhören' morph='Infzu' pos='VVIZU'/>
+          <t word=',' id='s19144_8' lemma='--' morph='--' pos='$,'/>
+          <t word='sollte' id='s19144_9' lemma='sollen' morph='3.Sg.Past.Ind' pos='VMFIN'/>
+          <t word='nicht' id='s19144_10' lemma='nicht' morph='--' pos='PTKNEG'/>
+          <t word='ohne' id='s19144_11' lemma='ohne' morph='--' pos='APPR'/>
+          <t word='``' id='s19144_12' lemma='--' morph='--' pos='$('/>
+          <t word='sorgfältige' id='s19144_13' lemma='sorgfältig' morph='Pos.Acc.Sg.Fem' pos='ADJA'/>
+          <t word='Güter-' id='s19144_14' lemma='Güter' morph='Acc.Sg.Fem' pos='TRUNC'/>
+          <t word='und' id='s19144_15' lemma='und' morph='--' pos='KON'/>
+          <t word='Risikoabwägung' id='s19144_16' lemma='Risikoabwägung' morph='Acc.Sg.Fem' pos='NN'/>
+          <t word='&apos;&apos;' id='s19144_17' lemma='--' morph='--' pos='$('/>
+          <t word='ausgeweitet' id='s19144_18' lemma='ausweiten' morph='Psp' pos='VVPP'/>
+          <t word='werden' id='s19144_19' lemma='werden' morph='Inf' pos='VAINF'/>
+          <t word='.' id='s19144_20' lemma='--' morph='--' pos='$.'/>
+        </terminals>
+        <nonterminals>
+          <nt cat='PP' id='s19144_500'>
+            <edge idref='s19144_3' label='AC'/>
+            <edge idref='s19144_4' label='NK'/>
+          </nt>
+          <nt cat='VP' id='s19144_501'>
+            <edge idref='s19144_6' label='OA'/>
+            <edge idref='s19144_7' label='HD'/>
+          </nt>
+          <nt cat='CNP' id='s19144_502'>
+            <edge idref='s19144_14' label='CJ'/>
+            <edge idref='s19144_15' label='CD'/>
+            <edge idref='s19144_16' label='CJ'/>
+          </nt>
+          <nt cat='NP' id='s19144_503'>
+            <edge idref='s19144_1' label='NK'/>
+            <edge idref='s19144_2' label='NK'/>
+            <edge idref='s19144_500' label='MNR'/>
+            <edge idref='s19144_501' label='OC'/>
+          </nt>
+          <nt cat='PP' id='s19144_504'>
+            <edge idref='s19144_11' label='AC'/>
+            <edge idref='s19144_13' label='NK'/>
+            <edge idref='s19144_502' label='NK'/>
+          </nt>
+          <nt cat='VP' id='s19144_505'>
+            <edge idref='s19144_18' label='HD'/>
+            <edge idref='s19144_504' label='MO'/>
+          </nt>
+          <nt cat='VP' id='s19144_506'>
+            <edge idref='s19144_19' label='HD'/>
+            <edge idref='s19144_505' label='OC'/>
+          </nt>
+          <nt cat='S' id='s19144_507'>
+            <edge idref='s19144_9' label='HD'/>
+            <edge idref='s19144_10' label='NG'/>
+            <edge idref='s19144_503' label='SB'/>
+            <edge idref='s19144_506' label='OC'/>
+          </nt>
+        </nonterminals>
+      </graph>
+      <sem>
+        <globals/>
+        <frames>
+          <frame name='Perception_active' id='abhoeren_s19144_f0'>
+            <target lemma='abhören'>
+              <fenode idref='s19144_7'/>
+            </target>
+            <fe name='Perceiver_agentive' id='abhoeren_s19144_f0_e1'>
+              <fenode idref='s19144_500'/>
+            </fe>
+            <fe name='Phenomenon' id='abhoeren_s19144_f0_e2'>
+              <fenode idref='s19144_6'/>
+            </fe>
+          </frame>
+        </frames>
+        <usp>
+          <uspframes/>
+          <uspfes/>
+        </usp>
+        <wordtags/>
+      </sem>
+      <matches/>
+    </s>
+  </body>
+</corpus>
