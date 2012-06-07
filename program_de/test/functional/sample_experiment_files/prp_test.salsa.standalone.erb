@@ -1,0 +1,120 @@
+# ID identifying this experiment and all its data
+# please do not use spaces inside the experiment ID
+prep_experiment_ID = prp_test
+
+# YOUR INPUT DATA:
+# frprep accepts an input directory rather than an input file.
+# It will process all files in the directory directory_input
+# and write the results to directory_preprocessed.
+#
+# For input formats see the discussion of "format" below.
+#directory_input = <%= File.expand_path('test/functional/input/frprep/test.salsa') %>
+directory_preprocessed = <%= File.expand_path('test/functional/input/fred/frprep/test.salsa') %>
+
+##
+# Experimental data is described by the following parameters:
+# 
+# - language: en / de
+#    en for English or de for German
+#
+# - format:  SalsaTigerXML / FNXml / SalsaTab / BNC / Plain
+#
+#    Format of the input data, training/test set
+#    SalsaTigerXML:  Parsed data, English or German
+#    FNXml:          FrameNet Lexical Unit files in FrameNet XML format
+#    FNCorpusXML:    FrameNet files in the FrameNet corpus XML format
+#    SalsaTab:       tabular format (internal)
+#    BNC             BNC XML format, alternating words and POS tags
+#    Plain           Plain text, ONE SENTENCE PER LINE. 
+#
+#    Preprocessing transforms all data to SalsaTigerXML.
+#
+# - origin:  SalsaTiger / FrameNet / <not specified>
+#    This is the origin of the training/test data.
+#    SalsaTiger: data from the Tiger corpus, possibly semantically
+#                annotated by Salsa
+#    FrameNet: data from the FrameNet project
+#
+#    Don't set 'origin' if none of these origins apply
+#
+# - encoding: utf8 / iso / hex / <not specified>
+#                 Default: iso
+
+language = de
+#origin = 
+format = Plain
+encoding = iso
+
+#############################
+# Which preprocessing steps to take?
+#
+# Data can be parsed, lemmatized and POS-tagged,
+# but this happens only if it is specified in the
+# experiment file.
+#
+# Set these booleans to true to trigger the respective
+# type of preprocessing. The default value is false.
+
+do_lemmatize = true
+do_postag = false
+do_parse = true
+
+#############################
+# directory where frprep puts its internal data
+#
+
+frprep_directory = <%= File.expand_path('test/functional/input/fred/frprep') %>
+
+#############################
+# Syntax/semantics interface repair:
+# FrameNet annotated data has some annotation choices
+# that may make it harder to learn the mapping from
+# syntactic structure to semantic roles.
+#
+# If you are using FrameNet data for training a 
+# semantic role labeler, set the following two settings
+# to true (default is false) to 'repair' semantic role labels
+# to closer match the syntactic structure
+
+fe_syn_repair = true
+fe_rel_repair = false
+
+
+#################
+# Location of tools and resources used by Fred
+
+# currently known to the system:
+# (Saarbruecken paths given)
+#
+# - POS tagging:
+#   - pos_tagger = treetagger
+#     pos_tagger_path = /proj/llx/Software/treetagger/cmd/tree-tagger-english-notokenisation
+#
+# - Lemmatization:
+#   - lemmatizer = treetagger
+#     lemmatizer_path = /proj/llx/Software/treetagger/cmd/tree-tagger-english-notokenisation
+#     lemmatizer_path = /proj/llx/Software/treetagger/cmd/tree-tagger-german-notokenisation
+#
+# - Parser:
+#   - parser = collins  (English)
+#     parser_path = /proj/llx/Software/Parsers/COLLINS-PARSER/
+#   - parser = sleepy   (German)
+#     parser_path = /proj/corpora/sleepy3/
+#   - parser = minipar (English)
+#     parser_path = /proj/llx/Software/Parsers/minipar-linux/
+#
+pos_tagger = treetagger
+pos_tagger_path = <%= File.expand_path('tools/treetagger/shal-ger') %>
+
+lemmatizer = treetagger
+lemmatizer_path = <%= File.expand_path('tools/treetagger/shal-ger') %>
+
+parser = berkeley
+parser_path = <%= File.expand_path('tools/berkeleyParser') %>
+
+# parser: 
+# maximum no. of sentences in a parse file,
+# maximum sentence length to be parsed
+
+parser_max_sent_num = 2000
+parser_max_sent_len = 80

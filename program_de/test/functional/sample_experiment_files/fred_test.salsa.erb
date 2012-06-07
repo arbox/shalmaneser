@@ -1,4 +1,4 @@
-experiment_ID = exp_fred_salsa
+experiment_ID = fred_test
 
 apply_to_all_known_targets = true
 
@@ -21,7 +21,7 @@ verbose = true
 #   <fred_directory>/<experiment_ID>/classifiers
 
 fred_directory = <%= File.expand_path('test/functional/output') %>
-
+classifier_dir = <%= File.expand_path('test/functional/input/fred/cls') %>
 # - preproc_descr_file_train / ...test
 #   where the experiment file for frprep is located
 #   (preprocessing for Fred and Rosy)
@@ -31,8 +31,8 @@ fred_directory = <%= File.expand_path('test/functional/output') %>
 #   and one for the test data
 #   (If you only ever use test data in this experiment, you only
 #   need to give preproc_descr_file_test, and vice versa for training data.)
-preproc_descr_file_train = <%= File.expand_path('test/functional/sample_experiment_files/prp_train.salsa') %>
-preproc_descr_file_test = <%= File.expand_path('test/functional/sample_experiment_files/prp_test.salsa') %>
+
+preproc_descr_file_test = <%= File.expand_path('test/functional/sample_experiment_files/prp_test.salsa.standalone') %>
 
 #####################
 # noncontiguous input?

@@ -15,19 +15,19 @@ class TestFred < Test::Unit::TestCase
 
   def test_fred_testing
     create_exp_file(@test_file)
-    create_exp_file(PRP_TEST_FILE)
+    create_exp_file(PRP_TEST_FILE_STD)
     execute("ruby -I lib bin/fred -t featurize -e #{@test_file} -d test")
     execute("ruby -I lib bin/fred -t test -e #{@test_file}")
     remove_exp_file(@test_file)
-    remove_exp_file(PRP_TEST_FILE)
+    remove_exp_file(PRP_TEST_FILE_STD)
   end
 
   def test_fred_training
     create_exp_file(@train_file)
-    create_exp_file(PRP_TRAIN_FILE)
+    create_exp_file(PRP_TRAIN_FILE_STD)
     execute("ruby -I lib bin/fred -t featurize -e #{@train_file} -d train")
     execute("ruby -I lib bin/fred -t train -e #{@train_file}")
     remove_exp_file(@train_file)
-    remove_exp_file(PRP_TRAIN_FILE)
+    remove_exp_file(PRP_TRAIN_FILE_STD)
   end
 end
