@@ -113,7 +113,7 @@ binary_classifiers = false
 #
 # for maxent, give first the path where maxent resides, 
 # then <where_shalmaneser_resides>/program/tools/maxent
-classifier = maxent /opt/OpenNLP-maxent/2.4.0 /home/arbox/work_space/shalm/dev/trunk/program_de/tools/maxent/
+classifier = maxent /opt/OpenNLP-maxent/2.4.0 <%= File.expand_path('tools/maxent/') %>
 
 
 # for binary classifiers, you can set the pseudolabel
