@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; mode: ruby -*-
 ####
 # sp 21 07 05
 #
@@ -17,6 +17,8 @@ require "common/Counter"
 require "common/AbstractSynInterface"
 require "common/Tiger.rb"
 
+# AB: copy a stored copy of a parse tree since we do no parsing.
+require 'fileutils'
 ################################################
 # Interface class
 class BerkeleyInterface < SynInterfaceSTXML
@@ -85,6 +87,16 @@ class BerkeleyInterface < SynInterfaceSTXML
       # Please keep the <parsefile> intact!!!
       #Kernel.system(berkeley_prog+" <"+tempfile.path+" > "+parsefilename)      
 
+      # AB: copy a stored copy of a parse tree since we do no parsing.
+      # We are in <directory_preprocessed> of FrPrep.
+      # For tests it is <test/functional/output>.
+      # Stubs are in <test/functional/output/tmp>. Copy them!
+      unless File.exist?(parsefilename)
+        exp_id = File.basename(File.expand_path("#{parsefilename}/../../"))
+        source = File.expand_path("#{out_dir}/../../tmp/#{exp_id}/parse/0.BerkeleyInterface")
+
+        FileUtils.cp(source, parsefilename)
+      end
     }
   end
 
