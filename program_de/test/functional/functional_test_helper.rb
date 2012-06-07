@@ -1,11 +1,13 @@
 require 'erb'
 
 module FunctionalTestHelper
-
+  PREF = 'test/functional/sample_experiment_files'
   PRP_TEST_FILE   = 'test/functional/sample_experiment_files/prp_test.salsa'
   PRP_TEST_FILE_STD   = 'test/functional/sample_experiment_files/prp_test.salsa.standalone'
+  PRP_TEST_FILE_ROSY_STD   = "#{PREF}/prp_test.salsa.rosy.standalone"
   PRP_TRAIN_FILE  = 'test/functional/sample_experiment_files/prp_train.salsa'
   PRP_TRAIN_FILE_STD  = 'test/functional/sample_experiment_files/prp_train.salsa.standalone'
+  PRP_TRAIN_FILE_ROSY_STD  = "#{PREF}/prp_train.salsa.rosy.standalone"
   FRED_TEST_FILE  = 'test/functional/sample_experiment_files/fred_test.salsa'
   FRED_TRAIN_FILE = 'test/functional/sample_experiment_files/fred_train.salsa'
   ROSY_TEST_FILE  = 'test/functional/sample_experiment_files/rosy_test.salsa'
