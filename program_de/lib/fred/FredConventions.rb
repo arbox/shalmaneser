@@ -7,6 +7,7 @@
 require "common/StandardPkgExtensions"
 
 require "common/EnduserMode"
+class Object
 
 ###
 # joining and breaking up senses
@@ -183,6 +184,7 @@ def fred_lemmapos_separate(lemmapos)  # string
     # no POS found, treat all of lemmapos as lemma
     return [ lemmapos, nil ]
   end
+end
 end
 
 ########################################

@@ -325,8 +325,12 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
     writer = @w_tmp.get_writer_for(fred_lemmapos_combine(lemma, pos))
     ids_s = ids.map { |i| i.gsub(/:/, "COLON") }.join("::")
-    senses_s = senses.map { |s| s.gsub(/:/, "COLON") }.join("::")
-
+    
+    # AB: Ines modified <senses> and it can be a String.
+    # That's corrected, but I do not guarantee the correct results.
+    if senses.respond_to? :map
+      senses_s = senses.map { |s| s.gsub(/:/, "COLON") }.join("::")
+    end
     writer.print "#{lemma} #{pos} #{ids_s} #{sid} #{senses_s} "
 
     # write all features
