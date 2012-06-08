@@ -7,4 +7,5 @@ group :development do
   gem 'yard'
   gem 'rdoc'
   gem 'rake'
+  gem 'debugger'
 end
