@@ -135,10 +135,16 @@ class TreetaggerInterface < SynInterfaceTab
     rescue
       raise "Could not write to #{outfilename}"
     end
-    tempfile2.open()
-    while (line = tempfile2.gets())
+    tempfile2.open
+    # AB: Internally all the flow is an utf-8 encoded stream.
+    # TreeTagger consumes one byte encodings (but we should provide a
+    # utf-8 model for German). So we convert utf-8 to latin1, then
+    # process the text and convert it back to utf-8.
+    #
+    while line = tempfile2.gets
 	#outfile.puts UtfIso.from_iso_8859_1(line)
-        outfile.puts UtfIso.from_iso_8859_1(convert_to_berkeley(line))
+      utf8line = UtfIso.from_iso_8859_1(line)
+      outfile.puts convert_to_berkeley(utf8line)
     end
     
     # remove second tempfile, finalize output file

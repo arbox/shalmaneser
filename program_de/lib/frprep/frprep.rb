@@ -31,6 +31,9 @@ class FrPrep
   end
   
   def transform()
+
+    # AB: Debugging.
+    debugger if $DEBUG
     
     current_format = @exp.get("format")
 
@@ -319,8 +322,9 @@ class FrPrep
 
       sys_class = SynInterfaces.get_interface("lemmatizer", 
 					      @exp.get("lemmatizer"))
+      # AB: make this exception explicit.
       unless sys_class
-        raise "Shouldn't be here"
+        raise 'I got a empty interface class for the lemmatizer!'
       end
       sys = sys_class.new(@exp.get("lemmatizer_path"),
 			  @file_suffixes["tab"],
