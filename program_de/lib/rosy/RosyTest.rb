@@ -12,7 +12,7 @@ require 'fileutils'
 require "common/Parser"
 require "common/SalsaTigerRegXML"
 require "common/SynInterfaces"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Rosy packages
 require "rosy/FeatureInfo"

@@ -8,7 +8,7 @@
 # and apply it to new sentences
 
 require "common/AbstractSynInterface"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 #####################################################################
 # Management of mapping from GFs to paths

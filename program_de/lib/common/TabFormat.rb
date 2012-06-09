@@ -23,7 +23,7 @@
 require "tempfile"
 
 require "common/ISO-8859-1"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 #######################
 # This function takes a variable number of arguments and

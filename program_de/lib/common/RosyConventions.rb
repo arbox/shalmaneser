@@ -4,7 +4,7 @@
 # Conventions to be used throughout the Rosy system
 # for greater consistency
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 require "common/EnduserMode"
 

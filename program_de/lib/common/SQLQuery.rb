@@ -4,7 +4,7 @@
 # provides static methods that generate SQL queries as strings
 # that can then be passed on to the database
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 require "common/RosyConventions"
 

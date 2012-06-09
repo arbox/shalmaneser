@@ -3,7 +3,7 @@
 #
 # Frame disambiguation system: train classifiers
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 
 # Shalmaneser packages

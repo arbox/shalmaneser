@@ -5,7 +5,7 @@ require "common/RegXML"
 require "common/SalsaTigerRegXML"
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 require "common/AbstractSynInterface"
 
 ############################################3

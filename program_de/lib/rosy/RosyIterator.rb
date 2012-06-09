@@ -24,7 +24,7 @@
 # (xwise_argrec, xwise_arglab, xwise_onestep) from the experiment file is read.
 # If that hasn't been set either, the default is frame-wise.
 
-require 'common/StandardPkgExtensions'
+require 'common/ruby_class_extensions'
 
 require 'rosy/View'
 require "common/RosyConventions"

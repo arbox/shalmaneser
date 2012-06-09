@@ -10,7 +10,7 @@
 # individual evaluation results and allows for a flag that
 # suppresses evaluation output to a file
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 class Eval
 

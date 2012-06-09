@@ -6,7 +6,7 @@
 
 # Salsa packages
 require "common/SynInterfaces"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Frprep packages
 require "common/FrPrepConfigData"

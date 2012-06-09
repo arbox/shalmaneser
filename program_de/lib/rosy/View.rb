@@ -12,7 +12,7 @@
 # and its value (modified or unmodified) will always be last in the array representation of a row.
 
 require "common/SQLQuery"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 require "common/RosyConventions"
 
 class DBView

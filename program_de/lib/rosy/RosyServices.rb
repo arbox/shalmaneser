@@ -5,7 +5,7 @@
 # remove database tables and experiments,
 # dump experiment to files and load from files
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Rosy packages
 require "common/RosyConventions"

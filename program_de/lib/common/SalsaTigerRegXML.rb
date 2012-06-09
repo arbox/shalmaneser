@@ -64,7 +64,7 @@
 require "common/Tree"
 require "common/STXmlTerminalOrder"
 require "common/RegXML"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 #############
 # class XMLNode

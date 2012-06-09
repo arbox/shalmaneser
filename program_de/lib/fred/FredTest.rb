@@ -13,7 +13,7 @@ require "tempfile"
 require "common/Parser"
 require "common/RegXML"
 require "common/SalsaTigerRegXML"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Shalmaneser packages
 require "common/FrPrepConfigData"

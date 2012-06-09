@@ -6,7 +6,7 @@
 
 require "rosy/GfInduce"
 require "rosy/AbstractFeatureAndExternal"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 ###
 # make filename for GfInduce picle file

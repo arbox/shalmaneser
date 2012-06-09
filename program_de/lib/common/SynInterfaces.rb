@@ -24,7 +24,7 @@
 # Abstract classes for both interfaces and interpreters
 # are in AbstractSynInterface.rb
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 class Array
   include EnumerableBool
 end

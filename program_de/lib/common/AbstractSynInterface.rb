@@ -25,7 +25,7 @@
 
 require "tempfile"
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 require "common/ISO-8859-1"
 require "common/Parser"

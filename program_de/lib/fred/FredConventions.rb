@@ -4,7 +4,7 @@
 # several small things that should be uniform
 # throughout the system
 
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 require "common/EnduserMode"
 class Object

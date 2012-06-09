@@ -9,7 +9,7 @@
 # Salsa packages
 require "common/Parser"
 require "common/SalsaTigerRegXML"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Fred/Rosy packages
 require "rosy/FailedParses"

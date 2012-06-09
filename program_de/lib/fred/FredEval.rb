@@ -15,7 +15,7 @@
 
 # Salsa packages
 require "common/Eval"
-require "common/StandardPkgExtensions"
+require "common/ruby_class_extensions"
 
 # Fred packages
 require "fred/FredConfigData"
