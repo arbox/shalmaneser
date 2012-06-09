@@ -36,140 +36,125 @@ fe_syn_repair" => "bool", # map words to constituents for FEs: idealize?
 fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
 
 = Fred
-    super(filename,          # config file
-	  { 
-            "experiment_ID" => "string", # experiment ID
-            "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
+experiment_ID" => "string", # experiment ID
+enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
 	    
-            "preproc_descr_file_train" => "string", # path to preprocessing files
-            "preproc_descr_file_test" => "string",
-            "directory_output" => "string", # path to Salsa/Tiger XML output directory
+preproc_descr_file_train" => "string", # path to preprocessing files
+preproc_descr_file_test" => "string",
+directory_output" => "string", # path to Salsa/Tiger XML output directory
 
-            "verbose" => "bool" ,     # print diagnostic messages?
-            "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
+verbose" => "bool" ,     # print diagnostic messages?
+apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
            
-            "fred_directory" => "string",# directory for internal info
-            "classifier_dir" => "string", # write classifiers here
+fred_directory" => "string",# directory for internal info
+classifier_dir" => "string", # write classifiers here
 
-            "classifier" => "list",  # classifiers
+classifier" => "list",  # classifiers
 
-            "dbtype" => "string",    # "mysql" or "sqlite"
+dbtype" => "string",    # "mysql" or "sqlite"
            
-            "host" => "string",      # DB access: sqlite only
-            "user" => "string",
-            "passwd" => "string",
-            "dbname" => "string",
+host" => "string",      # DB access: sqlite only
+user" => "string",
+passwd" => "string",
+dbname" => "string",
 
-            # featurization info
-            "feature" => "list",     # which features to use for the classifier?
-            "binary_classifiers" => "bool",# make binary rather than n-ary clasifiers?
-	    "negsense" => "string",  # binary classifier: negative sense is..?
-            "numerical_features" => "string", # do what with numerical features?
+# featurization info
+feature" => "list",     # which features to use for the classifier?
+binary_classifiers" => "bool",# make binary rather than n-ary clasifiers?
+negsense" => "string",  # binary classifier: negative sense is..?
+numerical_features" => "string", # do what with numerical features?
 
-            # what to do with items that have multiple senses?
-            # 'binarize': binary classifiers, and consider positive
-            #          if the sense is among the gold senses
-            # 'join' : make one joint sense
-            # 'repeat' : make multiple occurrences of the item, one sense per occ
-            # 'keep' : keep as separate labels
-            #
-            # multilabel: consider as assigned all labels
-            # above a certain confidence threshold?
-            "handle_multilabel" => "string",
-            "assignment_confidence_threshold" => "float",
+# what to do with items that have multiple senses?
+# 'binarize': binary classifiers, and consider positive
+#          if the sense is among the gold senses
+# 'join' : make one joint sense
+# 'repeat' : make multiple occurrences of the item, one sense per occ
+# 'keep' : keep as separate labels
+#
+# multilabel: consider as assigned all labels
+# above a certain confidence threshold?
+handle_multilabel" => "string",
+assignment_confidence_threshold" => "float",
             
-            # single-sentence context?
-            "single_sent_context" => "bool",
+# single-sentence context?
+single_sent_context" => "bool",
 
-            # noncontiguous input? then we need access to a larger corpus
-            "noncontiguous_input" => "bool",
-            "larger_corpus_dir" => "string",
-            "larger_corpus_format" => "string", 
-            "larger_corpus_encoding" => "string"
-	  },
-	  [ # variables
-            "train", 
-           "exp_ID"
-	  ]
-	  )
+# noncontiguous input? then we need access to a larger corpus
+noncontiguous_input" => "bool",
+larger_corpus_dir" => "string",
+larger_corpus_format" => "string", 
+larger_corpus_encoding" => "string"
 
-    # set access functions for list features
-    set_list_feature_access("classifier",
-                            method("access_classifier"))
-    set_list_feature_access("feature",
-                            method("access_feature"))
-  end
+[ # variables
+"train", 
+"exp_ID"
+]
 
 = Rosy
-    super(filename,                      # config file
-	  { # features
-            "feature" => "list",
-           "classifier" => "list",
+# features
+feature" => "list",
+classifier" => "list",
 
-           "verbose" => "bool" ,
-            "enduser_mode" => "bool", 
+verbose" => "bool" ,
+enduser_mode" => "bool", 
            
-            "experiment_ID" => "string",
+experiment_ID" => "string",
             
-            "directory_input_train" => "string",
-            "directory_input_test" => "string",
-            "directory_output" => "string", 
+directory_input_train" => "string",
+directory_input_test" => "string",
+directory_output" => "string", 
            
-            "preproc_descr_file_train" => "string",
-            "preproc_descr_file_test" => "string",
-            "external_descr_file"    => "string",
+preproc_descr_file_train" => "string",
+preproc_descr_file_test" => "string",
+external_descr_file"    => "string",
 
-            "dbtype" => "string",    # "mysql" or "sqlite"
+dbtype" => "string",    # "mysql" or "sqlite"
            
-            "host" => "string",      # DB access: sqlite only
-            "user" => "string",
-            "passwd" => "string",
-            "dbname" => "string",
+host" => "string",      # DB access: sqlite only
+user" => "string",
+passwd" => "string",
+dbname" => "string",
 	   
-            "data_dir" => "string",  # for external use
-            "rosy_dir" => "pattern", # for internal use only, set by rosy.rb
+data_dir" => "string",  # for external use
+rosy_dir" => "pattern", # for internal use only, set by rosy.rb
            
-           "classifier_dir" => "string", # if present, special directory for classifiers
+classifier_dir" => "string", # if present, special directory for classifiers
            
-           "classif_column_name" => "string",
-           "main_table_name" => "pattern",
-           "test_table_name" => "pattern",
+classif_column_name" => "string",
+main_table_name" => "pattern",
+test_table_name" => "pattern",
            
-           "eval_file" => "pattern", 
-           "log_file" => "pattern",
-           "failed_file" => "pattern",
-           "classifier_file" => "pattern",
-           "classifier_output_file" => "pattern",
-           "noval" => "string",
+eval_file" => "pattern", 
+log_file" => "pattern",
+failed_file" => "pattern",
+classifier_file" => "pattern",
+classifier_output_file" => "pattern",
+noval" => "string",
            
            
-           "split_nones" => "bool",
-           "print_eval_log" => "bool",
-           "assume_argrec_perfect" => "bool", 
-           "xwise_argrec" => "string",
-           "xwise_arglab" => "string",
-           "xwise_onestep" => "string",
+split_nones" => "bool",
+print_eval_log" => "bool",
+assume_argrec_perfect" => "bool", 
+xwise_argrec" => "string",
+xwise_arglab" => "string",
+xwise_onestep" => "string",
 
-           "fe_syn_repair" => "bool", # map words to constituents for FEs: idealize?
-           "fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
+fe_syn_repair" => "bool", # map words to constituents for FEs: idealize?
+fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
 
-           "prune" => "string",       # pruning prior to argrec?
-	    
-	  },
-	  ["exp_ID", "test_ID", "split_ID", "feature_name", "classif", "step", 
+prune" => "string",       # pruning prior to argrec?
+
+["exp_ID", "test_ID", "split_ID", "feature_name", "classif", "step", 
            "group", "dataset","mode"]                      # variables
-	  )
 
 = External Config Data
-    super(filename,          # config file
-	  { "directory" => "string", # features
 
-	    "experiment_id" => "string",
+directory" => "string", # features
 
-	    "gfmap_restrict_to_downpath" => "bool",
-	    "gfmap_restrict_pathlen" => "integer",
-	    "gfmap_remove_gf" => "list"
-	  },
-	  [] # variables
-	  )
+experiment_id" => "string",
+
+gfmap_restrict_to_downpath" => "bool",
+gfmap_restrict_pathlen" => "integer",
+gfmap_remove_gf" => "list"
+
 
