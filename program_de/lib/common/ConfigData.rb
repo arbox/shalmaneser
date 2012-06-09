@@ -58,36 +58,6 @@
 
 require 'common/StandardPkgExtensions'
 
-#####################################################
-# helper module for ConfigData:
-# deal with features that are actually directories
-module ConfigAlsoHandlingDirectories
-
-  ###
-  # existing_dir
-  #
-  # check that dir_name refers to an existing directory and that it can be accessed
-  #
-  # returns: dir_name(string), definitely ending in '/'
-  #
-  # deprecated! use File.existing_dir() instead
-  def existing_dir(dir_name) # string: name of directory
-    return File.existing_dir(dir_name)
-  end
-
-  ###
-  # new_dir
-  #
-  # check whether dir_name refers to an existing directory.
-  # if not, create it
-  #
-  # returns: dir_name(string), definitely ending in '/'
-  #
-  # deprecated! use File.new_dir() instead
-  def new_dir(dir_name) # string: name of  directory
-    return File.new_dir(dir_name)
-  end  
-end
 
 #####################################################
 ####################################################
@@ -100,7 +70,6 @@ end
 # needed for the given application.
 
 class ConfigData
-  include ConfigAlsoHandlingDirectories
 
   ###########
   # new()
