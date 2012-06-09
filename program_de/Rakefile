@@ -11,6 +11,8 @@ CLOBBER.include('ydoc',
                 '.yardoc',
                 '*.gem')
 
+task :clobber => [:remove_exp_files, :remove_test_output]
+
 # Generate documentation.
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
@@ -39,6 +41,23 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/**/*.rb']
 end
 
+desc 'Remove generated experiment files.'
+task :remove_exp_files do
+  files = FileList.new('test/functional/sample_experiment_files/*') do |f|
+    f.exclude(/.erb$/)
+  end
+
+  File.delete(*files)
+end
+
+# In the <output> dir are only dirs to be found, no files.
+desc 'Remove output of functional tests.'
+task :remove_test_output do
+  dirs = FileList.new('test/functional/output/*') do |d|
+    d.exclude(/tmp$/)
+  end
+  FileUtils.rm_rf(dirs)
+end
 
 =begin
 desc 'Open an irb session preloaded with this library.'
