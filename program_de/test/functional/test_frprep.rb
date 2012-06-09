@@ -13,11 +13,11 @@ class TestFrprep < Test::Unit::TestCase
     @test_file  = PRP_TEST_FILE
     @train_file = PRP_TRAIN_FILE
     @ptb        = 'lib/common/BerkeleyInterface.rb'
-#    link_berkeley
+    link_berkeley
   end
 
   def teardown
-#    unlink_berkeley
+    unlink_berkeley
   end
   def test_frprep_testing
     create_exp_file(@test_file)
