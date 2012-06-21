@@ -60,7 +60,7 @@ module FrPrep
     def self.create_parser
       OptionParser.new do |opts|
         opts.banner = <<STOP
-Fred and Rosy PREprocessor <frprep>. Preprocessing stage before Fred and Rosy
+Fred Preprocessor <FrPrep>. Preprocessing stage before Fred and Rosy
 for further frame/word sense assignment and semantic role assignment.
 
 Usage: frprep -h|-e FILENAME'
