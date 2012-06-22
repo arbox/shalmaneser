@@ -12,7 +12,7 @@ class TestFrprep < Test::Unit::TestCase
     @msg        = "FrPrep is doing bad, you've just broken something!"
     @test_file  = PRP_TEST_FILE
     @train_file = PRP_TRAIN_FILE
-    @ptb        = 'lib/common/BerkeleyInterface.rb'
+    @ptb        = 'lib/frprep/BerkeleyInterface.rb'
     link_berkeley
   end
 
