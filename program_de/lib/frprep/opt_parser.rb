@@ -3,8 +3,8 @@
 # AB, 2010-11-25
 
 require 'optparse'
-require 'common/FrPrepConfigData'
-require 'common/SynInterfaces'
+require 'frprep/FrPrepConfigData'
+require 'frprep/SynInterfaces'
 module FrPrep
 
   # This class parses options for FrPrep.
