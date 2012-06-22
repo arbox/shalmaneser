@@ -5,3 +5,5 @@ program_de/test/functional/output/prp_test/
 program_de/test/functional/output/prp_train/
 program_de/test/functional/output/rosy_test/
 tmp/
+.yardoc
+ydoc
