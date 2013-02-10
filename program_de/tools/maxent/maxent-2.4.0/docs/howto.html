@@ -1,0 +1,513 @@
+<html>
+<head>
+
+<!-- Language related information -->
+<meta http-equiv=Content-Language content=EN>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=language content=EN>
+<meta name=keywords content="maximum entropy, Natural Language, NLP,
+AI, maxent, machine learning">
+
+<Link rel="stylesheet" href="style.css" type="text/css">
+
+<title>The OpenNLP Maxent Homepage</title>
+
+</head>
+<body bgcolor="#FFFFFF">
+
+<table width=100% border=0 cellPadding=0 cellSpacing=0>
+<tr>
+<!--  <td width=18%>&nbsp;</td>-->
+ <td width=40% valign="top"><img src="onlpmaxent_logo.jpg"></td>
+  <td width=47% align="right" valign="bottom"><h2>HOWTO</h2></td>
+  <td width=13%>&nbsp;</td> 
+</tr>
+</table>
+
+<table width=100% height=100% border=0 cellPadding=0 cellSpacing=0>
+<tr> 
+<!--  <td width=18%>&nbsp;</td> -->
+<td width=12%>&nbsp;</td>  
+<td width=75% valign="top">
+
+<HR WIDTH="100%">
+<!-- <h1>The OpenNLP Maxent Homepage</h1> -->
+
+<center>
+[<a href="index.html">Home</a>]
+[<a href="about.html">About</a>]
+[<a href="howto.html">HOWTO</a>]
+[<a href="https://sourceforge.net/project/showfiles.php?group_id=5961">Download</a>]
+[<a href="api/index.html">API</a>]
+[<a href="https://sourceforge.net/forum/?group_id=5961">Forums</a>]
+[<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/maxent/">CVS</a>]
+</center>
+
+
+
+<blockquote>
+<b>Warning!</b> This HOWTO is now out of date with respect to the maxent
+implementation, though it still should be helpful for newcomers
+because it explains a bit how to use the maxent framework as well as
+the OpenNLP Maxent implementation.  To mention some of the
+implementation differences just briefly, you should have a look at the
+EventStream interface and consider using that instead of the
+EventCollector class.  Actually, the
+opennlp.grok.preprocess.sentdetect package discussed in this HOWTO has
+been updated to work with the maxent 1.2.0 as of Grok version 0.5.2,
+so you can download <a href="http://grok.sf.net">Grok</a> and have a
+look at that to see what is different. I'll see if I can update this
+document sometime in the near future, but it isn't a high priority
+just now.  If you have any questions, do not hesitate to post them on
+the
+<a href="https://sourceforge.net/forum/forum.php?forum_id=18385">help
+forum</a>. <br>
+<center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jason, 
+2001 October 29
+</center>
+</blockquote>
+
+<p>
+We've tried to make it fairly easy to build and use maxent models, but
+you need two things to start with: 1) an understanding of feature
+selection for maxent modeling, and&nbsp; 2) Java skills or the ability
+to read some example Java code and turn it into what you need.&nbsp;
+I'll write a very basic summary of what goes on with feature
+selection.&nbsp; For more details refer to some of the papers
+mentioned in <a href="whatismaxent.html">here.</a>
+</p>
+
+<p>
+Features in maxent are functions from outcomes (classes) and contexts
+to true or false.&nbsp; To take an example from Adwait Ratnaparkhi's
+part of speech tagger, a useful feature might be:
+</p>
+
+<p>&nbsp;&nbsp;&nbsp; feature (outcome, context)&nbsp; = { 1&nbsp;&nbsp;
+if&nbsp; outcome=DETERMINER
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;&amp;&nbsp;
+currentword(context) = "that"
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ 0&nbsp;&nbsp; otherwise
+</p>
+
+<p>
+Your job, as a person creating a model of a classification task, is to
+select the features that will be useful in making decisions.&nbsp; One
+thing to keep in mind, especially if you are reading any papers on
+maxent, is that the theoretical representation of these features is
+not the same as how they are represented in the implementation.&nbsp;
+(Actually, you really don't need to know the theoretical side to start
+selecting features with opennlp.maxent.) If you are familiar with
+feature selection for Adwait Ratnaparkhi's maxent implementation, you
+should have no problems since our implementation uses features in the
+same manner as his.&nbsp; Basically, features like the example above
+are reduced, for your purposes, to the <i>contextual predicate
+</i>portion of the feature, i.e. currentword(context)="that" (in the
+implementation this will further reduce to "current=that" or even just
+"that"). From this point on, I'll forget theory and discuss features
+from the perspective of the implementation, but for correctness I'll
+point out that whenever I say feature, I am actually talking about a
+contextual predicate which will expand into several features (however,
+this is entirely hidden from the user, so don't worry if you don't
+understand).
+</p>
+
+<p>
+So, say you want to implement a program which uses maxent to find
+names in a text., such as:
+</p>
+
+<blockquote>
+<i>He succeeds Terrence D. Daniels, formerly a W.R. Grace vice
+chairman, who resigned.</i>
+</blockquote>
+
+<p>
+If you are currently looking at the word <i>Terrence</i> and are
+trying to decide if it is a name or not, examples of the kinds of
+features you might use are "previous=succeeds", "current=Terrence",
+"next=D.", and "currentWordIsCapitalized".&nbsp; You might even add a
+feature that says that "Terrence" was seen as a name before.
+</p>
+
+<p>
+Here's how this information translates into the implementation.&nbsp;
+Let's assume that you already have a trained model for name finding
+available, that you have created an instance of the MaxentModel
+interface using that model, and that you are at currently looking at
+<i>Terrence</i> in the example sentence above.&nbsp; To ask the model
+whether it believes that <i>Terrence </i>is a name or not, you send a
+String[] with all of the features (such as those discussed above) to
+the model by calling the method:
+</p>
+
+<blockquote>
+<b>public double[] eval(String[] context);</b>
+</blockquote> 
+
+<p>
+The double[] which you get back will contain the probabilities of the
+various outcomes which the model has assigned based on the features
+which you sent it.&nbsp; The indexes of the double[] are actually
+paired with outcomes.&nbsp; For example, the outcomes associated with
+the probabilites might be "TRUE" for index 0 and "FALSE" for index
+1.&nbsp; To find the String name of a particular index outcome, call
+the method:
+</p>
+
+<blockquote>
+<b>public String getOutcome(int i);</b>
+</blockquote> 
+
+<p>
+Also, if you have gotten back double[] after calling <b>eval </b>and
+are interested in only the outcome which the model assigns the highest
+probability, you can call the method:
+</p>
+
+<blockquote>
+<b>public String getBestOutcome(double[] outcomes);</b>
+</blockquote> 
+
+<p>
+And this will return the String name of that most likely outcome.
+<br>&nbsp; <p>In order to make context collection process nicely
+modularized, you need to implement the ContextGenerator interface:
+</p>
+
+<blockquote>
+<b>public interface
+ContextGenerator {</b> <p><b>&nbsp;&nbsp;&nbsp; /**</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; * Builds up the list of contextual
+predicates given an Object.</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; */</b>
+<br><b>&nbsp;&nbsp;&nbsp; public String[] getContext(Object o);</b>
+<p><b>}</b>
+</blockquote> 
+
+<p>
+In Grok, the Object that we usually pass is a opennlp.common.util.Pair
+which contains a StringBuffer and the Integer index of the position we
+are currently at in the StringBuffer.&nbsp; However, you can pass
+whatever Object you like as long as your implementation of
+ContextGenerator can deal with it.  and produce a String[] with all of
+the relevant features (contextual predicates) in it.&nbsp; An example
+is given from the
+opennlp.grok.preprocess.sentdetect.SDContextGenerator implementation
+of the opennlp.maxent.ContextGenerator interface.
+</p>
+
+<blockquote>
+<b>&nbsp;/**</b> <br><b>&nbsp; * </b>Builds up the list of
+features, anchored around a position within the <br>&nbsp; *
+StringBuffer.  <br><b>&nbsp; */</b> <br><b>&nbsp;public String[]
+getContext(Object o) {</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;
+StringBuffer sb = (StringBuffer)((Pair)o).a;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; int position =
+((Integer)((Pair)o).b).intValue();</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+int lastIndex = sb.length()-1;</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp; int
+prefixStart = PerlHelp.previousSpaceIndex(sb, position);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; int prevStart =
+PerlHelp.previousSpaceIndex(sb, prefixStart);</b>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp; int suffixEnd =
+PerlHelp.nextSpaceIndex(sb, position, lastIndex);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; int nextEnd =
+PerlHelp.nextSpaceIndex(sb, suffixEnd, lastIndex);</b>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp; String prefix, previous, suffix,
+next;</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp; prefix =
+sb.substring(prefixStart, position).trim();</b>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp; previous = sb.substring(prevStart,
+prefixStart).trim();</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp; if (position
+== lastIndex) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; suffix =
+"";</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next =
+"";</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; } else {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; suffix =
+sb.substring(position+1,suffixEnd).trim();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next =
+sb.substring(suffixEnd, nextEnd).trim();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; }</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+ArrayList collectFeats = new ArrayList();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; if (!prefix.equals(""))&nbsp;&nbsp;
+collectFeats.add("x="+prefix);</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; if
+(PerlHelp.capRE.isMatch(prefix)) collectFeats.add("xcap");</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; if (!previous.equals(""))
+collectFeats.add("v="+previous);</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;
+if (!suffix.equals(""))&nbsp;&nbsp; collectFeats.add("s="+suffix);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; if
+(!next.equals(""))&nbsp;&nbsp;&nbsp;&nbsp;
+collectFeats.add("n="+next);</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+String[] context = new String[collectFeats.size()];</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0;
+i&lt;collectFeats.size(); i++)</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context[i] =
+(String)collectFeats.get(i);</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp; return
+context;</b> <br><b>}</b>
+</blockquote> 
+
+
+<p>
+Basically, it just runs around the StringBuffer collecting features
+that we thought would be useful for the end of sentence detection
+task.  <br>You might notice some odd things such as "v=" and "n=" ---
+these are just abbreviations for "previous" and "next". It is a good
+idea to use abbreviations for such features since they are generated
+from the data, and when you train your model, there may be several
+thousand of features with the form "previous=X" where X is the word
+preceding a possible sentence ending punctuation mark in the training
+data.&nbsp; All of these feature names must then be saved to disk
+eventually, and if you use, for example, "v" instead of "previous",
+you'll save a significant amount of disk space.  <p>The
+SDContextGenerator and the sentence detection model are then used by
+the method <b>sentDetect </b>in
+opennlp.grok.preprocess.SentenceDetectorME method&nbsp; as follows
+(the ContextGenerator has the name "cgen"):
+</p>
+
+<blockquote>
+<b>&nbsp;public String[] sentDetect(String s) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; StringBuffer sb = new
+StringBuffer(s);</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; REMatch[] enders
+= PerlHelp.peqRE.getAllMatches(sb);</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+int index = 0;</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; String sent;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0; i&lt;enders.length; i++)
+{</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int j =
+enders[i].getStartIndex();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; probs =
+<u>model.eval(cgen.getContext(new Pair(sb,new Integer(j))));</u></b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(model.getBestOutcome(probs).equals("T")) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sent = sb.substring(index, j+1).trim();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (sent.length() > 0) sents.add(sent);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index=j+1;</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; }</b>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp; if (index &lt; sb.length()) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sent =
+sb.substring(index).trim();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+(sent.length() > 0) sents.add(sent);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; }</b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+String[] sentSA = new String[sents.size()];</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; for (int i=0; i&lt;sents.size();
+i++)</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sentSA[i] = ((String)sents.get(i)).trim();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; sents.clear();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; return sentSA;</b>
+<br><b>}</b></blockquote> So that is basically what you need to know
+to use models! Now, how do you train a new model?&nbsp; For this,
+you'll want to implement the EventCollector interface:
+<blockquote>p<b>ublic interface EventCollector {</b>
+<br><b>&nbsp;&nbsp;&nbsp; public Event[] getEvents();</b>
+<br><b>&nbsp;&nbsp;&nbsp; public Event[] getEvents(boolean
+evalMode);</b> <br><b>}</b></blockquote> A class which implements
+EventCollector should take the data (which it is organizing into
+events) as an argument to a constructor.&nbsp; For most packages in
+opennlp.grok.preprocess, we use java.io.Reader objects, as the
+following segment of the opennlp.grok.preprocess.SDEventCollector
+shows: <br><b></b>&nbsp; <blockquote><b>public class SDEventCollector
+implements EventCollector {</b> <br><b>&nbsp;&nbsp;&nbsp; private
+ContextGenerator cg = new SDContextGenerator();</b>
+<br><b>&nbsp;&nbsp;&nbsp; private BufferedReader br;</b>
+<br><b>&nbsp;</b> <br><b>&nbsp;&nbsp;&nbsp; public
+SDEventCollector(Reader data) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; br = new
+BufferedReader(data);</b> <br><b>&nbsp;&nbsp;&nbsp; }</b></blockquote>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</b><b></b> <p>The <b>getEvents</b> methods required by the
+interface are then implemented as follows: <blockquote><b>public
+Event[] getEvents() {</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; return
+getEvents(false);</b> <br><b>&nbsp;}</b><b></b> <p><b>public Event[]
+getEvents(boolean evalMode) {</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;
+ArrayList elist = new ArrayList();</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;
+int numMatches;</b> <br><b>&nbsp;</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;
+try {</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String s = br.readLine();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (s !=
+null) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+StringBuffer sb = new StringBuffer(s);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+REMatch[] enders = PerlHelp.peqRE.getAllMatches(sb);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+numMatches = enders.length;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for (int i=0; i&lt;numMatches; i++) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int j = enders[i].getStartIndex();</b><b></b>
+<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Event e;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String[] context =</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+cg.getContext(new Pair(sb, new Integer(j)));</b> <br><b>&nbsp;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (i == numMatches-1) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e = new Event("T", context);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} else {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e = new Event("F", context);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</b> <br><b>&nbsp;</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+elist.add(e);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+s = br.readLine();</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</b>
+<br><b>&nbsp;&nbsp;&nbsp; } catch (Exception e) { e.printStackTrace();
+}</b><b></b> <p><b>&nbsp;&nbsp;&nbsp; Event[] events = new
+Event[elist.size()];</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; for(int i=0;
+i&lt;events.length; i++)</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; events[i] =
+(Event)elist.get(i);</b><b></b> <p><b>&nbsp;&nbsp;&nbsp;&nbsp; return
+events;</b> <br><b>}</b>
+</blockquote> 
+
+<p>
+Basically, this just walks through the data, asks the ContextGenerator
+for contexts, and throws an event outcome onto it to create a
+opennlp.maxent.Event object.&nbsp; Notice that we ignore the boolean
+<b>evalMode</b> in this implementation, which is because the
+SentenceDetectorME has not yet been set up for the nice automatic
+evaluation stuff made possible by the Evalable interface and TrainEval
+class.&nbsp; See the opennlp.grok.preprocess.namefind and
+opennlp.grok.preprocess.postag packages for examples which take
+advantage of the evaluation code.
+</p>
+
+<p>
+Once you have both your ContextGenerator and EventCollector
+implementations as well as your training data in hand, you can train
+up a model.&nbsp; opennlp.maxent has an implementation of Generalized
+Iterative Scaling (opennlp.maxent.GIS) which you can use for this
+purpose.&nbsp; Write some code somewhere to make a call to the method
+<b>GIS.trainModel</b>, which will ultimately save a model in a
+location which you have specified.
+</p>
+
+<blockquote>
+<b>public static void trainModel(String modelpath,&nbsp; String
+modelname, DataIndexer di, int iterations) {&nbsp; ...&nbsp; }</b>
+</blockquote>
+
+<p>
+The <i>modelpath</i> is the directory where you want the model saved,
+the <i>modelname</i> is however you want to call the model, and the
+<i>iterations</i> are the number of times the training procedure
+should iterate when finding the model's parameters. You shouldn't need
+more than 100 iterations, and when you are first trying to create your
+model, you'll probably want to use fewer so that you can iron out
+problems without waiting each time for all those iterations, which can
+be quite a while depending on the task.&nbsp; The DataIndexer is an
+object that pulls in all those events that your EventCollector has
+gathered and then manipulates them into a format that is much more
+efficient for the training procedure to work with.&nbsp; There is
+nothing complicated here --- you just need to create a DataIndexer
+with the events and an integer that is the cutoff for the number of
+times a feature must have been seen in order to be considered in the
+model.
+</p>
+
+<blockquote>
+<b>public DataIndexer(Event[] events, int cutoff){ ... }</b>
+</blockquote> 
+
+<p>
+You can also call the constructor <b>DataIndexer(Event[] events)</b>,
+which assumes a cutoff of 0.&nbsp; An example of code which does all
+of these steps to create a model follows (from
+opennlp.grok.preprocess.sentdetect.SentenceDetectorME):
+</p>
+
+<blockquote>
+<b>public static void main(String[] args) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; try {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileReader
+datafr = new FileReader(new File(args[0]));</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String outdir
+= args[1];</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+String modelname = args[2];</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DataIndexer di
+=&nbsp; new DataIndexer(new SDEventCollector(datafr).getEvents(),
+3);</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GIS.trainModel(outdir, modelname, di, 100);</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+e.printStackTrace();</b> <br><b>&nbsp;&nbsp;&nbsp;&nbsp; }</b>
+<br><b>&nbsp;</b> <br><b>}</b>
+
+</blockquote> 
+
+<p>
+Once the training is done, GIS&nbsp;dumps the model out as two files,
+one containing the model's parameters in binary format and the other
+containing information such as the different outcomes, the outcomes
+which have been associated with particular features, and the features
+themselves.&nbsp; They are saved (automatically gzipped) with the
+names <i>modelname</i>.mep.gz and <i>modelname</i>.mei.gz,
+respectively ("mep" for maxent parameters and "mei" for maxent info).
+<p>Now that you have your models dumped to disk, you can create an
+instance of opennlp.maxent.MaxentModel by called the constructor
+<b>GISModel(String modellocation, String modelname)</b>, which assumes
+that the two files for the model are gzipped with the mei and mep
+suffixes that GIS&nbsp; saved them as.&nbsp; So if you had just
+trained a model called "MyClassificationTask" which is saved in the
+directory /myproject/classify/ (as the files
+MyClassificationTask.mep.gz and MyClassificationTask.mep.gz) , you
+would create your model instance by calling
+<b>GISModel("/myproject/classify/", "MyClassificationTask").</b>
+&nbsp;Make sure that you have the trailing directory separator '/' on
+the location.&nbsp; (Note:&nbsp;we use a Unix example here, but it
+should work for other OS types as well.)&nbsp; Alternatively, you can
+create the model by using the constructor which takes InputStreams for
+the parameters and info files:&nbsp;<b>GISModel(InputStream modelinfo,
+InputStream modelparams)</b>.&nbsp; See
+opennlp.grok.preprocess.sentdetect.EnglishSentenceDetectorME for an
+example of this.
+</p>
+
+<p>
+That's it! Hopefully, with this little HOWTO and the example
+implementations available in opennlp.grok.preprocess, you'll be able
+to get maxent models up and running without too much difficulty.&nbsp;
+Please let me know if any parts of this HOWTO are particularly
+confusing and I'll try to make things more clear.&nbsp; I would also
+welcome "patches"&nbsp;to this document if you feel like making
+changes yourself.&nbsp; Also, feel free to take the
+opennlp.grok.preprocess implementations of ContextGenerator and
+EventCollector and modify and use them for your own purposes (they are
+LGPL'ed).
+</p>
+
+<center>
+[<a href="index.html">Home</a>]
+[<a href="about.html">About</a>]
+[<a href="howto.html">HOWTO</a>]
+[<a href="https://sourceforge.net/project/showfiles.php?group_id=5961">Download</a>]
+[<a href="api/index.html">API</a>]
+[<a href="https://sourceforge.net/forum/?group_id=5961">Forums</a>]
+[<a href="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/maxent/">CVS</a>]
+</center>
+
+<HR WIDTH="100%">
+
+    <h3>
+    Email: <a href="mailto:jmb@cogsci.ed.ac.uk">jmb@cogsci.ed.ac.uk</a><br>
+    2001 October 29 <br>
+    <br>
+<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=5961&amp;type=1" width="88" height="31" border="0"></A> <br>
+    </h3>  
+
+</td>
+<td width=13%>&nbsp;</td>
+</tr>
+</table>
+
+</html>
