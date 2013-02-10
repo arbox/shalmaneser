@@ -96,11 +96,11 @@ class TabFormatFile
 	  @files.each {|f|
 	    linearray << f.readline().chomp()
 	  }	
-	#STDERR.puts linearray
+          # STDERR.puts linearray
 	  @no_of_read_lines += 1
 	  if linearray.detect{|x| x.strip == ""}
 	    if linearray.detect {|x| x.strip != ""}
-	      STDERR.puts "Error: Mismatching empty lines!" 
+	      STDERR.puts "Error: Mismatching empty lines! <from lib/frprep>" 
 	      exit(1)
 	    else
 	      # sentence finished. yield it and start a new one
