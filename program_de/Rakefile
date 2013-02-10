@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 # Rake provides FileUtils and its own FileUtils extensions
 require 'rake'
 require 'rake/clean'
+require 'erb'
 
 CLEAN.include('.*~')
 CLOBBER.include('ydoc',
@@ -59,38 +60,15 @@ task :remove_test_output do
   FileUtils.rm_rf(dirs)
 end
 
-=begin
-desc 'Open an irb session preloaded with this library.'
-task :console do
-  sh 'irb -rubygems -I lib -r wlapi'
-end
+desc 'Generate sample experiment files.'
+task :generate_experiment_files do
+  files = FileList.new('test/functional/sample_experiment_files/*.erb')
+  files.each do |f|
+    template = File.read(f)
+    text = ERB.new(template).result
+    File.open(f.chomp('.erb'), 'w') do |out_file|
+      out_file.write(text)
+    end
+  end
 
-desc 'Show the current version.'
-task :v do
-  load 'wlapi/version.rb'
-  puts WLAPI::VERSION
 end
-
-desc 'Document the code using Yard and RDoc.'
-task :doc => [:clobber, :rdoc, :ydoc]
-  
-desc 'Release the library.'
-task :release => [:tag, :build, :publish] do
-  
-end
-
-desc 'Tag the current source code version.'
-task :tag do
-  puts 'Tagging the version.'
-end
-
-desc 'Builds the .gem package.'
-task :build do
-  puts 'Building the package.'
-end
-
-desc 'Publish the documentation on the homepage.'
-task :publish => [:clobber, :doc] do
-  system 'scp -r ydoc/* arbox@bu.chsta.be:/var/www/sites/bu.chsta.be/htdocs/shared/projects/wlapi'
-end
-=end
