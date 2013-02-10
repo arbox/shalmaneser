@@ -4,9 +4,19 @@
 
 # Set these paths appropriately
 
-BIN=/opt/TreeTagger/bin
-CMD=/opt/TreeTagger/cmd
-LIB=/opt/TreeTagger/lib
+
+command -v realpath >/dev/null 2>&1 || {
+    echo >&2 "I require <realpath> but it's not installed.  Aborting."
+    exit 1
+}
+
+BASE_DIR=$(dirname $(realpath $0))
+
+#BASE_DIR=/home/arbox/work_space/shalm/dev/program_de/tools/treetagger
+
+BIN=${BASE_DIR}/bin
+CMD=${BASE_DIR}/cmd
+LIB=${BASE_DIR}/lib
 
 TOKENIZER=${BIN}/separate-punctuation
 TAGGER=${BIN}/tree-tagger
