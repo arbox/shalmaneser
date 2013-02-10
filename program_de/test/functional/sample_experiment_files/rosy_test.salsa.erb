@@ -133,7 +133,7 @@ feature = prune
 # classifier = timbl /prog/MachineLearning/Timbl5/
 # classifier = maxent /prog/maxent-2.4.0 /prog/shalmaneser/program/tools/maxent
 
-classifier = maxent /opt/OpenNLP-maxent/2.4.0 <%= File.expand_path('tools/maxent/') %>
+classifier = maxent <%= File.expand_path('tools/maxent/maxent-2.4.0') %> <%= File.expand_path('tools/maxent/') %>
 
 ########################
 # further settings
