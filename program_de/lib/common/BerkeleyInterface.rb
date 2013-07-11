@@ -175,10 +175,10 @@ class BerkeleyInterface < SynInterfaceSTXML
     
     while not parsefile.eof?
 
-      case parsefile.gets
+      case abline = parsefile.gets
       when nil, /^%/, /^\s*$/ # empty lines, comments, end of input indicate end of current parse 
       else
-        raise "Error: premature end of tab file!"
+        raise "Error: premature end of tab file! Found line: #{abline}"
       end
     end  
   end
