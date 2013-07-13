@@ -1,9 +1,9 @@
-program_de/test/functional/output/fred_test/
-program_de/test/functional/output/fred_train/
-program_de/test/functional/output/frprep/
-program_de/test/functional/output/prp_test/
-program_de/test/functional/output/prp_train/
-program_de/test/functional/output/rosy_test/
+test/functional/output/fred_test/
+test/functional/output/fred_train/
+test/functional/output/frprep/
+test/functional/output/prp_test/
+test/functional/output/prp_train/
+test/functional/output/rosy_test/
 tmp/
 .yardoc
 ydoc
