@@ -1,4 +1,6 @@
 Gemfile.lock
+sb_stuff
+tools
 test/functional/output/fred_test/
 test/functional/output/fred_train/
 test/functional/output/frprep/
