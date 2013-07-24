@@ -9,3 +9,7 @@ For end users, we provide a simple end user mode which can simply apply the pre-
 ## Literature
 
 K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
+
+## Documentation
+
+The project documentation can be found in our [wiki](https://github.com/arbox/shalmaneser/wiki).
