@@ -32,10 +32,9 @@ YARD::Rake::YardocTask.new do |ydoc|
   ydoc.name = 'ydoc'
 end
 
-
 # Testing.
 require 'rake/testtask'
-Rake::TestTask.new do |t|
+Rake::TestTask.new(:test => [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
 #  t.ruby_opts = ['-rubygems'] # not necessary now
