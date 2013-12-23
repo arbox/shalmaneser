@@ -7,6 +7,7 @@ test/functional/output/frprep/
 test/functional/output/prp_test/
 test/functional/output/prp_train/
 test/functional/output/rosy_test/
+test/functional/output/rosy_train/
 tmp/
 .yardoc
 ydoc
