@@ -13,3 +13,13 @@ K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignme
 ## Documentation
 
 The project documentation can be found in our [wiki](https://github.com/arbox/shalmaneser/wiki).
+
+## Development
+
+We are working now on three branches:
+
+- ``dev`` - our development branch incorporating actual changes, for now pointing to ``1.2``;
+
+- ``1.2`` - intermediate target;
+
+- ``2.0`` - final target.
