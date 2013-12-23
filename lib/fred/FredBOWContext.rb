@@ -432,7 +432,16 @@ class NoncontiguousContextProvider < AbstractContextProvider
       File.symlink(filename, frprep_in + "infile")
 
       # call frprep
-      retv = Kernel.system("ruby frprep.rb -e #{tf_exp_frprep.path()}")
+      # AB: Bad hack, find a way to invoke FrPrep directly.
+      # We will need an FrPrep instance and an options object.
+      base_dir_path = File.expand_path(File.dirname(__FILE__) + '/../..')
+
+      # Remove this
+      FileUtils.cp(tf_exp_frprep.path, '/tmp/frprep.exp')
+      # after debugging
+
+      retv = system("ruby -rubygems -I #{base_dir_path}/lib #{base_dir_path}/bin/frprep -e #{tf_exp_frprep.path}")
+
       unless retv
         $stderr.puts "Error analyzing #{filename}. Exiting."
         exit 1
@@ -469,6 +478,8 @@ class NoncontiguousContextProvider < AbstractContextProvider
     
     # remove temporary data
     temptable_obj.drop_temp_table()
+
+    # AB: TODO Rewrite this passage using pure Ruby.
     %x{rm -rf #{frprep_in}}
     %x{rm -rf #{frprep_out}}
     %x{rm -rf #{frprep_dir}}
@@ -487,6 +498,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
   # - hash table containing all hash keys
   def make_index(dir)
 
+    # AB: Why this limits? Use constants!
     space_for_sentstring = 30000
     space_for_hashkey = 500
 
@@ -644,7 +656,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       end
       # and enter recursion
       remove_files(subdir)
-      File.rm_f(subdir)
+      FileUtils.rm_f(subdir)
     }
   end
 

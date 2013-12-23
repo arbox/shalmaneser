@@ -104,6 +104,9 @@ class FrPrep
     end
 
     while not(current_format == done_format)
+      # AB: DEBUG Remove it
+      STDERR.puts "#{current_format} - #{done_format}"
+      # after debugging
       case current_format
 
       when "BNC"
@@ -199,6 +202,7 @@ class FrPrep
         current_format = "Done"
 
       else
+        STDERR.puts "Done format is: #{done_format}"
 	$stderr.puts "Unknown data format #{current_format}"
         $stderr.puts "Please check the 'format' entry in your experiment file."
         raise "Experiment file problem"
