@@ -42,14 +42,14 @@ class SynInterface
   ###
   # returns a string: the name of the system
   # e.g. "Collins" or "TNT"
-  def SynInterface.system()
+  def self.system
     raise "Overwrite me"
   end
 
   ###
   # returns a string: the service offered
   # one of "lemmatizer", "parser", "pos tagger"
-  def SynInterface.service()
+  def self.service
     raise "Overwrite me"
   end
 
@@ -73,10 +73,10 @@ class SynInterface
   def process_dir(in_dir,        # string: name of input directory
 		  out_dir)       # string: name of output directory
 
-    Dir[in_dir+"*#{@insuffix}"].each {|infilename|
-      outfilename = out_dir + File.basename(infilename, @insuffix) + @outsuffix
-      process_file(infilename,outfilename)
-    }
+    Dir["#{in_dir}*#{@insuffix}"].each do |infilename|
+      outfilename = "#{out_dir}#{File.basename(infilename, @insuffix)}#{@outsuffix}"
+      process_file(infilename, outfilename)
+    end
   end
 
   ###
@@ -91,13 +91,13 @@ class SynInterface
   ######
   protected
 
-  def SynInterface.announce_me()
+  def self.announce_me
     if defined?(SynInterfaces)
       # yup, we have a class to which we can announce ourselves
-      SynInterfaces.add_interface(eval(self.name()))
+      SynInterfaces.add_interface(eval(self.name))
     else
       # no interface collector class
-      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
+      STDERR.puts "Interface #{self.name} not announced: no SynInterfaces."
     end
   end
 end
@@ -124,14 +124,13 @@ class SynInterfaceSTXML < SynInterface
   def to_stxml_dir(in_dir,   # string: name of dir with parse files
 		   out_dir)  # string: name of output dir
     
-    Dir[in_dir+"*#{@outsuffix}"].each { |parsefilename|
-      stxmlfilename = out_dir + File.basename(parsefilename, @outsuffix) + @stsuffix
+    Dir["#{in_dir}*#{@outsuffix}"].each do |parsefilename|
+      stxmlfilename = "#{out_dir}#{File.basename(parsefilename, @outsuffix)}#{@stsuffix}"
       to_stxml_file(parsefilename, stxmlfilename)
-    }
+    end
   end
 
-  def to_stxml_file(infilename, 
-		    outfilename)
+  def to_stxml_file(infilename, outfilename)
     raise "Overwrite me"
   end
 
@@ -142,22 +141,25 @@ class SynInterfaceSTXML < SynInterface
   # SalsaTigerSentence nodes returned by each_sentence():
   # map the n-th word of the tab sentence to the n-th terminal of
   # the SalsaTigerSentence
-  def SynInterfaceSTXML.standard_mapping(sent, tabsent)
-    retv = Hash.new
+  def self.standard_mapping(sent, tabsent)
+    retv = {}
+
     if sent.nil?
-	return nil
-    end
-    terminals = sent.terminals_sorted()
-    if tabsent
-      tabsent.each_line_parsed { |l|
-        if (t = terminals[l.get("lineno")])
-          retv[l.get("lineno")] = [t]
-        else
-          retv[l.get("lineno")] = []
+	retv = nil
+    else
+      terminals = sent.terminals_sorted
+      if tabsent
+        tabsent.each_line_parsed do |l|
+          if (t = terminals[l.get("lineno")])
+            retv[l.get("lineno")] = [t]
+          else
+            retv[l.get("lineno")] = []
+          end
         end
-      }
+      end
     end
-    return retv
+    
+    retv
   end
 
 
@@ -185,13 +187,13 @@ class SynInterfaceSTXML < SynInterface
 
     # write Salsa/Tiger XML to tempfile
     tf = Tempfile.new("SynInterface")
-    tf.close()
+    tf.close
     to_stxml_file(infilename, tf.path)
-    tf.flush()
+    tf.flush
 
     # get matching tab file, read
     tab_reader = get_tab_reader(infilename)
-    tab_sentences = Array.new
+    tab_sentences = []
     tab_reader.each_sentence { |s| tab_sentences << s }
 
     # read Salsa/Tiger sentences and yield them

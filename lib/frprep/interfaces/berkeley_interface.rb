@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 ####
 # sp 21 07 05
 #
@@ -20,30 +20,30 @@ require "common/Tiger.rb"
 ################################################
 # Interface class
 class BerkeleyInterface < SynInterfaceSTXML
-  $stderr.puts 'Announcing Berkeley Interface' if $DEBUG
-  BerkeleyInterface.announce_me()
+  STDERR.puts 'Announcing Berkeley Interface' if $DEBUG
+  BerkeleyInterface.announce_me
 
-  ###
-  def BerkeleyInterface.system()
-    return "berkeley"
+  def self.system
+    'berkeley'
   end
 
-  ###
-  def BerkeleyInterface.service()
-    return "parser"
+  def self.service
+    'parser'
   end
 
   ###
   # initialize to set values for all subsequent processing
-  def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of tab files
-		 outsuffix,     # string: suffix for parsed files
-		 stsuffix,      # string: suffix for Salsa/TIGER XML files
-		 var_hash = {}) # optional arguments in a hash
-
+  # @param program_path [String] path to a system
+  # @param insuffix [String] suffix of tab files
+  # @param outsuffix [String] suffix of parsed files
+  # @param stsuffix [String] suffix of Salsa/TigerXML files
+  # @param var_hash [Hash] optional arguments
+  def initialize(program_path, insuffix, outsuffix, stsuffix, var_hash = {})
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
+
+    # AB: TODO This should be checked in the OptionParser.
     unless @program_path =~ /\/$/
-      @program_path = @program_path + "/"
+      @program_path += '/'
     end
 
     # new: evaluate var hash
@@ -60,23 +60,25 @@ class BerkeleyInterface < SynInterfaceSTXML
   def process_dir(in_dir,  # string: input directory name
 		  out_dir) # string: output directory name
     
-# not using x64 arch, adjusting for 32 bit
-#    berkeley_prog = "java -d64 -Xmx10000m -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
-    berkeley_prog = "java -Xmx2000m -jar #{@program_path}berkeleyParser.jar -gr #{@program_path}ger_sm5.gr"
+    #berkeley_prog = "java -Xmx2000m -jar #{@program_path}berkeleyParser.jar -gr #{@program_path}ger_sm5.gr"
 
-    berkeley_prog = "java -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
-    Dir[in_dir + "*" + @insuffix].each {|inputfilename|
+    berkeley_prog = "java -d64 -Xmx10000m -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
+
+    Dir[in_dir + "*" + @insuffix].each do |inputfilename|
+
       STDERR.puts "*** Parsing #{inputfilename} with Berkeley"
       corpusfilename = File.basename(inputfilename, @insuffix)
       parsefilename = out_dir + corpusfilename + @outsuffix
       tempfile = Tempfile.new(corpusfilename)
 
       # we need neither lemmata nor POS tags; berkeley can do with the words
-      corpusfile = FNTabFormatFile.new(inputfilename,nil, nil) 
-      corpusfile.each_sentence {|sentence|
-        #puts sentence.to_s
-        tempfile.puts sentence.to_s
-      }
+      corpusfile = FNTabFormatFile.new(inputfilename, nil, nil) 
+
+      corpusfile.each_sentence do |sentence|
+        #puts sentence
+        tempfile.puts sentence
+      end
+
       tempfile.close
       # parse and remove comments in the parser output
       STDERR.puts "#{berkeley_prog} < #{tempfile.path} > #{parsefilename}"
@@ -85,7 +87,7 @@ class BerkeleyInterface < SynInterfaceSTXML
       # Please keep the <parsefile> intact!!!
       Kernel.system("#{berkeley_prog} < #{tempfile.path} > #{parsefilename}")      
 
-    }
+    end
   end
 
   ###
@@ -111,7 +113,7 @@ class BerkeleyInterface < SynInterfaceSTXML
     tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)    
 
     sentid = 0
-    tabfile.each_sentence {|tab_sent| # iterate over corpus sentences
+    tabfile.each_sentence do |tab_sent| # iterate over corpus sentences
       
       sentence_str = ""
       status = true # error encountered? 
@@ -165,9 +167,9 @@ class BerkeleyInterface < SynInterfaceSTXML
         #raise "Hunh? This is a failed parse, but still we have a parse tree? Look again."
       end
      
-    }
+    end
 
-      # we don't have a sentence: hopefully, this is becase parsing has failed
+    # we don't have a sentence: hopefully, this is becase parsing has failed
     
     
     # all TabFile sentences are consumed: 
@@ -189,14 +191,14 @@ class BerkeleyInterface < SynInterfaceSTXML
   def to_stxml_file(infilename,  # string: name of parse file
 		    outfilename) # string: name of output stxml file
 
-    outfile = File.new(outfilename, "w")
-    
-    outfile.puts SalsaTigerXMLHelper.get_header()
-    each_sentence(infilename) { |st_sent, tabsent|
-      outfile.puts st_sent.get()
-    }
-    outfile.puts SalsaTigerXMLHelper.get_footer()
-    outfile.close()
+    File.open(outfilename, 'w') do |outfile|
+      outfile.puts SalsaTigerXMLHelper.get_header
+      each_sentence(infilename) do |st_sent, tabsent|
+        outfile.puts st_sent.get
+      end
+      outfile.puts SalsaTigerXMLHelper.get_footer
+    end
+
   end
 
 
@@ -261,13 +263,13 @@ class BerkeleyInterface < SynInterfaceSTXML
         raise "Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
       end
 
-      cat,gf = split_cat(comb_cat)
+      cat, gf = split_cat(comb_cat)
       node = sent_obj.add_syn("t",
                               nil,  # cat (doesn't matter here)
                               SalsaTigerXMLHelper.escape(word), # word
                               cat,  # pos
                               termc.next.to_s)
-      node.set_attribute("gf",gf)
+      node.set_attribute("gf", gf)
 #          STDERR.puts "completed terminal #{cat}, #{word}"
       stack.push node
       return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)    
@@ -275,12 +277,14 @@ class BerkeleyInterface < SynInterfaceSTXML
     when /^\s*\)/ # match the end of a nonterminal (nothing before a closing bracket)
       # now collect children:
       # pop items from the stack until you find the category
-      children = Array.new  
+      children = []  
       while true
         if stack.empty?
           raise "Error: stack empty; cannot find more children"
         end
+
         item = stack.pop
+
         case item.class.to_s
         when "SynNode" # this is a child
           children.push item
@@ -288,12 +292,13 @@ class BerkeleyInterface < SynInterfaceSTXML
           if item.to_s == ""
             raise "Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
           end        
-          cat,gf = split_cat(item)
+          cat, gf = split_cat(item)
           break
         else
           raise "Error: unknown item class #{item.class.to_s}"
         end
       end
+
       # now add a nonterminal node to the sentence object and 
       # register the children nodes
       node = sent_obj.add_syn("nt",
@@ -301,12 +306,14 @@ class BerkeleyInterface < SynInterfaceSTXML
                               nil, # word (doesn't matter)
                               nil, # pos (doesn't matter)
                               nontc.next.to_s)
-      children.each {|child|
+
+      children.each do |child|
         child_gf = child.get_attribute("gf")
         child.del_attribute("gf")
         node.add_child(child,child_gf)
         child.add_parent(node, child_gf)
-       }
+      end
+
       node.set_attribute("gf",gf)
 #          STDERR.puts "Completed nonterm #{cat}, #{children.length} children."
       stack.push node
@@ -317,59 +324,20 @@ class BerkeleyInterface < SynInterfaceSTXML
     end
   end
 
-
-
-
   ###
-  # Berkeley delivers node labels as "phrase type"-"grammatical function"
+  # BerkeleyParser delivers node labels as "phrase type"-"grammatical function",
   # but the GF may not be present.
-
+  # @param cat [String]
+  # @return [String]
   def split_cat(cat)
 
-    cat =~ /^([^-]*)(-([^-]*))?$/
-    unless $1
-      raise "Error: could not identify category in #{cat}"
-    end
+    md = cat.match(/^([^-]*)(-([^-]*))?$/)
+    raise "Error: Could not identify category in #{cat}!" unless md[1]
     
-    proper_cat = $1
+    proper_cat = md[1]
+    md[3] ? gf = md[3] : gf = ''
     
-    if $3    
-      gf = $3
-    else
-      gf = ""
-    end
-    
-    return [proper_cat,gf]
-    
-  end
-end
-
-
-
-################################################
-# Interpreter class
-class BerkeleyInterpreter < Tiger
-  BerkeleyInterpreter.announce_me()
-
-  ###
-  # names of the systems interpreted by this class:
-  # returns a hash service(string) -> system name (string),
-  # e.g.
-  # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def BerkeleyInterpreter.systems()
-    return {
-	"parser" => "berkeley"
-    }
-  end
-
-  ###
-  # names of additional systems that may be interpreted by this class
-  # returns a hash service(string) -> system name(string)
-  # same as names()
-  def BerkeleyInterpreter.optional_systems()
-    return {
-      "lemmatizer" => "treetagger"
-    }
+    [proper_cat,gf]
   end
 
 end

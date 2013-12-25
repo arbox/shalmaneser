@@ -84,7 +84,7 @@ class TabFormatFile
   # (in terms of number of lines) as the first file.
   # each sentence is returned in the form of an
   # array of TabFormatSentence sentences.
-  
+  # AB: TODO Delete this nasty exception!!!
   def each_sentence
     unless @read_completely
       sentence = @my_sentence_class.new(@patterns)

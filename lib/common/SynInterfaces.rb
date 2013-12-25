@@ -245,8 +245,13 @@ class SynInterfaces
 end
 
 
+# AB: TODO We should require programmatically all files in
+# <frprep/interpreters> and <frprep/interfaces>.
 require "frprep/CollinsInterface"
-require "frprep/BerkeleyInterface"
+
+require 'frprep/interfaces/berkeley_interface'
+require 'frprep/interpreters/berkeley_interpreter'
+
 require "frprep/SleepyInterface"
 require "frprep/MiniparInterface"
 require "frprep/TntInterface"

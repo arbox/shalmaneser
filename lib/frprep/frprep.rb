@@ -6,8 +6,8 @@ require 'common/FixSynSemMapping'
 # The class that does all the work
 module FrPrep
 class FrPrep
-
-  def initialize(exp)   # FrprepConfigData object
+  # @param exp [FrprepConfigData] Configuration object
+  def initialize(exp)
     @exp = exp
 
     # AB: move to FRprepOptionParser    
@@ -30,7 +30,7 @@ class FrPrep
       "stxml" => ".xml"}
   end
   
-  def transform()
+  def transform
 
     # AB: Debugging.
     debugger if $DEBUG
@@ -226,19 +226,15 @@ class FrPrep
   #
   # If this is a new directory, it is constructed,
   # if it should be an existing directory, its existence is  checked.
-  def frprep_dirname(subdir,     # string: designator of subdirectory
-                     new = nil)  # non-nil: this may be a new directory
+  # @param subdir [String] designator of a subdirectory
+  # @param neu [Nil] non-nil This may be a new directory
+  def frprep_dirname(subdir, neu = nil)
 
     dirname = File.new_dir(@exp.get("frprep_directory"),
                            @exp.get("prep_experiment_ID"),
                            subdir)
 
-
-    if new
-      return File.new_dir(dirname)
-    else
-      return File.existing_dir(dirname)
-    end
+    neu ? File.new_dir(dirname) : File.existing_dir(dirname)
   end
   
 
@@ -268,16 +264,15 @@ class FrPrep
   # transformation for plaintext:
   #
   # transform to Tab format, separating punctuation from adjacent words
-  def transform_plain_dir(input_dir,  # string: input directory
-                          output_dir) # string: output directory
-
-    Dir[input_dir + "*"].each { |plainfilename|
-      
+  # @param input_dir [String] input directory
+  # @param output_dir [String] output directory
+  def transform_plain_dir(input_dir, output_dir)
+    Dir[input_dir + "*"].each do |plainfilename|
       # open input and output file
       # end output file name in "tab" because that is, at the moment, required
       outfilename = output_dir + File.basename(plainfilename) + @file_suffixes["tab"]
       FrprepHelper.plain_to_tab_file(plainfilename, outfilename)
-    }
+    end
   end
 
   ###############
