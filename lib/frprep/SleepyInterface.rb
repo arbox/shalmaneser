@@ -6,15 +6,15 @@
 # represents a file containing Sleepy parses
 # 
 # underlying data structure for individual sentences: SalsaTigerSentence
-require "tempfile"
+require 'tempfile'
 
-require "frprep/SalsaTigerRegXML"
-require "frprep/SalsaTigerXMLHelper"
-require "frprep/TabFormat"
-require "frprep/Counter"
+require 'common/SalsaTigerRegXML'
+require 'common/SalsaTigerXMLHelper'
+require 'common/TabFormat'
+require 'common/Counter'
 
-require "frprep/AbstractSynInterface"
-require "frprep/Tiger.rb"
+require 'common/AbstractSynInterface'
+require 'common/Tiger.rb'
 
 ################################################
 # Interface class

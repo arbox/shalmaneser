@@ -5,12 +5,12 @@
 # parsing with Salsa/Tiger XML output format,
 # class for interpreting the Salsa/Tiger XML data structures
 
-require "tempfile"
-require "frprep/TabFormat"
-require "frprep/SalsaTigerRegXML"
-require "frprep/SalsaTigerXMLHelper"
+require 'tempfile'
+require 'common/TabFormat'
+require 'common/SalsaTigerRegXML'
+require 'common/SalsaTigerXMLHelper'
 
-require "frprep/AbstractSynInterface"
+require 'common/AbstractSynInterface'
 
 #########################################
 # MiniparSentence class

@@ -8,13 +8,13 @@
 # underlying data structure for individual sentences: SalsaTigerSentence
 
 
-require "tempfile"
-require "frprep/TabFormat"
-require "frprep/SalsaTigerRegXML"
-require "frprep/SalsaTigerXMLHelper"
-require "frprep/Counter"
+require 'tempfile'
+require 'common/TabFormat'
+require 'common/SalsaTigerRegXML'
+require 'common/SalsaTigerXMLHelper'
+require 'frprep/Counter'
 
-require "frprep/AbstractSynInterface"
+require 'common/AbstractSynInterface'
 
 ################################################
 # Interface class

@@ -245,12 +245,12 @@ class SynInterfaces
 end
 
 
-require "common/CollinsInterface"
-require "common/BerkeleyInterface"
-require "common/SleepyInterface"
-require "common/MiniparInterface"
-require "common/TntInterface"
-require "common/TreetaggerInterface"
+require "frprep/CollinsInterface"
+require "frprep/BerkeleyInterface"
+require "frprep/SleepyInterface"
+require "frprep/MiniparInterface"
+require "frprep/TntInterface"
+require "frprep/TreetaggerInterface"
 
 
 class EmptyInterpreter < SynInterpreter

@@ -1,5 +1,5 @@
 require "tempfile"
-require "frprep/AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 ################################################
 # Interface class

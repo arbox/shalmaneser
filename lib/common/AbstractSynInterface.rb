@@ -25,10 +25,10 @@
 
 require "tempfile"
 
-require "common/ruby_class_extensions"
+require 'common/ruby_class_extensions'
 
-require "common/ISO-8859-1"
-require "common/Parser"
+require 'common/ISO-8859-1'
+require 'common/Parser'
 require "common/SalsaTigerRegXML"
 require "common/TabFormat"
 

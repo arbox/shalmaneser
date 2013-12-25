@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-require "common/headz"
-require "common/SalsaTigerRegXML"
-require "common/ruby_class_extensions"
+require 'common/headz'
+require 'common/SalsaTigerRegXML'
+require 'common/ruby_class_extensions'
 class Array
   include EnumerableDistribute
 end
 
 
-require "common/AbstractSynInterface"
+require 'common/AbstractSynInterface'
 
 #############################################
 #

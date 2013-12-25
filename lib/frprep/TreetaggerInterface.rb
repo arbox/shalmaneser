@@ -3,7 +3,7 @@
 
 require "tempfile"
 
-require "frprep/AbstractSynInterface"
+require "common/AbstractSynInterface"
 
 ###########
 # KE dec 7, 06
