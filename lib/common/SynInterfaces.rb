@@ -251,6 +251,8 @@ require "frprep/CollinsInterface"
 
 require 'frprep/interfaces/berkeley_interface'
 require 'frprep/interpreters/berkeley_interpreter'
+require 'frprep/interfaces/stanford_interface'
+require 'frprep/interpreters/stanford_interpreter'
 
 require "frprep/SleepyInterface"
 require "frprep/MiniparInterface"
