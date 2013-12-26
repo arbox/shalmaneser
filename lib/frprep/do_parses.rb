@@ -91,6 +91,7 @@ class DoParses
           raise "Cannot parse without tab files"
         end
 
+        # AB: NOTE This is the position where a parser is invoked.
         # parse
         sys.process_dir(@tab_dir, @parse_dir)
 

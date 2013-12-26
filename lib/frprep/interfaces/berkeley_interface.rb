@@ -121,7 +121,7 @@ class BerkeleyInterface < SynInterfaceSTXML
       # for berkeley: 
       while true
         line = parsefile.gets
-
+        
         # search for the next "relevant" file or end of the file
 	if line.nil? or line=~/^\( *\(TOP/ or line=~/^\(\(\)/
           break

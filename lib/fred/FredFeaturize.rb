@@ -32,7 +32,7 @@ require "common/SalsaTigerXMLHelper"
 require "fred/FredConfigData"
 require "fred/FredConventions"
 require "common/FrPrepConfigData"
-require "common/FrprepHelper"
+require "common/frprep_helper"
 require "common/SynInterfaces"
 
 require "fred/FredBOWContext"

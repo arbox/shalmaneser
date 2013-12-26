@@ -1,5 +1,5 @@
 require 'frprep/do_parses'
-require 'common/FrprepHelper'
+require 'common/frprep_helper'
 require 'common/FixSynSemMapping'
 
 ##############################
@@ -35,7 +35,6 @@ class FrPrep
     # AB: Debugging.
     debugger if $DEBUG
     
-    current_format = @exp.get("format")
 
     # AB: move to FRprepOptionParser
     unless @exp.get("directory_input")
@@ -97,13 +96,11 @@ class FrPrep
     # Tab format.
     current_dir = input_dir
 
-    if @exp.get("tabformat_output")
-      done_format = "SalsaTabWithPos"
-    else
-      done_format = "Done"
-    end
+    done_format = @exp.get("tabformat_output") ? 'SalsaTabWithPos' : 'Done'
 
-    while not(current_format == done_format)
+    current_format = @exp.get("format")
+
+    while current_format != done_format
       # AB: DEBUG Remove it
       STDERR.puts "#{current_format} - #{done_format}"
       # after debugging
@@ -209,13 +206,12 @@ class FrPrep
       end
     end
 
-    $stderr.puts "Frprep: Done preprocessing."
+    STDERR.puts "FrPrep: Done preprocessing."
   end
   
-  ############################################################################3
+  ############################################################################
   private
-  ############################################################################3
-
+ 
   ###############
   # frprep_dirname:
   # make directory name for frprep-internal data
@@ -294,6 +290,8 @@ class FrPrep
     # POS-Tagging
     if @exp.get("do_postag")
       $stderr.puts "Frprep: Tagging."
+
+      # AB: TODO Move it to OptionParser.
       unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
 	raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
       end
@@ -301,9 +299,12 @@ class FrPrep
       sys_class = SynInterfaces.get_interface("pos_tagger", 
 					      @exp.get("pos_tagger"))
       print "pos tagger interface: ", sys_class, "\n" 
+
+      # AB: TODO Remove it.
       unless sys_class
         raise "Shouldn't be here"
       end
+
       sys = sys_class.new(@exp.get("pos_tagger_path"),
 			  @file_suffixes["tab"],
 			  @file_suffixes["pos"])
@@ -313,18 +314,22 @@ class FrPrep
     
     ## 
     # Lemmatization
+    # AB: We're working on the <split> dir and writing there.
     if @exp.get("do_lemmatize")
-      $stderr.puts "Frprep: Lemmatizing."
+      STDERR.puts 'Frprep: Lemmatizing.'
+
+      # AB: TODO Move it to OptionParser.
       unless @exp.get("lemmatizer_path") and @exp.get("lemmatizer")
 	raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
       end
 
       sys_class = SynInterfaces.get_interface("lemmatizer", 
 					      @exp.get("lemmatizer"))
-      # AB: make this exception explicit.
+      # AB: TODO make this exception explicit.
       unless sys_class
         raise 'I got a empty interface class for the lemmatizer!'
       end
+
       sys = sys_class.new(@exp.get("lemmatizer_path"),
 			  @file_suffixes["tab"],
 			  @file_suffixes["lemma"])

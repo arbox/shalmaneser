@@ -162,23 +162,28 @@ module FrprepHelper
       raise "Could not read #{input_filename}, or could not write to #{output_filename}."
     end
 
-    filename_core = File.basename(input_filename, "txt")
+    # AB: TODO This assumes all input files have the extension <txt>.
+    # Is it good?
+    filename_core = File.basename(input_filename, 'txt')
 
     # array(string): keep the words of each sentence
-    sentence = Array.new
+    sentence = []
     # sentence number for making the sentence ID:
     # global count, over all input files
     sentno = 0
     
-    while (line = infile.gets())
+    while line = infile.gets
       
       # make a sentence ID for the next sentence: running number
-      sentid = filename_core + "_" + sentno.to_s
+      sentid = "#{filename_core}_#{sentno}"
       sentno += 1
       
       # read words into the sentence array,
       # separating out punctuation attached to the beginning or end of words
-      sentence.clear()
+      sentence.clear
+
+      # AB: TODO Remove this naive tokenizer, better to have a fully
+      # tokenized input using an external tokenizer than that.
       line.split.each { |word|
         # punctuation at the beginning of the word
         #if word =~ /^([\(\[`'\"-]+)(.*)$/
@@ -206,7 +211,9 @@ module FrprepHelper
       }
 
 
+      
       # remove empty words
+      # AB: TODO Is it possible? Remove this.
       sentence.reject! { |word| word.nil? or word.strip.empty? }
 
       # write words to tab file
@@ -222,7 +229,7 @@ module FrprepHelper
       }
       outfile.puts
     end
-    outfile.close()
+    outfile.close
   end
 
   ###########
