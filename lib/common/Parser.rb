@@ -72,12 +72,12 @@ end
 
 
 class FilePartsParser
-  # @file = File object for the corpus
-  # @head = string up to the first <s> tag
-  # @tail = string after the last </s> tag
-  # @rest = string starting with the latest <s> tag (complete this to
+  # <@file> = File object for the corpus
+  # <@head> = string up to the first <s> tag
+  # <@tail> = string after the last </s> tag
+  # <@rest> = string starting with the latest <s> tag (complete this to
   # a <s>...</s> structure by reading up to next </s> tag)
-  # @readCompletely = boolean specifying whether there's still something
+  # <@readCompletely> = boolean specifying whether there's still something
   # left to read in the file
 
   attr_reader :head, :tail

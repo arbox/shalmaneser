@@ -103,12 +103,7 @@ class Targets
   ##
   # access to senses
   def get_senses(lemmapos) # string, result of fred_lemmapos_combine 
-
-    if @targets[lemmapos]
-      return @targets[lemmapos]
-    else
-      return []
-    end
+    @targets[lemmapos] ? @targets[lemmapos] : []
   end
 
   ##
@@ -125,7 +120,7 @@ class Targets
       file.puts "LEMMA #{lemma} SENSES "+ senses.join(" ")
     }
 
-    file.close()
+    file.close
   end
 
   ###############################
@@ -133,11 +128,11 @@ class Targets
   
   ##
   # record: record occurrence of a lemma/sense pair
-  # @targets data structure
+  # <@targets> data structure
   def record(target_info) 
     lemmapos = fred_lemmapos_combine(target_info["lex"], target_info["pos"])
     unless @targets[lemmapos]
-      @targets[lemmapos] = Array.new
+      @targets[lemmapos] = []
     end
  
     unless @targets[lemmapos].include? target_info["sense"]

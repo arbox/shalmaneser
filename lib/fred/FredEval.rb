@@ -177,7 +177,7 @@ class FredEval < Eval
   # or rather: yield pairs [gold_class(string), assigned_class(string)]
   #
   # relies on each_group() having set the appropriate readers
-  # @goldreader and @classfile
+  # <@goldreader> and <@classfile>
   def each_instance(lemma) # string: lemma name
 
     # watch out for repeated instances

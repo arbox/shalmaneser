@@ -4,5 +4,5 @@
 lib/**/*
 bin/**/*
 -
-CHANGELOG.rdoc
-LICENSE.rdoc
+CHANGELOG.md
+LICENSE.md
