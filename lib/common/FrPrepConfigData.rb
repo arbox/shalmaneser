@@ -4,7 +4,7 @@
 # Preprocessing for Fred and Rosy: 
 # access to a configuration and experiment description file
 
-require "common/ConfigData"
+require "common/config_data"
 
 ##############################
 # Class FrPrepConfigData
