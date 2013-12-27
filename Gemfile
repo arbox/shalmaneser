@@ -12,7 +12,13 @@ end
 case RUBY_VERSION
 when /^1.8/
   gem 'ruby-debug', :group => :development
-else
+when /^1.9/
+  unless RUBY_PLATFORM =~ /java/
+    gem 'debugger', :group => :development
+  end
+when /^2.0/
   gem 'debugger', :group => :development
+when /^2.1/
+  # not doing anything for now
 end
 

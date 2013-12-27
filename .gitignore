@@ -11,3 +11,4 @@ test/functional/output/rosy_train/
 tmp/
 .yardoc
 ydoc
+.bundle
