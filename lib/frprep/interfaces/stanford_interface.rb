@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 # @author Andrei Beliankou
-# @date 2013-12-26
+# <@date> 2013-12-26
 
 ####
 # sp 21 07 05

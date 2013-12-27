@@ -10,7 +10,6 @@ require "common/AbstractSynInterface"
 
 ############################################3
 # Module FrprepHelper:
-#
 # diverse transformation methods for frprep.rb
 # moved over here to make the main file less crowded
 module FrprepHelper
@@ -235,7 +234,7 @@ module FrprepHelper
   ###########
   # 
   # class method split_dir: 
-  # read all files in one directory and produce chunk files *#{suffix} in outdir
+  # read all files in one directory and produce chunk files with _suffix_ in outdir
   # with a certain number of files in them (sent_num).
   # Optionally, remove all sentences longer than sent_leng
   #

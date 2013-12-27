@@ -271,11 +271,11 @@ class RosyIterator
   # column_name = value, columnb_name != value), which may be omitted
   # 
   # returns: DBView object
-  def get_a_view_for_current_group(columns, # array:string, column names to include
-				   # or string: "*" for all columns
-				   value_restrictions = []) # array:ValueRestriction objects
-    return get_a_view_for_group(@current_group, columns,
-				value_restrictions)
+  # @param columns [Array] array:string, column names to include
+  #   or string: "*" for all columns
+  # @param value_restrictions [Array] array:ValueRestriction objects
+  def get_a_view_for_current_group(columns, value_restrictions = []) 
+    get_a_view_for_group(@current_group, columns, value_restrictions)
   end
 
   ####
@@ -292,11 +292,12 @@ class RosyIterator
   # column_name = value, columnb_name != value), which may be omitted
   # 
   # returns: DBView object
-  def get_a_view_for_group(group,  # hash: column(string)->value(object)
-			           # describing the group
-			   columns, # array:string, column names to include
-				   # or string: "*" for all columns
-                           value_restrictions = []) # array:ValueRestriction objects
+  # @param group [Hash] column(string)->value(object)
+  #   describing the group
+  # @param columns [Array] array:string, column names to include
+  #   or string: "*" for all columns
+  # @param value_restrictions [Array]  of ValueRestriction objects
+  def get_a_view_for_group(group, columns, value_restrictions = [])
 
     # value_restrictions needs to be an array
     if value_restrictions.nil?

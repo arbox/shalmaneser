@@ -234,7 +234,7 @@ end
 ################
 module EnumerableBool
   ###
-  # And_{x \in X} block(x)
+  # And_(x \in X) block(x)
   def big_and(&block)
     each { |x|
       unless block.call(x)
@@ -245,7 +245,7 @@ module EnumerableBool
   end
 
   ###
-  # Or_{x \in X} block(x)
+  # Or_(x \in X) block(x)
   def big_or(&block)
     each { |x|
       if block.call(x)
@@ -256,7 +256,7 @@ module EnumerableBool
   end
 
   ###
-  # Sum_{x \in X} block(x)
+  # Sum_(x \in X) block(x)
   def big_sum(init = 0, &block)
     sum = init
     unless block_given?
