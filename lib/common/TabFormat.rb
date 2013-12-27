@@ -25,15 +25,16 @@ require "tempfile"
 require "common/ISO-8859-1"
 require "common/ruby_class_extensions"
 
+# @todo Remove this definition in the top namespace!
 #######################
 # This function takes a variable number of arguments and
 # returns them as an array
 # Idea: make formulation of tab format entries easier to read,
 # enclose variable arguments in a repeat() call,
 # which immediately gets transformed into a list
-def repeat(*args)
-  return args
-end
+#def repeat(*args)
+#  return args
+#end
 
 #######################
 class TabFormatFile
