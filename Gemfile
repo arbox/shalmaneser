@@ -10,8 +10,9 @@ group :development do
 end
 
 case RUBY_VERSION
-when /^1.9/
-  gem 'debugger', :group => :development
 when /^1.8/
+  gem 'ruby-debug', :group => :development
+else
+  gem 'debugger', :group => :development
 end
 
