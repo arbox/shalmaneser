@@ -14,55 +14,64 @@ require "common/config_data"
 
 class FredConfigData < ConfigData
   CONFIG_DEFS = { 
-            "experiment_ID" => "string", # experiment ID
-            "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
-	    
-            "preproc_descr_file_train" => "string", # path to preprocessing files
-            "preproc_descr_file_test" => "string",
-            "directory_output" => "string", # path to Salsa/Tiger XML output directory
-
-            "verbose" => "bool" ,     # print diagnostic messages?
-            "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
-           
-            "fred_directory" => "string",# directory for internal info
-            "classifier_dir" => "string", # write classifiers here
-
-            "classifier" => "list",  # classifiers
-
-            "dbtype" => "string",    # "mysql" or "sqlite"
-           
-            "host" => "string",      # DB access: sqlite only
-            "user" => "string",
-            "passwd" => "string",
-            "dbname" => "string",
-
-            # featurization info
-            "feature" => "list",     # which features to use for the classifier?
-            "binary_classifiers" => "bool",# make binary rather than n-ary clasifiers?
-	    "negsense" => "string",  # binary classifier: negative sense is..?
-            "numerical_features" => "string", # do what with numerical features?
-
-            # what to do with items that have multiple senses?
-            # 'binarize': binary classifiers, and consider positive
-            #          if the sense is among the gold senses
-            # 'join' : make one joint sense
-            # 'repeat' : make multiple occurrences of the item, one sense per occ
-            # 'keep' : keep as separate labels
-            #
-            # multilabel: consider as assigned all labels
-            # above a certain confidence threshold?
-            "handle_multilabel" => "string",
-            "assignment_confidence_threshold" => "float",
-            
-            # single-sentence context?
-            "single_sent_context" => "bool",
-
-            # noncontiguous input? then we need access to a larger corpus
-            "noncontiguous_input" => "bool",
-            "larger_corpus_dir" => "string",
-            "larger_corpus_format" => "string", 
-            "larger_corpus_encoding" => "string"
-	  }
+    "experiment_ID" => "string", # experiment ID
+    "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
+    
+    "preproc_descr_file_train" => "string", # path to preprocessing files
+    "preproc_descr_file_test" => "string",
+    "directory_output" => "string", # path to Salsa/Tiger XML output directory
+    
+    "verbose" => "bool" ,     # print diagnostic messages?
+    "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
+    
+    "fred_directory" => "string",# directory for internal info
+    "classifier_dir" => "string", # write classifiers here
+    
+    "classifier" => "list",  # classifiers
+    
+    "dbtype" => "string",    # "mysql" or "sqlite"
+    
+    "host" => "string",      # DB access: sqlite only
+    "user" => "string",
+    "passwd" => "string",
+    "dbname" => "string",
+    
+    # featurization info
+    "feature" => "list",     # which features to use for the classifier?
+    "binary_classifiers" => "bool",# make binary rather than n-ary clasifiers?
+    "negsense" => "string",  # binary classifier: negative sense is..?
+    "numerical_features" => "string", # do what with numerical features?
+    
+    # what to do with items that have multiple senses?
+    # 'binarize': binary classifiers, and consider positive
+    #          if the sense is among the gold senses
+    # 'join' : make one joint sense
+    # 'repeat' : make multiple occurrences of the item, one sense per occ
+    # 'keep' : keep as separate labels
+    #
+    # multilabel: consider as assigned all labels
+    # above a certain confidence threshold?
+    "handle_multilabel" => "string",
+    "assignment_confidence_threshold" => "float",
+    
+    # single-sentence context?
+    "single_sent_context" => "bool",
+    
+    # noncontiguous input? then we need access to a larger corpus
+    "noncontiguous_input" => "bool",
+    "larger_corpus_dir" => "string",
+    "larger_corpus_format" => "string", 
+    "larger_corpus_encoding" => "string",
+    # Imported from PrepConfigData
+    'do_postag' => 'bool',
+    'do_lemmatize' => 'bool',
+    'do_parse' => 'bool',
+    'pos_tagger' => 'string',
+    'lemmatizer' => 'string',
+    'parser' => 'string',
+    'directory_preprocessed' => 'string',
+    'language' => 'string'
+  }
 
   def initialize(filename)
 
@@ -158,8 +167,8 @@ class FredConfigData < ConfigData
   #
   # returns: a list of pairs [feature_name(string), options(array:string)]
   # of defined features
-  # @param var_list [Array] array:array:string: list of tuples defined in config file
-  #   for feature 'feature'
+  # @param val_list [Array] array:array:string: list of tuples defined
+  #   in config file for feature 'feature'
   def access_classifier(val_list)
     if val_list.nil?
       []

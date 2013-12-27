@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 # -*- encoding: utf-8 -*-
 
-# AB, 2011-11-13
-
-# fred
-# Katrin Erk, April 05
+# @author Andrei Beliankou, 2011-11-13
+# @author Katrin Erk, April 05
 #
 # Frame disambiguation system:
 # frame assignment as word sense disambiguation

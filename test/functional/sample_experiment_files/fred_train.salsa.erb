@@ -44,7 +44,7 @@ fred_directory = <%= File.expand_path('test/functional/output') %>
 #   and one for the test data
 #   (If you only ever use test data in this experiment, you only
 #   need to give preproc_descr_file_test, and vice versa for training data.)
-preproc_descr_file_train = <%= File.expand_path('test/functional/sample_experiment_files/prp_train.salsa.fred.standalone') %>
+#preproc_descr_file_train = <%= File.expand_path('test/functional/sample_experiment_files/prp_train.salsa.fred.standalone') %>
 
 
 
@@ -133,3 +133,16 @@ classifier = maxent <%= File.expand_path('tools/maxent/maxent-2.4.0') %> <%= Fil
 # on the 'negative' sense.
 # Default is 'NONE'      
 negsense = NONE
+
+###
+# Added from <preproc_descr_file_train>.
+directory_preprocessed = <%= File.expand_path('test/functional/input/fred/frprep/train.salsa') %>
+do_lemmatize = true
+do_postag = false
+do_parse = true
+
+pos_tagger = treetagger
+lemmatizer = treetagger
+parser = berkeley
+
+language = de
