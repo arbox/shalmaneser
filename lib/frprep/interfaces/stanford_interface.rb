@@ -136,7 +136,7 @@ class StanfordInterface < SynInterfaceSTXML
         end
       end   
 
-      sentence_str.chomp.gsub!(/\)\)/, ') )').gsub!(/\)\)/, ') )')
+      sentence_str.chomp!.gsub!(/\)\)/, ') )').gsub!(/\)\)/, ') )')
 
       # VAFIN_HD -> VAFIN-HD
       # for the current german grammar not really usefull
