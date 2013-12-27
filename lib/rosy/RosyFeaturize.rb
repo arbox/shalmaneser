@@ -9,13 +9,13 @@ require "common/SynInterfaces"
 require "common/ruby_class_extensions"
 
 # Frprep packages
-require "common/FrPrepConfigData"
+require "common/prep_config_data"
 
 # Rosy packages
 require "rosy/FailedParses"
 require "rosy/FeatureInfo"
 require "rosy/InputData"
-require "rosy/RosyConfigData"
+require "rosy/rosy_config_data"
 require "common/RosyConventions"
 require "rosy/RosySplit"
 require "rosy/RosyTask"

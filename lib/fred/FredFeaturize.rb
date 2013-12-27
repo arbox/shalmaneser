@@ -29,10 +29,10 @@ require "common/RegXML"
 require "common/SalsaTigerRegXML"
 require "common/SalsaTigerXMLHelper"
 
-require "fred/FredConfigData"
+require "fred/fred_config_data"
 require "fred/FredConventions"
-require "common/FrPrepConfigData"
-require "common/frprep_helper"
+require "common/prep_config_data"
+require "common/prep_helper"
 require "common/SynInterfaces"
 
 require "fred/FredBOWContext"

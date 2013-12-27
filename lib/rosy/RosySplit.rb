@@ -16,7 +16,7 @@
 require "common/ruby_class_extensions"
 
 # Frprep packages
-require "common/FrPrepConfigData"
+require "common/prep_config_data"
 
 # Rosy packages
 require "rosy/FailedParses"

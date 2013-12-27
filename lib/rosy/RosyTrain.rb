@@ -18,7 +18,7 @@ require "rosy/RosyPruning"
 require "common/ML"
 
 # Frprep packages
-require "common/FrPrepConfigData"
+require "common/prep_config_data"
 
 class RosyTrain < RosyTask
 

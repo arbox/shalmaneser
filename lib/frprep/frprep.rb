@@ -1,5 +1,5 @@
 require 'frprep/do_parses'
-require 'common/frprep_helper'
+require 'common/prep_helper'
 require 'common/FixSynSemMapping'
 
 ##############################

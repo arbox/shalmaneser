@@ -13,11 +13,7 @@ require "common/config_data"
 # sets variable names appropriate to WSD task
 
 class FredConfigData < ConfigData
-  def initialize(filename)
-
-    # initialize config data object
-    super(filename,          # config file
-	  { 
+  CONFIG_DEFS = { 
             "experiment_ID" => "string", # experiment ID
             "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
 	    
@@ -66,18 +62,15 @@ class FredConfigData < ConfigData
             "larger_corpus_dir" => "string",
             "larger_corpus_format" => "string", 
             "larger_corpus_encoding" => "string"
-	  },
-	  [ # variables
-            "train", 
-           "exp_ID"
-	  ]
-	  )
+	  }
+
+  def initialize(filename)
+
+    super(filename, CONFIG_DEFS, ["train", "exp_ID"])
 
     # set access functions for list features
-    set_list_feature_access("classifier",
-                            method("access_classifier"))
-    set_list_feature_access("feature",
-                            method("access_feature"))
+    set_list_feature_access("classifier", method("access_classifier"))
+    set_list_feature_access("feature", method("access_feature"))
   end
 
   ###
@@ -165,14 +158,15 @@ class FredConfigData < ConfigData
   #
   # returns: a list of pairs [feature_name(string), options(array:string)]
   # of defined features
-  def access_classifier(val_list) # array:array:string: list of tuples defined in config file
-		               # for feature 'feature'
+  # @param var_list [Array] array:array:string: list of tuples defined in config file
+  #   for feature 'feature'
+  def access_classifier(val_list)
     if val_list.nil?
-      return []
+      []
     else
-      return val_list.map { |cl_descr_tuple|
+      val_list.map do |cl_descr_tuple|
         [cl_descr_tuple.first, cl_descr_tuple[1..-1]]
-      }    
+      end
     end
   end
 

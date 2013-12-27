@@ -16,7 +16,7 @@ require "common/SalsaTigerRegXML"
 require "common/ruby_class_extensions"
 
 # Shalmaneser packages
-require "common/FrPrepConfigData"
+require "common/prep_config_data"
 require "common/ML"
 require "fred/Baseline"
 require "fred/FredConventions"

@@ -2,7 +2,7 @@
 
 require 'getoptlong'
 
-require 'rosy/RosyConfigData'
+require 'rosy/rosy_config_data'
 
 module Rosy
 
