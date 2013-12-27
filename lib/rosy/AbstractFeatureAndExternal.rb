@@ -112,8 +112,9 @@ class AbstractFeatureExtractor
   end
 
   ###
-  def initialize(exp, # ConfigData object: experiment file information
-                 interpreter_class)
+  # @param exp [ConfigData] Experiment file information
+  # @param interpreter_class [Class]
+  def initialize(exp, interpreter_class)
     @exp = exp
     @@interpreter_class = interpreter_class
   end
@@ -149,7 +150,8 @@ class AbstractFeatureExtractor
   protected
 
   def AbstractFeatureExtractor.announce_me()
-    if Module.constants.include? "RosyFeatureInfo"
+    # AB: In 1.9 constants are symbols.
+    if Module.constants.include?("RosyFeatureInfo") or Module.constants.include?(:RosyFeatureInfo)
       # yup, we have a class to which we can announce ourselves
       RosyFeatureInfo.add_feature(eval(self.name()))
     else
