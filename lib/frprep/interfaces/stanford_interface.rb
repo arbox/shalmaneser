@@ -73,7 +73,24 @@ class StanfordInterface < SynInterfaceSTXML
 
     # We use the old paradigm for now: the parser binary is wrapped
     # into a shell script, we invoke this script.
-    stanford_prog = "#{@program_path}lexparser-german.sh"
+    #stanford_prog = "#{@program_path}lexparser-german.sh"
+
+    # Borrowed from <lexparser-german.sh>.
+    tlp = 'edu.stanford.nlp.parser.lexparser.NegraPennTreebankParserParams'
+
+    lang_opts = '-hMarkov 1 -vMarkov 2 -vSelSplitCutOff 300 -uwm 1 -unknownSuffixSize 2 -nodeCleanup 2'
+    
+    grammar1 = 'edu/stanford/nlp/models/lexparser/germanPCFG.ser.gz'
+    grammar2 = 'edu/stanford/nlp/models/lexparser/germanFactored.ser.gz'
+
+    stanford_prog = %Q{
+    java -cp "#{@program_path}*:" edu.stanford.nlp.parser.lexparser.LexicalizedParser -maxLength 100 \
+    -tLPP #{tlp} #{lang_opts} -tokenized \
+    -encoding UTF-8 \
+    -outputFormat "oneline" \
+    -outputFormatOptions "includePunctuationDependencies" \
+    -loadFromSerializedFile #{grammar2} \
+    }
 
     Dir[in_dir + "*" + @insuffix].each do |inputfilename|
 
@@ -92,10 +109,11 @@ class StanfordInterface < SynInterfaceSTXML
 
       tempfile.close
 
-      # parse and remove comments in the parser output
-      STDERR.puts "#{stanford_prog} #{tempfile.path} > #{parsefilename}"
+      # Invoke the expternal parser.
+      invocation_str = "#{stanford_prog} #{tempfile.path} > #{parsefilename} 2>/dev/null"
+      STDERR.puts invocation_str
 
-      Kernel.system("#{stanford_prog} #{tempfile.path} > #{parsefilename}")      
+      Kernel.system(invocation_str)      
 
     end
   end
@@ -127,7 +145,7 @@ class StanfordInterface < SynInterfaceSTXML
         sentence_str = parsefile.gets
         # Sentence contains a valid or an empty parse.
         # AB: @todo Investigate how does an empty parse look like.
-	if sentence_str =~ /^\(ROOT/ or sentence_str =~ /^\(\(\)/
+	if sentence_str =~ /\(ROOT|TOP|PSEUDO/ or sentence_str =~ /^\(\(\)/
           sentid +=1
           break
         # There is no parse.
