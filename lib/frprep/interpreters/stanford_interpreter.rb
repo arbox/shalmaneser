@@ -16,7 +16,7 @@ class StanfordInterpreter < Tiger
   # returns a hash service(string) -> system name(string)
   # same as names()
   def self.optional_systems
-    {"lemmatizer" => "treetagger"}
+    {"lemmatizer" => "treetagger", 'pos_tagger' => 'treetagger'}
   end
 
 end

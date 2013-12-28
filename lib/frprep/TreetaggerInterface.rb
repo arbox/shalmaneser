@@ -2,7 +2,7 @@
 # extended by TreeTaggerPOSInterface
 
 require "tempfile"
-
+require 'pathname'
 require "common/AbstractSynInterface"
 
 ###########
@@ -53,9 +53,33 @@ module TreetaggerModule
     TreetaggerInterface.fntab_words_to_file(infilename, tempfile, "<EOS>", "iso")
     tempfile.close
 
+    # @todo AB: Remove it by my shame :(
+    # AB: A very dirty hack of mine:
+    # We need the language attribute, but we don't have the FrPrepConfigData,
+    # then we'll try to find it in the ObjectSpace since we should have only one.
+    lang = ''
+    ObjectSpace.each_object(FrPrepConfigData) do |o|
+      lang = o.get('language')
+    end
+
+    case lang
+    when 'en'
+      tt_model = Pathname.new(@program_path).join('lib').join(ENV['SHALM_TREETAGGER_MODEL'] || 'english.par')
+      tt_filter = ''
+    when 'de'
+      tt_model = Pathname.new(@program_path).join('lib').join(ENV['SHALM_TREETAGGER_MODEL'] || 'german.par')
+      tt_filter = "| #{Pathname.new(@program_path).join('cmd').join('filter-german-tags')}"
+    end
+
     # call TreeTagger
-    Kernel.system(@program_path+" "+tempfile.path + 
-                  " > " + my_outfilename)
+    tt_binary = Pathname.new(@program_path).join('bin').join(ENV['SHALM_TREETAGGER_BIN'] || 'tree-tagger')
+
+    invocation_str = "#{tt_binary} -lemma -token -sgml #{tt_model} #{tempfile.path} #{tt_filter} > #{my_outfilename}"
+
+    STDERR.puts "*** Tagging and lemmatizing #{tempfile.path} with TreeTagger."
+    STDERR.puts invocation_str
+
+    Kernel.system(invocation_str)
     tempfile.close(true) # delete first tempfile
     
     # external problem: sometimes, the treetagger keeps the last <EOS> for itself, 
@@ -104,7 +128,7 @@ class TreetaggerInterface < SynInterfaceTab
 
   ###
   # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
-  
+  # @todo AB: Generalize this method to work with different parsers.
   def convert_to_berkeley(line)
       line.chomp!
       return line.gsub(/\(/,"-LRB-").gsub(/\)/,"-RRB-").gsub(/''/,"\"").gsub(/\`\`/,"\"")
