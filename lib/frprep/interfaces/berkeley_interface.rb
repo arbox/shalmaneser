@@ -41,7 +41,7 @@ class BerkeleyInterface < SynInterfaceSTXML
   def initialize(program_path, insuffix, outsuffix, stsuffix, var_hash = {})
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
 
-    # AB: TODO This should be checked in the OptionParser.
+    # @togo AB: This should be checked in the OptionParser.
     unless @program_path =~ /\/$/
       @program_path += '/'
     end
@@ -60,9 +60,15 @@ class BerkeleyInterface < SynInterfaceSTXML
   def process_dir(in_dir,  # string: input directory name
 		  out_dir) # string: output directory name
     
+
+    parser = ENV['SHALM_BERKELEY_BIN'] || 'berkeleyParser.jar'
+    grammar = ENV['SHALM_BERKELEY_MODEL'] || 'grammar.gr'
+
     #berkeley_prog = "java -Xmx2000m -jar #{@program_path}berkeleyParser.jar -gr #{@program_path}ger_sm5.gr"
 
-    berkeley_prog = "java -d64 -Xmx10000m -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
+    #berkeley_prog = "java -d64 -Xmx10000m -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
+
+    berkeley_prog = "java -jar #{@program_path}#{parser} -gr #{@program_path}#{grammar}"
 
     Dir[in_dir + "*" + @insuffix].each do |inputfilename|
 
@@ -123,7 +129,7 @@ class BerkeleyInterface < SynInterfaceSTXML
         line = parsefile.gets
         
         # search for the next "relevant" file or end of the file
-	if line.nil? or line=~/^\( *\(TOP/ or line=~/^\(\(\)/
+	if line.nil? or line=~/^\( *\((PSEUDO|TOP|ROOT)/ or line=~/^\(\(\)/
           break
 	end   
         sentid +=1
