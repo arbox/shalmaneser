@@ -9,7 +9,7 @@ require "common/SynInterfaces"
 require "common/ruby_class_extensions"
 
 # Frprep packages
-require "common/prep_config_data"
+#require "common/prep_config_data"
 
 # Rosy packages
 require "rosy/FailedParses"
@@ -81,24 +81,25 @@ class RosyFeaturize < RosyTask
 
     ##
     # add preprocessing information to the experiment file object
-    if @dataset
-      preproc_parameter = "preproc_descr_file_" + @dataset
-    else
-      # split data
-      preproc_parameter = "preproc_descr_file_train"
-    end
-    preproc_expname = @exp.get(preproc_parameter)
-    if not(preproc_expname)
-      $stderr.puts "Please set the name of the preprocessing exp. file name"
-      $stderr.puts "in the experiment file, parameter #{preproc_parameter}"
-      exit 1
-    elsif not(File.readable?(preproc_expname))
-      $stderr.puts "Error in the experiment file:"
-      $stderr.puts "Parameter #{preproc_parameter} has to be a readable file."
-      exit 1
-    end
-    preproc_exp = FrPrepConfigData.new(preproc_expname)
-    @exp.adjoin(preproc_exp)
+    # @note AB: Commented out due to separation of PrepConfigData.
+    # if @dataset
+    #   preproc_parameter = "preproc_descr_file_" + @dataset
+    # else
+    #   # split data
+    #   preproc_parameter = "preproc_descr_file_train"
+    # end
+    # preproc_expname = @exp.get(preproc_parameter)
+    # if not(preproc_expname)
+    #   $stderr.puts "Please set the name of the preprocessing exp. file name"
+    #   $stderr.puts "in the experiment file, parameter #{preproc_parameter}"
+    #   exit 1
+    # elsif not(File.readable?(preproc_expname))
+    #   $stderr.puts "Error in the experiment file:"
+    #   $stderr.puts "Parameter #{preproc_parameter} has to be a readable file."
+    #   exit 1
+    # end
+    # preproc_exp = FrPrepConfigData.new(preproc_expname)
+    # @exp.adjoin(preproc_exp)
 
     ###
     # find appropriate class for interpreting syntactic structures

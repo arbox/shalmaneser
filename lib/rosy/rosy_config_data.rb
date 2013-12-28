@@ -57,7 +57,15 @@ class RosyConfigData < ConfigData
     
     "fe_syn_repair" => "bool", # map words to constituents for FEs: idealize?
     "fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
-    "prune" => "string"       # pruning prior to argrec?
+    "prune" => "string", # pruning prior to argrec?
+
+    # Imported from PrepConfigData
+    'do_postag' => 'bool',
+    'do_lemmatize' => 'bool',
+    'do_parse' => 'bool',
+    'pos_tagger' => 'string',
+    'lemmatizer' => 'string',
+    'parser' => 'string'
     }
 
   def initialize(filename)

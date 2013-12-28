@@ -24,7 +24,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-require "common/prep_config_data" # AB: what the fuck???
+#require "common/prep_config_data" # AB: what the fuck???
 
 ##########################################################################
 # classifier combination class
@@ -156,25 +156,28 @@ class RosyTest < RosyTask
 
       ##
       # add preprocessing information to the experiment file object
-      if @splitID
-        # use split data
-        preproc_param = "preproc_descr_file_train"
-      else
-        # use test data
-        preproc_param = "preproc_descr_file_test"
-      end
-      preproc_expname = @exp.get(preproc_param)
-      if not(preproc_expname)
-        $stderr.puts "Please set the name of the preprocessing exp. file name"
-        $stderr.puts "in the experiment file, parameter #{preproc_param}."
-        exit 1
-      elsif not(File.readable?(preproc_expname))
-        $stderr.puts "Error in the experiment file:"
-        $stderr.puts "Parameter #{preproc_param} has to be a readable file."
-        exit 1
-      end
-      preproc_exp = FrPrepConfigData.new(preproc_expname)
-      @exp.adjoin(preproc_exp)
+      # @note AB: Commented out due to separation of PrepConfigData:
+      #   information for SynInteraces required.
+      # if @splitID
+      #   # use split data
+      #   preproc_param = "preproc_descr_file_train"
+      # else
+      #   # use test data
+      #   preproc_param = "preproc_descr_file_test"
+      # end
+
+      # preproc_expname = @exp.get(preproc_param)
+      # if not(preproc_expname)
+      #   $stderr.puts "Please set the name of the preprocessing exp. file name"
+      #   $stderr.puts "in the experiment file, parameter #{preproc_param}."
+      #   exit 1
+      # elsif not(File.readable?(preproc_expname))
+      #   $stderr.puts "Error in the experiment file:"
+      #   $stderr.puts "Parameter #{preproc_param} has to be a readable file."
+      #   exit 1
+      # end
+      # preproc_exp = FrPrepConfigData.new(preproc_expname)
+      # @exp.adjoin(preproc_exp)
 
       # announce the task
       $stderr.puts "---------"
