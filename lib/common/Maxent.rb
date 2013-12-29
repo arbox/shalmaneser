@@ -11,21 +11,32 @@ class Maxent
   ###
   def initialize(program_path,parameters)
     
-    if parameters.empty?	
-      puts "Error: The OpenNLP maxent system needs two paths (first the location of maxent itself and then the location of the interface, usually program/tools/maxent)."
-      puts "I got only the program path."
-      Kernel.exit
-    end
+    # @note AB: <parameters> is an Array with the last part of the
+    #   line from the experiment file, it should contain the path to our
+    #   java wrappers, but we don't want it.
+    #   Since the presence of this part is checked only here we
+    #   suppose it obsolete and set this path manually here.
+    # if parameters.empty?	
+    #   puts "Error: The OpenNLP maxent system needs two paths (first the location of maxent itself and then the location of the interface, usually program/tools/maxent)."
+    #   puts "I got only the program path."
+    #   Kernel.exit
+    # end
+    # @interface_path = parameters.first
 
+    # @note AB: Setting path manually.
+    #   It assumes <Maxent.rb> ist in <lib/common> and
+    #   <Classify.class> is in <lib/ext/maxent>.
+    @interface_path = File.expand_path('../ext/maxent', File.dirname(__FILE__))
+      
     @maxentpath = program_path
-    @interface_path = parameters.first
+
     unless @maxentpath =~ /\/$/
       @maxentpath = @maxentpath + "/"
     end
     
     # classpath for maxent
     
-    @cp = "#{@maxentpath}:#{@maxentpath}lib:#{@maxentpath}lib/trove.jar:#{@maxentpath}output/maxent-*.jar:#{ENV["CLASSPATH"]}"
+    @cp = "#{@maxentpath}:#{@maxentpath}lib:#{@maxentpath}lib/trove.jar:#{@maxentpath}output/maxent-2.4.0.jar:#{ENV["CLASSPATH"]}"
 
   end
 

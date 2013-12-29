@@ -64,10 +64,16 @@ task :generate_experiment_files do
   files = FileList.new('test/functional/sample_experiment_files/*.erb')
   files.each do |f|
     template = File.read(f)
-    text = ERB.new(template).result
+    text = ERB.new(template).result(binding)
     File.open(f.chomp('.erb'), 'w') do |out_file|
       out_file.write(text)
     end
   end
 
+end
+
+desc 'Build java dependencies.'
+task :build_java_dependencies do
+  cp = "tools/maxent/maxent-2.4.0/output/maxent-2.4.0.jar:#{ENV['CLASSPATH']}"
+  sh "javac -cp #{cp} lib/ext/maxent/*.java"
 end
