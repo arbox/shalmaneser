@@ -23,3 +23,8 @@ We are working now on three branches:
 - ``1.2`` - intermediate target;
 
 - ``2.0`` - final target.
+## Installation
+
+### Machine Learning Systems
+
+- http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/

@@ -25,7 +25,7 @@ class Maxent
     
     # classpath for maxent
     
-    @cp = "#{ENV["CLASSPATH"]}:#{@maxentpath}:#{@maxentpath}lib:#{@maxentpath}lib/trove.jar:#{@maxentpath}output/maxent-2.4.0.jar"
+    @cp = "#{@maxentpath}:#{@maxentpath}lib:#{@maxentpath}lib/trove.jar:#{@maxentpath}output/maxent-*.jar:#{ENV["CLASSPATH"]}"
 
   end
 
@@ -148,9 +148,9 @@ class Maxent
       return nil
     end
 
-    retv = Array.new()
+    retv = []
 
-    f.each { |line|
+    f.each do |line|
       line_results = Array.new()
       pieces = line.split() # split at whitespace
 
@@ -164,8 +164,11 @@ class Maxent
 
       # sort: most confident label first
       retv << line_results.sort {|a,b| b[1] <=> a[1]}
-    }
-    return retv
+    end
+
+    f.close
+
+    retv
   end
 
   
