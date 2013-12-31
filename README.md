@@ -1,4 +1,4 @@
-# [SHALMANESER - A Shallow Semantic Parser](http://www.coli.uni-saarland.de/projects/salsa/shal/)
+# [SHALMANESER - a SHALlow seMANtic parSER](http://www.coli.uni-saarland.de/projects/salsa/shal/)
 
 ## Description
 
@@ -16,7 +16,7 @@ The project documentation can be found in our [wiki](https://github.com/arbox/sh
 
 ## Development
 
-We are working now on three branches:
+We are working now on two branches:
 
 - ``dev`` - our development branch incorporating actual changes, for now pointing to ``1.2``;
 
@@ -28,3 +28,8 @@ We are working now on three branches:
 ### Machine Learning Systems
 
 - http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/
+
+## Test area
+- [Docs Long](https://github.com/arbox/shalmaneser/blob/1.2/doc/SB_README)
+- [Docs Long](blob/1.2/doc/SB_README)
+
