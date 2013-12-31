@@ -1,4 +1,0 @@
-# here som envvars
-# . ./vars
-DIR=/home/arbox/work_space/shalm/dev/trunk
-EXP=$DIR/program_de/SampleExperimentFiles.salsa
