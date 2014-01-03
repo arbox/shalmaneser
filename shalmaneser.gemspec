@@ -55,8 +55,8 @@ This software package has multiple external dependencies:
 - TreeTagger;
 - MySQL Database Server etc.
 
-Please proceede to installation instructions on our wiki:
-https://github.com/arbox/shalmaneser/wiki/Installation
+Please proceede to installation instructions:
+https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md
 
 If you find any bugs or have questions consider opeing a ticket:
 https://github.com/arbox/shalmaneser/issues
