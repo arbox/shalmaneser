@@ -12,3 +12,4 @@ tmp/
 .yardoc
 ydoc
 .bundle
+*.gem

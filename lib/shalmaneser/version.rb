@@ -1,3 +1,3 @@
 module Shalmaneser
-  VERSION = '0.0.1.prealpha'
+  VERSION = '1.2.0-rc1'
 end
