@@ -8,6 +8,7 @@
 [<img src="https://travis-ci.org/arbox/shalmaneser.png" alt="Build Status" />](https://travis-ci.org/arbox/shalmaneser)
 [<img src="https://codeclimate.com/github/arbox/shalmaneser.png" alt="Code Climate" />](https://codeclimate.com/github/arbox/shalmaneser)
 [<img alt="Bitdeli Badge" src="https://d2weczhvl823v0.cloudfront.net/arbox/shalmaneser/trend.png" />](https://bitdeli.com/free)
+[![Dependency Status](https://gemnasium.com/arbox/shalmaneser.png)](https://gemnasium.com/arbox/shalmaneser)
 
 ## Description
 
