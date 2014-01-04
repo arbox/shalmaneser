@@ -1,7 +1,7 @@
 # [SHALMANESER - a SHALlow seMANtic parSER](http://www.coli.uni-saarland.de/projects/salsa/shal/)
 
 
-[RubyGems](http://rubygems.org/gems/shalmaneser) | [RTT Project Page](http://bu.chsta.be/projects/shalmaneser/) |
+[RubyGems](http://rubygems.org/gems/shalmaneser) | [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) |
 [Source Code](https://github.com/arbox/shalmaneser) | [Bug Tracker](https://github.com/arbox/shalmaneser/issues)
 
 [<img src="https://badge.fury.io/rb/shalmaneser.png" alt="Gem Version" />](http://badge.fury.io/rb/shalmaneser)
@@ -21,13 +21,13 @@ For end users, we provide a simple end user mode which can simply apply the pre-
 ## Origin
 You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http://www.coli.uni-saarland.de/projects/salsa/shal/) project page.
 
-## Literature
+## Publications on Shalmaneser
 
 K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
 
 ## Documentation
 
-The project documentation can be found in our [doc](doc/index.md) folder.
+The project documentation can be found in our [doc](https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md) folder.
 
 ## Development
 
@@ -41,10 +41,27 @@ We are working now on two branches:
 
 ## Installation
 
-See the installation instructions in the [doc](doc/index.md#installation) folder.
+See the installation instructions in the [doc](https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md#installation) folder.
+
+### Tokenizers
+
+- [Ucto](http://ilk.uvt.nl/ucto/)
+
+### POS Taggers
+
+- [TreeTagger](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/)
+
+### Lemmatizers
+
+- [TreeTagger](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/)
+
+### Parsers
+
+- [BerkeleyParser](https://code.google.com/p/berkeleyparser/downloads/list)
+- [Stanford Parser](http://nlp.stanford.edu/software/lex-parser.shtml)
+- [Collins Parser](http://www.cs.columbia.edu/~mcollins/code.html)
 
 ### Machine Learning Systems
 
-- http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/
-
+- [OpenNLP MaxEnt](http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/)
 
