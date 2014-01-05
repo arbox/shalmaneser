@@ -59,6 +59,7 @@ Downloand the TreeTagger archive from the official [site](http://www.cis.uni-mue
 
 If you cannot name the binary or the model (the ``.par`` file) as given above please set the following environment variables: ``SHALM_TREETAGGER_BIN`` and ``SHALM_TREETAGGER_MODEL``.
 
+Please do not use Unicode models for TreeTagger!
 
 ### Berkeley Parser
 Downloand the Berkeley Parser archive from the official [site](https://code.google.com/p/berkeleyparser/downloads/list) at Google Code, uncompress it to your favorite location. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
@@ -68,6 +69,7 @@ Downloand the Berkeley Parser archive from the official [site](https://code.goog
     |_ grammar.gr
 
 If you cannot name the binary and/or the model as given above please set the following environment variables: ``SHALM_BERKELEY_BIN`` and ``SHALM_BERKELEY_MODEL``.
+
 
 ### Stanford Parser
 
