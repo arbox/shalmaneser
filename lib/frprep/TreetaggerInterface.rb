@@ -117,13 +117,13 @@ class TreetaggerInterface < SynInterfaceTab
   include TreetaggerModule
 
   ###
-  def TreetaggerInterface.system()
-    return "treetagger"
+  def self.system
+    'treetagger'
   end
 
   ###
-  def TreetaggerInterface.service()
-    return "lemmatizer"
+  def self.service
+    'lemmatizer'
   end
 
   ###
