@@ -17,19 +17,20 @@ task :clobber => [:remove_exp_files, :remove_test_output]
 # Generate documentation.
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
-  rdoc.rdoc_files.include('README.rdoc',
-                          'LICENSE.rdoc',
-                          'CHANGELOG.rdoc',
+  rdoc.rdoc_files.include('README.md',
+                          'LICENSE.md',
+                          'CHANGELOG.md',
                           'lib/**/*',
-                          'bin/**/*'
+                          'bin/**/*',
+                          'doc/**/*.md'
                           )
   rdoc.rdoc_dir = 'rdoc'
 end
 
 require 'yard'
-YARD::Rake::YardocTask.new do |ydoc|
-  ydoc.options += ['-o', 'ydoc']
-  ydoc.name = 'ydoc'
+YARD::Rake::YardocTask.new(name = :ydoc) do |t|
+  t.options += ['-o', 'ydoc']
+  t.files = ['lib/**/*.rb', 'bin/**/*', '-', 'doc/index.md']
 end
 
 # Testing.
@@ -37,7 +38,7 @@ require 'rake/testtask'
 Rake::TestTask.new(:test => [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
-#  t.ruby_opts = ['-rubygems'] # not necessary now
+  t.ruby_opts = ['-rubygems'] # not necessary now
   t.test_files = FileList['test/**/*.rb']
 end
 
@@ -76,4 +77,9 @@ desc 'Build java dependencies.'
 task :build_java_dependencies do
   cp = "tools/maxent/maxent-2.4.0/output/maxent-2.4.0.jar:#{ENV['CLASSPATH']}"
   sh "javac -cp #{cp} lib/ext/maxent/*.java"
+end
+
+desc 'Publish the documentation on the homepage.'
+task :publish => [:clobber, :ydoc] do
+  system "scp -r ydoc/* #{File.read('SENSITIVE').chomp}"
 end
