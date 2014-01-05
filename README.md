@@ -12,7 +12,7 @@
 
 ## Description
 
-Please be careful, the whole thing is under construction!
+Please be careful, the whole thing is under construction! Shalmaneser it not intended to run on Windows systems. For now it has been tested on only Linux.
 
 Shalmaneser is a supervised learning toolbox for shallow semantic parsing, i.e. the automatic assignment of semantic classes and roles to text. The system was developed for Frame Semantics; thus we use Frame Semantics terminology and call the classes frames and the roles frame elements. However, the architecture is reasonably general, and with a certain amount of adaption, Shalmaneser should be usable for other paradigms (e.g., PropBank roles) as well. Shalmaneser caters both for end users, and for researchers.
 
@@ -23,7 +23,7 @@ You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http:
 
 ## Publications on Shalmaneser
 
-K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
+- K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
 
 ## Documentation
 
@@ -64,4 +64,4 @@ See the installation instructions in the [doc](https://github.com/arbox/shalmane
 ### Machine Learning Systems
 
 - [OpenNLP MaxEnt](http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/)
-
+- [Mallet](http://mallet.cs.umass.edu/index.php)
