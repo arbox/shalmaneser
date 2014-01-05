@@ -49,14 +49,14 @@ Note: Please make sure you run the system in a terminal with Unicode encoding (`
 ### TreeTagger
 Downloand the TreeTagger archive from the official [site](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/) by Helmut Schmid, uncompress it to your favorite location, preserve the initial directory structure. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
-TreeTaggerRootDirectory
-|_ bin
-|    |_ tree-tagger
-|_ lib
-|    |_ english.par
-|    |_ german.par
-|_ cmd
-    |_ filter-german-tags
+    TreeTaggerRootDirectory
+    |_ bin
+    |    |_ tree-tagger
+    |_ lib
+    |    |_ english.par
+    |    |_ german.par
+    |_ cmd
+         |_ filter-german-tags
 
 If you cannot name the binary or the model (the ``.par`` file) as given above please set the following environment variables: ``SHALM_TREETAGGER_BIN`` and ``SHALM_TREETAGGER_MODEL``.
 
@@ -64,9 +64,9 @@ If you cannot name the binary or the model (the ``.par`` file) as given above pl
 ### Berkeley Parser
 Downloand the Berkeley Parser archive from the official [site](https://code.google.com/p/berkeleyparser/downloads/list) at Google Code, uncompress it to your favorite location. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
-BerkeleyRootDirectory
-|_ berkeleyParser.jar
-|_ grammar.gr
+    BerkeleyRootDirectory
+    |_ berkeleyParser.jar
+    |_ grammar.gr
 
 If you cannot name the binary and/or the model as given above please set the following environment variables: ``SHALM_BERKELEY_BIN`` and ``SHALM_BERKELEY_MODEL``.
 
@@ -74,6 +74,6 @@ If you cannot name the binary and/or the model as given above please set the fol
 
 Downloand the Stanford Parser archive from the official [site](http://nlp.stanford.edu/software/lex-parser.shtml), uncompress it to your favorite location. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
-TreeTaggerRootDirectory
-|_ stanford_parser.jar
-|_ stanford_parser-x.y.z-models.jar
+    TreeTaggerRootDirectory
+    |_ stanford_parser.jar
+    |_ stanford_parser-x.y.z-models.jar
