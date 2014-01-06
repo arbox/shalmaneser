@@ -34,14 +34,15 @@ Project at the University of Saarbrücken.
 #  s.platform = Gem::Platform::CURRENT
   s.required_ruby_version = '>= 1.8.7'
   s.files = FileList['lib/**/*.rb',
+                     'lib/**/*.class',
+                     'doc/*',
                      'README.md',
                      'LICENSE.md',
                      'CHANGELOG.md',
-                     '.yardopts',
-                     'test/**/*.rb',
-                     'test/**/*.erb'
+                     '.yardopts'
                     ].to_a
-  s.test_files = FileList['test/**/*.rb'].to_a
+# This is executed if we run <gem test>.
+# s.test_files = FileList['test/**/*.rb'].to_a
   s.license = 'GPL-2.0'
   s.post_install_message = <<-EOS
 
@@ -62,5 +63,5 @@ If you find any bugs or have questions consider opeing a ticket:
 https://github.com/arbox/shalmaneser/issues
 
   EOS
-
+  s.requirements << 'mysql-server'
 end
