@@ -1,8 +1,7 @@
 # [SHALMANESER - a SHALlow seMANtic parSER](http://www.coli.uni-saarland.de/projects/salsa/shal/)
 
 
-[RubyGems](http://rubygems.org/gems/shalmaneser) | [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) |
-[Source Code](https://github.com/arbox/shalmaneser) | [Bug Tracker](https://github.com/arbox/shalmaneser/issues)
+[RubyGems](http://rubygems.org/gems/shalmaneser) | [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) | [Source Code](https://github.com/arbox/shalmaneser) | [Bug Tracker](https://github.com/arbox/shalmaneser/issues)
 
 [<img src="https://badge.fury.io/rb/shalmaneser.png" alt="Gem Version" />](http://badge.fury.io/rb/shalmaneser)
 [<img src="https://travis-ci.org/arbox/shalmaneser.png" alt="Build Status" />](https://travis-ci.org/arbox/shalmaneser)
@@ -12,11 +11,18 @@
 
 ## Description
 
-Please be careful, the whole thing is under construction! Shalmaneser it not intended to run on Windows systems. For now it has been tested on only Linux.
+Please be careful, the whole thing is under construction! For now Shalmaneser it not intended to run on Windows systems since it heavily uses system call for external invocations.
+Current versions of Shalmaneser have been tested on Linux only (other *NIX testers are welcome!).
 
-Shalmaneser is a supervised learning toolbox for shallow semantic parsing, i.e. the automatic assignment of semantic classes and roles to text. The system was developed for Frame Semantics; thus we use Frame Semantics terminology and call the classes frames and the roles frame elements. However, the architecture is reasonably general, and with a certain amount of adaption, Shalmaneser should be usable for other paradigms (e.g., PropBank roles) as well. Shalmaneser caters both for end users, and for researchers.
+Shalmaneser is a supervised learning toolbox for shallow semantic parsing, i.e. the automatic assignment of semantic classes and roles to text. This technique is often called SRL (Semantic Role Labelling). The system was developed for Frame Semantics; thus we use Frame Semantics terminology and call the classes frames and the roles frame elements. However, the architecture is reasonably general, and with a certain amount of adaption, Shalmaneser should be usable for other paradigms (e.g., PropBank roles) as well. Shalmaneser caters both for end users, and for researchers.
 
-For end users, we provide a simple end user mode which can simply apply the pre-trained classifiers for English (FrameNet annotation / Collins parser) and German (SALSA Frame annotation / Sleepy parser). For researchers interested in investigating shallow semantic parsing, our system is extensively configurable and extendable.
+For end users, we provide a simple end user mode which can simply apply the pre-trained classifiers
+for [English](http://www.coli.uni-saarland.de/projects/salsa/shal/index.php?nav=download) (FrameNet 1.3 annotation / Collins parser)
+and [German](http://www.coli.uni-saarland.de/projects/salsa/shal/index.php?nav=download) (SALSA 1.0 annotation / Sleepy parser).
+
+We'll try to provide newer pretrained models for English, German, and possibly other languages as soon as possible.
+
+For researchers interested in investigating shallow semantic parsing, our system is extensively configurable and extendable.
 
 ## Origin
 You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http://www.coli.uni-saarland.de/projects/salsa/shal/) project page.
@@ -24,6 +30,7 @@ You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http:
 ## Publications on Shalmaneser
 
 - K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
+- TODO: add other works
 
 ## Documentation
 

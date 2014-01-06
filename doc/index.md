@@ -3,6 +3,7 @@
 ## Prerequisites
 
 You need the following items installed on your system:
+
 - [Ruby](https://www.ruby-lang.org/en/downloads/), at least version ``1.8.7`` (please note that the version ``1.8.7`` is deprecated, future Shalmaneser incarnations will run only under Ruby greater than ``1.9.x``)
 - a MySQL database server, your database must be large enough to hold the test data (in end user mode) plus any training data (for training new models in manual mode), e.g. training on the complete FrameNet 1.2 dataset requires about 1.5 GB of free space.
 - if you don't want to train classifiers from you own data, you need to download suitable classifiers from our homepage for available configurations (see for links later).
@@ -111,7 +112,7 @@ Downloand the Stanford Parser archive from the official [site](http://nlp.stanfo
     |_ stanford_parser-x.y.z-models.jar
 
 ### OpenNLP MaxEnt
-Downloand the MaxEnt archive from the official [site](http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/) from SourceForge, uncompress it to your favorite location. Set ``JAVA_HOME`` if it isn't set on your system. Run ``build.sh`` in the MaxEnt Root Directory.
+Downloand the MaxEnt archive from the official [site](http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/) from SourceForge. You have to use the Version ``2.4.0``, other versions aren't compatible with Shalmaneser for now, but we are working on it. Untar the archive to your favorite location. Set ``JAVA_HOME`` if it isn't set on your system. Run ``build.sh`` in the MaxEnt Root Directory.
 
 The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 

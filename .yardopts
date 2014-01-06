@@ -1,8 +1,10 @@
 --private
 --protected
 --title 'SHALMANESER'
-lib/**/*
+lib/**/*.rb
 bin/**/*
+doc/**/*.md
 -
 CHANGELOG.md
 LICENSE.md
+doc/index.md
