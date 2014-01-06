@@ -83,3 +83,8 @@ desc 'Publish the documentation on the homepage.'
 task :publish => [:clobber, :ydoc] do
   system "scp -r ydoc/* #{File.read('SENSITIVE').chomp}"
 end
+
+desc 'Dummy task for TravisCI'
+task :travis do
+  # do nothing for now
+end
