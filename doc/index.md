@@ -4,7 +4,7 @@
 
 You need the following items installed on your system:
 - [Ruby](https://www.ruby-lang.org/en/downloads/), at least version ``1.8.7`` (please note that the version ``1.8.7`` is deprecated, future Shalmaneser incarnations will run only under Ruby greater than ``1.9.x``)
-- a MySQL database server, your database must be large enough to hold the test data (in end user mode) plus any training data (for training new models in manual mode), e.g. training on the complete FrameNet 1.2 dataset requires about 1.5 GB space.
+- a MySQL database server, your database must be large enough to hold the test data (in end user mode) plus any training data (for training new models in manual mode), e.g. training on the complete FrameNet 1.2 dataset requires about 1.5 GB of free space.
 - if you don't want to train classifiers from you own data, you need to download suitable classifiers from our homepage for available configurations (see for links later).
 - preprocessing tools for your language, at least the ones required for the use of pre-trained classifiers. Currently Shalmaneser provides interfaces for the following systems:
 <table>
@@ -48,24 +48,29 @@ Note: Please make sure you run the system in a terminal with Unicode encoding (`
 ### MySQL Database
 
 You need an instance of MySQL Server running on your system. Possibly, you have such a server on your site on the local or remote server. If not, please install one (e.g. on Debian based systems):
+
     $ sudo aptitude install mysql-server mysql-client
 
 During the installation you'll be prompted for the root password.
 
 Log in into MySQL management console:
+
     $ mysql -u root -p
 
 You will be asked for the ``root`` password. The following commands suppose a local installation of MySQL.
 
 Create a new user for Shalmaneser (or use an existing one if it complies with your security policy):
+
     mysql> CREATE USER 'shalm'@'localhost' IDENTIFIED BY 'shalmpassword';
 
 Feel free to change the username and the password.
 
 Create at least one database for Shalmaneser (it is convenient to use several databases to reuse experiment results):
+
     mysql> CREATE DATABASE shalmaneser;
 
 Give your new user rights to use the new database and (for older MySQL versions) flush the privileges:
+
     mysql> GRANT ALL PRIVILEGES ON shalmaneser.* TO 'shalm'@'localhost';
     mysql> FLUSH PRIVILEGES; # Not needed on newer systems.
 
@@ -85,7 +90,7 @@ Downloand the TreeTagger archive from the official [site](http://www.cis.uni-mue
 
 If you cannot name the binary or the model (the ``.par`` file) as given above please set the following environment variables: ``SHALM_TREETAGGER_BIN`` and ``SHALM_TREETAGGER_MODEL``.
 
-Please do not use Unicode models for TreeTagger!
+Please do not use Unicode models for TreeTagger for now! We'll change this dependency in the future.
 
 ### Berkeley Parser
 Downloand the Berkeley Parser archive from the official [site](https://code.google.com/p/berkeleyparser/downloads/list) at Google Code, uncompress it to your favorite location. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
@@ -101,7 +106,7 @@ If you cannot name the binary and/or the model as given above please set the fol
 
 Downloand the Stanford Parser archive from the official [site](http://nlp.stanford.edu/software/lex-parser.shtml), uncompress it to your favorite location. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
-    TreeTaggerRootDirectory/
+    StanfordRootDirectory/
     |_ stanford_parser.jar
     |_ stanford_parser-x.y.z-models.jar
 
@@ -110,6 +115,6 @@ Downloand the MaxEnt archive from the official [site](http://sourceforge.net/pro
 
 The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
-    TreeTaggerRootDirectory/
+    MaxEntRootDirectory/
     |_ output/
             |_ classes/
