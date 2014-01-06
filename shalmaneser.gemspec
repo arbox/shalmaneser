@@ -8,7 +8,7 @@ require 'shalmaneser/version'
 # Define a constant here to use this spec in the Rakefile.
 Gem::Specification.new do |s|
   s.name = 'shalmaneser'
-  # it is the description for 'gem list -d'
+  # It is the description for <gem list -d>.
   s.summary = 'SHALMANESER - SHALlow seMANtic parSER'
   s.description = <<-EOS
 SHALMANESER - SHALlow seMANtic parSER. This package provides a toolbox for
@@ -21,15 +21,16 @@ Project at the University of Saarbrücken.
   s.version = Shalmaneser::VERSION
   s.author = "Andrei Beliankou"
   s.email = 'arbox@yandex.ru'
-  s.homepage = 'https://github.com/arbox/shalmaneser'
+  s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
   s.bindir = 'bin'
   s.executables = ['frprep', 'fred', 'rosy']
   s.add_runtime_dependency('mysql')
-  s.add_development_dependency('rdoc', '>=3.9.1')
+  s.add_development_dependency('rdoc')
   s.add_development_dependency('bundler')
   s.add_development_dependency('yard')
   s.add_development_dependency('rake')
-  s.extra_rdoc_files = ['README.md', 'LICENSE.md', 'CHANGELOG.md']
+  s.extra_rdoc_files = ['README.md', 'LICENSE.md', 'CHANGELOG.md'] +
+    FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
 #  s.platform = Gem::Platform::CURRENT
   s.required_ruby_version = '>= 1.8.7'
@@ -63,5 +64,9 @@ If you find any bugs or have questions consider opeing a ticket:
 https://github.com/arbox/shalmaneser/issues
 
   EOS
+  # How to use this?
   s.requirements << 'mysql-server'
+  s.metadata = {
+    'issue_tracker' => 'https://github.com/arbox/shalmaneser/issues',
+  }
 end
