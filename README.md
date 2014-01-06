@@ -4,7 +4,7 @@
 [RubyGems](http://rubygems.org/gems/shalmaneser) | [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) | [Source Code](https://github.com/arbox/shalmaneser) | [Bug Tracker](https://github.com/arbox/shalmaneser/issues)
 
 [<img src="https://badge.fury.io/rb/shalmaneser.png" alt="Gem Version" />](http://badge.fury.io/rb/shalmaneser)
-[<img src="https://travis-ci.org/arbox/shalmaneser.png" alt="Build Status" />](https://travis-ci.org/arbox/shalmaneser)
+[![Build Status](https://travis-ci.org/arbox/shalmaneser.png?branch=1.2)](https://travis-ci.org/arbox/shalmaneser)
 [<img src="https://codeclimate.com/github/arbox/shalmaneser.png" alt="Code Climate" />](https://codeclimate.com/github/arbox/shalmaneser)
 [<img alt="Bitdeli Badge" src="https://d2weczhvl823v0.cloudfront.net/arbox/shalmaneser/trend.png" />](https://bitdeli.com/free)
 [![Dependency Status](https://gemnasium.com/arbox/shalmaneser.png)](https://gemnasium.com/arbox/shalmaneser)
