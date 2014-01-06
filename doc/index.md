@@ -45,6 +45,32 @@ Note: Please make sure you run the system in a terminal with Unicode encoding (`
 
 ## Setting up Shalmaneser on your system
 
+### MySQL Database
+
+You need an instance of MySQL Server running on your system. Possibly, you have such a server on your site on the local or remote server. If not, please install one (e.g. on Debian based systems):
+    $ sudo aptitude install mysql-server mysql-client
+
+During the installation you'll be prompted for the root password.
+
+Log in into MySQL management console:
+    $ mysql -u root -p
+
+You will be asked for the ``root`` password. The following commands suppose a local installation of MySQL.
+
+Create a new user for Shalmaneser (or use an existing one if it complies with your security policy):
+    mysql> CREATE USER 'shalm'@'localhost' IDENTIFIED BY 'shalmpassword';
+
+Feel free to change the username and the password.
+
+Create at least one database for Shalmaneser (it is convenient to use several databases to reuse experiment results):
+    mysql> CREATE DATABASE shalmaneser;
+
+Give your new user rights to use the new database and (for older MySQL versions) flush the privileges:
+    mysql> GRANT ALL PRIVILEGES ON shalmaneser.* TO 'shalm'@'localhost';
+    mysql> FLUSH PRIVILEGES; # Not needed on newer systems.
+
+The ``username``, the ``password`` and the ``database name`` are essential for for the experiment file declarations.
+
 ### TreeTagger
 Downloand the TreeTagger archive from the official [site](http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/) by Helmut Schmid, uncompress it to your favorite location, preserve the initial directory structure. The path to the root directory is essential for the experiment file declarations. Schalmaneser expects the following directory structure:
 
