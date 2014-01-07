@@ -16,3 +16,6 @@ script: "bundle exec rake travis"
 notifications:
   email:
     on_success: always
+
+before_install: "sudo gem update --system"
+
