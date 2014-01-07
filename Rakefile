@@ -30,7 +30,7 @@ end
 require 'yard'
 YARD::Rake::YardocTask.new(name = :ydoc) do |t|
   t.options += ['-o', 'ydoc']
-  t.files = ['lib/**/*.rb', 'bin/**/*', '-', 'doc/index.md']
+  t.files = ['lib/**/*.rb', 'bin/**/*', '-', 'doc/index.md', 'doc/exp_files.md']
 end
 
 # Testing.
