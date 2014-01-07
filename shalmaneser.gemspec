@@ -23,7 +23,7 @@ Project at the University of Saarbrücken.
   s.email = 'arbox@yandex.ru'
   s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
   s.bindir = 'bin'
-  s.executables = ['frprep', 'fred', 'rosy']
+  s.executables = ['shalmaneser', 'frprep', 'fred', 'rosy']
   s.add_runtime_dependency('mysql')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('bundler')
@@ -36,7 +36,7 @@ Project at the University of Saarbrücken.
   s.required_ruby_version = '>= 1.8.7'
   s.files = FileList['lib/**/*.rb',
                      'lib/**/*.class',
-                     'doc/*',
+                     'doc/**/*.md',
                      'README.md',
                      'LICENSE.md',
                      'CHANGELOG.md',
