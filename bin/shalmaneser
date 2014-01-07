@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'shalmaneser/opt_parser'
+
+# Change for options to default <-h> for now.
+#cmd_args = ['-h']
+cmd_args = ARGV
+
+begin
+  options = Shalmaneser::OptParser.parse(cmd_args)
+rescue
+  raise
+end
