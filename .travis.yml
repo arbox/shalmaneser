@@ -16,6 +16,10 @@ script: "bundle exec rake travis"
 notifications:
   email:
     on_success: always
-
-before_install: "sudo gem update --system"
-
+matrix:
+  allow_failures:
+    - rvm: 1.9.2
+    - rvm: 1.8.7
+    - rvm: jruby-18mode
+    - rvm: rbx-18mode
+    - rvm: ruby-head
