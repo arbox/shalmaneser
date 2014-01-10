@@ -91,8 +91,12 @@ class BerkeleyInterface < SynInterfaceSTXML
 
       # AB: for testing we leave this step out, it takes too much time.
       # Please keep the <parsefile> intact!!!
-      Kernel.system("#{berkeley_prog} < #{tempfile.path} > #{parsefilename}")      
+      rv = system("#{berkeley_prog} < #{tempfile.path} > #{parsefilename}")      
 
+      # AB: Testing for return value.
+      unless rv 
+        fail 'Berkeley Parser failed to parse our files!'
+      end
     end
   end
 
@@ -129,7 +133,16 @@ class BerkeleyInterface < SynInterfaceSTXML
         line = parsefile.gets
         
         # search for the next "relevant" file or end of the file
-	if line.nil? or line=~/^\( *\((PSEUDO|TOP|ROOT)/ or line=~/^\(\(\)/
+        # We expect here:
+        # - an empty line;
+        # - a failed parse;
+        # - a parse beginning with <( (>, <( (TOP>, <( (VROOT> etc.
+        # TOP - Negra Grammars
+        # VROOT - Tiger Grammars
+        # PSEUDE - Original BP Grammars
+        # ROOT - some english grammars
+        # empty identifiers for older Tiger grammars
+	if line.nil? or line=~/^\( *\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
           break
 	end   
         sentid +=1
@@ -141,12 +154,21 @@ class BerkeleyInterface < SynInterfaceSTXML
         raise "Error: premature end of parser file!"
       end
       
-
+      # Insert a top node <VROOT> if missing.
+      # Some grammars trained on older Tiger Versions
+      # expose this problem.
+      line.sub!(/^(\(\s+\(\s+)/, '\1VROOT')
+      
       # berkeley parser output: remove brackets /(.*)/
+      # Remove leading and trailing top level brackets.
       line.sub!(/^\( */, '')
       line.sub!(/ *\) *$/, '')
+
+      # Split consequtive closing brackets.
       line.gsub!(/\)\)/, ') )')
       line.gsub!(/\)\)/, ') )')
+
+      # Change CAT_FUNC delimiter from <_> to <->.
       line.gsub!(/(\([A-Z]+)_/, '\1-')
 
       sentence_str = line.chomp!
@@ -326,24 +348,27 @@ class BerkeleyInterface < SynInterfaceSTXML
 
       return build_salsatiger(sentence,pos+$&.length, stack,termc,nontc,sent_obj)
     else
-      raise "Error: cannot analyse sentence at pos #{pos}: #{sentence[pos..-1]}. Complete sentence: \n#{sentence}"
+      raise "Error: cannot analyse sentence at pos #{pos}: <#{sentence[pos..-1]}>. Complete sentence: \n#{sentence}"
     end
   end
 
   ###
-  # BerkeleyParser delivers node labels as "phrase type"-"grammatical function",
-  # but the GF may not be present.
+  # BerkeleyParser delivers node labels in different forms:
+  # - "phrase type"-"grammatical function",
+  # - "phrase type"_"grammatical function",
+  # - "prase type":"grammatical function",
+  # but the GF may be absent.
   # @param cat [String]
-  # @return [String]
+  # @return [Array<String>]
   def split_cat(cat)
 
-    md = cat.match(/^([^-]*)(-([^-]*))?$/)
+    md = cat.match(/^([^-:_]*)([-:_]([^-:_]*))?$/)
     raise "Error: Could not identify category in #{cat}!" unless md[1]
     
     proper_cat = md[1]
     md[3] ? gf = md[3] : gf = ''
     
-    [proper_cat,gf]
+    [proper_cat, gf]
   end
 
 end
