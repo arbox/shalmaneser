@@ -31,6 +31,47 @@ class TestFrprep < Test::Unit::TestCase
     remove_exp_file(@train_file)
   end
 
+  # Testing input in different formats.
+  def test_frprep_plaininput
+    create_exp_file(PRP_PLAININPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_PLAININPUT}")
+    remove_exp_file(PRP_PLAININPUT)
+  end
+
+  def test_frprep_stxmlinput
+    create_exp_file(PRP_STXMLINPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_STXMLINPUT}")
+    remove_exp_file(PRP_STXMLINPUT)
+  end
+
+  def test_frprep_tabinput
+    create_exp_file(PRP_TABINPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_TABINPUT}")
+    remove_exp_file(PRP_TABINPUT)
+  end
+
+  def test_frprep_fncorpusxmlinput
+    create_exp_file(PRP_FNCORPUSXMLINPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_FNCORPUSXMLINPUT}")
+    remove_exp_file(PRP_FNCORPUSXMLINPUT)
+  end
+
+  def test_frprep_fnxmlinput
+    create_exp_file(PRP_FNXMLINPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_FNXMLINPUT}")
+    remove_exp_file(PRP_FNXMLINPUT)
+  end
+
+  # Testing output in different formats.
+  def test_frprep_stxmloutput
+
+  end
+
+  def test_frprep_taboutput
+
+  end
+
+
   private
   # Berkeley Parser takes a long time which is bad for testing.
   # We ran it once and reuse the result file in our tests.

@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE lexunit-annotation SYSTEM "../docs/annotationV1_3.dtd">
+
+<lexunit-annotation ID="3" name="cause.n" frame="Causation" pos="N" incorporatedFE="">
+  <definition>COD: a person or thing that gives rise to an action, phenomenon, or condition.</definition>
+  <lexemes>
+    <lexeme ID="5802" pos="N" breakBefore="false" headword="false">cause</lexeme>
+  </lexemes>
+  <subcorpus name="N-240-s20-of-ing">
+    <annotationSet ID="787424" status="MANUAL">
+      <layers>
+        <layer ID="5228697" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222863" start="0" end="21" />
+            <label name="Effect" ID="32222867" start="52" end="70" />
+            <label name="Place" ID="32222870" start="72" end="86" />
+          </labels>
+        </layer>
+        <layer ID="5228698" name="GF">
+          <labels>
+            <label name="Ext" ID="32222865" start="0" end="21" />
+            <label name="Dep" ID="32222869" start="52" end="70" />
+            <label name="Dep" ID="32222872" start="72" end="86" />
+          </labels>
+        </layer>
+        <layer ID="5228699" name="PT">
+          <labels>
+            <label name="NP" ID="32222864" start="0" end="21" />
+            <label name="PP" ID="32222868" start="52" end="70" />
+            <label name="PP" ID="32222871" start="72" end="86" />
+          </labels>
+        </layer>
+        <layer ID="5228700" name="Sent" />
+        <layer ID="5228701" name="Other" />
+        <layer ID="5228702" name="Target">
+          <labels>
+            <label name="Target" ID="16286143" start="45" end="50" />
+          </labels>
+        </layer>
+        <layer ID="5228703" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222866" start="23" end="24" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653478" aPos="9048228">
+        <text>Well-meaning ignorance is one of the biggest causes of animal suffering in this country : Heaven preserve us all from welfarenatics .</text>
+        <parts-of-speech type="BNC">
+          <pos name="AJ0" start="0" end="11" />
+          <pos name="NN1" start="13" end="21" />
+          <pos name="VBZ" start="23" end="24" />
+          <pos name="CRD" start="26" end="28" />
+          <pos name="PRF" start="30" end="31" />
+          <pos name="AT0" start="33" end="35" />
+          <pos name="AJS" start="37" end="43" />
+          <pos name="NN2" start="45" end="50" />
+          <pos name="PRF" start="52" end="53" />
+          <pos name="NN1" start="55" end="60" />
+          <pos name="VVG" start="62" end="70" />
+          <pos name="PRP" start="72" end="73" />
+          <pos name="DT0" start="75" end="78" />
+          <pos name="NN1" start="80" end="86" />
+          <pos name="PUN" start="88" end="88" />
+          <pos name="NN1" start="90" end="95" />
+          <pos name="NN1-VVB" start="97" end="104" />
+          <pos name="PNP" start="106" end="107" />
+          <pos name="DT0" start="109" end="111" />
+          <pos name="PRP" start="113" end="116" />
+          <pos name="NN1" start="118" end="130" />
+          <pos name="PUN" start="132" end="132" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787428" status="MANUAL">
+      <layers>
+        <layer ID="5228713" name="FE" rank="1">
+          <labels>
+            <label name="Effect" ID="32222877" start="145" end="219" />
+            <label name="Cause" ID="32222880" start="111" end="118" />
+            <label name="Cause" ID="33658514" start="120" end="124" />
+          </labels>
+        </layer>
+        <layer ID="5228714" name="GF">
+          <labels>
+            <label name="Dep" ID="32222879" start="145" end="219" />
+            <label name="Ext" ID="32222882" start="111" end="118" />
+            <label name="Ext" ID="33658515" start="120" end="124" />
+          </labels>
+        </layer>
+        <layer ID="5228715" name="PT">
+          <labels>
+            <label name="PP" ID="32222878" start="145" end="219" />
+            <label name="NP" ID="32222881" start="111" end="118" />
+            <label name="NP" ID="33658516" start="120" end="124" />
+          </labels>
+        </layer>
+        <layer ID="5228718" name="Sent" />
+        <layer ID="5228720" name="Other">
+          <labels>
+            <label name="Ant" ID="33658512" start="111" end="118" />
+            <label name="Rel" ID="33658513" start="120" end="124" />
+          </labels>
+        </layer>
+        <layer ID="5228722" name="Target">
+          <labels>
+            <label name="Target" ID="16286206" start="139" end="143" />
+          </labels>
+        </layer>
+        <layer ID="5228724" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222876" start="126" end="128" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653480" aPos="46039214">
+        <text>The opposite of a vigorous workout , this gentle method of realigning your body can be effective in dispelling tensions which are the root cause of problems ranging from headaches and backaches to depression and insomnia .</text>
+        <parts-of-speech type="BNC">
+          <pos name="AT0" start="0" end="2" />
+          <pos name="AJ0-NN1" start="4" end="11" />
+          <pos name="PRF" start="13" end="14" />
+          <pos name="AT0" start="16" end="16" />
+          <pos name="AJ0" start="18" end="25" />
+          <pos name="NN1" start="27" end="33" />
+          <pos name="PUN" start="35" end="35" />
+          <pos name="DT0" start="37" end="40" />
+          <pos name="AJ0" start="42" end="47" />
+          <pos name="NN1" start="49" end="54" />
+          <pos name="PRF" start="56" end="57" />
+          <pos name="VVG" start="59" end="68" />
+          <pos name="DPS" start="70" end="73" />
+          <pos name="NN1" start="75" end="78" />
+          <pos name="VM0" start="80" end="82" />
+          <pos name="VBI" start="84" end="85" />
+          <pos name="AJ0" start="87" end="95" />
+          <pos name="PRP" start="97" end="98" />
+          <pos name="AJ0-VVG" start="100" end="109" />
+          <pos name="NN2" start="111" end="118" />
+          <pos name="DTQ" start="120" end="124" />
+          <pos name="VBB" start="126" end="128" />
+          <pos name="AT0" start="130" end="132" />
+          <pos name="NN1" start="134" end="137" />
+          <pos name="NN1" start="139" end="143" />
+          <pos name="PRF" start="145" end="146" />
+          <pos name="NN2" start="148" end="155" />
+          <pos name="VVG" start="157" end="163" />
+          <pos name="PRP" start="165" end="168" />
+          <pos name="NN2" start="170" end="178" />
+          <pos name="CJC" start="180" end="182" />
+          <pos name="NN2-VVZ" start="184" end="192" />
+          <pos name="PRP" start="194" end="195" />
+          <pos name="NN1" start="197" end="206" />
+          <pos name="CJC" start="208" end="210" />
+          <pos name="NN1" start="212" end="219" />
+          <pos name="PUN" start="221" end="221" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787442" status="MANUAL">
+      <layers>
+        <layer ID="5228767" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222883" start="65" end="69" />
+            <label name="Effect" ID="32222884" start="71" end="113" />
+            <label name="Place" ID="32222887" start="115" end="125" />
+          </labels>
+        </layer>
+        <layer ID="5228769" name="GF">
+          <labels>
+            <label name="Dep" ID="32222886" start="71" end="113" />
+            <label name="Dep" ID="32222889" start="115" end="125" />
+          </labels>
+        </layer>
+        <layer ID="5228771" name="PT">
+          <labels>
+            <label name="PP" ID="32222885" start="71" end="113" />
+            <label name="PP" ID="32222888" start="115" end="125" />
+          </labels>
+        </layer>
+        <layer ID="5228772" name="Sent" />
+        <layer ID="5228773" name="Other" />
+        <layer ID="5228774" name="Target">
+          <labels>
+            <label name="Target" ID="16286349" start="65" end="69" />
+          </labels>
+        </layer>
+        <layer ID="5228775" name="Noun">
+          <labels>
+            <label name="Gov" ID="32222890" start="50" end="59" />
+            <label name="X" ID="32222891" start="61" end="125" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653487" aPos="77730793">
+        <text>BP researchers at Sunbury have joined the hunt to track down the cause of a mysterious illness affecting elephants in Zimbabwe .</text>
+        <parts-of-speech type="BNC">
+          <pos name="NP0" start="0" end="1" />
+          <pos name="NN2" start="3" end="13" />
+          <pos name="PRP" start="15" end="16" />
+          <pos name="NP0" start="18" end="24" />
+          <pos name="VHB" start="26" end="29" />
+          <pos name="VVN" start="31" end="36" />
+          <pos name="AT0" start="38" end="40" />
+          <pos name="NN1" start="42" end="45" />
+          <pos name="TO0" start="47" end="48" />
+          <pos name="VVI" start="50" end="54" />
+          <pos name="AVP" start="56" end="59" />
+          <pos name="AT0" start="61" end="63" />
+          <pos name="NN1" start="65" end="69" />
+          <pos name="PRF" start="71" end="72" />
+          <pos name="AT0" start="74" end="74" />
+          <pos name="AJ0" start="76" end="85" />
+          <pos name="NN1" start="87" end="93" />
+          <pos name="VVG" start="95" end="103" />
+          <pos name="NN2" start="105" end="113" />
+          <pos name="PRP" start="115" end="116" />
+          <pos name="NP0" start="118" end="125" />
+          <pos name="PUN" start="127" end="127" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787464" status="MANUAL">
+      <layers>
+        <layer ID="5228857" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222892" start="51" end="69" />
+            <label name="Effect" ID="32222896" start="91" end="152" />
+          </labels>
+        </layer>
+        <layer ID="5228858" name="GF">
+          <labels>
+            <label name="Ext" ID="32222894" start="51" end="69" />
+            <label name="Dep" ID="32222898" start="91" end="152" />
+          </labels>
+        </layer>
+        <layer ID="5228859" name="PT">
+          <labels>
+            <label name="NP" ID="32222893" start="51" end="69" />
+            <label name="PP" ID="32222897" start="91" end="152" />
+          </labels>
+        </layer>
+        <layer ID="5228860" name="Sent" />
+        <layer ID="5228861" name="Other" />
+        <layer ID="5228862" name="Target">
+          <labels>
+            <label name="Target" ID="16286597" start="85" end="89" />
+          </labels>
+        </layer>
+        <layer ID="5228863" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222895" start="71" end="74" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653498" aPos="105533331">
+        <text>Trade union chiefs in the region yesterday claimed Government policies were a direct cause of the problems facing the economy of Yorkshire and Humberside .</text>
+        <parts-of-speech type="BNC">
+          <pos name="NN1" start="0" end="4" />
+          <pos name="NN0" start="6" end="10" />
+          <pos name="NN2" start="12" end="17" />
+          <pos name="PRP" start="19" end="20" />
+          <pos name="AT0" start="22" end="24" />
+          <pos name="NN1" start="26" end="31" />
+          <pos name="AV0" start="33" end="41" />
+          <pos name="AJ0" start="43" end="49" />
+          <pos name="NN0" start="51" end="60" />
+          <pos name="NN2" start="62" end="69" />
+          <pos name="VBD" start="71" end="74" />
+          <pos name="AT0" start="76" end="76" />
+          <pos name="AJ0" start="78" end="83" />
+          <pos name="NN1" start="85" end="89" />
+          <pos name="PRF" start="91" end="92" />
+          <pos name="AT0" start="94" end="96" />
+          <pos name="NN2" start="98" end="105" />
+          <pos name="VVG" start="107" end="112" />
+          <pos name="AT0" start="114" end="116" />
+          <pos name="NN1" start="118" end="124" />
+          <pos name="PRF" start="126" end="127" />
+          <pos name="NP0" start="129" end="137" />
+          <pos name="CJC" start="139" end="141" />
+          <pos name="NP0" start="143" end="152" />
+          <pos name="PUN" start="154" end="154" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787470" status="MANUAL">
+      <layers>
+        <layer ID="5228878" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222899" start="0" end="11" />
+            <label name="Effect" ID="32222903" start="38" end="95" />
+          </labels>
+        </layer>
+        <layer ID="5228880" name="GF">
+          <labels>
+            <label name="Ext" ID="32222901" start="0" end="11" />
+            <label name="Dep" ID="32222905" start="38" end="95" />
+          </labels>
+        </layer>
+        <layer ID="5228882" name="PT">
+          <labels>
+            <label name="NP" ID="32222900" start="0" end="11" />
+            <label name="PP" ID="32222904" start="38" end="95" />
+          </labels>
+        </layer>
+        <layer ID="5228884" name="Sent" />
+        <layer ID="5228885" name="Other" />
+        <layer ID="5228886" name="Target">
+          <labels>
+            <label name="Target" ID="16286634" start="32" end="36" />
+          </labels>
+        </layer>
+        <layer ID="5228887" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222902" start="13" end="14" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653501" aPos="105765398">
+        <text>Unemployment is still the major cause of borrowers falling behind with their mortgage repayments . "</text>
+        <parts-of-speech type="BNC">
+          <pos name="NN1-NP0" start="0" end="11" />
+          <pos name="VBZ" start="13" end="14" />
+          <pos name="AV0" start="16" end="20" />
+          <pos name="AT0" start="22" end="24" />
+          <pos name="AJ0" start="26" end="30" />
+          <pos name="NN1" start="32" end="36" />
+          <pos name="PRF" start="38" end="39" />
+          <pos name="NN2" start="41" end="49" />
+          <pos name="VVG" start="51" end="57" />
+          <pos name="AV0" start="59" end="64" />
+          <pos name="PRP" start="66" end="69" />
+          <pos name="DPS" start="71" end="75" />
+          <pos name="NN1" start="77" end="84" />
+          <pos name="NN2" start="86" end="95" />
+          <pos name="PUN" start="97" end="97" />
+          <pos name="PUQ" start="99" end="99" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-250-s20-ppof">
+    <annotationSet ID="787500" status="MANUAL">
+      <layers>
+        <layer ID="5228999" name="FE" rank="1">
+          <labels>
+            <label name="Effect" ID="32222908" start="145" end="155" />
+            <label name="Cause" ID="32222911" start="138" end="143" />
+          </labels>
+        </layer>
+        <layer ID="5229001" name="GF">
+          <labels>
+            <label name="Dep" ID="32222910" start="145" end="155" />
+          </labels>
+        </layer>
+        <layer ID="5229002" name="PT">
+          <labels>
+            <label name="PP" ID="32222909" start="145" end="155" />
+          </labels>
+        </layer>
+        <layer ID="5229003" name="Sent" />
+        <layer ID="5229005" name="Other" />
+        <layer ID="5229006" name="Target">
+          <labels>
+            <label name="Target" ID="16286960" start="138" end="143" />
+          </labels>
+        </layer>
+        <layer ID="5229007" name="Noun">
+          <labels>
+            <label name="Gov" ID="32222906" start="75" end="83" />
+            <label name="X" ID="32222907" start="123" end="155" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653516" aPos="32927373">
+        <text>Not just another moisturiser , Time Zone is a true dry skin treatment that addresses , for the first time , the multiple , dermatological causes of dry skin -- as well as the results .</text>
+        <parts-of-speech type="BNC">
+          <pos name="XX0" start="0" end="2" />
+          <pos name="AV0" start="4" end="7" />
+          <pos name="DT0" start="9" end="15" />
+          <pos name="NN1" start="17" end="27" />
+          <pos name="PUN" start="29" end="29" />
+          <pos name="NN1" start="31" end="34" />
+          <pos name="NN1" start="36" end="39" />
+          <pos name="VBZ" start="41" end="42" />
+          <pos name="AT0" start="44" end="44" />
+          <pos name="AJ0" start="46" end="49" />
+          <pos name="AJ0" start="51" end="53" />
+          <pos name="NN1" start="55" end="58" />
+          <pos name="NN1" start="60" end="68" />
+          <pos name="CJT-DT0" start="70" end="73" />
+          <pos name="NN2" start="75" end="83" />
+          <pos name="PUN" start="85" end="85" />
+          <pos name="PRP" start="87" end="89" />
+          <pos name="AT0" start="91" end="93" />
+          <pos name="ORD" start="95" end="99" />
+          <pos name="NN1" start="101" end="104" />
+          <pos name="PUN" start="106" end="106" />
+          <pos name="AT0" start="108" end="110" />
+          <pos name="AJ0" start="112" end="119" />
+          <pos name="PUN" start="121" end="121" />
+          <pos name="AJ0" start="123" end="136" />
+          <pos name="NN2" start="138" end="143" />
+          <pos name="PRF" start="145" end="146" />
+          <pos name="AJ0" start="148" end="150" />
+          <pos name="NN1" start="152" end="155" />
+          <pos name="PUN" start="157" end="158" />
+          <pos name="CJC" start="160" end="161" />
+          <pos name="CJC" start="163" end="166" />
+          <pos name="CJC" start="168" end="169" />
+          <pos name="AT0" start="171" end="173" />
+          <pos name="NN2" start="175" end="181" />
+          <pos name="PUN" start="183" end="183" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787512" status="MANUAL">
+      <layers>
+        <layer ID="5229042" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222912" start="26" end="29" />
+            <label name="Effect" ID="32222916" start="44" end="58" />
+          </labels>
+        </layer>
+        <layer ID="5229043" name="GF">
+          <labels>
+            <label name="Ext" ID="32222914" start="26" end="29" />
+            <label name="Dep" ID="32222918" start="44" end="58" />
+          </labels>
+        </layer>
+        <layer ID="5229045" name="PT">
+          <labels>
+            <label name="NP" ID="32222913" start="26" end="29" />
+            <label name="PP" ID="32222917" start="44" end="58" />
+          </labels>
+        </layer>
+        <layer ID="5229047" name="Sent" />
+        <layer ID="5229049" name="Other" />
+        <layer ID="5229051" name="Target">
+          <labels>
+            <label name="Target" ID="16287069" start="38" end="42" />
+          </labels>
+        </layer>
+        <layer ID="5229053" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222915" start="31" end="32" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653522" aPos="43242138">
+        <text>However , I doubt whether this is the cause of your problem .</text>
+        <parts-of-speech type="BNC">
+          <pos name="AV0" start="0" end="6" />
+          <pos name="PUN" start="8" end="8" />
+          <pos name="PNP" start="10" end="10" />
+          <pos name="NN1-VVB" start="12" end="16" />
+          <pos name="CJS" start="18" end="24" />
+          <pos name="DT0" start="26" end="29" />
+          <pos name="VBZ" start="31" end="32" />
+          <pos name="AT0" start="34" end="36" />
+          <pos name="NN1" start="38" end="42" />
+          <pos name="PRF" start="44" end="45" />
+          <pos name="DPS" start="47" end="50" />
+          <pos name="NN1" start="52" end="58" />
+          <pos name="PUN" start="60" end="60" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787514" status="MANUAL">
+      <layers>
+        <layer ID="5229060" name="FE" rank="1">
+          <labels>
+            <label name="Actor" ID="32222919" start="51" end="54" />
+            <label name="Effect" ID="32222923" start="81" end="101" />
+          </labels>
+        </layer>
+        <layer ID="5229062" name="GF">
+          <labels>
+            <label name="Ext" ID="32222921" start="51" end="54" />
+            <label name="Dep" ID="32222925" start="81" end="101" />
+          </labels>
+        </layer>
+        <layer ID="5229064" name="PT">
+          <labels>
+            <label name="NP" ID="32222920" start="51" end="54" />
+            <label name="PP" ID="32222924" start="81" end="101" />
+          </labels>
+        </layer>
+        <layer ID="5229066" name="Sent" />
+        <layer ID="5229068" name="Other" />
+        <layer ID="5229070" name="Target">
+          <labels>
+            <label name="Target" ID="16287115" start="75" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5229071" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222922" start="56" end="58" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653523" aPos="63667055">
+        <text>There is an additional double bind for men in that they are very often the cause of the woman 's tears ; it may well be their behaviour that has caused the distress .</text>
+        <parts-of-speech type="BNC">
+          <pos name="EX0" start="0" end="4" />
+          <pos name="VBZ" start="6" end="7" />
+          <pos name="AT0" start="9" end="10" />
+          <pos name="AJ0" start="12" end="21" />
+          <pos name="AJ0" start="23" end="28" />
+          <pos name="NN1" start="30" end="33" />
+          <pos name="PRP" start="35" end="37" />
+          <pos name="NN2" start="39" end="41" />
+          <pos name="PRP" start="43" end="44" />
+          <pos name="DT0" start="46" end="49" />
+          <pos name="PNP" start="51" end="54" />
+          <pos name="VBB" start="56" end="58" />
+          <pos name="AV0" start="60" end="63" />
+          <pos name="AV0" start="65" end="69" />
+          <pos name="AT0" start="71" end="73" />
+          <pos name="NN1" start="75" end="79" />
+          <pos name="PRF" start="81" end="82" />
+          <pos name="AT0" start="84" end="86" />
+          <pos name="NN1" start="88" end="92" />
+          <pos name="POS" start="94" end="95" />
+          <pos name="NN2" start="97" end="101" />
+          <pos name="PUN" start="103" end="103" />
+          <pos name="PNP" start="105" end="106" />
+          <pos name="VM0" start="108" end="110" />
+          <pos name="AV0" start="112" end="115" />
+          <pos name="VBI" start="117" end="118" />
+          <pos name="DPS" start="120" end="124" />
+          <pos name="NN1" start="126" end="134" />
+          <pos name="CJT" start="136" end="139" />
+          <pos name="VHZ" start="141" end="143" />
+          <pos name="VVN" start="145" end="150" />
+          <pos name="AT0" start="152" end="154" />
+          <pos name="NN1" start="156" end="163" />
+          <pos name="PUN" start="165" end="165" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787520" status="MANUAL">
+      <layers>
+        <layer ID="5229081" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222926" start="52" end="82" />
+            <label name="Effect" ID="32222930" start="103" end="123" />
+          </labels>
+        </layer>
+        <layer ID="5229082" name="GF">
+          <labels>
+            <label name="Ext" ID="32222928" start="52" end="82" />
+            <label name="Dep" ID="32222932" start="103" end="123" />
+          </labels>
+        </layer>
+        <layer ID="5229083" name="PT">
+          <labels>
+            <label name="NP" ID="32222927" start="52" end="82" />
+            <label name="PP" ID="32222931" start="103" end="123" />
+          </labels>
+        </layer>
+        <layer ID="5229084" name="Sent" />
+        <layer ID="5229085" name="Other" />
+        <layer ID="5229086" name="Target">
+          <labels>
+            <label name="Target" ID="16287172" start="97" end="101" />
+          </labels>
+        </layer>
+        <layer ID="5229087" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222929" start="88" end="91" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653526" aPos="70897448">
+        <text>Fowler had been told not to press the old man , but the parentage of Cissie 's baby had been the cause of much of the gossip .</text>
+        <parts-of-speech type="BNC">
+          <pos name="NP0" start="0" end="5" />
+          <pos name="VHD" start="7" end="9" />
+          <pos name="VBN" start="11" end="14" />
+          <pos name="VVN" start="16" end="19" />
+          <pos name="XX0" start="21" end="23" />
+          <pos name="TO0" start="25" end="26" />
+          <pos name="VVI" start="28" end="32" />
+          <pos name="AT0" start="34" end="36" />
+          <pos name="AJ0" start="38" end="40" />
+          <pos name="NN1" start="42" end="44" />
+          <pos name="PUN" start="46" end="46" />
+          <pos name="CJC" start="48" end="50" />
+          <pos name="AT0" start="52" end="54" />
+          <pos name="NN1" start="56" end="64" />
+          <pos name="PRF" start="66" end="67" />
+          <pos name="NP0" start="69" end="74" />
+          <pos name="POS" start="76" end="77" />
+          <pos name="NN1" start="79" end="82" />
+          <pos name="VHD" start="84" end="86" />
+          <pos name="VBN" start="88" end="91" />
+          <pos name="AT0" start="93" end="95" />
+          <pos name="NN1" start="97" end="101" />
+          <pos name="PRF" start="103" end="104" />
+          <pos name="DT0" start="106" end="109" />
+          <pos name="PRF" start="111" end="112" />
+          <pos name="AT0" start="114" end="116" />
+          <pos name="NN1" start="118" end="123" />
+          <pos name="PUN" start="125" end="125" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-280-s20-poss">
+    <annotationSet ID="787590" status="MANUAL">
+      <layers>
+        <layer ID="5229361" name="FE" rank="1">
+          <labels>
+            <label name="Effect" ID="32222933" start="131" end="133" />
+            <label name="Cause" ID="32222936" start="135" end="139" />
+          </labels>
+        </layer>
+        <layer ID="5229362" name="GF">
+          <labels>
+            <label name="Gen" ID="32222935" start="131" end="133" />
+          </labels>
+        </layer>
+        <layer ID="5229363" name="PT">
+          <labels>
+            <label name="Poss" ID="32222934" start="131" end="133" />
+          </labels>
+        </layer>
+        <layer ID="5229364" name="Sent" />
+        <layer ID="5229365" name="Other" />
+        <layer ID="5229366" name="Target">
+          <labels>
+            <label name="Target" ID="16288051" start="135" end="139" />
+          </labels>
+        </layer>
+        <layer ID="5229367" name="Noun">
+          <labels>
+            <label name="Gov" ID="32222937" start="126" end="129" />
+            <label name="X" ID="32222938" start="131" end="139" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653561" aPos="46784471">
+        <text>It must be said at once that nothing remotely as strong as this is required by the proposition that to explain an event is to find its cause .</text>
+        <parts-of-speech type="BNC">
+          <pos name="PNP" start="0" end="1" />
+          <pos name="VM0" start="3" end="6" />
+          <pos name="VBI" start="8" end="9" />
+          <pos name="VVN" start="11" end="14" />
+          <pos name="AV0" start="16" end="17" />
+          <pos name="AV0" start="19" end="22" />
+          <pos name="CJT" start="24" end="27" />
+          <pos name="PNI" start="29" end="35" />
+          <pos name="AV0" start="37" end="44" />
+          <pos name="AV0" start="46" end="47" />
+          <pos name="AJ0" start="49" end="54" />
+          <pos name="CJS" start="56" end="57" />
+          <pos name="DT0" start="59" end="62" />
+          <pos name="VBZ" start="64" end="65" />
+          <pos name="VVN" start="67" end="74" />
+          <pos name="PRP" start="76" end="77" />
+          <pos name="AT0" start="79" end="81" />
+          <pos name="NN1" start="83" end="93" />
+          <pos name="CJT-DT0" start="95" end="98" />
+          <pos name="TO0" start="100" end="101" />
+          <pos name="VVI" start="103" end="109" />
+          <pos name="AT0" start="111" end="112" />
+          <pos name="NN1" start="114" end="118" />
+          <pos name="VBZ" start="120" end="121" />
+          <pos name="TO0" start="123" end="124" />
+          <pos name="VVI" start="126" end="129" />
+          <pos name="DPS" start="131" end="133" />
+          <pos name="NN1" start="135" end="139" />
+          <pos name="PUN" start="141" end="141" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-290-s20-posscmpd" />
+  <subcorpus name="N-300-s20-cmpd" />
+  <subcorpus name="N-320-s20-ingcmpd" />
+  <subcorpus name="N-340-s20-ppother" />
+  <subcorpus name="N-370-s20-pother">
+    <annotationSet ID="787882" status="MANUAL">
+      <layers>
+        <layer ID="5230529" name="FE" rank="1">
+          <labels>
+            <label name="Effect" ID="32222939" start="21" end="52" />
+            <label name="Cause" ID="32222943" start="59" end="105" />
+          </labels>
+        </layer>
+        <layer ID="5230530" name="GF">
+          <labels>
+            <label name="Dep" ID="32222941" start="21" end="52" />
+            <label name="Ext" ID="32222945" start="59" end="105" />
+          </labels>
+        </layer>
+        <layer ID="5230531" name="PT">
+          <labels>
+            <label name="PPing" ID="32222940" start="21" end="52" />
+            <label name="NP" ID="32222944" start="59" end="105" />
+          </labels>
+        </layer>
+        <layer ID="5230532" name="Sent" />
+        <layer ID="5230533" name="Other" />
+        <layer ID="5230534" name="Target">
+          <labels>
+            <label name="Target" ID="16291578" start="15" end="19" />
+          </labels>
+        </layer>
+        <layer ID="5230535" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222942" start="54" end="57" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653707" aPos="2760547">
+        <text>The short-term cause of overriding local significance were the droughts and crop failures in 1920 and 1921 .</text>
+        <parts-of-speech type="BNC">
+          <pos name="AT0" start="0" end="2" />
+          <pos name="AJ0" start="4" end="13" />
+          <pos name="NN1" start="15" end="19" />
+          <pos name="PRF" start="21" end="22" />
+          <pos name="VVG" start="24" end="33" />
+          <pos name="AJ0" start="35" end="39" />
+          <pos name="NN1" start="41" end="52" />
+          <pos name="VBD" start="54" end="57" />
+          <pos name="AT0" start="59" end="61" />
+          <pos name="NN2" start="63" end="70" />
+          <pos name="CJC" start="72" end="74" />
+          <pos name="NN1-VVB" start="76" end="79" />
+          <pos name="NN2" start="81" end="88" />
+          <pos name="PRP" start="90" end="91" />
+          <pos name="CRD" start="93" end="96" />
+          <pos name="CJC" start="98" end="100" />
+          <pos name="CRD" start="102" end="105" />
+          <pos name="PUN" start="107" end="107" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-380-s20-other-s20" />
+  <subcorpus name="N-429-s20-lcoll-common">
+    <annotationSet ID="787964" status="MANUAL">
+      <layers>
+        <layer ID="5231193" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222974" start="0" end="16" />
+            <label name="Effect" ID="32222978" start="52" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231194" name="GF">
+          <labels>
+            <label name="Ext" ID="32222976" start="0" end="16" />
+            <label name="Dep" ID="32222980" start="52" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231195" name="PT">
+          <labels>
+            <label name="NP" ID="32222975" start="0" end="16" />
+            <label name="PP" ID="32222979" start="52" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231196" name="Sent" />
+        <layer ID="5231197" name="Other" />
+        <layer ID="5231198" name="Target">
+          <labels>
+            <label name="Target" ID="16293718" start="46" end="50" />
+          </labels>
+        </layer>
+        <layer ID="5231199" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222977" start="18" end="19" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653790" aPos="1150501">
+        <text>Altitude sickness is probably the most common cause of failure to reach a summit .</text>
+        <parts-of-speech type="BNC">
+          <pos name="NN1" start="0" end="7" />
+          <pos name="NN1" start="9" end="16" />
+          <pos name="VBZ" start="18" end="19" />
+          <pos name="AV0" start="21" end="28" />
+          <pos name="AT0" start="30" end="32" />
+          <pos name="DT0" start="34" end="37" />
+          <pos name="AJ0" start="39" end="44" />
+          <pos name="NN1" start="46" end="50" />
+          <pos name="PRF" start="52" end="53" />
+          <pos name="NN1" start="55" end="61" />
+          <pos name="TO0" start="63" end="64" />
+          <pos name="VVI" start="66" end="70" />
+          <pos name="AT0" start="72" end="72" />
+          <pos name="NN1" start="74" end="79" />
+          <pos name="PUN" start="81" end="81" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="787968" status="MANUAL">
+      <layers>
+        <layer ID="5231222" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222981" start="65" end="78" />
+            <label name="Effect" ID="32222985" start="99" end="112" />
+          </labels>
+        </layer>
+        <layer ID="5231223" name="GF">
+          <labels>
+            <label name="Ext" ID="32222983" start="65" end="78" />
+            <label name="Dep" ID="32222987" start="99" end="112" />
+          </labels>
+        </layer>
+        <layer ID="5231227" name="PT">
+          <labels>
+            <label name="NP" ID="32222982" start="65" end="78" />
+            <label name="PP" ID="32222986" start="99" end="112" />
+          </labels>
+        </layer>
+        <layer ID="5231228" name="Sent" />
+        <layer ID="5231229" name="Other" />
+        <layer ID="5231230" name="Target">
+          <labels>
+            <label name="Target" ID="16293801" start="93" end="97" />
+          </labels>
+        </layer>
+        <layer ID="5231231" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222984" start="80" end="82" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653794" aPos="20468895">
+        <text>So one might expect chemical sensitivity to run in families , if enzyme defects are a common cause of the problem .</text>
+        <parts-of-speech type="BNC">
+          <pos name="CJS" start="0" end="1" />
+          <pos name="PNI" start="3" end="5" />
+          <pos name="VM0" start="7" end="11" />
+          <pos name="VVI" start="13" end="18" />
+          <pos name="AJ0-NN1" start="20" end="27" />
+          <pos name="NN1" start="29" end="39" />
+          <pos name="TO0" start="41" end="42" />
+          <pos name="VVI" start="44" end="46" />
+          <pos name="PRP" start="48" end="49" />
+          <pos name="NN2" start="51" end="58" />
+          <pos name="PUN" start="60" end="60" />
+          <pos name="CJS" start="62" end="63" />
+          <pos name="NN1" start="65" end="70" />
+          <pos name="NN2" start="72" end="78" />
+          <pos name="VBB" start="80" end="82" />
+          <pos name="AT0" start="84" end="84" />
+          <pos name="AJ0" start="86" end="91" />
+          <pos name="NN1" start="93" end="97" />
+          <pos name="PRF" start="99" end="100" />
+          <pos name="AT0" start="102" end="104" />
+          <pos name="NN1" start="106" end="112" />
+          <pos name="PUN" start="114" end="114" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-429-s20-lcoll-external" />
+  <subcorpus name="N-429-s20-rcoll-accident">
+    <annotationSet ID="788046" status="MANUAL">
+      <layers>
+        <layer ID="5231857" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222960" start="0" end="25" />
+            <label name="Effect" ID="32222964" start="41" end="57" />
+          </labels>
+        </layer>
+        <layer ID="5231858" name="GF">
+          <labels>
+            <label name="Ext" ID="32222962" start="0" end="25" />
+            <label name="Dep" ID="32222966" start="41" end="57" />
+          </labels>
+        </layer>
+        <layer ID="5231859" name="PT">
+          <labels>
+            <label name="NP" ID="32222961" start="0" end="25" />
+            <label name="PP" ID="32222965" start="41" end="57" />
+          </labels>
+        </layer>
+        <layer ID="5231860" name="Sent" />
+        <layer ID="5231861" name="Other" />
+        <layer ID="5231862" name="Target">
+          <labels>
+            <label name="Target" ID="16295718" start="35" end="39" />
+          </labels>
+        </layer>
+        <layer ID="5231863" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222963" start="27" end="29" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653873" aPos="14904905">
+        <text>Jumping from moving trains was the cause of many accidents in the early days of railways .</text>
+        <parts-of-speech type="BNC">
+          <pos name="VVG" start="0" end="6" />
+          <pos name="PRP" start="8" end="11" />
+          <pos name="AJ0-VVG" start="13" end="18" />
+          <pos name="NN2" start="20" end="25" />
+          <pos name="VBD" start="27" end="29" />
+          <pos name="AT0" start="31" end="33" />
+          <pos name="NN1" start="35" end="39" />
+          <pos name="PRF" start="41" end="42" />
+          <pos name="DT0" start="44" end="47" />
+          <pos name="NN2" start="49" end="57" />
+          <pos name="PRP" start="59" end="60" />
+          <pos name="AT0" start="62" end="64" />
+          <pos name="AJ0" start="66" end="70" />
+          <pos name="NN2" start="72" end="75" />
+          <pos name="PRF" start="77" end="78" />
+          <pos name="NN2" start="80" end="87" />
+          <pos name="PUN" start="89" end="89" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+    <annotationSet ID="788048" status="MANUAL">
+      <layers>
+        <layer ID="5231869" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222967" start="0" end="46" />
+            <label name="Effect" ID="32222971" start="68" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231871" name="GF">
+          <labels>
+            <label name="Ext" ID="32222969" start="0" end="46" />
+            <label name="Dep" ID="32222973" start="68" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231875" name="PT">
+          <labels>
+            <label name="NP" ID="32222968" start="0" end="46" />
+            <label name="PP" ID="32222972" start="68" end="79" />
+          </labels>
+        </layer>
+        <layer ID="5231876" name="Sent" />
+        <layer ID="5231877" name="Other" />
+        <layer ID="5231878" name="Target">
+          <labels>
+            <label name="Target" ID="16295765" start="62" end="66" />
+          </labels>
+        </layer>
+        <layer ID="5231879" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222970" start="48" end="49" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653875" aPos="16997843">
+        <text>Overreaching for an article on nearby furniture is a frequent cause of accidents .</text>
+        <parts-of-speech type="BNC">
+          <pos name="VVG" start="0" end="11" />
+          <pos name="PRP" start="13" end="15" />
+          <pos name="AT0" start="17" end="18" />
+          <pos name="NN1" start="20" end="26" />
+          <pos name="PRP" start="28" end="29" />
+          <pos name="AJ0" start="31" end="36" />
+          <pos name="NN1" start="38" end="46" />
+          <pos name="VBZ" start="48" end="49" />
+          <pos name="AT0" start="51" end="51" />
+          <pos name="AJ0" start="53" end="60" />
+          <pos name="NN1" start="62" end="66" />
+          <pos name="PRF" start="68" end="69" />
+          <pos name="NN2" start="71" end="79" />
+          <pos name="PUN" start="81" end="81" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-429-s20-rcoll-cancer">
+    <annotationSet ID="788108" status="MANUAL">
+      <layers>
+        <layer ID="5232384" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222953" start="0" end="6" />
+            <label name="Effect" ID="32222956" start="21" end="42" />
+          </labels>
+        </layer>
+        <layer ID="5232385" name="GF">
+          <labels>
+            <label name="Ext" ID="32222955" start="0" end="6" />
+            <label name="Dep" ID="32222958" start="21" end="42" />
+          </labels>
+        </layer>
+        <layer ID="5232387" name="PT">
+          <labels>
+            <label name="NP" ID="32222954" start="0" end="6" />
+            <label name="PP" ID="32222957" start="21" end="42" />
+          </labels>
+        </layer>
+        <layer ID="5232388" name="Sent" />
+        <layer ID="5232389" name="Other" />
+        <layer ID="5232390" name="Target">
+          <labels>
+            <label name="Target" ID="16297414" start="15" end="19" />
+          </labels>
+        </layer>
+        <layer ID="5232391" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222959" start="8" end="9" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653939" aPos="83214907">
+        <text>Smoking is the cause of 33pc of ALL cancers , not just lung cancer .</text>
+        <parts-of-speech type="BNC">
+          <pos name="NP0" start="0" end="6" />
+          <pos name="VBZ" start="8" end="9" />
+          <pos name="AT0" start="11" end="13" />
+          <pos name="NN1" start="15" end="19" />
+          <pos name="PRF" start="21" end="22" />
+          <pos name="NN0" start="24" end="27" />
+          <pos name="PRF" start="29" end="30" />
+          <pos name="DT0" start="32" end="34" />
+          <pos name="NN2" start="36" end="42" />
+          <pos name="PUN" start="44" end="44" />
+          <pos name="XX0" start="46" end="48" />
+          <pos name="AJ0-AV0" start="50" end="53" />
+          <pos name="NN1" start="55" end="58" />
+          <pos name="NN1" start="60" end="65" />
+          <pos name="PUN" start="67" end="67" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+  <subcorpus name="N-429-s20-rcoll-death">
+    <annotationSet ID="788122" status="MANUAL">
+      <layers>
+        <layer ID="5232497" name="FE" rank="1">
+          <labels>
+            <label name="Cause" ID="32222946" start="0" end="47" />
+            <label name="Effect" ID="32222950" start="65" end="72" />
+          </labels>
+        </layer>
+        <layer ID="5232498" name="GF">
+          <labels>
+            <label name="Ext" ID="32222948" start="0" end="47" />
+            <label name="Dep" ID="32222952" start="65" end="72" />
+          </labels>
+        </layer>
+        <layer ID="5232499" name="PT">
+          <labels>
+            <label name="NP" ID="32222947" start="0" end="47" />
+            <label name="PP" ID="32222951" start="65" end="72" />
+          </labels>
+        </layer>
+        <layer ID="5232500" name="Sent" />
+        <layer ID="5232501" name="Other" />
+        <layer ID="5232502" name="Target">
+          <labels>
+            <label name="Target" ID="16297823" start="58" end="63" />
+          </labels>
+        </layer>
+        <layer ID="5232503" name="Noun">
+          <labels>
+            <label name="Cop" ID="32222949" start="49" end="52" />
+          </labels>
+        </layer>
+      </layers>
+      <sentence ID="653953" aPos="7866352">
+        <text>A fractured skull and haemorrhaging of the brain were the causes of death , and after the official inquest the Coroner at Epsom recorded a verdict of death by misadventure .</text>
+        <parts-of-speech type="BNC">
+          <pos name="AT0" start="0" end="0" />
+          <pos name="AJ0" start="2" end="10" />
+          <pos name="NN1" start="12" end="16" />
+          <pos name="CJC" start="18" end="20" />
+          <pos name="NN1-VVG" start="22" end="34" />
+          <pos name="PRF" start="36" end="37" />
+          <pos name="AT0" start="39" end="41" />
+          <pos name="NN1" start="43" end="47" />
+          <pos name="VBD" start="49" end="52" />
+          <pos name="AT0" start="54" end="56" />
+          <pos name="NN2" start="58" end="63" />
+          <pos name="PRF" start="65" end="66" />
+          <pos name="NN1" start="68" end="72" />
+          <pos name="PUN" start="74" end="74" />
+          <pos name="CJC" start="76" end="78" />
+          <pos name="CJS-PRP" start="80" end="84" />
+          <pos name="AT0" start="86" end="88" />
+          <pos name="AJ0-NN1" start="90" end="97" />
+          <pos name="NN1" start="99" end="105" />
+          <pos name="AT0" start="107" end="109" />
+          <pos name="NN1-NP0" start="111" end="117" />
+          <pos name="PRP" start="119" end="120" />
+          <pos name="NN1-NP0" start="122" end="126" />
+          <pos name="VVD" start="128" end="135" />
+          <pos name="AT0" start="137" end="137" />
+          <pos name="NN1" start="139" end="145" />
+          <pos name="PRF" start="147" end="148" />
+          <pos name="NN1" start="150" end="154" />
+          <pos name="PRP" start="156" end="157" />
+          <pos name="NN1" start="159" end="170" />
+          <pos name="PUN" start="172" end="172" />
+        </parts-of-speech>
+      </sentence>
+    </annotationSet>
+  </subcorpus>
+</lexunit-annotation>
+

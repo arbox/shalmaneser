@@ -15,10 +15,21 @@ module FunctionalTestHelper
   ROSY_TEST_FILE  = 'test/functional/sample_experiment_files/rosy_test.salsa'
   ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_train.salsa'
 
+  # Testing input for Preprocessor.
+  PRP_PLAININPUT = "#{PREF}/prp_plaininput"
+  PRP_STXMLINPUT = "#{PREF}/prp_stxmlinput"
+  PRP_TABINPUT = "#{PREF}/prp_tabinput"
+  PRP_FNXMLINPUT = "#{PREF}/prp_fnxmlinput"
+  PRP_FNCORPUSXMLINPUT = "#{PREF}/prp_fncorpusxmlinput"
+  
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.
   # <@msg> is defined for every test object.
+  # @param cmd [String]
   def execute(cmd)
+    unless $DEBUG
+      cmd = cmd + ' 1>/dev/null 2>&1'
+    end
     status = system(cmd)
     assert(status, @msg)
   end
