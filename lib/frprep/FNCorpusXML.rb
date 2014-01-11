@@ -23,9 +23,9 @@
 #   ne:    named entity
 #   sent_id: sentence ID 
 
-require "Ampersand"
-require "ISO-8859-1"
-require "RegXML"
+require 'frprep/Ampersand'
+require 'common/ISO-8859-1'
+require 'common/RegXML'
 
 #####################
 # mixins to make work with RegXML a little less repetitive

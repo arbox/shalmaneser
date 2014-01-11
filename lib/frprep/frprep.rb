@@ -1,6 +1,9 @@
 require 'frprep/do_parses'
 require 'common/frprep_helper'
 require 'common/FixSynSemMapping'
+# For FN input.
+require 'frprep/FNCorpusXML'
+require 'frprep/FNDatabase'
 
 ##############################
 # The class that does all the work

@@ -28,9 +28,9 @@
 # write new adapted FNTab format
 # ( "word", ("pt", "gf", "role", "target", "frame", "stuff")* "ne", "sent_id" )
 
-require 'Ampersand'
-require 'ISO-8859-1'
-require 'RegXML'
+require 'frprep/Ampersand'
+require 'common/ISO-8859-1'
+require 'common/RegXML'
 
 class FrameXMLFile #  only verified to work for FrameNet v1.1
 
