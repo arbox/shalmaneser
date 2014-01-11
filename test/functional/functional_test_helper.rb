@@ -1,12 +1,15 @@
 require 'erb'
 
+
+# Setting $DEBUG will produce all external output.
+# Otherwise it is suppreced.
 module FunctionalTestHelper
   PREF = 'test/functional/sample_experiment_files'
 
-  PRP_TEST_FILE   = 'test/functional/sample_experiment_files/prp_test.salsa'
-  PRP_TEST_FILE_FRED_STD = "#{PREF}/prp_test.salsa.fred.standalone"
-  PRP_TEST_FILE_ROSY_STD = "#{PREF}/prp_test.salsa.rosy.standalone"
-  PRP_TRAIN_FILE  = 'test/functional/sample_experiment_files/prp_train.salsa'
+  PRP_TEST_FILE            = "#{PREF}/prp_test.salsa"
+  PRP_TEST_FILE_FRED_STD   = "#{PREF}/prp_test.salsa.fred.standalone"
+  PRP_TEST_FILE_ROSY_STD   = "#{PREF}/prp_test.salsa.rosy.standalone"
+  PRP_TRAIN_FILE           = "#{PREF}/prp_train.salsa"
   PRP_TRAIN_FILE_FRED_STD  = "#{PREF}/prp_train.salsa.fred.standalone"
   PRP_TRAIN_FILE_ROSY_STD  = "#{PREF}/prp_train.salsa.rosy.standalone"
 
@@ -16,12 +19,16 @@ module FunctionalTestHelper
   ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_train.salsa'
 
   # Testing input for Preprocessor.
-  PRP_PLAININPUT = "#{PREF}/prp_plaininput"
-  PRP_STXMLINPUT = "#{PREF}/prp_stxmlinput"
-  PRP_TABINPUT = "#{PREF}/prp_tabinput"
-  PRP_FNXMLINPUT = "#{PREF}/prp_fnxmlinput"
+  PRP_PLAININPUT       = "#{PREF}/prp_plaininput"
+  PRP_STXMLINPUT       = "#{PREF}/prp_stxmlinput"
+  PRP_TABINPUT         = "#{PREF}/prp_tabinput"
+  PRP_FNXMLINPUT       = "#{PREF}/prp_fnxmlinput"
   PRP_FNCORPUSXMLINPUT = "#{PREF}/prp_fncorpusxmlinput"
   
+  # Testing output for Preprocessor.
+  PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"
+  PRP_TABOUTPUT   = "#{PREF}/prp_taboutput"
+
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.
   # <@msg> is defined for every test object.

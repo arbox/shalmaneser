@@ -63,12 +63,17 @@ class TestFrprep < Test::Unit::TestCase
   end
 
   # Testing output in different formats.
+  # We test only on German input assuming English input to work.
   def test_frprep_stxmloutput
-
+    create_exp_file(PRP_STXMLOUTPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_STXMLOUTPUT}")
+    remove_exp_file(PRP_STXMLOUTPUT)
   end
 
   def test_frprep_taboutput
-
+    create_exp_file(PRP_TABOUTPUT)
+    execute("ruby -I lib bin/frprep -e #{PRP_TABOUTPUT}")
+    remove_exp_file(PRP_TABOUTPUT)
   end
 
 
