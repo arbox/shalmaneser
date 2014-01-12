@@ -63,12 +63,9 @@ class BerkeleyInterface < SynInterfaceSTXML
 
     parser = ENV['SHALM_BERKELEY_BIN'] || 'berkeleyParser.jar'
     grammar = ENV['SHALM_BERKELEY_MODEL'] || 'grammar.gr'
+    options = ENV['SHALM_BERKELEY_OPTIONS']
 
-    #berkeley_prog = "java -Xmx2000m -jar #{@program_path}berkeleyParser.jar -gr #{@program_path}ger_sm5.gr"
-
-    #berkeley_prog = "java -d64 -Xmx10000m -jar #{@program_path}berkeley-parser.jar -gr #{@program_path}gerNegra.01.utf8 "
-
-    berkeley_prog = "java -jar #{@program_path}#{parser} -gr #{@program_path}#{grammar}"
+    berkeley_prog = "java -jar #{@program_path}#{parser} #{options} -gr #{@program_path}#{grammar}"
 
     Dir[in_dir + "*" + @insuffix].each do |inputfilename|
 
@@ -142,7 +139,7 @@ class BerkeleyInterface < SynInterfaceSTXML
         # PSEUDE - Original BP Grammars
         # ROOT - some english grammars
         # empty identifiers for older Tiger grammars
-	if line.nil? or line=~/^\( *\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
+	if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
           break
 	end   
         sentid +=1
@@ -157,7 +154,7 @@ class BerkeleyInterface < SynInterfaceSTXML
       # Insert a top node <VROOT> if missing.
       # Some grammars trained on older Tiger Versions
       # expose this problem.
-      line.sub!(/^(\(\s+\(\s+)/, '\1VROOT')
+      line.sub!(/^(\(\s+\()\s+/, '\1VROOT')
       
       # berkeley parser output: remove brackets /(.*)/
       # Remove leading and trailing top level brackets.
