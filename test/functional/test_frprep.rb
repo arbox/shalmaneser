@@ -13,11 +13,12 @@ class TestFrprep < Test::Unit::TestCase
     @test_file  = PRP_TEST_FILE
     @train_file = PRP_TRAIN_FILE
     @ptb        = 'lib/frprep/interfaces/berkeley_interface.rb'
-    link_berkeley
+    #link_berkeley
+    ENV['SHALM_BERKELEY_MODEL'] = 'sc_dash_labeled_1_smoothing.gr'
   end
 
   def teardown
-    unlink_berkeley
+    #unlink_berkeley
   end
   def test_frprep_testing
     create_exp_file(@test_file)
