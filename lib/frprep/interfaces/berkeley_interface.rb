@@ -136,7 +136,7 @@ class BerkeleyInterface < SynInterfaceSTXML
         # - a parse beginning with <( (>, <( (TOP>, <( (VROOT> etc.
         # TOP - Negra Grammars
         # VROOT - Tiger Grammars
-        # PSEUDE - Original BP Grammars
+        # PSEUDO - Original BP Grammars
         # ROOT - some english grammars
         # empty identifiers for older Tiger grammars
 	if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
@@ -154,8 +154,9 @@ class BerkeleyInterface < SynInterfaceSTXML
       # Insert a top node <VROOT> if missing.
       # Some grammars trained on older Tiger Versions
       # expose this problem.
-      line.sub!(/^(\(\s+\()\s+/, '\1VROOT')
-      
+      #STDERR.puts "@@@1 <#{line}>"
+      line.sub!(/^(\(\s+\()(\s+)/, '\1VROOT\2')
+      #STDERR.puts "@@@2 <#{line}>"
       # berkeley parser output: remove brackets /(.*)/
       # Remove leading and trailing top level brackets.
       line.sub!(/^\( */, '')
