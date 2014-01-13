@@ -394,6 +394,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
   # yielding contexts.
   def each_window(dir) # string: directory containing Salsa/Tiger XML data
 
+    # @todo AB: Move this chunk to OptionParser.
     # sanity check: do we know where the larger corpus is?
     unless @exp.get("larger_corpus_dir")
       $stderr.puts "Error: 'noncontiguous_input' has been set in the experiment file"
@@ -436,7 +437,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       # We will need an FrPrep instance and an options object.
       base_dir_path = File.expand_path(File.dirname(__FILE__) + '/../..')
 
-      # Remove this
+      # @todo AB: Remove this
       FileUtils.cp(tf_exp_frprep.path, '/tmp/frprep.exp')
       # after debugging
 
@@ -479,7 +480,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # remove temporary data
     temptable_obj.drop_temp_table()
 
-    # AB: TODO Rewrite this passage using pure Ruby.
+    # @todo AB: TODO Rewrite this passage using pure Ruby.
     %x{rm -rf #{frprep_in}}
     %x{rm -rf #{frprep_out}}
     %x{rm -rf #{frprep_dir}}

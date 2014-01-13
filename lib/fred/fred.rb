@@ -34,6 +34,8 @@ module Fred
         task_obj = FredEval.new(@exp, @opts)
       else
         raise "Shouldn't be here"
+        # @todo AB: this <else> condition should be unpossible
+        #     do in OptionParser
       end
       
       task_obj.compute
