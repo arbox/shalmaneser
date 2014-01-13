@@ -56,6 +56,7 @@ desc 'Remove output of functional tests.'
 task :remove_test_output do
   dirs = FileList.new('test/functional/output/*') do |d|
     d.exclude(/tmp$/)
+    d.exclude(/trash$/)
   end
   FileUtils.rm_rf(dirs)
 end
