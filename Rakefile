@@ -42,6 +42,12 @@ Rake::TestTask.new(:test => [:remove_exp_files, :remove_test_output]) do |t|
   t.test_files = FileList['test/**/*.rb']
 end
 
+Rake::TestTask.new(:test_functional => [:remove_exp_files, :remove_test_output]) do |t|
+  t.libs << 'test'
+  t.warning
+  t.ruby_opts = ['-rubygems']
+  t.test_files = FileList['test/functional/test_*.rb']
+end
 desc 'Remove generated experiment files.'
 task :remove_exp_files do
   files = FileList.new('test/functional/sample_experiment_files/*') do |f|
