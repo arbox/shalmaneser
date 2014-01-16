@@ -1,7 +1,10 @@
+# -*- mode: ruby; -*-
+
 # A sample Gemfile
 source "http://rubygems.org"
 
 gem 'mysql'
+gem 'sqlite3'
 
 group :development do
   gem 'yard'
