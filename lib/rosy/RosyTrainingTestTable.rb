@@ -33,9 +33,10 @@
 
 require "common/ruby_class_extensions"
 
-require "rosy/DBTable"
+require 'db/db_table'
 require "rosy/FeatureInfo"
 
+# @note AB: Possibly this file belongs to <lib/db>. Check it!
 ######################
 class RosyTrainingTestTable
   attr_reader :database, :maintable_name, :feature_names, :feature_info

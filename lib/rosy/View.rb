@@ -11,7 +11,7 @@
 # It can be returned directly, or modified by some "dynamic feature object", 
 # and its value (modified or unmodified) will always be last in the array representation of a row.
 
-require "common/SQLQuery"
+require 'db/sql_query'
 require "common/ruby_class_extensions"
 require "common/RosyConventions"
 

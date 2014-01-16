@@ -6,7 +6,7 @@
 # Just creating a table, changing the table, and accessing it.
 #
 
-require "common/SQLQuery"
+require 'db/sql_query'
 require "common/RosyConventions"
 
 class DBTable

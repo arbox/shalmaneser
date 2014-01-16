@@ -6,7 +6,7 @@
 require 'sqlite3'
 require 'tempfile'
 
-require "DBWrapper"
+require 'db/db_wrapper'
 
 #################
 class DBSQLiteResult < DBResult

@@ -6,8 +6,7 @@
 
 require 'mysql'
 
-
-require 'rosy/DBWrapper'
+require 'db/db_wrapper'
 
 #################
 class DBMySQLResult < DBResult

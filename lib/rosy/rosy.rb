@@ -1,7 +1,7 @@
 # AB: 2011-11-14
 # Initial import done, need to reimplement the whole interface.
 
-require 'common/DBInterface'
+require 'db/db_interface'
 require 'rosy/RosyFeaturize'
 require 'rosy/RosyTest'
 require 'rosy/RosyTrain'

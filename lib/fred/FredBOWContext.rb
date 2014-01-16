@@ -6,14 +6,15 @@ require "common/SynInterfaces"
 require "common/TabFormat"
 require "common/SalsaTigerRegXML"
 require "common/SalsaTigerXMLHelper"
+require "common/RosyConventions"
 
 require 'fred/md5'
 require "fred/FredConfigData"
 require "fred/FredConventions"
 require "fred/FredDetermineTargets"
-require "common/DBInterface"
-require "common/RosyConventions"
-require "common/SQLQuery"
+
+require 'db/db_interface'
+require 'db/sql_query'
 
 ########################################
 # Context Provider classes:
