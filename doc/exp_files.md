@@ -103,7 +103,7 @@ For comfortable access to a list feature, arbitrary access functions for list fe
 
     "classifier" => "list",  # classifiers
 
-    "dbtype" => "string",    # "mysql" or "sqlite"
+    "dbtype" => "string",    # "mysql" or ("sqlite" doesn't work for now)
 
     "host" => "string",      # DB access: sqlite only
     "user" => "string",
@@ -132,9 +132,10 @@ For comfortable access to a list feature, arbitrary access functions for list fe
     "single_sent_context" => "bool",
 
     # noncontiguous input? then we need access to a larger corpus
-    "noncontiguous_input" => "bool",
-    "larger_corpus_dir" => "string",
-    "larger_corpus_format" => "string", 
+    # NOTE: This doesn't work for now.
+    "noncontiguous_input" => "bool"
+    "larger_corpus_dir" => "string"
+    "larger_corpus_format" => "string"
     "larger_corpus_encoding" => "string"
 ## Role Assignment System (aka Rosy)
     # features
@@ -154,7 +155,7 @@ For comfortable access to a list feature, arbitrary access functions for list fe
     "preproc_descr_file_test" => "string",
     "external_descr_file"    => "string",
 
-    "dbtype" => "string",    # "mysql" or "sqlite"
+    "dbtype" => "string",    # "mysql" ("sqlite" doen't work for now)
 
     "host" => "string",      # DB access: sqlite only
     "user" => "string",
