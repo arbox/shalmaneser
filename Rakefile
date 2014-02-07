@@ -103,3 +103,22 @@ desc 'Dummy task for TravisCI'
 task :travis do
   # do nothing for now
 end
+
+
+desc 'Open an irb session preloaded with this library.'
+task :irb do
+#  sh 'irb -rubygems -I lib -r wlapi'
+  require 'irb'
+  require 'irb/completion'
+  require 'shalmaneser'
+  ARGV.clear
+  IRB.start
+end
+
+desc 'Open a Pry session in the context of this library.'
+task :pry do
+  require 'pry'
+  require 'shalmaneser'
+  ARGV.clear
+  Pry.start
+end

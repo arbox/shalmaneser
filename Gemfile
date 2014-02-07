@@ -10,6 +10,7 @@ group :development do
   gem 'yard'
   gem 'rdoc'
   gem 'rake'
+  gem 'pry'
 end
 
 case RUBY_VERSION
