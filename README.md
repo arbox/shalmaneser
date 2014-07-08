@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/arbox/shalmaneser.png?branch=1.2)](https://travis-ci.org/arbox/shalmaneser)
 [<img src="https://codeclimate.com/github/arbox/shalmaneser.png" alt="Code Climate" />](https://codeclimate.com/github/arbox/shalmaneser)
 [![Dependency Status](https://gemnasium.com/arbox/shalmaneser.png)](https://gemnasium.com/arbox/shalmaneser)
-[![License GPL 2](http://img.shields.io/badge/License-GPL%202-green.svg)(http://www.gnu.org/licenses/gpl-2.0.txt)
+[![License GPL 2](http://img.shields.io/badge/License-GPL%202-green.svg)](http://www.gnu.org/licenses/gpl-2.0.txt)
 
 
 ## Description
