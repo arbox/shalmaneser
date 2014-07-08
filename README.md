@@ -6,12 +6,13 @@
 [<img src="https://badge.fury.io/rb/shalmaneser.png" alt="Gem Version" />](http://badge.fury.io/rb/shalmaneser)
 [![Build Status](https://travis-ci.org/arbox/shalmaneser.png?branch=1.2)](https://travis-ci.org/arbox/shalmaneser)
 [<img src="https://codeclimate.com/github/arbox/shalmaneser.png" alt="Code Climate" />](https://codeclimate.com/github/arbox/shalmaneser)
-[<img alt="Bitdeli Badge" src="https://d2weczhvl823v0.cloudfront.net/arbox/shalmaneser/trend.png" />](https://bitdeli.com/free)
 [![Dependency Status](https://gemnasium.com/arbox/shalmaneser.png)](https://gemnasium.com/arbox/shalmaneser)
+[![License GPL 2][badge-license]](http://www.gnu.org/licenses/gpl-2.0.txt)
+
 
 ## Description
 
-Please be careful, the whole thing is under construction! For now Shalmaneser it not intended to run on Windows systems since it heavily uses system call for external invocations.
+Please be careful, the whole thing is under construction! For now Shalmaneser it not intended to run on Windows systems since it heavily uses system calls for external invocations.
 Current versions of Shalmaneser have been tested on Linux only (other *NIX testers are welcome!).
 
 Shalmaneser is a supervised learning toolbox for shallow semantic parsing, i.e. the automatic assignment of semantic classes and roles to text. This technique is often called SRL (Semantic Role Labelling). The system was developed for Frame Semantics; thus we use Frame Semantics terminology and call the classes frames and the roles frame elements. However, the architecture is reasonably general, and with a certain amount of adaption, Shalmaneser should be usable for other paradigms (e.g., PropBank roles) as well. Shalmaneser caters both for end users, and for researchers.
@@ -25,6 +26,9 @@ We'll try to provide newer pretrained models for English, German, and possibly o
 For researchers interested in investigating shallow semantic parsing, our system is extensively configurable and extendable.
 
 ## Origin
+
+The original version of Shalmaneser was written by Sebastian Padó, Katrin Erk and others during their work in the SALSA Project.
+
 You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http://www.coli.uni-saarland.de/projects/salsa/shal/) project page.
 
 ## Publications on Shalmaneser
@@ -72,3 +76,11 @@ See the installation instructions in the [doc](https://github.com/arbox/shalmane
 
 - [OpenNLP MaxEnt](http://sourceforge.net/projects/maxent/files/Maxent/2.4.0/)
 - [Mallet](http://mallet.cs.umass.edu/index.php)
+
+## License
+
+See the `LICENSE` file.
+
+## Contributing
+
+See the `CONTRIBUTING` file.
