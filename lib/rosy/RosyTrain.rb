@@ -18,7 +18,7 @@ require "rosy/RosyPruning"
 require "common/ML"
 
 # Frprep packages
-require "common/FrPrepConfigData"
+#require "common/prep_config_data"
 
 class RosyTrain < RosyTask
 
@@ -68,18 +68,20 @@ class RosyTrain < RosyTask
 
     ##
     # add preprocessing information to the experiment file object
-    preproc_expname = @exp.get("preproc_descr_file_train")
-    if not(preproc_expname)
-      $stderr.puts "Please set the name of the preprocessing exp. file name"
-      $stderr.puts "in the experiment file, parameter preproc_descr_file_train."
-      exit 1
-    elsif not(File.readable?(preproc_expname))
-      $stderr.puts "Error in the experiment file:"
-      $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
-      exit 1
-    end
-    preproc_exp = FrPrepConfigData.new(preproc_expname)
-    @exp.adjoin(preproc_exp)
+    # @note AB: Commented out due to separation of PrepConfigData.
+    #   No information seems to be required.
+    # preproc_expname = @exp.get("preproc_descr_file_train")
+    # if not(preproc_expname)
+    #   $stderr.puts "Please set the name of the preprocessing exp. file name"
+    #   $stderr.puts "in the experiment file, parameter preproc_descr_file_train."
+    #   exit 1
+    # elsif not(File.readable?(preproc_expname))
+    #   $stderr.puts "Error in the experiment file:"
+    #   $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
+    #   exit 1
+    # end
+    # preproc_exp = FrPrepConfigData.new(preproc_expname)
+    # @exp.adjoin(preproc_exp)
     
 
     # get_lf returns: array of pairs [classifier_name, options[array]]

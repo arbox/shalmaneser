@@ -56,6 +56,7 @@
 #
 #
 
+require 'common/config_format_element'
 require 'common/ruby_class_extensions'
 
 
@@ -68,64 +69,62 @@ require 'common/ruby_class_extensions'
 # that only takes as input the name of the config file
 # and that declares all the feature types and variable names
 # needed for the given application.
-
+#
+# @abstract Subclass and override {#initialize} to implement
+#   a custom ConfigData class.
 class ConfigData
 
-  ###########
-  # new()
-  #
-  # reads the config file
-  #
   # Input parameters: the name of the config file, a hash declaring all 
   # features by mapping feature names to their types,
   # and an array of all variables that may occur in pattern type features
   #
-  def initialize(filename, # string: name of config file
-		 feature_types, # hash: feature_name => feature_type
-		 variables) # array of strings: list of variables used in pattern features
+  # @param filename [String] a name of the configuration file
+  # @param feature_types [Hash] feature type definitions
+  # @param variables [Array] list of variables used in pattern features
+  def initialize(filename, feature_types, variables)
 
     @test_print = false
     @variables = variables
-    @original_filename = filename
+    @filename = filename
+
+    # feature_types: hash: feature_name => feature_type
+    @feature_types = feature_types
+
+    # features: hash: feature_name => value
+    @features = {}
+
+    # hash: feature_name => Proc
+    # access method for list features
+    @list_feature_access = {}
+
+    # pre-initialize list features to an empty array
+    @feature_types.each_pair do |feature_name, feature_type|
+      if feature_type == "list"
+	@features[feature_name] = []
+      end
+    end
+
 
     ##
     # open config file
+    # @todo Introduce custom exceptions to handle external errors.
     begin
-      file = File.new(filename)
+      file = File.new(@filename)
     rescue
-      $stderr.puts "Error: I could not open the experiment file " + filename
+      $stderr.puts "Error: I could not open the experiment file " + @filename
       exit 1
     end
-
-    # feature_types: hash: feature_name => feature_type
-    # features: hash: feature_name => value
-    @feature_types = feature_types
-    @features = Hash.new
-
-    # @list_feature_access: hash feature_name => Proc
-    # access method for list features
-    @list_feature_access = Hash.new
-
-    # pre-initialize list features to an empty array
-    @feature_types.each_pair { |feature_name, feature_type|
-      if feature_type == "list"
-	@features[feature_name] = Array.new
-      end
-    }
-
     ##
+
     # examine the config file contents
 
-    while (line = file.gets())
-      line = line.chomp().strip()
-      if line =~ /^#/   # comment
+    while line = file.gets
+      line = line.strip
+      # Empty lines and comments
+      if line =~ /^#/ or line.empty?
 	next
       end
       
-      if line.empty? # nothing to be seen here
-	next
-      end
-
       feature_name, rhs = extract_def(line)
       set_entry(feature_name, rhs)
     end
@@ -140,9 +139,9 @@ class ConfigData
 
     unless @feature_types[feature_name]
       $stderr.puts "Error in experiment file:"
-      $stderr.puts "Unknown parameter #{feature_name} in #{@original_filename}."
+      $stderr.puts "Unknown parameter #{feature_name} in #{@filename}."
       $stderr.puts "Expected features for this type of experiment file:"
-      $stderr.puts @feature_types.keys().join(", ")
+      $stderr.puts @feature_types.keys.join(", ")
       exit 1
     end
 
@@ -269,13 +268,14 @@ class ConfigData
   # returns: a feature value. the type of the return value
   #    depends on the type of the feature.
   #    returns nil if the feature has not been set in the config file.
-  def get(name) # string: name of the feature to access
+  # @param name [String] name of the feature to access
+  def get(name)
     if @feature_types[name].nil?
       raise "Unknown feature " + name
     end
 
     # may return nil if something has not been set
-    return @features[name]
+    @features[name]
   end
 
   ####
@@ -284,7 +284,7 @@ class ConfigData
   # returns the type of a given feature,
   # or nil if it is undefined
   def get_type(feature_name)
-    return @feature_types[feature_name]
+    @feature_types[feature_name]
   end
 
   #####
@@ -292,12 +292,10 @@ class ConfigData
   #
   # returns: true if a feature by this name has been set in the config file,
   #   false else
-  def is_defined(feature) # string: name of the feature
-    if @features[feature] 
-      return true
-    else
-      return false
-    end
+  # @param feature [String] name of the feature
+  # @note This method is nowhere used.
+  def is_defined(feature)
+    @features[feature] ? true : false
   end
 
   #####
@@ -328,6 +326,7 @@ class ConfigData
   # get_filename:
   #
   # synonym for instantiate()
+  # @note What for?
   def get_filename(key, var_hash={})
     return instantiate(key, var_hash)
   end
@@ -451,8 +450,8 @@ class ConfigData
   #
   # returns: a pair of strings, the left-hand side and the right-hand side
   #  of the =, minus the [white space] in the places shown above
-
-  def extract_def(line) # string: line from config file
+  # @param line [String] line from config file
+  def extract_def(line)
     unless line =~ /^\s*(\w+)\s*=\s*([^\s].*)$/
       $stderr.puts "Error in experiment file: "
       $stderr.puts "I couldn't analyze the following line: "
@@ -464,231 +463,8 @@ class ConfigData
 
   ####
   # access to the object variables
-  def get_contents()
+  def get_contents
     return [@features, @feature_types, @list_feature_access]
   end
 
 end
-
-
-##############################
-# ConfigFormatelement is an auxiliary class
-# of ConfigData.
-# It keeps track of feature patterns with variables in them
-# that can be instantiated.
-
-class ConfigFormatElement
-
-  # new()
-  #
-  # given a pattern and a list of variable names,
-  # analyze the pattern and remember the variable names
-  #
-  def initialize(string, # string: feature name, may include names of variables.
-		         # they are included in <>
-		 variables) # list of variable names that can occur
-    
-    @variables = variables
-
-    # pattern: this is what the 'string' is split into,
-    # an array of elements that are either fixed parts or variables.
-    # fixed part: pair [item:string, "string"]
-    # variable: pair [variable_name:string, "variable"]
-    @pattern = Array.new
-    state = "out"
-    item = ""
-
-    # analyze string,
-    # split into variables and fixed parts
-    string.split(//).each { |char|
-
-      case state
-      when "in"
-	case char
-	when "<"
-	  raise "Duplicate < in " + string
-	when ">" 
-	  unless @variables.include? item
-	    raise "Unknown variable " + item
-	  end
-	  @pattern << [item, "variable"]
-	  item = ""
-	  state = "out"
-	else
-	  item << char
-	  state = "in"
-	end
-
-      when "out"
-	case char
-	when "<"
-	  unless item.empty?
-	    @pattern << [item, "string"]
-	    item = ""
-	  end
-	  state = "in"
-	when ">"
-	  raise "Unexpected > in " + string
-	else
-	  item << char
-	  state = "out"
-	end
-
-      else
-	raise "Shouldn't be here"
-      end
-    }
-
-    # read through the whole of "string"
-    # end state has to be "out"
-    unless state == "out"
-      raise "Unclosed < in " + string
-    end
-
-    # last bit still to be recorded?
-    unless item.empty?
-      @pattern << [item, "string"]
-    end
-
-    # make regexp for matching this pattern
-    @regexp = make_regexp(@pattern)
-  end
-
-  # instantiate: given pairs of variable names and variable values,
-  # instantiate @pattern to a string in which var names are replaced
-  # by their values
-  #
-  # returns: string
-  def instantiate(var_hash) # hash variable name(string) => variable value(string)
-
-    # instantiate the pattern
-    return @pattern.map { |item, string_or_var|
-
-      case string_or_var
-      when "string"
-	item
-
-      when "variable"
-	
-	if var_hash[item].nil?
-	  raise "Missing variable instantiation: " + item
-	end
-	var_hash[item]
-
-      else
-	raise "Shouldn't be here"
-      end
-    }.join    
-  end
-
-  # match()
-  #
-  # given a string, try to match it against the @pattern
-  # while setting the variables given in 'fillers' to 
-  # the values given in that hash.
-  #
-  # returns: if the string matches, a hash variable name => value
-  #   that includes the fillers given as a parameter as well as 
-  #   values for all other variables mentioned in @pattern,
-  #   or false if no match.
-  def match(string,   # a string
-	    fillers = nil) # hash variable name(string) => value(string)
-
-    # have we been given partial info about variables?
-    if fillers
-      match = make_regexp(@pattern, fillers).match(string)
-#      $stderr.print "matching " + make_regexp(@pattern, fillers).source + 
-#	" against " + string + " "
-#      if match.nil?
-#	$stderr.puts "no"
-#      else
-#	$stderr.puts "yes"
-#      end      
-    else
-      match = @regexp.match(string)
-    end
-
-    if match.nil?
-      # no match via the regular expression
-      return false
-    end
-
-    # regular expression matched.
-    # construct return value in hash
-    # retv: variable name(string) => value(string)
-    retv = Hash.new()
-    if fillers
-      # include given fillers in retv hash
-      fillers.each_pair { |name, val| retv[name] = val }
-    end
-
-    # now put values for other variables in @pattern into retv
-    index = 1
-    @pattern.to_a.select { |item, string_or_var|
-      string_or_var == "variable"
-    }.select { |item, string_or_var|
-      fillers.nil? or 
-	fillers[item].nil?
-    }.each { |item, string_or_var|
-      # for all items on the pattern list
-      # that are variables and
-      # haven't been filled by the "fillers" list already:
-      # fill from matches
-
-      if match[index].nil?
-	raise "Match, but not enough matched elements? Strange."
-      end
-
-      if retv[item].nil?
-	retv[item] = match[index]
-      else
-	unless retv[item] == match[index]
-	  return false
-	end
-      end
-      
-      index += 1
-    }
-    
-    return retv
-  end
-
-  # used_variables
-  #
-  # returns: an array of variable names used in @pattern
-  def used_variables()
-    return @pattern.select { |item, string_or_var|
-      string_or_var == "variable"
-    }.map { |item, string_or_var| item}
-  end
-
-  ####################
-  private
-
-  # make_regexp:
-  # make regular expression from a pattern
-  # together with some variable fillers
-  #
-  # returns: Regexp object
-  def make_regexp(pattern,  # array of pairs [string, "string"] or [string, "variable"]
-		  fillers = nil) # hash variable name(string) => value(string)
-    return (Regexp.new "^" + 
-      pattern.map { |item, string_or_var|
-      case string_or_var
-      when "variable"
-	if fillers and
-	    fillers[item]
-	  Regexp.escape(fillers[item])
-	else
-	  "(.+)"
-	end
-      when "string"
-	Regexp.escape(item)
-      else
-	raise "Shouldn't be here"
-      end
-    }.join + "$")
-  end
-
-end
-

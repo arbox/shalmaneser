@@ -9,7 +9,7 @@ require "common/SalsaTigerXMLHelper"
 require "common/RosyConventions"
 
 require 'fred/md5'
-require "fred/FredConfigData"
+require "fred/fred_config_data"
 require "fred/FredConventions"
 require "fred/FredDetermineTargets"
 

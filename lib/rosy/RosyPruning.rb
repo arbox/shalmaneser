@@ -12,7 +12,7 @@ require "common/ruby_class_extensions"
 
 require "rosy/RosyFeatureExtractors"
 require "common/RosyConventions"
-require "rosy/RosyConfigData"
+require "rosy/rosy_config_data"
 require "rosy/RosyIterator"
 
 ###

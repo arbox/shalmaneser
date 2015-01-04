@@ -29,10 +29,9 @@ require "common/RegXML"
 require "common/SalsaTigerRegXML"
 require "common/SalsaTigerXMLHelper"
 
-require "fred/FredConfigData"
+require "fred/fred_config_data"
 require "fred/FredConventions"
-require "common/FrPrepConfigData"
-require "common/frprep_helper"
+require "common/prep_helper"
 require "common/SynInterfaces"
 
 require "fred/FredBOWContext"
@@ -169,18 +168,24 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     # prepare experiment file: add preprocessing experiment file data
     @exp = exp_obj
 
-    preproc_expname = @exp.get("preproc_descr_file_" + @dataset)
-    if not(preproc_expname)
-      $stderr.puts "Please set the name of the preprocessing exp. file name"
-      $stderr.puts "in the experiment file, feature preproc_descr_file_#{@dataset}"
-      exit 1
-    elsif not(File.readable?(preproc_expname))
-      $stderr.puts "Error in the experiment file:"
-      $stderr.puts "Parameter preproc_descr_file_#{@dataset} has to be a readable file."
-      exit 1
-    end
-    preproc_exp = FrPrepConfigData.new(preproc_expname)
-    @exp.adjoin(preproc_exp)    
+    # @note AB: The following is desabled because we don't want to use
+    #   the dependence on {PrepConfigData}. We duplicate options:
+    #   <do_postag>, <pos_tagger>, <do_lemmatize>, <lemmatizer>,
+    #   <do_parse>, <parser>, <directory_preprocessed>
+    #   in the experiment file of Fred.
+    #
+    # preproc_expname = @exp.get("preproc_descr_file_" + @dataset)
+    # if not(preproc_expname)
+    #   $stderr.puts "Please set the name of the preprocessing exp. file name"
+    #   $stderr.puts "in the experiment file, feature preproc_descr_file_#{@dataset}"
+    #   exit 1
+    # elsif not(File.readable?(preproc_expname))
+    #   $stderr.puts "Error in the experiment file:"
+    #   $stderr.puts "Parameter preproc_descr_file_#{@dataset} has to be a readable file."
+    #   exit 1
+    # end
+    # preproc_exp = FrPrepConfigData.new(preproc_expname)
+    # @exp.adjoin(preproc_exp)    
 
     # get the right syntactic interface
     SynInterfaces.check_interfaces_abort_if_missing(@exp)
@@ -189,7 +194,6 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     # initialize grammatical function object (delegating)
     grf_obj = GrammaticalFunctionAccess.new(@interpreter_class)
     super(grf_obj)
-
 
     # announce the task
     $stderr.puts "---------"
@@ -267,6 +271,8 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       context_obj = SingleSentContextProvider.new(max_context_size, @exp, 
                                                   @interpreter_class, target_obj, 
                                                   @dataset)
+      # @todo AB: Put it to the OptionParser, two option are not
+      # compatible, don't do the check here!
       if @exp.get("noncontiguous_input")
         $stderr.puts "Warning: 'single_sent_context' has been set in the experiment file."
         $stderr.puts "So I'm ignoring the 'noncontiguous_input = true' setting."

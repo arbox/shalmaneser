@@ -19,7 +19,7 @@ require "rosy/RosyTask"
 require "rosy/RosyPruning"
 
 # Frprep packages
-require "common/FrPrepConfigData"
+require "common/prep_config_data"
 
 #######################################################################
 # This class is a subclass of the general evaluation class
