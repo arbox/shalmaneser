@@ -1,7 +1,7 @@
 # -*- mode: ruby; -*-
 
 # A sample Gemfile
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
 gem 'mysql'
 gem 'sqlite3'
@@ -25,4 +25,3 @@ when /^2.0/
 when /^2.1/
   # not doing anything for now
 end
-
