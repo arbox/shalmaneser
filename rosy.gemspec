@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.rdoc', 'LICENSE.rdoc', 'CHANGELOG.rdoc']
   s.rdoc_options = ['-m', 'README.rdoc']
 #  s.platform = Gem::Platform::CURRENT
-  s.required_ruby_version = '1.8.7'
+  s.required_ruby_version = '2.0'
   s.files = FileList['lib/**/*.rb',
                      'README.rdoc',
                      'LICENSE.rdoc',

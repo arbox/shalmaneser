@@ -33,7 +33,7 @@ Project at the University of Saarbrücken.
     FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
 #  s.platform = Gem::Platform::CURRENT
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '2.0'
   s.files = FileList['lib/**/*.rb',
                      'lib/**/*.class',
                      'doc/**/*.md',
