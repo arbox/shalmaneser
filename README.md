@@ -1,14 +1,21 @@
 # [SHALMANESER - a SHALlow seMANtic parSER](http://www.coli.uni-saarland.de/projects/salsa/shal/)
 
+[RubyGems](http://rubygems.org/gems/shalmaneser) |
+[Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) |
+[Source Code](https://github.com/arbox/shalmaneser) |
+[Bug Tracker](https://github.com/arbox/shalmaneser/issues)
 
-[RubyGems](http://rubygems.org/gems/shalmaneser) | [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) | [Source Code](https://github.com/arbox/shalmaneser) | [Bug Tracker](https://github.com/arbox/shalmaneser/issues)
 
-[<img src="https://badge.fury.io/rb/shalmaneser.png" alt="Gem Version" />](http://badge.fury.io/rb/shalmaneser)
-[![Build Status](https://travis-ci.org/arbox/shalmaneser.png?branch=1.2)](https://travis-ci.org/arbox/shalmaneser)
-[<img src="https://codeclimate.com/github/arbox/shalmaneser.png" alt="Code Climate" />](https://codeclimate.com/github/arbox/shalmaneser)
-[![Dependency Status](https://gemnasium.com/arbox/shalmaneser.png)](https://gemnasium.com/arbox/shalmaneser)
+[![Gem Version](https://img.shields.io/gem/v/shalmaneser.svg")](https://rubygems.org/gems/shalmaneser)
+[![Gem Version](https://img.shields.io/gem/v/frprep.svg")](https://rubygems.org/gems/frprep)
+[![Gem Version](https://img.shields.io/gem/v/fred.svg")](https://rubygems.org/gems/fred)
+[![Gem Version](https://img.shields.io/gem/v/rosy.svg")](https://rubygems.org/gems/rosy)
+
+
 [![License GPL 2](http://img.shields.io/badge/License-GPL%202-green.svg)](http://www.gnu.org/licenses/gpl-2.0.txt)
-
+[![Build Status](https://img.shields.io/travis/arbox/shalmaneser.svg?branch=1.2")](https://travis-ci.org/arbox/shalmaneser)
+[![Code Climate](https://img.shields.io/codeclimate/github/arbox/shalmaneser.svg")](https://codeclimate.com/github/arbox/shalmaneser)
+[![Dependency Status](https://img.shields.io/gemnasium/arbox/shalmaneser.svg")](https://gemnasium.com/arbox/shalmaneser)
 
 ## Description
 
