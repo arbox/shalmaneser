@@ -35,15 +35,14 @@ end
 
 # Testing.
 require 'rake/testtask'
-Rake::TestTask.new(:test => [:remove_exp_files, :remove_test_output]) do |t|
+Rake::TestTask.new(test: [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
   t.ruby_opts = ['-rubygems'] # not necessary now
   t.test_files = FileList['test/**/*.rb']
 end
 
-Rake::TestTask.new(:test_functional => [:remove_exp_files,
-                                        :remove_test_output]) do |t|
+Rake::TestTask.new(test_functional: [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
   t.ruby_opts = ['-rubygems']
@@ -86,7 +85,6 @@ task :generate_experiment_files do
       out_file.write(text)
     end
   end
-
 end
 
 desc 'Build java dependencies.'
@@ -96,7 +94,7 @@ task :build_java_dependencies do
 end
 
 desc 'Publish the documentation on the homepage.'
-task :publish => [:clobber, :ydoc] do
+task publish: [:clobber, :ydoc] do
   system "scp -r ydoc/* #{File.read('SENSITIVE').chomp}"
 end
 
@@ -105,10 +103,8 @@ task :travis do
   # do nothing for now
 end
 
-
 desc 'Open an irb session preloaded with this library.'
 task :irb do
-#  sh 'irb -rubygems -I lib -r wlapi'
   require 'irb'
   require 'irb/completion'
   require 'shalmaneser'
