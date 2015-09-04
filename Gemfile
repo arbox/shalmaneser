@@ -12,4 +12,5 @@ group :development do
   gem 'byebug', '~> 6.0'
   gem 'bundler', '~> 1.10'
   gem 'rubocop', '~> 0.33'
+  gem 'minitest', '~> 5.8'
 end

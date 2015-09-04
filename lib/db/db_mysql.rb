@@ -1,11 +1,9 @@
-
 # DBMysql: a subclass of DBWrapper.
 #
 # Use a MySQL server to access a database.
 # Use the Ruby mysql interface package for that.
 
 require 'mysql'
-
 require 'db/db_wrapper'
 
 #################
@@ -17,38 +15,36 @@ class DBMySQLResult < DBResult
   # for reset()
   def initialize(value)
     super(value)
-    @row_first = @result.row_tell()
+    @row_first = @result.row_tell
   end
 
   ###
   # reset object such that each() can be run again
-  def reset()
+  def reset
     @result.row_seek(@row_first)
   end
 
   ###
   # column names: list of strings
-  def list_column_names()
-    current = @result.row_tell()
-    fields = @result.fetch_fields().map { |f|
-      f.name()
-    }
+  def list_column_names
+    current = @result.row_tell
+    fields = @result.fetch_fields.map(&:name)
     @result.row_seek(current)
-    return fields
+
+    fields
   end
 end
-
 
 #################
 class DBMySQL < DBWrapper
   ###
-  # initialization: 
+  # initialization:
   #
   # open connection to MySQL server
   def initialize(exp)  # RosyConfigData experiment file object
     super(exp)
-    
-    @database = Mysql.real_connect(@exp.get('host'), @exp.get('user'), 
+
+    @database = Mysql.real_connect(@exp.get('host'), @exp.get('user'),
                                    @exp.get('passwd'), @exp.get('dbname'))
 
   end
@@ -61,7 +57,7 @@ class DBMySQL < DBWrapper
   def create_table(table_name, # string
                    column_formats, # array: array: string*string [column_name,column_format]
                    index_column_names, # array: string: column_name
-                   indexname)  # string: name of automatically created index column    
+                   indexname)  # string: name of automatically created index column
 
     string = "CREATE TABLE #{table_name} (" +
       "#{indexname} INT NOT NULL AUTO_INCREMENT"

@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-require 'test/unit'
+require 'minitest/autorun'
 require 'functional/functional_test_helper'
 #require 'fileutils' # File.delete(), File.rename(), File.symlink()
 
-class TestFrprep < Test::Unit::TestCase
+class TestFrprep < Minitest::Test
 
   include FunctionalTestHelper
 
@@ -13,13 +13,14 @@ class TestFrprep < Test::Unit::TestCase
     @test_file  = PRP_TEST_FILE
     @train_file = PRP_TRAIN_FILE
     @ptb        = 'lib/frprep/interfaces/berkeley_interface.rb'
-    #link_berkeley
+    # link_berkeley
     ENV['SHALM_BERKELEY_MODEL'] = 'sc_dash_labeled_1_smoothing.gr'
   end
 
   def teardown
-    #unlink_berkeley
+    # unlink_berkeley
   end
+
   def test_frprep_testing
     create_exp_file(@test_file)
     execute("ruby -I lib bin/frprep -e #{@test_file}")
@@ -77,8 +78,8 @@ class TestFrprep < Test::Unit::TestCase
     remove_exp_file(PRP_TABOUTPUT)
   end
 
-
   private
+
   # Berkeley Parser takes a long time which is bad for testing.
   # We ran it once and reuse the result file in our tests.
   # Before every test we link the Berkeley interface to a stub
@@ -86,9 +87,9 @@ class TestFrprep < Test::Unit::TestCase
   def link_berkeley
     File.rename(@ptb, "#{@ptb}.bak")
     File.symlink(
-                 File.expand_path('test/functional/berkeley_interface.rb.stub'),
-                 File.expand_path(@ptb)
-                 )
+      File.expand_path('test/functional/berkeley_interface.rb.stub'),
+      File.expand_path(@ptb)
+    )
   end
 
   # After testing we bring the right interface back, the program remains intact.

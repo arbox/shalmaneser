@@ -22,7 +22,7 @@ require 'db/sql_query'
 # around target words, yield contexts as soon as they are complete
 #
 # Target words are determined by delegating to either TargetsFromFrames or AllTargets
-# 
+#
 class AbstractContextProvider
 
   include WordLemmaPosNe
@@ -54,7 +54,7 @@ class AbstractContextProvider
   # each_window: iterator
   #
   # given a directory with Salsa/Tiger XML data,
-  # iterate through the data, 
+  # iterate through the data,
   # yielding each target word as soon as its context window is filled
   # (or the last file is at an end)
   #
@@ -112,7 +112,7 @@ class AbstractContextProvider
     # original targets:
     #  hash: target_IDs -> list of senses
     #   where target_IDs is a pair [list of terminal IDs, main terminal ID]
-    #  
+    #
     #  where a sense is represented as a hash:
     #  "sense": sense, a string
     #  "obj":   FrameNode object
@@ -136,7 +136,7 @@ class AbstractContextProvider
 
     # then shift each terminal into the context window
     # and check whether there is a target at the center
-    # position 
+    # position
     sent_terminals_nopunct(sent).each { |term_obj|
       # add new word to end of context array
       @context.push(word_lemma_pos_ne(term_obj, @interpreter_class))
@@ -169,7 +169,7 @@ class AbstractContextProvider
         # - sent: SalsaTigerSentence object
         main_target_id, all_target_ids, senses = @is_target[@window_size]
 
-        yield [ @context, 
+        yield [ @context,
                 main_target_id, all_target_ids,
                 senses,
                 @sentence[@window_size]
@@ -179,7 +179,7 @@ class AbstractContextProvider
   end
 
   ###
-  # sent is a TabFormatSentence object. 
+  # sent is a TabFormatSentence object.
   # shift word/lemma/pos/ne tuples throught the context window.
   # Whenever this brings a target (from another sentence, necessarily)
   # to the center of the context window, yield it.
@@ -203,10 +203,10 @@ class AbstractContextProvider
       if @is_target[@window_size]
         # yes, we have a target at center position.
         # yield it:
-        # context window, main target ID, all target IDs, 
+        # context window, main target ID, all target IDs,
         # senses (as FrameNode objects), sentence as XML
         main_target_id, all_target_ids, senses = @is_target[@window_size]
-        yield [ @context, 
+        yield [ @context,
                 main_target_id, all_target_ids,
                 senses,
                 @sentence[@window_size]
@@ -229,15 +229,15 @@ class AbstractContextProvider
       @context.shift()
       @is_target.shift()
       @sentence.shift()
-    
+
       # check for target at center
       if @is_target[@window_size]
         # yes, we have a target at center position.
         # yield it:
-        # context window, main target ID, all target IDs, 
+        # context window, main target ID, all target IDs,
         # senses (as FrameNode objects), sentence as XML
         main_target_id, all_target_ids, senses = @is_target[@window_size]
-        yield [ @context, 
+        yield [ @context,
                 main_target_id, all_target_ids,
                 senses,
                 @sentence[@window_size]
@@ -248,7 +248,7 @@ class AbstractContextProvider
   ############################
   # helper: remove punctuation
   def sent_terminals_nopunct(sent)
-    return sent.terminals_sorted.reject { |node| 
+    return sent.terminals_sorted.reject { |node|
       @interpreter_class.category(node) == "pun"
     }
   end
@@ -264,7 +264,7 @@ class ContextProvider < AbstractContextProvider
   # each_window: iterator
   #
   # given a directory with Salsa/Tiger XML data,
-  # iterate through the data, 
+  # iterate through the data,
   # yielding each target word as soon as its context window is filled
   # (or the last file is at an end)
   def each_window(dir) # string: directory containing Salsa/Tiger XML data
@@ -284,7 +284,7 @@ class ContextProvider < AbstractContextProvider
       each_window_for_file(f) { |result|
     	  yield result
       }
-    }    
+    }
     # and empty the context array
     each_remaining_target() { |result| yield result }
   end
@@ -314,7 +314,7 @@ class SingleSentContextProvider < AbstractContextProvider
   # each_window: iterator
   #
   # given a directory with Salsa/Tiger XML data,
-  # iterate through the data, 
+  # iterate through the data,
   # yielding each target word as soon as its context window is filled
   # (or the last file is at an end)
   def each_window(dir) # string: directory containing Salsa/Tiger XML data
@@ -332,7 +332,7 @@ class SingleSentContextProvider < AbstractContextProvider
       each_window_for_file(f) { |result|
         yield result
       }
-    }    
+    }
   end
 
   ##################################
@@ -347,8 +347,8 @@ class SingleSentContextProvider < AbstractContextProvider
     fpp.scan_s() { |sent_string|
       sent = SalsaTigerSentence.new(sent_string)
 
-      each_window_for_sent(sent) { |result| 
-        yield result 
+      each_window_for_sent(sent) { |result|
+        yield result
       }
     }
     # no need to clear the context: we're doing this after each sentence
@@ -367,7 +367,7 @@ class SingleSentContextProvider < AbstractContextProvider
       $stderr.puts "Error: got #{sent.class()}, expected SalsaTigerSentence or TabFormatSentence."
       exit 1
     end
-    
+
     # clear the context
     each_remaining_target() { |result| yield result }
   end
@@ -377,7 +377,7 @@ end
 ####################################
 # NoncontiguousContextProvider:
 # subclass of AbstractContextProvider
-# 
+#
 # This class assumes that the input text consists of single sentences
 # drawn from a larger corpus.
 # It first constructs an index to the sentences of the input text,
@@ -448,10 +448,10 @@ class NoncontiguousContextProvider < AbstractContextProvider
         $stderr.puts "Error analyzing #{filename}. Exiting."
         exit 1
       end
-      
+
 
       # read the resulting Tab format file, one sentence at a time:
-      # - check to see if the checksum of the sentence is in sentkeys 
+      # - check to see if the checksum of the sentence is in sentkeys
       #   (which means it is an input sentence)
       #   If it is, retrieve the sentence and determine targets
       # - shift the sentence through the context window
@@ -461,13 +461,13 @@ class NoncontiguousContextProvider < AbstractContextProvider
       Dir[frprep_out + "*.tab"].each { |tabfilename|
         tabfile = FNTabFormatFile.new(tabfilename, ".pos", ".lemma")
         tabfile.each_sentence() { |tabsent|
-          
+
           # get as Salsa/Tiger XML sentence, or TabSentence
           sent = get_stxml_sent(tabsent, sentkeys, temptable_obj)
 
           # shift sentence through context window
-          each_window_for_sent(sent) { |result| 
-            yield result 
+          each_window_for_sent(sent) { |result|
+            yield result
           }
 
         } # each tab sent
@@ -477,7 +477,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # empty the context array
     each_remaining_target() { |result| yield result }
     each_unmatched(sentkeys, temptable_obj) { |result| yield result }
-    
+
     # remove temporary data
     temptable_obj.drop_temp_table()
 
@@ -495,7 +495,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
   # remember the sentence in a temporary DB,
   # indexed by a hash key computed from the plaintext sentence.
   #
-  # return: 
+  # return:
   # - DBTempTable object containing the temporary DB
   # - hash table containing all hash keys
   def make_index(dir)
@@ -507,13 +507,13 @@ class NoncontiguousContextProvider < AbstractContextProvider
     $stderr.puts "Indexing input corpus:"
 
     # start temporary table
-    temptable_obj = get_db_interface(@exp).make_temp_table([
-                                                            ["hashkey", "varchar(#{space_for_hashkey})"], 
+    temptable_obj = DBInterface.get_db_interface(@exp).make_temp_table([
+                                                            ["hashkey", "varchar(#{space_for_hashkey})"],
                                                             ["sent", "varchar(#{space_for_sentstring})"]
                                                            ],
                                                            ["hashkey"],
                                                            "autoinc_index")
-    
+
     # and hash table for the keys
     retv_keys = Hash.new()
 
@@ -530,7 +530,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
         # make hash key from words of sentence
         graph = xml_obj.children_and_text().detect { |c| c.name() == "graph" }
         unless graph
-          next 
+          next
         end
         terminals = graph.children_and_text().detect { |c| c.name() == "terminals" }
         unless terminals
@@ -539,8 +539,8 @@ class NoncontiguousContextProvider < AbstractContextProvider
         # in making a hash key, use special characters
         # rather than their escaped &..; form
         # $stderr.puts "HIER calling checksum for noncontig"
-        hashkey = checksum(terminals.children_and_text().select { |c| c.name() == "t" 
-                           }.map { |t| 
+        hashkey = checksum(terminals.children_and_text().select { |c| c.name() == "t"
+                           }.map { |t|
                              SalsaTigerXMLHelper.unescape(t.attributes()["word"].to_s() )
                            })
         # HIER
@@ -572,7 +572,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
                                                     ["sent", sent_string]]))
         retv_keys[hashkey] = true
       }
-    }    
+    }
     $stderr.puts "Indexing finished."
 
     return [ temptable_obj, retv_keys ]
@@ -613,14 +613,14 @@ class NoncontiguousContextProvider < AbstractContextProvider
       end
 
       begin
-        unless File.stat(subdir).directory? 
+        unless File.stat(subdir).directory?
           next
         end
       rescue
         # no access, I assume
         next
       end
-    
+
       each_infile(subdir) { |inf|
         yield inf
       }
@@ -644,14 +644,14 @@ class NoncontiguousContextProvider < AbstractContextProvider
       end
 
       begin
-        unless File.stat(subdir).directory? 
+        unless File.stat(subdir).directory?
           next
         end
       rescue
         # no access, I assume
         next
       end
-    
+
       # subdir must end in slash
       unless subdir =~ /\/$/
         subdir = subdir + "/"
@@ -765,7 +765,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # $stderr.puts "HIER3 " + words2.join(" ")
 
 
-    if sentkeys[hashkey_this_sentence]  
+    if sentkeys[hashkey_this_sentence]
       # sentence from the input corpus.
 
       # register
@@ -775,7 +775,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       # select "sent" columns from temp table
       # where "hashkey" == sent_checksum
       # returns a DBResult object
-      query_result = temptable_obj.query(SQLQuery.select([ SelectTableAndColumns.new(temptable_obj, ["sent"]) ], 
+      query_result = temptable_obj.query(SQLQuery.select([ SelectTableAndColumns.new(temptable_obj, ["sent"]) ],
                                                        [ ValueRestriction.new("hashkey", hashkey_this_sentence) ]))
       query_result.each { |row|
 
@@ -841,7 +841,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
         num_unmatched += 1
 
         # retrieve
-        query_result = temptable_obj.query(SQLQuery.select([ SelectTableAndColumns.new(temptable_obj, ["sent"]) ], 
+        query_result = temptable_obj.query(SQLQuery.select([ SelectTableAndColumns.new(temptable_obj, ["sent"]) ],
                                                            [ ValueRestriction.new("hashkey", hash_key) ]))
 
         # report and yield
@@ -851,7 +851,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
           begin
             # report on unmatched sentence
             sent = SalsaTigerSentence.new(sent_string)
-            $stderr.puts "Unmatched sentence from noncontiguous input:\n" + 
+            $stderr.puts "Unmatched sentence from noncontiguous input:\n" +
               sent.id().to_s() + " " + sent.to_s()
 
             # push the sentence through the context window,
@@ -863,7 +863,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
           rescue
             # Couldn't turn it into a SalsaTigerSentence object:
             # just report, don't yield
-            $stderr.puts "Unmatched sentence from noncontiguous input (raw):\n" + 
+            $stderr.puts "Unmatched sentence from noncontiguous input (raw):\n" +
               sent_string
             $stderr.puts "ERROR: cannot process this sentence, skipping."
           end

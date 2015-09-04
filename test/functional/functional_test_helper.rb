@@ -1,6 +1,5 @@
 require 'erb'
 
-
 # Setting $DEBUG will produce all external output.
 # Otherwise it is suppreced.
 module FunctionalTestHelper
@@ -24,7 +23,7 @@ module FunctionalTestHelper
   PRP_TABINPUT         = "#{PREF}/prp_tabinput"
   PRP_FNXMLINPUT       = "#{PREF}/prp_fnxmlinput"
   PRP_FNCORPUSXMLINPUT = "#{PREF}/prp_fncorpusxmlinput"
-  
+
   # Testing output for Preprocessor.
   PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"
   PRP_TABOUTPUT   = "#{PREF}/prp_taboutput"
@@ -34,13 +33,14 @@ module FunctionalTestHelper
   # <@msg> is defined for every test object.
   # @param cmd [String]
   def execute(cmd)
+    $DEBUG = true
     unless $DEBUG
       cmd = cmd + ' 1>/dev/null 2>&1'
     end
     status = system(cmd)
     assert(status, @msg)
   end
-  
+
   # Create a temporary exp file only for this test.
   # Shalmaneser needs absolute paths, we provide them in exp files
   # using templating.

@@ -18,26 +18,26 @@ module Rosy
     end
 
     def assign
-      
+
       # make rosy directory pattern:
       # main rosy directory name (data_dir) plus subdirectory
       # named after the experiment ID
       rosy_dir_pattern = File.new_dir(@exp.get("data_dir")) + "<exp_ID>/"
-      @exp.set_entry("rosy_dir",  rosy_dir_pattern)
-      
+      @exp.set_entry("rosy_dir", rosy_dir_pattern)
+
       ##
       # open database
-      
+
       rosy_dir = File.new_dir(@exp.instantiate("rosy_dir",
                                               "exp_ID" => @exp.get("experiment_ID")))
-      database = get_db_interface(@exp, rosy_dir, "features")
-      
+      database = DBInterface.get_db_interface(@exp, rosy_dir, "features")
+
       table_obj = RosyTrainingTestTable.new(@exp, database)
-      
+
       ##
       # start the actual processing,
       # according to given arguments
-      
+
       # initialize task object
       #begin
       case @task
@@ -58,8 +58,8 @@ module Rosy
       else
         raise "Shouldn't be here"
       end
-      
-      
+
+
       # execute task
       begin
         task_obj.perform
@@ -69,10 +69,10 @@ module Rosy
       ensure
         database.close
       end
-      
-      
-      $stderr.puts "Rosy: done."      
+
+
+      $stderr.puts "Rosy: done."
     end
-    
+
   end # class Rosy
 end # module Rosy

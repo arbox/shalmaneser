@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-require 'test/unit'
+require 'minitest/autorun'
 require 'functional/functional_test_helper'
 
-class TestFred < Test::Unit::TestCase
+class TestFred < Minitest::Test
 
   include FunctionalTestHelper
 
