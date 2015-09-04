@@ -1,7 +1,5 @@
 # -*- mode: ruby; -*-
-
-# A sample Gemfile
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'mysql', '~> 2.9'
 gem 'sqlite3', '~> 1.3'
@@ -12,4 +10,5 @@ group :development do
   gem 'rake'
   gem 'pry'
   gem 'byebug', '~> 6.0'
+  gem 'bundler', '~> 1.10'
 end

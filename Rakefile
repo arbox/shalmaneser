@@ -12,7 +12,7 @@ CLOBBER.include('ydoc',
                 '.yardoc',
                 '*.gem')
 
-task :clobber => [:remove_exp_files, :remove_test_output]
+task clobber: [:remove_exp_files, :remove_test_output]
 
 # Generate documentation.
 require 'rdoc/task'
@@ -118,4 +118,20 @@ task :pry do
   require 'shalmaneser'
   ARGV.clear
   Pry.start
+end
+
+namespace :build do
+  desc 'Make all.'
+  task :shalmaneser => [:frappuccino, :fred, :rosy] do
+    sh 'bundle exec gem build shalmaneser.gemspec'
+  end
+  task :frappuccino do
+    sh 'bundle exec gem build shalmaneser-prep.gemspec'
+  end
+  task :fred do
+    sh 'bundle exec gem build shalmaneser-fred.gemspec'
+  end
+  task :rosy do
+    sh 'bundle exec gem build shalmaneser-rosy.gemspec'
+  end
 end

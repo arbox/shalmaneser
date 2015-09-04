@@ -19,16 +19,12 @@ of word senses (e.g. WordNet synsets). SHALMANESER emerged as part of the SALSA
 Project at the University of Saarbrücken.
   EOS
   s.version = Shalmaneser::VERSION
-  s.author = "Andrei Beliankou"
+  s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
   s.bindir = 'bin'
   s.executables = %w(shalmaneser frprep fred rosy)
-  s.add_runtime_dependency('mysql')
-  s.add_development_dependency('rdoc')
-  s.add_development_dependency('bundler')
-  s.add_development_dependency('yard')
-  s.add_development_dependency('rake')
+
   s.extra_rdoc_files = ['README.md', 'LICENSE.md', 'CHANGELOG.md'] +
     FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
