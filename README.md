@@ -7,9 +7,9 @@
 
 
 [![Gem Version](https://img.shields.io/gem/v/shalmaneser.svg")](https://rubygems.org/gems/shalmaneser)
-[![Gem Version](https://img.shields.io/gem/v/frprep.svg")](https://rubygems.org/gems/frprep)
-[![Gem Version](https://img.shields.io/gem/v/fred.svg")](https://rubygems.org/gems/fred)
-[![Gem Version](https://img.shields.io/gem/v/rosy.svg")](https://rubygems.org/gems/rosy)
+[![Gem Version](https://img.shields.io/gem/v/frprep.svg")](https://rubygems.org/gems/shalmaneser-prep)
+[![Gem Version](https://img.shields.io/gem/v/fred.svg")](https://rubygems.org/gems/shalmaneser-fred)
+[![Gem Version](https://img.shields.io/gem/v/rosy.svg")](https://rubygems.org/gems/shalmaneser-rosy)
 
 
 [![License GPL 2](http://img.shields.io/badge/License-GPL%202-green.svg)](http://www.gnu.org/licenses/gpl-2.0.txt)
