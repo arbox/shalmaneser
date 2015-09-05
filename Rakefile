@@ -38,21 +38,18 @@ require 'rake/testtask'
 Rake::TestTask.new(test: [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
-  t.ruby_opts = ['-rubygems'] # not necessary now
   t.test_files = FileList['test/**/*.rb']
 end
 
 Rake::TestTask.new(test_functional: [:remove_exp_files, :remove_test_output]) do |t|
   t.libs << 'test'
   t.warning
-  t.ruby_opts = ['-rubygems']
   t.test_files = FileList['test/functional/test_*.rb']
 end
 
 Rake::TestTask.new(:test_prep) do |t|
   t.libs << 'test'
   t.warning
-  t.ruby_opts = ['-rubygems']
   t.test_files = FileList['test/frprep/test_*.rb']
 end
 
