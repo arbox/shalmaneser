@@ -17,94 +17,82 @@
 # SI: sibling: parent/grfunc/word/lemma/pos/ne
 # TA: target: word/lemma/pos/ne
 
-
-
-require "delegate"
+require 'delegate'
 
 #######
 
-require "fred/FileZipped"
-require "common/Parser"
-require "common/RegXML"
-require "common/SalsaTigerRegXML"
-require "common/SalsaTigerXMLHelper"
+require 'fred/FileZipped'
+require 'common/Parser'
+require 'common/RegXML'
+require 'common/SalsaTigerRegXML'
+require 'common/SalsaTigerXMLHelper'
 
-require "fred/fred_config_data"
-require "fred/FredConventions"
-require "common/prep_helper"
-require "common/SynInterfaces"
+require 'fred/fred_config_data'
+require 'fred/FredConventions'
+require 'common/prep_helper'
+require 'common/SynInterfaces'
 
-require "fred/FredBOWContext"
-require "fred/FredDetermineTargets"
-require "fred/FredFeatures"
+require 'fred/FredBOWContext'
+require 'fred/FredDetermineTargets'
+require 'fred/FredFeatures'
 
 ####################################
 # grammatical function computation:
 # given a sentence, keep all grammatical function relations in a hash
 # for faster access
 class GrammaticalFunctionAccess
-
   def initialize(interpreter_class)
     @interpreter_class = interpreter_class
-    @to = Hash.new( [] ) # default: return empty array
-    @from = Hash.new( [] ) # default: return empty array
+    @to = Hash.new([])
+    @from = Hash.new([])
   end
 
-  def set_sent(sent) # SalsaTigerRegXML sentence
+  # SalsaTigerRegXML sentence
+  def set_sent(sent)
+    @to.clear
+    @from.clear
 
-    @to.clear()
-    @from.clear()
-
-    sent.each_syn_node { |current|
-
+    sent.each_syn_node do |current|
       current_head = @interpreter_class.head_terminal(current)
-      unless current_head
-        next
-      end
+      next unless current_head
 
       @interpreter_class.gfs(current, sent).map { |rel, node|
         # PPs: use head noun rather than preposition as head
-        # Sbar, VP: use verb 
+        # Sbar, VP: use verb
         if (n = @interpreter_class.informative_content_node(node))
           [rel, n]
         else
           [rel, node]
         end
       }.each { |rel, node|
-
         rel_head = @interpreter_class.head_terminal(node)
-        unless rel_head
-          next
+        next unless rel_head
+
+        unless @to.key? current_head
+          @to[current_head] = []
         end
 
-        unless @to.has_key? current_head
-          @to[current_head] = Array.new()
-        end
         unless @to[current_head].include? [rel, rel_head]
           @to[current_head] << [rel, rel_head]
         end
 
-        unless @from.has_key? rel_head
-          @from[rel_head] = Array.new()
+        unless @from.key?(rel_head)
+          @from[rel_head] = []
         end
+
         unless @from[rel_head].include? [rel, current_head]
           @from[rel_head] << [rel, current_head]
         end
       }
-    }
-    #     $stderr.puts "Changed sentence:"
-    #     @to.each_pair { |p, ch|
-    #       $stderr.puts "\t#{p.id()}: " + ch.map { |rel, n| rel + "/"+n.id()}.join(", ")
-    #     }
-    #     $stdin.gets()
+    end
   end
 
   def get_children(node)
-    return @to[node]
+    @to[node]
   end
 
   def get_parents(node)
-    return @from[node]
+    @from[node]
   end
 end
 
@@ -112,12 +100,11 @@ end
 # main class of this package
 ####################################
 class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
-
   include WordLemmaPosNe
 
   #####
   def initialize(exp_obj, # FredConfigData object
-		 options, # hash: runtime option name (string) => value(string)
+                 options, # hash: runtime option name (string) => value(string)
                  varhash = {}) # optional parameter: "refeaturize"
 
     ##
@@ -130,31 +117,31 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     end
     @append_rather_than_overwrite = false
 
-
     options.each_pair do |opt, arg|
       case opt
       when '--dataset'
-	@dataset = arg
-	unless ["train", "test"].include? @dataset
-	  $stderr.puts "--dataset needs to be either 'train' or 'test'"
+        @dataset = arg
+        unless ["train", "test"].include? @dataset
+          $stderr.puts "--dataset needs to be either 'train' or 'test'"
           exit 1
-	end
+        end
 
       when '--append'
         @append_rather_than_overwrite = true
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     end
 
     # further sanity checks
-     if @dataset.nil?
+    if @dataset.nil?
       $stderr.puts  "Please set --dataset: one of 'train', 'test'"
-       exit 1
+      exit 1
     end
 
-    in_enduser_mode_ensure(@dataset == "test")
+     # @TODO: This is a temporal solution of delegation errors.
+     # in_enduser_mode_ensure(@dataset == "test")
 
     # evaluate optional "refeaturize" argument
     # "refeaturize": reuse meta-feature set,
@@ -185,7 +172,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     #   exit 1
     # end
     # preproc_exp = FrPrepConfigData.new(preproc_expname)
-    # @exp.adjoin(preproc_exp)    
+    # @exp.adjoin(preproc_exp)
 
     # get the right syntactic interface
     SynInterfaces.check_interfaces_abort_if_missing(@exp)
@@ -211,14 +198,14 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
   end
 
   ####
-  def compute()
+  def compute
     if @refeaturize
       # read meta-feature file,
       # just redo normal featurization
-      refeaturize()
+      refeaturize
     else
       # write meta features and normal features
-      featurize()
+      featurize
     end
   end
 
@@ -227,8 +214,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
 
   #####
   # main featurization
-  def featurize()
-
+  def featurize
     ###
     # make objects
     unless @exp.get("directory_preprocessed")
@@ -251,7 +237,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       $stderr.puts "into the set of features used in the classifier.)"
       context_sizes = [1]
     end
-    max_context_size = context_sizes.max()
+    max_context_size = context_sizes.max
 
     # make target determination object
     if @dataset == "test" and @exp.get("apply_to_all_known_targets")
@@ -268,8 +254,8 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     # make context computation object
     if @exp.get("single_sent_context")
       # contexts in the input data doesn't go beyond a single sentence
-      context_obj = SingleSentContextProvider.new(max_context_size, @exp, 
-                                                  @interpreter_class, target_obj, 
+      context_obj = SingleSentContextProvider.new(max_context_size, @exp,
+                                                  @interpreter_class, target_obj,
                                                   @dataset)
       # @todo AB: Put it to the OptionParser, two option are not
       # compatible, don't do the check here!
@@ -279,26 +265,26 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       end
 
     elsif @exp.get("noncontiguous_input")
-      # the input data is not contiguous but 
+      # the input data is not contiguous but
       # consists of selected sentences from a larger text
-      context_obj = NoncontiguousContextProvider.new(max_context_size, @exp, 
+      context_obj = NoncontiguousContextProvider.new(max_context_size, @exp,
                                                      @interpreter_class, target_obj,
-                                                     @dataset)     
+                                                     @dataset)
      else
       # the input data is contiguous, and we're computing contexts not restricted to single sentences
-      context_obj = ContextProvider.new(max_context_size, @exp, 
+      context_obj = ContextProvider.new(max_context_size, @exp,
                                         @interpreter_class, target_obj, @dataset)
     end
 
     zipped_input_dir = fred_dirname(@exp, @dataset, "input_data", "new")
-    
+
     ##
     # make writer object(s)
 
-    writer_classes = [ 
+    writer_classes = [
       MetaFeatureAccess,
-      FredFeatureAccess 
-    ] 
+      FredFeatureAccess
+    ]
 
     if @append_rather_than_overwrite
       # append
@@ -311,8 +297,8 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
 
       $stderr.puts "Removing old features for the same experiment (if any)"
 
-      writer_classes.each { |w_class| 
-        w_class.remove_feature_files(@exp, @dataset) 
+      writer_classes.each { |w_class|
+        w_class.remove_feature_files(@exp, @dataset)
       }
 
       Dir[zipped_input_dir + "*gz"].each { |filename|
@@ -368,10 +354,10 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
 
         writers.each { |writer_obj|
 
-          writer_obj.write_item(target_lemma, 
+          writer_obj.write_item(target_lemma,
                                 target_pos,
                                 target_ids,
-                                target_sid, 
+                                target_sid,
                                 target_senses,
                                 feature_hash)
         }
@@ -381,7 +367,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     writers.each { |writer_obj|
       writer_obj.flush()
     }
-    
+
     # record the targets that have been read
     target_obj.done_reading_targets()
 
@@ -407,7 +393,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
 
       $stderr.puts "Removing old features for the same experiment (if any)"
 
-      FredFeatureAccess.remove_feature_files(@exp, @dataset) 
+      FredFeatureAccess.remove_feature_files(@exp, @dataset)
     end
 
     ##
@@ -428,10 +414,10 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       end
       target_count += 1
 
-      feature_writer.write_item(target_lemma, 
+      feature_writer.write_item(target_lemma,
                                 target_pos,
                                 target_ids,
-                                target_sid, 
+                                target_sid,
                                 target_senses,
                                 feature_hash)
     }
@@ -447,45 +433,50 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
   #
   # yield as triples [lemma, pos, sense]
   def each_lemma_pos_and_senses(shashes)
+    # Determine target and POS.
+    # If we actually have more than one lemma and POS, we're in trouble
+    target_lemmas = shashes.map { |sense_hash| sense_hash["lex"].to_s.gsub(/\s/, "_") }.uniq
+    target_pos_s =  shashes.map { |sense_hash| sense_hash["pos"].to_s.gsub(/\s/, "_")}.uniq
+    target_sid =    shashes.map { |sense_hash| sense_hash["sid"].to_s.gsub(/\s/, "_")}.uniq
 
-    # determine target and POS. If we actually have more than one lemma and POS, we're in trouble
-    target_lemmas = shashes.map { |sense_hash| sense_hash["lex"].to_s().gsub(/\s/, "_") }.uniq()
-    target_pos_s =  shashes.map { |sense_hash| sense_hash["pos"].to_s().gsub(/\s/, "_")}.uniq()
-    target_sid =    shashes.map { |sense_hash| sense_hash["sid"].to_s().gsub(/\s/, "_")}.uniq()
+    if target_lemmas.length == 1 &&
+       target_pos_s.length == 1 &&
+       target_sid.length == 1
 
-    if target_lemmas.length() == 1 and target_pos_s.length() == 1 and target_sid.length() == 1
-
-      yield [target_lemmas.first(), target_pos_s.first(),
-             target_sid.first(),
-             shashes.map { |sense_hash| sense_hash["sense"].to_s().gsub(/\s/, "_") }
+      yield [target_lemmas.first,
+             target_pos_s.first,
+             target_sid.first,
+             shashes.map { |sense_hash| sense_hash["sense"].to_s.gsub(/\s/, "_") }
             ]
-
     else
       # trouble
-        
       # group senses by SID, lemma and pos
-      lemmapos2sense = Hash.new
+      lemmapos2sense = {}
       shashes.each { |sense_hash|
-        target_lemma = sense_hash["lex"].to_s().gsub(/\s/, "_")
-        target_pos = sense_hash["pos"].to_s().gsub(/\s/, "_")
-        target_sid = sense_hash["sid"].to_s().gsub(/\s/, "_")
-        target_sense = sense_hash["sense"].to_s().gsub(/\s/, "_")
+        target_lemma = sense_hash["lex"].to_s.gsub(/\s/, "_")
+        target_pos = sense_hash["pos"].to_s.gsub(/\s/, "_")
+        target_sid = sense_hash["sid"].to_s.gsub(/\s/, "_")
+        target_sense = sense_hash["sense"].to_s.gsub(/\s/, "_")
         key = [target_sid, target_lemma, target_pos]
+
         unless lemmapos2sense[key]
-          lemmapos2sense[key] = Array.new()
+          lemmapos2sense[key] = []
         end
+
         lemmapos2sense[key] << target_sense
       }
 
       # and yield
-      lemmapos2sense.each_key { |target_sid, target_lemma, target_pos|
-        yield [target_lemma, target_pos, target_sid,
+      lemmapos2sense.each_key do |target_sid, target_lemma, target_pos|
+        yield [target_lemma,
+               target_pos,
+               target_sid,
                lemmapos2sense[[target_sid, target_lemma, target_pos]]
               ]
-      }
+      end
     end
   end
-  
+
   ###
   # given a context, locate the target,
   # which is right in the middle,
@@ -494,13 +485,11 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
   # feature type: TA
   # entry: word#lemma#pos#ne
   def compute_target_features(context,      # array: word*lemma*pos*ne
-                              center_pos, # integer: size of context, onesided
+                              center_pos,   # integer: size of context, onesided
                               feature_hash) # hash: feature_type -> array:feature, enter features here
-  feature_hash["TA"] = [ 
-                          context[center_pos].map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
-                         ]
+    feature_hash["TA"] = [context[center_pos].map(&:to_s).join("#").gsub(/\s/, "_")]
   end
-  
+
   ###
   # compute context features:
   # for each context in the given list of context sizes,
@@ -509,36 +498,36 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
   # word#lemma#pos#ne
   #
   # enter each context into the feature hash
-  def compute_context_features(context,  # array: word*lemma*pos*ne
-                               center_pos, # int: context is 2*cx_size_onesided + 1 long
-                               context_sizes,    # array:int, produce a context of each of these sizes
-                               feature_hash)     # hash: feature_type -> array:feature, enter features here
-    
-    
+  def compute_context_features(context,       # array: word*lemma*pos*ne
+                               center_pos,    # int: context is 2*cx_size_onesided + 1 long
+                               context_sizes, # array:int, produce a context of each of these sizes
+                               feature_hash)  # hash: feature_type -> array:feature, enter features here
+
+
     context_sizes.each { |context_size|
       # feature type: CXNN, where NN is the size of the context
-      feature_type = "CX" + context_size.to_s()
-      
+      feature_type = "CX" + context_size.to_s
+
       # features: an array of strings
-      feature_hash[feature_type]  = Array.new()
-      
+      feature_hash[feature_type]  = []
+
       # pre-context
       (center_pos - context_size).upto(center_pos - 1) { |ix|
         if context[ix]
           # context entries may be nil at the beginning and end of the text
-          feature_hash[feature_type] << context[ix].map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
+          feature_hash[feature_type] << context[ix].map(&:to_s).join("#").gsub(/\s/, "_")
         end
       }
       # post-context
       (center_pos + 1).upto(center_pos + context_size) { |ix|
         if context[ix]
           # context entries may be nil at the beginning and end of the text
-          feature_hash[feature_type] << context[ix].map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
+          feature_hash[feature_type] << context[ix].map(&:to_s).join("#").gsub(/\s/, "_")
         end
       }
     }
   end
-  
+
   ###
   # compute syntax-dependent features:
   # children (that is, dependents) of the target word,
@@ -548,18 +537,18 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
   # format:
   #  feature type is CH for children, PA for parent, SI for siblings
   #
-  #  individual features are: 
+  #  individual features are:
   #    <dependency>#<word>#<lemma>#<pos>#<ne>
   def compute_syn_features(main_target_id,  # string: ID of the terminal node that is the target
                            sent,       # SalsaTigerRegXML object
                            feature_hash) # hash: feature_type -> array:feature, enter features here
-    
+
     target = sent.terminals().detect { |t| t.id() == main_target_id }
     unless target
       $stderr.puts "Featurization error: cannot find target with ID #{main_target_id}, skipping."
       return
     end
-    
+
     # if we're starting a new sentence,
     # compute dependencies using delegate object for grammatical functions.
     # also, get_children, get_parents below are methods of the delegate
@@ -567,36 +556,32 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       @current_sent = sent
       set_sent(sent)
     end
+
     # children
-    feature_hash["CH"] = get_children(target).map { |rel, node|
-      #print "\t", rel, " ", node, "\n"
-      rel.to_s() + "#" + 
-      word_lemma_pos_ne(node, @interpreter_class).map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
-    }
-    
+    feature_hash["CH"] = get_children(target).map do |rel, node|
+      rel.to_s + "#" +
+      word_lemma_pos_ne(node, @interpreter_class).map(&:to_s).join("#").gsub(/\s/, "_")
+    end
+
     # parent
-    feature_hash["PA"] = get_parents(target).map { |rel, node|
-      #print "\t", rel, " ", node, "\n"
-      rel.to_s() + "#" + 
-      word_lemma_pos_ne(node, @interpreter_class).map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
-    }
-    
+    feature_hash["PA"] = get_parents(target).map do |rel, node|
+
+      rel.to_s + "#" +
+      word_lemma_pos_ne(node, @interpreter_class).map(&:to_s).join("#").gsub(/\s/, "_")
+    end
+
     # siblings
-    feature_hash["SI"] = Array.new()
-    get_parents(target).each { |rel, parent|
-      parent_w, d1, d2, d3 = word_lemma_pos_ne(parent, @interpreter_class)
-    
-      get_children(parent).each { |rel, node|
-      #print "\t", rel, " ", node, "\n"
+    feature_hash["SI"] = []
 
-        if node == target
-          next
-        end
+    get_parents(target).each do |_rel, parent|
+      parent_w, _d1, _d2, _d3 = word_lemma_pos_ne(parent, @interpreter_class)
 
-        feature_hash["SI"] << parent_w + "#" + 
-        rel.to_s() + "#" + 
-        word_lemma_pos_ne(node, @interpreter_class).map { |e| e.to_s() }.join("#").gsub(/\s/, "_")
-      }
-    }
+      get_children(parent).each do |rel, node|
+        next if node == target
+        feature_hash["SI"] << parent_w + "#" +
+          rel.to_s + "#" +
+          word_lemma_pos_ne(node, @interpreter_class).map { |e| e.to_s }.join("#").gsub(/\s/, "_")
+      end
+    end
   end
 end
