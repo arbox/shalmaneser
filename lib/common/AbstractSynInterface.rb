@@ -10,15 +10,15 @@
 #   SynInterfaceTab:
 #   input and output format is (FN)TabFormat.
 #   SynInterfaceSTXML:
-#    input format is TabFormat, output format is 
-#    Salsa/Tiger XML, also provided as 
+#    input format is TabFormat, output format is
+#    Salsa/Tiger XML, also provided as
 #    SalsaTigerSentence objects
 #
 # - interpreters:
 #   interpret the resulting Salsa/Tiger XML (represented as
 #   SalsaTigerSentence and SynNode objects), e.g.
-#   generalize over part of speech; 
-#   describe the path between a pair of nodes both as a path 
+#   generalize over part of speech;
+#   describe the path between a pair of nodes both as a path
 #   and (potentially) as a grammatical function of one of the nodes;
 #   determine whether a node describes a verb, and in which voice;
 #   determine the head of a constituent
@@ -59,10 +59,10 @@ class SynInterface
 		 insuffix,      # string: suffix of input files
 		 outsuffix,     # string: suffix for processed files
 		 var_hash = {}) # optional arguments in a hash
-	
+
     @program_path = program_path
     @insuffix = insuffix
-    @outsuffix = outsuffix	 
+    @outsuffix = outsuffix
   end
 
   ###
@@ -123,7 +123,7 @@ class SynInterfaceSTXML < SynInterface
 
   def to_stxml_dir(in_dir,   # string: name of dir with parse files
 		   out_dir)  # string: name of output dir
-    
+
     Dir["#{in_dir}*#{@outsuffix}"].each do |parsefilename|
       stxmlfilename = "#{out_dir}#{File.basename(parsefilename, @outsuffix)}#{@stsuffix}"
       to_stxml_file(parsefilename, stxmlfilename)
@@ -137,7 +137,7 @@ class SynInterfaceSTXML < SynInterface
   ###
   # standard mapping:
   #
-  # to be used as the mapping from tab sentence words to 
+  # to be used as the mapping from tab sentence words to
   # SalsaTigerSentence nodes returned by each_sentence():
   # map the n-th word of the tab sentence to the n-th terminal of
   # the SalsaTigerSentence
@@ -158,7 +158,7 @@ class SynInterfaceSTXML < SynInterface
         end
       end
     end
-    
+
     retv
   end
 
@@ -167,10 +167,10 @@ class SynInterfaceSTXML < SynInterface
   # for a given processed file:
   # yield each sentence as a tuple
   #  [SalsaTigerSentence object, FNTabFormatSentence object, mapping]
-  # of 
-  # - the sentence in SalsaTigerXML, 
+  # of
+  # - the sentence in SalsaTigerXML,
   # - the matching tab format sentence
-  # - a mapping of terminals: 
+  # - a mapping of terminals:
   #   hash: line in tab sentence(integer) -> array:SynNode
   #   mapping tab sentence nodes to matching nodes in the SalsaTigerSentence data structure
   #
@@ -179,7 +179,7 @@ class SynInterfaceSTXML < SynInterface
   # in the processed file (may not hold e.g. if the parser leaves out
   # sentences it cannot process)
   def each_sentence(infilename,  # string: name of processed file
-		    tab_dir = nil) # string: name of dir with input files 
+		    tab_dir = nil) # string: name of dir with input files
                                  # (set either here or on initialization)
     if tab_dir
       @tab_dir = tab_dir
@@ -201,8 +201,8 @@ class SynInterfaceSTXML < SynInterface
     sent_index = 0
     reader.scan_s { |sent_string|
       yield [
-        SalsaTigerSentence.new(sent_string, tab_sentences[sent_index]), 
-        tab_sentences[sent_index], 
+        SalsaTigerSentence.new(sent_string, tab_sentences[sent_index]),
+        tab_sentences[sent_index],
         SynInterfaceSTXML.standard_mapping(sent, tab_sentences[sent_index])
       ]
       sent_index += 1
@@ -242,7 +242,7 @@ class SynInterfaceSTXML < SynInterface
     sent_obj = SalsaTigerSentence.empty_sentence(sentid.to_s)
 
     sent_obj.set_attribute("failed","true")
-    
+
     topnode = sent_obj.add_syn("nt",
                                "NONE", # cat
                                nil, # word (doesn't matter)
@@ -362,7 +362,7 @@ class Path
 		     direction, # string: U, D
 		     gf,        # string: edge label
 		     pt)
-    @path.prepend([direction, gf, pt, @startnode])
+    @path.unshift([direction, gf, pt, @startnode])
     set_startnode(start_node)
 
     return self
@@ -387,11 +387,11 @@ class Path
   end
 
   ###
-  # 
+  #
   def print(print_direction, # boolean. true: print direction
 	    print_gf,        # boolean. true: print edgelabel
 	    print_pt)        # boolean. true: print nodelabel
-    
+
     return print_aux(@path, print_direction, print_gf, print_pt)
   end
 
@@ -408,11 +408,11 @@ class Path
 
     else
       # roof node is in the middle
-      return print_aux(@path[roof_index..-1], 
+      return print_aux(@path[roof_index..-1],
 		       print_direction, print_gf, print_pt)
     end
   end
-  
+
   ###
   def lca()
     return compute_roof().first
@@ -426,7 +426,7 @@ class Path
 
   ########
   protected
-  
+
   def set_path(new_path)
     @path = new_path
   end
@@ -453,10 +453,10 @@ class Path
         index += 1
       end
     }
-    
+
     # last node is roof
     return [node, index]
-    
+
   end
 
   ###
@@ -466,7 +466,7 @@ class Path
 		print_pt)
     retv = ""
     path.each { |step|
-      direction, gf, pt, node = step.map { |entry| 
+      direction, gf, pt, node = step.map { |entry|
 	if entry.nil?
 	  "-"
 	else
@@ -489,7 +489,7 @@ class Path
       return $1
     else
       return retv
-    end    
+    end
   end
 
 end
@@ -571,7 +571,7 @@ class SynInterpreter
       return nil
     end
 
-    lemma = node.get_attribute("lemma") 
+    lemma = node.get_attribute("lemma")
     if (lemma.nil? or lemma =~ /unknown/) and
         node.is_terminal?
       return node.word()
@@ -627,7 +627,7 @@ class SynInterpreter
 
   ###
   # auxiliary?
-  # 
+  #
   # returns true if the given node is an auxiliary
   # default: no recognition of auxiliaries
   #
@@ -652,7 +652,7 @@ class SynInterpreter
   #
   # given a constituent, return the terminal node
   # that describes its headword
-  # default: a heuristic that assumes the existence of a 'head' 
+  # default: a heuristic that assumes the existence of a 'head'
   #   attribute on nodes:
   #   find the first node in my yield corresponding to my head attribute..
   #
@@ -671,7 +671,7 @@ class SynInterpreter
     unless head
       return nil
     end
-      
+
     return node.yield_nodes.detect { |t|
       t.get_attribute("word") == head
     }
@@ -680,7 +680,7 @@ class SynInterpreter
   ###
   # voice
   #
-  # given a constituent, return 
+  # given a constituent, return
   # - "active"/"passive" if it is a verb
   # - nil, else
   #
@@ -702,7 +702,7 @@ class SynInterpreter
   # gfs
   #
   # grammatical functions of a constituent:
-  # 
+  #
   # returns: a list of pairs [relation(string), node(SynNode)]
   # where <node> stands in the relation <relation> to the parameter
   # that the method was called with
@@ -717,7 +717,7 @@ class SynInterpreter
     end
 
     return node.children_with_edgelabel().map { |rel, gf_node|
- 
+
      if eval(self.name()).category(gf_node) == "prep"
         [rel + "-" + eval(self.name()).preposition(gf_node).to_s, gf_node]
 
@@ -733,7 +733,7 @@ class SynInterpreter
   # for most constituents: the head
   # for a PP, the NP
   # for an SBAR, the VP
-  # for a VP, the embedded VP 
+  # for a VP, the embedded VP
   #
   # Default: returns the first non-head child
   def SynInterpreter.informative_content_node(node)
@@ -744,10 +744,10 @@ class SynInterpreter
 
     headlemma = eval(self.name()).lemma_backoff(node)
 
-    first_nonhead_child = node.children().detect { |n| 
+    first_nonhead_child = node.children().detect { |n|
       nnh = eval(self.name()).head_terminal(n)
-      nnh and 
-        eval(self.name()).lemma_backoff(nnh) != headlemma 
+      nnh and
+        eval(self.name()).lemma_backoff(nnh) != headlemma
     }
 
     return first_nonhead_child
@@ -759,10 +759,10 @@ class SynInterpreter
   # return a list of the nodes of full verbs in a given sentence:
   # it is a list of lists. An item in that list is
   # - either a pair [verb, svp]
-  #   of the node of a verb with separable prefix 
+  #   of the node of a verb with separable prefix
   #   and the node of its separate prefix
   # - or a singleton [verb]
-  #   of the node of a verb without separate prefix 
+  #   of the node of a verb without separate prefix
   def SynInterpreter.verbs(sent)
 
     return sent.syn_nodes.select { |node|
@@ -807,8 +807,8 @@ class SynInterpreter
   ###
   # path_between
   #
-  # construct path in syntactic structure between two nodes, 
-  # using 
+  # construct path in syntactic structure between two nodes,
+  # using
   # - node labels
   # - edge labels
   # - direction Up, Down
@@ -822,14 +822,14 @@ class SynInterpreter
   def SynInterpreter.path_between(from_node, # SynNode
                                   to_node,   # SynNode
 				  use_nontree_edges = false) # boolean
-    
+
     unless from_node.kind_of? SynNode and to_node.kind_of? SynNode
       $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
       return nil
     end
 
     path = eval(self.name()).search_up(from_node,to_node, nil)
-    
+
     if path.nil?
       # no path found
 #      STDERR.puts "Warning: no path found between #{to_node.id} and #{from_node.id}"
@@ -849,7 +849,7 @@ class SynInterpreter
   # returns: list of pairs [neighbor(SynNode), path(Path)]
   def SynInterpreter.surrounding_nodes(node, # SynNode
                                        use_nontree_edges = false) # boolean
-  
+
     unless node.kind_of? SynNode
       $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
       return nil
@@ -860,7 +860,7 @@ class SynInterpreter
     # parent
     if (p = node.parent)
       retv << [
-        p, 
+        p,
         Path.new(node).add_last_step("U", node.parent_label(),
                                      eval(self.name()).simplified_pt(p), p)
       ]
@@ -870,7 +870,7 @@ class SynInterpreter
     node.each_child_with_edgelabel { |label, c|
       retv << [
         c,
-        Path.new(node).add_last_step("D", label, 
+        Path.new(node).add_last_step("D", label,
                                      eval(self.name()).simplified_pt(c), c)
       ]
     }
@@ -896,7 +896,7 @@ class SynInterpreter
       root = p
     end
 
-    # determine position of {leftmost, rightmost} terminal of 
+    # determine position of {leftmost, rightmost} terminal of
     # {node, anchor_node} in the list of all terminals
     all_yieldnodes = root.yield_nodes_ordered()
 
@@ -911,14 +911,14 @@ class SynInterpreter
     elsif pos_nodelast and pos_anchorlast and pos_anchorlast < pos_nodelast
       return "RIGHT"
     else
-      return "DOM" 
+      return "DOM"
     end
   end
 
   ###
   # leftmost_terminal
   #
-  # given a constituent, determine its leftmost terminal, 
+  # given a constituent, determine its leftmost terminal,
   # excluding punctuation
   def SynInterpreter.leftmost_terminal(node)
     leftmost = node.yield_nodes_ordered().detect {|n| eval(self.name()).category(n) != "pun"}
@@ -931,7 +931,7 @@ class SynInterpreter
   ###
   # rightmost_terminal
   #
-  # given a constituent, determine its rightmost terminal, 
+  # given a constituent, determine its rightmost terminal,
   # excluding punctuation
   def SynInterpreter.rightmost_terminal(node)
     rightmost = node.yield_nodes_ordered().reverse.detect {|n| eval(self.name()).category(n) != "pun"}
@@ -980,7 +980,7 @@ class SynInterpreter
   #
   # returns: SynNode, main node, if found
   # else nil
-  def SynInterpreter.main_node_of_expr(nodelist, 
+  def SynInterpreter.main_node_of_expr(nodelist,
                                        no_mwes = nil) # non-nil: don't handle multiword expressions beyond verbs with separate particles
 
     # map nodes to terminals
@@ -1000,12 +1000,12 @@ class SynInterpreter
     end
 
     # filter out auxiliaries and modals, see if only one node remains
-    nodelist2 = nodelist1.reject { |t| 
+    nodelist2 = nodelist1.reject { |t|
       eval(self.name()).auxiliary?(t) or
 	eval(self.name()).modal?(t)
     }
 
-    # one verb, one prep or particle? then 
+    # one verb, one prep or particle? then
     # assume we have a separate verb prefix, and take the lemma of the verb
     if nodelist2.length == 2
       verbs = nodelist2.select { |t| eval(self.name()).category(t) == "verb"}
@@ -1037,7 +1037,7 @@ class SynInterpreter
     lca_found = false
     while lca and not(lca_found)
       yn = lca.yield_nodes()
-      # lca's yield nodes include all nodes in nodelist2? 
+      # lca's yield nodes include all nodes in nodelist2?
       # then lca is indeed the lowest common ancestor
       if nodelist2.big_and { |t| yn.include? t }
         lca_found = true
@@ -1046,12 +1046,12 @@ class SynInterpreter
       end
     end
     # nodelist2 includes lca's head terminal? then return that
-    if lca_found and 
+    if lca_found and
         (h = eval(self.name()).head_terminal(lca)) and
         nodelist2.include? h
       return h
     end
-      
+
 
     # try first verb, then first noun, then first adjective
     ["verb", "noun", "adj"].each { |cat|
@@ -1088,7 +1088,7 @@ class SynInterpreter
   # ch_out is the list of its children that are not.
   # If the procedure exists and returns true, node is put into NYAAYNN.
   #
-  # 
+  #
   # default: use the SalsaTigerSentence method for this
   def SynInterpreter.max_constituents(nodeset, # Array:SynNode
                                       sent,    # SalsaTigerSentence
@@ -1096,7 +1096,7 @@ class SynInterpreter
                                       accept_anyway_proc = nil)  # procedure
 
     if idealize_maxconst
-      return sent.max_constituents_smc(nodeset, idealize_maxconst, 
+      return sent.max_constituents_smc(nodeset, idealize_maxconst,
                                        false, # do not ignore empty terminals
                                        accept_anyway_proc)
     else
@@ -1108,7 +1108,7 @@ class SynInterpreter
   # prune?
   # given a target node t and another node n of the syntactic structure,
   # decide whether n is likely to instantiate a semantic role
-  # of t. If not, recommend n for pruning. 
+  # of t. If not, recommend n for pruning.
   #
   # This method is supposed to implement a method similar
   # to the one proposed by Xue and Palmer (EMNLP 2004).
@@ -1116,7 +1116,7 @@ class SynInterpreter
   # returns: true to recommend n for pruning, else false
   #
   # Since the implementation is highly parser-specific,
-  # all that we can do in the default method is 
+  # all that we can do in the default method is
   # always to return false.
   def SynInterpreter.prune?(node, # SynNode
                             paths_to_target, # hash: node ID -> Path object: paths from nodes to target
@@ -1130,7 +1130,7 @@ class SynInterpreter
     return false
   end
 
-  
+
   ####################3
   protected
 
@@ -1146,16 +1146,16 @@ class SynInterpreter
 
   ####################3
   private
-  
+
   ###
   # search upward:
   # look for path from from_node to to_node
   # already_covered is either nil or
   # a node whose subtree we have already searched
   def SynInterpreter.search_up(from_node, # SynNode
-                               to_node,   # SynNode      
+                               to_node,   # SynNode
 			       already_covered) # SynNode
-    # returns (1) the path from from_node to to_node, 
+    # returns (1) the path from from_node to to_node,
     #         (2) just the part from the lca down to the node
     #         (3) the lowest common ancestor as node
 
@@ -1173,10 +1173,10 @@ class SynInterpreter
 	return nil
 
       else
-	# search up 
+	# search up
 	path = eval(self.name()).search_up(parent,to_node, from_node)
 
-	if path.nil? 
+	if path.nil?
 	  # no path found
 	  return nil
 
@@ -1193,7 +1193,7 @@ class SynInterpreter
       return path
     end
   end
-  
+
   ###
   # search in tree
   def SynInterpreter.search_down(from_node,        # SynNode
@@ -1214,7 +1214,7 @@ class SynInterpreter
 	end
 
 	path = eval(self.name()).search_down(c, to_node, already_explored)
-	
+
 	unless path.nil?
 	  c_pt = eval(self.name()).simplified_pt(c)
 	  path.add_first_step(from_node, "D", c.parent_label(), c_pt)
