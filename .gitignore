@@ -16,4 +16,4 @@ ydoc
 .bundle
 *.gem
 SENSITIVE
-
+*~
