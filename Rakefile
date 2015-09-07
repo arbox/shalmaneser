@@ -30,12 +30,18 @@ namespace :doc do
 
   require 'yard'
   YARD::Rake::YardocTask.new(:ydoc) do |t|
-    t.options += ['-o', 'ydoc']
+    t.options << '-o' << 'ydoc'
     t.files = ['lib/**/*.rb',
                'bin/**/*',
                '-',
                'doc/index.md',
                'doc/exp_files.md']
+  end
+
+  desc 'Plot a class dependency diagram.'
+  task :graph => :ydoc do
+    sh 'bundle exec yard graph --dependencies --empty-mixins --full |'\
+       ' dot -T pdf -o ydoc/class_diagram.pdf'
   end
 end
 
