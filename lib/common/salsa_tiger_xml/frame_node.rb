@@ -33,17 +33,16 @@ require_relative 'sem_node'
 #           will not be recorded in the node list and the node cannot be retrieved
 #           via its ID
 
-class FrameNode <  SemNode
-
+class FrameNode < SemNode
   ###
-  def target()
+  def target
     target = children_by_edgelabels(["target"])
     if target.empty?
-      $stderr.puts "SalsaTigerRegXML warning: Frame #{id()}: No target, but I got: \n" + child_labels().join(", ")
+      $stderr.puts "SalsaTigerRegXML warning: Frame #{id}: No target, but I got: \n" + child_labels.join(", ")
       return nil
     else
       unless target.length == 1
-        raise "target: more than one target to frame "+id()
+        raise "Target: more than one target to frame #{id}."
       end
       return target.first
     end
@@ -51,7 +50,7 @@ class FrameNode <  SemNode
 
   ###
   def name
-    return get_attribute("name")
+    get_attribute("name")
   end
 
   ###
@@ -61,14 +60,14 @@ class FrameNode <  SemNode
 
   ###
   # each_fe: synonym for each_child
-  def each_fe()
+  def each_fe
     each_child { |c| yield c }
   end
 
   ###
   # fes: synonym for children
-  def fes()
-    children()
+  def fes
+    children
   end
 
   ###
@@ -86,9 +85,9 @@ class FrameNode <  SemNode
           # several frame elements with that name
           # combine them
 
-          combined_fe = FeNode.new(fe_name, id() + "_" + fe_name)
+          combined_fe = FeNode.new(fe_name, "#{id}_#{fe_name}")
           fes.each { |fe|
-            fe.each_child() { |child|
+            fe.each_child { |child|
               combined_fe.add_child(child)
             }
           }
@@ -119,9 +118,9 @@ class FrameNode <  SemNode
              syn_nodes, # array:SynNode, syntactic nodes that this FE should point to
              fe_id = nil) # string: ID for the new FE
 
-    if fe_name == "target" and not(children_by_edgelabels(["target"]).empty?)
-      $stderr.puts "Adding second target to frame #{id()}"
-      $stderr.puts "I already have: " + children_by_edgelabels(["target"]).map { |t| t.id() }.join(",")
+    if fe_name == "target" && not(children_by_edgelabels(["target"]).empty?)
+      $stderr.puts "Adding second target to frame #{id}"
+      $stderr.puts "I already have: " + children_by_edgelabels(["target"]).map(&:id).join(",")
       raise "More than one target."
     end
 
@@ -139,6 +138,6 @@ class FrameNode <  SemNode
       n.add_child(syn_node)
     }
 
-    return n
+    n
   end
 end

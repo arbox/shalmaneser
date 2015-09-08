@@ -34,7 +34,7 @@ For researchers interested in investigating shallow semantic parsing, our system
 
 ## Origin
 
-The original version of Shalmaneser was written by Sebastian Padó, Katrin Erk, Alexander Koller, Ines Rehbein and others during their work in the SALSA Project.
+The original version of Shalmaneser was written by Sebastian Padó, Katrin Erk, Alexander Koller, Ines Rehbein, Aljoscha Burchardt and others during their work in the SALSA Project.
 
 You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http://www.coli.uni-saarland.de/projects/salsa/shal/) project page.
 
