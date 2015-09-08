@@ -1,4 +1,4 @@
-require 'common/Graph'
+require_relative 'graph_node'
 
 class TreeNode < GraphNode
 
@@ -25,7 +25,7 @@ class TreeNode < GraphNode
       return retv.first
     end
   end
- 
+
 
   def parent_with_edgelabel()
     retv = parents_with_edgelabel()

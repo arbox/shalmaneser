@@ -30,7 +30,7 @@ class FredEval < Eval
   #
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
-		 options) # hash: runtime option name (string) => value(string)
+                 options) # hash: runtime option name (string) => value(string)
 
     in_enduser_mode_unavailable()
 
@@ -45,13 +45,13 @@ class FredEval < Eval
       case opt
       when "--logID"
 
-	@split_id = arg
+        @split_id = arg
       when "--printLog"
-	logfilename = fred_dirname(@exp, "eval", "log", "new") +
+        logfilename = fred_dirname(@exp, "eval", "log", "new") +
                       "eval_logfile.txt"
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     }
 
@@ -197,7 +197,7 @@ class FredEval < Eval
         classline = @classfile.gets()
       end
       if classline.nil?
-	classline = ""
+        classline = ""
       end
 
       # $stderr.puts "HIER0 #{classline} #{@classfile.nil?}"

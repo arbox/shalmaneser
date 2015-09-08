@@ -1,8 +1,10 @@
 class FileZipped
 
-  def FileZipped.new(filename,
-                     mode = "r")
-
+  # @todo Rewrite this class using stdlib.
+  # @return [IO]
+  # @param filename [String]
+  # @param mode [String]
+  def self.new(filename, mode = 'r')
     # escape characters in the filename that
     # would make the shell hiccup on the command
     filename = filename.gsub(/([();:!?'`])/, 'XXSLASHXX\1')
@@ -27,5 +29,4 @@ class FileZipped
       raise "Error opening file #{filename}."
     end
   end
-
 end

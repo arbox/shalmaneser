@@ -18,7 +18,7 @@
 # the whole terminal is taken instead
 #
 # methods:
-# 
+#
 # string_for_node  returns the string for the yield of a node
 #     node: a node object
 #
@@ -38,7 +38,7 @@ module StringTerminalsInRightOrder
 
   #####
   private
-  
+
   # right_level_terminals_for_nodes:
   # - compute the yield for each element of 'nodes'
   # - then consider all splitwords in the yield:
@@ -48,41 +48,41 @@ module StringTerminalsInRightOrder
     a = nodes.map { |n| n.yield_nodes()}.flatten
     b = Array.new
     a.each { |n|
-      if n.is_splitword? 
-	# see if a contains all parts of this splitword
-	# if so, take into b the splitword's parent, the terminal,
-	# rather than the individual splitwords
+      if n.is_splitword?
+        # see if a contains all parts of this splitword
+        # if so, take into b the splitword's parent, the terminal,
+        # rather than the individual splitwords
 
-	if n.parent.nil?
-	  # splitword without a parent
-	  b << n
-	elsif b.include? n.parent or a.include? n.parent
-	  # did we already include the splitword's parent in b?
-	  # then we're done
-	else
+        if n.parent.nil?
+          # splitword without a parent
+          b << n
+        elsif b.include? n.parent or a.include? n.parent
+          # did we already include the splitword's parent in b?
+          # then we're done
+        else
 
-	  # check if all children of n.parent are in 'a'
-	  all_in = true
-	  n.parent.each_child { |nsibling|
-	    unless a.include? nsibling
-	      all_in = false
-	      break
-	    end
-	  }
-	  
-	  if all_in
-	    # yes, all children of n.parent are in 'a'
-	    b << n.parent
-	  else
-	    # no, some sibling of n is not in 'a'
-	    b << n
-	  end
-	end
+          # check if all children of n.parent are in 'a'
+          all_in = true
+          n.parent.each_child { |nsibling|
+            unless a.include? nsibling
+              all_in = false
+              break
+            end
+          }
+
+          if all_in
+            # yes, all children of n.parent are in 'a'
+            b << n.parent
+          else
+            # no, some sibling of n is not in 'a'
+            b << n
+          end
+        end
       elsif n.is_terminal?
-	# n is a terminal
-	b << n
-	# if n is anything but a splitword or a terminal,
-	# ignore it
+        # n is a terminal
+        b << n
+        # if n is anything but a splitword or a terminal,
+        # ignore it
       end
     }
     return b.uniq
@@ -91,22 +91,22 @@ module StringTerminalsInRightOrder
   # sort_terminals_and_splitwords_left_to_right:
   # take an array of nodes that consists of terminals and splitwords
   # and sort them using the following comparison:
-  # - when comparing two terminals, use the 
+  # - when comparing two terminals, use the
   #   last numbers in their respective IDs
   # - when comparing two splitwords, their IDs end in _N_sM
   #   for numbers N and M.
-  #   If they coincide in N, compare them by M, 
+  #   If they coincide in N, compare them by M,
   #   else compare them by M
   # - when comparing a terminal and a splitword,
   #   compare the terminal's last number to the splitword's N
   def sort_terminals_and_splitwords_left_to_right(nodes)
     nodes.sort { |a, b|
       if a.is_splitword? and b.is_splitword?
-	compare_splitwords(a, b)
+        compare_splitwords(a, b)
       elsif a.is_terminal? and b.is_terminal?
-	compare_terminals(a, b)
+        compare_terminals(a, b)
       else
-	compare_mixed(a, b)
+        compare_mixed(a, b)
       end
     }
   end
@@ -122,7 +122,7 @@ module StringTerminalsInRightOrder
     return s
   end
 
-  # - when comparing two terminals, use the 
+  # - when comparing two terminals, use the
   #   last numbers in their respective IDs
   def compare_terminals(a, b)
     last_i(a) <=> last_i(b)
@@ -130,7 +130,7 @@ module StringTerminalsInRightOrder
 
   # - when comparing two splitwords, their IDs end in _N_sM
   #   for numbers N and M.
-  #   If they coincide in N, compare them by M, 
+  #   If they coincide in N, compare them by M,
   #   else compare them by M
   def compare_splitwords(a, b)
     if splitword_terminal_i(a) == splitword_terminal_i(b)
@@ -150,7 +150,7 @@ module StringTerminalsInRightOrder
     if a.is_splitword? and b.is_terminal?
       splitword_terminal_i(a) <=> last_i(b)
 
-    elsif a.is_terminal? and b.is_splitword? 
+    elsif a.is_terminal? and b.is_splitword?
        last_i(a) <=> splitword_terminal_i(b)
     else
       # not one terminal, one splitword?
@@ -164,7 +164,7 @@ module StringTerminalsInRightOrder
   def last_i(n)
     n.id =~ /(\d+)$/ # match final string of digits
     if $1.nil? # if shouldn't happen _in principle_
-               # but we might get weird node IDs for splitwords; 
+               # but we might get weird node IDs for splitwords;
                # so we act gracefully and catch the case where there
                # is one final letter behind the digits
       n.id =~ /(\d+)\w$/
@@ -188,7 +188,5 @@ module StringTerminalsInRightOrder
     end
     return $1.to_i       # and return it as number
   end
-    
+
 end
-
-
