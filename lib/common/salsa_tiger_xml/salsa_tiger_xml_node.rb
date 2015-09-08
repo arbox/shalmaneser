@@ -1,4 +1,5 @@
 require_relative 'xml_node'
+require_relative 'string_terminals_in_right_order'
 
 #############
 # class SalsaTigerXmlNode

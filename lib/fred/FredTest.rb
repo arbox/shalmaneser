@@ -2,7 +2,7 @@
 # FredTest
 # Katrin Erk April 05
 #
-# Frame disambiguation system: 
+# Frame disambiguation system:
 # apply trained classifiers to test data
 # Results are written out one output line per instance line.
 
@@ -12,7 +12,8 @@ require "tempfile"
 # Salsa packages
 require "common/Parser"
 require "common/RegXML"
-require "common/SalsaTigerRegXML"
+# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/ruby_class_extensions"
 
 # Shalmaneser packages
@@ -44,7 +45,7 @@ class FredTest
     options.each_pair { |opt, arg|
       case opt
       when "--logID"
-	
+
 	@split_id = arg
 
       when "--baseline"
@@ -86,7 +87,7 @@ class FredTest
 
     if @baseline
       # only compute baseline: always assign most frequent sense
-      
+
       @classifiers = [
                       [Baseline.new(@exp, @split_id), "baseline"]
                      ]
@@ -104,7 +105,7 @@ class FredTest
       if @classifiers.empty?
         $stderr.puts "Error: I need at least one classifier, please specify using exp. file option 'classifier'"
         exit 1
-      end      
+      end
 
 
       if @classifiers.length() > 1
@@ -161,7 +162,7 @@ class FredTest
       # and actually existing classifier type
 
 # hier checken
-# senses ist nil,  lemma2_sense_and_filename wird nicht gefüllt 
+# senses ist nil,  lemma2_sense_and_filename wird nicht gefüllt
 # => es werden keine classifier gefunden
 
 
@@ -172,7 +173,7 @@ class FredTest
       elsif not(@exp.get("binary_classifiers")) and \
         (values["sense"].nil? or values["sense"].empty?)
         lemma2_sense_and_filename[values["lemma"]] << [nil, filename]
-      end        
+      end
     }
 
     ###
@@ -188,11 +189,11 @@ class FredTest
         senses_and_filenames.each { |sense, filename|
           @classifiers.each { |classifier, classifier_name|
             if @exp.get("binary_classifiers") and \
-              classifier.exists? classif_dir + fred_classifier_filename(classifier_name, 
+              classifier.exists? classif_dir + fred_classifier_filename(classifier_name,
                                                                         lemma, sense)
               found += 1
             elsif not(@exp.get("binary_classifiers")) and\
-              classifier.exists? classif_dir + fred_classifier_filename(classifier_name, 
+              classifier.exists? classif_dir + fred_classifier_filename(classifier_name,
                                                                         lemma)
               found += 1
             end
@@ -209,7 +210,7 @@ class FredTest
         $stderr.puts "(Looking for n-ary classifiers.)"
       end
       $stderr.puts "Please check whether you mistyped the classifier directory name.
-      
+
 Another possibility: You may have trained binary classifiers, but
 tried to apply n-ary ones (or vice versa.)
 "
@@ -233,7 +234,7 @@ tried to apply n-ary ones (or vice versa.)
       # line entry: list of pairs [sense, confidence]
       results_this_lemma = Array.new()
 
-      training_senses = determine_training_senses(lemma, @exp, 
+      training_senses = determine_training_senses(lemma, @exp,
                                                   @lemmas_and_senses, @split_id)
 
       senses_and_filenames.each { |sense, filename|
@@ -263,12 +264,12 @@ tried to apply n-ary ones (or vice versa.)
         else
           #more than one sense: apply classifier(s)
 
-          # classifiers_read_okay: 
+          # classifiers_read_okay:
           # boolean, true if reading the stored classifier(s) succeeded
           classifiers_read_okay = true
-          @classifiers.each { |classifier, classifier_name| 
-            
-            stored_classifier = classif_dir +  fred_classifier_filename(classifier_name, 
+          @classifiers.each { |classifier, classifier_name|
+
+            stored_classifier = classif_dir +  fred_classifier_filename(classifier_name,
                                                                       lemma, sense)
             status = classifier.read(stored_classifier)
             unless status
@@ -277,7 +278,7 @@ tried to apply n-ary ones (or vice versa.)
             end
           }
 
-          if classifiers_read_okay        
+          if classifiers_read_okay
             # apply classifiers, write result to database
             classifier_results = apply_classifiers(filename, classif_dir)
 
@@ -309,7 +310,7 @@ tried to apply n-ary ones (or vice versa.)
       rescue
         raise "Couldn't write to result file " + outfilename
       end
-      
+
       if results_this_lemma.nil?
         # nothing has been done for this lemma
         next
@@ -343,36 +344,36 @@ tried to apply n-ary ones (or vice versa.)
   #########################
   def apply_classifiers(filename,    # name of feature file
                         classif_dir) # string: name of directory with classifiers
-                        
+
     # make output file for classifiers
     tf_output = Tempfile.new("fred")
     tf_output.close()
 
     ###
     # apply classifiers
-    
+
     classifier_results = Array.new
 
     @classifiers.each { |classifier, classifier_name|
 
       success = classifier.apply(filename, tf_output.path())
 
-      # did we manage to classify the test data?      
-      # there may be errors on the way (eg no training data)      
+      # did we manage to classify the test data?
+      # there may be errors on the way (eg no training data)
       if success
         # read classifier output from file
         # classifier_results: list of line entries
         # line entry: list of pairs [sense, confidence]
         classifier_results << classifier.read_resultfile(tf_output.path())
-        
+
       else
         # error: return empty Array, so that error handling can take over
         return Array.new
       end
     }
 
-    # if we are here, all classifiers have succeeded... 
-    
+    # if we are here, all classifiers have succeeded...
+
     # clean up
     tf_output.close(true)
 
@@ -406,7 +407,7 @@ tried to apply n-ary ones (or vice versa.)
     end
 
     # we are doing sense-specific classifiers.
-    # group triples 
+    # group triples
 
     # what is the name of the negative sense?
     unless (negsense = @exp.get("negsense"))
@@ -425,7 +426,7 @@ tried to apply n-ary ones (or vice versa.)
       # no instances, it seems
       return nil
     end
-    
+
     0.upto(num_instances - 1) { |instno|
 
       # get the results of all classifiers for instance number instno
@@ -443,7 +444,7 @@ tried to apply n-ary ones (or vice versa.)
 
       # now throw out the negsense judgments, and sort results by confidence
       joint_result_this_instance = all_results_this_instance.map { |inst_result|
-        # if we have more than 2 entries here, 
+        # if we have more than 2 entries here,
         # this is very weird for a binary classifier
         if inst_result.length() > 2
           $stderr.puts "Judgments for more than 2 senses in binary classifier? Very weird!"
@@ -461,7 +462,7 @@ tried to apply n-ary ones (or vice versa.)
         # sort senses by confidence, highest confidence first
         b[1] <=> a[1]
       }
-      
+
       retv << joint_result_this_instance
     }
 
@@ -506,9 +507,9 @@ tried to apply n-ary ones (or vice versa.)
     ##
     # map results to target IDs, using answer key files
 
-    # record results: hash 
+    # record results: hash
     # <sentencde ID>(string) -> assigned senses
-    # where assigned senses are a list of tuples 
+    # where assigned senses are a list of tuples
     # [target IDs, sense, lemma, pos]
     recorded_results = Hash.new
 
@@ -524,9 +525,9 @@ tried to apply n-ary ones (or vice versa.)
         end
 
         labels_and_senses_for_this_instance = results.at(instance_index)
-        if not(labels_and_senses_for_this_instance.empty?) and 
+        if not(labels_and_senses_for_this_instance.empty?) and
             (winning_sense = labels_and_senses_for_this_instance.first().first())
-            
+
           recorded_results[key] << [a_targetIDs, winning_sense, a_lemma, a_pos]
         end
 
@@ -571,7 +572,7 @@ tried to apply n-ary ones (or vice versa.)
 
             # add frame to sentence
             new_frame = sent.add_frame(sense)
-            
+
             # get list of target nodes from target IDs
             # assuming that target_ids is a string of target IDs
             # separated by comma.
@@ -582,25 +583,25 @@ tried to apply n-ary ones (or vice versa.)
             }.compact
             # enter the target nodes for this new frame
             new_frame.add_fe("target", targets)
-            
+
           # put lemma and POS info into <target>
             new_frame.target.set_attribute("lemma", lemma)
             new_frame.target.set_attribute("pos", pos)
           }
         end
-            
-        # write changed sentence: 
+
+        # write changed sentence:
         # only if there are recorded results for this sentence!
         outfile.puts sent.get()
-          
-      } # each sentence of file 
+
+      } # each sentence of file
 
       # write footer
       outfile.puts infile.tail()
       outfile.close()
       tempfile.close(true)
     } # each SalsaTiger file of the input directory
-    
+
   end
 
 end

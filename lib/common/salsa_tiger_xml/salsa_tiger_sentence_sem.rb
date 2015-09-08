@@ -1,4 +1,11 @@
 require_relative 'xml_node'
+require_relative 'ts_syn_node'
+require_relative 'salsa_tiger_xml_node'
+require_relative 'usp_node'
+require_relative 'frame_node'
+require_relative 'fe_node'
+
+require 'common/RegXML'
 
 #############
 class SalsaTigerSentenceSem < XMLNode

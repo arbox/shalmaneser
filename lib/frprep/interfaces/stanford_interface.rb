@@ -8,11 +8,12 @@
 # modified ke 30 10 05: adapted to fit into SynInterface
 #
 # represents a file containing Stanford parses
-# 
+#
 # underlying data structure for individual sentences: SalsaTigerSentence
 require "tempfile"
 
-require "common/SalsaTigerRegXML"
+# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
 require "common/Counter"
@@ -62,11 +63,11 @@ class StanfordInterface < SynInterfaceSTXML
   end
 
   ####
-  # parse a directory with TabFormat files and write the parse trees to outputdir 
-  # I assume that the files in inputdir are smaller than 
-  # the maximum number of sentences that 
+  # parse a directory with TabFormat files and write the parse trees to outputdir
+  # I assume that the files in inputdir are smaller than
+  # the maximum number of sentences that
   # Stanford can parse in one go (i.e. that they are split)
-  # 
+  #
   # @param in_dir [String] input directory name
   # @param out_dir [String] output directory name
   def process_dir(in_dir, out_dir)
@@ -79,7 +80,7 @@ class StanfordInterface < SynInterfaceSTXML
     tlp = 'edu.stanford.nlp.parser.lexparser.NegraPennTreebankParserParams'
 
     lang_opts = '-hMarkov 1 -vMarkov 2 -vSelSplitCutOff 300 -uwm 1 -unknownSuffixSize 2 -nodeCleanup 2'
-    
+
     grammar1 = 'edu/stanford/nlp/models/lexparser/germanPCFG.ser.gz'
     grammar2 = 'edu/stanford/nlp/models/lexparser/germanFactored.ser.gz'
 
@@ -100,7 +101,7 @@ class StanfordInterface < SynInterfaceSTXML
       tempfile = Tempfile.new(corpusfilename)
 
       # we need neither lemmata nor POS tags; stanford can do with the words
-      corpusfile = FNTabFormatFile.new(inputfilename, nil, nil) 
+      corpusfile = FNTabFormatFile.new(inputfilename, nil, nil)
 
       corpusfile.each_sentence do |sentence|
         #puts sentence
@@ -113,34 +114,34 @@ class StanfordInterface < SynInterfaceSTXML
       invocation_str = "#{stanford_prog} #{tempfile.path} > #{parsefilename} 2>/dev/null"
       STDERR.puts invocation_str
 
-      Kernel.system(invocation_str)      
+      Kernel.system(invocation_str)
 
     end
   end
 
   ###
   # for a given parsed file:
-  # yield each sentence as a pair 
+  # yield each sentence as a pair
   #  [SalsaTigerSentence object, FNTabFormatSentence object]
   # of the sentence in SalsaTigerXML and the matching tab format sentence
   #
-  # If a parse has failed, returns 
-  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence] 
+  # If a parse has failed, returns
+  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence]
   # to allow more detailed accounting for failed parses
-  # (basically just a flat structure with a failed=true attribute 
+  # (basically just a flat structure with a failed=true attribute
   # at the sentence node)
   def each_sentence(parsefilename)
-   
+
     # get matching tab file for this parser output file
     parsefile = File.new(parsefilename)
     tabfilename = @tab_dir + File.basename(parsefilename, @outsuffix) + @insuffix
-    tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)    
+    tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)
 
     sentid = 0
     tabfile.each_sentence do |tab_sent| # iterate over corpus sentences
 
       # assemble next sentence in Stanford file by reading lines from parsefile
-      # for stanford: 
+      # for stanford:
       while true
         sentence_str = parsefile.gets
         # Sentence contains a valid or an empty parse.
@@ -152,7 +153,7 @@ class StanfordInterface < SynInterfaceSTXML
         elsif sentence_str.nil?
           raise "Error: premature end of parser file!"
         end
-      end   
+      end
 
       sentence_str.chomp!.gsub!(/\)\)/, ') )').gsub!(/\)\)/, ') )')
 
@@ -165,7 +166,7 @@ class StanfordInterface < SynInterfaceSTXML
       else
         my_sent_id = tab_sent.get_sent_id
       end
-      
+
       st_sent = build_salsatiger(" " + sentence_str + " ", 0,
                                  [], Counter.new(0),
                                  Counter.new(500),
@@ -176,9 +177,9 @@ class StanfordInterface < SynInterfaceSTXML
 
       yield [st_sent, tab_sent, StanfordInterface.standard_mapping(st_sent, tab_sent)]
     end
-    
+
     # All TabFile sentences are consumed.
-    # Now we may just encounter comments, garbage, empty lines etc. 
+    # Now we may just encounter comments, garbage, empty lines etc.
     while abline = parsefile.gets
       case abline
       when /^%/, /^\s*$/
@@ -193,7 +194,7 @@ class StanfordInterface < SynInterfaceSTXML
 
     parsefile.close
   end # each_sentence()
-  
+
 
   ###
   # write Salsa/TIGER XML output to file
@@ -217,13 +218,13 @@ class StanfordInterface < SynInterfaceSTXML
   private
 
   ###
-  # Recursive function for parsing a Stanford parse tree and 
+  # Recursive function for parsing a Stanford parse tree and
   # building a SalsaTigerSentence recursively
   #
-  # Algorithm: manage stack which contains, for the current constituent, 
+  # Algorithm: manage stack which contains, for the current constituent,
   # child constituents (if a nonterminal), and the category label.
   # When the end of a constituent is reached, a new SynNode (TigerSalsa node) ist created.
-  # All children and the category label are popped from the stack and integrated into the 
+  # All children and the category label are popped from the stack and integrated into the
   # TigerSalsa data structure. The new node is re-pushed onto the
   # stack.
   # @param sentence [String]
@@ -233,17 +234,17 @@ class StanfordInterface < SynInterfaceSTXML
   # @param nontc [Counter] nonterminal counter
   # @param sent_obj [SalsaTigerSentence] SalsaTigerSentence
   def build_salsatiger(sentence, pos, stack, termc, nontc, sent_obj)
-    
+
     if sentence =~ /\(\)/
       return nil
     end
 
-   # main case distinction: match the beginning of our string 
+   # main case distinction: match the beginning of our string
    # (i.e. what follows our current position in the string)
     case sentence[pos..-1]
-      
+
     when /^ *$/ # nothing -> whole sentence parsed
-      if stack.length == 1 
+      if stack.length == 1
 	# sleepy always delivers one "top" node; if we don't get just one
         # node, something has gone wrong
         node = stack.pop
@@ -251,19 +252,19 @@ class StanfordInterface < SynInterfaceSTXML
         return sent_obj
       else
         raise "Error: more than one root node (stack length #{stack.length}). Full sentence: \n#{sentence}"
-      end    
-      
-    when /^\s*\(([^ )]+) / 
-      # match the beginning of a new constituent 
+      end
+
+    when /^\s*\(([^ )]+) /
+      # match the beginning of a new constituent
       # (opening bracket + category + space, may not contain closing bracket)
       cat = $1
       if cat.nil? or cat == ""
         raise "Error: found category nil in sentence #{sentence[pos,10]}, full sentence\n#{sentence}"
       end
 #          STDERR.puts "new const #{cat}"
-      stack.push cat # throw the category label on the stack    
-      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)    
-      
+      stack.push cat # throw the category label on the stack
+      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)
+
     when /^\s*(\S+)\) /
       # match the end of a terminal constituent (something before a closing bracket + space)
       word = $1
@@ -282,26 +283,26 @@ class StanfordInterface < SynInterfaceSTXML
       node.set_attribute("gf", gf)
 #          STDERR.puts "completed terminal #{cat}, #{word}"
       stack.push node
-      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)    
-      
+      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)
+
     when /^\s*\)/ # match the end of a nonterminal (nothing before a closing bracket)
       # now collect children:
       # pop items from the stack until you find the category
-      children = []  
+      children = []
       while true
         if stack.empty?
           raise "Error: stack empty; cannot find more children"
         end
 
         item = stack.pop
-
+        # @todo Change the check from string to class instances. 'SynNode' -> SynNode
         case item.class.to_s
         when "SynNode" # this is a child
           children.push item
         when "String" # this is the category label
           if item.to_s == ""
             raise "Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
-          end        
+          end
           cat, gf = split_cat(item)
           break
         else
@@ -309,7 +310,7 @@ class StanfordInterface < SynInterfaceSTXML
         end
       end
 
-      # now add a nonterminal node to the sentence object and 
+      # now add a nonterminal node to the sentence object and
       # register the children nodes
       node = sent_obj.add_syn("nt",
                               cat, # cat
@@ -343,10 +344,10 @@ class StanfordInterface < SynInterfaceSTXML
 
     md = cat.match(/^([^-]*)(-([^-]*))?$/)
     raise "Error: Could not identify category in #{cat}!" unless md[1]
-    
+
     proper_cat = md[1]
     gf = md[3] ? md[3] : ''
-    
+
     [proper_cat, gf]
   end
 

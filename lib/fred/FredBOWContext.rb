@@ -4,7 +4,8 @@ require 'fileutils'
 require "common/RegXML"
 require "common/SynInterfaces"
 require "common/TabFormat"
-require "common/SalsaTigerRegXML"
+# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/RosyConventions"
 

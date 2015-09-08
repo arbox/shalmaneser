@@ -10,7 +10,8 @@ require 'fileutils'
 
 # Salsa packages
 require "common/Parser"
-require "common/SalsaTigerRegXML"
+# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
 
@@ -38,13 +39,13 @@ class ClassifierCombination
   # combine:
   #
   # given a list of classifier results --
-  # where a classifier result is a list of strings, 
+  # where a classifier result is a list of strings,
   # one string (= assigned class) for each instance,
   # and where each list of classifier results has the same length --
   # for each instance, combine individual classifier results
   # into a single judgement
   #
-  # returns: an array of strings: one combined classifier result, 
+  # returns: an array of strings: one combined classifier result,
   # one string (=assigned class) for each instance
   def combine(classifier_results) #array:array:string, list of classifier results
 
@@ -66,7 +67,7 @@ class RosyTest < RosyTask
 
   #####
   # new:
-  # 
+  #
   # initialize everything for applying classifiers
   #
   # argrec_apply: apply trained argrec classifiers to
@@ -75,7 +76,7 @@ class RosyTest < RosyTask
 		 opts,     # hash: runtime argument option (string) -> value (string)
 		 ttt_obj,  # RosyTrainingTestTable object
                  argrec_apply = false) # boolean. true: see above
-    
+
     ##
     # remember the experiment description
 
@@ -111,7 +112,7 @@ class RosyTest < RosyTask
 
       else
 	# this is an option that is okay but has already been read and used by rosy.rb
-      end	
+      end
     }
 
     ##
@@ -142,7 +143,7 @@ class RosyTest < RosyTask
     if @classifiers.empty?
       raise "I need at least one classifier, please specify using exp. file option 'classifier'"
     end
-    
+
     # make classifier combination object
     @combinator = ClassifierCombination.new(@exp)
 
@@ -200,7 +201,7 @@ class RosyTest < RosyTask
     if @step == "both"
       # both? then do first argrec, then arglab
       $stderr.puts "Rosy testing step argrec"
-      
+
       previous_produce_output = @produce_output # no output in argrec
       @produce_output = false  # when performing both steps in a row
 
@@ -253,77 +254,77 @@ class RosyTest < RosyTask
 
     ####
     # get the list of relevant features,
-    # remove the features that describe the unit by which we train, 
+    # remove the features that describe the unit by which we train,
     # since they are going to be constant throughout the training file
-    
-    @features = @ttt_obj.feature_info.get_model_features(@step) - 
+
+    @features = @ttt_obj.feature_info.get_model_features(@step) -
                 @iterator.get_xwise_column_names()
 
     # but add the gold feature
     unless @features.include? "gold"
       @features << "gold"
     end
-    
+
     ####
     # for each group (as defined by the @iterator):
     # apply the group-specific classifier,
-    # write the result into the database, into 
+    # write the result into the database, into
     # the column named @run_column
     classif_dir = classifier_directory_name(@exp, @step, @splitID)
 
     @iterator.each_group { |group_descr_hash, group|
 
       $stderr.puts "Applying classifiers to: " + group.to_s
-      
+
       # get data for current group from database:
-      
+
       # make a view: model features
       feature_view = @iterator.get_a_view_for_current_group(@features)
-      
+
 	if feature_view.length() == 0
         # no test data in this view: next group
         feature_view.close()
         next
       end
-      
+
       # another view for writing the result
       result_view = @iterator.get_a_view_for_current_group([@run_column])
 
       # read trained classifiers
       # classifiers_read_okay: boolean, true if reading the stored classifier(s) succeeded
       classifiers_read_okay = true
-      
-      @classifiers.each { |classifier, classifier_name| 
-        
-        stored_classifier = classif_dir + 
+
+      @classifiers.each { |classifier, classifier_name|
+
+        stored_classifier = classif_dir +
               @exp.instantiate("classifier_file",
                                "classif" => classifier_name,
                                        "group" => group.gsub(/ /, "_"))
-        
+
         status = classifier.read(stored_classifier)
         unless status
           STDERR.puts "[RosyTest] Error: could not read classifier."
           classifiers_read_okay = false
         end
-        
+
       }
 
       classification_result = Array.new
-      
-      if classifiers_read_okay        
+
+      if classifiers_read_okay
         # apply classifiers, write result to database
         classification_result = apply_classifiers(feature_view, group, "test")
       end
-      
+
       if classification_result == Array.new
-        # either classifiers did not read OK, or some problem during classification: 
+        # either classifiers did not read OK, or some problem during classification:
         # label everything with NONE
         result_view.each_instance_s {|inst|
           classification_result << @exp.get("noval")
-        }        
+        }
       end
 
-      result_view.update_column(@run_column, 
+      result_view.update_column(@run_column,
                                 classification_result)
       feature_view.close()
       result_view.close()
@@ -347,7 +348,7 @@ class RosyTest < RosyTask
       @postprocessing_iterator.each_group { |group_descr_hash, group|
 
 	view = @postprocessing_iterator.get_a_view_for_current_group(["nodeID", "sentid", @run_column])
-	
+
 	# remove superfluous labels, write the result back to the DB
 	postprocess_classification(view, @run_column)
 	view.close()
@@ -357,7 +358,7 @@ class RosyTest < RosyTask
 
     # all went well, so confirm this run
     if @argrec_apply
-      # argrec_apply: don't add preprocessing info again, and 
+      # argrec_apply: don't add preprocessing info again, and
       # get view maker for the training data
       @ttt_obj.confirm_runlog("argrec", "train", @testID, @splitID, @run_column)
     else
@@ -386,8 +387,8 @@ class RosyTest < RosyTask
     #
     if @argrec_apply
       # get view maker for the training data
-      iterator = RosyIterator.new(@ttt_obj, @exp, "train", 
-                                   "step" => @step, 
+      iterator = RosyIterator.new(@ttt_obj, @exp, "train",
+                                   "step" => @step,
                                    "splitID" => @splitID,
                                    "prune" => prune)
       run_column = @ttt_obj.new_runlog("argrec", "train", @testID, @splitID)
@@ -397,9 +398,9 @@ class RosyTest < RosyTask
 
       # hand all the info to the RosyIterator object
       # It will figure out what view I'll need
-      iterator = RosyIterator.new(@ttt_obj, @exp, "test", 
-                                  "step" => @step, 
-                                  "testID" => @testID, 
+      iterator = RosyIterator.new(@ttt_obj, @exp, "test",
+                                  "step" => @step,
+                                  "testID" => @testID,
                                   "splitID" => @splitID,
                                   "prune" => prune)
 
@@ -425,7 +426,7 @@ class RosyTest < RosyTask
   def apply_classifiers(view,  # DBView object: data to be classified
                         group,       # string: frame or target POS we are classifying
                         dataset)     # string: train/test
-                        
+
     # make input file for classifiers
     tf_input = Tempfile.new("rosy")
     view.each_instance_s { |instance_string|
@@ -438,10 +439,10 @@ class RosyTest < RosyTask
     # make output file for classifiers
     tf_output = Tempfile.new("rosy")
     tf_output.close()
-    
+
     ###
     # apply classifiers
-    
+
     # classifier_results: array:array of strings, a list of classifier results,
     # each result a list of assigned classes(string), one class for each instance of the view
     classifier_results = Array.new
@@ -449,13 +450,13 @@ class RosyTest < RosyTask
     @classifiers.each { |classifier, classifier_name|
 
 
-      # did we manage to classify the test data?      
-      # there may be errors on the way (eg no training data)      
-      
+      # did we manage to classify the test data?
+      # there may be errors on the way (eg no training data)
+
       success = classifier.apply(tf_input.path(), tf_output.path())
-      
+
       if success
-        
+
         # read classifier output from file
         classifier_results << classifier.read_resultfile(tf_output.path()).map { |instance_result|
           # instance_result is a list of pairs [label, confidence]
@@ -468,15 +469,15 @@ class RosyTest < RosyTask
             instance_result.first().first()
           end
         }.compact()
-        
+
       else
         # error: return empty Array, so that error handling can take over in perform_aux()
         return Array.new
       end
     }
 
-    # if we are here, all classifiers have succeeded... 
-    
+    # if we are here, all classifiers have succeeded...
+
     # clean up
     tf_input.close(true)
     tf_output.close(true)
@@ -497,7 +498,7 @@ class RosyTest < RosyTask
   #       \
   #        FE
   #
-  # to 
+  # to
   #    FE
   #   /  \
   #       ...
@@ -513,14 +514,14 @@ class RosyTest < RosyTask
 
     view.each_sentence() { |sentence|
 
-      # returns hash: 
+      # returns hash:
       # node index -> array of node indices: ancestors of the given node
       # indices are indices in the 'sentence' array
       ancestors = make_ancestor_hash(sentence)
 
       # test output
 #       $stderr.puts "nodeID values:"
-#       sentence.each_with_index  { |inst, index| 
+#       sentence.each_with_index  { |inst, index|
 #         $stderr.puts "#{index}) #{inst["nodeID"]}"
 #       }
 #       $stderr.puts "\nAncestor hash:"
@@ -535,9 +536,9 @@ class RosyTest < RosyTask
 	# check whether this instance has an equally labeled ancestor
 	has_equally_labeled_ancestor = false
 
-	if (instance[run_column] != @exp.get("noval")) and 
+	if (instance[run_column] != @exp.get("noval")) and
 	  ancestors[inst_index]
-	  
+
 	  if ancestors[inst_index].detect { |anc_index|
 	      sentence[anc_index][run_column] == instance[run_column]
 	    }
@@ -560,14 +561,14 @@ class RosyTest < RosyTask
 #     # checking: how many labels have we deleted?
 #     before = 0
 #     view.each_sentence { |s|
-#       s.each { |inst| 
+#       s.each { |inst|
 # 	unless inst[run_column] == @exp.get("noval")
 # 	  before += 1
 # 	end
 #       }
 #     }
 #     after = 0
-#     result.each { |r| 
+#     result.each { |r|
 #       unless r == @exp.get("noval")
 # 	after += 1
 #       end
@@ -596,7 +597,7 @@ class RosyTest < RosyTask
     parent_index = Hash.new
 
 
-    # first make hash mapping each node ID to its index in the 
+    # first make hash mapping each node ID to its index in the
     # 'sentence' array
     id_to_index = Hash.new()
     sentence.each_with_index { |instance, index|
@@ -637,7 +638,7 @@ class RosyTest < RosyTask
       ancestor = parent_index[node_index]
 
       while ancestor
-        if ancestor_index[node_index].include? ancestor 
+        if ancestor_index[node_index].include? ancestor
           # we seem to have run into a loop
           # this should not happen, but it has happened anyway ;-)
 #          STDERR.puts "Warning: node #{ancestor} is its own ancestor!"
@@ -655,7 +656,7 @@ class RosyTest < RosyTask
   #
   # Output the result of Rosy as SalsaTigerXML:
   # Take the input SalsaTigerXML data,
-  # and write them to directory_output 
+  # and write them to directory_output
   # (or, lacking that, to <rosy_dir>/<experiment_ID>/output),
   # taking over the frames from the input data
   # and supplanting any FEs that might be set in the input data
@@ -674,7 +675,7 @@ class RosyTest < RosyTask
       input_directory = File.existing_dir(rosy_dir, "input_dir/test")
     end
 
-    
+
     if @exp.get("directory_output")
       # user has set an explicit output directory
       output_directory = File.new_dir(@exp.get("directory_output"))
@@ -682,8 +683,8 @@ class RosyTest < RosyTask
       # no output directory has been set: use default
       output_directory = File.new_dir(@exp.instantiate("rosy_dir", "exp_ID" => @exp.get("experiment_ID")),
                                       "output")
-    end    
-    
+    end
+
     ###
     # find appropriate class for interpreting syntactic structures
     interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
@@ -700,7 +701,7 @@ class RosyTest < RosyTask
 
       view.each_hash { |inst_hash|
         # if this sentence ID/frame ID pair is in the test data,
-        # its hash entry will at least be nonnil, even if no 
+        # its hash entry will at least be nonnil, even if no
         # FEs have been assigned for it
         unless sentid_to_assigned[inst_hash["sentid"]]
           sentid_to_assigned[inst_hash["sentid"]] = Array.new
@@ -740,12 +741,12 @@ class RosyTest < RosyTask
 
       # write header to output file
       outfile.puts infile.head()
-      
+
       ##
       # each input sentence: integrate newly assigned roles
       infile.scan_s { |sent_string|
         sent = SalsaTigerSentence.new(sent_string)
-        
+
         ##
         # each input frame: remove old roles, add new ones
         sent.frames.each { |frame|
@@ -784,7 +785,7 @@ class RosyTest < RosyTask
           sentid_to_assigned[sent_frame_id].map { |fe_name, npp| fe_name }.uniq.each { |fe_name|
             # each FE
 
-            nodes = sentid_to_assigned[sent_frame_id].select { |other_fe_name, npp| 
+            nodes = sentid_to_assigned[sent_frame_id].select { |other_fe_name, npp|
               # collect node ID / parentnode ID pairs listed for that FE
               other_fe_name == fe_name
 
@@ -805,7 +806,7 @@ class RosyTest < RosyTask
 
               node
             }.compact
-            
+
             # assign the FE
             sent.add_fe(frame, fe_name, interpreter_class.max_constituents(nodes, sent))
           } # each FE

@@ -4,11 +4,12 @@
 # modified ke 30 10 05: adapted to fit into SynInterface
 #
 # represents a file containing Sleepy parses
-# 
+#
 # underlying data structure for individual sentences: SalsaTigerSentence
 require 'tempfile'
 
-require 'common/SalsaTigerRegXML'
+# require 'common/SalsaTigerRegXML'
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 require 'common/TabFormat'
 require 'common/Counter'
@@ -51,15 +52,15 @@ class SleepyInterface < SynInterfaceSTXML
   end
 
   ####
-  # parse a directory with TabFormat files and write the parse trees to outputdir 
-  # I assume that the files in inputdir are smaller than 
-  # the maximum number of sentences that 
+  # parse a directory with TabFormat files and write the parse trees to outputdir
+  # I assume that the files in inputdir are smaller than
+  # the maximum number of sentences that
   # Sleepy can parse in one go (i.e. that they are split)
   def process_dir(in_dir,  # string: input directory name
 		  out_dir) # string: output directory name
-    
+
     sleepy_prog = "#{@program_path}sleepy  --beam 1000 --model-file #{@program_path}negra.model --parse "
-    
+
     Dir[in_dir + "*" + @insuffix].each {|inputfilename|
       STDERR.puts "*** Parsing #{inputfilename} with Sleepy"
       corpusfilename = File.basename(inputfilename, @insuffix)
@@ -67,26 +68,26 @@ class SleepyInterface < SynInterfaceSTXML
       tempfile = Tempfile.new(corpusfilename)
 
       # we need neither lemmata nor POS tags; sleepy can do with the words
-      corpusfile = FNTabFormatFile.new(inputfilename,nil, nil) 
+      corpusfile = FNTabFormatFile.new(inputfilename,nil, nil)
       corpusfile.each_sentence {|sentence|
         tempfile.puts sentence.to_s
       }
       tempfile.close
       # parse and remove comments in the parser output
-      Kernel.system(sleepy_prog+" "+tempfile.path+" 2>&1 | grep -v \"Span:\" > "+parsefilename)      
+      Kernel.system(sleepy_prog+" "+tempfile.path+" 2>&1 | grep -v \"Span:\" > "+parsefilename)
     }
   end
 
   ###
   # for a given parsed file:
-  # yield each sentence as a pair 
+  # yield each sentence as a pair
   #  [SalsaTigerSentence object, FNTabFormatSentence object]
   # of the sentence in SalsaTigerXML and the matching tab format sentence
   #
-  # If a parse has failed, returns 
-  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence] 
+  # If a parse has failed, returns
+  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence]
   # to allow more detailed accounting for failed parses
-  # (basically just a flat structure with a failed=true attribute 
+  # (basically just a flat structure with a failed=true attribute
   # at the sentence node)
   def each_sentence(parsefilename)
     # sanity checks
@@ -98,15 +99,15 @@ class SleepyInterface < SynInterfaceSTXML
     # get matching tab file for this parser output file
     parsefile = File.new(parsefilename)
     tabfilename = @tab_dir+File.basename(parsefilename, @outsuffix)+ @insuffix
-    tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)    
+    tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)
 
     sentid = 0
-    
+
     tabfile.each_sentence {|tab_sent| # iterate over corpus sentences
-      
+
       sentence_str = ""
-      status = true # error encountered? 
-      
+      status = true # error encountered?
+
       # assemble next sentence in Sleepy file by reading lines from parsefile
       while true
         line = parsefile.gets
@@ -117,17 +118,17 @@ class SleepyInterface < SynInterfaceSTXML
         when nil # end of file: nothing more to break
           break
         when /^%/, /^\s*$/ # empty lines, other comments: end of current sentence
-          unless sentence_str == "" # only break if you have read something 
+          unless sentence_str == "" # only break if you have read something
             break
           end
         else
           sentence_str += line.chomp # collect line of current parse and continue reading
         end
       end
-      
+
       # we have reached some kind of end
       sentid +=1
-      
+
       # we don't have a sentence: hopefully, this is becase parsing has failed
       # if this is not the case, we are in trouble
       if sentence_str == ""
@@ -142,14 +143,14 @@ class SleepyInterface < SynInterfaceSTXML
             my_sent_id = File.basename(parsefilename, @outsuffix) + "_" + sentid.to_s
           end
           sent = SleepyInterface.failed_sentence(tab_sent, my_sent_id)
-          yield [sent, tab_sent, SleepyInterface.standard_mapping(sent, tab_sent)] 
+          yield [sent, tab_sent, SleepyInterface.standard_mapping(sent, tab_sent)]
 
         else
-	  # this may not happen: we need some sentence for the current 
+	  # this may not happen: we need some sentence for the current
 	  # TabFile sentence
-          $stderr.puts "SleepyInterface error: premature end of parser file!" 
+          $stderr.puts "SleepyInterface error: premature end of parser file!"
           exit 1
-        end 
+        end
       else
         # if we are here, we have a sentence_str to work on
         # hopefully, our status is OK
@@ -172,20 +173,20 @@ class SleepyInterface < SynInterfaceSTXML
         end
       end
     }
-    
-    # all TabFile sentences are consumed: 
-    # now we may just encounter comments, garbage, empty lines etc. 
-    
+
+    # all TabFile sentences are consumed:
+    # now we may just encounter comments, garbage, empty lines etc.
+
     while not parsefile.eof?
       case parsefile.gets
-      when nil, /^%/, /^\s*$/ # empty lines, comments, end of input indicate end of current parse 
+      when nil, /^%/, /^\s*$/ # empty lines, comments, end of input indicate end of current parse
       else
         $stderr.puts "SleepyInterface error: premature end of tab file"
         exit 1
       end
-    end  
+    end
   end
-  
+
 
   ###
   # write Salsa/TIGER XML output to file
@@ -207,13 +208,13 @@ class SleepyInterface < SynInterfaceSTXML
   private
 
   ###
-  # Recursive function for parsing a Sleepy parse tree and 
+  # Recursive function for parsing a Sleepy parse tree and
   # building a SalsaTigerSentence recursively
   #
-  # Algorithm: manage stack which contains, for the current constituent, 
+  # Algorithm: manage stack which contains, for the current constituent,
   # child constituents (if a nonterminal), and the category label.
   # When the end of a constituent is reached, a new SynNode (TigerSalsa node) ist created.
-  # All children and the category label are popped from the stack and integrated into the 
+  # All children and the category label are popped from the stack and integrated into the
   # TigerSalsa data structure. The new node is re-pushed onto the stack.
   def build_salsatiger(sentence, # string
                     pos,      # position in string (index): integer
@@ -221,15 +222,15 @@ class SleepyInterface < SynInterfaceSTXML
                     termc,    # terminal counter
                     nontc,    # nonterminal counter
                     sent_obj) # SalsaTigerSentence
-    
-    
-    # main case distinction: match the beginning of our string 
+
+
+    # main case distinction: match the beginning of our string
     # (i.e. what follows our current position in the string)
-    
+
     case sentence[pos..-1]
-      
+
     when /^ *$/ # nothing -> whole sentence parsed
-      if stack.length == 1 
+      if stack.length == 1
 	# sleepy always delivers one "top" node; if we don't get just one
         # node, something has gone wrong
         node = stack.pop
@@ -238,10 +239,10 @@ class SleepyInterface < SynInterfaceSTXML
       else
         $stderr.puts "SleepyINterface Error: more than one root node (stack length #{stack.length}). Full sentence: \n#{sentence}"
         exit 1
-      end    
-      
-    when /^\s*\(([^ )]+) / 
-      # match the beginning of a new constituent 
+      end
+
+    when /^\s*\(([^ )]+) /
+      # match the beginning of a new constituent
       # (opening bracket + category + space, may not contain closing bracket)
       cat = $1
       if cat.nil? or cat == ""
@@ -249,9 +250,9 @@ class SleepyInterface < SynInterfaceSTXML
         exit 1
       end
 #          STDERR.puts "new const #{cat}"
-      stack.push cat # throw the category label on the stack    
-      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)    
-      
+      stack.push cat # throw the category label on the stack
+      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)
+
     when /^\s*(\S+)\) /
       # match the end of a terminal constituent (something before a closing bracket + space)
       word = $1
@@ -269,12 +270,12 @@ class SleepyInterface < SynInterfaceSTXML
       node.set_attribute("gf",gf)
 #          STDERR.puts "completed terminal #{cat}, #{word}"
       stack.push node
-      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)    
-      
+      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)
+
     when /^\s*\)/ # match the end of a nonterminal (nothing before a closing bracket)
       # now collect children:
       # pop items from the stack until you find the category
-      children = Array.new  
+      children = Array.new
       while true
         if stack.empty?
           $stderr.puts  "SleepyInterface Error: stack empty; cannot find more children"
@@ -288,7 +289,7 @@ class SleepyInterface < SynInterfaceSTXML
           if item.to_s == ""
             $stderr.puts "SleepyInterface error: Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
             exit 1
-          end        
+          end
           cat,gf = split_cat(item)
           break
         else
@@ -296,7 +297,7 @@ class SleepyInterface < SynInterfaceSTXML
           exit 1
         end
       end
-      # now add a nonterminal node to the sentence object and 
+      # now add a nonterminal node to the sentence object and
       # register the children nodes
       node = sent_obj.add_syn("nt",
                               cat, # cat
@@ -314,7 +315,7 @@ class SleepyInterface < SynInterfaceSTXML
       stack.push node
       return build_salsatiger(sentence,pos+$&.length, stack,termc,nontc,sent_obj)
     else
-      
+
       if sentence =~ /Fatal error: exception Out_of_memory/
         $stderr.puts "SleepyInterface error: Sleepy parser ran out of memory."
         $stderr.puts "Try reducing the max. sentence length"
@@ -333,23 +334,23 @@ class SleepyInterface < SynInterfaceSTXML
   # but the GF may not be present.
 
   def split_cat(cat)
-    
+
     cat =~ /^([^-]*)(-([^-]*))?$/
     unless $1
       $stderr.puts "SleepyInterface Error: could not identify category in #{cat}"
       exit 1
     end
-    
+
     proper_cat = $1
-    
-    if $3    
+
+    if $3
       gf = $3
     else
       gf = ""
     end
-    
+
     return [proper_cat,gf]
-    
+
   end
 end
 

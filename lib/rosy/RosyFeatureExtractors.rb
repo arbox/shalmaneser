@@ -1,5 +1,5 @@
 ####
-# ke & sp 
+# ke & sp
 # adapted to new feature extractor class,
 # Collins and Tiger features combined:
 # KE November 2005
@@ -8,13 +8,13 @@
 #
 # Contract: each feature extractor inherits from the RosyFeatureExtractor class
 #
-# Feature extractors return nil if no feature value could be 
+# Feature extractors return nil if no feature value could be
 # returned
 
 
 # Salsa packages
 require 'rosy/AbstractFeatureAndExternal'
-require 'common/SalsaTigerRegXML'
+# require 'common/SalsaTigerRegXML'
 
 # Fred and Rosy packages
 require 'common/RosyConventions'
@@ -29,7 +29,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
   @@target = nil       # SynNode: main target node
   @@target_pos = nil   # string: part of speech of main target
   @@target_voice = nil # string: "active", "passive", or nil
-  @@terminals_ordered = nil # Hash: sentence terminals, mapped onto their word indices (starting with 1) 
+  @@terminals_ordered = nil # Hash: sentence terminals, mapped onto their word indices (starting with 1)
   @@target_gfs = nil   # Array of pairs [rel, node]: grammatical functions of the target
 
   @@paths = nil        # Hash: node ID -> path object, path from main target node to the node with that ID
@@ -85,7 +85,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
     }
 
     # @@target: main target node (SynNode)
-    # WARNING: at this moment, we are 
+    # WARNING: at this moment, we are
     # not considering true multiword targets.
     # Remove the "no_mwe" parameter in determine_main_target
     # to change this
@@ -102,7 +102,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
     # @@target_pos: string, target POS
     @@target_pos = @@interpreter_class.category(@@target)
 
-    # @@target_voice: 
+    # @@target_voice:
     # for verb targets, string, active or passive
     # else nil
     @@target_voice = @@interpreter_class.voice(@@target)
@@ -120,7 +120,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
       while (parent = parent.parent)
         parentlemma = RosyFeatureExtractor.headlemma(parent)
 
-        if @@interpreter_class.category(parent) == "verb" and 
+        if @@interpreter_class.category(parent) == "verb" and
             parentlemma != targetlemma
           # success: found the governing verb of the target
 
@@ -145,9 +145,9 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 
   ###
   # node: SynNode of the sentence set in set_sentence
-  def RosyFeatureExtractor.set_node(node) 
+  def RosyFeatureExtractor.set_node(node)
     super(node)
-    
+
     @@instance_ok = true
 
     unless @@target
@@ -185,7 +185,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
   ############
   protected
 
-  
+
   # returns: list of features
   def compute_features_instanceOK()
     raise "Overwrite me"
@@ -204,7 +204,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
     }
   end
 
-  
+
   ###
   # lemma of the head terminal of SynNode n
   def RosyFeatureExtractor.headlemma(n) # SynNode
@@ -274,8 +274,8 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
       # node has a parent, and it is not listed in the path hash
       # make a new path for parent: n's path, plus one up-step
       hash[p.id()] = hash[n.id()].deep_clone().add_last_step("U",
-                                                             n.parent_label, 
-                                                             @@interpreter_class.simplified_pt(p), 
+                                                             n.parent_label,
+                                                             @@interpreter_class.simplified_pt(p),
                                                              p)
       RosyFeatureExtractor.all_paths_from(p, hash)
     end
@@ -283,11 +283,11 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
     return hash
 
   end
-  
+
 end
 
 ###############################
-# Rosy single feature extractor, duplicating stuff from 
+# Rosy single feature extractor, duplicating stuff from
 # AbstractSingleFeatureExtractor
 class RosySingleFeatureExtractor < RosyFeatureExtractor
 
@@ -357,11 +357,11 @@ class GoldlabelFeature < RosySingleFeatureExtractor
     @@frame.each_fe_by_name {|fe|
       if fe.children.include? @@node
         return fe.name
-      end 
+      end
     }
-    
+
     # no role label for this node
-    # if @@split_nones 
+    # if @@split_nones
       # split "no role" label into:
       # before/after/dominating the target node
 #      return @@relpos
@@ -393,7 +393,7 @@ class AbstractPathFeature < RosySingleFeatureExtractor
 
     if path.nil? or path.empty?
       return nil
-    else      
+    else
       return path
     end
   end
@@ -494,7 +494,7 @@ class AbstractGVPathFeature < RosySingleFeatureExtractor
 
     if path.nil? or path.empty?
       return nil
-    else      
+    else
       return path
     end
   end
@@ -814,8 +814,8 @@ class AncestorRuleFeature < RosySingleFeatureExtractor
       return nil
     end
 
-    return @@interpreter_class.simplified_pt(lca).to_s + 
-      " -> "+ 
+    return @@interpreter_class.simplified_pt(lca).to_s +
+      " -> "+
       lca.children.map {|c| @@interpreter_class.simplified_pt(c).to_s }.join(" ")
   end
 end
@@ -1264,7 +1264,7 @@ class LeftSiblingFeature < RosyFeatureExtractor
       unless sib_ix
         next
       end
-      
+
       if sib_ix < node_ix and
           (leftsib.nil? or leftsib_ix < sib_ix)
 
@@ -1275,7 +1275,7 @@ class LeftSiblingFeature < RosyFeatureExtractor
 
     if leftsib
       return [
-        @@interpreter_class.simplified_pt(leftsib), 
+        @@interpreter_class.simplified_pt(leftsib),
         @@interpreter_class.lemma_backoff(leftsib),
       ]
     else
@@ -1325,7 +1325,7 @@ class WordDistanceFeature < RosySingleFeatureExtractor
     if h_id.nil? or t_id.nil?
       return nil
     else
-      return (h_id-t_id).abs 
+      return (h_id-t_id).abs
     end
   end
 end
@@ -1348,7 +1348,7 @@ class IsMaxProj < RosySingleFeatureExtractor
 
   #####
   private
-  
+
   def compute_feature_instanceOK()
     unless @@node.parent()
       return 1
@@ -1404,7 +1404,7 @@ class RightSiblingFeature < RosyFeatureExtractor
       unless sib_ix
         next
       end
-      
+
       if sib_ix > node_ix and
           (rightsib.nil? or sib_ix < rightsib_ix)
 
@@ -1415,7 +1415,7 @@ class RightSiblingFeature < RosyFeatureExtractor
 
     if rightsib
       return [
-        @@interpreter_class.simplified_pt(rightsib), 
+        @@interpreter_class.simplified_pt(rightsib),
         @@interpreter_class.lemma_backoff(rightsib),
       ]
     else
@@ -1455,17 +1455,17 @@ end
 #   private
 
 #   def compute_feature_instanceOK()
-    
+
 #     fwh = RosyFeatureExtractor.headlemma(@@node_leftmost_terminal)
 #     lwh = RosyFeatureExtractor.headlemma(@@node_rightmost_terminal)
 
 #     if fwh.nil?
-#       fwh = "" 
+#       fwh = ""
 #     end
 #     if lwh.nil?
 #       lwh = ""
-#     end    
-    
+#     end
+
 #     return  fwh+ "-" +lwh
 #   end
 # end

@@ -1,7 +1,10 @@
 require_relative 'xml_node'
 require_relative 'convex_comp'
 require_relative 'max_const'
+require_relative 'salsa_tiger_sentence_graph'
+require_relative 'salsa_tiger_sentence_sem'
 
+require 'common/RegXML'
 
 #############
 # class SalsaTigerSentence

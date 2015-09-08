@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'common/headz'
-require 'common/SalsaTigerRegXML'
+# require 'common/SalsaTigerRegXML'
 require 'common/ruby_class_extensions'
 class Array
   include EnumerableDistribute
@@ -17,16 +17,16 @@ require 'common/AbstractSynInterface'
 # the maximum projection of a verb in TIGER syntax
 #
 # basically, computing the max. projection is about moving an
-# upper node upward. At the beginning it is the parent of the 
+# upper node upward. At the beginning it is the parent of the
 # terminal node for the verb, and each building block moves it up
-# to its parent, if the building block matches. 
+# to its parent, if the building block matches.
 #
-# Apart from the upper node, a lower node is also watched. At the 
+# Apart from the upper node, a lower node is also watched. At the
 # beginning it is the terminal node for the verb, later it is usually
 # the 'HD' child of the upper node. This lower node is needed for
-# testing whether a building block matches. 
+# testing whether a building block matches.
 #
-# For handling conjunction, the upper node is split into two, a 'lower upper' 
+# For handling conjunction, the upper node is split into two, a 'lower upper'
 # and an 'upper upper' node. The 'lower upper' is used when some relation
 # between the upper node and its descendants is tested, and the 'upper upper'
 # is used when some relation between the upper node and its predecessors
@@ -37,13 +37,13 @@ require 'common/AbstractSynInterface'
 # So all building block methods take three arguments: lower, upper_l and
 # upper_u. All three are nodes given as SalsaTigerSentence objects
 #
-# All building block methods give as their return value a list of three 
-# nodes: [new_lower, new_upper_l, new_upper_u], if the building block 
+# All building block methods give as their return value a list of three
+# nodes: [new_lower, new_upper_l, new_upper_u], if the building block
 # matched. If it does not match, nil is returned.
 #
-# The method explain describes all building blocks, 
+# The method explain describes all building blocks,
 # the conditions for the building blocks matching, and shows
-# where the lower and the upper nodes will be after a building block matched. 
+# where the lower and the upper nodes will be after a building block matched.
 #
 # building blocks:
 #  pp_pp
@@ -83,7 +83,7 @@ require 'common/AbstractSynInterface'
 # "Except for the building block for conjunction:"
 # "It moves the 'upper upper' one level up,"
 # "but leaves the 'lower upper' the same."
-# 
+#
 # "There are five levels of building blocks."
 #
 # "* 1st level: auxiliary verb constructions involving a participle"
@@ -104,7 +104,7 @@ require 'common/AbstractSynInterface'
 #
 #
 # "***These are the building blocks:"
-# 
+#
 # "PP-PP"
 # "             VP (new uppermost node)"
 # "           / | \\OC"
@@ -114,7 +114,7 @@ require 'common/AbstractSynInterface'
 # "POS: V[AMV]PP     |"
 # " new target     current target"
 # "                  POS: V[AMV]PP"
-# 
+#
 # "PP-FIN"
 # "             S/VP (new uppermost node)"
 # "           / | \\OC or PD"
@@ -124,7 +124,7 @@ require 'common/AbstractSynInterface'
 # "POS: V[AMV]FIN    |"
 # "     V[AMV]INF  current target"
 # "or CAT: VZ        POS: V[AMV]PP"
-# 
+#
 # "INF_FIN"
 # "             S/VP (new uppermost node)"
 # "           / | \\OC"
@@ -165,7 +165,7 @@ require 'common/AbstractSynInterface'
 # "      POS:        |"
 # "  VM(PP|FIN|INF)  current target"
 # "   new target     POS: V[AMV]INF"
-# 
+#
 # "OTHERMODAL"
 # "             S/VP (new uppermost node)"
 # "           / | \\OC"
@@ -201,7 +201,7 @@ module TigerMaxProjection
 
     lower = node
     upper_u = upper_l = parent
-    
+
     lower, upper_l, upper_u = project_participle(lower, upper_l, upper_u)
     maxproj_at_level << upper_u
 
@@ -234,7 +234,7 @@ module TigerMaxProjection
     # test each step
     path.each { |step|
       retv = test_step(step, retv)
-      
+
       if retv.nil?
 	return nil
       end
@@ -253,21 +253,21 @@ module TigerMaxProjection
       $stderr.puts 'TigerAux error: missing path hash entry'
       exit 1
     end
-    
+
     from_node, *from_descr = path['from']
     to_node, *to_descr = path['to']
 
     # using the special flags tp_prev_to and tp_prev_from,
-    # a node can also be set to be the value in the 
+    # a node can also be set to be the value in the
     # 'previous' hash
     from_node = cf_previous(from_node, previous)
     to_node = cf_previous(to_node, previous)
-    
+
     # test if 'from' node description matches
     unless test_node(from_node, from_descr)
       return nil
     end
-    
+
     # try path
     direction, edgelabel = path['edge']
     case direction
@@ -289,7 +289,7 @@ module TigerMaxProjection
       $stderr.puts 'TigerAux error: unknown direction'
       exit 1
     end
-    
+
     # check all prospective end nodes
     remaining_end_nodes = end_nodes.select { |prosp_to_node|
       if to_node.nil? or to_node == prosp_to_node
@@ -298,7 +298,7 @@ module TigerMaxProjection
 	false
       end
     }
-    
+
     if remaining_end_nodes.empty?
       return nil
     else
@@ -306,7 +306,7 @@ module TigerMaxProjection
 	  'to' => remaining_end_nodes}
     end
   end
-  
+
   ###
   def test_node(node, descr)
 
@@ -315,7 +315,7 @@ module TigerMaxProjection
       $stderr.puts 'TigerAux error: test_node nil'
       exit 1
     end
-    
+
     case cat_or_pos
     when 'pos'
       if node.part_of_speech =~ pattern
@@ -357,7 +357,7 @@ module TigerMaxProjection
                                self.method('conj'),
                                self.method('pp_fin')])
   end
-  
+
   ###
   def project_infinitive(lower, upper_l, upper_u)
     return project_this(lower, upper_l, upper_u,
@@ -399,8 +399,8 @@ module TigerMaxProjection
 
   ###
   def pp_pp(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
                             {'from' => [lower, 'pos', /^V[AMV]PP$/],
                              'to' => [upper_l, 'cat', /^C?VP$/],
@@ -412,7 +412,7 @@ module TigerMaxProjection
                              'to' => [nil, 'pos', /^V[AMV]PP$/],
                              'edge' => ['dn', /^HD$/]}
                           ])
-      
+
     if retv.nil?
       return nil
     else
@@ -422,35 +422,35 @@ module TigerMaxProjection
 
   ###
   def pp_fin(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'pos', /^V[AMV]PP$/], 
+                            {'from' => [lower, 'pos', /^V[AMV]PP$/],
                              'to' => [upper_l, 'cat', /^C?VP$/],
                              'edge' => ['up', /^(HD)|(CJ)$/]},
-                            {'from' => [upper_u,'cat', /^C?VP$/], 
+                            {'from' => [upper_u,'cat', /^C?VP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^(OC)|(PD)$/]}
                           ])
-    
+
     if retv.nil?
       return nil
     end
-    
+
     new_upper = retv['to'].first
-    
+
     # test two alternatives:
     # head child of new_upper is either a VXFIN or VXINF terminal...
-    retv = 
+    retv =
           test_localtrees([
                             {'from' => [new_upper, 'cat', /^(VP)|S$/],
                              'to' => [nil, 'pos', /^V[AMV]((FIN)|(INF))$/],
                              'edge' => ['dn', /^HD$/]}
                           ])
-		  
+
     # ... or a VZ nonterminal
     if retv.nil?
-      retv = 
+      retv =
             test_localtrees([
                               {'from' => [new_upper, 'cat', /^(VP)|S$/],
                                'to' => [nil, 'cat', /^VZ$/],
@@ -465,16 +465,16 @@ module TigerMaxProjection
     end
   end
 
- 
+
   ###
   def inf_fin(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'pos', /^V[AMV]INF$/], 
+                            {'from' => [lower, 'pos', /^V[AMV]INF$/],
                              'to' => [upper_l, 'cat', /^C?VP$/],
                              'edge' => ['up', /^(HD)|(CJ)$/]},
-                            {'from' => [upper_u,'cat', /^C?VP$/], 
+                            {'from' => [upper_u,'cat', /^C?VP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^OC$/]},
                             {'from' => ['tp_prev_to', 'cat', /^(VP)|S$/],
@@ -491,13 +491,13 @@ module TigerMaxProjection
 
   ###
   def vzinf_fin(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'cat', /^VZ$/], 
+                            {'from' => [lower, 'cat', /^VZ$/],
                              'to' => [upper_l, 'cat', /^VP$/],
                              'edge' => ['up', /^HD$/]},
-                            {'from' => [upper_u,'cat', /^VP$/], 
+                            {'from' => [upper_u,'cat', /^VP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^OC$/]},
                             {'from' => ['tp_prev_to', 'cat', /^(VP)|S$/],
@@ -514,17 +514,17 @@ module TigerMaxProjection
 
   ###
   def cvzinf_fin(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'cat', /^VZ$/], 
+                            {'from' => [lower, 'cat', /^VZ$/],
                              'to' => [upper_l, 'cat', /^CVP$/],
                              'edge' => ['up', /^CJ$/]},
-                            {'from' => [upper_u,'cat', /^CVP$/], 
+                            {'from' => [upper_u,'cat', /^CVP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^OC$/]}
                           ])
-    
+
       if retv.nil?
 	return nil
       else
@@ -534,20 +534,20 @@ module TigerMaxProjection
 
   ###
   def modal(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'pos', /^V[AMV]INF$/], 
+                            {'from' => [lower, 'pos', /^V[AMV]INF$/],
                              'to' => [upper_l, 'cat', /^C?VP$/],
                              'edge' => ['up', /^(HD)|(CJ)$/]},
-                            {'from' => [upper_u,'cat', /^C?VP$/], 
+                            {'from' => [upper_u,'cat', /^C?VP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^OC$/]},
                             {'from' => ['tp_prev_to', 'cat', /^(VP)|S$/],
                              'to' => [nil, 'pos', /^VM((PP)|(FIN)|(INF))$/],
                              'edge' => ['dn', /^HD$/]}
                           ])
-    
+
     if retv.nil?
       return nil
     else
@@ -557,42 +557,42 @@ module TigerMaxProjection
 
   ###
   def othermodal(lower, upper_l, upper_u)
-    
-    retv = 
+
+    retv =
           test_localtrees([
-                            {'from' => [lower, 'pos', /^V[AMV]PP$/], 
+                            {'from' => [lower, 'pos', /^V[AMV]PP$/],
                              'to' => [upper_l, 'cat', /^VP$/],
                              'edge' => ['up', /^OC$/]},
-                            {'from' => [upper_l, 'cat', /^VP$/], 
+                            {'from' => [upper_l, 'cat', /^VP$/],
                              'to' => [nil, 'pos', /^V[AMV]((INF)|(FIN))$/],
                              'edge' => ['dn', /^HD$/]},
-                            {'from' => [upper_u,'cat', /^VP$/], 
+                            {'from' => [upper_u,'cat', /^VP$/],
                              'to' => [nil, 'cat', /^(VP)|S$/],
                              'edge' => ['up', /^OC$/]},
                             {'from' => ['tp_prev_to', 'cat', /^(VP)|S$/],
                              'to' => [nil, 'pos', /^VM((PP)|(FIN)|(INF))$/],
                              'edge' => ['dn', /^HD$/]}
                           ])
-    
+
     if retv.nil?
       return nil
     else
       return [retv['to'].first, retv['from'], retv['from']]
     end
   end
-  
+
   ###
   def conj(lower, upper_l, upper_u)
-    
+
     retv = test_localtrees([
-                             {'from' => [lower, nil, //], 
+                             {'from' => [lower, nil, //],
                               'to' => [upper_l, 'cat', /^VP$/],
                               'edge' => ['up', //]},
-                             {'from' => [upper_u,'cat', /^VP$/], 
+                             {'from' => [upper_u,'cat', /^VP$/],
                               'to' => [nil, 'cat', /^CVP$/],
                               'edge' => ['up', /^CJ$/]}
                            ])
-    
+
     if retv.nil?
       return nil
     else
@@ -605,7 +605,7 @@ end
 class Tiger < SynInterpreter
 
   extend TigerMaxProjection
-  
+
   @@heads_obj = Headz.new()
 
   ###
@@ -644,7 +644,7 @@ class Tiger < SynInterpreter
     when /^PPOS/, /^ART/ ,/^PIAT/, /^PD/, /^PRELAT/, /^PWAT/ then return "det"
     when /^FM/ , /^XY/ then return "for"
     when /^C?N/, /^PPER/, /^PN/, /^PRELS/, /^PWS/ then return "noun"
-    when /^ITJ/ then return "sent"  
+    when /^ITJ/ then return "sent"
     when  /^PRF/, /^PTK/, /^TRUNC/      then return "part"
     when  /^C?PP/ , /^APPR/, /^PWAV/      then return "prep"
     when /^\$/ then return "pun"
@@ -685,9 +685,9 @@ class Tiger < SynInterpreter
   # returns: string or nil
   def Tiger.lemma_backoff(node)
     lemma = super(node)
-    # lemmatizer has returned more than one possible lemma form: 
-    # just accept the first 
-    if lemma =~ /^([^|]+)|/ 
+    # lemmatizer has returned more than one possible lemma form:
+    # just accept the first
+    if lemma =~ /^([^|]+)|/
       return $1
     else
       return lemma
@@ -736,7 +736,7 @@ class Tiger < SynInterpreter
 
   ###
   # auxiliary?
-  # 
+  #
   # returns true if the given node is an auxiliary
   # default: no recognition of auxiliaries
   def Tiger.auxiliary?(node)
@@ -768,7 +768,7 @@ class Tiger < SynInterpreter
   #
   # given a constituent, return the terminal node
   # that describes its headword
-  # default: a heuristic that assumes the existence of a 'head' 
+  # default: a heuristic that assumes the existence of a 'head'
   #   attribute on nodes:
   #   find the first node in my yield corresponding to my head attribute.
   # add-on: if this doesn't work, ask the headz package for the head
@@ -796,10 +796,10 @@ class Tiger < SynInterpreter
   # return a list of the nodes of full verbs in a given sentence:
   # it is a list of lists. An item in that list is
   # - either a pair [verb, svp]
-  #   of the node of a verb with separable prefix 
+  #   of the node of a verb with separable prefix
   #   and the node of its separate prefix
   # - or a singleton [verb]
-  #   of the node of a verb without separate prefix 
+  #   of the node of a verb without separate prefix
   def Tiger.verbs(sobj)
     return sobj.terminals().select { |t|
       # verbs
@@ -813,7 +813,7 @@ class Tiger < SynInterpreter
         # verb is root node, for whatever reason
         [verb]
       else
-        
+
         svp_children = parent.children_by_edgelabels(['SVP'])
         if svp_children.empty?
           # verb has no separate verb prefix
@@ -836,7 +836,7 @@ class Tiger < SynInterpreter
   #
   # if the given node represents a PP, return the preposition (string)
   def Tiger.preposition(node) # SynNode
-    hash = @@heads_obj.get_sem_head(node) 
+    hash = @@heads_obj.get_sem_head(node)
     if hash and hash["prep"]
       return hash["prep"].to_s
     end
@@ -856,7 +856,7 @@ class Tiger < SynInterpreter
   ###
   # voice
   #
-  # given a constituent, return 
+  # given a constituent, return
   # - "active"/"passive" if it is a verb
   # - nil, else
   def Tiger.voice(node)
@@ -887,9 +887,9 @@ class Tiger < SynInterpreter
 	#   VP
 	#    | HD
 	# participle
-      
-	cvp = retv['to'].first  
-   
+
+	cvp = retv['to'].first
+
 	retv = test_localtrees([{'from' => [cvp, nil, //],
                              'to' => [nil, 'cat', /^S|(VP)$/],
                              'edge' => ['up', /^OC$/]}])
@@ -898,15 +898,15 @@ class Tiger < SynInterpreter
 	# node's parent is linked to its parent via an OC edge
 	retv = test_localtrees([{'from' => [verb_parent, nil, //],
 				   'to' => [nil, 'cat', /^(VP)|S$/],
-				   'edge' => ['up', /^OC$/]}]) 
+				   'edge' => ['up', /^OC$/]}])
       end
 
       if retv.nil?
         return "active"
       end
-   
+
       verb_grandparent = retv['to'].first
-   
+
     else
       # KE Dec 19: test whether the participle
       # is linked to its parent via an OC edge.
@@ -926,7 +926,7 @@ class Tiger < SynInterpreter
 	return "active"
       end
     end
-   
+
     #puts test_localtrees([{'from' => [verb_grandparent, nil, //],
     #                         'to' => [nil, 'pos', /^VA.*$/],
     #                         'edge' => ['dn', /^HD$/]}])
@@ -935,7 +935,7 @@ class Tiger < SynInterpreter
     retv = test_localtrees([{'from' => [verb_grandparent, nil, //],
                              'to' => [nil, 'pos', /^VA.*$/],
                              'edge' => ['dn', /^HD$/]}])
-    
+
     if retv.nil?
       return "active"
     end
@@ -943,7 +943,7 @@ class Tiger < SynInterpreter
     # that HD child is a form of 'werden'
     may_be_werden = retv['to'].first
 
-    unless may_be_werden.part_of_speech() =~ /^VA/ 
+    unless may_be_werden.part_of_speech() =~ /^VA/
       return "active"
     end
 
@@ -963,7 +963,7 @@ class Tiger < SynInterpreter
   # gfs
   #
   # grammatical functions of a constituent:
-  # 
+  #
   # returns: a list of pairs [relation(string), node(SynNode)]
   # where <node> stands in the relation <relation> to the parameter
   # that the method was called with
@@ -990,7 +990,7 @@ class Tiger < SynInterpreter
   # for most constituents: nil
   # for a PP, the NP
   # for an SBAR, the VP
-  # for a VP, the embedded VP 
+  # for a VP, the embedded VP
   def Tiger.informative_content_node(node)
     this_pt = Tiger.simplified_pt(node)
 
@@ -1003,11 +1003,11 @@ class Tiger < SynInterpreter
       return nil
     end
     headlemma = Tiger.lemma_backoff(nh)
-    
-    nonhead_children = node.children().reject { |n| 
+
+    nonhead_children = node.children().reject { |n|
       nnh = Tiger.head_terminal(n)
-      not(nnh) or 
-        Tiger.lemma_backoff(nnh) == headlemma 
+      not(nnh) or
+        Tiger.lemma_backoff(nnh) == headlemma
     }
     if nonhead_children.length() == 1
       return nonhead_children.first
@@ -1041,19 +1041,19 @@ class Tiger < SynInterpreter
   ###
   # main node of expression
   #
-  # second argument non-nil: 
+  # second argument non-nil:
   # don't handle multiword expressions beyond verbs with separate particles
-  # 
+  #
   # returns: SynNode, main node, if found
   # else nil
-  def Tiger.main_node_of_expr(nodelist, 
-                              no_mwes = nil) 
+  def Tiger.main_node_of_expr(nodelist,
+                              no_mwes = nil)
 
     # map nodes to terminals
     nodelist = nodelist.map { |n| n.yield_nodes() }.flatten
 
     # do we have a list of length 2,
-    # one member being "zu", the other a verb, with a common parent "VZ"? 
+    # one member being "zu", the other a verb, with a common parent "VZ"?
     # then return the verb
     if nodelist.length() == 2
       zu, verb = nodelist.distribute { |n| n.part_of_speech() == "PTKZU" }
@@ -1074,13 +1074,13 @@ class Tiger < SynInterpreter
   # prune?
   # given a target node t and another node n of the syntactic structure,
   # decide whether n is likely to instantiate a semantic role
-  # of t. If not, recommend n for pruning. 
+  # of t. If not, recommend n for pruning.
   #
   # This method implements a slight variant of Xue and Palmer (EMNLP 2004).
   # Pruning according to Xue & Palmer, EMNLP 2004.
-  # "Step 1: Designate the predicate as the current node and 
+  # "Step 1: Designate the predicate as the current node and
   #    collect its sisters (constituents attached at the same level
-  #    as the predicate) unless its sisters are coordinated with the 
+  #    as the predicate) unless its sisters are coordinated with the
   #    predicate.
   #
   #  Step 2: Reset the current node to its parent and repeat Step 1
@@ -1088,30 +1088,30 @@ class Tiger < SynInterpreter
   #
   # Modifications made here:
   # - paths of length 0 accepted in any case
-  # - TIGER coordination allowed (phrase types CX) 
+  # - TIGER coordination allowed (phrase types CX)
   #
   # returns: false to recommend n for pruning, else true
   def Tiger.prune?(node, # SynNode
                    paths_to_target, # hash: node ID -> Path object: paths from nodes to target
                    terminal_index)  # hash: terminal node -> word index in sentence
-    
+
     path_to_target = paths_to_target[node.id()]
-    
+
     if not path_to_target
       # no path from target to node: suggest for pruning
       return 0
-    elsif path_to_target.length == 0 
+    elsif path_to_target.length == 0
       # target may be its own role: definite accept
       return 1
     else
-      # consider path from target to node: 
+      # consider path from target to node:
       # (1) If the path to the current node includes at least one Up
       # and exactly one Down, keep.
       # (2) If the parth to the current node includes at least one Up
       # and two Down and the roof node is a C-something, keep (coordination).
       # (3) else discard
 
-      # count number of up and down steps in path to target      
+      # count number of up and down steps in path to target
       num_up = 0
       num_down = 0
       path_to_target.each_step { |direction, edgelabel, nodelabel, endnode|
@@ -1122,7 +1122,7 @@ class Tiger < SynInterpreter
           num_down += 1
         end
       }
-            
+
       if num_up >= 1 and num_down == 1
         # case (1)
         return  1
@@ -1135,7 +1135,7 @@ class Tiger < SynInterpreter
       end
     end
   end
-  
+
 
   ################################
   private
@@ -1151,7 +1151,7 @@ class Tiger < SynInterpreter
     if Tiger.voice(verb_node) == "passive"
       # passive: then what we would like to return as subject
       # is the SBP sibling of this verb
-    
+
       parent = verb_node.parent
 
       if parent.nil?
@@ -1167,10 +1167,10 @@ class Tiger < SynInterpreter
       # needed???
       # return if there is no surface subject
       # e.g. parser errors like ADJD => VVPP
-    
+
       return Tiger.surface_subject(verb_node)
     end
- 
+
   end
 
 
@@ -1190,12 +1190,12 @@ class Tiger < SynInterpreter
       # not passive: then the direct object
       # is an OA sibling of the node verb_node
       parent = verb_node.parent
-      
+
       if parent.nil?
         # verb_node seems to be the root, strangely enough
         return []
       end
-      
+
       return parent.children_by_edgelabels(['OA'])
     end
   end
@@ -1218,7 +1218,7 @@ class Tiger < SynInterpreter
 
   ###
   def Tiger.prep_object(verb_node, preposition)
-      
+
     unless Tiger.category(verb_node) == "verb"
       return nil
     end
@@ -1228,7 +1228,7 @@ class Tiger < SynInterpreter
 	  # verb_node seems to be the root, strangely enough
       return []
     end
-    
+
     # find all PPs that are siblings of verb_node
     pps = []
     parent.each_child { |child|
@@ -1254,7 +1254,7 @@ class Tiger < SynInterpreter
 
   ###
   def Tiger.surface_subject(verb_node)
- 
+
     max_proj = Tiger.max_projection(verb_node)
     # test each level in the computation of the maximal projection,
     # from the lowest (the parent of verb_node)
@@ -1263,7 +1263,7 @@ class Tiger < SynInterpreter
       # test if this node has a SB child
       # if so, use it
       sb_children = node.children_by_edgelabels(['SB'])
-   
+
       unless sb_children.empty?
         return sb_children
       end
@@ -1276,8 +1276,8 @@ class Tiger < SynInterpreter
   # gfs_verb
   #
   # given a node (a SynNode object) that is a terminal node
-  # representing a verb, determine 
-  # all grammatical functions of this verb 
+  # representing a verb, determine
+  # all grammatical functions of this verb
   # along with their head words
   #
   # verb_node: SynNode object, terminal node representing a verb
@@ -1285,7 +1285,7 @@ class Tiger < SynInterpreter
   # returns: a list of pairs [relation(string), node(SynNode)]
   #  'relation' is 'SB', 'OA', 'DA', 'MO', 'OC'
   #  'node' is the constituent that stands in this relation to verb_node
-  
+
   def Tiger.gfs_verb(verb_node)
 
     unless Tiger.category(verb_node) == "verb"
@@ -1301,35 +1301,35 @@ class Tiger < SynInterpreter
       nodes << ["SB", n_arr.first]
     end
 
-#extrem frustrierend , sondern auch schÃ¤dlich 
+#extrem frustrierend , sondern auch schÃ¤dlich
 #sagte
 #DÃ¤ubler-Gmelin
 #&apos;&apos;
-#die gesamte SPD 
-#nicht nur fÃ¼r Euch extrem frustrierend , sondern auch schÃ¤dlich fÃ¼r die gesamte SPD &apos;&apos; gewesen 
-#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern 
+#die gesamte SPD
+#nicht nur fÃ¼r Euch extrem frustrierend , sondern auch schÃ¤dlich fÃ¼r die gesamte SPD &apos;&apos; gewesen
+#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern
 #gewesen
-#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern 
+#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern
 #frustrierend
-    
+
     # direct object:
     n_arr = Tiger.direct_object(verb_node)
     if n_arr.length() > 0
       nodes << ["OA", n_arr.first]
     end
-    
+
     # dative object:
     n_arr = Tiger.dative_object(verb_node)
     if n_arr.length() > 0
       nodes << ["DA", n_arr.first]
     end
-    
+
 
     # pp objects and adjuncts:
-    nodes.concat Tiger.prep_object(verb_node, nil).map { |n| 
+    nodes.concat Tiger.prep_object(verb_node, nil).map { |n|
       unless (edgelabel = n.parent_label)
         edgelabel = "MO"
-      end       
+      end
       [edgelabel + "-" + Tiger.preposition(n).to_s, n]
     }
 
@@ -1356,10 +1356,10 @@ class Tiger < SynInterpreter
   def Tiger.gfs_noun(noun_node, # SynNode object: terminal, noun
                      sent_obj)  # SalsaTigerSentence object: sentence in which this noun occurs
 
-  
+
     # construct a list of pairs [relation, node]
     retv = Array.new
-    
+
     ##
     # determine noun-noun relations:
     #  (1) edge label leading to this node is NK, and
@@ -1373,37 +1373,37 @@ class Tiger < SynInterpreter
     parent = noun_node.parent()
     np_pp_labels_without_cnp = ["NP", "PP", "PN"]
     np_pp_labels = ["NP", "PP", "PN", "CNP"]
-  
-    if parent and 
+
+    if parent and
 	noun_node.parent_label() == "NK"
       # (1)
-      parent.children().select { |n| 
+      parent.children().select { |n|
 	n.parent_label() != "NK"
       }.each { |n|
 	unless n == noun_node
-	  
+
 	  retv << [n.parent_label(), n]
 	end
       }
     end
-    
+
     # (2)
     if parent
       grandparent = parent.parent()
     end
 
-    if parent and grandparent and 
+    if parent and grandparent and
 	np_pp_labels.include? parent.category() and
 	np_pp_labels_without_cnp.include? grandparent.category() and
 	parent.parent_label() != "NK"
-	
+
 	retv << [parent.parent_label(), grandparent]
     end
-      
+
     # (3)
-    if parent and grandparent and 
+    if parent and grandparent and
 	grandparent.category() == "CNP"
-	
+
       grandparent.each_child() { |n|
 	if np_pp_labels.include? n.category() and
 	    n != parent
@@ -1428,20 +1428,20 @@ class Tiger < SynInterpreter
   # although in this case it's just one pair (if we can find it),
   # describing the head noun
   def Tiger.gfs_adj(adj_node) # SynNode object: terminal, adjective
-    
+
     parent = adj_node.parent()
-    
+
     if parent.nil?
       return []
     end
 
-    if ["NP", "CNP", "PP", "CPP", "PN"].include? parent.category() 
+    if ["NP", "CNP", "PP", "CPP", "PN"].include? parent.category()
       return [["HD", parent]]
     else
       return []
     end
   end
-  
+
 
 end
 

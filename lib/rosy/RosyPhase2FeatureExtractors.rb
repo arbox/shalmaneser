@@ -1,5 +1,5 @@
 ####
-# ke & sp 
+# ke & sp
 # adapted to new feature extractor class,
 # Collins and Tiger features combined:
 # SP November 2005
@@ -9,7 +9,7 @@
 # These are features that are computed on the basis of the Phase 1 feature set
 #
 # This consists of all features which have to know feature values for other nodes
-# (e.g. am I the nearest node to the target?) or similar. 
+# (e.g. am I the nearest node to the target?) or similar.
 #
 # Contract: each feature extractor inherits from the RosyPhase2FeatureExtractor class
 #
@@ -18,7 +18,7 @@
 
 # Salsa packages
 require 'rosy/AbstractFeatureAndExternal'
-require 'common/SalsaTigerRegXML'
+# require 'common/SalsaTigerRegXML'
 
 # Fred and Rosy packages
 require "common/RosyConventions"
@@ -62,14 +62,14 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
     return true
   end
 
-  # check if the current feature is computable, i.e. if all the necessary 
+  # check if the current feature is computable, i.e. if all the necessary
   # Phase 1 features are in the present model..
   def RosyPhase2FeatureExtractor.is_computable(given_extractor_list)
     return (eval(self.name()).extractor_list - given_extractor_list).empty?
   end
-  
+
   # this probably has to be done for each feature:
-  # identify sentences and the target, and recombine into a large array  
+  # identify sentences and the target, and recombine into a large array
   def compute_features_on_view(view)
     result = Array.new(eval(self.class.name()).feature_names.length)
     result.each_index {|i|
@@ -117,18 +117,18 @@ end
 ####################
 # nearestNode
 #
-# compute whether if my head word is the nearest word to the target, 
+# compute whether if my head word is the nearest word to the target,
 # according to some criterion
 
 class NearestNodeFeature < RosyPhase2FeatureExtractor
   NearestNodeFeature.announce_me()
-  
+
   def NearestNodeFeature.designator()
     return "nearest_node"
   end
   def NearestNodeFeature.feature_names()
-    return ["nearest_pt_path",  # the nearest node with a specific pt_path                         
-            "neareststring_pt",# the nearest pt (string distance) 
+    return ["nearest_pt_path",  # the nearest node with a specific pt_path
+            "neareststring_pt",# the nearest pt (string distance)
             "nearestpath_pt"]   # the nearest pt (path length) ]
   end
   def NearestNodeFeature.sql_type()
@@ -144,27 +144,27 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
   def NearestNodeFeature.extractor_list()
     return ["worddistance","pt_path","pt","path_length"]
   end
-  
+
   def compute_features_for_sentence(instance_features)
-    
+
     # for each "interesting" feature, compute a hash map value -> index
     # also compute a hashmap index -> distance
-    # so we efficiently compute, for each feature value, the index with min distance 
-    
+    # so we efficiently compute, for each feature value, the index with min distance
+
     dist_hash = Hash.new # node id -> word distance
     pl_hash   = Hash.new # node id -> path length
     path_hash = Hash.new # path -> node id array
     pt_hash = Hash.new   # pt -> node id array
-    
+
     result = [Array.new(instance_features.length),
               Array.new(instance_features.length),
               Array.new(instance_features.length)]
-    
+
     instance_features.each_index {|inst_id|
       instance_hash = instance_features[inst_id]
       dist_hash[inst_id] = instance_hash["worddistance"]
       pl_hash[inst_id] = instance_hash["path_length"]
-      
+
       # record paths
       pt_path = instance_hash["pt_path"]
       unless path_hash.key? pt_path
@@ -208,8 +208,8 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
           result[1][inst_id] = 0
         end
       }
-    } 
-    
+    }
+
     # nearest-pt (path length) feature is feature 2 of the extractor
     pt_hash.each{|pt,inst_ids|
       path_lengths = inst_ids.map {|inst_id| pl_hash[inst_id]}
@@ -222,9 +222,8 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
           result[2][inst_id] = 0
         end
       }
-    } 
+    }
 
     return result
-  end  
+  end
 end
-

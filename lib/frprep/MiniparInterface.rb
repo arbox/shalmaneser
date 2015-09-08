@@ -7,7 +7,8 @@
 
 require 'tempfile'
 require 'common/TabFormat'
-require 'common/SalsaTigerRegXML'
+# require 'common/SalsaTigerRegXML'
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 
 require 'common/AbstractSynInterface'
@@ -61,7 +62,7 @@ class MiniparSentence
 
   #####
   # set tabsent:
-  # set this tab format sentence, which has entries "word", "lineno", 
+  # set this tab format sentence, which has entries "word", "lineno",
   # as the sentence matching this minipar output sentence.
   #
   # On success, remember the tab sentence as well as the mapping
@@ -74,7 +75,7 @@ class MiniparSentence
 		  sloppy = true) # not nil or false: allow sloppy match
 
     # empty minipar sentence? then no match
-    if @nodes.empty? 
+    if @nodes.empty?
       return false
     end
 
@@ -95,7 +96,7 @@ class MiniparSentence
     old_chart = fnw_minw_match(tabwords, @nodes[first_node_no]["word"]).map { |fnw_index, match_how|
       [[fnw_index, first_node_no, match_how]]
     }
-    
+
     if old_chart.empty?
       # unmatched single word in minipar sentence
       return false
@@ -113,7 +114,7 @@ class MiniparSentence
       # try to extend it, record results in new_chart
       old_chart.each { |partial_mapping|
         prev_fnw_index, prev_mw_index, match_how = partial_mapping.last
-        
+
         # where do we start looking in tabwords? same word as before, or advance one?
         case match_how
         when "full"
@@ -124,7 +125,7 @@ class MiniparSentence
           raise "Shouldn't be here"
         end
 
-        fnw_minw_match(tabwords[fnw_index..tabwords.length()-1], 
+        fnw_minw_match(tabwords[fnw_index..tabwords.length()-1],
                        @nodes[node_no]["word"]).each { |match_offset, match_how|
           new_chart.push partial_mapping + [[fnw_index + match_offset, node_no, match_how]]
         }
@@ -159,19 +160,19 @@ class MiniparSentence
 
 	mapping_ok = true
 	tabwords.each_with_index { |fnw, fnw_index|
-	  
+
 	  tuples = mapping.select { |other_fnw_index, mnode_no, match_how| other_fnw_index == fnw_index }
-	  
-	  unless tuples.empty?        
+
+	  unless tuples.empty?
 	    word = tuples.map { |fnw_index, mnode_no, match_how| @nodes[mnode_no]["word"] }.join()
-        
+
 	    unless word == fnw
 	      mapping_ok = false
 	      break
 	    end
 	  end
 	}
-	mapping_ok      
+	mapping_ok
       }
     end
 
@@ -213,7 +214,7 @@ class MiniparSentence
 
   ###########
   # analyze one line of the sentence array.
-  # 
+  #
   # examples of possible entries:
   # E1      (()     fin C   E4      )
   # 3       (them   ~ N     2       obj     (gov call))
@@ -225,7 +226,7 @@ class MiniparSentence
       raise "Cannot parse line: #{line}"
     end
 
-    # line structure: 
+    # line structure:
     # index ( node descr )
     retv["index"] = $1
 
@@ -250,17 +251,17 @@ class MiniparSentence
         # neither lemma nor POS for this node
       else
         # we have both lemma and POS
-        
-        if lemma_pos =~ /^(.+)\s(.+)$/  
+
+        if lemma_pos =~ /^(.+)\s(.+)$/
           # lemma may be "...." with spaces in.
           # this regexp. uses the last space to separate lemma and POS
           retv["lemma"] = $1
           retv["pos"] = $2
-          
+
           if retv["lemma"] =~ /^"(.+)"$/
             # remove quotes around lemma
             retv["lemma"] = $1
-            
+
           elsif retv["lemma"] == "~"
             # lemma same as word
             retv["lemma"] = retv["word"]
@@ -273,7 +274,7 @@ class MiniparSentence
         end
       end
     end
-        
+
     # parent index
     if parentindex.nil? or parentindex == "*"
       # root
@@ -282,12 +283,12 @@ class MiniparSentence
     end
 
     # edge label
-    if edgelabel.nil? or edgelabel.strip.empty? 
+    if edgelabel.nil? or edgelabel.strip.empty?
       # no edge label given
     else
       retv["edgelabel"] = edgelabel
     end
-    
+
     # governing word
     if governor and not(governor.strip.empty?)
       # expected format:
@@ -354,7 +355,7 @@ class MiniparSentence
       if word
         # make a terminal SynNode for this minipar node
         # only if it has a word, otherwise it's not much use as a terminal
-        t_node = sent_obj.add_syn("t", 
+        t_node = sent_obj.add_syn("t",
                                   nil,  # category
                                   word, # word
                                   minipar_node["pos"], # POS
@@ -428,7 +429,7 @@ class MiniparSentence
         my_synnode.set_attribute("antecedent", antecedent_synnode.id())
       end
     }
-    
+
     return [sent_obj, construct_tabsent_mapping_stxml(sent_obj)]
   end
 
@@ -461,7 +462,7 @@ class MiniparSentence
             # we have a nonterminal matching this fntab word
             retv[tabline.get("lineno")] << node
           else
-            # no match after all? 
+            # no match after all?
             raise "missing: SalsaTigerSentence node for minipar node with index #{nodehash["index"]}"
           end
         }
@@ -539,16 +540,16 @@ class MiniparInterface < SynInterfaceSTXML
     @tab_dir = var_hash["tab_dir"]
   end
 
-  
+
   ###
   # process one file, writing the result to outfilename
-  #  input format is FNTabFormat, output format is 
+  #  input format is FNTabFormat, output format is
   #  Minipar format
   #
   # returns: nothing
   def process_file(infilename,    # string: name of input file
 		  outfilename)    # string: name of output file
-    
+
     tf = Tempfile.new("minipar")
     reader = FNTabFormatFile.new(infilename)
     reader.each_sentence { |sent|
@@ -566,11 +567,11 @@ class MiniparInterface < SynInterfaceSTXML
   # yields tuples
   #  [ minipar output sentence, tab sentence, mapping]
   #
-  # minipar output sentence is 
+  # minipar output sentence is
   #  - either an array of hashes, each describing one node;
   #  - or a SalsaTigerSentence object
-  #  - or a MiniparSentence object 
-  #    (which has methods returns the sentence as either a 
+  #  - or a MiniparSentence object
+  #    (which has methods returns the sentence as either a
   #     nodehash array or a SalsaTigerSentence)
   #
   # tab sentence: matching tab sentence, if tab file has been given on initialization
@@ -578,8 +579,8 @@ class MiniparInterface < SynInterfaceSTXML
   # mapping: hash: line in tab sentence(integer) -> array:SynNode
   #   mapping tab sentence nodes to matching nodes in the SalsaTigerSentence data structure
   #
-  # If a parse has failed, returns 
-  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence] 
+  # If a parse has failed, returns
+  #  [failed_sentence (flat SalsaTigerSentence), FNTabFormatSentence]
   # to allow more detailed accounting for failed parses
   def each_sentence(parsefilename,    # name of minipar output file
                     format = "stxml") # format to return data in
@@ -637,7 +638,7 @@ class MiniparInterface < SynInterfaceSTXML
         yield [sent, tabsent, MiniparInterface.standard_mapping(sent, tabsent)]
       end
     }
-  end    
+  end
 
   ###
   # write Salsa/TIGER XML output to file
@@ -662,13 +663,13 @@ class MiniparInterface < SynInterfaceSTXML
   #
   # return: IO stream for reading minipar outfile
   def open_minipar_outfile(filename)
-    
+
     ##
     # zipped? then unzip first
     # (the Ruby read-zipped package doesn't seem to be reliable)
     if filename =~  /\.gz$/
       @filename_core = File.basename(filename, ".gz")
-      return IO.popen("zcat #{filename}") 
+      return IO.popen("zcat #{filename}")
     else
       @filename_core = File.basename(filename)
       begin
@@ -683,13 +684,13 @@ class MiniparInterface < SynInterfaceSTXML
   # each_miniparsent_obj
   # read minipar output from stream,
   # yield sentence-wise as MiniparSentence objects
-  def each_miniparsent_obj(stream) # IO object: stream to read from 
+  def each_miniparsent_obj(stream) # IO object: stream to read from
 
     # status: string
     # "outside": waiting for next start of sentence with ( alone in a line
     # "inside": inside a sentence, sentence ends with ) alone on a line
     status = "outside"
-    
+
     # sentence: array of strings, one for each line of the sentence
     sentence = Array.new()
 
@@ -701,7 +702,7 @@ class MiniparInterface < SynInterfaceSTXML
           sentence.clear()
           status = "inside"
         end
-        
+
       when "inside"
         if line.chomp().strip() == ")"
           # end of sentence
@@ -720,7 +721,7 @@ class MiniparInterface < SynInterfaceSTXML
   ###
   # matching_tabsent
   #
-  # if we have tab sentences, and if there is 
+  # if we have tab sentences, and if there is
   # a tab sentence matching the given minipar sentence,
   # return its index, else return false
   #
@@ -737,7 +738,7 @@ class MiniparInterface < SynInterfaceSTXML
         return index
       end
     }
-    
+
     # no match found up to now. so try sloppy match
     if parse.set_tabsent(@tab_sentences[tabsent_no], "sloppy")
 #      $stderr.puts "Warning: sloppy match used. Minipar sentence:"
@@ -817,19 +818,19 @@ class MiniparInterpreter < SynInterpreter
       return "part"
     end
 
-    if node.word =~ /^[!?;`'",(){}\[\]\.\:]+$/ 
+    if node.word =~ /^[!?;`'",(){}\[\]\.\:]+$/
       return "pun"
     end
 
     if node.parent.nil?
       return "top"
-    end    
+    end
 
     case node.part_of_speech()
 
     when "A"  # same POS for adjectives and adverbs
       parent = node.parent
-      if parent 
+      if parent
         if MiniparInterpreter.category(parent) == "verb"
           return "adv"
         else
@@ -852,7 +853,7 @@ class MiniparInterpreter < SynInterpreter
 
     when /^V/
       return "verb"
-      
+
     else
       return nil
     end
@@ -881,7 +882,7 @@ class MiniparInterpreter < SynInterpreter
 
   ###
   # auxiliary?
-  # 
+  #
   # returns true if the given node is an auxiliary
   #
   # returns: boolean
@@ -932,11 +933,11 @@ class MiniparInterpreter < SynInterpreter
   ###
   # voice
   #
-  # given a constituent, return 
+  # given a constituent, return
   # - "active"/"passive" if it is a verb
   # - nil, else
   def MiniparInterpreter.voice(verb_node)
-    
+
     # am I a terminal added to make minipar representations
     # more TigerXML-like? then move to my parent
     verb_node = MiniparInterpreter.ensure_upper(verb_node)
@@ -946,7 +947,7 @@ class MiniparInterpreter < SynInterpreter
       return nil
     end
 
-    # outgoing edge "by_subj"? 
+    # outgoing edge "by_subj"?
     # then assume passive
     unless verb_node.children_by_edgelabels(["by_subj"]).empty?
 #      $stderr.puts "passive #{verb_node.id()} by_subj"
@@ -967,7 +968,7 @@ class MiniparInterpreter < SynInterpreter
       return "passive"
     end
 
-    # obj child coreferent with s child? 
+    # obj child coreferent with s child?
     # then assume passive
     if (obj_ch = verb_node.children_by_edgelabels(["obj"]).first)
       if (s_ch = verb_node.children_by_edgelabels(["s"]).first)
@@ -986,7 +987,7 @@ class MiniparInterpreter < SynInterpreter
   # gfs
   #
   # grammatical functions of a constituent:
-  # 
+  #
   # returns: a list of pairs [relation(string), node(SynNode)]
   # where <node> stands in the relation <relation> to the parameter
   # that the method was called with
@@ -994,7 +995,7 @@ class MiniparInterpreter < SynInterpreter
                              sent)    # SalsaTigerSentence
 
     start_node = MiniparInterpreter.ensure_upper(start_node)
-    
+
     retv =  start_node.children_with_edgelabel.reject { |edgelabel, node|
       ["Head",  # head of the target node -- not really bearer of a GF
 	"-",
@@ -1003,12 +1004,12 @@ class MiniparInterpreter < SynInterpreter
 	"be"
       ].include? edgelabel
     }.map { |edgelabel,node|
-	
+
       # map node to suitable other node
       while (ant_id = node.get_attribute("antecedent"))
-	
+
         # Antecedent node for empty nodes and relative pronouns
-	  
+
         new_node = sent.syn_node_with_id(ant_id)
         if new_node
           node = new_node
@@ -1018,7 +1019,7 @@ class MiniparInterpreter < SynInterpreter
           break
         end
       end
-      
+
       # PP -- i.e. edgelabel == mod and node.POS == Prep?
       # then add the preposition to the edgelabel,
       # and take the node's head as head instead of the node
@@ -1044,7 +1045,7 @@ class MiniparInterpreter < SynInterpreter
         s_entry.last == obj_entry.last
       retv.delete(s_entry)
     end
-        
+
 #    $stderr.puts "blip " + retv.map { |l, n| l}.join(" ")
     return retv
   end
@@ -1055,14 +1056,14 @@ class MiniparInterpreter < SynInterpreter
   # for most constituents: the head
   # for a PP, the NP
   # for an SBAR, the VP
-  # for a VP, the embedded VP 
+  # for a VP, the embedded VP
   def MiniparInterpreter.informative_content_node(node)
     node = MiniparInterpreter.ensure_upper(node)
 
     if node.part_of_speech() == "Prep"
-      # use complement of this constituent 
-      children = node.children_by_edgelabels(["pcomp-n", 
-                                              "vpsc_pcomp-c", 
+      # use complement of this constituent
+      children = node.children_by_edgelabels(["pcomp-n",
+                                              "vpsc_pcomp-c",
                                               "pcomp-c"])
 
       if children.empty?
@@ -1070,19 +1071,19 @@ class MiniparInterpreter < SynInterpreter
 #        $stderr.puts "Prep node without suitable child."
 #        $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
         return nil
-        
+
       else
 #         if children.length() > 1
 #           $stderr.puts "Too many suitable children for prep node: "
 #           $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
 #         end
-        
+
         return children.first
-      end  
+      end
 
 
     elsif node.part_of_speech() == "SentAdjunct"
-      # use complement of this constituent 
+      # use complement of this constituent
       children = node.children_by_edgelabels(["comp1"])
 
       if children.empty?
@@ -1098,8 +1099,8 @@ class MiniparInterpreter < SynInterpreter
 #         end
 
         return children.first
-      end  
-    
+      end
+
     elsif node.word().nil? or node.word().empty?
       # no word for this node: use child instead
 
@@ -1120,7 +1121,7 @@ class MiniparInterpreter < SynInterpreter
 
         return children.first
       end
-    
+
       # no children for this node: try antecedent
       ant = node.get_f("antecedent")
       if ant
@@ -1129,21 +1130,21 @@ class MiniparInterpreter < SynInterpreter
 
       return nil
     end
-    
+
   end
 
   ###
   # path_between
   #
-  # construct path in syntactic structure between two nodes, 
-  # using 
+  # construct path in syntactic structure between two nodes,
+  # using
   # - node labels
   # - edge labels
   # - direction Up, Down
   #
   # use_nontree_edges: set to true to use coreference edges
   # and other non-tree edges returned by the parser
-  # in path computation. 
+  # in path computation.
   #
   # returns: Path object
   def MiniparInterpreter.path_between(from_node, # SynNode
@@ -1194,10 +1195,10 @@ class MiniparInterpreter < SynInterpreter
 #   #
 #   # 2nd argument non-nil:
 #   # don't handle multiword expressions beyond verbs with separate particles
-#   # 
+#   #
 #   # returns: SynNode, main node, if found
 #   # else nil
-#   def MiniparInterpreter.main_node_of_expr(nodelist, 
+#   def MiniparInterpreter.main_node_of_expr(nodelist,
 #                                            no_mwes = nil)
 
 #     nodelist = nodelist.map { |n| MiniparInterpreter.ensure_upper(n) }.uniq()
@@ -1223,7 +1224,7 @@ class MiniparInterpreter < SynInterpreter
   def MiniparInterpreter.max_constituents(nodeset, # Array:SynNode
                                           sent,    # SalsaTigerSentence
                                           idealize_maxconst = false) # boolean
-  
+
     my_nodeset = nodeset.reject { |n| MiniparInterpreter.empty_terminal?(n)}
     if idealize_maxconst
       return sent.max_constituents_smc(my_nodeset, idealize_maxconst, true)
@@ -1243,7 +1244,7 @@ class MiniparInterpreter < SynInterpreter
   #
   # yields tuples
   #  [
-  #   minipar node, 
+  #   minipar node,
   #   array: other minipar node(s) reached from this one solely via antecedent edges,
   #   array: minimal paths from start_node to this node as Path objects
   #   minipar node 2: last stop on path from start_node to minipar_node
@@ -1259,32 +1260,32 @@ class MiniparInterpreter < SynInterpreter
     seen = {
       from_node => [Path.new(from_node)]
     }
-    
+
     while not(rim.empty?)
       # remove node from the beginning of the rim
       minipar_node = rim.shift()
-      
+
       # make tuples:
       # ["D" for down from minipar_node, or "U" for up,
-      #  parent or child of minipar_node, 
+      #  parent or child of minipar_node,
       #  edgelabel between minipar_node and that parent or child,
       #  POS of that parent or child,
       #  preposition
       #  ]
-      surrounding_n = minipar_node.children.map { |child| 
-        ["D", child, 
+      surrounding_n = minipar_node.children.map { |child|
+        ["D", child,
          minipar_node.child_label(child), child.part_of_speech()]
       }
       if minipar_node.parent
         surrounding_n.push([
-				 "U", minipar_node.parent, 
-				 minipar_node.parent_label(), 
+				 "U", minipar_node.parent,
+				 minipar_node.parent_label(),
 				 minipar_node.parent.part_of_speech()
 			       ])
       end
-    
+
       surrounding_n.each { |direction, new_node, edgelabel, nodelabel|
-        
+
         # node we are actually using: the antecedent, if it's there
         # the coref chain may have a length > 1
         actual_new_node = new_node
@@ -1293,7 +1294,7 @@ class MiniparInterpreter < SynInterpreter
           antecedents << actual_new_node.get_f("antecedent")
           actual_new_node = actual_new_node.get_f("antecedent")
         end
-        
+
         # node seen before, and  seen with shorter path?
         # all paths in seen[actual_new_node] have the same length
         if seen[actual_new_node] and
@@ -1301,14 +1302,14 @@ class MiniparInterpreter < SynInterpreter
           # yes, seen with a shorter path. discard
           next
         end
-        
+
         # make paths for this new_node
-        paths = seen[minipar_node].map { |previous_path| 
+        paths = seen[minipar_node].map { |previous_path|
 	  new_path = previous_path.deep_clone
           if new_node.part_of_speech() == "Prep"
             # preposition? add to path too
-	    new_path.add_last_step(direction, 
-				   edgelabel + "-" + new_node.get_attribute("lemma"), 
+	    new_path.add_last_step(direction,
+				   edgelabel + "-" + new_node.get_attribute("lemma"),
 				   nodelabel,
 				   new_node)
           else
@@ -1316,19 +1317,19 @@ class MiniparInterpreter < SynInterpreter
           end
 	  new_path
         }
-        
+
         # node not seen before: record
         unless seen[actual_new_node]
           seen[actual_new_node] = Array.new
         end
         seen[actual_new_node].concat paths
-        
+
 	keepthisnode = yield(new_node, antecedents, paths, minipar_node)
-        
+
         if keepthisnode and not(rim.include?(actual_new_node))
           rim.push actual_new_node
         end
-        
+
       } # each parent or child of the current rim node
     end # while new rim nodes keep being discovered
   end
@@ -1340,7 +1341,7 @@ class MiniparInterpreter < SynInterpreter
   # auxiliaries and modals share this characteristic
   def MiniparInterpreter.aux_or_modal?(node)
     node = MiniparInterpreter.ensure_upper(node)
-    
+
     if (l = node.parent_label()) and
         ["be", "have", "aux"].include? l and
         (p = node.parent()) and

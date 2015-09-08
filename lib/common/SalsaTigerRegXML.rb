@@ -64,29 +64,30 @@
 # require "common/Tree"
 
 
-require "common/RegXML"
+# require "common/RegXML"
+
 require "common/ruby_class_extensions"
 
-require_relative 'salsa_tiger_xml/string_terminals_in_right_order'
+# require_relative 'salsa_tiger_xml/string_terminals_in_right_order'
 
-require_relative 'salsa_tiger_xml/xml_node'
-require_relative 'salsa_tiger_xml/fe_node'
-require_relative 'salsa_tiger_xml/frame_node'
-require_relative 'salsa_tiger_xml/salsa_tiger_xml_node'
-require_relative 'salsa_tiger_xml/syn_node'
-require_relative 'salsa_tiger_xml/ts_syn_node'
-require_relative 'salsa_tiger_xml/sem_node'
-require_relative 'salsa_tiger_xml/usp_node'
-require_relative 'salsa_tiger_xml/salsa_tiger_sentence_graph'
-require_relative 'salsa_tiger_xml/salsa_tiger_sentence_sem'
-require_relative 'salsa_tiger_xml/salsa_tiger_sentence'
+# require_relative 'salsa_tiger_xml/xml_node'
+# require_relative 'salsa_tiger_xml/fe_node'
+# require_relative 'salsa_tiger_xml/frame_node'
+# require_relative 'salsa_tiger_xml/salsa_tiger_xml_node'
+# require_relative 'salsa_tiger_xml/syn_node' #!
+# require_relative 'salsa_tiger_xml/ts_syn_node'
+# require_relative 'salsa_tiger_xml/sem_node' #!
+# require_relative 'salsa_tiger_xml/usp_node'
+# require_relative 'salsa_tiger_xml/salsa_tiger_sentence_graph'
+# require_relative 'salsa_tiger_xml/salsa_tiger_sentence_sem'
+# require_relative 'salsa_tiger_xml/salsa_tiger_sentence' #!
 
-require_relative 'salsa_tiger_xml/max_const'
-require_relative 'salsa_tiger_xml/convex_comp'
+# require_relative 'salsa_tiger_xml/max_const'
+# require_relative 'salsa_tiger_xml/convex_comp'
 
-require_relative 'salsa_tiger_xml/graph_node'
+# require_relative 'salsa_tiger_xml/graph_node'
 
-require_relative 'salsa_tiger_xml/tree_node'
+# require_relative 'salsa_tiger_xml/tree_node'
 
 # require_relative 'salsa_tiger_xml/sem_node'
 # require_relative 'salsa_tiger_xml/sem_node'

@@ -8,7 +8,8 @@
 
 # Salsa packages
 require "common/Parser"
-require "common/SalsaTigerRegXML"
+# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/ruby_class_extensions"
 
 # Fred/Rosy packages
@@ -27,7 +28,7 @@ class InputData
                  dataset,             # train/test
 		 feature_info_object, # FeatureInfo object
                  interpreter_class,   # SynInterpreter class
-                 input_dir)           # Directory with input files   
+                 input_dir)           # Directory with input files
 
     @exp = exp_object
     @dataset = dataset
@@ -37,7 +38,7 @@ class InputData
     @failed_parses = FailedParses.new()
 
     # feature_extractors_phase1: array of AbstractFeatureExtractor objects
-    @extractors_p1_rosy, @extractors_p1_other = feature_info_object.get_extractor_objects("phase 1", 
+    @extractors_p1_rosy, @extractors_p1_other = feature_info_object.get_extractor_objects("phase 1",
                                                                                           @interpreter_class)
 
     # global settings
@@ -54,11 +55,11 @@ class InputData
 
 
     # feature_extractors_phase2: array of  AbstractFeatureExtractor objects
-    extractors_p2_rosy, extractors_p2_other = feature_info_object.get_extractor_objects("phase 2", 
+    extractors_p2_rosy, extractors_p2_other = feature_info_object.get_extractor_objects("phase 2",
                                                                                         @interpreter_class)
     @feature_extractors_phase2 = extractors_p2_rosy + extractors_p2_other
   end
-  
+
   ###
   # each_instance_phase1()
   #
@@ -68,7 +69,7 @@ class InputData
   # and yields one feature vector per instance
   #
   # yields: pairs [feature_name(string), feature_value(object)]
-  
+
   def each_instance_phase1()
     Dir[@input_dir+"*.xml"]. each {|parsefilename|
 
@@ -105,9 +106,9 @@ class InputData
           if skip_frame
             next
           end
-               
+
           sent.each_syn_node { |syn_node|
-            
+
             # Tell feature extractors about the current node:
             # first Rosy feature extractors, then the others
             # if there is a problem, skip this node
@@ -131,29 +132,29 @@ class InputData
               # compute features
               feature_names = extractor.class.feature_names()
               feature_index = 0
-              
+
               # append new features to features array
               features.concat extractor.compute_features().map { |feature_value|
                 feature_name = feature_names[feature_index]
                 feature_index += 1
-                
+
                 # sanity check: feature value longer than the allotted space in the DB?
                 check_feature_length(feature_name, feature_value, extractor)
 
                 [feature_name, nonnil_feature(feature_value, extractor.class.sql_type()) ]
               }
-            }            
+            }
             yield features
           } # each syn node
         } # each frame
       } # each sentence
     }
   end
-  
+
   ###
   # each_phase2_column
   #
-  # This method implements the application of the 
+  # This method implements the application of the
   # phase 2 extractors to data.
   #
   # Given a database view (of either training or test data),
@@ -172,7 +173,7 @@ class InputData
       feature_names = extractor.class.feature_names()
       feature_columns.each { |feature_values|
         yield [
-          feature_names[feature_index], 
+          feature_names[feature_index],
           feature_values.map { |feature_val| nonnil_feature(feature_val, extractor.class.sql_type)  }
         ]
         feature_index += 1
@@ -209,12 +210,12 @@ class InputData
   end
 
   ###
-  # preprocess: possibly change the given SalsaTigerSentence 
+  # preprocess: possibly change the given SalsaTigerSentence
   # to enable better learning
   def preprocess(sent)           # SalsaTigerSentence object
 
 
-    if @dataset == "train" and 
+    if @dataset == "train" and
         (@exp.get("fe_syn_repair") or @exp.get("fe_rel_repair"))
       FixSynSemMapping.fixit(sent, @exp, @interpreter_class)
     end
@@ -237,7 +238,7 @@ class InputData
       target_pos = nil
     end
     if frame.target()
-      target_str = frame.target().yield_nodes_ordered().map { |t_node| 
+      target_str = frame.target().yield_nodes_ordered().map { |t_node|
         if t_node.is_syntactic?
           @interpreter_class.lemma_backoff(t_node)
         else
@@ -248,7 +249,7 @@ class InputData
     else
       target_str = ""
     end
-            
+
     @failed_parses.register(construct_instance_id(sent.id(), frame.id()),
                             frame.name(),
                             target_str,
@@ -280,11 +281,11 @@ class InputData
           raise "SQL entry length surpassed"
 
         elsif @exp.get("verbose")
-          # KE Feb 07: don't print warning, 
+          # KE Feb 07: don't print warning,
           # this is just too frequent
           # for other features, we just issue a warning, and only if we are verbose
 
-          # $stderr.puts "Warning: feature #{feature_name} longer than its DB column (#{length.to_s} vs #{feature_value.length()}): #{feature_value}"                      
+          # $stderr.puts "Warning: feature #{feature_name} longer than its DB column (#{length.to_s} vs #{feature_value.length()}): #{feature_value}"
         end # feature name check
       end # length surpassed
     end # length found in sql type

@@ -1,4 +1,5 @@
 require_relative 'syn_node'
+require 'common/RegXML'
 
 #############
 # class TSSynNode
