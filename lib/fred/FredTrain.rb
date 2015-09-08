@@ -55,7 +55,7 @@ class FredTrain
     @lemmas_and_senses_obj = Targets.new(@exp, nil, "r")
     unless @lemmas_and_senses_obj.targets_okay
       # error during initialization
-      $stderr.puts "Error: Could not read list of known targets, bailing out."
+      $stderr.puts "FredTrain: Error: Could not read list of known targets, bailing out."
       exit 1
     end
 
@@ -99,8 +99,8 @@ class FredTrain
       end
 
       # only one sense? then just assign that
-      num_senses = determine_training_senses(values["lemma"], @exp, 
-                                             @lemmas_and_senses, 
+      num_senses = determine_training_senses(values["lemma"], @exp,
+                                             @lemmas_and_senses,
                                              @split_id).length()
 
       if num_senses > 1
@@ -108,13 +108,13 @@ class FredTrain
         # if we're splitting the data, do that now
         if split_obj
           tempfile = split_obj.apply_split(filename, values["lemma"], "train", @split_id)
-          
+
           if tempfile.nil?
             # the training part of the split doesn't contain any data
             $stderr.puts "Skipping #{values["lemma"]}: no training data in split"
             next
           end
-          
+
           filename = tempfile.path()
         end
 
@@ -125,7 +125,7 @@ class FredTrain
                                                                values["sense"])
           # HIER
            $stderr.puts "FRED: Writing classifier #{output_name}"
-          
+
           classifier.train(filename, output_name)
         } # each classifier
 
@@ -138,7 +138,7 @@ class FredTrain
       else
         $stderr.puts "Error: no senses for lemma #{values["lemma"]}"
       end
-        
+
     } # each feature file
   end
 end

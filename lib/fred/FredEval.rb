@@ -44,12 +44,12 @@ class FredEval < Eval
     options.each_pair { |opt, arg|
       case opt
       when "--logID"
-	
+
 	@split_id = arg
       when "--printLog"
 	logfilename = fred_dirname(@exp, "eval", "log", "new") +
                       "eval_logfile.txt"
-	
+
       else
 	# case of unknown arguments has been dealt with by fred.rb
       end
@@ -57,7 +57,7 @@ class FredEval < Eval
 
     ###
     # make outfile name
-    outfilename =  fred_dirname(@exp, "eval", "eval", "new") + 
+    outfilename =  fred_dirname(@exp, "eval", "eval", "new") +
                    "eval.txt"
 
     ###
@@ -68,7 +68,7 @@ class FredEval < Eval
     @target_obj = Targets.new(@exp, nil, "r")
     unless @target_obj.targets_okay
       # error during initialization
-      $stderr.puts "Error: Could not read list of known targets, bailing out."
+      $stderr.puts "FredEval: Error: Could not read list of known targets, bailing out."
       exit 1
     end
 
@@ -121,13 +121,12 @@ class FredEval < Eval
   #
   # also, set object-global variables in such a way
   # that the elements of this group can be read
-  def each_group()
+  def each_group
 
     # access to classifier output files
     output_dir = fred_dirname(@exp, "output", "tab")
     # access to answer key files
 
-    
     if @split_id
       # make split object and parameter hash to pass to it
       dataset = "train"
@@ -136,7 +135,7 @@ class FredEval < Eval
     end
 
     # iterate through instance files
-    @target_obj.get_lemmas().sort().each { |lemma|
+    @target_obj.get_lemmas.sort.each { |lemma|
       # progress report
       if @exp.get("verbose")
         $stderr.puts "Evaluating " + lemma
@@ -156,7 +155,7 @@ class FredEval < Eval
         @goldreader = AnswerKeyAccess.new(@exp, "train", lemma, "r", @split_id, "test")
       else
         @goldreader = AnswerKeyAccess.new(@exp, "test", lemma, "r")
-      end      
+      end
 
       # doing multilabel evaluation?
       # then we need a list of all senses
@@ -238,7 +237,7 @@ class FredEval < Eval
         # multiple senses assigned, and
         # regard as assigned everything above a given threshold
 
-        # transform senses_assigned: 
+        # transform senses_assigned:
         # in the case of "join", one sense may have several confidence levels,
         # one on its own and one in a joined sense
         senses_assigned_hash = Hash.new()
@@ -258,9 +257,9 @@ class FredEval < Eval
         # select all sense/confidence pairs where confidence is above threshold
         senses_assigned = senses_assigned_hash.to_a().select { |sense, confidence|
           confidence >= @threshold
-        }.map { |sense, confidence| 
+        }.map { |sense, confidence|
           # then retain only the sense, not the confidence
-          sense 
+          sense
         }
 
 
@@ -286,7 +285,7 @@ class FredEval < Eval
         # contains the main assigned class
         # (relatively lenient evaluation)
 
-        # actually assigned class: only the one with the 
+        # actually assigned class: only the one with the
         # maximum confidence
         # $stderr.puts "HIER5 #{senses_assigned.length()}"
 
@@ -297,7 +296,7 @@ class FredEval < Eval
           max_senselist = senses_assigned.max { |a, b|
             a.last() <=> b.last()
           }.first()
-          
+
 
           max_senselist.each { |single_sense|
             gold_class = (senses_gold.include? single_sense).to_s()

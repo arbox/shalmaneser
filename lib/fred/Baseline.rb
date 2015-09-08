@@ -18,7 +18,7 @@ class Baseline
   # because we are only evaluating the training data
   # at test time
   #
-  def initialize(exp, # FredConfigData object 
+  def initialize(exp, # FredConfigData object
 		 split_id = nil) # string: split ID
     @exp = exp
     @split_id = split_id
@@ -36,7 +36,7 @@ class Baseline
     @target_obj = Targets.new(@exp, nil, "r")
     unless @target_obj.targets_okay
       # error during initialization
-      $stderr.puts "Error: Could not read list of known targets, bailing out."
+      $stderr.puts "Baseline: Error: Could not read list of known targets, bailing out."
       exit 1
     end
 
@@ -48,7 +48,7 @@ class Baseline
       else
         # read full answer key file of training data
         answer_obj = AnswerKeyAccess.new(@exp, "train", lemmapos, "r")
-      end      
+      end
 
       count_senses = Hash.new(0)
 
@@ -59,8 +59,8 @@ class Baseline
         }
       }
 
-      @lemma_to_sense[lemmapos] = count_senses.keys().max { |a, b| 
-        count_senses[a] <=> count_senses[b] 
+      @lemma_to_sense[lemmapos] = count_senses.keys().max { |a, b|
+        count_senses[a] <=> count_senses[b]
       }
     }
 
@@ -129,7 +129,7 @@ class Baseline
       # something went wrong in read()
       return false
     end
- 
+
     # do we have a sense for this?
     unless (sense = @lemma_to_sense[@lemma])
       # nope: assign "NONE" (or whatever the null label is here)

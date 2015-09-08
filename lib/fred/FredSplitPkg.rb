@@ -32,7 +32,7 @@ class FredSplitPkg
     lemmas_and_senses = Targets.new(@exp, nil, "r")
     unless lemmas_and_senses.targets_okay
       # error during initialization
-      $stderr.puts "Error: Could not read list of known targets, bailing out."
+      $stderr.puts "FredSplitPkg: Error: Could not read list of known targets, bailing out."
       exit 1
     end
 
@@ -51,7 +51,7 @@ class FredSplitPkg
       rescue
         raise "Error: Couldn't write to file " + splitfilename
       end
-      
+
       # find lemma-specific  feature file
 
       filename = feature_dir + fred_feature_filename(lemma)
@@ -63,12 +63,12 @@ class FredSplitPkg
 
         unless filename
           # no lemma+sense-specific feature file
-          $stderr.puts "Warning: split: no feature file found for #{lemma}, skipping." 
+          $stderr.puts "Warning: split: no feature file found for #{lemma}, skipping."
           splitfile.close()
           next
         end
       end
-      
+
       # open feature file for reading
       begin
         file = File.new(filename)
@@ -83,12 +83,12 @@ class FredSplitPkg
         while file.gets()
           splitfile.puts "ignore"
         end
-        
+
       else
         # read from feature file, classify at random
         # as train or test,
         # write result to splitfile
-          
+
         while file.gets()
           if rand() < trainpercent
             splitfile.puts "train"
@@ -117,7 +117,7 @@ class FredSplitPkg
 
 
   ###
-  # change feature files according to 
+  # change feature files according to
   # pre-computed split
   #
   #
