@@ -8,7 +8,7 @@
 require "common/ruby_class_extensions"
 require 'common/EnduserMode'
 # Rosy packages
-require "common/RosyConventions"
+require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosySplit"
 require "rosy/RosyTask"
@@ -22,8 +22,8 @@ require "common/prep_config_data"
 class RosyServices < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     ##
     # remember the experiment description
@@ -38,7 +38,7 @@ class RosyServices < RosyTask
     # defaults:
     @step = "onestep"
     @splitID = nil
-    @testID = default_test_ID()
+    @testID = Rosy.default_test_ID
 
 
     opts.each do |opt,arg|
@@ -47,14 +47,14 @@ class RosyServices < RosyTask
         #####
         # In enduser mode, you cannot delete things
         in_enduser_mode_unavailable()
-	@tasks << [opt, arg]
+        @tasks << [opt, arg]
       when "--dump", "--load", "--writefeatures"
-	@tasks << [opt, arg]
+        @tasks << [opt, arg]
       when "--step"
-	unless ["argrec", "arglab", "both", "onestep"].include? arg
-	  raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
-	end
-	@step = arg
+        unless ["argrec", "arglab", "both", "onestep"].include? arg
+          raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
+        end
+        @step = arg
 
       when "--logID"
         @splitID = arg
@@ -63,7 +63,7 @@ class RosyServices < RosyTask
         @testID = arg
 
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     end
     # announce the task
@@ -94,7 +94,7 @@ class RosyServices < RosyTask
       when "--load"
         load_experiment(arg)
       when "--writefeatures"
- 	write_features(arg)
+        write_features(arg)
       end
     }
   end
@@ -264,7 +264,7 @@ class RosyServices < RosyTask
 
     # remove classifiers for split
     ["argrec", "arglab", "onestep"].each { |step|
-      classif_dir = classifier_directory_name(@exp,step, splitID)
+      classif_dir = Rosy::classifier_directory_name(@exp,step, splitID)
       %x{rm -rf #{classif_dir}}
     }
   end
@@ -305,10 +305,10 @@ class RosyServices < RosyTask
     elsif @testID
       # do we have this test set? else write only training set
       if @ttt_obj.testIDs().include?(@testID)
-	$stderr.puts "Writing training data, and test data with ID '#{@testID}'"
+        $stderr.puts "Writing training data, and test data with ID '#{@testID}'"
       else
         $stderr.puts "Warning: no data for test ID '#{@testID}', writing only training data."
-	@testID = nil
+        @testID = nil
       end
     end
 
@@ -319,9 +319,9 @@ class RosyServices < RosyTask
     # write training data
     $stderr.puts "Writing training sets"
     iterator = RosyIterator.new(@ttt_obj, @exp, "train",
-				"step" => @step,
-				"splitID" => @splitID,
-				"prune" => true)
+                                "step" => @step,
+                                "splitID" => @splitID,
+                                "prune" => true)
 
     # get the list of relevant features,
     # remove the features that describe the unit by which we train,
@@ -354,10 +354,10 @@ class RosyServices < RosyTask
   ########
   # write_features_aux: actually do the writing
   def write_features_aux(dir,      # string: directory to write to
-			 dataset,  # string: training or test
-			 step,     # string: argrec, arglab, onestep
-			 iterator, # RosyIterator tuned to what we're writing
-			 features) # array:string: list of features to include in views
+                         dataset,  # string: training or test
+                         step,     # string: argrec, arglab, onestep
+                         iterator, # RosyIterator tuned to what we're writing
+                         features) # array:string: list of features to include in views
 
     # proceed one group at a time
     iterator.each_group { |group_descr_hash, group|
@@ -366,21 +366,21 @@ class RosyServices < RosyTask
 
       #filename: e.g. directory/training.Statement.data
       filename = dir + dataset + "." +
-	step + "." +
-	group.gsub(/\s/, "_") + ".data"
+        step + "." +
+        group.gsub(/\s/, "_") + ".data"
 
       begin
-	file = File.new(filename, "w")
+        file = File.new(filename, "w")
       rescue
-	$stderr.puts "Error: Could not write to file #{filename}, exiting."
-	exit 1
+        $stderr.puts "Error: Could not write to file #{filename}, exiting."
+        exit 1
       end
 
       view.each_instance_s { |instance_string|
-	# change punctuation to _PUNCT_
-	# and change empty space to _
-	# because otherwise some classifiers may spit
-	file.puts prepare_output_for_classifiers(instance_string)
+        # change punctuation to _PUNCT_
+        # and change empty space to _
+        # because otherwise some classifiers may spit
+        file.puts Rosy::prepare_output_for_classifiers(instance_string)
       }
       file.close()
       view.close()

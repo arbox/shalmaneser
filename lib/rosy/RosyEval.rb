@@ -17,6 +17,7 @@ require "rosy/RosyIterator"
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyPruning"
+require 'rosy/rosy_conventions'
 
 # Frprep packages
 require "common/prep_config_data"
@@ -39,12 +40,12 @@ require 'common/EnduserMode'
 # Otherwise, evaluate all target classes
 class RosyEval < Eval
   def initialize(exp,      # RosyConfigData object: experiment file
-		 ttt_obj,  # RosyTrainingTestTable object
-		 step,     # string: argrec, arglab, onestep, all, prune
-		 splitID,  # string: splitlog ID, or nil
-		 testID,   # string: test ID, or nil
-		 outfilename, # string: name of file to print output to
-		 logfilename, # string: name of file to print eval log to (may be nil)
+                 ttt_obj,  # RosyTrainingTestTable object
+                 step,     # string: argrec, arglab, onestep, all, prune
+                 splitID,  # string: splitlog ID, or nil
+                 testID,   # string: test ID, or nil
+                 outfilename, # string: name of file to print output to
+                 logfilename, # string: name of file to print eval log to (may be nil)
                  dont_adjoin_frprep_exp) # string: if non-nil, don't re-adjoin frprep experiment obj
     @exp = exp
     @step = step
@@ -358,8 +359,8 @@ end
 class RosyEvalTask < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     #####
     # In enduser mode, this whole task is unavailable
@@ -372,21 +373,21 @@ class RosyEvalTask < RosyTask
     # check runtime options
     @step = "both"
     @splitID = nil
-    @testID = default_test_ID()
+    @testID = Rosy.default_test_ID()
 
     opts.each do |opt,arg|
       case opt
       when "--step"
-	unless ["argrec", "arglab", "both", "onestep"].include? arg
-	  raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
-	end
-	@step = arg
+        unless ["argrec", "arglab", "both", "onestep"].include? arg
+          raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
+        end
+        @step = arg
       when "--logID"
-	@splitID = arg
+        @splitID = arg
       when "--testID"
-	@testID = arg
+        @testID = arg
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     end
   end

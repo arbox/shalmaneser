@@ -21,7 +21,7 @@ require 'rosy/AbstractFeatureAndExternal'
 # require 'common/SalsaTigerRegXML'
 
 # Fred and Rosy packages
-require "common/RosyConventions"
+# require "common/RosyConventions"
 
 
 ################################
@@ -41,15 +41,15 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   # computed for the training set
   #
   # Here: all features in this packages are phase 2
-  def RosyPhase2FeatureExtractor.phase()
-    return "phase 2"
+  def self.phase
+    "phase 2"
   end
 
   ###
   # returns an array of strings, providing information about
   # the feature extractor
-  def RosyPhase2FeatureExtractor.info()
-    return super().concat(["rosy"])
+  def self.info
+    super().concat(["rosy"])
   end
 
   ###
@@ -57,7 +57,7 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   # feature computation using compute_feature_value()
   # such that computations that stay the same for
   # several features can be done in advance
-  def RosyPhase2FeatureExtractor.set(var_hash)
+  def self.set(var_hash)
     @@split_nones = var_hash["split_nones"]
     return true
   end
@@ -105,8 +105,6 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   def compute_features_for_sentence(instance_features) # array of hashes features -> values
     raise "Overwrite me"
   end
-
-
 end
 
 
@@ -121,27 +119,27 @@ end
 # according to some criterion
 
 class NearestNodeFeature < RosyPhase2FeatureExtractor
-  NearestNodeFeature.announce_me()
+  NearestNodeFeature.announce_me
 
-  def NearestNodeFeature.designator()
+  def NearestNodeFeature.designator
     return "nearest_node"
   end
-  def NearestNodeFeature.feature_names()
+  def NearestNodeFeature.feature_names
     return ["nearest_pt_path",  # the nearest node with a specific pt_path
             "neareststring_pt",# the nearest pt (string distance)
             "nearestpath_pt"]   # the nearest pt (path length) ]
   end
-  def NearestNodeFeature.sql_type()
+  def NearestNodeFeature.sql_type
     return "TINYINT"
   end
-  def NearestNodeFeature.feature_type()
+  def NearestNodeFeature.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def NearestNodeFeature.extractor_list()
+  def NearestNodeFeature.extractor_list
     return ["worddistance","pt_path","pt","path_length"]
   end
 

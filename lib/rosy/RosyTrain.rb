@@ -11,7 +11,7 @@ require 'common/EnduserMode'
 # Rosy packages
 require "rosy/RosyTask"
 require "rosy/RosyTest"
-require "common/RosyConventions"
+require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTrainingTestTable"
 require "rosy/RosyPruning"
@@ -23,8 +23,8 @@ require "common/ML"
 class RosyTrain < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     #####
     # In enduser mode, this whole task is unavailable
@@ -46,14 +46,14 @@ class RosyTrain < RosyTask
     opts.each { |opt,arg|
       case opt
       when "--step"
-	unless ["argrec", "arglab", "onestep", "both"].include? arg
-	  raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
-	end
-	@step = arg
+        unless ["argrec", "arglab", "onestep", "both"].include? arg
+          raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
+        end
+        @step = arg
       when "--logID"
         @splitID = arg
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     }
 
@@ -161,8 +161,8 @@ class RosyTrain < RosyTask
     # such that pruned constituents do nto enter into training
 
     @iterator = RosyIterator.new(@ttt_obj, @exp, "train",
-				 "step" => @step,
-				 "splitID" => @splitID,
+                                 "step" => @step,
+                                 "splitID" => @splitID,
                                  "prune" => true)
 
     if @iterator.num_groups() == 0
@@ -192,7 +192,7 @@ class RosyTrain < RosyTask
 
     ####
     #for each frame/ for each target POS:
-    classif_dir = classifier_directory_name(@exp,@step, @splitID)
+    classif_dir = Rosy::classifier_directory_name(@exp,@step, @splitID)
 
     @iterator.each_group { |group_descr_hash, group|
 
@@ -211,7 +211,7 @@ class RosyTrain < RosyTask
         # change punctuation to _PUNCT_
         # and change empty space to _
         # because otherwise some classifiers may spit
-        tf.puts prepare_output_for_classifiers(instance_string)
+        tf.puts Rosy::prepare_output_for_classifiers(instance_string)
       }
       tf.close()
 

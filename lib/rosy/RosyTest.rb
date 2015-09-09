@@ -19,7 +19,7 @@ require "common/EnduserMode"
 # Rosy packages
 require "rosy/FeatureInfo"
 require "common/ML"
-require "common/RosyConventions"
+require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
@@ -74,8 +74,8 @@ class RosyTest < RosyTask
   # argrec_apply: apply trained argrec classifiers to
   # training data, which means that almost everything is different
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj,  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj,  # RosyTrainingTestTable object
                  argrec_apply = false) # boolean. true: see above
 
     ##
@@ -91,16 +91,16 @@ class RosyTest < RosyTask
     # defaults:
     @step = "both"
     @splitID = nil
-    @testID = default_test_ID()
+    @testID = Rosy.default_test_ID()
     @produce_output = true
 
     opts.each { |opt,arg|
       case opt
       when "--step"
-	unless ["argrec", "arglab", "both", "onestep"].include? arg
-	  raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
-	end
-	@step = arg
+        unless ["argrec", "arglab", "both", "onestep"].include? arg
+          raise "Classification step must be one of: argrec, arglab, both, onestep. I got: " + arg.to_s
+        end
+        @step = arg
 
       when "--logID"
         @splitID = arg
@@ -112,7 +112,7 @@ class RosyTest < RosyTask
         @produce_output = false
 
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     }
 
@@ -271,7 +271,7 @@ class RosyTest < RosyTask
     # apply the group-specific classifier,
     # write the result into the database, into
     # the column named @run_column
-    classif_dir = classifier_directory_name(@exp, @step, @splitID)
+    classif_dir = Rosy::classifier_directory_name(@exp, @step, @splitID)
 
     @iterator.each_group { |group_descr_hash, group|
 
@@ -282,7 +282,7 @@ class RosyTest < RosyTask
       # make a view: model features
       feature_view = @iterator.get_a_view_for_current_group(@features)
 
-	if feature_view.length() == 0
+        if feature_view.length() == 0
         # no test data in this view: next group
         feature_view.close()
         next
@@ -348,11 +348,11 @@ class RosyTest < RosyTask
 
       @postprocessing_iterator.each_group { |group_descr_hash, group|
 
-	view = @postprocessing_iterator.get_a_view_for_current_group(["nodeID", "sentid", @run_column])
+        view = @postprocessing_iterator.get_a_view_for_current_group(["nodeID", "sentid", @run_column])
 
-	# remove superfluous labels, write the result back to the DB
-	postprocess_classification(view, @run_column)
-	view.close()
+        # remove superfluous labels, write the result back to the DB
+        postprocess_classification(view, @run_column)
+        view.close()
       }
     end
 
@@ -434,7 +434,7 @@ class RosyTest < RosyTask
       # change punctuation to _PUNCT_
       # and change empty space to _
       # because otherwise some classifiers may spit
-      tf_input.puts prepare_output_for_classifiers(instance_string)
+      tf_input.puts Rosy::prepare_output_for_classifiers(instance_string)
     }
     tf_input.close()
     # make output file for classifiers
@@ -534,27 +534,27 @@ class RosyTest < RosyTask
 
       sentence.each_with_index { |instance, inst_index|
 
-	# check whether this instance has an equally labeled ancestor
-	has_equally_labeled_ancestor = false
+        # check whether this instance has an equally labeled ancestor
+        has_equally_labeled_ancestor = false
 
-	if (instance[run_column] != @exp.get("noval")) and
-	  ancestors[inst_index]
+        if (instance[run_column] != @exp.get("noval")) and
+          ancestors[inst_index]
 
-	  if ancestors[inst_index].detect { |anc_index|
-	      sentence[anc_index][run_column] == instance[run_column]
-	    }
-	    has_equally_labeled_ancestor = true
-	  else
-	    has_equally_labeled_ancestor = false
-	  end
-	end
+          if ancestors[inst_index].detect { |anc_index|
+              sentence[anc_index][run_column] == instance[run_column]
+            }
+            has_equally_labeled_ancestor = true
+          else
+            has_equally_labeled_ancestor = false
+          end
+        end
 
 
-	if has_equally_labeled_ancestor
-	  result << @exp.get("noval")
-	else
-	  result << instance[run_column]
-	end
+        if has_equally_labeled_ancestor
+          result << @exp.get("noval")
+        else
+          result << instance[run_column]
+        end
       }
     }
 
@@ -563,15 +563,15 @@ class RosyTest < RosyTask
 #     before = 0
 #     view.each_sentence { |s|
 #       s.each { |inst|
-# 	unless inst[run_column] == @exp.get("noval")
-# 	  before += 1
-# 	end
+#       unless inst[run_column] == @exp.get("noval")
+#         before += 1
+#       end
 #       }
 #     }
 #     after = 0
 #     result.each { |r|
 #       unless r == @exp.get("noval")
-# 	after += 1
+#       after += 1
 #       end
 #     }
 #     $stderr.puts "Non-NONE labels before: #{before}"
@@ -753,16 +753,16 @@ class RosyTest < RosyTask
         sent.frames.each { |frame|
 
           # this corresponds to the sentid feature in the database
-          sent_frame_id = construct_instance_id(sent.id(), frame.id())
+          sent_frame_id = Rosy::construct_instance_id(sent.id, frame.id)
 
           if sentid_to_assigned[sent_frame_id].nil? and @splitID
-	    # we are using a split of the training data, and
+            # we are using a split of the training data, and
             # this sentence/frame ID pair does not
             # seem to be in the test part of the split
             # so do not show the frame
-	    #
-	    # Note that if we are _not_ working on a split,
-	    # we are not discarding any frames or sentences
+            #
+            # Note that if we are _not_ working on a split,
+            # we are not discarding any frames or sentences
             sent.remove_frame(frame)
           end
 
@@ -815,10 +815,10 @@ class RosyTest < RosyTask
 
         # write changed sentence to output file
         # if we are working on a split of the training data,
-	# write the sentence only if there are frames in it
-	if sent.frames.length() == 0 and @splitID
-	  # split of the training data, and no frames
-	else
+        # write the sentence only if there are frames in it
+        if sent.frames.length() == 0 and @splitID
+          # split of the training data, and no frames
+        else
           outfile.puts sent.get()
         end
       } # each sentence

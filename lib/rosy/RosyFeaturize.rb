@@ -17,7 +17,7 @@ require "rosy/FailedParses"
 require "rosy/FeatureInfo"
 require "rosy/InputData"
 require "rosy/rosy_config_data"
-require "common/RosyConventions"
+require 'rosy/rosy_conventions'
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
@@ -26,8 +26,8 @@ require "rosy/View"
 class RosyFeaturize < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     ##
     # remember the experiment description
@@ -42,25 +42,25 @@ class RosyFeaturize < RosyTask
     else
       @dataset = nil
     end
-    @testID = default_test_ID()
+    @testID = Rosy.default_test_ID
     @splitID = nil
     @append_rather_than_overwrite = false
 
     opts.each do |opt,arg|
       case opt
       when "--dataset"
-	unless ["train", "test"].include? arg
-	  raise "--dataset needs to be either 'train' or 'test'"
-	end
-	@dataset = arg
+        unless ["train", "test"].include? arg
+          raise "--dataset needs to be either 'train' or 'test'"
+        end
+        @dataset = arg
       when "--logID"
         @splitID = arg
       when "--testID"
-	@testID = arg
+        @testID = arg
       when "--append"
         @append_rather_than_overwrite = true
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     end
 
@@ -144,7 +144,7 @@ class RosyFeaturize < RosyTask
     # sanity check
     unless datapath
       raise "No input path given in the preprocessing experiment file.\n" +
-	"Please set 'directory_preprocessed there."
+        "Please set 'directory_preprocessed there."
     end
     unless File.exists? datapath and File.directory? datapath
       raise "I cannot read the input path " + datapath
@@ -183,7 +183,7 @@ class RosyFeaturize < RosyTask
 
       if @append_rather_than_overwrite
         # add to existing DB table
-	@db_table = @ttt_obj.existing_train_table()
+        @db_table = @ttt_obj.existing_train_table()
 
       else
         # start new DB table
@@ -194,11 +194,11 @@ class RosyFeaturize < RosyTask
 
       if @append_rather_than_overwrite
         # add to existing DB table
-	@db_table = @ttt_obj.existing_test_table(testID)
+        @db_table = @ttt_obj.existing_test_table(testID)
 
       else
         # start new DB table
-	@db_table = @ttt_obj.new_test_table(testID)
+        @db_table = @ttt_obj.new_test_table(testID)
 
       end
 

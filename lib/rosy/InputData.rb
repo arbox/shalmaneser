@@ -14,7 +14,7 @@ require "common/ruby_class_extensions"
 
 # Fred/Rosy packages
 require "rosy/FailedParses"
-require "common/RosyConventions"
+require 'rosy/rosy_conventions'
 require "rosy/RosyFeatureExtractors"
 require "rosy/RosyPhase2FeatureExtractors"
 require "rosy/RosyPruning"
@@ -250,7 +250,7 @@ class InputData
       target_str = ""
     end
 
-    @failed_parses.register(construct_instance_id(sent.id(), frame.id()),
+    @failed_parses.register(Rosy::construct_instance_id(sent.id(), frame.id()),
                             frame.name(),
                             target_str,
                             target_pos,

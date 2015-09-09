@@ -7,7 +7,7 @@
 #
 
 require 'db/sql_query'
-require "common/RosyConventions"
+# require "common/RosyConventions"
 
 class DBTable
   attr_reader :index_name, :table_name
@@ -32,11 +32,11 @@ class DBTable
   # this can be used to store experiment-specific data.
 
   def initialize(db_obj, # DBWrapper object
-		 table_name, # string: name of DB table (existing/new)
-		 mode,       # new: starts new DB table, removes old if it exists. open: reopens existing DB table
-		 hash={})    # hash: parameter name => parameter value, depending on mode
-                             # mode= new needs: 
-                             #  'col_formats': array:array len 2: string*string, [column_name, column_format] 
+                 table_name, # string: name of DB table (existing/new)
+                 mode,       # new: starts new DB table, removes old if it exists. open: reopens existing DB table
+                 hash={})    # hash: parameter name => parameter value, depending on mode
+                             # mode= new needs:
+                             #  'col_formats': array:array len 2: string*string, [column_name, column_format]
                              #  'index_cols':  array:string: column_names that should be used to index the table
                              #  'addcol_prefix': string: prefix for names of additional columns
                              # mode='open' needs:
@@ -54,28 +54,28 @@ class DBTable
 
       # sanity check: exactly the required parameters present?
       unless hash.keys.sort == ['addcol_prefix', 'col_formats', 'index_cols']
-	raise "Expecting hash parameters 'addcol_prefix', 'col_formats', 'index_cols'.\n" +
-	  "I got: " + hash.keys.join(", ")
+        raise "Expecting hash parameters 'addcol_prefix', 'col_formats', 'index_cols'.\n" +
+          "I got: " + hash.keys.join(", ")
       end
 
       # sanity check: main index column name should be unique
       all_column_names = hash['col_formats'].map { |name, format| name}
       if all_column_names.include? @index_name
-	raise "[DBTable] You used the reserved name #{@index_name} as a column name. Please don't do that!"
+        raise "[DBTable] You used the reserved name #{@index_name} as a column name. Please don't do that!"
       end
 
       # sanity check: index_column_names should be included in column_names
-      hash['index_cols'].each { |name| 
-	unless all_column_names.include? name
-	  raise "[DBTable] #{name} is in the list of index names, but it isn't in the list of column names."
-	end
+      hash['index_cols'].each { |name|
+        unless all_column_names.include? name
+          raise "[DBTable] #{name} is in the list of index names, but it isn't in the list of column names."
+        end
       }
 
       # does a table with name table_name exist? if so, remove it
-      if @db_obj.list_tables().include? table_name
-	# this table exists
-	# remove old table
-	@db_obj.drop_table(table_name)
+      if @db_obj.list_tables.include? table_name
+        # this table exists
+        # remove old table
+        @db_obj.drop_table(table_name)
       end
 
       @db_obj.create_table(table_name,hash['col_formats'],
@@ -93,14 +93,13 @@ class DBTable
         end
       }
       # sanity check: main index column name should be unique
-      if hash['col_names'] and hash['col_names'].include? @index_name
-	raise "[DBTable] You used the reserved name #{@index_name} as a column name. Please don't do that!"
+      if hash['col_names'] && hash['col_names'].include?(@index_name)
+        raise "[DBTable] You used the reserved name #{@index_name} as a column name. Please don't do that!"
       end
 
-
       # does a table with name table_name exist?
-      unless @db_obj.list_tables().include? table_name
-	raise "[DBTable] Sorry, I cannot find a database table named #{table_name}."
+      unless @db_obj.list_tables.include? table_name
+        raise "[DBTable] Sorry, I cannot find a database table named #{table_name}."
       end
 
       # check if all column formats match
@@ -113,8 +112,8 @@ class DBTable
         }
 
         unless existing_fields.sort() == hash["col_names"].sort()
-          raise "[DBTable] Column names in the DB table #{table_name}\n" + 
-                "don't match feature specification in the experiment file.\n" + 
+          raise "[DBTable] Column names in the DB table #{table_name}\n" +
+                "don't match feature specification in the experiment file.\n" +
                 "Table:\n\t" + existing_fields.sort.join(", ") +
                  "\n\nExp. file:\n\t" + hash["col_names"].sort.join(", ")
         end
@@ -160,10 +159,10 @@ class DBTable
     if column_formats.nil? or column_formats.empty?
       raise "Need nonempty column_formats list"
     end
-    
-    column_formats.each {|col_name,col_format|
+
+    column_formats.each { |col_name, col_format|
       unless col_name =~ /^#{@addcol_prefix}/
-	raise "Columns that are added need to have prefix #{@addcol_prefix}!" 
+        raise "Columns that are added need to have prefix #{@addcol_prefix}!"
       end
     }
 
@@ -185,7 +184,7 @@ class DBTable
     execute_command("ALTER TABLE #{@table_name} DROP COLUMN #{column_name}")
   end
 
-  
+
   #####
   # insert_row
   #
@@ -208,16 +207,15 @@ class DBTable
   #
   # returns: nothing
   def update_row(index, # index, content of autoincrement column
-		 column_value_pairs) # array: string*Object [column_name, column_value]
+                 column_value_pairs) # array: string*Object [column_name, column_value]
 
     if column_value_pairs.nil? or column_value_pairs.empty?
       raise "Need nonempty column_value_pairs list"
     end
     execute_command(SQLQuery.update(@table_name,
-				    column_value_pairs, 
-				    [ValueRestriction.new(@index_name, index)]))
+                                    column_value_pairs,
+                                    [ValueRestriction.new(@index_name, index)]))
   end
-
 
   ####
   private
@@ -231,7 +229,7 @@ class DBTable
   def execute_command(command)
     begin
       @db_obj.query_noretv(command)
-    rescue 
+    rescue
       $stderr.puts "Error executing SQL query. Command was:\n" + command
       exit 1
     end

@@ -5,7 +5,7 @@
 # inspect global data and experiment-specific data of the system
 
 # Rosy packages
-require "common/RosyConventions"
+# require "common/RosyConventions"
 require 'db/select_table_and_columns'
 require "rosy/RosySplit"
 require "rosy/RosyTask"

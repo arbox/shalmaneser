@@ -17,7 +17,7 @@ require 'rosy/AbstractFeatureAndExternal'
 # require 'common/SalsaTigerRegXML'
 
 # Fred and Rosy packages
-require 'common/RosyConventions'
+require 'rosy/rosy_conventions'
 
 
 ################################
@@ -1523,7 +1523,7 @@ class SentidFeature < RosySingleFeatureExtractor
   private
 
   def compute_feature_instanceOK()
-    return construct_instance_id(@@sent.id(), @@frame.id())
+    return Rosy::construct_instance_id(@@sent.id(), @@frame.id())
   end
 end
 

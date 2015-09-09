@@ -13,7 +13,7 @@
 
 require 'db/sql_query'
 require "common/ruby_class_extensions"
-require "common/RosyConventions"
+# require "common/RosyConventions"
 require 'db/select_table_and_columns'
 
 class DBView
