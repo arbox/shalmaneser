@@ -7,7 +7,8 @@ require "common/TabFormat"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
-require "common/RosyConventions"
+#require "common/RosyConventions"
+require 'common/value_restriction'
 
 require 'fred/md5'
 require "fred/fred_config_data"

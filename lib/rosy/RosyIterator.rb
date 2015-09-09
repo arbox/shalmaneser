@@ -1,33 +1,34 @@
 # RosyIterator
 # KE May 2005
 #
-# RosyIterator is a class that 
-# * reads the "xwise" parameters in the experiment file to 
+# RosyIterator is a class that
+# * reads the "xwise" parameters in the experiment file to
 #   determine the portions in which data is to be fed to classifiers,
-#   and offers an iterator that iterates through every group to 
+#   and offers an iterator that iterates through every group to
 #   be trained/tested on
 # * constructs views matching the given "xwise" group.
-#   
+#
 # RosyIterator incorporates the following services:
-# - choosing the right DB table, depending on 
+# - choosing the right DB table, depending on
 #   whether training/test data is being accessed,
 #   and with or without a splitlog
 # - making and adding all currently available Dynamic Gold objects
-#   (i.e. objects that are capable of mapping the gold column to 
+#   (i.e. objects that are capable of mapping the gold column to
 #   something else)
 # - initializing a view, potentially modified depending on the assignment step:
 #   argrec -> use dynamic gold, mapping gold labels to "FE" or "NONE"
 #   arglab -> use only those rows that have "FE" assigned from the argrec step
 #
 # Setting "xwise": An "xwise" entry in the hash passed on to RosyIterator.new()
-# overrides all other settings. If that isn't given, the "xwise_" + step 
+# overrides all other settings. If that isn't given, the "xwise_" + step
 # (xwise_argrec, xwise_arglab, xwise_onestep) from the experiment file is read.
 # If that hasn't been set either, the default is frame-wise.
 
 require 'common/ruby_class_extensions'
 
 require 'rosy/View'
-require "common/RosyConventions"
+# require "common/RosyConventions"
+require 'common/value_restriction'
 require "rosy/RosyPruning"
 require "rosy/RosySplit"
 require "rosy/RosyTrainingTestTable"
@@ -37,14 +38,14 @@ class RosyIterator
   ###
   # new
   #
-  # open the correct database table, 
+  # open the correct database table,
   # initialize Dynamic Gold objects
 
 
-  def initialize(ttt_obj, # RosyTrainingTestTable object 
-		 exp,     # RosyConfigData object: experiment file
-		 dataset, # string: train/test
-		 var_hash = {}) # further arguments:
+  def initialize(ttt_obj, # RosyTrainingTestTable object
+                 exp,     # RosyConfigData object: experiment file
+                 dataset, # string: train/test
+                 var_hash = {}) # further arguments:
     # step: string: argrec/arglab/onestep, or nil (= no manipulation of the view)
     # testID: string: ID of test set, or nil
     # splitID string: splitlog ID, or nil if no split is to be used
@@ -59,7 +60,7 @@ class RosyIterator
     @splitID = var_hash["splitID"]
     @step = var_hash["step"]
     @testID = var_hash["testID"]
-    
+
     # object variables we are going to use below
     @db_table = nil  # DB table we are working on
     @allcolnames = nil   # names of all columns of first and potentially second table
@@ -84,7 +85,7 @@ class RosyIterator
 
     else
       unless @testID
-	raise "cannot open the test table without test ID"
+        raise "cannot open the test table without test ID"
       end
       @db_table = @ttt_obj.existing_test_table(@testID)
     end
@@ -101,9 +102,9 @@ class RosyIterator
       # argument recognition: distinguish just "FE", "NONE" as gold
       @standard_dyngold_id = "binary_gold"
     end
-      
+
     ##
-    # if splitID has been set, 
+    # if splitID has been set,
     # make additional restrictions on the column values
     if @splitID
       # get split table name
@@ -112,7 +113,7 @@ class RosyIterator
       # additional value restriction:
       # only use rows whose sentence ID also appears in the split table
       # (i.e. rows included in the split)
-      @standard_value_restrictions << RosySplit.make_join_restriction(@splitID, 
+      @standard_value_restrictions << RosySplit.make_join_restriction(@splitID,
                                                                       @db_table,
                                                                       @dataset,
                                                                       @ttt_obj)
@@ -125,14 +126,14 @@ class RosyIterator
 
       # if we're using a split, read the phase 2 features and the classification results
       # from the split table rather than from the main table:
-      # @use_cols_from_second_table is a list of column names (strings) 
+      # @use_cols_from_second_table is a list of column names (strings)
       #     to take from the 2nd table
       # @second_table_colprefix is a string: all columns starting with this prefix
       #     are taken from the 2nd table
       @use_cols_from_second_table = [ RosySplit.split_index_colname() ]
       @second_table_colprefix = @exp.get("classif_column_name")
     end
-    
+
     ###
     # Any (row) value restrictions to be imposed
     # on all views we generate?
@@ -141,14 +142,14 @@ class RosyIterator
       # for which argrec-label is "FE"
 
       if @exp.get("assume_argrec_perfect")
-	# assume perfect argrec step:
-	# take all rows where gold is not "noval"
-	@standard_value_restrictions << ValueRestriction.new(@db_table.table_name + ".gold", 
-                                                             @exp.get("noval"), 
+        # assume perfect argrec step:
+        # take all rows where gold is not "noval"
+        @standard_value_restrictions << ValueRestriction.new(@db_table.table_name + ".gold",
+                                                             @exp.get("noval"),
                                                              "posneg" => "!=")
       else
-	# use argrec step as is:
-	# take all rows where the argrec result is "FE"
+        # use argrec step as is:
+        # take all rows where the argrec result is "FE"
 
         case @dataset
         when "train"
@@ -159,7 +160,7 @@ class RosyIterator
           raise "Shouldn't be here"
         end
 
-        if run_column_name.nil? 
+        if run_column_name.nil?
           $stderr.puts "Missing: argrec classification results on #{@dataset} data."
           $stderr.puts "I have logs of the following runs: "
           $stderr.puts @ttt_obj.runlog_to_s()
@@ -173,7 +174,7 @@ class RosyIterator
           run_column_name = @db_table.table_name + "." + run_column_name
         end
 
-	@standard_value_restrictions << ValueRestriction.new(run_column_name, "FE")
+        @standard_value_restrictions << ValueRestriction.new(run_column_name, "FE")
       end
     end
 
@@ -192,9 +193,9 @@ class RosyIterator
     @xwise = var_hash["xwise"]
     unless @xwise
       if @step
-	# read xwise from experiment file,
-	# if we know what training/test step we're in
-	@xwise = @exp.get("xwise_" + @step)
+        # read xwise from experiment file,
+        # if we know what training/test step we're in
+        @xwise = @exp.get("xwise_" + @step)
       end
     end
     if @xwise.nil?
@@ -202,7 +203,7 @@ class RosyIterator
       @xwise = "frame"
     end
 
-    # xwise is a string consisting of any subset of 
+    # xwise is a string consisting of any subset of
     # "frame", "target_pos", "target" joined by spaces.
     # transform to an array by splitting at spaces
     @xwise = @xwise.split()
@@ -226,7 +227,7 @@ class RosyIterator
   #
   # get the column names used for determining the groups
   #
-  # returns: an array of strings, ["frame"] or ["frame", "target"], 
+  # returns: an array of strings, ["frame"] or ["frame", "target"],
   # or ["target_pos"]
   def get_xwise_column_names()
     return @xwise
@@ -269,12 +270,12 @@ class RosyIterator
   # (or "*" for all columns) and a list of value restrictions
   # on the rows (ValueRestriction objects, equalities or inequalities
   # column_name = value, columnb_name != value), which may be omitted
-  # 
+  #
   # returns: DBView object
   # @param columns [Array] array:string, column names to include
   #   or string: "*" for all columns
   # @param value_restrictions [Array] array:ValueRestriction objects
-  def get_a_view_for_current_group(columns, value_restrictions = []) 
+  def get_a_view_for_current_group(columns, value_restrictions = [])
     get_a_view_for_group(@current_group, columns, value_restrictions)
   end
 
@@ -290,7 +291,7 @@ class RosyIterator
   # (or "*" for all columns) and a list of value restrictions
   # on the rows (ValueRestriction objects, equalities or inequalities
   # column_name = value, columnb_name != value), which may be omitted
-  # 
+  #
   # returns: DBView object
   # @param group [Hash] column(string)->value(object)
   #   describing the group
@@ -311,7 +312,7 @@ class RosyIterator
     # the second table
 
     # separate group column names into two groups
-    first_columns, second_columns = 
+    first_columns, second_columns =
          separate_into_1st_and_2nd_table_cols(group.keys)
 
     # make separate value restrictions for the two groups
@@ -323,12 +324,12 @@ class RosyIterator
         raise "Cannot use second table columns without second table"
       end
       value_restrictions.concat second_columns.map { |column_name|
-        ValueRestriction.new(@second_table.table_name + "." + column_name, 
+        ValueRestriction.new(@second_table.table_name + "." + column_name,
                              group[column_name],
                              "table_name_included" => true)
       }
     end
-  
+
     # get a view with the given columns, given value restrictions
     # plus add more value restrictions: must be the current group
     return get_a_view(columns,value_restrictions)
@@ -345,18 +346,18 @@ class RosyIterator
   # (or "*" for all columns) and a list of value restrictions
   # on the rows (ValueRestriction objects, equalities or inequalities
   # column_name = value, columnb_name != value), which may be omitted
-  # 
+  #
   # returns: DBView object
   def get_a_view(columns, # array:strings, list of column names
-		           # or string "*" (all columns)
-		 value_restrictions = []) # array: ValueRestriction objects 
+                           # or string "*" (all columns)
+                 value_restrictions = []) # array: ValueRestriction objects
                            # or [], nil for no restrictions
 
     if value_restrictions.nil?
       value_restrictions = []
     end
-    return get_a_view_aux(columns, value_restrictions, 
-                          "gold" => "gold", 
+    return get_a_view_aux(columns, value_restrictions,
+                          "gold" => "gold",
                           "dynamic_feature_list" => @dyn_gold_objects,
                           "standard_dyngold_id" => @standard_dyngold_id,
                           "sentence_id_feature" => "sentid")
@@ -387,7 +388,7 @@ class RosyIterator
   private
 
   ###
-  # given a list of column names, 
+  # given a list of column names,
   # separate them into first table and second table columns
   #
   # columns may be either an array of string (column names)
@@ -440,10 +441,10 @@ class RosyIterator
 
 
     # and get a view
-    return DBView.new(tables_and_cols, 
-		      value_restrictions + @standard_value_restrictions, 
+    return DBView.new(tables_and_cols,
+                      value_restrictions + @standard_value_restrictions,
                       @ttt_obj.database,
-		      var_hash)
+                      var_hash)
   end
 
 end

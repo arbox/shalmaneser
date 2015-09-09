@@ -21,7 +21,8 @@ require "common/prep_config_data"
 # Rosy packages
 require "rosy/FailedParses"
 require "rosy/FeatureInfo"
-require "common/RosyConventions"
+# require "common/RosyConventions"
+require 'rosy/var_var_restriction'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
@@ -30,8 +31,8 @@ require "rosy/View"
 class RosySplit < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     #####
     # In enduser mode, this whole task is unavailable
@@ -58,7 +59,7 @@ class RosySplit < RosyTask
       when "--logID"
         @splitID = arg
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
+        # this is an option that is okay but has already been read and used by rosy.rb
       end
     end
 
@@ -130,9 +131,9 @@ class RosySplit < RosyTask
   #
   # returns: VarVarRestriction object
   def RosySplit.make_join_restriction(splitID,  # string: splitlogID
-				      table,    # DBtable object
-				      dataset,  # string: "train", "test"
-				      ttt_obj)  # RosyTrainingTestTable object
+                                      table,    # DBtable object
+                                      dataset,  # string: "train", "test"
+                                      ttt_obj)  # RosyTrainingTestTable object
 
     return VarVarRestriction.new(table.table_name + "." + table.index_name,
                                  ttt_obj.splittable_name(splitID, dataset) + "." + RosySplit.split_index_colname())

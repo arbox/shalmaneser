@@ -11,7 +11,8 @@
 require "common/ruby_class_extensions"
 
 require "rosy/RosyFeatureExtractors"
-require "common/RosyConventions"
+# require "common/RosyConventions"
+require 'common/value_restriction'
 require "rosy/rosy_config_data"
 require "rosy/RosyIterator"
 
@@ -84,9 +85,9 @@ end
 
 
 #######################3
-# Pruning: 
-# packaging all methods that will be needed to 
-# implement it, 
+# Pruning:
+# packaging all methods that will be needed to
+# implement it,
 # given that the xp_prune feature defined above
 # has been computed for each constituent during featurization.
 class Pruning
@@ -110,14 +111,14 @@ class Pruning
       return exp.get("prune")
     else
       return nil
-    end               
+    end
   end
 
   ###
-  # make ValueRestriction according to the pruning option set in 
+  # make ValueRestriction according to the pruning option set in
   # the experiment file:
   #       WHERE <pruning_column_name> = 1
-  # where <pruning_column_name> is the name of one of the 
+  # where <pruning_column_name> is the name of one of the
   # pruning features defined above, the same name that has
   # been set as the value of the pruning parameter in the experiment file
   #
@@ -133,10 +134,10 @@ class Pruning
 
   ###
   # given the name of a DB table column and an iterator that
-  # iterates over some data, 
+  # iterates over some data,
   # assuming that the column describes some classifier run results,
   # choose all rows where the pruning column is 0 (i.e. all instances
-  # that have been pruned away) and set the value of the given column 
+  # that have been pruned away) and set the value of the given column
   # to noval for them all, marking them as "not assigned any role".
   def Pruning.integrate_pruning_into_run(run_column, # string: run column name
                                          iterator,   # RosyIterator object
@@ -145,11 +146,11 @@ class Pruning
       # no pruning activated
       return
     end
-                          
+
     iterator.each_group { |group_descr_hash, group|
       # get a view of all instances for which prune == 0, i.e. that have been pruned away
       view = iterator.get_a_view_for_current_group(
-                                                   [run_column], 
+                                                   [run_column],
                                                    [ValueRestriction.new(Pruning.colname(exp), 0)]
                                                    )
       # make a list of column values that are all noval
