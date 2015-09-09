@@ -3,6 +3,7 @@ require "tempfile"
 require "delegate"
 
 require "fred/FredFeatureExtractors"
+require 'fred/FredConventions' # !
 
 ########################################
 ########################################
@@ -16,7 +17,7 @@ class AbstractFredFeatureAccess
     @exp = exp
     @dataset = dataset
     @mode = mode
-    
+
     unless ["r", "w", "a"].include? @mode
       $stderr.puts "FeatureAccess: unknown mode #{@mode}."
       exit 1
@@ -38,7 +39,7 @@ class AbstractFredFeatureAccess
                  features) # features: hash feature type-> features (string-> array:string)
     raise "overwrite me"
   end
-                 
+
 
   def flush()
     raise "overwrite me"
@@ -78,7 +79,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
 
   ####
   def MetaFeatureAccess.filename(exp, dataset, mode="new")
-    return fred_dirname(exp, dataset, "meta_features", mode) +
+    return Fred.fred_dirname(exp, dataset, "meta_features", mode) +
       "meta_features.txt.gz"
   end
 
@@ -119,7 +120,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
         #
         # format of line:
         #    feature_type: feature feature feature ...
-        # as in 
+        # as in
         #    CH: SB#expansion#expansion#NN# OA#change#change#NN#
         unless lemma
           $stderr.puts "MetaFeatureAccess error: unexpected leading whitespace"
@@ -129,7 +130,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
         end
 
         feature_type, *features = line.split()
-        
+
         unless feature_type =~ /^(.*):$/
           # feature type should end in ":"
           $stderr.puts "MetaFeatureAccess error: feature type should end in ':' but doesn't"
@@ -139,14 +140,14 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
         end
 
         feature_hash[feature_type[0..-2]] = features
-         
-        
+
+
       else
         # first line of item.
         #
         # format:
         # lemma POS IDs sid senses
-        # 
+        #
         # as in:
         # cause verb 2-651966_8 2-651966 Causation
 
@@ -248,20 +249,20 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
   ####
   def FredFeatureAccess.remove_feature_files(exp, dataset)
-    
+
     # remove feature files
     WriteFeaturesNaryOrBinary.remove_files(exp, dataset)
 
     # remove key files
     AnswerKeyAccess.remove_files(exp, dataset)
   end
-  
+
   ###
   def  FredFeatureAccess.legend_filename(lemmapos)
     return "fred.feature_legend.#{lemmapos}"
   end
 
-  ### 
+  ###
   def FredFeatureAccess.feature_dir(exp, dataset)
     return WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
   end
@@ -279,14 +280,14 @@ class FredFeatureAccess < AbstractFredFeatureAccess
   def FredFeatureAccess.each_feature_file(exp, dataset)
     feature_dir = FredFeatureAccess.feature_dir(exp, dataset)
     Dir[feature_dir + "*"].sort().each { |filename|
-      if (values = deconstruct_fred_feature_filename(filename))
+      if (values = Fred.deconstruct_fred_feature_filename(filename))
         yield [filename, values]
       end
     }
   end
 
   ###
-  # write item: 
+  # write item:
   # - transform meta-features into actual features as requested
   #   in the experiment file
   # - write item to tempfile, don't really write yet
@@ -319,13 +320,13 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
     # modified by ines, 19.7.2010
     # senses should be empty, but they are not - why?
-    if senses.length == 1 and senses[0].eql? "" 
-	senses = "NONE" 
+    if senses.length == 1 and senses[0].eql? ""
+        senses = "NONE"
     end
 
-    writer = @w_tmp.get_writer_for(fred_lemmapos_combine(lemma, pos))
+    writer = @w_tmp.get_writer_for(Fred.fred_lemmapos_combine(lemma, pos))
     ids_s = ids.map { |i| i.gsub(/:/, "COLON") }.join("::")
-    
+
     # AB: Ines modified <senses> and it can be a String.
     # That's corrected, but I do not guarantee the correct results.
     if senses.respond_to? :map
@@ -350,22 +351,22 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       exit 1
     end
 
-    # elements in the feature vector: get fixed with the training data, 
+    # elements in the feature vector: get fixed with the training data,
     # get read with the test data.
     # get stored in feature_legend_dir
     case @dataset
     when "train"
-      feature_legend_dir = File.new_dir(fred_classifier_directory(@exp), 
+      feature_legend_dir = File.new_dir(Fred.fred_classifier_directory(@exp),
                                         "legend")
     when "test"
-      feature_legend_dir= File.existing_dir(fred_classifier_directory(@exp), 
+      feature_legend_dir= File.existing_dir(Fred.fred_classifier_directory(@exp),
                                         "legend")
-    end      
+    end
 
     # now really write features
-    @w_tmp.flush()
+    @w_tmp.flush
     @w_tmp.get_lemmas().sort().each { |lemmapos|
-   
+
       # inform user
       $stderr.puts "Writing #{lemmapos}..."
 
@@ -374,7 +375,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
       case @dataset
       when "train"
-        # training data: 
+        # training data:
         # determine feature list and sense list from the data,
         # and store in the relevant file
         feature_list, sense_list = collect_feature_list(lemmapos)
@@ -391,7 +392,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       when "test"
         # test data:
         # read feature list and sense list from the relevant file
-      
+
         begin
           f = File.new(legend_filename)
         rescue
@@ -412,21 +413,21 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
       obj_out = WriteFeaturesNaryOrBinary.new(lemmapos, @exp, @dataset)
 
-      f.each { |line| 
+      f.each { |line|
 
         lemma, pos, ids, sid, senses, features = parse_temp_itemline(line)
-        unless lemma 
+        unless lemma
           # something went wrong in parsing the line
           next
         end
         each_sensegroup(senses, sense_list) { |senses_for_item, original_senses|
           # write answer key
-          answer_obj.write_line(lemma, pos, 
+          answer_obj.write_line(lemma, pos,
                                 ids, sid, original_senses, senses_for_item)
 
           # write item: features, senses
-	  obj_out.write_instance(to_feature_list(features, feature_list),
-				 senses_for_item)
+          obj_out.write_instance(to_feature_list(features, feature_list),
+                                 senses_for_item)
         } # each sensegroup
       } # each input line
       obj_out.close()
@@ -471,17 +472,17 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       num_lines += 1
       senses.each { |s| all_senses[s] = true }
       features_this_instance.clear()
-      features.each { |fea| 
-        features_this_instance[fea] += 1 
+      features.each { |fea|
+        features_this_instance[fea] += 1
         num_occ[fea] += 1
       }
-      
+
       features_this_instance.each_pair { |feature, value|
         all_features[feature] = [ all_features[feature], features_this_instance[feature] ].max()
       }
     }
 
-    # HIER 
+    # HIER
     # if num_lines > 2
     #  num_occ.each_pair { |feature, num_occ|
     #    if num_occ < 2
@@ -489,12 +490,12 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     #    end
     #  }
     # end
-    
+
 
 
     case @exp.get("numerical_features")
     when "keep"
-      # leave numerical features as they are, or 
+      # leave numerical features as they are, or
       # don't do numerical features
       return [ all_features.keys().sort(),
                all_senses.keys().sort()
@@ -505,11 +506,11 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       # into N binary features
       feature_list = Array.new()
       all_features.keys().sort().each { |feature|
-        all_features[feature].times() { |index| 
-          feature_list << feature + " #{index}/#{all_features[feature]}" 
+        all_features[feature].times() { |index|
+          feature_list << feature + " #{index}/#{all_features[feature]}"
         }
       }
-      return [ feature_list, 
+      return [ feature_list,
                all_senses.keys().sort()
              ]
 
@@ -520,7 +521,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       all_features.keys().sort().each { |feature|
         num_bins_this_feature = (all_features[feature].to_f() / 10.0).ceil().to_i()
 
-        num_bins_this_feature.times { |index| 
+        num_bins_this_feature.times { |index|
           feature_list << feature  + " #{index}/#{num_bins_this_feature}"
         }
       }
@@ -537,7 +538,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
   # given a full sorted list of items and a partial list of items,
   # match the partial list to the full list,
   # that is, produce as many items as the full list has
-  # yielding 0 where the partial entry is not in the full list, 
+  # yielding 0 where the partial entry is not in the full list,
   # and > 0 otherwise
   #
   # Note that if partial contains items not in full,
@@ -583,7 +584,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
         else
           0
         end
-      }    
+      }
 
     when "bin"
       # group numerical feature values into N bins.
@@ -626,7 +627,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     when "keep"
       yield [senses, senses]
     when "join"
-      yield [ [fred_join_senses(senses)], senses]
+      yield [ [Fred.fred_join_senses(senses)], senses]
     when "repeat"
       senses.each { |s|
         yield [ [s], senses]
@@ -652,7 +653,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       $stderr.puts ">>#{line}<<"
       return nil
     end
-    
+
     ids = ids_s.split("::").map { |i| i.gsub(/COLON/, ":") }
     senses = senses_s.split("::").map { |s| s.gsub(/COLON/, ":") }
 
@@ -678,9 +679,9 @@ class AnswerKeyAccess
     end
 
     @mode = mode
-    
-    answer_filename = fred_dirname(exp, dataset, "keys", "new") +
-      fred_answerkey_filename(lemmapos)
+
+    answer_filename = Fred.fred_dirname(exp, dataset, "keys", "new") +
+      Fred.fred_answerkey_filename(lemmapos)
 
     # are we reading the whole answer key file, or only the test part
     # of a split of it?
@@ -726,7 +727,7 @@ class AnswerKeyAccess
     unless @f
       raise "Shouldn't be here"
     end
-    
+
     # write answer key:
     # lemma POS ID senses
     if senses.include? nil or senses.include? ""
@@ -737,7 +738,7 @@ class AnswerKeyAccess
     end
 
     senses_s = senses.map { |s| s.gsub(/,/, "COMMA")}.join(",")
-    senses_ti_s = senses_this_item.map { |s| 
+    senses_ti_s = senses_this_item.map { |s|
       s.gsub(/,/, "COMMA")}.join(",")
     id_s = ids.map { |i| i.gsub(/:/, "COLON") }.join("::")
 
@@ -771,13 +772,13 @@ class AnswerKeyAccess
   end
 
   ###
-  def close()
-    @f.close()
+  def close
+    @f.close
   end
 
   ###
   def AnswerKeyAccess.remove_files(exp, dataset)
-    Dir[fred_dirname(exp, dataset, "keys", "new") + fred_answerkey_filename("*")].each { |filename|
+    Dir[Fred.fred_dirname(exp, dataset, "keys", "new") + Fred.fred_answerkey_filename("*")].each { |filename|
       if File.exists?(filename)
         File.delete(filename)
       end
@@ -824,7 +825,7 @@ class AuxKeepWriters
       return nil
     end
   end
-  
+
   ##
   # finally close temp file, remove information for lemma/pos
   def discard(lemmapos)
@@ -853,11 +854,11 @@ class AuxKeepWriters
     # @writers list
     writer = @lemma2temp[lemmapos]
     writer.open()
-    
+
 
     # writer: open for appending
     writer.seek(0, IO::SEEK_END)
-   
+
 
     @writers << [lemmapos, writer]
     if @writers.length() > @size
@@ -881,7 +882,7 @@ end
 # either lemma-wise
 # or lemma+sense-wise
 # if lemma+sense-wise, write as binary classifier,
-# i.e. map the target senses 
+# i.e. map the target senses
 #
 # Use Delegator.
 
@@ -889,11 +890,11 @@ end
 # Features for N-ary classifiers
 class WriteFeaturesNary
   def initialize(lemma,
-		 exp,
-		 dataset,
-		 feature_dir)
+                 exp,
+                 dataset,
+                 feature_dir)
 
-    @filename = feature_dir + fred_feature_filename(lemma)
+    @filename = feature_dir + Fred.fred_feature_filename(lemma)
     @f = File.new(@filename, "w")
     @handle_multilabel = exp.get("handle_multilabel")
   end
@@ -906,7 +907,7 @@ class WriteFeaturesNary
 
     # possibly more than one sense? then use semicolon to separate
     if @handle_multilabel == "keep"
-      # possibly more than one sense: 
+      # possibly more than one sense:
       # separate by semicolon,
       # and hope that the classifier knows this
       @f.print ";"
@@ -929,9 +930,9 @@ end
 # Features for binary classifiers
 class WriteFeaturesBinary
   def initialize(lemma,
-		 exp,
-		 dataset,
-		 feature_dir)
+                 exp,
+                 dataset,
+                 feature_dir)
     @dir = feature_dir
     @lemma = lemma
     @feature_dir = feature_dir
@@ -978,13 +979,13 @@ class WriteFeaturesBinary
       # do we have a sense file for this sense?
       unless @files[sense]
         # open new file for this sense
-        @files[sense] = File.new(@feature_dir + fred_feature_filename(@lemma, sense, true), "w")
-        # filename = @feature_dir + fred_feature_filename(@lemma, sense, true)
+        @files[sense] = File.new(@feature_dir + Fred.fred_feature_filename(@lemma, sense, true), "w")
+        # filename = @feature_dir + Fred.fred_feature_filename(@lemma, sense, true)
         # $stderr.puts "Starting new feature file #{filename}"
 
         # and re-write all previous instances for it
         @instances.each { |prev_features, prev_senses|
-          write_to_sensefile(prev_features, prev_senses, 
+          write_to_sensefile(prev_features, prev_senses,
                              sense)
         }
       end
@@ -993,7 +994,7 @@ class WriteFeaturesBinary
 
   ###
   def write_to_sensefile(features, senses,
-			 sense_of_file)
+                         sense_of_file)
     # file to write to
     f = @files[sense_of_file]
 
@@ -1021,9 +1022,9 @@ end
 # delegating to either a binary or an n-ary writer
 class WriteFeaturesNaryOrBinary < SimpleDelegator
   ###
-  def initialize(lemma, 
-		 exp,
-		 dataset)
+  def initialize(lemma,
+                 exp,
+                 dataset)
     feature_dir = WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
     if exp.get("binary_classifiers")
       # binary classifiers
@@ -1045,16 +1046,16 @@ class WriteFeaturesNaryOrBinary < SimpleDelegator
 
   def WriteFeaturesNaryOrBinary.feature_dir(exp, dataset,
                                             mode = "existing")
-    return fred_dirname(exp, dataset, "features", mode)
+    return Fred.fred_dirname(exp, dataset, "features", mode)
   end
 
   ###
   def WriteFeaturesNaryOrBinary.remove_files(exp, dataset)
     feature_dir = WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
 
-    Dir[feature_dir + fred_feature_filename("*")].each { |filename|
+    Dir[feature_dir + Fred.fred_feature_filename("*")].each { |filename|
       if File.exists? filename
-	File.delete(filename)
+        File.delete(filename)
       end
     }
   end

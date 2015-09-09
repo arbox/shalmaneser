@@ -6,15 +6,15 @@
 #  construct text and graphical output
 
 # Salsa packages
-require "PlotAndREval"
+require 'fred/PlotAndREval'
 
 # Fred packages
-require "FredConfigData"
-require "FredConventions"
-require "FredSplit"
-require "FredTrain"
-require "FredTest"
-require "FredEval"
+require 'fred/FredConfigData'
+require 'fred/FredConventions' # !
+require 'fred/FredSplit'
+require 'fred/FredTrain'
+require 'fred/FredTest'
+require 'fred/FredEval'
 
 require 'common/EnduserMode'
 
@@ -279,7 +279,7 @@ class FredParameters
     ##
     # make a split of the training data
     begin
-      feature_dir =  fred_dirname(@exp, "train", "features")
+      feature_dir =  Fred.fred_dirname(@exp, "train", "features")
     rescue
       $stderr.puts "To experiment with system parameters, please first featurize training data."
       exit 1

@@ -20,7 +20,7 @@ require 'common/EnduserMode'
 
 # Fred packages
 require "fred/fred_config_data"
-require "fred/FredConventions"
+require 'fred/FredConventions' # !
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"
 
@@ -48,7 +48,7 @@ class FredEval < Eval
 
         @split_id = arg
       when "--printLog"
-        logfilename = fred_dirname(@exp, "eval", "log", "new") +
+        logfilename = Fred.fred_dirname(@exp, "eval", "log", "new") +
                       "eval_logfile.txt"
 
       else
@@ -58,7 +58,7 @@ class FredEval < Eval
 
     ###
     # make outfile name
-    outfilename =  fred_dirname(@exp, "eval", "eval", "new") +
+    outfilename =  Fred.fred_dirname(@exp, "eval", "eval", "new") +
                    "eval.txt"
 
     ###
@@ -107,7 +107,7 @@ class FredEval < Eval
       $stderr.puts "Allowing for the assignment of multiple senses,"
       $stderr.puts "computing precision and recall against the full sense list of a lemma."
     end
-    $stderr.puts "Writing result to #{fred_dirname(@exp, "eval", "eval")}"
+    $stderr.puts "Writing result to #{Fred.fred_dirname(@exp, "eval", "eval")}"
     $stderr.puts "---------"
   end
 
@@ -125,7 +125,7 @@ class FredEval < Eval
   def each_group
 
     # access to classifier output files
-    output_dir = fred_dirname(@exp, "output", "tab")
+    output_dir = Fred.fred_dirname(@exp, "output", "tab")
     # access to answer key files
 
     if @split_id
@@ -144,7 +144,7 @@ class FredEval < Eval
 
       # file with classification results
       begin
-        @classfile = File.new(output_dir + fred_result_filename(lemma))
+        @classfile = File.new(output_dir + Fred.fred_result_filename(lemma))
       rescue
         # no classification results
         @classfile = nil
@@ -222,7 +222,7 @@ class FredEval < Eval
           # we have a sense label
           if @handle_multilabel == "join"
             # split up joined senses
-            current_sense = fred_split_sense(entry)
+            current_sense = Fred.fred_split_sense(entry)
           else
             current_sense = [entry]
           end

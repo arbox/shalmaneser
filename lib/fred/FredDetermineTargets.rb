@@ -2,8 +2,7 @@ require "fred/FileZipped"
 
 require "fred/fred_config_data"
 require "common/SynInterfaces"
-require "fred/FredConventions"
-
+require 'fred/FredConventions' # !
 
 ########################################
 # target determination classes:
@@ -26,7 +25,7 @@ class Targets
 
     # write target info in the classifier directory.
     # This is _not_ dependent on a potential split ID
-    @dir = File.new_dir(fred_classifier_directory(@exp), "targets")
+    @dir = File.new_dir(Fred.fred_classifier_directory(@exp), "targets")
 
     @targets_okay = true
     case mode
@@ -76,7 +75,7 @@ class Targets
   # returns:
   #  hash: target_IDs -> list of senses
   #   where target_IDs is a pair [list of terminal IDs, main terminal ID]
-  #  
+  #
   #  where a sense is represented as a hash:
   #  "sense": sense, a string
   #  "obj":   FrameNode object
@@ -95,14 +94,13 @@ class Targets
 
   ##
   # access to lemmas and POS, returns a list of pairs [lemma, pos] (string*string)
-  def get_lemma_pos()
-
-    return @targets.keys().map { |lemmapos| fred_lemmapos_separate(lemmapos) }
+  def get_lemma_pos
+    @targets.keys.map { |lemmapos| Fred.fred_lemmapos_separate(lemmapos) }
   end
 
   ##
   # access to senses
-  def get_senses(lemmapos) # string, result of fred_lemmapos_combine 
+  def get_senses(lemmapos) # string, result of fred_lemmapos_combine
     @targets[lemmapos] ? @targets[lemmapos] : []
   end
 
@@ -125,16 +123,16 @@ class Targets
 
   ###############################
   protected
-  
+
   ##
   # record: record occurrence of a lemma/sense pair
   # <@targets> data structure
-  def record(target_info) 
-    lemmapos = fred_lemmapos_combine(target_info["lex"], target_info["pos"])
+  def record(target_info)
+    lemmapos = Fred.fred_lemmapos_combine(target_info["lex"], target_info["pos"])
     unless @targets[lemmapos]
       @targets[lemmapos] = []
     end
- 
+
     unless @targets[lemmapos].include? target_info["sense"]
       @targets[lemmapos] << target_info["sense"]
     end
@@ -150,7 +148,7 @@ class FindTargetsFromFrames < Targets
   # returns:
   #  hash: target_IDs -> list of senses
   #   where target_IDs is a pair [list of terminal IDs, main terminal ID]
-  #  
+  #
   #  where a sense is represented as a hash:
   #  "sense": sense, a string
   #  "obj":   FrameNode object
@@ -162,7 +160,7 @@ class FindTargetsFromFrames < Targets
     st_sent.each_frame { |frame_obj|
       # instance-specific computation:
       # target and target positions
-      # WARNING: at this moment, we are 
+      # WARNING: at this moment, we are
       # not considering true multiword targets for German.
       # Remove the "no_mwe" parameter in main_node_of_expr
       # to change this
@@ -242,12 +240,12 @@ class FindAllTargets < Targets
     get_senses(@training_lemmapos_pairs)
     # list of words to exclude from assignment, for now
     @stoplemmas = [
-                   "have", 
-                   "do", 
+                   "have",
+                   "do",
                    "be"
                    #      "make"
                   ]
-  
+
   end
 
   ####
@@ -255,7 +253,7 @@ class FindAllTargets < Targets
   # returns:
   #  hash: target_IDs -> list of senses
   #   where target_IDs is a pair [list of terminal IDs, main terminal ID]
-  #  
+  #
   #  where a sense is represented as a hash:
   #  "sense": sense, a string
   #  "obj":   FrameNode object
@@ -281,15 +279,15 @@ class FindAllTargets < Targets
 
 #	print "lemma ", lemma, " pos ", pos, "\n"
 #      reg = /\.[ANV]/
-#      if !reg.match(lemma) 
-#        if /verb/.match(pos) 
+#      if !reg.match(lemma)
+#        if /verb/.match(pos)
 #          lemma = lemma + ".V"
-#        elsif /noun/.match(pos) 
+#        elsif /noun/.match(pos)
 #          lemma = lemma + ".N"
-#        elsif /adj/.match(pos) 
+#        elsif /adj/.match(pos)
 #          lemma = lemma + ".A"
 #        end
-#        print "LEMMA ", lemma, " POS ", pos, "\n" 
+#        print "LEMMA ", lemma, " POS ", pos, "\n"
 #      end
 
       if (@training_lemmapos_pairs.include? [lemma, pos] and
@@ -299,7 +297,7 @@ class FindAllTargets < Targets
           key = [ [ node.id() ], node.id() ]
 
           # take this as a target.
-          retv[ key ] = [ 
+          retv[ key ] = [
                          {
                            "sense" => nil,
                            "obj" => nil,
@@ -316,4 +314,3 @@ class FindAllTargets < Targets
     return retv
   end
 end
-

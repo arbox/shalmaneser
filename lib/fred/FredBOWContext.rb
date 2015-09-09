@@ -7,13 +7,14 @@ require "common/TabFormat"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
-# require "common/RosyConventions"
+# require 'common/RosyConventions'
 require 'common/value_restriction'
 require 'db/select_table_and_columns'
 
 require 'fred/md5'
 require "fred/fred_config_data"
-require "fred/FredConventions"
+require 'fred/FredConventions' # !
+require 'fred/word_lemma_pos_ne'
 require "fred/FredDetermineTargets"
 
 require 'db/db_interface'
@@ -670,9 +671,9 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # make unique experiment ID
     experiment_id = "larger_corpus"
     # input and output directory for frprep
-    frprep_in = fred_dirname(@exp, "temp", "in", "new")
-    frprep_out = fred_dirname(@exp, "temp", "out", "new")
-    frprep_dir = fred_dirname(@exp, "temp", "frprep", "new")
+    frprep_in = Fred.fred_dirname(@exp, "temp", "in", "new")
+    frprep_out = Fred.fred_dirname(@exp, "temp", "out", "new")
+    frprep_dir = Fred.fred_dirname(@exp, "temp", "frprep", "new")
 
     # write file:
 

@@ -30,7 +30,8 @@ require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 
 require 'fred/fred_config_data'
-require 'fred/FredConventions'
+require 'fred/FredConventions' # !
+require 'fred/word_lemma_pos_ne'
 require 'common/prep_helper'
 require 'common/SynInterfaces'
 
@@ -278,7 +279,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
                                         @interpreter_class, target_obj, @dataset)
     end
 
-    zipped_input_dir = fred_dirname(@exp, @dataset, "input_data", "new")
+    zipped_input_dir = Fred.fred_dirname(@exp, @dataset, "input_data", "new")
 
     ##
     # make writer object(s)

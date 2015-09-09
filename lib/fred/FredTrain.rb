@@ -7,7 +7,7 @@ require "common/ruby_class_extensions"
 
 
 # Shalmaneser packages
-require "fred/FredConventions"
+require 'fred/FredConventions' # !
 require "common/ML"
 require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
@@ -83,8 +83,7 @@ class FredTrain
   # compute
   #
   # do the training
-  def compute()
-
+  def compute
     if @split_id
       # make split object and parameter hash to pass to it
       split_obj = FredSplitPkg.new(@exp)
@@ -92,7 +91,7 @@ class FredTrain
       split_obj = nil
     end
 
-    classif_dir = fred_classifier_directory(@exp, @split_id)
+    classif_dir = Fred.fred_classifier_directory(@exp, @split_id)
     # iterate through instance files
     FredFeatureAccess.each_feature_file(@exp, "train") { |filename, values|
       # progress report
@@ -122,7 +121,7 @@ class FredTrain
 
         @classifiers.each { |classifier, classifier_name|
           # where do we write the classifier?
-          output_name = classif_dir + fred_classifier_filename(classifier_name,
+          output_name = classif_dir + Fred.fred_classifier_filename(classifier_name,
                                                                values["lemma"],
                                                                values["sense"])
           # HIER

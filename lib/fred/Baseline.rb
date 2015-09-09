@@ -5,7 +5,7 @@
 # always assign most frequent sense
 # The baseline doesn't do binary classifiers.
 
-require "fred/FredConventions"
+require 'fred/FredConventions' # !
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"
@@ -19,7 +19,7 @@ class Baseline
   # at test time
   #
   def initialize(exp, # FredConfigData object
-		 split_id = nil) # string: split ID
+                 split_id = nil) # string: split ID
     @exp = exp
     @split_id = split_id
 
@@ -69,11 +69,13 @@ class Baseline
   end
 
   ###
+  # @todo DELETE IT!
   def train(infilename)
     # no training here
   end
 
   ###
+  # @todo DELETE IT!
   def write(classifier_file)
     # no classifiers to write
   end
@@ -83,7 +85,7 @@ class Baseline
   end
 
   def read(classifier_file)
-    values = deconstruct_fred_classifier_filename(File.basename(classifier_file))
+    values = Fred.deconstruct_fred_classifier_filename(File.basename(classifier_file))
     @lemma = values["lemma"]
     if @lemma
       return true
@@ -93,9 +95,8 @@ class Baseline
     end
   end
 
-
   def read_resultfile(filename)
-    retv = Array.new()
+    retv = []
     begin
       f = File.new(filename)
     rescue

@@ -19,7 +19,7 @@ require "common/ruby_class_extensions"
 # Shalmaneser packages
 require "common/ML"
 require "fred/Baseline"
-require "fred/FredConventions"
+require 'fred/FredConventions' # !
 require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"
@@ -77,7 +77,7 @@ class FredTest
       if @exp.get("directory_output")
         $stderr.puts @exp.get("directory_output")
       else
-        $stderr.puts fred_dirname(@exp, "output", "stxml", "new")
+        $stderr.puts Fred.fred_dirname(@exp, "output", "stxml", "new")
       end
     end
     $stderr.puts "---------"
@@ -123,7 +123,7 @@ class FredTest
   #
   # classify test instances,
   # write output to file.
-  def compute()
+  def compute
     if @split_id
       # make split object and parameter hash to pass to it.
       # read feature data from training feature directory.
@@ -134,8 +134,8 @@ class FredTest
       dataset = "test"
     end
 
-    output_dir = fred_dirname(@exp, "output", "tab", "new")
-    classif_dir = fred_classifier_directory(@exp, @split_id)
+    output_dir = Fred.fred_dirname(@exp, "output", "tab", "new")
+    classif_dir = Fred.fred_classifier_directory(@exp, @split_id)
 
     ###
     # remove old classifier output files
@@ -189,11 +189,11 @@ class FredTest
         senses_and_filenames.each { |sense, filename|
           @classifiers.each { |classifier, classifier_name|
             if @exp.get("binary_classifiers") and \
-              classifier.exists? classif_dir + fred_classifier_filename(classifier_name,
+              classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
                                                                         lemma, sense)
               found += 1
             elsif not(@exp.get("binary_classifiers")) and\
-              classifier.exists? classif_dir + fred_classifier_filename(classifier_name,
+              classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
                                                                         lemma)
               found += 1
             end
@@ -269,7 +269,7 @@ tried to apply n-ary ones (or vice versa.)
           classifiers_read_okay = true
           @classifiers.each { |classifier, classifier_name|
 
-            stored_classifier = classif_dir +  fred_classifier_filename(classifier_name,
+            stored_classifier = classif_dir + Fred.fred_classifier_filename(classifier_name,
                                                                       lemma, sense)
             status = classifier.read(stored_classifier)
             unless status
@@ -304,7 +304,7 @@ tried to apply n-ary ones (or vice versa.)
       # if we have binary classifiers, join.
       results_this_lemma = join_binary_classifier_results(results_this_lemma)
 
-      outfilename = output_dir + fred_result_filename(lemma)
+      outfilename = output_dir + Fred.fred_result_filename(lemma)
       begin
         outfile = File.new(outfilename, "w")
       rescue
@@ -488,7 +488,7 @@ tried to apply n-ary ones (or vice versa.)
     if @exp.get("directory_output")
       output_dir = File.new_dir(@exp.get("directory_output"))
     else
-      output_dir = fred_dirname(@exp, "output", "stxml", "new")
+      output_dir = Fred.fred_dirname(@exp, "output", "stxml", "new")
     end
 
     $stderr.puts "Writing SalsaTigerXML output to #{output_dir}"
@@ -502,7 +502,7 @@ tried to apply n-ary ones (or vice versa.)
     }
 
     # input directory: where we stored the zipped input files
-    input_dir = fred_dirname(@exp, "test", "input_data")
+    input_dir = Fred.fred_dirname(@exp, "test", "input_data")
 
     ##
     # map results to target IDs, using answer key files
