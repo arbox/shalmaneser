@@ -6,11 +6,11 @@
 # All edges are labeled and directed
 #
 # The add_parent, add_child, remove_parent, remove_child methods
-# take care of both ends of an edge 
+# take care of both ends of an edge
 # (i.e. n1.add_child(n2, label) also adds n1 as parent of n2 with edge label 'label'
 #
 # It is possible to create a 'pointer' rather than an edge:
-#     n1.add_child(n2, label, pointer_insteadof_edge => true) 
+#     n1.add_child(n2, label, pointer_insteadof_edge => true)
 # will create an edge from n1 to n2 labeled 'label' that is
 # listed under the outgoing edges of n1, but not among
 # the incoming edges of n2
@@ -20,33 +20,32 @@ class GraphNode
 
   def initialize(id)
     @id = id
-    @children = Array.new
-    @parents = Array.new
-    @features = Hash.new
+    @children = []
+    @parents =  []
+    @features = {}
   end
 
-  # for Marshalling: 
+  # for Marshalling:
   # Dump just IDs instead of actual nodes from Parents and Children lists.
   # Otherwise the Marshaller will go crazy following
   # all the links to objects mentioned.
   # After loading: replace IDs by actual objects with a little help
   # from the caller.
-
   def _dump(depth)
     @id.to_s +
       "QQSEPVALUESQQ" +
       Marshal.dump(@features) +
       "QQSEPVALUESQQ" +
-      @children.map { |label_child| 
-        label_child[0] + "QQSEPQQ" + label_child[1].id()
+      @children.map { |label_child|
+        label_child[0] + "QQSEPQQ" + label_child[1].id
       }.join("QQPAIRQQ") +
       "QQSEPVALUESQQ" +
       @parents.map { |label_parent|
-        label_parent[0] + "QQSEPQQ" + label_parent[1].id()
-    }.join("QQPAIRQQ")      
+        label_parent[0] + "QQSEPQQ" + label_parent[1].id
+    }.join("QQPAIRQQ")
   end
 
-  def GraphNode._load(string)
+  def self._load(string)
     id, features_s, children_s, parents_s =
       string.split("QQSEPVALUESQQ")
 
@@ -56,24 +55,23 @@ class GraphNode
   end
 
   def fill_from_pickle(string)
-    id, features_s, children_s, parents_s =
-      string.split("QQSEPVALUESQQ")
+    _id, features_s, children_s, parents_s = string.split("QQSEPVALUESQQ")
 
     @features = Marshal.load(features_s)
 
-    if children_s.nil? or children_s.empty?
+    if children_s.nil? || children_s.empty?
       @children = []
     else
-      @children = children_s.split("QQPAIRQQ").map { |pair|
-	pair.split("QQSEPQQ")
-      }
+      @children = children_s.split("QQPAIRQQ").map do |pair|
+        pair.split("QQSEPQQ")
+      end
     end
 
-    if parents_s.nil? or parents_s.empty?
+    if parents_s.nil? || parents_s.empty?
       @parents = []
     else
       @parents = parents_s.split("QQPAIRQQ").map { |pair|
-	pair.split("QQSEPQQ")
+        pair.split("QQSEPQQ")
       }
     end
   end
@@ -84,16 +82,15 @@ class GraphNode
   end
 
   # ID-related things
-
   def ==(other_node)
-    unless other_node.kind_of? GraphNode
+    unless other_node.is_a?(GraphNode)
       return false
     end
-    @id == other_node.id()
+    @id == other_node.id
   end
 
-  def id()
-    return @id
+  def id
+    @id
   end
 
   def chid(newid)
@@ -116,48 +113,47 @@ class GraphNode
     end
     set_f(feature, value)
   end
-  
-  # ancestors 
 
-  def parents()
-    return @parents.map { |label_parent| 
-      label_parent[1] }
+  # ancestors
+
+  def parents
+    @parents.map { |label| label[1] }
   end
-  
-  def parent_labels()
-    return @parents.map { |label_parent| label_parent[0] }
+
+  def parent_labels
+    @parents.map { |label_parent| label_parent[0] }
   end
 
   def parent_label(parent)
     @parents.each { |label_parent|
-      if label_parent[1] == parent 
-	return label_parent[0]
+      if label_parent[1] == parent
+        return label_parent[0]
       end
     }
     return nil
   end
 
-  def parents_with_edgelabel()
-    return @parents
+  def parents_with_edgelabel
+    @parents
   end
 
-  def each_parent()
+  def each_parent
     @parents.each { |label_parent| yield label_parent[1] }
   end
 
-  def each_parent_with_edgelabel()
+  def each_parent_with_edgelabel
     @parents.each { |label_parent| yield label_parent}
   end
 
   def parents_by_edgelabels(labels)
-    return @parents.select { |label_parent|
+    @parents.select { |label_parent|
       labels.include? label_parent[0]
     }.map { |label_parent|
       label_parent[1]
     }
   end
 
-  def add_parent(parent, edgelabel, varhash={})
+  def add_parent(parent, edgelabel, varhash = {})
     @parents << [edgelabel, parent]
 
     # and vice versa: add self as child to parent
@@ -169,9 +165,9 @@ class GraphNode
   end
 
   def remove_parent(parent, edgelabel, varhash={})
-    @parents = @parents.reject { |label_child| 
+    @parents = @parents.reject { |label_child|
       label_child.first == edgelabel and
-	label_child.last == parent
+        label_child.last == parent
     }
 
     # and vice versa: remove self as child from parent
@@ -182,58 +178,59 @@ class GraphNode
     end
   end
 
-  def indeg()
-    return @parents.length()
+  def indeg
+    @parents.length
   end
 
   def ancestors
-    return ancestors_noduplicates([], [])
+    ancestors_noduplicates([], [])
   end
 
   def ancestors_by_edgelabels(labels)
-    return ancestors_noduplicates([], labels)
+    ancestors_noduplicates([], labels)
   end
 
   # descendants
 
-  def children()
-    return @children.map { |label_child| label_child[1] }
+  def children
+    @children.map { |label_child| label_child[1] }
   end
 
-  def child_labels()
-    return @children.map { |label_child| label_child[0] }
+  def child_labels
+    @children.map { |label_child| label_child[0] }
   end
 
   def child_label(child)
     @children.each { |label_child|
       if label_child[1] == child
-	return label_child[0]
+        return label_child[0]
       end
     }
-    return nil
+
+    nil
   end
 
-  def children_with_edgelabel()
-    return @children
+  def children_with_edgelabel
+    @children
   end
 
-  def each_child()
+  def each_child
     @children.each { |label_child| yield label_child[1]}
   end
 
-  def each_child_with_edgelabel()
-    @children.each { |label_child| yield label_child } 
+  def each_child_with_edgelabel
+    @children.each { |label_child| yield label_child }
   end
 
   def children_by_edgelabels(labels)
     return @children.select { |label_child|
-      labels.include? label_child[0] 
+      labels.include? label_child[0]
     }.map { |label_child|
       label_child[1]
     }
   end
 
-  def add_child(child, edgelabel, varhash={})
+  def add_child(child, edgelabel, varhash = {})
     @children << [edgelabel, child]
 
     # and vice versa: add self as parent to child
@@ -245,9 +242,9 @@ class GraphNode
   end
 
   def remove_child(child, edgelabel, varhash={})
-    @children = @children.reject { |label_child| 
+    @children = @children.reject { |label_child|
       label_child.first == edgelabel and
-	label_child.last == child
+        label_child.last == child
     }
 
     # and vice versa: remove self as parent from child
@@ -283,23 +280,23 @@ class GraphNode
     return @children.length()
   end
 
-  def yield_nodes()
-    arr = Array.new
-    if outdeg() == 0
+  def yield_nodes
+    arr = []
+    if outdeg == 0
       arr << self
     end
-    each_child { |c| 
-      if c.outdeg() == 0
-	arr << c
+    each_child { |c|
+      if c.outdeg == 0
+        arr << c
       else
-	arr.concat c.yield_nodes
+        arr.concat c.yield_nodes
       end
     }
     return arr
   end
 
   def descendants
-    return descendants_noduplicates([], [])
+    descendants_noduplicates([], [])
   end
 
   def descendants_by_edgelabels(labels)
@@ -311,20 +308,20 @@ class GraphNode
   def descendants_noduplicates(nodes, labels)
     each_child_with_edgelabel() { |l_c|
       if labels.empty? or labels.include? l_c[0]
-	unless nodes.include? l_c[1]
-	  nodes = l_c[1].descendants_noduplicates(nodes << l_c[1], labels)
-	end
+        unless nodes.include? l_c[1]
+          nodes = l_c[1].descendants_noduplicates(nodes << l_c[1], labels)
+        end
       end
     }
     return nodes
   end
-  
+
   def ancestors_noduplicates(nodes, labels)
     each_parent_with_edgelabel() { |l_p|
       if labels.empty? or labels.include? l_p[0]
-	unless nodes.include? l_p[1]
-	  nodes = l_p[1].ancestors_noduplicates(nodes << l_p[1], labels)
-	end
+        unless nodes.include? l_p[1]
+          nodes = l_p[1].ancestors_noduplicates(nodes << l_p[1], labels)
+        end
       end
     }
     return nodes

@@ -1,6 +1,5 @@
 require_relative 'tree_node'
 
-
 #############
 # class XMLNode
 #
