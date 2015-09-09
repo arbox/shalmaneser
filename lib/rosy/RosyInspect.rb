@@ -6,6 +6,7 @@
 
 # Rosy packages
 require "common/RosyConventions"
+require 'db/select_table_and_columns'
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
@@ -17,8 +18,8 @@ require "common/prep_config_data"
 class RosyInspect < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
-		 opts,     # hash: runtime argument option (string) -> value (string)
-		 ttt_obj)  # RosyTrainingTestTable object
+                 opts,     # hash: runtime argument option (string) -> value (string)
+                 ttt_obj)  # RosyTrainingTestTable object
 
     ##
     # remember the experiment description
@@ -35,12 +36,12 @@ class RosyInspect < RosyTask
     opts.each do |opt,arg|
       case opt
       when "--tables", "--tablecont", "--runs", "--split"
-	@tasks << [opt, arg]
+        @tasks << [opt, arg]
       when "--testID"
-	@test_id = arg
+        @test_id = arg
       else
-	# this is an option that is okay but has already been read and used by rosy.rb
-      end	
+        # this is an option that is okay but has already been read and used by rosy.rb
+      end
     end
 
     ##
@@ -82,9 +83,9 @@ class RosyInspect < RosyTask
     @tasks.each { |opt, arg|
       case opt
       when "--tables"
-	inspect_tables()
+        inspect_tables()
       when "--tablecont"
-	inspect_tablecont(arg)
+        inspect_tablecont(arg)
       when "--runs"
         inspect_runs()
       when "--split"
@@ -116,11 +117,11 @@ class RosyInspect < RosyTask
       print "\t"
       count = 0
       @ttt_obj.database.list_column_formats(table_name).each { |column_name, column_format|
-	count += 1
-	print column_name, " (", column_format, ")\t"
-	if count % 4 == 0
-	  print "\n\t"
-	end
+        count += 1
+        print column_name, " (", column_format, ")\t"
+        if count % 4 == 0
+          print "\n\t"
+        end
       }
       puts
       puts
@@ -163,27 +164,27 @@ class RosyInspect < RosyTask
       $stderr.puts "Error: I don't know a table with ID #{table_id}"
       return
     end
-  
+
     if table_id
       # handle table with given table ID
 
-      puts 
+      puts
       puts "-----------------------------------------------"
       puts "Experiment " + @exp.get("experiment_ID").to_s + " table "+ table_id
       puts "-----------------------------------------------"
       puts
-      
+
       db_table = DBTable.new(@ttt_obj.database,
                              table_id,
                              "open",
                              "addcol_prefix" => @exp.get("classif_column_name"))
-      
+
       inspect_tablecont_aux(db_table, num_lines)
-      
+
     else
 
       # handle training data
-      puts 
+      puts
       puts "-----------------------------------------------"
       puts "Experiment " + @exp.get("experiment_ID").to_s + " training data"
       puts "-----------------------------------------------"
@@ -198,8 +199,8 @@ class RosyInspect < RosyTask
 
       # handle test data
       if @test_id
-        
-        puts 
+
+        puts
         puts "-----------------------------------------------"
         puts "Experiment " + @exp.get("experiment_ID").to_s + " test data (#{@test_id})"
         puts "-----------------------------------------------"
@@ -231,14 +232,14 @@ class RosyInspect < RosyTask
     print column_names.map { |n| "[" + n + "]" }.join(" ")
     puts
     puts
-    
+
     # select rows to print
     view = DBView.new([SelectTableAndColumns.new(table_obj, column_names)],
-		      [],        # no restrictions on rows to pick
-		      @ttt_obj.database, # database access
-		      "gold" => "gold",    # name of gold feature
-		      "line_limit" => num_lines) # number of lines to read
-    
+                      [],        # no restrictions on rows to pick
+                      @ttt_obj.database, # database access
+                      "gold" => "gold",    # name of gold feature
+                      "line_limit" => num_lines) # number of lines to read
+
     # and print them
     view.write_to_file($stdout)
     view.close()
@@ -252,14 +253,14 @@ class RosyInspect < RosyTask
   # print to stdout: train, test sentence ID for given split
   def inspect_split(splitID)
 
-    puts 
+    puts
     puts "-----------------------------------------------"
     puts "Split " + splitID.to_s
     puts "-----------------------------------------------"
     puts
 
     ["train", "test"].each { |dataset|
-      
+
       puts "Dataset " + dataset
       puts "==========="
       puts
