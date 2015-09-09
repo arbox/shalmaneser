@@ -31,8 +31,8 @@
 
 class Headz
 
-  def initialize()
-    @Helpers = HeadzHelpers.new()
+  def initialize
+    @Helpers = HeadzHelpers.new
     @Verbose = false #KE 13.4.05: please not that many messages!
   end
 
@@ -45,7 +45,7 @@ class Headz
   def get_fe_heads(fe)
     if (const = fe.children())
       const.map { |node|
-	get_sem_head(node)
+        get_sem_head(node)
       }
     else
       $stderr.puts "Headz.get_sem_head: no children for FE #{fe}"
@@ -63,20 +63,20 @@ class Headz
     else
       case node.category
       when 'AP'
-	return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@Helpers.get_dtr(node,'HD'))
 
       when 'AVP'
-	return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@Helpers.get_dtr(node,'HD'))
       when 'CAP', 'CAVP', 'CNP', 'CPP', 'CS', 'CVP'
-	conjs = @Helpers.get_conjuncts(node)
-	head = gsh(conjs.shift)
+        conjs = @Helpers.get_conjuncts(node)
+        head = gsh(conjs.shift)
         if head
           head.update(Hash["conj"=>gsh_conjs(conjs)])
         end
         return head
 
       when 'NM'
-	return gsh(@Helpers.get_rightmost_dtr(node,'NMC'))
+        return gsh(@Helpers.get_rightmost_dtr(node,'NMC'))
       when 'NP'
         nk = @Helpers.get_rightmost_dtr(node,'NK')
         if nk
@@ -86,18 +86,18 @@ class Headz
         end
 
       when 'PN'
-	pncs = @Helpers.get_dtrs(node,'PNC')
-	head = gsh(pncs.last)
+        pncs = @Helpers.get_dtrs(node,'PNC')
+        head = gsh(pncs.last)
         if head
           head.update(Hash["pncs"=>pncs])
         end
         return head
 
       when 'PP'
-	return pp(node)
+        return pp(node)
 
       when 'S'
-	return s(node)
+        return s(node)
       when 'VROOT'
         dtrs = @Helpers.get_dtrs(node,'--')
 
@@ -122,18 +122,18 @@ class Headz
         end
 
       when 'VP'
-	return vp(node)
+        return vp(node)
 
       when 'MTA'
         return gsh(@Helpers.get_rightmost_dtr(node,'ADC'))
 
       when 'VZ'
-	return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@Helpers.get_dtr(node,'HD'))
       else
-	if @Verbose
-	  $stderr.puts " Headz.gsh: no rule for #{node.category}"
-	end
-	{}
+        if @Verbose
+          $stderr.puts " Headz.gsh: no rule for #{node.category}"
+        end
+        {}
       end
     end
   end
@@ -153,7 +153,6 @@ class Headz
 
   #####################################3
   def pp(node)
-
     prep = node.terminals_sorted().detect { |n|
       (pt = n.part_of_speech()) and
         (pt =~ /^APPR/ or
@@ -234,7 +233,7 @@ class Headz
     newHash = Hash.new
     ["da","oa"].each { |type|
       if (dtr = @Helpers.get_dtr(node,type.upcase))
-	newHash[type] = gsh(dtr)
+        newHash[type] = gsh(dtr)
       end
     }
     @Verbose = tmp
@@ -287,7 +286,7 @@ class HeadzHelpers
       tmp = current.delete("conj")
       flat.push current
       tmp.each {|item|
-	descend(item,flat)}
+        descend(item,flat)}
     else
       flat.push current
     end

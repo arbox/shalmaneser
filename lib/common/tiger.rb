@@ -1,13 +1,14 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 require 'common/headz'
 # require 'common/SalsaTigerRegXML'
 require 'common/ruby_class_extensions'
-class Array
-  include EnumerableDistribute
-end
-
-
 require 'common/AbstractSynInterface'
+
+# @todo Delete the module and include all methods on the class level
+#       into the Tiger class.
+# @note This class is used in Frappuccino, move it from the common library.
+# @todo Investigate the dependency between this class and STXML.
+#       Probably they can be combined.
 
 #############################################
 #
@@ -236,7 +237,7 @@ module TigerMaxProjection
       retv = test_step(step, retv)
 
       if retv.nil?
-	return nil
+        return nil
       end
     }
 
@@ -274,16 +275,16 @@ module TigerMaxProjection
     when 'up'
       label = from_node.parent_label()
       if label =~ edgelabel
-	end_nodes = [from_node.parent()]
+        end_nodes = [from_node.parent()]
       else
-	end_nodes = []
+        end_nodes = []
       end
     when 'dn'
       end_nodes = []
       from_node.each_child { |child|
-	if child.parent_label() =~ edgelabel
-	  end_nodes << child
-	end
+        if child.parent_label() =~ edgelabel
+          end_nodes << child
+        end
       }
     else
       $stderr.puts 'TigerAux error: unknown direction'
@@ -293,9 +294,9 @@ module TigerMaxProjection
     # check all prospective end nodes
     remaining_end_nodes = end_nodes.select { |prosp_to_node|
       if to_node.nil? or to_node == prosp_to_node
-	test_node(prosp_to_node, to_descr)
+        test_node(prosp_to_node, to_descr)
       else
-	false
+        false
       end
     }
 
@@ -303,7 +304,7 @@ module TigerMaxProjection
       return nil
     else
       return {'from' => from_node,
-	  'to' => remaining_end_nodes}
+          'to' => remaining_end_nodes}
     end
   end
 
@@ -319,15 +320,15 @@ module TigerMaxProjection
     case cat_or_pos
     when 'pos'
       if node.part_of_speech =~ pattern
-	return true
+        return true
       else
-	return false
+        return false
       end
     when 'cat'
       if node.category =~ pattern
-	return true
+        return true
       else
-	return false
+        return false
       end
     when nil
       return true
@@ -366,7 +367,7 @@ module TigerMaxProjection
                          self.method('vzinf_fin'),
                          self.method('cvzinf_fin')
                         ])
-    end
+  end
 
   ###
   def project_modal(lower, upper_l, upper_u)
@@ -526,9 +527,9 @@ module TigerMaxProjection
                           ])
 
       if retv.nil?
-	return nil
+        return nil
       else
-	return [lower, upper_l, retv['to'].first]
+        return [lower, upper_l, retv['to'].first]
       end
   end
 
@@ -723,7 +724,7 @@ class Tiger < SynInterpreter
     }.reject { |particle|
       # Sleepy parser problem: it often tags ")" as a separate verb particle
       particle.get_attribute("lemma") == ")" or
-	particle.word == ")"
+        particle.word == ")"
     }
 
     if particles.length == 0
@@ -756,7 +757,7 @@ class Tiger < SynInterpreter
   # returns: boolean
   def Tiger.modal?(node)
     if node.part_of_speech() and
-	node.part_of_speech =~ /^VM/
+        node.part_of_speech =~ /^VM/
       return true
     else
       return false
@@ -879,26 +880,26 @@ class Tiger < SynInterpreter
                              'edge' => ['up', /^CJ$/]}])
       if retv
 
-     	# yes, coordination
-	#   S/VP
-	#    |OC
-	#   CVP
-	#    | CJ
-	#   VP
-	#    | HD
-	# participle
+        # yes, coordination
+        #   S/VP
+        #    |OC
+        #   CVP
+        #    | CJ
+        #   VP
+        #    | HD
+        # participle
 
-	cvp = retv['to'].first
+        cvp = retv['to'].first
 
-	retv = test_localtrees([{'from' => [cvp, nil, //],
+        retv = test_localtrees([{'from' => [cvp, nil, //],
                              'to' => [nil, 'cat', /^S|(VP)$/],
                              'edge' => ['up', /^OC$/]}])
 
       else
-	# node's parent is linked to its parent via an OC edge
-	retv = test_localtrees([{'from' => [verb_parent, nil, //],
-				   'to' => [nil, 'cat', /^(VP)|S$/],
-				   'edge' => ['up', /^OC$/]}])
+        # node's parent is linked to its parent via an OC edge
+        retv = test_localtrees([{'from' => [verb_parent, nil, //],
+                                   'to' => [nil, 'cat', /^(VP)|S$/],
+                                   'edge' => ['up', /^OC$/]}])
       end
 
       if retv.nil?
@@ -919,11 +920,11 @@ class Tiger < SynInterpreter
                               'edge' => ['up', /^OC$/]}])
 
       if retv
-	verb_grandparent = retv['to'].first
+        verb_grandparent = retv['to'].first
 
       else
-	# this test has failed
-	return "active"
+        # this test has failed
+        return "active"
       end
     end
 
@@ -1225,7 +1226,7 @@ class Tiger < SynInterpreter
 
     parent = verb_node.parent()
     if parent.nil?
-	  # verb_node seems to be the root, strangely enough
+          # verb_node seems to be the root, strangely enough
       return []
     end
 
@@ -1338,7 +1339,7 @@ class Tiger < SynInterpreter
     parent = verb_node.parent
     unless parent.nil?
       parent.children_by_edgelabels(["OC"]).each { |n|
-	nodes << ["OC", n]
+        nodes << ["OC", n]
       }
     end
 
@@ -1375,15 +1376,15 @@ class Tiger < SynInterpreter
     np_pp_labels = ["NP", "PP", "PN", "CNP"]
 
     if parent and
-	noun_node.parent_label() == "NK"
+        noun_node.parent_label() == "NK"
       # (1)
       parent.children().select { |n|
-	n.parent_label() != "NK"
+        n.parent_label() != "NK"
       }.each { |n|
-	unless n == noun_node
+        unless n == noun_node
 
-	  retv << [n.parent_label(), n]
-	end
+          retv << [n.parent_label(), n]
+        end
       }
     end
 
@@ -1393,23 +1394,23 @@ class Tiger < SynInterpreter
     end
 
     if parent and grandparent and
-	np_pp_labels.include? parent.category() and
-	np_pp_labels_without_cnp.include? grandparent.category() and
-	parent.parent_label() != "NK"
+        np_pp_labels.include? parent.category() and
+        np_pp_labels_without_cnp.include? grandparent.category() and
+        parent.parent_label() != "NK"
 
-	retv << [parent.parent_label(), grandparent]
+        retv << [parent.parent_label(), grandparent]
     end
 
     # (3)
     if parent and grandparent and
-	grandparent.category() == "CNP"
+        grandparent.category() == "CNP"
 
       grandparent.each_child() { |n|
-	if np_pp_labels.include? n.category() and
-	    n != parent
+        if np_pp_labels.include? n.category() and
+            n != parent
 
-	  retv << ["CJ", n]
-	end
+          retv << ["CJ", n]
+        end
       }
     end
 

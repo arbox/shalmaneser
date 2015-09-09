@@ -15,7 +15,7 @@ require 'common/TabFormat'
 require 'common/Counter'
 
 require 'common/AbstractSynInterface'
-require 'common/Tiger.rb'
+require 'common/tiger'
 
 ################################################
 # Interface class
