@@ -21,23 +21,25 @@ require "rosy/RosyPruning"
 # Frprep packages
 require "common/prep_config_data"
 
+require 'common/EnduserMode'
+
 #######################################################################
 # This class is a subclass of the general evaluation class
 # Eval, which makes evaluation results readable via
 # readable object variables
 #
-# step: can be argrec, arglab, onestep, as usual, but also 
+# step: can be argrec, arglab, onestep, as usual, but also
 #       - "all":
 #          evaluate argrec and arglab together.
 #          When argrec == NONE, use the argrec value, else use the arglab value
-#       - "prune": 
+#       - "prune":
 #          evaluate the pruning column as if it were an argrec assignment
 #
 # When step == argrec or prune, evaluate _only_ the target class FE
 # Otherwise, evaluate all target classes
 class RosyEval < Eval
   def initialize(exp,      # RosyConfigData object: experiment file
-		 ttt_obj,  # RosyTrainingTestTable object 
+		 ttt_obj,  # RosyTrainingTestTable object
 		 step,     # string: argrec, arglab, onestep, all, prune
 		 splitID,  # string: splitlog ID, or nil
 		 testID,   # string: test ID, or nil
@@ -50,7 +52,7 @@ class RosyEval < Eval
     if outfilename
       $stderr.puts "Rosy evaluation: printing results to " + outfilename
     end
-    if logfilename 
+    if logfilename
      $stderr.puts "and printing an evaluation log to " + logfilename
     end
 
@@ -104,7 +106,7 @@ class RosyEval < Eval
         $stderr.puts ttt_obj.runlog_to_s("test", testID, splitID)
         exit 1
       end
-      
+
     when "prune"
       # read pruning column, evaluate as a kind of argrec assignment
       unless Pruning.prune?(@exp)
@@ -127,29 +129,29 @@ class RosyEval < Eval
         exit 1
       end
     end
-    
+
     ##
     # make object for iterating through groups and making views
     case @step
     when "all"
       # all: no step in particular
-      @iterator = RosyIterator.new(ttt_obj, exp, "test", 
-                                   "step" => nil, 
-                                   "testID" => testID, 
+      @iterator = RosyIterator.new(ttt_obj, exp, "test",
+                                   "step" => nil,
+                                   "testID" => testID,
                                    "splitID" => splitID,
                                    "xwise" => "frame")
     when "prune"
       # prune: use argrec
-      @iterator = RosyIterator.new(ttt_obj, exp, "test", 
-                                   "step" => "argrec", 
-                                   "testID" => testID, 
+      @iterator = RosyIterator.new(ttt_obj, exp, "test",
+                                   "step" => "argrec",
+                                   "testID" => testID,
                                    "splitID" => splitID)
 
     else
       # use the given step
-      @iterator = RosyIterator.new(ttt_obj, exp, "test", 
-                                   "step" => @step, 
-                                   "testID" => testID, 
+      @iterator = RosyIterator.new(ttt_obj, exp, "test",
+                                   "step" => @step,
+                                   "testID" => testID,
                                    "splitID" => splitID)
     end
 
@@ -283,7 +285,7 @@ class RosyEval < Eval
         end
       end
 
-      # failed_fes returns: hash that maps FE names [String] onto numbers of failed FEs [Int] 
+      # failed_fes returns: hash that maps FE names [String] onto numbers of failed FEs [Int]
       if @failed_parses_split
         @failed_parses_split.failed_fes(frame, target, target_pos).each_pair { |fe, count|
           # add this number of gold labels we failed to find
@@ -324,7 +326,7 @@ class RosyEval < Eval
           yield [ row["gold"], row[@classif_column_arglab] ]
         end
       }
-    
+
     when "prune"
       # step "prune":
       # if the pruning column has entry 1, regard as assignment "FE",
@@ -346,7 +348,7 @@ class RosyEval < Eval
         yield [row["gold"], row[@classif_column]]
       }
     end
-      
+
   end
 end
 
@@ -370,7 +372,7 @@ class RosyEvalTask < RosyTask
     # check runtime options
     @step = "both"
     @splitID = nil
-    @testID = default_test_ID()    
+    @testID = default_test_ID()
 
     opts.each do |opt,arg|
       case opt
@@ -408,7 +410,7 @@ class RosyEvalTask < RosyTask
       @step = "argrec"
       perform_aux(dont_adjoin_frprep_exp)
 
-      
+
       $stderr.puts "Rosy evaluating step arglab"
       @step = "arglab"
       perform_aux("dont_adjoin_frprep_exp")
@@ -438,7 +440,7 @@ class RosyEvalTask < RosyTask
     if @splitID
       outfilename_id = "split" + @splitID
     else
-      outfilename_id = "test" + @testID 
+      outfilename_id = "test" + @testID
     end
     @outfilename = File.new_filename(@exp.instantiate("rosy_dir",
                                                       "exp_ID" => @exp.get("experiment_ID")),
@@ -457,7 +459,7 @@ class RosyEvalTask < RosyTask
     else
       @logfilename = nil
     end
-    @eval_obj = RosyEval.new(@exp, @ttt_obj, @step, @splitID, @testID, 
+    @eval_obj = RosyEval.new(@exp, @ttt_obj, @step, @splitID, @testID,
                              @outfilename, @logfilename,
                              dont_adjoin_frprep_exp)
     @eval_obj.compute()

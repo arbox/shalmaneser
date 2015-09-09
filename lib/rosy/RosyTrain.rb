@@ -7,7 +7,7 @@
 # Ruby standard library
 require "tempfile"
 
-
+require 'common/EnduserMode'
 # Rosy packages
 require "rosy/RosyTask"
 require "rosy/RosyTest"
@@ -54,7 +54,7 @@ class RosyTrain < RosyTask
         @splitID = arg
       else
 	# this is an option that is okay but has already been read and used by rosy.rb
-      end	
+      end
     }
 
     ##
@@ -82,7 +82,7 @@ class RosyTrain < RosyTask
     # end
     # preproc_exp = FrPrepConfigData.new(preproc_expname)
     # @exp.adjoin(preproc_exp)
-    
+
 
     # get_lf returns: array of pairs [classifier_name, options[array]]
     #
@@ -101,7 +101,7 @@ class RosyTrain < RosyTask
     if @splitID
       $stderr.puts "on split dataset #{@splitID}"
     else
-      $stderr.puts "on the complete training dataset" 
+      $stderr.puts "on the complete training dataset"
     end
     $stderr.puts "---------"
   end
@@ -136,10 +136,10 @@ class RosyTrain < RosyTask
   def perform_aux()
 
     if @step == "arglab" and not(@exp.get("assume_argrec_perfect"))
-    
+
       # KE Jan 31, 06: always redo computation of argrec on training data.
       # We have had trouble with leftover runlogs too often
-        
+
       # i.e. apply argrec classifiers to argrec training data
       $stderr.puts "Rosy: Applying argrec classifiers to argrec training data"
       $stderr.puts "      to produce arglab training input"
@@ -147,9 +147,9 @@ class RosyTrain < RosyTask
                                { "--nooutput" => nil,
                                  "--logID" => @splitID,
                                  "--step" => "argrec"},
-                               @ttt_obj, 
+                               @ttt_obj,
                                true) # argrec_apply: see above
-      
+
       apply_obj.perform()
     end
 
@@ -160,8 +160,8 @@ class RosyTrain < RosyTask
     # RosyIterator will add the appropriate DB column restrictions
     # such that pruned constituents do nto enter into training
 
-    @iterator = RosyIterator.new(@ttt_obj, @exp, "train", 
-				 "step" => @step, 
+    @iterator = RosyIterator.new(@ttt_obj, @exp, "train",
+				 "step" => @step,
 				 "splitID" => @splitID,
                                  "prune" => true)
 
@@ -178,12 +178,12 @@ class RosyTrain < RosyTask
       $stderr.puts
     end
 
-    
+
     ####
     # get the list of relevant features,
-    # remove the feature that describes the unit by which we train, 
+    # remove the feature that describes the unit by which we train,
     # since it is going to be constant throughout the training file
-    @features = @ttt_obj.feature_info.get_model_features(@step) - 
+    @features = @ttt_obj.feature_info.get_model_features(@step) -
                 @iterator.get_xwise_column_names()
     # but add the gold feature
     unless @features.include? "gold"
@@ -201,12 +201,12 @@ class RosyTrain < RosyTask
       # get a view: model features, restrict frame/targetPOS to current group
 
       view = @iterator.get_a_view_for_current_group(@features)
-      
+
       # make input file for classifiers:
       # one instance per line, comma-separated list of features,
       # last feature is the gold label.
       tf = Tempfile.new("rosy")
-      
+
       view.each_instance_s { |instance_string|
         # change punctuation to _PUNCT_
         # and change empty space to _
@@ -217,7 +217,7 @@ class RosyTrain < RosyTask
 
       # train classifiers
       @classifiers.each { |classifier, classifier_name|
-        
+
         # if an explicit classifier dir is given, use that one
         output_name = classif_dir + @exp.instantiate("classifier_file",
                                                      "classif" => classifier_name,
@@ -229,6 +229,6 @@ class RosyTrain < RosyTask
       tf.close(true)
       view.close()
     }
-    
+
   end
 end

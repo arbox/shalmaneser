@@ -1,7 +1,7 @@
 # FredSplit
 # Katrin Erk April 05
 #
-# Frame disambiguation system: 
+# Frame disambiguation system:
 # make random split of the training data
 #
 # The split is computed on the basis of the Fred format
@@ -13,6 +13,7 @@
 # - entry in that line is either 'train' or 'test'
 
 # Fred packages
+require 'common/EnduserMode'
 require "fred/FredSplitPkg"
 
 class FredSplit

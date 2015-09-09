@@ -7,6 +7,7 @@
 # Salsa packages
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
+require "common/EnduserMode"
 
 # Frprep packages
 #require "common/prep_config_data"
@@ -111,7 +112,7 @@ class RosyFeaturize < RosyTask
       unless @exp.get("directory_input_" + @dataset)
         raise "Please set 'directory_input_train' and/or 'directory_input_test' in your experiment file."
       end
-      prepare_main_featurization(File.existing_dir(@exp.get("directory_input_" + @dataset)), 
+      prepare_main_featurization(File.existing_dir(@exp.get("directory_input_" + @dataset)),
                                  @testID)
     end
   end
@@ -129,7 +130,7 @@ class RosyFeaturize < RosyTask
 
   #####################
   private
-  
+
   ###
   # prepare_main_featurization
   #
@@ -141,7 +142,7 @@ class RosyFeaturize < RosyTask
                                  testID)  # string: name of this testset, or nil for no testset
 
     # sanity check
-    unless datapath 
+    unless datapath
       raise "No input path given in the preprocessing experiment file.\n" +
 	"Please set 'directory_preprocessed there."
     end
@@ -151,7 +152,7 @@ class RosyFeaturize < RosyTask
 
     ##
     # determine features and feature formats
-     
+
     # create feature extraction wrapper object
     @input_obj = InputData.new(@exp, @dataset, @ttt_obj.feature_info, @interpreter_class, datapath)
 
@@ -181,7 +182,7 @@ class RosyFeaturize < RosyTask
 
 
       if @append_rather_than_overwrite
-        # add to existing DB table	
+        # add to existing DB table
 	@db_table = @ttt_obj.existing_train_table()
 
       else
@@ -217,65 +218,65 @@ class RosyFeaturize < RosyTask
 
     ###########
     # write state to log
-    log_filename = 
+    log_filename =
        File.new_filename(@exp.instantiate("rosy_dir",
                                           "exp_ID" => @exp.get("experiment_ID")),
                          "featurize.log")
-    
+
     ##############
     # input object, compute features for **PHASE 1*:
     #
     # make features for each instance:
     # features that can be computed from this instance alone
-    
+
     `echo "[#{Time.now().to_s}] Featurize: Start phase 1 feature extraction" >> #{log_filename}`
-    
+
     @input_obj.each_instance_phase1 { |feature_list| # list of pairs [column_name(string), value(whatever)]
 
       # write instance to @db_table
       @db_table.insert_row(feature_list)
     }
 
-    # during featurisation, an Object with info about failed parses has been created 
+    # during featurisation, an Object with info about failed parses has been created
     # now get this object and store it in a file in the datadir
-    
+
     failed_parses_obj = @input_obj.get_failed_parses()
-    
-    failed_parses_filename = 
+
+    failed_parses_filename =
       File.new_filename(@exp.instantiate("rosy_dir",
-                                         "exp_ID" => @exp.get("experiment_ID")), 
+                                         "exp_ID" => @exp.get("experiment_ID")),
                         @exp.instantiate("failed_file",
                                          "exp_ID" => @exp.get("experiment_ID"),
                                          "split_ID" => "none",
                                          "dataset" => "none"))
-                        
+
     failed_parses_obj.save(failed_parses_filename)
-    
+
     ################
     # input object, compute features for **PHASE 2**:
     #
     # based on all features from Phase 1, make additional features
-    
+
     `echo "[#{Time.now().to_s}] Featurize: Start phase 2 feature extraction" >> #{log_filename}`
 
-    iterator = RosyIterator.new(@ttt_obj, @exp, @dataset, 
+    iterator = RosyIterator.new(@ttt_obj, @exp, @dataset,
                                 "testID" => @testID,
                                 "splitID" => @splitID,
                                 "xwise" => "frame")
     iterator.each_group { |dummy1, dummy2|
       view = iterator.get_a_view_for_current_group("*")
-      
+
       @input_obj.each_phase2_column(view) { |feature_name, feature_values|
         view.update_column(feature_name, feature_values)
       }
-      
-      view.close()      
+
+      view.close()
     }
-    
+
     #########
     # finished!!
     #
-    `echo "[#{Time.now().to_s}] Featurize: Finished" >> #{log_filename}`    
-    
+    `echo "[#{Time.now().to_s}] Featurize: Finished" >> #{log_filename}`
+
   end
 end

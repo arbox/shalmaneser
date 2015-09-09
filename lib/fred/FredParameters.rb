@@ -1,7 +1,7 @@
 # FredParameters
 # Katrin Erk, April 05
-# 
-# Frame disambiguation system: 
+#
+# Frame disambiguation system:
 #  test different values for system parameters,
 #  construct text and graphical output
 
@@ -16,6 +16,8 @@ require "FredTrain"
 require "FredTest"
 require "FredEval"
 
+require 'common/EnduserMode'
+
 ##########################################
 
 ################
@@ -26,14 +28,14 @@ require "FredEval"
 #
 # Initialization with the value of a --slide command line parameter.
 # Valid forms:
-# 
+#
 #  feature=<f>:<what>:<start>-<end>:<slide>
 #       with f in { context, ngram, syn, grfunc, fe }
 #            what in { weight, dist } (dist only available for context)
 #            start, end, slide floats represented as strings
 #
 # <var>:<start>-<end>:<slide>
-#       with var in { smoothing_lambda, window_size } 
+#       with var in { smoothing_lambda, window_size }
 class SlideVar
   attr_reader :var_name
 
@@ -59,7 +61,7 @@ class SlideVar
     if string =~ /^feature=(\w+):(\w+):([\d\.]+)-([\d\.]+):([\d\.]+)$/
       # --slide feature=ngram:weight:0.8-4.0:0.3
       # --slide feature=context:dist:0.7-0.9:0.05
-      
+
       featurename = $1
       parname = $2
       @startval = $3.to_f
@@ -70,7 +72,7 @@ class SlideVar
 
       if featurename == "context"
         # both weight and dist possible
-        
+
         case parname
         when "weight"
           @exp_rhs = "#{featurename} REPLACEME #{exp.get_lf("feature", "context", "wtdist")}"
@@ -132,7 +134,7 @@ class SlideVar
   # also yield a descriptive text of the current setting
   def each_slide_value(exp) # FredConfigData object
 
-    if empty? 
+    if empty?
       # no slide variable
 
       yield [0, ""]
@@ -140,17 +142,17 @@ class SlideVar
 
     else
       # the slide variable is nonempty
-      
+
       @current = @startval
-      
+
       while @current <= @endval
-        
+
         if @remove_list_variable_regexp
           # we have a list feature that we first need to unset before setting it
           exp.unset_list_entry(@exp_lhs, @remove_list_variable_regexp)
         end
         exp.set_entry(@exp_lhs, @exp_rhs.sub(/REPLACEME/, @current.to_s))
-        
+
         yield [@current, @var_name + "=" + @current.to_s]
         @current += @step
       end
@@ -172,7 +174,7 @@ class ToggleVar
 
   def initialize(string, # part of value of --slide parameter, which has been split at :
                  exp)    # FredConfigData object
-    
+
     if string =~ /^feature_dim=(\w+)$/
       # feature dimension
 
@@ -226,7 +228,7 @@ end
 # main class of this package:
 # try out different values for system parameters,
 # and record the result.
-# 
+#
 # One value can be a slide variable, taking on several numerical values.
 # 0 or more values can be toggle variables, taking on the values true and false.
 class FredParameters
@@ -284,9 +286,9 @@ class FredParameters
     end
     # make new split ID from system time, and make a split with 80% training, 20% test data
     splitID = Time.new().to_f.to_s
-    task_obj = FredSplit.new(@exp, 
+    task_obj = FredSplit.new(@exp,
                              { "--logID" => splitID,
-                              "--trainpercent" => "80", 
+                              "--trainpercent" => "80",
                              },
                              true  # ignore unambiguous
                              )
@@ -302,7 +304,7 @@ class FredParameters
       raise "Could not write to output file #{@outfile_prefix}.txt"
     end
 
-    # values_to_score: hash toggle_values_descr(string) => 
+    # values_to_score: hash toggle_values_descr(string) =>
     #                        hash slide_value(float) => score(float)
     values_to_score = Hash.new()
 
@@ -319,7 +321,7 @@ class FredParameters
 
       # re-set toggle values according to 'binary':
       @toggle.each_index { |i|
-        # if the i-th bit is set in binary, set this 
+        # if the i-th bit is set in binary, set this
         # boolean to true, else set it to false
         if (binary & (2**i)) > 0
           textout_line << @toggle[i].set_value_to(true, @exp) + " "
@@ -330,7 +332,7 @@ class FredParameters
 
       values_to_score[textout_line] = Hash.new()
 
-      
+
       ##
       # for each value of the slide variable
       @slide.each_slide_value(@exp) { |slide_value, slide_value_description|
@@ -345,7 +347,7 @@ class FredParameters
         # Now train, test, evaluate on the split we have constructed
         task_obj = FredTrain.new(@exp, { "--logID" => splitID})
         task_obj.compute()
-        task_obj = FredTest.new(@exp, 
+        task_obj = FredTest.new(@exp,
                                 { "--logID" => splitID,
                                  "--nooutput"=> true
                                 })
@@ -374,14 +376,14 @@ class FredParameters
 
     ##
     # plot outcome, report overall maximum
-    
+
     unless @slide.empty?
       # gnuplot output only if some slide variable has been used
       title = "Exploring #{@slide.var_name}, " + @toggle.map { |toggle_obj| toggle_obj.var_name }.join(", ")
-      PlotAndREval.gnuplot_direct(values_to_score, 
+      PlotAndREval.gnuplot_direct(values_to_score,
                                   title,
                                   @slide.var_name,
-                                  "F-score", 
+                                  "F-score",
                                   @outfile_prefix + ".ps")
     end
 
@@ -399,4 +401,3 @@ class FredParameters
   end
 
 end
-

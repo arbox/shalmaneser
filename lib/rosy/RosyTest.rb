@@ -14,6 +14,7 @@ require "common/Parser"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
+require "common/EnduserMode"
 
 # Rosy packages
 require "rosy/FeatureInfo"

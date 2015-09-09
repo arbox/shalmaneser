@@ -1,5 +1,6 @@
 require_relative 'enumerable_bool'
 require_relative 'enumerable_distribute'
+require_relative 'subsumed'
 
 # Extensions for the class Array.
 class Array

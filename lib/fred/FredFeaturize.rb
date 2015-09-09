@@ -21,6 +21,7 @@ require 'delegate'
 
 #######
 
+require "common/EnduserMode"
 require 'fred/FileZipped'
 require 'common/Parser'
 require 'common/RegXML'

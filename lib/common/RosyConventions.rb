@@ -6,8 +6,6 @@
 
 require "common/ruby_class_extensions"
 
-require "common/EnduserMode"
-
 #################################################################
 #################################################################
 ###
@@ -20,8 +18,8 @@ class ValueRestriction
   ###
   # new(): store values
   def initialize(column, # string: column name
-		 value,  # value this column is to be restricted to 
-		 var_hash = {}) # hash:additional settings. possible entries:
+                 value,  # value this column is to be restricted to
+                 var_hash = {}) # hash:additional settings. possible entries:
                  # posneg: string: "=" or "!=": equality or inequality restriction
                  #         (default: =)
                  # table_name_included: boolean: is the table name aready included
@@ -90,7 +88,7 @@ def prepare_output_for_classifiers(string)
   # change punctuation to _PUNCT_
   # and change empty space to _
   # because otherwise some classifiers may spit
-  return string.gsub(/[.":';`]/,"_PUNCT_").gsub(/\s/,"_")
+  string.gsub(/[.":';`]/,"_PUNCT_").gsub(/\s/,"_")
 end
 
 #################################################################
@@ -136,36 +134,6 @@ end
 #################################################################
 
 # default test ID given when the user didn't specify one
-def default_test_ID()
-  return "apply"
-end
-
-
-#################################################################
-#################################################################
-
-###
-# extend Array class by subsumption
-module Subsumed
-  def subsumed_by?(array2)
-    temp = array2.clone()
-    self.each { |el|
-      found = false
-      temp.each_index { |ix|
-        if el == temp[ix]
-          temp.delete_at(ix)
-          found = true
-          break
-        end
-      }
-      unless found
-        return false
-      end
-    }
-    return true
-  end
-end
-
-class Array
-  include Subsumed
+def default_test_ID
+  "apply"
 end

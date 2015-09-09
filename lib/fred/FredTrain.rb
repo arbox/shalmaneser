@@ -14,6 +14,8 @@ require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 require "fred/FredNumTrainingSenses"
 
+require 'common/EnduserMode'
+
 class FredTrain
 
   ###

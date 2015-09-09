@@ -6,7 +6,7 @@
 # dump experiment to files and load from files
 
 require "common/ruby_class_extensions"
-
+require 'common/EnduserMode'
 # Rosy packages
 require "common/RosyConventions"
 require "rosy/RosyIterator"
@@ -64,7 +64,7 @@ class RosyServices < RosyTask
 
       else
 	# this is an option that is okay but has already been read and used by rosy.rb
-      end	
+      end
     end
     # announce the task
     $stderr.puts "---------"
@@ -101,7 +101,7 @@ class RosyServices < RosyTask
 
   ################################
   private
-  
+
   #####
   # del_table
   #
@@ -139,8 +139,8 @@ class RosyServices < RosyTask
   # for all the tables in the database, present their name and size,
   # and ask if it should be deleted.
   # this is good for cleaning up!
-  
-  def del_tables() 
+
+  def del_tables()
     @ttt_obj.database.list_tables().each { |table_name|
 
       STDERR.print "Delete table #{table_name} (num. rows #{@ttt_obj.database.num_rows(table_name)})? [y/n] "
@@ -154,10 +154,10 @@ class RosyServices < RosyTask
         rescue
           deletion_worked = false
         end
-        if deletion_worked 
+        if deletion_worked
           STDERR.puts "Table #{name} removed."
         else
-          $stderr.puts "Error: Removal of #{name} failed."          
+          $stderr.puts "Error: Removal of #{name} failed."
         end
       end
     }
@@ -182,8 +182,8 @@ class RosyServices < RosyTask
       # undo that
       %x{rmdir #{data_dir}}
       return
-    end       
-        
+    end
+
 
     # really delete?
     $stderr.print "Really delete experiment #{@exp.get("experiment_ID")}? [y/n] "
@@ -224,7 +224,7 @@ class RosyServices < RosyTask
       unless table_descr["runlist"].empty?
         # print description of the table
         $stderr.puts table_descr["header"]
-        
+
         table_descr["runlist"].each { |run_id, run_descr|
           $stderr.puts run_descr
           $stderr.puts "Delete this run? [y/n] "
@@ -239,7 +239,7 @@ class RosyServices < RosyTask
 
   ##############
   # del_split
-  # 
+  #
   # remove the split with the given ID
   # from the current experiment:
   # delete split tables, remove from list of test and split tables
@@ -283,7 +283,7 @@ class RosyServices < RosyTask
       dir = File.new_dir(directory)
     else
       # use the default directory: <rosy_dir>/tables
-      dir = File.new_dir(@exp.instantiate("rosy_dir", 
+      dir = File.new_dir(@exp.instantiate("rosy_dir",
                                           "exp_ID" => @exp.get("experiment_ID")),
                          "your_feature_files")
     end
@@ -311,22 +311,22 @@ class RosyServices < RosyTask
 	@testID = nil
       end
     end
-    
+
     $stderr.puts "Writing data for classification step '#{@step}'."
     $stderr.puts
 
     ##
     # write training data
     $stderr.puts "Writing training sets"
-    iterator = RosyIterator.new(@ttt_obj, @exp, "train", 
-				"step" => @step, 
+    iterator = RosyIterator.new(@ttt_obj, @exp, "train",
+				"step" => @step,
 				"splitID" => @splitID,
 				"prune" => true)
 
     # get the list of relevant features,
-    # remove the features that describe the unit by which we train, 
+    # remove the features that describe the unit by which we train,
     # since they are going to be constant throughout the training file
-    features = @ttt_obj.feature_info.get_model_features(@step) - 
+    features = @ttt_obj.feature_info.get_model_features(@step) -
       iterator.get_xwise_column_names()
 
     # but add the gold feature
@@ -337,14 +337,14 @@ class RosyServices < RosyTask
 
     write_features_aux(dir, "training", @step, iterator, features)
 
-    ## 
+    ##
     # write test data
     if @testID
       $stderr.puts "Writing test sets"
       filename = dir + "test.data"
-      iterator = RosyIterator.new(@ttt_obj, @exp, "test", 
-                                  "step" => @step, 
-                                  "testID" => @testID, 
+      iterator = RosyIterator.new(@ttt_obj, @exp, "test",
+                                  "step" => @step,
+                                  "testID" => @testID,
                                   "splitID" => @splitID,
                                   "prune" => true)
       write_features_aux(dir, "test", @step, iterator, features)
@@ -363,10 +363,10 @@ class RosyServices < RosyTask
     iterator.each_group { |group_descr_hash, group|
       # get data for this group
       view = iterator.get_a_view_for_current_group(features)
-      
+
       #filename: e.g. directory/training.Statement.data
-      filename = dir + dataset + "." + 
-	step + "." + 
+      filename = dir + dataset + "." +
+	step + "." +
 	group.gsub(/\s/, "_") + ".data"
 
       begin
@@ -386,7 +386,7 @@ class RosyServices < RosyTask
       view.close()
     }
   end
-  
+
   ##############3
   # dump_experiment
   #
@@ -412,7 +412,7 @@ class RosyServices < RosyTask
       dir = File.new_dir(directory)
     else
       # use the default directory: <rosy_dir>/tables
-      dir = File.new_dir(@exp.instantiate("rosy_dir", 
+      dir = File.new_dir(@exp.instantiate("rosy_dir",
                                           "exp_ID" => @exp.get("experiment_ID")),
                          "tables")
     end
@@ -420,7 +420,7 @@ class RosyServices < RosyTask
 
     ###
     # dump main table
-    
+
     $stderr.puts "Dumping main table"
     filename = dir + "main"
     begin
@@ -438,7 +438,7 @@ class RosyServices < RosyTask
 
     ###
     # dump test tables
-    
+
     unless @ttt_obj.testIDs.empty?
       $stderr.print "Dumping test tables: "
     end
@@ -452,7 +452,7 @@ class RosyServices < RosyTask
         $stderr.puts "Sorry, couldn't write to #{filename}"
         return
       end
-      
+
       if @ttt_obj.test_table_exists?(testID)
         iterator = RosyIterator.new(@ttt_obj, @exp, "test", "testID" => testID, "xwise" => "frame")
         table_obj = @ttt_obj.existing_test_table(testID)
@@ -469,7 +469,7 @@ class RosyServices < RosyTask
     end
     @ttt_obj.splitIDs.each { |splitID|
       ["train", "test"].each { |dataset|
-        
+
         filename = dir + "split." + dataset + "." + splitID
         $stderr.print filename, " "
         begin
@@ -492,7 +492,7 @@ class RosyServices < RosyTask
 
     ###
     # dump classification run logs
-    @ttt_obj.to_file(dir)    
+    @ttt_obj.to_file(dir)
   end
 
   ################3
@@ -502,7 +502,7 @@ class RosyServices < RosyTask
   def aux_dump(iterator, # RosyIterator object, refers to table to write
                file, # stream: write to this file
                table_obj) # DB table to be written
-    
+
     # write all columns except the autoincrement index
     # columns_to_write: array:string*string column name, column SQL type
     columns_to_write = Array.new()
@@ -520,24 +520,24 @@ class RosyServices < RosyTask
       end
     }
     columns_as_array = columns_to_write.map { |name, type| name}
-    
+
     # write column names and types
     file.puts columns_to_write.map { |name, type| name }.join(",")
     file.puts columns_to_write.map { |name, type| type }.join(",")
-    
+
     # access groups and write data
-    
+
     iterator.each_group { |hash, framename|
       view = iterator.get_a_view_for_current_group(columns_as_array)
 
       # write instances
       view.each_hash { |instance|
-        file.puts columns_to_write.map { |name, type| 
+        file.puts columns_to_write.map { |name, type|
           # get column entries in order of column names
-          instance[name] 
+          instance[name]
         }.map { |entry|
           # remove commas
-          entry.to_s.gsub(/,/, "COMMA") 
+          entry.to_s.gsub(/,/, "COMMA")
         }.join(",")
       }
       view.close()
@@ -597,8 +597,8 @@ class RosyServices < RosyTask
       dir = File.existing_dir(directory)
     else
       # default: <rosy_dir>/tables
-      dir = File.existing_dir(@exp.instantiate("rosy_dir", 
-                                               "exp_ID" => @exp.get("experiment_ID")), 
+      dir = File.existing_dir(@exp.instantiate("rosy_dir",
+                                               "exp_ID" => @exp.get("experiment_ID")),
                               "tables")
     end
     $stderr.puts "Reading experiment data from directory " + dir
@@ -645,7 +645,7 @@ class RosyServices < RosyTask
 
       else
         # not a filename we recognize
-        # don't do anything with it        
+        # don't do anything with it
       end
     }
 
@@ -684,11 +684,11 @@ class RosyServices < RosyTask
     coltypes = aux_read_columns(file)
     return [colnames, coltypes]
   end
-                        
+
 
   ##
   # aux_transfer_columns
-  # 
+  #
   # auxiliary method for load_experiment:
   # read a line from file, split it at commas
   #   to arrive at the contents
@@ -729,7 +729,7 @@ class RosyServices < RosyTask
       names_and_values.clear()
       col_names.each_with_index { |name, ix|
         unless row[ix].nil?
-          if col_types[ix] =~ /^(TINYINT|tinyint)/ 
+          if col_types[ix] =~ /^(TINYINT|tinyint)/
             # integer value: map!
             names_and_values << [name, row[ix].to_i]
           else

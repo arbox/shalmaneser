@@ -4,7 +4,7 @@
 # One of the main task modules of Rosy:
 # split training data into training and test parts
 #
-# A split is realized as two DB tables, 
+# A split is realized as two DB tables,
 # one with the sentence IDs of the training part of the split,
 # and one with the sentence IDs of the test part of the split.
 #
@@ -14,7 +14,7 @@
 # test features. They need to be retrained for each split.
 
 require "common/ruby_class_extensions"
-
+require 'common/EnduserMode'
 # Frprep packages
 require "common/prep_config_data"
 
@@ -59,7 +59,7 @@ class RosySplit < RosyTask
         @splitID = arg
       else
 	# this is an option that is okay but has already been read and used by rosy.rb
-      end	
+      end
     end
 
     #sanity checks
@@ -94,14 +94,14 @@ class RosySplit < RosyTask
   #####
   # perform
   #
-  # perform a split of the training data and the "failed sentences" object 
-  # the split is written to a DB table, the failed sentence splits are written to files 
+  # perform a split of the training data and the "failed sentences" object
+  # the split is written to a DB table, the failed sentence splits are written to files
   def perform()
 
     #################################
     # 1. treat the failed sentences
-    perform_failed_parses()    
-    
+    perform_failed_parses()
+
     ###############################
     # 2. get the main table, split it, and write the result to two new tables
     perform_make_split()
@@ -111,7 +111,7 @@ class RosySplit < RosyTask
     #    and write the result to the split tables
 
   end
-  
+
   #######
   # split index column name
   def RosySplit.split_index_colname()
@@ -121,7 +121,7 @@ class RosySplit < RosyTask
   ############
   # make_join_restriction
   #
-  # Given a splitID, the main table to be split, 
+  # Given a splitID, the main table to be split,
   # the dataset (train or test), and the experiment file object,
   # make a ValueRestriction object that can be passed to a view initialization:
   #
@@ -136,7 +136,7 @@ class RosySplit < RosyTask
 
     return VarVarRestriction.new(table.table_name + "." + table.index_name,
                                  ttt_obj.splittable_name(splitID, dataset) + "." + RosySplit.split_index_colname())
-      
+
   end
 
   ###########
@@ -150,33 +150,33 @@ class RosySplit < RosyTask
   # into a training and a test part
   # and remembers this split
   def perform_failed_parses()
-    # read file with failed parses    
-    failed_parses_filename = 
+    # read file with failed parses
+    failed_parses_filename =
           File.new_filename(@exp.instantiate("rosy_dir",
                                              "exp_ID" => @exp.get("experiment_ID")),
                             @exp.instantiate("failed_file",
                                              "exp_ID" => @exp.get("experiment_ID"),
                                              "split_ID" => "none",
                                              "dataset" => "none"))
-    
+
 
     fp_obj = FailedParses.new()
     fp_obj.load(failed_parses_filename)
 
     # split and write to appropriate files
     fp_train_obj, fp_test_obj = fp_obj.make_split(@trainpercent)
-    
-    train_filename = 
+
+    train_filename =
          File.new_filename(@exp.instantiate("rosy_dir",
                                             "exp_ID" => @exp.get("experiment_ID")),
                            @exp.instantiate("failed_file",
                                             "exp_ID" => @exp.get("experiment_ID"),
                                             "split_ID" => @splitID,
                                             "dataset" => "train"))
-    
+
     fp_train_obj.save(train_filename)
-    
-    test_filename = 
+
+    test_filename =
         File.new_filename(@exp.instantiate("rosy_dir",
                                            "exp_ID" => @exp.get("experiment_ID")),
                           @exp.instantiate("failed_file",
@@ -200,14 +200,14 @@ class RosySplit < RosyTask
     maintable = @ttt_obj.existing_train_table()
 
     # construct new DB tables for the train and test part of the new split:
-    # get table name and join column name 
+    # get table name and join column name
     split_train_table = @ttt_obj.new_split_table(@splitID, "train", RosySplit.split_index_colname())
     split_test_table =  @ttt_obj.new_split_table(@splitID, "test", RosySplit.split_index_colname())
-    
+
     # make split: put each sentence ID into either the train or the test table
     # based on whether a random number btw. 0 and 100 is larger than @trainpercent or not
-    
-    
+
+
     # go through training data one frame at a time
     iterator = RosyIterator.new(@ttt_obj, @exp, "train", "xwise"=>"frame")
     iterator.each_group { |dummy1, dummy2|
@@ -224,7 +224,7 @@ class RosySplit < RosyTask
           table.insert_row([[RosySplit.split_index_colname(), instance[maintable.index_name]],
                             ["sentid", instance["sentid"]]])
         }
-      }    
+      }
       view.close()
     }
   end

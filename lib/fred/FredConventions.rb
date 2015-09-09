@@ -6,7 +6,6 @@
 
 require "common/ruby_class_extensions"
 
-require "common/EnduserMode"
 class Object
 
 ###
@@ -52,7 +51,7 @@ end
 
 ####
 # filenames for feature files
-def fred_feature_filename(lemma, sense = nil, 
+def fred_feature_filename(lemma, sense = nil,
 			  do_binary = false)
   if do_binary
     return "fred.features.#{lemma}.SENSE.#{sense}"
@@ -88,7 +87,7 @@ def deconstruct_fred_feature_filename(filename)
 
   basename = File.basename(filename)
   retv = Hash.new()
-  # binary: 
+  # binary:
   # fred.features.#{lemma}.SENSE.#{sense}
   if basename =~ /^fred\.features\.(.*)\.SENSE\.(.*)$/
     retv["lemma"] = $1
@@ -163,7 +162,7 @@ def fred_result_filename(lemma)
 end
 
 ##########
-# lemma and POS: combine into string separated by 
+# lemma and POS: combine into string separated by
 # a separator character
 #
 # fred_lemmapos_combine: take two strings, return combined string
@@ -229,4 +228,3 @@ module WordLemmaPosNe
     return [word, lemma, pos, ne]
   end
 end
-
