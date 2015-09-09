@@ -6,7 +6,7 @@ require_relative 'subsumed'
 class Array
   include EnumerableBool
   include EnumerableDistribute
-  include SubSumed
+  include Subsumed
 
   ###
   # interleave N arrays:

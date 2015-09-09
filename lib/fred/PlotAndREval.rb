@@ -1,8 +1,5 @@
 require "tempfile"
 require "StandardPkgExtensions"
-class Array
-  include EnumerableBool
-end
 
 module PlotAndREval
 
@@ -10,10 +7,10 @@ module PlotAndREval
   # given a set of mappings x_axis_value -> y_axis_value,
   # plot them all within the same gnuplot graph
   #
-  # scores: 
+  # scores:
   # either hash: score_label(string) -> hash x_axis(float) -> y_axis(float)
   # or hash: score_label(string) -> array [x_axis(float), y_axis(float)]
-  def PlotAndREval.gnuplot_direct(scores,     
+  def PlotAndREval.gnuplot_direct(scores,
                                   title,      # string: title for output files
                                   x_name,     # string: label for x axis
                                   y_name,     # string: label for y axis
@@ -55,7 +52,7 @@ module PlotAndREval
   end
 
   #################
-  # Given a list of pairs [x, y], 
+  # Given a list of pairs [x, y],
   # group them into N bins (by splitting the range from min score to max score)
   # compute the average y for each x bin, and plot
   def PlotAndREval.gnuplot_average(scores, # array of pairs [x(float), y(float)
@@ -68,7 +65,7 @@ module PlotAndREval
 
     # sort scores into bins
     bin = Hash.new()
-    
+
     scores.each { |xval, yval|
       bin_no = (xval - min_value / bin_size).floor
       unless bin[bin_no]
@@ -79,7 +76,7 @@ module PlotAndREval
 
     # print average for each bin to temp infile for gnuplot
     tf = Tempfile.new("plot_and_r")
-    
+
     bin.keys.sort.each { |bin_no|
       if bin[bin_no].length() > 0
         avg = (bin[bin_no].big_sum(0.0) { |yval| yval }) / bin[bin_no].length().to_f
@@ -90,7 +87,7 @@ module PlotAndREval
       tf.print val, "\t", avg, "\n"
     }
     tf.close()
-    
+
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
     gf.puts "set title \"#{title}\""
@@ -105,7 +102,7 @@ module PlotAndREval
     gf.puts
     gf.puts
     gf.close()
-    
+
     # now gnuplot it
     %x{gnuplot #{gf.path()}}
 
@@ -113,19 +110,19 @@ module PlotAndREval
     tf.close(true)
     gf.close(true)
   end
-  
+
   #################
   # given a mapping from labels to scores,
   # split the range form min. score to max. score into
   # 20 bins, sort the label/score pairs into the bins,
   # and gnuplot them as a bar graph of 20 bars.
   #
-  # A title for the graph must be given, and a 
+  # A title for the graph must be given, and a
   # name for the gnuplot output file.
   # If the name of a text output file is given,
   # the result is also printed as text.
   #
-  # If minvalue and maxvalue are given, they are used 
+  # If minvalue and maxvalue are given, they are used
   # as start and end of the scale instead of the
   # min. and max. values from the scores hash.
   def PlotAndREval.gnuplot_quantity_chart(scores, # hash:label(string) -> value(float), label->score-mapping
@@ -135,7 +132,7 @@ module PlotAndREval
                                           textoutfile = nil, # string: name of text output file
                                           minvalue=nil, # float: minimum value for y axis
                                           maxvalue=nil) # float: maximum value for y axis
-    
+
 
     # group scores in 20 subgroups
     # first determine minimum, maximum score, single interval
@@ -151,12 +148,12 @@ module PlotAndREval
         maxvalue = [score, maxvalue].max
       }
     end
-    
+
     interval = (maxvalue - minvalue) / 20.0
-    
+
     # now compute the number of scores in each interval
     num_in_range = Hash.new(0)
-    
+
     scores.each_pair { |label, score|
       num = (score / interval).floor
       num_in_range[num] += 1
@@ -166,33 +163,33 @@ module PlotAndREval
     # text output, temp files for gnuplot
     if textoutfile
       textout = File.new(textoutfile, "w")
-      
+
       # document number of scores in each range
       # to text outfile
       textout.puts "-------------------------"
       textout.puts title
       textout.puts "-------------------------"
-      
+
     num_in_range.keys.sort.each { |rangeno|
         range_lower = interval * rangeno.to_f
         textout.print "number of values btw. ", sprintf("%.2f", range_lower),
-        " and ", sprintf("%.2f", range_lower + interval), ": ", 
+        " and ", sprintf("%.2f", range_lower + interval), ": ",
         num_in_range[rangeno], "\n"
       }
-      
+
       textout.close()
     end
-    
+
     # document number of scores in each range
     # to temp. infile for gnuplot
     tf = Tempfile.new("plot_and_r")
-    
+
     0.upto(19) { |rangeno|
       range_lower = interval * rangeno.to_f
       tf.print range_lower, "\t", num_in_range[rangeno], "\n"
     }
     tf.close()
-    
+
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
     gf.puts "set title \"" + title+ "\""
@@ -208,7 +205,7 @@ module PlotAndREval
     gf.puts
     gf.puts
     gf.close()
-    
+
     # now gnuplot it
     %x{gnuplot #{gf.path()}}
 
@@ -233,7 +230,7 @@ module PlotAndREval
                                              comparison_name, # string: what are the comparison scores?
                                              plotoutfile, # string: name of gnuplot output file
                                              textoutfile = nil) # string: name of text output file
-    
+
     # text output: base score/comparison score pairs
     if textoutfile
       begin
@@ -241,26 +238,26 @@ module PlotAndREval
       rescue
         raise "Couldn't write to " + textoutfile
       end
-      
+
       textout.puts "------------------------"
       textout.puts title
       textout.puts "------------------------"
-      
+
       # text output: base score / comparison score pairs
       base_scores.to_a.sort { |a, b| b.last <=> a.last }.each { |label, score|
-        
+
         textout.print label, ": ", base_name, ": ", score, ", ", comparison_name, ": "
         if comparison_scores[label]
           textout.print comparison_scores[label], "\n"
         else
           textout.print "--", "\n"
-        end   
+        end
       }
     end
-  
+
 
     # make scatter plot: base vs. comparison
-    
+
     tf = Tempfile.new("plot_and_r")
     base_scores.each_pair { |label, score|
       if comparison_scores[label]
@@ -270,7 +267,7 @@ module PlotAndREval
       end
     }
     tf.close()
-    
+
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
     gf.puts "set title \"" + title + "\""
@@ -284,11 +281,11 @@ module PlotAndREval
     gf.puts "plot \"" + tf.path() + "\""
     gf.puts
     gf.close()
-    
+
     # now gnuplot it
     %x{gnuplot #{gf.path()}}
     tf.close(true)
-    gf.close(true)  
+    gf.close(true)
   end
 
 
@@ -303,7 +300,7 @@ module PlotAndREval
   # Scores1 is the basis for the comparison: only those labels
   # are used that occur in mapping 1 are included in the comparison
   #
-  # A title for the graph must be given, and a 
+  # A title for the graph must be given, and a
   # name for the gnuplot output file.
   # If the name of a text output file is given,
   # the result is also printed as text.
@@ -313,12 +310,12 @@ module PlotAndREval
                                             score_name, # string: what are the scores? (label for y axis)
                                             plotoutfile, # string: name of gnuplot output file
                                             textoutfile = nil) # string: name of text output file
-    
+
 
     # text output
     if textoutfile
       textout = File.new(textoutfile, "w")
-      
+
       # document scores in each range
       # to text outfile
       textout.puts "-------------------------"
@@ -337,12 +334,12 @@ module PlotAndREval
       }
       textout.close()
     end
-    
+
     # document number of scores in each mapping
     # to temp. infile for gnuplot
     tf1 = Tempfile.new("plot_and_r")
     tf2 = Tempfile.new("plot_and_r")
-    
+
     index = 0.0
     scores1.to_a.sort { |a, b| b.last <=> a.last}.each { |label, score1|
       score2 = scores2[label]
@@ -356,7 +353,7 @@ module PlotAndREval
 
     tf1.close()
     tf2.close()
-    
+
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
     gf.puts "set title \"" + title+ "\""
@@ -372,7 +369,7 @@ module PlotAndREval
     gf.puts
     gf.puts
     gf.close()
-    
+
     # now gnuplot it
     %x{gnuplot #{gf.path()}}
 
@@ -389,7 +386,7 @@ module PlotAndREval
   #
   # can compute partial correlations, i.e. correlations which factor out the influence
   # of a confound variable (last variable, can be omitted).
-  
+
   def PlotAndREval.tau_correlation(base_scores, # hash: label(string) -> value(float)
                                    comparison_scores, # hash: label(string) -> value(float)
                                    base_name, # string: what are the base scores?
@@ -410,11 +407,11 @@ module PlotAndREval
         tf_e.puts comparison_scores[label].to_s
 	if confound_scores
 	  if confound_scores[label]
-            # logarithmise frequencies 
+            # logarithmise frequencies
 	    tf_c.puts((Math.log(confound_scores[label])).to_s)
 	  else
 	    $stderr.puts "no confound scores for " + label
-	  end	  
+	  end
 	end
       else
 	$stderr.puts "no comparison scores for " + label
@@ -445,16 +442,16 @@ module PlotAndREval
       rf.puts "cor(lm(base[[1]]~comparison[[1]])$resid,lm(confuse[[1]]~comparison[[1]])$resid,method=\"kendall\")"
 
       # compute significance of partial correlation
-      rf.puts "summary(lm(base[[1]] ~ comparison[[1]] + confuse[[1]]))"      
+      rf.puts "summary(lm(base[[1]] ~ comparison[[1]] + confuse[[1]]))"
     else # perform normal correlation analysis
       rf.puts "base <- read.table(\"#{tf_f.path()}\")"
       rf.puts "comparison <- read.table(\"#{tf_e.path()}\")"
       rf.puts "cor.test(base[[1]], comparison[[1]], method=\"kendall\", exact=FALSE)"
-    end 
+    end
     rf.close()
     %x{/proj/contrib/R/R-1.8.0/bin/R --vanilla < #{rf.path()} > #{rfout.path()}}
     rfout.open()
-    
+
     # output of R results: to stderr and to textout file
     begin
       textout = File.new(textoutfile, "w")

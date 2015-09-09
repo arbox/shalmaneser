@@ -1,8 +1,8 @@
 # SynInterfaces.rb
-# 
+#
 # ke oct/nov 2005
 #
-# Store all known interfaces to 
+# Store all known interfaces to
 # systems that do syntactic analysis
 #
 # Given the name of a system and the service that the
@@ -15,8 +15,8 @@
 # - interpreters:
 #   interpret the resulting Salsa/Tiger XML (represented as
 #   SalsaTigerSentence and SynNode objects), e.g.
-#   generalize over part of speech; 
-#   describe the path between a pair of nodes both as a path 
+#   generalize over part of speech;
+#   describe the path between a pair of nodes both as a path
 #   and (potentially) as a grammatical function of one of the nodes;
 #   determine whether a node describes a verb, and in which voice;
 #   determine the head of a constituent
@@ -25,9 +25,6 @@
 # are in AbstractSynInterface.rb
 
 require "common/ruby_class_extensions"
-class Array
-  include EnumerableBool
-end
 
 # The list of available interface packages
 # is at the end of this file.
@@ -53,7 +50,7 @@ class SynInterfaces
     $stderr.puts "Initializing interface #{class_name}" if $DEBUG
     @@interfaces << class_name
   end
-  
+
   def SynInterfaces.add_interpreter(class_name)
     $stderr.puts "Initializing interpreter #{class_name}" if $DEBUG
     @@interpreters << class_name
@@ -69,7 +66,7 @@ class SynInterfaces
   # check_interfaces_abort_if_missing:
   #
   # Given an experiment file, use some_system_missing? to
-  # determine whether the system can be run with the requested 
+  # determine whether the system can be run with the requested
   # syntactic processing, exit with an error message if that is not possible
   def SynInterfaces.check_interfaces_abort_if_missing(exp) #FrPrepConfigData object
     if (missing = SynInterfaces.some_system_missing?(exp))
@@ -87,7 +84,7 @@ class SynInterfaces
       }
       $stderr.puts "I have the following interpreters:"
       @@interpreters.each { |interpreter_class|
-        $stderr.print "\t" 
+        $stderr.print "\t"
         $stderr.print interpreter_class.systems.to_a.map { |service, system_name|
           "service #{service}, system #{system_name}"
         }.join("; ")
@@ -96,8 +93,8 @@ class SynInterfaces
           $stderr.print interpreter_class.optional_systems.to_a.map { |service, system_name|
           "service #{service}, system #{system_name}"
           }.join("; ")
-        end 
-        $stderr.puts 
+        end
+        $stderr.puts
       }
       $stderr.puts
       $stderr.puts "Please adapt your experiment file."
@@ -135,14 +132,14 @@ class SynInterfaces
   end
 
   ###
-  # given the name of a system and the service that it 
+  # given the name of a system and the service that it
   # performs, find the matching interface class
   #
   # system: string: name of system, e.g. collins
   # service: string: service, e.g. parser
   #
   # returns: SynInterface class
-  def SynInterfaces.get_interface(service, 
+  def SynInterfaces.get_interface(service,
                                   system)
 
     # try to find an interface class with the given
@@ -185,9 +182,9 @@ class SynInterfaces
     # service-name pairs
 
     @@interpreters.each { |interpreter_class|
-      
-      if interpreter_class.systems.to_a.big_and { |service, system| 
-	  # all obligatory entries of interpreter_class 
+
+      if interpreter_class.systems.to_a.big_and { |service, system|
+	  # all obligatory entries of interpreter_class
 	  # are in systems
 	  systems[service] == system
 	} and
@@ -197,7 +194,7 @@ class SynInterfaces
 	  systems[service].nil? or systems[service] == system
 	} and
 	  systems.to_a.big_and { |service, system|
-	  # all entries in names are in either 
+	  # all entries in names are in either
 	  # the obligatory or optional set for interpreter_class
 	  interpreter_class.systems[service] == system or
 	    interpreter_class.optional_systems[service] == system
@@ -214,17 +211,17 @@ class SynInterfaces
   protected
 
   ###
-  # knows about possible services that can be set in 
-  # the experiment file, and where the names of 
+  # knows about possible services that can be set in
+  # the experiment file, and where the names of
   # the matching systems will be found in the experiment file data structure
   #
   # WARNING: adapt this when you introduce new services!
   #
-  # returns: a hash 
+  # returns: a hash
   #  <service> => system_name
   #
   #  such that for each service/system name pair:
-  #  the service with the given name has been requested in 
+  #  the service with the given name has been requested in
   #  the experiment file, and the names of the systems to be used
   #  for performing the service
   def SynInterfaces.requested_services(exp)
@@ -239,7 +236,7 @@ class SynInterfaces
 	retv[hash["service"]] = exp.get(hash["service"])
       end
     }
-    
+
     return retv
   end
 end
