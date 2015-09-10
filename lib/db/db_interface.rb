@@ -12,38 +12,39 @@
 #     'require'-ing either DBMySQL or DBSQLite, but not both,
 #     because the right ruby packages might not be installed
 #     for both SQL systems
+# @note This class will be obsolete if we deleten MySQL.
 class DBInterface
 
-def self.get_db_interface(exp, # experiment file object with 'dbtype' entry
-                     dir = nil, # string: Shalmaneser directory (used by SQLite only)
-                     identifier = nil) # string: identifier of the data (SQLite)
+  def self.get_db_interface(exp, # experiment file object with 'dbtype' entry
+                            dir = nil, # string: Shalmaneser directory (used by SQLite only)
+                            identifier = nil) # string: identifier of the data (SQLite)
 
-  case exp.get('dbtype')
-  when 'mysql'
-    begin
-      require 'db/db_mysql'
-    rescue => e
-      p e
-      STDERR.puts 'Error loading DB interface.'
-      STDERR.puts 'Make sure you have the Ruby MySQL package installed.'
+    case exp.get('dbtype')
+    when 'mysql'
+      begin
+        require 'db/db_mysql'
+      rescue => e
+        p e
+        STDERR.puts 'Error loading DB interface.'
+        STDERR.puts 'Make sure you have the Ruby MySQL package installed.'
+        exit 1
+      end
+
+      return DBMySQL.new(exp)
+    when 'sqlite'
+      begin
+        require 'db/db_sqlite'
+      rescue
+        STDERR.puts 'Error loading DB interface.'
+        STDERR.puts 'Make sure you have the Ruby SQLite package installed.'
+        exit 1
+      end
+      return DBSQLite.new(exp, dir, identifier)
+
+    else
+      STDERR.puts 'Error: database type needs to be either "mysql" or "sqlite"".'
+      STDERR.puts 'Please set parameter "dbtype" in the experiment file accordingly.'
       exit 1
     end
-
-    return DBMySQL.new(exp)
-  when 'sqlite'
-    begin
-      require 'db/db_sqlite'
-    rescue
-      STDERR.puts 'Error loading DB interface.'
-      STDERR.puts 'Make sure you have the Ruby SQLite package installed.'
-      exit 1
-    end
-    return DBSQLite.new(exp, dir, identifier)
-
-  else
-    STDERR.puts 'Error: database type needs to be either "mysql" or "sqlite"".'
-    STDERR.puts 'Please set parameter "dbtype" in the experiment file accordingly.'
-    exit 1
   end
-end
 end
