@@ -14,7 +14,7 @@
 # test features. They need to be retrained for each split.
 
 require "common/ruby_class_extensions"
-require 'common/EnduserMode'
+
 # Frprep packages
 require "common/prep_config_data"
 
@@ -33,11 +33,6 @@ class RosySplit < RosyTask
   def initialize(exp,      # RosyConfigData object: experiment description
                  opts,     # hash: runtime argument option (string) -> value (string)
                  ttt_obj)  # RosyTrainingTestTable object
-
-    #####
-    # In enduser mode, this whole task is unavailable
-    in_enduser_mode_unavailable()
-
     ##
     # remember the experiment description
 

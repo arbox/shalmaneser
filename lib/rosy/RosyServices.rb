@@ -6,7 +6,7 @@
 # dump experiment to files and load from files
 
 require "common/ruby_class_extensions"
-require 'common/EnduserMode'
+
 # Rosy packages
 require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
@@ -44,9 +44,6 @@ class RosyServices < RosyTask
     opts.each do |opt,arg|
       case opt
       when "--deltable", "--delexp", "--delruns", "--delsplit", "--deltables"
-        #####
-        # In enduser mode, you cannot delete things
-        in_enduser_mode_unavailable()
         @tasks << [opt, arg]
       when "--dump", "--load", "--writefeatures"
         @tasks << [opt, arg]

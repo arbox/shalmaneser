@@ -16,7 +16,6 @@
 # Salsa packages
 require "common/Eval"
 require "common/ruby_class_extensions"
-require 'common/EnduserMode'
 
 # Fred packages
 require "fred/fred_config_data"
@@ -32,8 +31,6 @@ class FredEval < Eval
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
                  options) # hash: runtime option name (string) => value(string)
-
-    in_enduser_mode_unavailable()
 
     @exp = exp_obj
 

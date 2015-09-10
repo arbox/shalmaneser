@@ -14,8 +14,6 @@ require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
 
-require 'common/EnduserMode'
-
 class FredTrain
 
   ###
@@ -24,9 +22,6 @@ class FredTrain
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
                  options) # hash: runtime option name (string) => value(string)
-
-
-    in_enduser_mode_unavailable()
 
     @exp = exp_obj
 

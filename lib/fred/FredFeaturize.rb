@@ -21,7 +21,6 @@ require 'delegate'
 
 #######
 
-require "common/EnduserMode"
 require 'fred/FileZipped'
 require 'common/Parser'
 require 'common/RegXML'
@@ -142,9 +141,6 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       $stderr.puts  "Please set --dataset: one of 'train', 'test'"
       exit 1
     end
-
-     # @TODO: This is a temporal solution of delegation errors.
-     # in_enduser_mode_ensure(@dataset == "test")
 
     # evaluate optional "refeaturize" argument
     # "refeaturize": reuse meta-feature set,

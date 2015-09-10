@@ -13,7 +13,6 @@
 # - entry in that line is either 'train' or 'test'
 
 # Fred packages
-require 'common/EnduserMode'
 require "fred/FredSplitPkg"
 
 class FredSplit
@@ -25,8 +24,6 @@ class FredSplit
   def initialize(exp_obj, # FredConfigData object
                  options, # hash: runtime option name (string) => value(string)
                  ignore_unambiguous = false)
-
-    in_enduser_mode_unavailable()
 
     @exp = exp_obj
     @ignore_unambiguous = ignore_unambiguous

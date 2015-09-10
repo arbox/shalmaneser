@@ -22,8 +22,6 @@ require 'rosy/rosy_conventions'
 # Frprep packages
 require "common/prep_config_data"
 
-require 'common/EnduserMode'
-
 #######################################################################
 # This class is a subclass of the general evaluation class
 # Eval, which makes evaluation results readable via
@@ -361,10 +359,6 @@ class RosyEvalTask < RosyTask
   def initialize(exp,      # RosyConfigData object: experiment description
                  opts,     # hash: runtime argument option (string) -> value (string)
                  ttt_obj)  # RosyTrainingTestTable object
-
-    #####
-    # In enduser mode, this whole task is unavailable
-    in_enduser_mode_unavailable()
 
     @exp = exp
     @ttt_obj = ttt_obj

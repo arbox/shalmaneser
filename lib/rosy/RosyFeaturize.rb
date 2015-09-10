@@ -7,10 +7,9 @@
 # Salsa packages
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
-require "common/EnduserMode"
 
 # Frprep packages
-#require "common/prep_config_data"
+# require "common/prep_config_data"
 
 # Rosy packages
 require "rosy/FailedParses"
@@ -69,11 +68,6 @@ class RosyFeaturize < RosyTask
       $stderr.puts "I need either a dataset ('train' or 'test', option --dataset) or a splitID (option --logID) in the command line."
       exit 1
     end
-
-    #####
-    # Enduser mode: featurization only of test data
-    in_enduser_mode_ensure(@dataset == "test")
-    in_enduser_mode_ensure(@append_rather_than_overwrite == false)
 
     # announce the task
     $stderr.puts "---------"

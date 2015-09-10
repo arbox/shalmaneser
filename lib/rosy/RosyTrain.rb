@@ -7,7 +7,6 @@
 # Ruby standard library
 require "tempfile"
 
-require 'common/EnduserMode'
 # Rosy packages
 require "rosy/RosyTask"
 require "rosy/RosyTest"
@@ -25,10 +24,6 @@ class RosyTrain < RosyTask
   def initialize(exp,      # RosyConfigData object: experiment description
                  opts,     # hash: runtime argument option (string) -> value (string)
                  ttt_obj)  # RosyTrainingTestTable object
-
-    #####
-    # In enduser mode, this whole task is unavailable
-    in_enduser_mode_unavailable()
 
     ##
     # remember the experiment description

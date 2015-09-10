@@ -16,7 +16,6 @@ require 'fred/FredTrain'
 require 'fred/FredTest'
 require 'fred/FredEval'
 
-require 'common/EnduserMode'
 
 ##########################################
 
@@ -232,13 +231,10 @@ end
 # One value can be a slide variable, taking on several numerical values.
 # 0 or more values can be toggle variables, taking on the values true and false.
 class FredParameters
-
   #####
   def initialize(exp_obj, # FredConfigData object
-		 options) # hash: runtime option name (string) => value(string)
+                 options) # hash: runtime option name (string) => value(string)
 
-
-    in_enduser_mode_unavailable()
     @exp = exp_obj
 
     ##
@@ -262,7 +258,7 @@ class FredParameters
         @outfile_prefix = arg
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     end
 

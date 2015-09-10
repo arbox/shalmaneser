@@ -14,7 +14,6 @@ require "common/Parser"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
-require "common/EnduserMode"
 
 # Rosy packages
 require "rosy/FeatureInfo"
@@ -150,11 +149,6 @@ class RosyTest < RosyTask
 
     if not(@argrec_apply)
       # normal run
-
-      #####
-      # Enduser mode: only steps "both" and "onestep" available.
-      # testing only on test data, not on split data
-      in_enduser_mode_ensure(["both", "onestep"].include?(@step))
 
       ##
       # add preprocessing information to the experiment file object
