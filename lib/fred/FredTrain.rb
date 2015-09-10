@@ -12,7 +12,7 @@ require "common/ML"
 require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"
-require "fred/FredNumTrainingSenses"
+# require "fred/FredNumTrainingSenses"
 
 require 'common/EnduserMode'
 
@@ -23,7 +23,7 @@ class FredTrain
   #
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
-		 options) # hash: runtime option name (string) => value(string)
+                 options) # hash: runtime option name (string) => value(string)
 
 
     in_enduser_mode_unavailable()
@@ -39,7 +39,7 @@ class FredTrain
         @split_id = arg
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     }
 
@@ -100,7 +100,7 @@ class FredTrain
       end
 
       # only one sense? then just assign that
-      num_senses = determine_training_senses(values["lemma"], @exp,
+      num_senses = Fred.determine_training_senses(values["lemma"], @exp,
                                              @lemmas_and_senses,
                                              @split_id).length()
 

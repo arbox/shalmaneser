@@ -23,7 +23,7 @@ require 'fred/FredConventions' # !
 require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"
-require "fred/FredNumTrainingSenses"
+# require "fred/FredNumTrainingSenses"
 
 class FredTest
 
@@ -32,7 +32,7 @@ class FredTest
   #
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
-		 options) # hash: runtime option name (string) => value(string)
+                 options) # hash: runtime option name (string) => value(string)
 
     # keep the experiment file object
     @exp = exp_obj
@@ -46,16 +46,16 @@ class FredTest
       case opt
       when "--logID"
 
-	@split_id = arg
+        @split_id = arg
 
       when "--baseline"
-	@baseline = true
+        @baseline = true
 
       when "--nooutput"
         @produce_output = false
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     }
 
@@ -234,7 +234,7 @@ tried to apply n-ary ones (or vice versa.)
       # line entry: list of pairs [sense, confidence]
       results_this_lemma = Array.new()
 
-      training_senses = determine_training_senses(lemma, @exp,
+      training_senses = Fred.determine_training_senses(lemma, @exp,
                                                   @lemmas_and_senses, @split_id)
 
       senses_and_filenames.each { |sense, filename|
