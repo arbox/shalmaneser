@@ -170,11 +170,11 @@ module PlotAndREval
       textout.puts title
       textout.puts "-------------------------"
 
-    num_in_range.keys.sort.each { |rangeno|
+      num_in_range.keys.sort.each { |rangeno|
         range_lower = interval * rangeno.to_f
         textout.print "number of values btw. ", sprintf("%.2f", range_lower),
-        " and ", sprintf("%.2f", range_lower + interval), ": ",
-        num_in_range[rangeno], "\n"
+                      " and ", sprintf("%.2f", range_lower + interval), ": ",
+                      num_in_range[rangeno], "\n"
       }
 
       textout.close()
@@ -392,7 +392,7 @@ module PlotAndREval
                                    base_name, # string: what are the base scores?
                                    comparison_name, # string: what are the comparison scores?
                                    textoutfile, # string: name of text output file
-				   confound_scores = nil) # hash: label(string) -> value(float)
+                                   confound_scores = nil) # hash: label(string) -> value(float)
 
     # compute Kendall's tau:
     # correlation between fscore and confusion?
@@ -405,16 +405,16 @@ module PlotAndREval
       if comparison_scores[label]
         tf_f.puts score.to_s
         tf_e.puts comparison_scores[label].to_s
-	if confound_scores
-	  if confound_scores[label]
+        if confound_scores
+          if confound_scores[label]
             # logarithmise frequencies
-	    tf_c.puts((Math.log(confound_scores[label])).to_s)
-	  else
-	    $stderr.puts "no confound scores for " + label
-	  end
-	end
+            tf_c.puts((Math.log(confound_scores[label])).to_s)
+          else
+            $stderr.puts "no confound scores for " + label
+          end
+        end
       else
-	$stderr.puts "no comparison scores for " + label
+        $stderr.puts "no comparison scores for " + label
       end
     }
     tf_e.close()
@@ -438,7 +438,7 @@ module PlotAndREval
       # compute partial correlation coefficient for comparison, with confuse excluded
       rf.puts "cor(lm(base[[1]]~confuse[[1]])$resid,lm(comparison[[1]]~confuse[[1]])$resid,method=\"kendall\")"
 
-  # compute partial correlation coefficient for confuse, with comparison excluded
+      # compute partial correlation coefficient for confuse, with comparison excluded
       rf.puts "cor(lm(base[[1]]~comparison[[1]])$resid,lm(confuse[[1]]~comparison[[1]])$resid,method=\"kendall\")"
 
       # compute significance of partial correlation

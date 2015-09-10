@@ -26,11 +26,11 @@ class SQLQuery
     #  (2, 'second', 'another', '1999-10-23', '10:30:00');
 
     string = "INSERT INTO " + table_name + "("+
-      field_value_pairs.map { |column_name, cell_value|
-        column_name
-      }.join(",") +
-      ") VALUES (" +
-      field_value_pairs.map { |column_name, cell_value|
+             field_value_pairs.map { |column_name, cell_value|
+      column_name
+    }.join(",") +
+             ") VALUES (" +
+             field_value_pairs.map { |column_name, cell_value|
       if cell_value.nil?
         raise "SQL query construction error: Nil value for column " + column_name
       end
@@ -165,20 +165,20 @@ class SQLQuery
   def SQLQuery.update(table_name, # string: table name
                       field_value_pairs, # array: string*Object: column name and value
                       row_restrictions # array: ValueRestriction objects: column name and value restriction
-                      )
+                     )
     string = "UPDATE "+table_name+" SET "+
-      field_value_pairs.map {|field,value|
+             field_value_pairs.map {|field,value|
       if value.nil?
         raise "SQL query construction error: Nil value for column " + field
       end
       field+"="+SQLQuery.stringify_value(value)}.join(", ") +
-      " WHERE "+row_restrictions.map {|restr_obj|
-        # get the actual restriction out of its object
-        # form: name(string) eqsymb(string: =, !=) value(object)
-        name, eqsymb, value = restr_obj.get()
-        if value.nil?
-          raise "SQL query construction error: Nil value for column " + name
-        end
+             " WHERE "+row_restrictions.map {|restr_obj|
+      # get the actual restriction out of its object
+      # form: name(string) eqsymb(string: =, !=) value(object)
+      name, eqsymb, value = restr_obj.get()
+      if value.nil?
+        raise "SQL query construction error: Nil value for column " + name
+      end
       name + eqsymb + SQLQuery.stringify_value(value)
     }.join(" AND ")
     string += ";"

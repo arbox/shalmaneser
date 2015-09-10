@@ -89,8 +89,8 @@ class FredTest
       # only compute baseline: always assign most frequent sense
 
       @classifiers = [
-                      [Baseline.new(@exp, @split_id), "baseline"]
-                     ]
+        [Baseline.new(@exp, @split_id), "baseline"]
+      ]
 
     else
       # determine classifiers
@@ -161,17 +161,17 @@ class FredTest
       # catalogue only matches between chosen classifier type
       # and actually existing classifier type
 
-# hier checken
-# senses ist nil,  lemma2_sense_and_filename wird nicht gefüllt
-# => es werden keine classifier gefunden
+      # hier checken
+      # senses ist nil,  lemma2_sense_and_filename wird nicht gefüllt
+      # => es werden keine classifier gefunden
 
 
       if @exp.get("binary_classifiers") and \
-        values["sense"] and not(values["sense"].empty?)
+         values["sense"] and not(values["sense"].empty?)
         lemma2_sense_and_filename[values["lemma"]] << [values["sense"], filename]
 
       elsif not(@exp.get("binary_classifiers")) and \
-        (values["sense"].nil? or values["sense"].empty?)
+           (values["sense"].nil? or values["sense"].empty?)
         lemma2_sense_and_filename[values["lemma"]] << [nil, filename]
       end
     }
@@ -189,12 +189,12 @@ class FredTest
         senses_and_filenames.each { |sense, filename|
           @classifiers.each { |classifier, classifier_name|
             if @exp.get("binary_classifiers") and \
-              classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
-                                                                        lemma, sense)
+               classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
+                                                                              lemma, sense)
               found += 1
             elsif not(@exp.get("binary_classifiers")) and\
-              classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
-                                                                        lemma)
+                 classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
+                                                                                lemma)
               found += 1
             end
           }
@@ -235,7 +235,7 @@ tried to apply n-ary ones (or vice versa.)
       results_this_lemma = Array.new()
 
       training_senses = Fred.determine_training_senses(lemma, @exp,
-                                                  @lemmas_and_senses, @split_id)
+                                                       @lemmas_and_senses, @split_id)
 
       senses_and_filenames.each { |sense, filename|
 
@@ -270,7 +270,7 @@ tried to apply n-ary ones (or vice versa.)
           @classifiers.each { |classifier, classifier_name|
 
             stored_classifier = classif_dir + Fred.fred_classifier_filename(classifier_name,
-                                                                      lemma, sense)
+                                                                            lemma, sense)
             status = classifier.read(stored_classifier)
             unless status
               $stderr.puts "[FredTest] Error: could not read classifier."
@@ -289,7 +289,7 @@ tried to apply n-ary ones (or vice versa.)
               # we have classifier results:
               # since we're not doing any classifier combination at the moment
               # (if we did, this would be the place to do so!)
-            # discard the results of all but the first classifier
+              # discard the results of all but the first classifier
               results_this_lemma << classifier_results.first()
             end
           end
@@ -526,7 +526,7 @@ tried to apply n-ary ones (or vice versa.)
 
         labels_and_senses_for_this_instance = results.at(instance_index)
         if not(labels_and_senses_for_this_instance.empty?) and
-            (winning_sense = labels_and_senses_for_this_instance.first().first())
+          (winning_sense = labels_and_senses_for_this_instance.first().first())
 
           recorded_results[key] << [a_targetIDs, winning_sense, a_lemma, a_pos]
         end
@@ -584,7 +584,7 @@ tried to apply n-ary ones (or vice versa.)
             # enter the target nodes for this new frame
             new_frame.add_fe("target", targets)
 
-          # put lemma and POS info into <target>
+            # put lemma and POS info into <target>
             new_frame.target.set_attribute("lemma", lemma)
             new_frame.target.set_attribute("pos", pos)
           }

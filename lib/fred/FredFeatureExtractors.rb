@@ -13,10 +13,10 @@ class FredFeatureInfo
   def FredFeatureInfo.add_feature(class_name) # Class object
     @@extractors << class_name
   end
-  
+
   ###
   def initialize(exp)
-    
+
     ##
     # make list of extractors that are
     # required by the user
@@ -26,7 +26,7 @@ class FredFeatureInfo
     # user-chosen extractors:
     # returns array of pairs [feature group designator(string), options(array:string)]
     exp.get_lf("feature").each { |extractor_name, *options|
-      
+
       extractor = @@extractors.detect { |e| e.feature_name() == extractor_name }
       unless extractor
         # no extractor found matching the given designator
@@ -76,10 +76,10 @@ class FredFeatureExtractor
   ###
   # compute features from meta-features
   #
-  # argument: hash 
+  # argument: hash
   # metafeature_label -> metafeatures
   #  string -> array:string
-  # 
+  #
   # yields each feature as a string
   def each_feature(feature_hash)
     raise "overwrite me"
@@ -87,7 +87,7 @@ class FredFeatureExtractor
 
   ######
   protected
-  
+
   def FredFeatureExtractor.announce_me
     # AB: In 1.9 constants are symbols.
     if Module.constants.include?("FredFeatureInfo") or Module.constants.include?(:FredFeatureInfo)
@@ -95,7 +95,7 @@ class FredFeatureExtractor
       FredFeatureInfo.add_feature(eval(self.name))
     else
       # no interface collector class
-#      $stderr.puts "Feature #{self.name()} not announced: no RosyFeatureInfo."
+      #      $stderr.puts "Feature #{self.name()} not announced: no RosyFeatureInfo."
     end
   end
 
@@ -122,7 +122,7 @@ class FredContextFeatureExtractor < FredFeatureExtractor
       @cxsizes[ "CX" + cxsize.to_s() ] = true
     }
   end
-  
+
   ###
   def each_feature(feature_hash)
     # grf#word#lemma#pos#ne
@@ -130,11 +130,11 @@ class FredContextFeatureExtractor < FredFeatureExtractor
 
     feature_hash.each { |ftype, fvalues|
       if @cxsizes[ftype]
-        # this is a context feature of a size chosen 
+        # this is a context feature of a size chosen
         # by the user for featurization
 
-        fvalues.each { |f| 
-	next if f =~ /#####/;
+        fvalues.each { |f|
+          next if f =~ /#####/;
           yield ftype + f.split("#")[lemma_index]
         }
       end
@@ -143,7 +143,7 @@ class FredContextFeatureExtractor < FredFeatureExtractor
 end
 
 #####
-# context feature: POS separately, small contexts only 
+# context feature: POS separately, small contexts only
 class FredContextPOSFeatureExtractor < FredFeatureExtractor
   FredContextPOSFeatureExtractor.announce_me()
 
@@ -169,7 +169,7 @@ class FredContextPOSFeatureExtractor < FredFeatureExtractor
       $stderr.puts "as there is no context of size <= 10"
     end
   end
-  
+
   ###
   def each_feature(feature_hash)
     # word#lemma#pos#ne
@@ -177,10 +177,10 @@ class FredContextPOSFeatureExtractor < FredFeatureExtractor
 
     feature_hash.each { |ftype, fvalues|
       if @cxsizes[ftype]
-        # this is a context feature of a size chosen 
+        # this is a context feature of a size chosen
         # by the user for featurization
 
-        fvalues.each { |f| 
+        fvalues.each { |f|
           yield "POS" + ftype + f.split("#")[pos_index]
         }
       end
@@ -212,7 +212,7 @@ class FredNgramFeatureExtractor < FredFeatureExtractor
       $stderr.puts "no ngram feature computed."
     end
   end
-  
+
   ###
   def each_feature(feature_hash)
     # word#lemma#pos#ne
@@ -230,10 +230,10 @@ class FredNgramFeatureExtractor < FredFeatureExtractor
         # fvalues[cxsize-2], fvalues[cxsize-1] and fvalues[cxsize]
 
         [
-         [[-1, 0], "BLEM", lemma_index], # bigram of lemmas
-         [[-1, 0], "BPOS", pos_index],   # bigram of POSs
-         [[-2, -1, 0], "TLEM", lemma_index], # trigram of lemmas
-         [[-2, -1, 0], "TPOS", pos_index] # trigram of POSs
+          [[-1, 0], "BLEM", lemma_index], # bigram of lemmas
+          [[-1, 0], "BPOS", pos_index],   # bigram of POSs
+          [[-2, -1, 0], "TLEM", lemma_index], # trigram of lemmas
+          [[-2, -1, 0], "TPOS", pos_index] # trigram of POSs
         ].each { |f_indices, label, subindex|
           fs = f_indices.map { |i| fvalues[@cxsize+i] }.compact()
           if fs.length() == f_indices.length()
@@ -258,11 +258,11 @@ class FredSynFeatureExtractor < FredFeatureExtractor
 
   ###
   def each_feature(feature_hash)
-    
+
     feature_hash.each { |ftype, fvalues|
 
       case ftype
-       when "CH", "PA"
+      when "CH", "PA"
         grf_index = 0
 
         fvalues.each { |f|
@@ -298,12 +298,12 @@ class FredSynsemFeatureExtractor < FredFeatureExtractor
 
   ###
   def each_feature(feature_hash)
-    
+
     feature_hash.each { |ftype, fvalues|
       case ftype
       when "CH", "PA"
         # grf#word#lemma#pos#ne
-        fvalues.each { |f| 
+        fvalues.each { |f|
           yield ftype + "SEM" + f
         }
 

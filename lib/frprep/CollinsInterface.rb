@@ -36,10 +36,10 @@ class CollinsInterface < SynInterfaceSTXML
   ###
   # initialize to set values for all subsequent processing
   def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of tab files
-		 outsuffix,     # string: suffix for parsed files
-		 stsuffix,      # string: suffix for Salsa/TIGER XML files
-		 var_hash = {}) # optional arguments in a hash
+                 insuffix,      # string: suffix of tab files
+                 outsuffix,     # string: suffix for parsed files
+                 stsuffix,      # string: suffix for Salsa/TIGER XML files
+                 var_hash = {}) # optional arguments in a hash
 
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
     # I am not expecting any parameters, but I need
@@ -63,7 +63,7 @@ class CollinsInterface < SynInterfaceSTXML
   # the maximum number of sentences
   # Collins can parse in one go (i.e. that they are split) and I don't have to care
   def process_dir(in_dir,        # string: name of input directory
-		  out_dir)       # string: name of output directory
+                  out_dir)       # string: name of output directory
     print "parsing ", in_dir, " and writing to ", out_dir, "\n"
 
     unless @pos_suffix
@@ -87,9 +87,9 @@ class CollinsInterface < SynInterfaceSTXML
 
       CollinsInterface.produce_collins_input(tabfile,tempfile)
       tempfile.close
-	print collins_prog+" "+tempfile.path+" "+ collins_params+" > "+parsefilename
+      print collins_prog+" "+tempfile.path+" "+ collins_params+" > "+parsefilename
       Kernel.system(collins_prog+" "+tempfile.path+" "+
-		    collins_params+" > "+parsefilename)
+                    collins_params+" > "+parsefilename)
       tempfile.close(true)
     }
   end
@@ -121,13 +121,13 @@ class CollinsInterface < SynInterfaceSTXML
       my_sent_id = tab_sent.get_sent_id()
 
       while true # find next matching line in parse file
-	line = parserfile.gets
+        line = parserfile.gets
         # search for the next "relevant" file or end of the file
-	if line.nil? or line=~/^\(TOP/
-	  break
-	end
+        if line.nil? or line=~/^\(TOP/
+          break
+        end
       end
-	STDERR.puts line
+      STDERR.puts line
       # while we search a parse, the parse file is over...
       if line.nil?
         raise "Error: premature end of parser file!"
@@ -142,7 +142,7 @@ class CollinsInterface < SynInterfaceSTXML
 
         st_sent = SalsaTigerSentence.empty_sentence(my_sent_id.to_s)
 
-	build_salsatiger(line,st_sent)
+        build_salsatiger(line,st_sent)
 
         yield [st_sent, tab_sent, CollinsInterface.standard_mapping(st_sent, tab_sent)]
 
@@ -169,7 +169,7 @@ class CollinsInterface < SynInterfaceSTXML
   ###
   # write Salsa/TIGER XML output to file
   def to_stxml_file(infilename,  # string: name of parse file
-		    outfilename) # string: name of output stxml file
+                    outfilename) # string: name of output stxml file
 
     outfile = File.new(outfilename, "w")
     outfile.puts SalsaTigerXMLHelper.get_header()
@@ -197,26 +197,26 @@ class CollinsInterface < SynInterfaceSTXML
 
     while position < string.length
       if string[position,1] == "(" # push nonterminal
-	nextspace = string.index(" ",position)
-	nonterminal = string[position+1..nextspace-1]
-	stack.push nonterminal
-	position = nextspace+1
+        nextspace = string.index(" ",position)
+        nonterminal = string[position+1..nextspace-1]
+        stack.push nonterminal
+        position = nextspace+1
       elsif string[position,1] == ")" # reduce stack
-	tempstack = Array.new
-	while true
+        tempstack = Array.new
+        while true
           # get all Nodes from the stack and put them on a tempstack,
           # until you find a String, which is a not-yet existing nonterminal
-	  object = stack.pop
+          object = stack.pop
           if object.kind_of? SynNode
-	    tempstack.push(object) # terminal or subtree
-	  else #  string (nonterminal label)
+            tempstack.push(object) # terminal or subtree
+          else #  string (nonterminal label)
             if tempstack.length == 1 # skip unary nodes: do nothing and write tempstack back to stack
               stack += tempstack
               break
               # puts "Unary node #{object}"
             end
-	    nt_a = object.split("~")
-	    unless nt_a.length == 4
+            nt_a = object.split("~")
+            unless nt_a.length == 4
               # something went wrong. maybe it's about character encoding
               if nt_a.length() > 4
                 # yes, assume it's about character encoding
@@ -227,7 +227,7 @@ class CollinsInterface < SynInterfaceSTXML
                 $stderr.puts "Unexpectedly too few components in nonterminal " + nt_a.join("~")
                 raise StandardError.new("nonrecoverable error")
               end
-	    end
+            end
 
             # construct a new nonterminal
             node = st_sent.add_syn("nt",
@@ -236,21 +236,21 @@ class CollinsInterface < SynInterfaceSTXML
                                    nil, # pos (doesn't matter)
                                    nt_c.next.to_s)
             node.set_attribute("head",SalsaTigerXMLHelper.escape(nt_a[1].strip))
-	    tempstack.reverse.each {|child|
-	      node.add_child(child,nil)
-	      child.set_parent(node,nil)
-	    }
-	    stack.push(node)
-	    break # while
-	  end
-	end
-	position = position+2 # == nextspace+1
+            tempstack.reverse.each {|child|
+              node.add_child(child,nil)
+              child.set_parent(node,nil)
+            }
+            stack.push(node)
+            break # while
+          end
+        end
+        position = position+2 # == nextspace+1
       else # terminal
-	nextspace = string.index(" ",position)
-	terminal = string[position..nextspace].strip
-	t_a = terminal.split("/")
-	unless t_a.length == 2
-	  raise "[collins] Cannot split terminal #{terminal} into word and POS!"
+        nextspace = string.index(" ",position)
+        terminal = string[position..nextspace].strip
+        t_a = terminal.split("/")
+        unless t_a.length == 2
+          raise "[collins] Cannot split terminal #{terminal} into word and POS!"
         end
 
         word = t_a[0]
@@ -265,7 +265,7 @@ class CollinsInterface < SynInterfaceSTXML
                                  t_c.next.to_s)
           stack.push(node)
         end
-	position = nextspace+1
+        position = nextspace+1
       end
     end
 
@@ -285,17 +285,17 @@ class CollinsInterface < SynInterfaceSTXML
     corpusfile.each_sentence {|s|
       words = Array.new
       s.each_line_parsed {|line_obj|
-	word = line_obj.get("word")
-	tag = line_obj.get("pos")
-	if tag.nil?
-	  raise "Error: FNTabFormat object not tagged!"
-	end
-	word_tag_pair = CollinsInterface.escape(word,tag)
-	if word_tag_pair =~ /\)/
-	  puts word_tag_pair
-	  puts s.to_s
-	end
-	words << word_tag_pair
+        word = line_obj.get("word")
+        tag = line_obj.get("pos")
+        if tag.nil?
+          raise "Error: FNTabFormat object not tagged!"
+        end
+        word_tag_pair = CollinsInterface.escape(word,tag)
+        if word_tag_pair =~ /\)/
+          puts word_tag_pair
+          puts s.to_s
+        end
+        words << word_tag_pair
       }
       tempfile.puts words.length.to_s+" "+words.join(" ")
     }
@@ -305,9 +305,9 @@ class CollinsInterface < SynInterfaceSTXML
   def CollinsInterface.escape(word,pos) # returns array word+" "+lemma
     case word
 
-      # replace opening or closing brackets
-      # word representation is {L,R}R{B,S,C} (bracket, square, curly)
-      # POS for opening brackets is LRB, closing brackets RRB
+    # replace opening or closing brackets
+    # word representation is {L,R}R{B,S,C} (bracket, square, curly)
+    # POS for opening brackets is LRB, closing brackets RRB
 
     when "("
       return "LRB -LRB-"
@@ -323,7 +323,7 @@ class CollinsInterface < SynInterfaceSTXML
     when "}"
       return "RRC -RRB-"
 
-      # catch those brackets or slashes inside words
+    # catch those brackets or slashes inside words
     else
       word.gsub!(/\(/,"LRB")
       word.gsub!(/\)/,"RRB")
@@ -414,7 +414,7 @@ class CollinsTntInterpreter < SynInterpreter
     when /^TRACE/ then  return "trace"
     when /^V/ , /^MD/ then return "verb"
     else
-#      $stderr.puts "WARNING: Unknown category/POS "+c.to_s + " (English data)"
+      #      $stderr.puts "WARNING: Unknown category/POS "+c.to_s + " (English data)"
       return nil
     end
   end
@@ -479,7 +479,7 @@ class CollinsTntInterpreter < SynInterpreter
   #
   # returns: SynNode object if successful, else nil
   def CollinsTntInterpreter.particle_of_verb(node,
-					     node_list)
+                                             node_list)
 
     # must be verb
     unless CollinsTntInterpreter.category(node) == "verb"
@@ -497,7 +497,7 @@ class CollinsTntInterpreter < SynInterpreter
     }.map { |n| n.children}.flatten.select { |niece|
       # now look for children of those nodes that are particles and are in the nodelist
       nodelist.include? niece and
-	CollinsTntInterpreter.category(niece) == "part"
+        CollinsTntInterpreter.category(niece) == "part"
     }
 
     if particles.length == 0
@@ -526,7 +526,7 @@ class CollinsTntInterpreter < SynInterpreter
     end
 
     unless (parent = node.parent) and
-        parent.category() == "VP"
+          parent.category() == "VP"
       return false
     end
     unless (vpa_node = parent.children.detect { |other_child| other_child.category() == "VP-A" })
@@ -594,28 +594,28 @@ class CollinsTntInterpreter < SynInterpreter
       return nil
     end
 
-#    other_verbs = Array.new
-#
-#    current_node = node
-#    while current_node = current_node.parent
-#      pt =  CollinsTntInterpreter.category(current_node)
-#      unless ["verb","sentence"].include? pt
-#        break
-#      end
-#      current_node.children.each {|child|
-#        if CollinsTntInterpreter.category(child) == "verb"
-#          other_verbs << CollinsTntInterpreter.lemma_backoff(nephew)
-#        end
-#      }
-#    end
-#
-#    unless (tobe & other_verbs).empty?
-#      puts "passive "+node.id
-#      return "passive"
-#    end
-#    unless (tohave & other_verbs).empty?
-#      return "active"
-#    end
+    #    other_verbs = Array.new
+    #
+    #    current_node = node
+    #    while current_node = current_node.parent
+    #      pt =  CollinsTntInterpreter.category(current_node)
+    #      unless ["verb","sentence"].include? pt
+    #        break
+    #      end
+    #      current_node.children.each {|child|
+    #        if CollinsTntInterpreter.category(child) == "verb"
+    #          other_verbs << CollinsTntInterpreter.lemma_backoff(nephew)
+    #        end
+    #      }
+    #    end
+    #
+    #    unless (tobe & other_verbs).empty?
+    #      puts "passive "+node.id
+    #      return "passive"
+    #    end
+    #    unless (tohave & other_verbs).empty?
+    #      return "active"
+    #    end
 
     if CollinsTntInterpreter.category(gp) == "verb" or CollinsTntInterpreter.category(gp) == "sent"
 
@@ -647,7 +647,7 @@ class CollinsTntInterpreter < SynInterpreter
     case CollinsTntInterpreter.pt(node)
     when "VBN","VBD"
       return "passive"
-      # this must be some kind of error...
+    # this must be some kind of error...
     else
       return nil
     end
@@ -810,7 +810,7 @@ class CollinsTntInterpreter < SynInterpreter
         return  1
 
       elsif num_up >= 1 and num_down == 2 and
-          (p = node.parent()) and CollinsTntInterpreter.category(p) == "prep"
+           (p = node.parent()) and CollinsTntInterpreter.category(p) == "prep"
 
         # case (2)
         return 1
@@ -883,10 +883,10 @@ class CollinsTntInterpreter < SynInterpreter
 
     when "prep+inside"
       if CollinsTntInterpreter.voice(anchor_node) == "passive" and
-          CollinsTntInterpreter.preposition(gf_node) == "by"
-	return "SB"
+        CollinsTntInterpreter.preposition(gf_node) == "by"
+        return "SB"
       else
-	return "MO-" + CollinsTntInterpreter.preposition(gf_node).to_s
+        return "MO-" + CollinsTntInterpreter.preposition(gf_node).to_s
       end
 
     when "sent+inside"
@@ -953,15 +953,15 @@ class CollinsTntInterpreter < SynInterpreter
 
     when "prep+np-parent", "prep+np-a"
       return "MO-" + CollinsTntInterpreter.preposition(gf_node).to_s
-      # relation of anchor noun to governing verb not covered by "gfs" method
-#     when "verb+beyond-s"
-#       return "SB-of"
+    # relation of anchor noun to governing verb not covered by "gfs" method
+    #     when "verb+beyond-s"
+    #       return "SB-of"
 
-#     when "verb+beyond-vp"
-#       return "OA-of"
+    #     when "verb+beyond-vp"
+    #       return "OA-of"
 
-#     when "verb+beyond-pp-vp"
-#       return "MO-of"
+    #     when "verb+beyond-pp-vp"
+    #       return "MO-of"
     else
       return nil
     end
@@ -1039,7 +1039,7 @@ class CollinsTntInterpreter < SynInterpreter
     unless (conj_sisters = p.children.select { |sib|
               sib != node and CollinsTntInterpreter.category(sib) == "con"
             } ) and
-        not (conj_sisters.empty?)
+          not (conj_sisters.empty?)
       return false
     end
 
@@ -1071,12 +1071,12 @@ class CollinsTntInterpreter < SynInterpreter
     # if so, return true
     conj_sisters.each { |conj_triple|
       if leftof(conj_triple, this_triple) and
-          sisters_closer_to_target.detect { |s| CollinsTntInterpreter.leftof(s, conj_triple) }
+        sisters_closer_to_target.detect { |s| CollinsTntInterpreter.leftof(s, conj_triple) }
 
         return true
 
       elsif rightof(conj_triple, this_triple) and
-          sisters_closer_to_target.detect { |s| CollinsTntInterpreter.rightof(s, conj_triple) }
+           sisters_closer_to_target.detect { |s| CollinsTntInterpreter.rightof(s, conj_triple) }
 
         return true
       end

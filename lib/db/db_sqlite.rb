@@ -31,12 +31,12 @@ class DBSQLiteResult < DBResult
   def num_rows()
     # remember where we were in iterating over items
     tmp_counter = @counter
-    
+
     # reset, and iterate over all rows to count
     reset()
     retv = 0
     each { |x| retv += 1}
-    
+
     # return to where we were in iterating over items
     reset()
     while @counter < tmp_counter
@@ -51,7 +51,7 @@ class DBSQLiteResult < DBResult
 
   # yields each row as an array of values
   def each()
-    @result.each { |row| 
+    @result.each { |row|
       @counter += 1
       yield row.map { |x| x.to_s() }
     }
@@ -59,7 +59,7 @@ class DBSQLiteResult < DBResult
 
   # yields each row as a hash: column name=> column value
   def each_hash()
-    @result.each { |row| 
+    @result.each { |row|
       @counter += 1
 
       row_hash = Hash.new()
@@ -94,7 +94,7 @@ end
 class DBSQLite < DBWrapper
 
   ###
-  # initialization: 
+  # initialization:
   #
   # open database file according to the given identifier
   def initialize(exp,  # RosyConfigData experiment file object
@@ -121,22 +121,22 @@ class DBSQLite < DBWrapper
   def create_table(table_name, # string
                    column_formats, # array: array: string*string [column_name,column_format]
                    index_column_names, # array: string: column_name
-                   indexname)  # string: name of automatically created index column   
+                   indexname)  # string: name of automatically created index column
 
-    # primary key and auto-increment column 
+    # primary key and auto-increment column
     string = "CREATE TABLE #{table_name} (" +
-      "#{indexname} INTEGER PRIMARY KEY"
+             "#{indexname} INTEGER PRIMARY KEY"
 
     # column declarations
     unless column_formats.empty?
       string << ", "
-      string << column_formats.map { |name, format| 
+      string << column_formats.map { |name, format|
         # include other keys
         if index_column_names.include? name
           name.to_s + " KEY " + format.to_s
         else
-          name.to_s + " " + format.to_s 
-        end          
+          name.to_s + " " + format.to_s
+        end
       }.join(",")
     end
     string << ");"
@@ -195,8 +195,8 @@ class DBSQLite < DBWrapper
     end
 
     table_descr = @database.execute("select * from sqlite_master where name=='#{table_name}';")
-      # this is an array of pieces of table description.
-      # the piece in the column called 'sql' is the 'create' statement. 
+    # this is an array of pieces of table description.
+    # the piece in the column called 'sql' is the 'create' statement.
     # get the 'create' statement
     begin
       field_names = table_descr[0].fields
@@ -212,8 +212,8 @@ class DBSQLite < DBWrapper
       # split at the comma, remove whitespace at beginning and end
       # then split again to get pairs [column name, column format]
       return $1.split(",").map { |col_descrip|
-        pieces = col_descrip.strip().split().reject { |entry| 
-          entry =~ /^key$/i or  entry =~ /^primary$/i 
+        pieces = col_descrip.strip().split().reject { |entry|
+          entry =~ /^key$/i or  entry =~ /^primary$/i
         }
         if pieces.length() > 2
           $stderr.puts "Warning: problematic column format in #{col_descrip}, may be parsed wrong."
@@ -255,7 +255,7 @@ class DBSQLite < DBWrapper
   #   def make_temp_table(column_formats, # array: string*string [column_name,column_format]
   #                       index_column_names, # array: string: column_name
   #                       indexname)  # string: name of autoincrement primary index
-  
+
   #     temp_obj = self.clone()
   #     temp.initialize_temp_table(column_formats, index_column_names, indexname)
   #     return temp_obj

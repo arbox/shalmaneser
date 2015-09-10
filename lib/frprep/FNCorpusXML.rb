@@ -5,7 +5,7 @@
 # changes:
 # - no single frame for the whole corpus
 # - below <sentence> level there is an <annotationSet> level.
-#   One annotationSet may include a single frame, 
+#   One annotationSet may include a single frame,
 #   or a reference to all named entities in a sentence
 #
 # Write out in tab format, one line per word:
@@ -21,7 +21,7 @@
 #    frame: frame
 #    stuff: support, and other things
 #   ne:    named entity
-#   sent_id: sentence ID 
+#   sent_id: sentence ID
 
 require 'frprep/Ampersand'
 require 'common/ISO-8859-1'
@@ -35,7 +35,7 @@ class RegXML
   end
 
   def each_child_matching(child_name)
-    children_and_text().each { |c| 
+    children_and_text().each { |c|
       if c.name() == child_name
         yield c
       end
@@ -50,17 +50,17 @@ class FNCorpusAset
 
   #######
   # Analyze RegXML object, store in object variables:
-  # 
+  #
   # @aset_type: "frame" or "NER"
   # @frame_name: frame name for "frame" type
   # @lu: LU for "frame" type
   # @aset_id: ID of the annotation set
   # @layers: hash: layer type (FE, GF, PT, Target, NER) -> [offset, "start"/"stop"]  -> list of labels
   #     string -> int*string -> array:string
-  #    
+  #
   def initialize(aset, #RegXML object
                  charidx) # array of pairs [start index, stop index] int*int
-    
+
     @layers = Hash.new()
     @frame_name = nil
     @lu = nil
@@ -90,7 +90,7 @@ class FNCorpusAset
       layers.each_child_matching("layer") { |l| analyze_layer(l, charidx) }
 
     else
-      # all we seem to get here are named entity labels. 
+      # all we seem to get here are named entity labels.
       @aset_type = "NER"
 
       unless (layers = aset.first_child_matching("layers"))
@@ -115,7 +115,7 @@ class FNCorpusAset
     end
   end
 
-  
+
   #############
   # input: <layer> RegXML object
   # analyze this, put into @layers data structure
@@ -164,22 +164,22 @@ class FNCorpusAset
     # match word start and end indices?
     thisLayer = verify_annotation(thisLayer, charidx)
 
-    # sanity check: verify that 
+    # sanity check: verify that
     # we don't have overlapping labels
 
     deleteHash = Hash.new # keep track of the labels which are to be deleted
-                          # i -> Boolean
+    # i -> Boolean
 
     thisLayer.each_index {|i|
       # efficiency: skip already delete labels
       if deleteHash[i]
         next
       end
-      this_label, this_from , this_to = thisLayer[i] 
-      
+      this_label, this_from , this_to = thisLayer[i]
+
       # compare with all remaining labels
       (i+1..thisLayer.length()-1).to_a.each { |other_i|
-        other_label,other_from,other_to = thisLayer[other_i]        
+        other_label,other_from,other_to = thisLayer[other_i]
 
         # overlap? Throw out the later FE
         if this_from <= other_from and other_from <= this_to
@@ -191,9 +191,9 @@ class FNCorpusAset
         end
       }
       # matched with all other labels. If "keep", return
-      
+
       if deleteHash[i]
-#	$stderr.puts " deleting entry #{i}" 
+      # $stderr.puts " deleting entry #{i}"
       else
         [ [this_from, "start"], [this_to, "stop"]].each { |offset, start_or_stop|
           unless @layers[layer_name].has_key?([offset, start_or_stop])
@@ -214,27 +214,27 @@ class FNCorpusAset
                         charidx)      # array: from/to, int*int
 
     return found.map {|element, start, stop|
-	  
+
       newstart = start
       newstop = stop
-      
+
       # compare against word start/stop indices
       charidx.each_index{|j|
         unless j== 0
           pstartidx, pstopidx = charidx[j-1]
         end
         startidx, stopidx = charidx[j]
-	    
-        if (start > startidx and start <= stopidx) or 
-            (j != 0 and start > pstopidx and start < startidx)
+
+        if (start > startidx and start <= stopidx) or
+          (j != 0 and start > pstopidx and start < startidx)
           newstart = startidx
         end
-	    
-        if (stop >= startidx and stop < stopidx) 
+
+        if (stop >= startidx and stop < stopidx)
           newstop = stopidx
         elsif (j != 0 and stop > pstopidx and stop < startidx)
           newstop = pstopidx
-        end 
+        end
       }
 
       # change?
@@ -242,11 +242,11 @@ class FNCorpusAset
         # report change
         $stderr.puts "FNCorpusXML warning: Heuristics has changed element "+element
         $stderr.puts "\tfrom ["+[start,stop].join(",")+"] to ["+[newstart,newstop].join(",")+"]"
-        
+
         [element, newstart, newstop]
-            
+
       else
-        
+
         [element, start, stop]
       end
     }
@@ -275,7 +275,7 @@ class FNCorpusXMLFile
     doc_string = ""
     inside_doc_elem = false
     f = File.new(@filename)
-    
+
     # <corpus>
     #   <documents>
     #     <document ...>
@@ -311,7 +311,7 @@ class FNCorpusXMLFile
     sent_string = ""
     inside_sent_elem = false
     f = File.new(@filename)
-    
+
     # <corpus>
     #   <documents>
     #     <document ...>
@@ -374,7 +374,7 @@ class FNCorpusXMLSentence
   #    frame: frame
   #    stuff: support, and other things
   #   ne:    named entity
-  #   sent_id: sentence ID 
+  #   sent_id: sentence ID
   def print_conll_style(file = $stdout)
     pos_text, charidx = read_sentence()
     asets = read_annotation_sets(charidx)
@@ -434,7 +434,7 @@ class FNCorpusXMLSentence
             line <<  token.sort.join(":")
           end
         }
-        
+
         # target
         target = aset.layers["Target"]
         if target.has_key?([start,"start"])
@@ -527,9 +527,9 @@ class FNCorpusXMLSentence
     lost_labels = Array.new()
     asets.each { |aset|
       aset.layers.each_key { |layer|
-        aset.layers[layer].each_key() { |offset, start_or_stop| 
+        aset.layers[layer].each_key() { |offset, start_or_stop|
           unless recognized_labels[[layer, offset, start_or_stop]]
-            lost_labels << [layer, offset, start_or_stop, 
+            lost_labels << [layer, offset, start_or_stop,
                             aset.layers[layer][[offset, start_or_stop]]]
           end
         }
@@ -540,10 +540,10 @@ class FNCorpusXMLSentence
       pos_text.each_index { |i|
         $stderr.puts "\t#{pos_text[i]} #{charidx[i][0]} #{charidx[i][1]}"
       }
-#       $stderr.puts "Recognized:"
-#       recognized_labels.each_key { |k|
-#         $stderr.puts "\t" + k.to_s()
-#       }
+      #       $stderr.puts "Recognized:"
+      #       recognized_labels.each_key { |k|
+      #         $stderr.puts "\t" + k.to_s()
+      #       }
       lost_labels.each { |layer, offset, start_or_stop, labels|
         $stderr.puts "FNCorpusXML warning: lost label"
         $stderr.puts "\tLayer #{layer}"
@@ -603,8 +603,8 @@ class FNCorpusXMLSentence
       orig_text = orig_text.to_s()
     end
 
-    pos_text = UtfIso.to_iso_8859_1(orig_text).split(" ") # text with special char.s replaced by iso8859 char.s 
-    
+    pos_text = UtfIso.to_iso_8859_1(orig_text).split(" ") # text with special char.s replaced by iso8859 char.s
+
     double_space = Array.new
     pos = 0
     while (match = orig_text.index(/(\s\s+)/,pos))
@@ -621,14 +621,14 @@ class FNCorpusXMLSentence
       stopchar = char_i-1
 
       #      puts "Remembering "+(char_i-1).to_s+" as stop index of word "+word_i.to_s
-      
+
       charidx << [startchar,stopchar]
-      
+
       # separators
       if double_space.include?(char_i) then
-	char_i += 2
-      else	 
-	char_i += 1
+        char_i += 2
+      else
+        char_i += 1
       end
     }
 

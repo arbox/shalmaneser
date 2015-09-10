@@ -140,17 +140,17 @@ class MiniparSentence
       old_chart = new_chart
     }
 
-#     $stderr.puts "Msent: "+ @nodes.map { |n| n["word"]}.join(" ")
-#     $stderr.puts "Tsent: "+ tabwords.join(" ")
-#     $stderr.puts "Mappings: "
-#     old_chart.each { |mapping|
-#       mapping.each { |fnw_ix, mnode_no, match_how|
-#         $stderr.print tabwords[fnw_ix] + ":" + @nodes[mnode_no]["word"] + ":" + match_how + " "
-#       }
-#       $stderr.puts
-#     }
-#     $stderr.puts "any key"
-#     $stdin.gets()
+    #     $stderr.puts "Msent: "+ @nodes.map { |n| n["word"]}.join(" ")
+    #     $stderr.puts "Tsent: "+ tabwords.join(" ")
+    #     $stderr.puts "Mappings: "
+    #     old_chart.each { |mapping|
+    #       mapping.each { |fnw_ix, mnode_no, match_how|
+    #         $stderr.print tabwords[fnw_ix] + ":" + @nodes[mnode_no]["word"] + ":" + match_how + " "
+    #       }
+    #       $stderr.puts
+    #     }
+    #     $stderr.puts "any key"
+    #     $stdin.gets()
 
     # filter chart: if some fntab sent words are only matched partially, discard
     if sloppy
@@ -179,10 +179,10 @@ class MiniparSentence
     if chart.empty?
       return false
     elsif chart.length() > 1
-#      $stderr.puts "Found more than one mapping for sentence:"
-#      $stderr.puts "Msent: " + @nodes.map { |n| n["word"]}.join(" ")
-#      $stderr.puts "Tsent: "+ tabwords.join(" ")
-#      $stderr.puts
+      #      $stderr.puts "Found more than one mapping for sentence:"
+      #      $stderr.puts "Msent: " + @nodes.map { |n| n["word"]}.join(" ")
+      #      $stderr.puts "Tsent: "+ tabwords.join(" ")
+      #      $stderr.puts
     end
 
     # success: found mapping
@@ -248,7 +248,7 @@ class MiniparSentence
     if lemma_pos
       lemma_pos.strip!
       if lemma_pos == "U"
-        # neither lemma nor POS for this node
+      # neither lemma nor POS for this node
       else
         # we have both lemma and POS
 
@@ -277,14 +277,14 @@ class MiniparSentence
 
     # parent index
     if parentindex.nil? or parentindex == "*"
-      # root
+    # root
     else
       retv["parent_index"] = parentindex
     end
 
     # edge label
     if edgelabel.nil? or edgelabel.strip.empty?
-      # no edge label given
+    # no edge label given
     else
       retv["edgelabel"] = edgelabel
     end
@@ -296,7 +296,7 @@ class MiniparSentence
       if governor =~ /^\(gov\s(.+)\)$/
         retv["governing_lemma"] = $1
       elsif governor == "(gov )"
-	# okay, no governor given
+      # okay, no governor given
       else
         $stderr.puts "cannot parse governor "+ governor
       end
@@ -548,7 +548,7 @@ class MiniparInterface < SynInterfaceSTXML
   #
   # returns: nothing
   def process_file(infilename,    # string: name of input file
-		  outfilename)    # string: name of output file
+		   outfilename)    # string: name of output file
 
     tf = Tempfile.new("minipar")
     reader = FNTabFormatFile.new(infilename)
@@ -741,19 +741,19 @@ class MiniparInterface < SynInterfaceSTXML
 
     # no match found up to now. so try sloppy match
     if parse.set_tabsent(@tab_sentences[tabsent_no], "sloppy")
-#      $stderr.puts "Warning: sloppy match used. Minipar sentence:"
-#      $stderr.puts parse.nodes().map { |n| n["word"].to_s }.join(" ")
-#      $stderr.puts "Matching fntab sentence: "
-#      @tab_sentences[tabsent_no].each_line_parsed { |l| $stderr.print l.get("word"), " " }
-#      $stderr.puts
+      #      $stderr.puts "Warning: sloppy match used. Minipar sentence:"
+      #      $stderr.puts parse.nodes().map { |n| n["word"].to_s }.join(" ")
+      #      $stderr.puts "Matching fntab sentence: "
+      #      @tab_sentences[tabsent_no].each_line_parsed { |l| $stderr.print l.get("word"), " " }
+      #      $stderr.puts
       return tabsent_no
     end
 
-#    $stderr.puts "Warning: No match found for minipar sentence:"
-#    $stderr.puts parse.nodes().map { |n| n["word"].to_s }.join(" ")
-#    $stderr.puts "First tested fntab sentence: "
-#    @tab_sentences[tabsent_no].each_line_parsed { |l| $stderr.print l.get("word"), " " }
-#    $stderr.puts
+    #    $stderr.puts "Warning: No match found for minipar sentence:"
+    #    $stderr.puts parse.nodes().map { |n| n["word"].to_s }.join(" ")
+    #    $stderr.puts "First tested fntab sentence: "
+    #    @tab_sentences[tabsent_no].each_line_parsed { |l| $stderr.print l.get("word"), " " }
+    #    $stderr.puts
 
     return nil
   end
@@ -812,8 +812,8 @@ class MiniparInterpreter < SynInterpreter
     end
 
     if node.part_of_speech() == "U" and
-        node.parent_label() == "lex-mod" and
-        node.parent and MiniparInterpreter.category(node.parent) == "verb"
+      node.parent_label() == "lex-mod" and
+      node.parent and MiniparInterpreter.category(node.parent) == "verb"
       # this node is part of a complex verb
       return "part"
     end
@@ -888,7 +888,7 @@ class MiniparInterpreter < SynInterpreter
   # returns: boolean
   def MiniparInterpreter.auxiliary?(node)
     if MiniparInterpreter.aux_or_modal?(node) and
-        not(MiniparInterpreter.modal?(node))
+      not(MiniparInterpreter.modal?(node))
       return true
     else
       return false
@@ -903,11 +903,11 @@ class MiniparInterpreter < SynInterpreter
   # returns: boolean
   def MiniparInterpreter.modal?(node)
     if MiniparInterpreter.aux_or_modal?(node) and
-        ["can",
-         "could",
-         "must",
-         "should",
-         "shall"
+      ["can",
+       "could",
+       "must",
+       "should",
+       "shall"
       ].include? node.word()
       return true
     else
@@ -950,21 +950,21 @@ class MiniparInterpreter < SynInterpreter
     # outgoing edge "by_subj"?
     # then assume passive
     unless verb_node.children_by_edgelabels(["by_subj"]).empty?
-#      $stderr.puts "passive #{verb_node.id()} by_subj"
+      #      $stderr.puts "passive #{verb_node.id()} by_subj"
       return "passive"
     end
 
     # outgoing edge to auxiliary "be", and not "be ....ing"?
     # then assume passive
     if not(verb_node.children_by_edgelabels(["be"]).empty?) and
-        verb_node.word !~ /ing$/
-#      $stderr.puts "passive #{verb_node.id()} be"
+      verb_node.word !~ /ing$/
+      #      $stderr.puts "passive #{verb_node.id()} be"
       return "passive"
     end
 
     # vrel incoming edge? then assume passive
     if verb_node.parent_label() == "vrel"
-#      $stderr.puts "passive #{verb_node.id()} vrel"
+      #      $stderr.puts "passive #{verb_node.id()} vrel"
       return "passive"
     end
 
@@ -973,7 +973,7 @@ class MiniparInterpreter < SynInterpreter
     if (obj_ch = verb_node.children_by_edgelabels(["obj"]).first)
       if (s_ch = verb_node.children_by_edgelabels(["s"]).first)
         if obj_ch.get_f("antecedent") == s_ch
-#          $stderr.puts "passive #{verb_node.id()} obj=s"
+          #          $stderr.puts "passive #{verb_node.id()} obj=s"
           return "passive"
         end
       end
@@ -998,10 +998,10 @@ class MiniparInterpreter < SynInterpreter
 
     retv =  start_node.children_with_edgelabel.reject { |edgelabel, node|
       ["Head",  # head of the target node -- not really bearer of a GF
-	"-",
-	"aux",
-	"have",
-	"be"
+       "-",
+       "aux",
+       "have",
+       "be"
       ].include? edgelabel
     }.map { |edgelabel,node|
 
@@ -1024,7 +1024,7 @@ class MiniparInterpreter < SynInterpreter
       # then add the preposition to the edgelabel,
       # and take the node's head as head instead of the node
       if edgelabel == "mod" and
-	  node.part_of_speech() == "Prep"
+	node.part_of_speech() == "Prep"
 	edgelabel = edgelabel + "-" + node.word().to_s
       end
 
@@ -1034,19 +1034,19 @@ class MiniparInterpreter < SynInterpreter
     # duplicate entries?
     # s is often coreferent with either subj or obj
     if MiniparInterpreter.voice(start_node) == "active" and
-        (s_entry = retv.assoc("s")) and
-        (subj_entry = retv.assoc("subj")) and
-        s_entry.last == subj_entry.last
+      (s_entry = retv.assoc("s")) and
+      (subj_entry = retv.assoc("subj")) and
+      s_entry.last == subj_entry.last
       retv.delete(s_entry)
 
     elsif MiniparInterpreter.voice(start_node) == "passive" and
-        (s_entry = retv.assoc("s")) and
-        (obj_entry = retv.assoc("obj")) and
-        s_entry.last == obj_entry.last
+         (s_entry = retv.assoc("s")) and
+         (obj_entry = retv.assoc("obj")) and
+         s_entry.last == obj_entry.last
       retv.delete(s_entry)
     end
 
-#    $stderr.puts "blip " + retv.map { |l, n| l}.join(" ")
+    #    $stderr.puts "blip " + retv.map { |l, n| l}.join(" ")
     return retv
   end
 
@@ -1068,15 +1068,15 @@ class MiniparInterpreter < SynInterpreter
 
       if children.empty?
         # no suitable child found
-#        $stderr.puts "Prep node without suitable child."
-#        $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
+        #        $stderr.puts "Prep node without suitable child."
+        #        $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
         return nil
 
       else
-#         if children.length() > 1
-#           $stderr.puts "Too many suitable children for prep node: "
-#           $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
-#         end
+        #         if children.length() > 1
+        #           $stderr.puts "Too many suitable children for prep node: "
+        #           $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
+        #         end
 
         return children.first
       end
@@ -1088,15 +1088,15 @@ class MiniparInterpreter < SynInterpreter
 
       if children.empty?
         # no suitable child found
-#        $stderr.puts "SentAdjunct node without suitable child."
-#        $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
+        #        $stderr.puts "SentAdjunct node without suitable child."
+        #        $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
         return nil
 
       else
-#         if children.length() > 1
-#           $stderr.puts "Too many suitable children for sent. adjunct node: "
-#           $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
-#         end
+        #         if children.length() > 1
+        #           $stderr.puts "Too many suitable children for sent. adjunct node: "
+        #           $stderr.puts "Outgoing edges: " + node.child_labels().join(", ")
+        #         end
 
         return children.first
       end
@@ -1106,18 +1106,18 @@ class MiniparInterpreter < SynInterpreter
 
       children = node.children_by_edgelabels(["i"])
       if children.length() > 0
-#         if children.length() > 1
-#           $stderr.puts "Too many i edges from empty node."
-#         end
+        #         if children.length() > 1
+        #           $stderr.puts "Too many i edges from empty node."
+        #         end
 
         return children.first
       end
 
       children = node.children_by_edgelabels(["nn"])
       if children.length() > 0
-#         if children.length() > 1
-#           $stderr.puts "Too many nn edges from empty node."
-#         end
+        #         if children.length() > 1
+        #           $stderr.puts "Too many nn edges from empty node."
+        #         end
 
         return children.first
       end
@@ -1159,7 +1159,7 @@ class MiniparInterpreter < SynInterpreter
 	  return paths.first
 	end
 	true # each_reachable_node requires boolean to determine
-	     # whether to continue the path beyond node
+	# whether to continue the path beyond node
       }
     else
       return super(from_node, to_node)
@@ -1190,29 +1190,29 @@ class MiniparInterpreter < SynInterpreter
   end
 
 
-#   ###
-#   # main node of expression
-#   #
-#   # 2nd argument non-nil:
-#   # don't handle multiword expressions beyond verbs with separate particles
-#   #
-#   # returns: SynNode, main node, if found
-#   # else nil
-#   def MiniparInterpreter.main_node_of_expr(nodelist,
-#                                            no_mwes = nil)
+  #   ###
+  #   # main node of expression
+  #   #
+  #   # 2nd argument non-nil:
+  #   # don't handle multiword expressions beyond verbs with separate particles
+  #   #
+  #   # returns: SynNode, main node, if found
+  #   # else nil
+  #   def MiniparInterpreter.main_node_of_expr(nodelist,
+  #                                            no_mwes = nil)
 
-#     nodelist = nodelist.map { |n| MiniparInterpreter.ensure_upper(n) }.uniq()
+  #     nodelist = nodelist.map { |n| MiniparInterpreter.ensure_upper(n) }.uniq()
 
-#     # main reason we are overwriting the parent method:
-#     # don't go to terminal nodes right away.
-#     # If we have a single nonterminal, stay with it.
-#     # Otherwise, use parent method
-#     if nodelist.length() == 1
-#       return nodelist.first
-#     end
+  #     # main reason we are overwriting the parent method:
+  #     # don't go to terminal nodes right away.
+  #     # If we have a single nonterminal, stay with it.
+  #     # Otherwise, use parent method
+  #     if nodelist.length() == 1
+  #       return nodelist.first
+  #     end
 
-#     return super(nodelist, no_mwes)
-#   end
+  #     return super(nodelist, no_mwes)
+  #   end
 
   ########
   # max constituents:
@@ -1278,10 +1278,10 @@ class MiniparInterpreter < SynInterpreter
       }
       if minipar_node.parent
         surrounding_n.push([
-				 "U", minipar_node.parent,
-				 minipar_node.parent_label(),
-				 minipar_node.parent.part_of_speech()
-			       ])
+			     "U", minipar_node.parent,
+			     minipar_node.parent_label(),
+			     minipar_node.parent.part_of_speech()
+			   ])
       end
 
       surrounding_n.each { |direction, new_node, edgelabel, nodelabel|
@@ -1298,7 +1298,7 @@ class MiniparInterpreter < SynInterpreter
         # node seen before, and  seen with shorter path?
         # all paths in seen[actual_new_node] have the same length
         if seen[actual_new_node] and
-            seen[actual_new_node].first.length() < seen[minipar_node].first.length() + 1
+          seen[actual_new_node].first.length() < seen[minipar_node].first.length() + 1
           # yes, seen with a shorter path. discard
           next
         end
@@ -1343,9 +1343,9 @@ class MiniparInterpreter < SynInterpreter
     node = MiniparInterpreter.ensure_upper(node)
 
     if (l = node.parent_label()) and
-        ["be", "have", "aux"].include? l and
-        (p = node.parent()) and
-        MiniparInterpreter.category(p) == "verb"
+      ["be", "have", "aux"].include? l and
+      (p = node.parent()) and
+      MiniparInterpreter.category(p) == "verb"
       return true
     else
       return false

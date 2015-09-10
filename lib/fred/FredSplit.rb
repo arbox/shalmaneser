@@ -23,7 +23,7 @@ class FredSplit
   #
   # evaluate runtime options and announce the task
   def initialize(exp_obj, # FredConfigData object
-		 options, # hash: runtime option name (string) => value(string)
+                 options, # hash: runtime option name (string) => value(string)
                  ignore_unambiguous = false)
 
     in_enduser_mode_unavailable()
@@ -38,13 +38,13 @@ class FredSplit
     options.each_pair { |opt, arg|
       case opt
       when "--logID"
-	@split_id = arg
+        @split_id = arg
 
       when "--trainpercent"
-	@trainpercent = arg.to_f / 100.0
+        @trainpercent = arg.to_f / 100.0
 
       else
-	# case of unknown arguments has been dealt with by fred.rb
+        # case of unknown arguments has been dealt with by fred.rb
       end
     }
 
@@ -54,7 +54,7 @@ class FredSplit
     end
     if @trainpercent <= 0.0 or @trainpercent >= 1.0
       raise "Training percentage needs to be between 1 and 99. I got "+
-	(@trainpercent * 100.0).to_i.to_s
+            (@trainpercent * 100.0).to_i.to_s
     end
 
     ##

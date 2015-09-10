@@ -30,7 +30,7 @@ class Targets
     @targets_okay = true
     case mode
     when "w"
-      # start from scratch, no list of targets
+    # start from scratch, no list of targets
     when "a", "r"
       # read existing file containing targets
       begin
@@ -47,7 +47,7 @@ class Targets
           senses = $2.split()
           lemmapos.gsub!(/ /, '_')
           #lemmapos.gsub!(/\.[A-Z]\./, '.')
-         @targets[lemmapos] = senses
+          @targets[lemmapos] = senses
         end
       }
 
@@ -156,7 +156,7 @@ class FindTargetsFromFrames < Targets
   #  "lex":   lemma, or multiword expression in canonical form
   #  "sid": sentence ID
   def determine_targets(st_sent) #SalsaTigerSentence object
-   retv = Hash.new()
+    retv = Hash.new()
     st_sent.each_frame { |frame_obj|
       # instance-specific computation:
       # target and target positions
@@ -167,7 +167,7 @@ class FindTargetsFromFrames < Targets
       term = nil
       all_targets = nil
       if frame_obj.target.nil? or frame_obj.target.children.empty?
-        # no target, nothing to record
+      # no target, nothing to record
 
       elsif @exp.get("language") == "de"
         # don't consider true multiword targets for German
@@ -183,7 +183,7 @@ class FindTargetsFromFrames < Targets
 
       if term and term.is_splitword?
         # don't use parts of a word as main node
-          term = term.parent()
+        term = term.parent()
       end
       if term and term.is_terminal?
         key = [all_targets.map { |t| t.id() }, term.id()]
@@ -215,7 +215,7 @@ class FindTargetsFromFrames < Targets
           "pos" => pos,
           "sid" => st_sent.id()
         }
-      #print "lex ", frame_obj.target(), " und ",frame_obj.target().get_attribute("lemma"), "\n"
+        #print "lex ", frame_obj.target(), " und ",frame_obj.target().get_attribute("lemma"), "\n"
         retv[key] << target_info
         if @record_targets
           record(target_info)
@@ -240,11 +240,11 @@ class FindAllTargets < Targets
     get_senses(@training_lemmapos_pairs)
     # list of words to exclude from assignment, for now
     @stoplemmas = [
-                   "have",
-                   "do",
-                   "be"
-                   #      "make"
-                  ]
+      "have",
+      "do",
+      "be"
+      #      "make"
+    ]
 
   end
 
@@ -277,38 +277,38 @@ class FindAllTargets < Targets
       lemma = @interpreter_class.lemma_backoff(node)
       pos = @interpreter_class.category(node)
 
-#	print "lemma ", lemma, " pos ", pos, "\n"
-#      reg = /\.[ANV]/
-#      if !reg.match(lemma)
-#        if /verb/.match(pos)
-#          lemma = lemma + ".V"
-#        elsif /noun/.match(pos)
-#          lemma = lemma + ".N"
-#        elsif /adj/.match(pos)
-#          lemma = lemma + ".A"
-#        end
-#        print "LEMMA ", lemma, " POS ", pos, "\n"
-#      end
+      #	print "lemma ", lemma, " pos ", pos, "\n"
+      #      reg = /\.[ANV]/
+      #      if !reg.match(lemma)
+      #        if /verb/.match(pos)
+      #          lemma = lemma + ".V"
+      #        elsif /noun/.match(pos)
+      #          lemma = lemma + ".N"
+      #        elsif /adj/.match(pos)
+      #          lemma = lemma + ".A"
+      #        end
+      #        print "LEMMA ", lemma, " POS ", pos, "\n"
+      #      end
 
       if (@training_lemmapos_pairs.include? [lemma, pos] and
           not(@interpreter_class.auxiliary?(node)) and
           not(@stoplemmas.include? lemma) and
           not(pos == "prep"))
-          key = [ [ node.id() ], node.id() ]
+        key = [ [ node.id() ], node.id() ]
 
-          # take this as a target.
-          retv[ key ] = [
-                         {
-                           "sense" => nil,
-                           "obj" => nil,
-                           "all_targets" => [ node.id() ],
-                           "lex" => lemma,
-                           "pos" => pos,
-                           "sid" => sent.id()
-                         } ]
-          # no recording of target info,
-          # since we haven't determined anything new
-        end
+        # take this as a target.
+        retv[ key ] = [
+          {
+            "sense" => nil,
+            "obj" => nil,
+            "all_targets" => [ node.id() ],
+            "lex" => lemma,
+            "pos" => pos,
+            "sid" => sent.id()
+          } ]
+        # no recording of target info,
+        # since we haven't determined anything new
+      end
     }
 
     return retv

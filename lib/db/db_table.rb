@@ -35,13 +35,13 @@ class DBTable
                  table_name, # string: name of DB table (existing/new)
                  mode,       # new: starts new DB table, removes old if it exists. open: reopens existing DB table
                  hash={})    # hash: parameter name => parameter value, depending on mode
-                             # mode= new needs:
-                             #  'col_formats': array:array len 2: string*string, [column_name, column_format]
-                             #  'index_cols':  array:string: column_names that should be used to index the table
-                             #  'addcol_prefix': string: prefix for names of additional columns
-                             # mode='open' needs:
-                             #  'col_formats': array: string*string: column names/formats
-                             #               May be nil, in that case column name match isn't tested
+    # mode= new needs:
+    #  'col_formats': array:array len 2: string*string, [column_name, column_format]
+    #  'index_cols':  array:string: column_names that should be used to index the table
+    #  'addcol_prefix': string: prefix for names of additional columns
+    # mode='open' needs:
+    #  'col_formats': array: string*string: column names/formats
+    #               May be nil, in that case column name match isn't tested
 
     @index_name = "XXindexXX"
     @db_obj = db_obj
@@ -55,7 +55,7 @@ class DBTable
       # sanity check: exactly the required parameters present?
       unless hash.keys.sort == ['addcol_prefix', 'col_formats', 'index_cols']
         raise "Expecting hash parameters 'addcol_prefix', 'col_formats', 'index_cols'.\n" +
-          "I got: " + hash.keys.join(", ")
+              "I got: " + hash.keys.join(", ")
       end
 
       # sanity check: main index column name should be unique
@@ -89,7 +89,7 @@ class DBTable
       hash.keys.each { |key|
         unless ['addcol_prefix', 'col_names'].include? key
           raise "Expecting hash parameters 'addcol_prefix', 'col_names'.\n" +
-          "I got: " + hash.keys.join(", ")
+                "I got: " + hash.keys.join(", ")
         end
       }
       # sanity check: main index column name should be unique
@@ -108,14 +108,14 @@ class DBTable
 
         existing_fields = @db_obj.list_column_names(table_name).reject { |col|
           col =~ /^#{hash["addcol_prefix"]}/ or
-          col == @index_name
+            col == @index_name
         }
 
         unless existing_fields.sort() == hash["col_names"].sort()
           raise "[DBTable] Column names in the DB table #{table_name}\n" +
                 "don't match feature specification in the experiment file.\n" +
                 "Table:\n\t" + existing_fields.sort.join(", ") +
-                 "\n\nExp. file:\n\t" + hash["col_names"].sort.join(", ")
+                "\n\nExp. file:\n\t" + hash["col_names"].sort.join(", ")
         end
 
       else

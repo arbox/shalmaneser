@@ -88,7 +88,7 @@ class AbstractContextProvider
   # - senses: array:string, the senses for the target
   # - sent: SalsaTigerSentence object
   def each_window_for_sent(sent)  # SalsaTigerSentence object or TabSentence object
-  if sent.kind_of? SalsaTigerSentence
+    if sent.kind_of? SalsaTigerSentence
       each_window_for_stsent(sent) { |result| yield result }
 
     elsif sent.kind_of? TabFormatSentence
@@ -286,7 +286,7 @@ class ContextProvider < AbstractContextProvider
       end
       f = FilePartsParser.new(filename)
       each_window_for_file(f) { |result|
-    	  yield result
+    	yield result
       }
     }
     # and empty the context array
@@ -512,11 +512,11 @@ class NoncontiguousContextProvider < AbstractContextProvider
 
     # start temporary table
     temptable_obj = DBInterface.get_db_interface(@exp).make_temp_table([
-                                                            ["hashkey", "varchar(#{space_for_hashkey})"],
-                                                            ["sent", "varchar(#{space_for_sentstring})"]
-                                                           ],
-                                                           ["hashkey"],
-                                                           "autoinc_index")
+                                                                         ["hashkey", "varchar(#{space_for_hashkey})"],
+                                                                         ["sent", "varchar(#{space_for_sentstring})"]
+                                                                       ],
+                                                                       ["hashkey"],
+                                                                       "autoinc_index")
 
     # and hash table for the keys
     retv_keys = Hash.new()
@@ -726,9 +726,9 @@ class NoncontiguousContextProvider < AbstractContextProvider
     end
     f.each { |line|
       if line =~ /pos_tagger\s*=/ or
-          line =~ /pos_tagger_path\s*=/ or
-          line =~ /lemmatizer\s*=/ or
-          line =~ /lemmatizer_path\s*=/
+        line =~ /pos_tagger_path\s*=/ or
+        line =~ /lemmatizer\s*=/ or
+        line =~ /lemmatizer_path\s*=/
 
         tf_exp_frprep.puts line
       end
@@ -780,7 +780,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       # where "hashkey" == sent_checksum
       # returns a DBResult object
       query_result = temptable_obj.query(SQLQuery.select([ SelectTableAndColumns.new(temptable_obj, ["sent"]) ],
-                                                       [ ValueRestriction.new("hashkey", hashkey_this_sentence) ]))
+                                                         [ ValueRestriction.new("hashkey", hashkey_this_sentence) ]))
       query_result.each { |row|
 
         sent_string = SQLQuery.unstringify_value(row.first().to_s())
@@ -834,7 +834,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
   # such that the unmatched sentences can still be processed,
   # but without a larger context.
   def each_unmatched(all_keys,
-                      temptable_obj)
+                     temptable_obj)
 
     num_unmatched = 0
 
@@ -856,7 +856,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
             # report on unmatched sentence
             sent = SalsaTigerSentence.new(sent_string)
             $stderr.puts "Unmatched sentence from noncontiguous input:\n" +
-              sent.id().to_s() + " " + sent.to_s()
+                         sent.id().to_s() + " " + sent.to_s()
 
             # push the sentence through the context window,
             # filling it up with "nil",
@@ -868,7 +868,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
             # Couldn't turn it into a SalsaTigerSentence object:
             # just report, don't yield
             $stderr.puts "Unmatched sentence from noncontiguous input (raw):\n" +
-              sent_string
+                         sent_string
             $stderr.puts "ERROR: cannot process this sentence, skipping."
           end
         }
