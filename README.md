@@ -17,6 +17,28 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/arbox/shalmaneser.svg")](https://codeclimate.com/github/arbox/shalmaneser)
 [![Dependency Status](https://img.shields.io/gemnasium/arbox/shalmaneser.svg")](https://gemnasium.com/arbox/shalmaneser)
 
+> “SCANALYZER is the one single, the ONLY study of the news in depth that’s processed by General Technics’ famed computer Shalmaneser, who sees all, hears all, knows all save only that which YOU, Mr. and Mrs. Everywhere, wish to keep to yourselves.” <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> But Shalmaneser is a Micryogenic® computer bathed in liquid helium and it’s cold in his vault. <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> “Of course not. Shalmaneser’s main task is to achieve the impossible again, a routine undertaking here at GT.” <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> “They programmed Shalmaneser with the formula for this stiffener, see, and…” <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> What am I going to do now? <br/>
+> “All right, Shalmaneser!” <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> Shalmaneser is a Micryogenic® computer bathed in liquid helium and there’s no sign of Teresa. <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
+> Bathed in his currents of liquid helium, self-contained, immobile, vastly well informed by every mechanical sense: Shalmaneser. <br/>
+> John Brunner (1968) "Stand on Zanzibar"
+
 ## Description
 
 Please be careful, the whole thing is under construction! For now Shalmaneser it not intended to run on Windows systems since it heavily uses system calls for external invocations.
