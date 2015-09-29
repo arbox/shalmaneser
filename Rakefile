@@ -56,7 +56,7 @@ namespace :test do
   # all it's subsystems: FrPrep, Fred, Rosy.
   namespace :functional do
     desc 'Run all functional tests.'
-    task :all => [:shalmaneser, :frappuccino, :fred, :rosy]
+    task :all => [:shalmaneser, :frappe, :fred, :rosy]
 
     Rake::TestTask.new(:shalmaneser => :'test:cleanup') do |t|
       # @TODO: Write real tests for Shalmaneser.
@@ -67,7 +67,7 @@ namespace :test do
       # t.test_files = FileList['test/functional/test_*.rb']
     end
 
-    Rake::TestTask.new(:frappuccino => :'test:cleanup') do |t|
+    Rake::TestTask.new(:frappe => :'test:cleanup') do |t|
       t.libs << 'test'
       t.warning = true
       t.test_files = FileList['test/functional/test_frprep.rb']
@@ -89,9 +89,9 @@ namespace :test do
   # Unit testing.
   namespace :unit do
     desc 'Run all unit tests.'
-    task :all => [:frappuccino, :fred, :rosy]
+    task :all => [:frappe, :fred, :rosy]
 
-    Rake::TestTask.new(:frappuccino) do |t|
+    Rake::TestTask.new(:frappe) do |t|
       t.libs << 'test'
       t.warning = true
       t.description = 'Run all Preprocessor Tests.'
@@ -157,12 +157,12 @@ end
 
 namespace :build do
   desc 'Make all.'
-  task :shalmaneser => [:frappuccino, :fred, :rosy] do
+  task :shalmaneser => [:frappe, :fred, :rosy] do
     sh 'bundle exec gem build shalmaneser.gemspec'
   end
 
-  desc 'Make Frappuccion.'
-  task :frappuccino => :java do
+  desc 'Make Frappe.'
+  task :frappe => :java do
     sh 'bundle exec gem build shalmaneser-prep.gemspec'
   end
 
