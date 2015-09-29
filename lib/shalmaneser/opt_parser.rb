@@ -1,10 +1,9 @@
 require 'optparse'
 require 'shalmaneser/version'
 
-
-module Shalmaneser
+module Shalm
   class OptParser
-    
+
     # Specify a default option first.
     ENCODINGS = %w{iso utf8 hex}
     LANGUAGES = %w{de en}
@@ -70,11 +69,11 @@ module Shalmaneser
           puts opts
           exit
         end
-        
+
         opts.on_tail('-v', '--version', 'Show the program version.') do
           puts VERSION
           exit
-        end        
+        end
       end
     end
   end # OptParser

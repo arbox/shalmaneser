@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.name = 'shalmaneser-rosy'
   s.summary = 'ROSY'
   s.description = 'ROSY - Role Assignment System.'
-  s.version = Shalmaneser::VERSION
+  s.version = Shalm::VERSION
   s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'https://github.com/arbox/shalmaneser'
