@@ -1,4 +1,4 @@
-# [SHALMANESER - a SHALlow seMANtic parSER](http://www.coli.uni-saarland.de/projects/salsa/shal/)
+# SHALMANESER
 
 [RubyGems](http://rubygems.org/gems/shalmaneser) |
 [Shalmanesers Project Page](http://bu.chsta.be/projects/shalmaneser/) |
@@ -17,7 +17,17 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/arbox/shalmaneser.svg")](https://codeclimate.com/github/arbox/shalmaneser)
 [![Dependency Status](https://img.shields.io/gemnasium/arbox/shalmaneser.svg")](https://gemnasium.com/arbox/shalmaneser)
 
-> “SCANALYZER is the one single, the ONLY study of the news in depth that’s processed by General Technics’ famed computer Shalmaneser, who sees all, hears all, knows all save only that which YOU, Mr. and Mrs. Everywhere, wish to keep to yourselves.” <br/>
+[SHALMANESER](http://www.coli.uni-saarland.de/projects/salsa/shal/) is a SHALlow seMANtic parSER.
+
+The name Shalmaneser is borrowed from John Brunner. He describes in his novel
+"Stand on Zanzibar" an all knowing supercomputer baptized Shalmaneser.
+
+Shalmaneser also has other origins like the king [Shalmaneser III](https://en.wikipedia.org/wiki/Shalmaneser_III).
+
+> "SCANALYZER is the one single, the ONLY study of the news in depth
+> that’s processed by General Technics’ famed computer Shalmaneser,
+> who sees all, hears all, knows all save only that which YOU, Mr. and Mrs.
+> Everywhere, wish to keep to yourselves." <br/>
 > John Brunner (1968) "Stand on Zanzibar"
 
 > But Shalmaneser is a Micryogenic® computer bathed in liquid helium and it’s cold in his vault. <br/>
@@ -63,6 +73,7 @@ You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http:
 ## Publications on Shalmaneser
 
 - K. Erk and S. Padó: Shalmaneser - a flexible toolbox for semantic role assignment. Proceedings of LREC 2006, Genoa, Italy. [Click here for details](http://www.nlpado.de/~sebastian/pub/papers/lrec06_erk.pdf).
+
 - TODO: add other works
 
 ## Documentation
