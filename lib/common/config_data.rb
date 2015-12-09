@@ -8,7 +8,7 @@
 #
 #       feature_name = feature_value
 #
-# where feature_name is a string without spaces. feature_value 
+# where feature_name is a string without spaces. feature_value
 # may include spaces, depending on the feature type (see below).
 #
 # To include a comment in a config file, start the comment line with
@@ -19,24 +19,24 @@
 # - normal types:
 #   "bool", "float", "integer", "string"
 #   For the get() function with which features in the ConfigData object
-#   are accessed, the values are transformed from the strings in the 
+#   are accessed, the values are transformed from the strings in the
 #   config file to the appropriate class: Boolean, Float, Integer, String
 #
 # - other types:
-#   pattern:  This is a feature that may include variables in 
+#   pattern:  This is a feature that may include variables in
 #             <> brackets. When this feature is accesssed,
 #             values for these variables are given, i.e. this
 #             pattern has to be instantiated.
-#             For example, given a feature 
+#             For example, given a feature
 #
 #               fileformat = features.<type>.train
 #
 #             and method call
 #               instantiate("fileformat", "type" => "path")
-# 
+#
 #             what is returned is a string "features.path.train"
 #
-#             Variables used in a pattern have to be declared to 
+#             Variables used in a pattern have to be declared to
 #             the new() method.
 #
 #   list:    This is the only feature type where more than one
@@ -44,13 +44,13 @@
 #            The right-hand sides of a list feature are stored in an array.
 #
 #            Given a 'list' feature 'bla', if the config file contains
-#  
+#
 #                bla = blupp 1 2
 #                bla = la di da
 #
 #            the list feature 'bla' is represented as follows:
 #            @features['bla'] = [['blupp', 1,2], ['la', 'di', 'da']]
-# 
+#
 #            For comfortable access to a list feature, arbitrary
 #            access functions for list features can be defined.
 #
@@ -58,7 +58,6 @@
 
 require 'common/config_format_element'
 require 'common/ruby_class_extensions'
-
 
 #####################################################
 ####################################################
@@ -74,7 +73,7 @@ require 'common/ruby_class_extensions'
 #   a custom ConfigData class.
 class ConfigData
 
-  # Input parameters: the name of the config file, a hash declaring all 
+  # Input parameters: the name of the config file, a hash declaring all
   # features by mapping feature names to their types,
   # and an array of all variables that may occur in pattern type features
   #
@@ -82,7 +81,6 @@ class ConfigData
   # @param feature_types [Hash] feature type definitions
   # @param variables [Array] list of variables used in pattern features
   def initialize(filename, feature_types, variables)
-
     @test_print = false
     @variables = variables
     @filename = filename
@@ -100,7 +98,7 @@ class ConfigData
     # pre-initialize list features to an empty array
     @feature_types.each_pair do |feature_name, feature_type|
       if feature_type == "list"
-	@features[feature_name] = []
+        @features[feature_name] = []
       end
     end
 
@@ -118,13 +116,13 @@ class ConfigData
 
     # examine the config file contents
 
-    while line = file.gets
+    while (line = file.gets)
       line = line.strip
       # Empty lines and comments
-      if line =~ /^#/ or line.empty?
-	next
+      if line =~ /^#/ || line.empty?
+        next
       end
-      
+
       feature_name, rhs = extract_def(line)
       set_entry(feature_name, rhs)
     end
@@ -148,22 +146,22 @@ class ConfigData
     case @feature_types[feature_name]
     when "pattern"
       # file format specification
-      
+
       @features[feature_name] = ConfigFormatElement.new(rhs, @variables)
-	
+
     when "list"
 
       # rhs is a string of space-separated words
       # the first of them is the key, the rest is the value, to be
       # stored as an array of words
-      
+
       # split rhs into words
       if rhs.empty?
         $stderr.puts "WARNING: I got an empty value for list feature #{feature_name}."
         $stderr.puts "I'll ignore it."
       else
-        unless @features[feature_name].include? rhs.split()
-          @features[feature_name] << rhs.split()
+        unless @features[feature_name].include?(rhs.split)
+          @features[feature_name] << rhs.split
         end
       end
 
@@ -172,23 +170,23 @@ class ConfigData
       unless ["true", "false"].include? rhs
         $stderr.puts "Error in experiment file:"
         $stderr.puts "Value for #{feature_name} must be either 'true' or 'false'."
-        $stderr.puts "I got: "+ rhs.to_s
+        $stderr.puts "I got: #{rhs}"
         exit 1
       end
       @features[feature_name] = (rhs == "true")
-      
+
     when "float"
       # float value
       @features[feature_name] = rhs.to_f
-      
+
     when "integer"
       # integer value
       @features[feature_name] = rhs.to_i
-      
+
     when "string"
       # string value
       @features[feature_name] = rhs
-      
+
     else
       raise "Unknown feature type for feature #{feature_name}: #{@feature_types[feature_name]}"
     end
@@ -239,7 +237,7 @@ class ConfigData
 
     # if feature name sets are not disjoint,
     # ignore the feature names that I already have
-    other_features, other_feature_types, other_list_feature_access = config_obj.get_contents()
+    other_features, other_feature_types, other_list_feature_access = config_obj.get_contents
     unless (@feature_types.keys & other_feature_types.keys).empty?
       other_features = other_features.clone()
       other_feature_types = other_feature_types.clone()
@@ -251,7 +249,7 @@ class ConfigData
         other_list_feature_access.delete(overlap_feature)
       }
     end
-    
+
     # now adjoin the contents of the other config objects to mine
     @features.update(other_features)
     @feature_types.update(other_feature_types)
@@ -308,7 +306,7 @@ class ConfigData
   # returns: string, the pattern with all variables
   #  instantiated with their values
   def instantiate(key,  # string: feature name
-		  var_hash={}) # hash: variable name(string) => value(string)
+                  var_hash={}) # hash: variable name(string) => value(string)
 
     unless @feature_types[key] == "pattern"
       raise "Nothing known about pattern " + key
@@ -341,7 +339,7 @@ class ConfigData
     end
     @test_print = tf
   end
-	
+
 
   #####
   # get_all_filenames
@@ -356,13 +354,13 @@ class ConfigData
   # their values as instantiated in the given filename
   # The filename doesn't include the directory.
   def get_all_filenames(dir, #string: directory name
-			key, # string: name of pattern type feature
-			var_hash={}) # hash: variable name(string) => value(string)
+                        key, # string: name of pattern type feature
+                        var_hash={}) # hash: variable name(string) => value(string)
 
     unless @feature_types[key] == "pattern"
       raise "Nothing known about file format " + key
     end
-    
+
     # array of pairs [filename(string), matches(hash)]
     filenames = Array.new
 
@@ -370,26 +368,26 @@ class ConfigData
     Dir.foreach(dir) { |filename|
       # does the filename match the pattern of the feature "key"?
       if (matches = @features[key].match(filename, var_hash))
-	# do the variable values for this filename conform
-	# to the variable values given in var_hash?
-	if @test_print
-	  $stderr.puts "got " + filename
-	end
-	if var_hash.keys.select { |var|
-	    matches[var] != var_hash[var]
-	  }.empty?
-	  filenames << [filename, matches]
-	else
-	  # mismatch for given variables
-	  if @test_print
-	    var_hash.keys.each { |var|
-	      if matches[var] != var_hash[var]
-		$stderr.puts "Mismatch for " + var + ": " +
-		  matches[var].to_s + " vs. " + var_hash[var]
-	      end
-	    }
-	  end
-	end      
+        # do the variable values for this filename conform
+        # to the variable values given in var_hash?
+        if @test_print
+          $stderr.puts "got " + filename
+        end
+        if var_hash.keys.select { |var|
+            matches[var] != var_hash[var]
+          }.empty?
+          filenames << [filename, matches]
+        else
+          # mismatch for given variables
+          if @test_print
+            var_hash.keys.each { |var|
+              if matches[var] != var_hash[var]
+                $stderr.puts "Mismatch for " + var + ": " +
+                  matches[var].to_s + " vs. " + var_hash[var]
+              end
+            }
+          end
+        end
       end
     }
 
@@ -398,7 +396,7 @@ class ConfigData
 
   #####
   # set list feature access:
-  # 
+  #
   # for a given list type feature, set a method that should
   # be used for accessing the feature.
   #
@@ -406,11 +404,11 @@ class ConfigData
   # for each experiment file entry
   #   feature = rhs
   # there will be a tuple rhs.split() in the list.
-  # 
+  #
   # The other parameters are not checked by ConfigData, there
   # may be arbitrarily many
   def set_list_feature_access(feature_name, # string: name of the feature
-			      proc) # proc: access method for list feature
+                              proc) # proc: access method for list feature
     unless @feature_types[feature_name] == 'list'
       raise "Cannot set list feature access to non-list feature #{feature_name}"
     end
@@ -426,7 +424,7 @@ class ConfigData
   #
   # returns: whatever the access function returns
   def get_lf(feature_name, # string: name of list feature
-	     *parameters)  # parameters for access function, collapsed into an array here
+             *parameters)  # parameters for access function, collapsed into an array here
 
     unless @list_feature_access[feature_name]
       raise "I have no list feature access method for #{feature_name}."
@@ -437,13 +435,12 @@ class ConfigData
     return @list_feature_access[feature_name].call(@features[feature_name], *parameters)
   end
 
-
   protected
 
   #####
   # extract_def
-  # 
-  # given a line of the config file, 
+  #
+  # given a line of the config file,
   # it is assumed that it has the structure
   #  [white space] string [white space] = [white space] stuff
   #  'stuff' may include further white space, 'string' may not.
@@ -458,13 +455,13 @@ class ConfigData
       $stderr.puts line
       exit 1
     end
-    return [$1, $2]
+
+    [$1, $2]
   end
 
   ####
   # access to the object variables
   def get_contents
-    return [@features, @feature_types, @list_feature_access]
+    [@features, @feature_types, @list_feature_access]
   end
-
 end

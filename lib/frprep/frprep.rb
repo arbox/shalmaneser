@@ -596,7 +596,7 @@ module FrPrep
               if st_sent.nil?
                 next
               end
-              if ( FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp) == false)
+              if (FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp) == false)
                 #print "FALSE \n";
                 #print oldsent, "\n", st_sent, "\n\n";
 
