@@ -22,13 +22,10 @@
 # - "fn_gf": FrameNet grammatical function label, attached to the maximal
 #   constituents covering the terminals labeled with that label
 
-
 require 'frprep/frprep'
 require 'frprep/opt_parser'
 
-
 options = FrPrep::OptParser.parse(ARGV)
-
 
 preprocessor = FrPrep::FrPrep.new(options)
 preprocessor.transform

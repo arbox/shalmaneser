@@ -66,7 +66,7 @@
 
 # require "common/RegXML"
 
-require "common/ruby_class_extensions"
+# require "common/ruby_class_extensions"
 
 # require_relative 'salsa_tiger_xml/string_terminals_in_right_order'
 

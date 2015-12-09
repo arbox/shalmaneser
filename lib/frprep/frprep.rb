@@ -18,7 +18,7 @@ module FrPrep
       # AB: move to FRprepOptionParser
       # remove previous contents of frprep internal data directory
       unless exp.get("frprep_directory")
-        raise "Please set 'frprep_directory', the frprep internal data directory,\n" +
+        raise "Please set 'frprep_directory', the frprep internal data directory,\n"\
               "in the experiment file."
       end
 
@@ -119,13 +119,13 @@ module FrPrep
           $stderr.puts "Storing the result in #{plain_dir}."
           $stderr.puts "Expecting one sentence per line."
 
-	  transform_bncformat_dir(current_dir, plain_dir)
+          transform_bncformat_dir(current_dir, plain_dir)
 
-	  current_dir = plain_dir
-	  current_format = "Plain"
+          current_dir = plain_dir
+          current_format = "Plain"
 
         when "Plain"
-	  # transform to tab format
+          # transform to tab format
 
           tab_dir = frprep_dirname("tab", "new")
 
@@ -133,32 +133,32 @@ module FrPrep
           $stderr.puts "Storing the result in #{tab_dir}."
           $stderr.puts "Expecting one sentence per line."
 
-	  transform_plain_dir(current_dir, tab_dir)
+          transform_plain_dir(current_dir, tab_dir)
 
-	  current_dir = tab_dir
-	  current_format = "SalsaTab"
+          current_dir = tab_dir
+          current_format = "SalsaTab"
 
         when "FNXml"
-	  # transform to tab format
+          # transform to tab format
 
           tab_dir = frprep_dirname("tab", "new")
 
-	  $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
-	  $stderr.puts "Storing the result in " + tab_dir
+          $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
+          $stderr.puts "Storing the result in " + tab_dir
 
-	  fndata = FNDatabase.new(current_dir)
-	  fndata.extract_everything(tab_dir)
-	  Kernel.system("chmod -R g+rx #{tab_dir}")
+          fndata = FNDatabase.new(current_dir)
+          fndata.extract_everything(tab_dir)
+          Kernel.system("chmod -R g+rx #{tab_dir}")
 
-	  current_dir = tab_dir
-	  current_format = "SalsaTab"
+          current_dir = tab_dir
+          current_format = "SalsaTab"
 
         when "FNCorpusXml"
           # transform to tab format
           tab_dir = frprep_dirname("tab", "new")
 
-	  $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
-	  $stderr.puts "Storing the result in " + tab_dir
+          $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
+          $stderr.puts "Storing the result in " + tab_dir
           # assuming that all XML files in the current directory are FN Corpus XML files
           Dir[current_dir + "*.xml"].each { |fncorpusfilename|
             corpus = FNCorpusXMLFile.new(fncorpusfilename)
@@ -168,19 +168,19 @@ module FrPrep
             outfile.close()
           }
 
-	  Kernel.system("chmod -R g+rx #{tab_dir}")
-	  current_dir = tab_dir
-	  current_format = "SalsaTab"
+          Kernel.system("chmod -R g+rx #{tab_dir}")
+          current_dir = tab_dir
+          current_format = "SalsaTab"
 
         when "SalsaTab"
-	  # lemmatize and POStag
+          # lemmatize and POStag
 
           $stderr.puts "Frprep: Lemmatizing and parsing text in #{current_dir}."
           $stderr.puts "Storing the result in #{split_dir}."
           transform_pos_and_lemmatize(current_dir, split_dir)
 
           current_dir = split_dir
-	  current_format = "SalsaTabWithPos"
+          current_format = "SalsaTabWithPos"
 
         when "SalsaTabWithPos"
           # parse
@@ -193,19 +193,19 @@ module FrPrep
           transform_salsatab_dir(current_dir, parse_dir, output_dir)
 
           current_dir = output_dir
-	  current_format = "Done"
+          current_format = "Done"
 
         when "SalsaTigerXML"
 
           parse_dir = frprep_dirname("parse", "new")
-	  print "Transform parser output into stxml\n"
+          print "Transform parser output into stxml\n"
           transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir, @exp)
           current_dir = output_dir
           current_format = "Done"
 
         else
           STDERR.puts "Done format is: #{done_format}"
-	  $stderr.puts "Unknown data format #{current_format}"
+          $stderr.puts "Unknown data format #{current_format}"
           $stderr.puts "Please check the 'format' entry in your experiment file."
           raise "Experiment file problem"
         end
@@ -288,8 +288,8 @@ module FrPrep
       ##
       # split the TabFormatFile into chunks of max_sent_num size
       FrprepHelper.split_dir(input_dir, output_dir,@file_suffixes["tab"],
-			     @exp.get("parser_max_sent_num"),
-			     @exp.get("parser_max_sent_len"))
+                             @exp.get("parser_max_sent_num"),
+                             @exp.get("parser_max_sent_len"))
 
       ##
       # POS-Tagging
@@ -298,11 +298,11 @@ module FrPrep
 
         # AB: TODO Move it to OptionParser.
         unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
-	  raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
+          raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
         end
 
         sys_class = SynInterfaces.get_interface("pos_tagger",
-					        @exp.get("pos_tagger"))
+                                                @exp.get("pos_tagger"))
         print "pos tagger interface: ", sys_class, "\n"
 
         # AB: TODO Remove it.
@@ -311,8 +311,8 @@ module FrPrep
         end
 
         sys = sys_class.new(@exp.get("pos_tagger_path"),
-			    @file_suffixes["tab"],
-			    @file_suffixes["pos"])
+                            @file_suffixes["tab"],
+                            @file_suffixes["pos"])
         sys.process_dir(output_dir, output_dir)
       end
 
@@ -325,19 +325,19 @@ module FrPrep
 
         # AB: TODO Move it to OptionParser.
         unless @exp.get("lemmatizer_path") and @exp.get("lemmatizer")
-	  raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
+          raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
         end
 
         sys_class = SynInterfaces.get_interface("lemmatizer",
-					        @exp.get("lemmatizer"))
+                                                @exp.get("lemmatizer"))
         # AB: TODO make this exception explicit.
         unless sys_class
           raise 'I got a empty interface class for the lemmatizer!'
         end
 
         sys = sys_class.new(@exp.get("lemmatizer_path"),
-			    @file_suffixes["tab"],
-			    @file_suffixes["lemma"])
+                            @file_suffixes["tab"],
+                            @file_suffixes["lemma"])
         sys.process_dir(output_dir, output_dir)
       end
     end
@@ -365,8 +365,8 @@ module FrPrep
       end
 
       parse_obj = DoParses.new(@exp, @file_suffixes,
-			       parse_dir,
-			       "tab_dir" => input_dir)
+                               parse_dir,
+                               "tab_dir" => input_dir)
       parse_obj.each_parsed_file { |parsed_file_obj|
 
         outfilename = output_dir + parsed_file_obj.filename + ".xml"
@@ -394,18 +394,18 @@ module FrPrep
           end
 
           # add semantics
-	  # we can use the method in SalsaTigerXMLHelper
-	  # that reads semantic information from the tab file
-	  # and combines all targets of a sentence into one frame
-	  FrprepHelper.add_semantics_from_tab(st_sent, tabformat_sent, mapping,
-					      interpreter_class, @exp)
+          # we can use the method in SalsaTigerXMLHelper
+          # that reads semantic information from the tab file
+          # and combines all targets of a sentence into one frame
+          FrprepHelper.add_semantics_from_tab(st_sent, tabformat_sent, mapping,
+                                              interpreter_class, @exp)
 
           # remove pseudo-frames from FrameNet data
           FrprepHelper.remove_deprecated_frames(st_sent, @exp)
 
           # handle multiword targets
           FrprepHelper.handle_multiword_targets(st_sent,
-					        interpreter_class, @exp.get("language"))
+                                                interpreter_class, @exp.get("language"))
 
           # handle Unknown frame names
           FrprepHelper.handle_unknown_framenames(st_sent, interpreter_class)
@@ -463,8 +463,8 @@ module FrPrep
 
         $stderr.puts "Frprep: splitting data"
         FrprepHelper.stxml_split_dir(input_dir, stxml_splitdir,
-				     @exp.get("parser_max_sent_num"),
-				     @exp.get("parser_max_sent_len"))
+                                     @exp.get("parser_max_sent_num"),
+                                     @exp.get("parser_max_sent_len"))
       else
         # no parsing: copy data to split dir
         stxml_dir = parse_dir
@@ -491,17 +491,17 @@ module FrPrep
       if @exp.get("do_postag")
         $stderr.puts "Frprep: Tagging."
         unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
-	  raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
+          raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
         end
 
         sys_class = SynInterfaces.get_interface("pos_tagger",
-					        @exp.get("pos_tagger"))
+                                                @exp.get("pos_tagger"))
         unless sys_class
           raise "Shouldn't be here"
         end
         sys = sys_class.new(@exp.get("pos_tagger_path"),
-			    @file_suffixes["tab"],
-			    @file_suffixes["pos"])
+                            @file_suffixes["tab"],
+                            @file_suffixes["pos"])
         sys.process_dir(tab_dir, tab_dir)
       end
 
@@ -510,17 +510,17 @@ module FrPrep
       if @exp.get("do_lemmatize")
         $stderr.puts "Frprep: Lemmatizing."
         unless @exp.get("lemmatizer_path") and @exp.get("lemmatizer")
-	  raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
+          raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
         end
 
         sys_class = SynInterfaces.get_interface("lemmatizer",
-					        @exp.get("lemmatizer"))
+                                                @exp.get("lemmatizer"))
         unless sys_class
           raise "Shouldn't be here"
         end
         sys = sys_class.new(@exp.get("lemmatizer_path"),
-			    @file_suffixes["tab"],
-			    @file_suffixes["lemma"])
+                            @file_suffixes["tab"],
+                            @file_suffixes["lemma"])
         sys.process_dir(tab_dir, tab_dir)
       end
 
@@ -534,7 +534,7 @@ module FrPrep
        ["do_lemmatize", "lemmatizer"],
        ["do_parse", "parser"]].each { |service, system_name|
         if @exp.get(service)  # yes, perform this service
-	  sys_class_names[system_name] = @exp.get(system_name)
+          sys_class_names[system_name] = @exp.get(system_name)
         end
       }
       interpreter_class = SynInterfaces.get_interpreter(sys_class_names)
@@ -543,8 +543,8 @@ module FrPrep
       end
 
       parse_obj = DoParses.new(@exp, @file_suffixes,
-			       parse_dir,
-			       "tab_dir" => tab_dir,
+                               parse_dir,
+                               "tab_dir" => tab_dir,
                                "stxml_dir" => stxml_dir)
       parse_obj.each_parsed_file { |parsed_file_obj|
         outfilename = output_dir + parsed_file_obj.filename + ".xml"
@@ -593,36 +593,36 @@ module FrPrep
 
               # we have both an old and a new sentence, so integrate semantics
               oldsent = SalsaTigerSentence.new(oldsent_string)
-	      if st_sent.nil?
-		next
-	      end
+              if st_sent.nil?
+                next
+              end
               if ( FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp) == false)
-		#print "FALSE \n";
-		#print oldsent, "\n", st_sent, "\n\n";
+                #print "FALSE \n";
+                #print oldsent, "\n", st_sent, "\n\n";
 
-      	    	oldsent_string = oldxml[index]
-        	index += 1
-          	if oldsent_string
+                oldsent_string = oldxml[index]
+                index += 1
+                if oldsent_string
 
-            	  # modified by ines, 27/08/08
-            	  # for Berkeley => substitute ( ) for *LRB* *RRB*
-            	  if exp.get("parser") == "berkeley"
-            	    oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
-            	    oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
-            	    oldsent_string.gsub!(/word=\"\(\"/, "word='*LRB*'")
-            	    oldsent_string.gsub!(/word=\"\)\"/, "word='*RRB*'")
-            	  end
+                  # modified by ines, 27/08/08
+                  # for Berkeley => substitute ( ) for *LRB* *RRB*
+                  if exp.get("parser") == "berkeley"
+                    oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
+                    oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
+                    oldsent_string.gsub!(/word=\"\(\"/, "word='*LRB*'")
+                    oldsent_string.gsub!(/word=\"\)\"/, "word='*RRB*'")
+                  end
 
-            	  # we have both an old and a new sentence, so integrate semantics
-            	  oldsent = SalsaTigerSentence.new(oldsent_string)
+                  # we have both an old and a new sentence, so integrate semantics
+                  oldsent = SalsaTigerSentence.new(oldsent_string)
                   #print oldsent, "\n", st_sent, "\n\n";
-		  FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp)
+                  FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp)
 
-		end
-	        #else
-		#print "TRUE\n";
-		#print oldsent, "\n", st_sent, "\n\n";
- 	      end
+                end
+                #else
+                #print "TRUE\n";
+                #print oldsent, "\n", st_sent, "\n\n";
+              end
             else
               # no corresponding old sentence for this new sentence
               $stderr.puts "Warning: transporting semantics -- missing source sentence, skipping"

@@ -1,7 +1,7 @@
 module ConvexComp
 
   def convex_complemented(node_set)
-    terminals = terminals_sorted()
+    terminals = terminals_sorted
 
     yield_nodes = node_set.map { |node| node.yield_nodes_ordered }.flatten
 

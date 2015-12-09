@@ -31,6 +31,7 @@ class GraphNode
   # all the links to objects mentioned.
   # After loading: replace IDs by actual objects with a little help
   # from the caller.
+  # @deprecated This method seams to be useless.
   def _dump(depth)
     @id.to_s +
       "QQSEPVALUESQQ" +
@@ -82,11 +83,12 @@ class GraphNode
   end
 
   # ID-related things
-  def ==(other_node)
-    unless other_node.is_a?(GraphNode)
-      return false
+  def ==(other)
+    if other.is_a?(GraphNode)
+      @id == other.id
+    else
+      false
     end
-    @id == other_node.id
   end
 
   def id
@@ -100,7 +102,7 @@ class GraphNode
   # setting and retrieving features
 
   def get_f(feature)
-    return @features[feature]
+    @features[feature]
   end
 
   def set_f(feature, value)
@@ -125,12 +127,13 @@ class GraphNode
   end
 
   def parent_label(parent)
-    @parents.each { |label_parent|
+    @parents.each do |label_parent|
       if label_parent[1] == parent
         return label_parent[0]
       end
-    }
-    return nil
+    end
+
+    nil
   end
 
   def parents_with_edgelabel
