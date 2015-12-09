@@ -21,7 +21,7 @@ module TreetaggerModule
   # but with a separate extension.
   # really_process_file checks for existence of this file because,
   # if the TreeTagger lemmatization and POS-tagging classes are called separately,
-  # one of them will go first, and the 2nd one will not need to do the 
+  # one of them will go first, and the 2nd one will not need to do the
   # TreeTagger call anymore
   #
   # really_process_file returns a filename, the name of the file containing
@@ -33,12 +33,12 @@ module TreetaggerModule
                           outfilename,# string: name of file that the caller is to produce
                           make_new_outfile_anyway = false) # Boolean: run TreeTagger in any case?
 
-    # fabricate the filename in which the 
+    # fabricate the filename in which the
     # actual TreeTagger output will be placed:
     # <directory> + <outfilename minus last suffix> + ".TreeTagger"
     current_suffix = outfilename[outfilename.rindex(".")..-1]
-    my_outfilename = File.dirname(outfilename) + "/" + 
-      File.basename(outfilename, current_suffix) + 
+    my_outfilename = File.dirname(outfilename) + "/" +
+      File.basename(outfilename, current_suffix) +
       ".TreeTagger"
 
     ##
@@ -58,7 +58,7 @@ module TreetaggerModule
     # We need the language attribute, but we don't have the FrPrepConfigData,
     # then we'll try to find it in the ObjectSpace since we should have only one.
     lang = ''
-    ObjectSpace.each_object(FrPrepConfigData) do |o|
+    ObjectSpace.each_object(Shalm::Configuration::FrPrepConfigData) do |o|
       lang = o.get('language')
     end
 
@@ -81,10 +81,10 @@ module TreetaggerModule
 
     Kernel.system(invocation_str)
     tempfile.close(true) # delete first tempfile
-    
-    # external problem: sometimes, the treetagger keeps the last <EOS> for itself, 
+
+    # external problem: sometimes, the treetagger keeps the last <EOS> for itself,
     # resulting on a .tagged file missing the last (blank) line
-    
+
     original_length = `cat #{infilename} | wc -l`.strip.to_i
     puts infilename
     lemmatised_length = `cat #{my_outfilename} | wc -l`.strip.to_i
@@ -104,7 +104,7 @@ module TreetaggerModule
       $stderr.puts "has different line number from corpus file!"
       raise
     end
-    
+
 
     return my_outfilename
   end
@@ -113,7 +113,7 @@ end
 #######################################
 class TreetaggerInterface < SynInterfaceTab
   TreetaggerInterface.announce_me()
-  
+
   include TreetaggerModule
 
   ###
@@ -133,7 +133,7 @@ class TreetaggerInterface < SynInterfaceTab
       line.chomp!
       return line.gsub(/\(/,"-LRB-").gsub(/\)/,"-RRB-").gsub(/''/,"\"").gsub(/\`\`/,"\"")
   end
-  
+
 
   ###
   def process_file(infilename,  # string: name of input file
@@ -142,18 +142,18 @@ class TreetaggerInterface < SynInterfaceTab
     # KE change here
     ttfilename = really_process_file(infilename, outfilename)
 
-    # write all output to tempfile2 first, then 
+    # write all output to tempfile2 first, then
     # change ISO to UTF-8 into outputfile
     tempfile2 = Tempfile.new("treetagger")
     tempfile2.close()
-    
+
     # 2. use cut to get the actual lemmtisation
-    
-    Kernel.system("cat " + ttfilename + 
-		  ' | sed -e\'s/<EOS>//\' | cut -f3 > '+tempfile2.path()) 
-    
-    # transform ISO-8859-1 back to UTF-8, 
-    # write to 'outfilename'    
+
+    Kernel.system("cat " + ttfilename +
+		  ' | sed -e\'s/<EOS>//\' | cut -f3 > '+tempfile2.path())
+
+    # transform ISO-8859-1 back to UTF-8,
+    # write to 'outfilename'
     begin
       outfile = File.new(outfilename, "w")
     rescue
@@ -170,7 +170,7 @@ class TreetaggerInterface < SynInterfaceTab
       utf8line = UtfIso.from_iso_8859_1(line)
       outfile.puts convert_to_berkeley(utf8line)
     end
-    
+
     # remove second tempfile, finalize output file
     tempfile2.close(true)
     outfile.close()
@@ -185,10 +185,10 @@ end
 #
 # copy-and-paste from lemmatisation
 #
-# differences: 
+# differences:
 # 1. use field 2 and not 3 from the output
 # 2. convert tags from what Treetagger thinks is the Penn Tagset to what TnT and Collins think is the Penn Tagset
-# 
+#
 # KE 7 12 06
 # change interface such that TreeTagger is called only once
 # and both POS tags and lemma are read from the same files,
@@ -196,7 +196,7 @@ end
 class TreetaggerPOSInterface < SynInterfaceTab
   TreetaggerPOSInterface.announce_me()
   include TreetaggerModule
-  
+
   ###
   def TreetaggerPOSInterface.system()
     return "treetagger"
@@ -222,18 +222,18 @@ class TreetaggerPOSInterface < SynInterfaceTab
     # KE change here
     tt_filename = really_process_file(infilename, outfilename, true)
 
-    # write all output to tempfile2 first, then 
+    # write all output to tempfile2 first, then
     # change ISO to UTF-8 into outputfile
     tempfile2 = Tempfile.new("treetagger")
     tempfile2.close()
-    
+
     # 2. use cut to get the actual lemmtisation
 
     Kernel.system("cat " + tt_filename +
-		  ' | sed -e\'s/<EOS>//\' | cut -f2 > '+tempfile2.path()) 
-    
-    # transform ISO-8859-1 back to UTF-8, 
-    # write to 'outfilename'    
+		  ' | sed -e\'s/<EOS>//\' | cut -f2 > '+tempfile2.path())
+
+    # transform ISO-8859-1 back to UTF-8,
+    # write to 'outfilename'
     begin
       outfile = File.new(outfilename, "w")
     rescue
@@ -243,7 +243,7 @@ class TreetaggerPOSInterface < SynInterfaceTab
     while (line = tempfile2.gets())
       outfile.puts UtfIso.from_iso_8859_1(convert_to_collins(line))
     end
-    
+
     # remove second tempfile, finalize output file
     tempfile2.close(true)
     outfile.close()
@@ -304,7 +304,7 @@ class TreetaggerInterpreter < SynInterpreter
       return nil
     end
 
-    pt.to_s.strip() =~ /^([^-]*)/  
+    pt.to_s.strip() =~ /^([^-]*)/
     case $1
     when  /^JJ/ ,/(WH)?ADJP/, /^PDT/ then  return "adj"
     when /^RB/, /(WH)?ADVP/, /^UH/ then return "adv"

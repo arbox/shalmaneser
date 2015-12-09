@@ -40,7 +40,7 @@ module FrPrep
         raise
       end
 
-      exp = FrPrepConfigData.new(@options[:exp_file])
+      exp = Shalm::Configuration::FrPrepConfigData.new(@options[:exp_file])
 
       # AB: this stuff should be move into FrPrepConfigData.
       # sanity checks

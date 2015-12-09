@@ -78,7 +78,7 @@ class RosySplit < RosyTask
       $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
       exit 1
     end
-    preproc_exp = FrPrepConfigData.new(preproc_filename)
+    preproc_exp = Shalm::Configuration::FrPrepConfigData.new(preproc_filename)
     @exp.adjoin(preproc_exp)
 
     # announce the task

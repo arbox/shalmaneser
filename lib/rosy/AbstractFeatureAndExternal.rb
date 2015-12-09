@@ -21,7 +21,7 @@ class AbstractFeatureExtractor
   # returns a string: the designator for this feature extractor
   # (an extractor may compute several features, but
   #  in the experiment file it is chosen by a single designator)
-  def AbstractFeatureExtractor.designator()
+  def self.designator
     raise "Overwrite me"
   end
 
@@ -29,7 +29,7 @@ class AbstractFeatureExtractor
   # returns an array of feature names, the names of the
   # features that it can compute.
   # The number of features that the extractor computes must be fixed.
-  def AbstractFeatureExtractor.feature_names()
+  def self.feature_names
     raise "Overwrite me."
   end
 
@@ -37,7 +37,7 @@ class AbstractFeatureExtractor
   # returns a string: the data type for the feature
   # to be passed on to the MySQL database,
   # e.g. VARCHAR(10), INT
-  def AbstractFeatureExtractor.sql_type()
+  def self.sql_type
     raise "Overwrite me"
   end
 
@@ -50,7 +50,7 @@ class AbstractFeatureExtractor
   # - syn: feature computed from syntactic characteristics of the instance
   # - sem: feature involving semantic characteristics of the instance
   # - sentlevel: this feature is the same for all instances of a sentence
-  def AbstractFeatureExtractor.feature_type()
+  def self.feature_type
     raise "Overwrite me"
   end
 
@@ -59,15 +59,15 @@ class AbstractFeatureExtractor
   # depending on whether the feature is computed
   # directly from the SalsaTigerSentence and the SynNode objects
   # or whether it is computed from the phase 1 features
-  def AbstractFeatureExtractor.phase()
+  def self.phase
     raise "Overwrite me."
   end
 
   ###
   # returns an array of strings, providing information about
   # the feature extractor
-  def AbstractFeatureExtractor.info()
-    return []
+  def self.info
+    []
   end
 
   ###
@@ -88,6 +88,7 @@ class AbstractFeatureExtractor
     return true
   end
 
+  # @todo Rename and change the return value.
   def AbstractFeatureExtractor.set_node(node) # SynNode of the sentence set in set_sentence
     @@node = node
 
@@ -124,7 +125,7 @@ class AbstractFeatureExtractor
   #
   # returns an array of features (strings), length the same as the
   # length of feature_names()
-  def compute_features()
+  def compute_features
     raise "overwrite me"
   end
 
@@ -171,35 +172,34 @@ class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
   #  in the experiment file it is chosen by a single designator)
   #
   # here: single feature, and the feature name is the designator
-  def AbstractFeatureExtractor.designator()
-    return eval(self.name()).feature_name()
+  def self.designator
+    eval(self.name).feature_name
   end
 
   ###
-  def AbstractSingleFeatureExtractor.feature_names()
-    return [eval(self.name()).feature_name()]
+  def self.feature_names
+    [eval(self.name).feature_name]
   end
 
   ###
-  def compute_features()
-    return [compute_feature()]
+  def compute_features
+    [compute_feature]
   end
 
   def compute_features_on_view(view) # DBView object
-    return [compute_feature_on_view(view)]
+    [compute_feature_on_view(view)]
   end
-
 
   ######
   # Single-feature methods
 
   ###
-  def AbstractSingleFeatureExtractor.feature_name()
+  def self.feature_name
     raise "Overwrite me."
   end
 
   ###
-  def compute_feature()
+  def compute_feature
     raise "Overwrite me"
   end
 
@@ -227,16 +227,16 @@ class ExternalFeatureExtractor < AbstractFeatureExtractor
 
     unless @exp_rosy.get("external_descr_file")
       unless @@warning_uttered
-	$stderr.puts "Warning: Cannot compute external feature"
-	$stderr.puts "since 'external_descr_file' has not been set"
-	$stderr.puts "in the Rosy experiment file."
-	@@warning_uttered = true
+        $stderr.puts "Warning: Cannot compute external feature"
+        $stderr.puts "since 'external_descr_file' has not been set"
+        $stderr.puts "in the Rosy experiment file."
+        @@warning_uttered = true
       end
 
       @exp_external = nil
       return
     end
 
-    @exp_external = ExternalConfigData.new(@exp_rosy.get("external_descr_file"))
+    @exp_external = Shalm::Configuration::ExternalConfigData.new(@exp_rosy.get("external_descr_file"))
   end
 end

@@ -122,7 +122,7 @@ module Rosy
       ##
       # open config file
 
-      exp = RosyConfigData.new(experiment_filename)
+      exp = Shalm::Configuration::RosyConfigData.new(experiment_filename)
 
       # sanity checks
       unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/

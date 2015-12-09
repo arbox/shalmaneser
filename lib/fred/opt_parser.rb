@@ -105,7 +105,7 @@ module Fred
       ##
       # open config file
 
-      exp = FredConfigData.new(experiment_filename)
+      exp = Shalm::Configuration::FredConfigData.new(experiment_filename)
 
       # sanity checks
       unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
