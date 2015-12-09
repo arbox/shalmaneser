@@ -1,27 +1,26 @@
-
 ##############################
 # ConfigFormatelement is an auxiliary class
 # of ConfigData.
 # It keeps track of feature patterns with variables in them
 # that can be instantiated.
 # @author Andrei Beliankou
-# 
+#
 class ConfigFormatElement
 
   # given a pattern and a list of variable names,
   # analyze the pattern and remember the variable names
   #
   def initialize(string, # string: feature name, may include names of variables.
-		         # they are included in <>
-		 variables) # list of variable names that can occur
-    
+                         # they are included in <>
+                 variables) # list of variable names that can occur
+
     @variables = variables
 
     # pattern: this is what the 'string' is split into,
     # an array of elements that are either fixed parts or variables.
     # fixed part: pair [item:string, "string"]
     # variable: pair [variable_name:string, "variable"]
-    @pattern = Array.new
+    @pattern = []
     state = "out"
     item = ""
 
@@ -31,38 +30,38 @@ class ConfigFormatElement
 
       case state
       when "in"
-	case char
-	when "<"
-	  raise "Duplicate < in " + string
-	when ">" 
-	  unless @variables.include? item
-	    raise "Unknown variable " + item
-	  end
-	  @pattern << [item, "variable"]
-	  item = ""
-	  state = "out"
-	else
-	  item << char
-	  state = "in"
-	end
+        case char
+        when "<"
+          raise "Duplicate < in " + string
+        when ">"
+          unless @variables.include? item
+            raise "Unknown variable " + item
+          end
+          @pattern << [item, "variable"]
+          item = ""
+          state = "out"
+        else
+          item << char
+          state = "in"
+        end
 
       when "out"
-	case char
-	when "<"
-	  unless item.empty?
-	    @pattern << [item, "string"]
-	    item = ""
-	  end
-	  state = "in"
-	when ">"
-	  raise "Unexpected > in " + string
-	else
-	  item << char
-	  state = "out"
-	end
+        case char
+        when "<"
+          unless item.empty?
+            @pattern << [item, "string"]
+            item = ""
+          end
+          state = "in"
+        when ">"
+          raise "Unexpected > in " + string
+        else
+          item << char
+          state = "out"
+        end
 
       else
-	raise "Shouldn't be here"
+        raise "Shouldn't be here"
       end
     }
 
@@ -93,44 +92,44 @@ class ConfigFormatElement
 
       case string_or_var
       when "string"
-	item
+        item
 
       when "variable"
-	
-	if var_hash[item].nil?
-	  raise "Missing variable instantiation: " + item
-	end
-	var_hash[item]
+
+        if var_hash[item].nil?
+          raise "Missing variable instantiation: " + item
+        end
+        var_hash[item]
 
       else
-	raise "Shouldn't be here"
+        raise "Shouldn't be here"
       end
-    }.join    
+    }.join
   end
 
   # match()
   #
   # given a string, try to match it against the @pattern
-  # while setting the variables given in 'fillers' to 
+  # while setting the variables given in 'fillers' to
   # the values given in that hash.
   #
   # returns: if the string matches, a hash variable name => value
-  #   that includes the fillers given as a parameter as well as 
+  #   that includes the fillers given as a parameter as well as
   #   values for all other variables mentioned in @pattern,
   #   or false if no match.
   def match(string,   # a string
-	    fillers = nil) # hash variable name(string) => value(string)
+            fillers = nil) # hash variable name(string) => value(string)
 
     # have we been given partial info about variables?
     if fillers
       match = make_regexp(@pattern, fillers).match(string)
-#      $stderr.print "matching " + make_regexp(@pattern, fillers).source + 
-#	" against " + string + " "
+#      $stderr.print "matching " + make_regexp(@pattern, fillers).source +
+#       " against " + string + " "
 #      if match.nil?
-#	$stderr.puts "no"
+#       $stderr.puts "no"
 #      else
-#	$stderr.puts "yes"
-#      end      
+#       $stderr.puts "yes"
+#      end
     else
       match = @regexp.match(string)
     end
@@ -154,8 +153,8 @@ class ConfigFormatElement
     @pattern.to_a.select { |item, string_or_var|
       string_or_var == "variable"
     }.select { |item, string_or_var|
-      fillers.nil? or 
-	fillers[item].nil?
+      fillers.nil? or
+        fillers[item].nil?
     }.each { |item, string_or_var|
       # for all items on the pattern list
       # that are variables and
@@ -163,20 +162,20 @@ class ConfigFormatElement
       # fill from matches
 
       if match[index].nil?
-	raise "Match, but not enough matched elements? Strange."
+        raise "Match, but not enough matched elements? Strange."
       end
 
       if retv[item].nil?
-	retv[item] = match[index]
+        retv[item] = match[index]
       else
-	unless retv[item] == match[index]
-	  return false
-	end
+        unless retv[item] == match[index]
+          return false
+        end
       end
-      
+
       index += 1
     }
-    
+
     return retv
   end
 
@@ -198,23 +197,22 @@ class ConfigFormatElement
   #
   # returns: Regexp object
   def make_regexp(pattern,  # array of pairs [string, "string"] or [string, "variable"]
-		  fillers = nil) # hash variable name(string) => value(string)
-    return (Regexp.new "^" + 
+                  fillers = nil) # hash variable name(string) => value(string)
+    return (Regexp.new "^" +
       pattern.map { |item, string_or_var|
       case string_or_var
       when "variable"
-	if fillers and
-	    fillers[item]
-	  Regexp.escape(fillers[item])
-	else
-	  "(.+)"
-	end
+        if fillers and
+            fillers[item]
+          Regexp.escape(fillers[item])
+        else
+          "(.+)"
+        end
       when "string"
-	Regexp.escape(item)
+        Regexp.escape(item)
       else
-	raise "Shouldn't be here"
+        raise "Shouldn't be here"
       end
     }.join + "$")
   end
-
 end
