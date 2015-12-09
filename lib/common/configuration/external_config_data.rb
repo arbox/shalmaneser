@@ -5,7 +5,7 @@
 # for Fred and Rosy:
 # access to configuration and experiment description file
 
-require 'common/config_data'
+require_relative 'config_data'
 
 ##############################
 # Class ExternalConfigData
@@ -18,20 +18,20 @@ class ExternalConfigData < ConfigData
 
     # initialize config data object
     super(filename,          # config file
-	  { "directory" => "string", # features
+          { "directory" => "string", # features
 
-	    "experiment_id" => "string",
+            "experiment_id" => "string",
 
-	    "gfmap_restrict_to_downpath" => "bool",
-	    "gfmap_restrict_pathlen" => "integer",
-	    "gfmap_remove_gf" => "list"
-	  },
-	  [] # variables
-	  )
+            "gfmap_restrict_to_downpath" => "bool",
+            "gfmap_restrict_pathlen" => "integer",
+            "gfmap_remove_gf" => "list"
+          },
+          [] # variables
+          )
 
     # set access functions for list features
-    set_list_feature_access("gfmap_remove_gf", 
-			    method("access_as_stringlist"))
+    set_list_feature_access("gfmap_remove_gf",
+                            method("access_as_stringlist"))
   end
 
   ###
@@ -53,6 +53,3 @@ class ExternalConfigData < ConfigData
     return val_list.map { |rhs| rhs.join(" ") }
   end
 end
-
-
- 

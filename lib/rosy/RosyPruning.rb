@@ -13,7 +13,7 @@ require "common/ruby_class_extensions"
 require "rosy/RosyFeatureExtractors"
 # require "common/RosyConventions"
 require 'common/value_restriction'
-require "rosy/rosy_config_data"
+require 'common/configuration/rosy_config_data'
 require "rosy/RosyIterator"
 
 ###
@@ -21,26 +21,29 @@ require "rosy/RosyIterator"
 #
 # implemented in the Interpreter Class of each individual parser
 class PruneFeature < RosySingleFeatureExtractor
-  PruneFeature.announce_me()
+  PruneFeature.announce_me
 
-  def PruneFeature.feature_name()
-    return "prune"
+  def self.feature_name
+    "prune"
   end
-  def PruneFeature.sql_type()
-    return "TINYINT"
+
+  def self.sql_type
+    "TINYINT"
   end
-  def PruneFeature.feature_type()
-    return "syn"
+
+  def self.feature_type
+    'syn'
   end
-  def PruneFeature.info()
+
+  def self.info
     # additional info: I am an index feature
-    return super().concat(["index"])
+    super().concat(["index"])
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     retv = @@interpreter_class.prune?(@@node, @@paths, @@terminals_ordered)
     if [0, 1].include? retv
       return retv

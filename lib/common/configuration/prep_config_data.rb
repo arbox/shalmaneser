@@ -4,7 +4,7 @@
 # Preprocessing for Fred and Rosy:
 # access to a configuration and experiment description file
 
-require "common/config_data"
+require_relative 'config_data'
 
 ##############################
 # Class FrPrepConfigData
@@ -13,13 +13,12 @@ require "common/config_data"
 # sets variable names appropriate to preprocessing task
 
 class FrPrepConfigData < ConfigData
-
   CONFIG_DEFS = {
     "prep_experiment_ID" => "string", # experiment identifier
     "frprep_directory" => "string", # dir for frprep internal data
     # information about the dataset
     "language" => "string", # en, de
-    "origin"=> "string",    # FrameNet, Salsa, or nothing
+    "origin" => "string",    # FrameNet, Salsa, or nothing
     "format" => "string",   # Plain, SalsaTab, FNXml, FNCorpusXml, SalsaTigerXML
     "encoding" => "string", # utf8, iso, hex, or nothing
 

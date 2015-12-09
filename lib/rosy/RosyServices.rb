@@ -16,7 +16,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-require "common/prep_config_data"
+require 'common/configuration/prep_config_data'
 
 ###################################################
 class RosyServices < RosyTask

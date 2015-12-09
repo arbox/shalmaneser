@@ -1,10 +1,10 @@
 # Katrin Erk November 05
-# 
+#
 # Abstract classes for
 # - Rosy features
 # - Rosy interface for external knowledge sources.
 
-require 'rosy/ExternalConfigData'
+require 'common/configuration/external_config_data'
 
 ####
 # Feature Extractor:
@@ -26,7 +26,7 @@ class AbstractFeatureExtractor
   end
 
   ###
-  # returns an array of feature names, the names of the 
+  # returns an array of feature names, the names of the
   # features that it can compute.
   # The number of features that the extractor computes must be fixed.
   def AbstractFeatureExtractor.feature_names()
@@ -42,7 +42,7 @@ class AbstractFeatureExtractor
   end
 
   ###
-  # returns a string: the feature type 
+  # returns a string: the feature type
   # (the same for all features computed by this extractor)
   # possible values:
   # - gold: gold label
@@ -71,7 +71,7 @@ class AbstractFeatureExtractor
   end
 
   ###
-  # set sentence, set node, set other settings: 
+  # set sentence, set node, set other settings:
   # this is done prior to
   # feature computation using compute_feature()
   # such that computations that stay the same for
@@ -84,7 +84,7 @@ class AbstractFeatureExtractor
                                             frame) # FrameNode object
     @@sent = sent
     @@frame = frame
-    
+
     return true
   end
 
@@ -101,7 +101,7 @@ class AbstractFeatureExtractor
   # several features can be done in advance
   def AbstractFeatureExtractor.set(var_hash = {})
     # no settings at this point
-    
+
     return true
   end
   # test during initialisation whether a feature is computable
@@ -129,7 +129,7 @@ class AbstractFeatureExtractor
   end
 
   ###
-  # phase 2 extractors: 
+  # phase 2 extractors:
   # compute features for a complete view
   #
   # returns: an array of columns,
@@ -139,7 +139,7 @@ class AbstractFeatureExtractor
     raise "overwrite me"
   end
 
-  # At this place, we had abstract methods for "training" phase 2 features 
+  # At this place, we had abstract methods for "training" phase 2 features
   # Since this involves introducing a "state" that is nontrivial to preserve
   # for a standalone version of the classifiers, without keeping the training data,
   # we decided to remove this functionality (30.11.05).
@@ -164,7 +164,7 @@ end
 ################################################################
 # Wrapper class for extractors that compute a single feature
 class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
-  
+
   ###
   # returns a string: the designator for this feature extractor
   # (an extractor may compute several features, but
@@ -197,7 +197,7 @@ class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
   def AbstractSingleFeatureExtractor.feature_name()
     raise "Overwrite me."
   end
-  
+
   ###
   def compute_feature()
     raise "Overwrite me"

@@ -56,7 +56,7 @@
 #
 #
 
-require 'common/config_format_element'
+require_relative 'config_format_element'
 require 'common/ruby_class_extensions'
 
 #####################################################

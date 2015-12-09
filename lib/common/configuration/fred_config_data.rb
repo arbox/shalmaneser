@@ -1,10 +1,10 @@
 # FredConfigData
 # Katrin Erk April 05
 #
-# Frame disambiguation system: 
+# Frame disambiguation system:
 # access to a configuration and experiment description file
 
-require "common/config_data"
+require_relative 'config_data'
 
 ##############################
 # Class FredConfigData
@@ -13,35 +13,35 @@ require "common/config_data"
 # sets variable names appropriate to WSD task
 
 class FredConfigData < ConfigData
-  CONFIG_DEFS = { 
+  CONFIG_DEFS = {
     "experiment_ID" => "string", # experiment ID
     "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
-    
+
     "preproc_descr_file_train" => "string", # path to preprocessing files
     "preproc_descr_file_test" => "string",
     "directory_output" => "string", # path to Salsa/Tiger XML output directory
-    
+
     "verbose" => "bool" ,     # print diagnostic messages?
     "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
-    
+
     "fred_directory" => "string",# directory for internal info
     "classifier_dir" => "string", # write classifiers here
-    
+
     "classifier" => "list",  # classifiers
-    
+
     "dbtype" => "string",    # "mysql" or "sqlite"
-    
+
     "host" => "string",      # DB access: sqlite only
     "user" => "string",
     "passwd" => "string",
     "dbname" => "string",
-    
+
     # featurization info
     "feature" => "list",     # which features to use for the classifier?
     "binary_classifiers" => "bool",# make binary rather than n-ary clasifiers?
     "negsense" => "string",  # binary classifier: negative sense is..?
     "numerical_features" => "string", # do what with numerical features?
-    
+
     # what to do with items that have multiple senses?
     # 'binarize': binary classifiers, and consider positive
     #          if the sense is among the gold senses
@@ -53,14 +53,14 @@ class FredConfigData < ConfigData
     # above a certain confidence threshold?
     "handle_multilabel" => "string",
     "assignment_confidence_threshold" => "float",
-    
+
     # single-sentence context?
     "single_sent_context" => "bool",
-    
+
     # noncontiguous input? then we need access to a larger corpus
     "noncontiguous_input" => "bool",
     "larger_corpus_dir" => "string",
-    "larger_corpus_format" => "string", 
+    "larger_corpus_format" => "string",
     "larger_corpus_encoding" => "string",
     # Imported from PrepConfigData
     'do_postag' => 'bool',
@@ -87,7 +87,7 @@ class FredConfigData < ConfigData
 
   #####
   # access_feature
-  # 
+  #
   # access function for feature 'feature'
   #
   # assumed format:
@@ -102,10 +102,10 @@ class FredConfigData < ConfigData
   # only in case of parameters)
   #
   #
-  # returns: 
-  #  - If a feature is given as a parameter, 
+  # returns:
+  #  - If a feature is given as a parameter,
   #    - If the feature is not set in the experiment file, nil
-  #    - If the feature is set and has a parameter, the list of 
+  #    - If the feature is set and has a parameter, the list of
   #      parameter values set for it. It is assumed that the parameters
   #      are integers, and they are returned as integers
   #    - If the feature is set and has no parameter, true
@@ -126,15 +126,15 @@ class FredConfigData < ConfigData
       }.map { |entries|
         entries[1]
       }
-      
+
       if positives.empty?
         # feature not defined
         return nil
-        
+
       elsif positives.compact().empty?
         # feature defined, but no parameters
         return true
-        
+
       else
         # feature defined, and has values
         return positives.map { |par| par.to_i() }
@@ -143,7 +143,7 @@ class FredConfigData < ConfigData
     else
       # return all features that have been set
       return val_list.map { |feature_name, *options|
-        [feature_name] + options.map { |o| o.to_i() }        
+        [feature_name] + options.map { |o| o.to_i() }
       }
     end
   end
@@ -180,6 +180,3 @@ class FredConfigData < ConfigData
   end
 
 end
-
-
- 

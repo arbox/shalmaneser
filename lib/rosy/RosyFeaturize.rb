@@ -15,7 +15,7 @@ require "common/ruby_class_extensions"
 require "rosy/FailedParses"
 require "rosy/FeatureInfo"
 require "rosy/InputData"
-require "rosy/rosy_config_data"
+require 'common/configuration/rosy_config_data'
 require 'rosy/rosy_conventions'
 require "rosy/RosySplit"
 require "rosy/RosyTask"

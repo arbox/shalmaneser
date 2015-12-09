@@ -4,7 +4,7 @@
 
 #require 'optparse' # for reimplementation
 require 'getoptlong'
-require "fred/fred_config_data"
+require 'common/configuration/fred_config_data'
 
 module Fred
 
@@ -24,19 +24,19 @@ module Fred
         "train" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT]  # splitlog ID; if given, will train on split
                      # rather than all training data
                    ],
-        "test" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],   # splitlog ID: if given, test on this split of 
+        "test" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],   # splitlog ID: if given, test on this split of
                     # the training data
                     [ '--baseline', '-b', GetoptLong::NO_ARGUMENT],                # set this to compute baseline rather than
                     # apply classifiers
                     [ '--nooutput', '-N', GetoptLong::NO_ARGUMENT]               # set this to prevent output of disambiguated
                     # test data
-                    
+
                   ],
-        "eval" => [['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],    # splitlog ID: if given, evaluate this split. 
+        "eval" => [['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],    # splitlog ID: if given, evaluate this split.
                    ['--printLog', '-l', GetoptLong::NO_ARGUMENT]
                   ]
       }
-      
+
       # general options
       optnames = [[ '--help', '-h', GetoptLong::NO_ARGUMENT],            # get help
                   [ '--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],             # experiment file name (and path), no default
@@ -47,7 +47,7 @@ module Fred
         optnames.concat more_optnames
       }
       optnames.uniq!
-      
+
       # asterisk: "explode" array into individual parameters
       begin
         opts = options_hash(GetoptLong.new(*optnames))
@@ -55,16 +55,16 @@ module Fred
         $stderr.puts "Error: unknown command line option: " + $!
         exit 1
       end
-      
+
       experiment_filename = nil
-      
+
       ##
       # are we being asked for help?
       if opts['--help']
         help()
         exit(0)
       end
-      
+
       ##
       # now find the task
       task = opts['--task']
@@ -77,7 +77,7 @@ module Fred
         $stderr.puts "Sorry, I don't know the task " + task
         exit 1
       end
-      
+
       ##
       # now evaluate the rest of the options
       opts.each_pair { |opt,arg|
@@ -94,27 +94,27 @@ module Fred
           end
         end
       }
-      
-      
-      
+
+
+
       unless experiment_filename
         $stderr.puts "I need an experiment file name, option --expfile|-e"
         exit 1
       end
-      
+
       ##
       # open config file
-      
+
       exp = FredConfigData.new(experiment_filename)
-      
+
       # sanity checks
       unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
         raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
       end
-      
+
       # enduser mode?
-      $ENDUSER_MODE = exp.get("enduser_mode") 
-      
+      $ENDUSER_MODE = exp.get("enduser_mode")
+
       # set defaults
       unless exp.get("handle_multilabel")
         if exp.get("binary_classifiers")
@@ -144,17 +144,17 @@ module Fred
     # So we re-code the options as a hash
     def self.options_hash(opts_obj) # GetoptLong object
       opt_hash = Hash.new
-      
+
       opts_obj.each do |opt, arg|
         opt_hash[opt] = arg
       end
-      
+
       return opt_hash
     end
     def self.help
         $stderr.puts "
 Fred: FRamE Disambiguation System Version 0.3
-  
+
 Usage:
 ----------------
 
@@ -162,24 +162,24 @@ ruby fred.rb --help|-h
   Gets you this text.
 
 
-ruby fred.rb --task|-t featurize --expfile|-e <e> --dataset|-d <d> 
+ruby fred.rb --task|-t featurize --expfile|-e <e> --dataset|-d <d>
         [--append|-A]
   Featurizes input data and stores it in feature files.
-  Feature files are stored in 
+  Feature files are stored in
   <fred_directory>/<experiment_ID>/<train/test>/features
   Enduser mode: dataset has to be test (preset as default), no --append.
 
   --expfile <e> Use <e> as the experiment description and configuation file
 
   --dataset <d> Set to featurize: <d> is either 'train' or 'test'
-                Accordingly, either the directory dir_train or dir_test (as 
+                Accordingly, either the directory dir_train or dir_test (as
                 specified in the experiment file) is used to store the features
 
   --append      Do not overwrite previously computed features for this experiment.
                 Rather, append the new features to the old featurization files.
                 Default: overwrite
 
-ruby fred.rb --task|-t split --expfile|-e <e> --logID|-i <i> 
+ruby fred.rb --task|-t split --expfile|-e <e> --logID|-i <i>
              [--trainpercent|-r <r>]
   Produces a new train/test split on the training data of the experiment.
   Split logs are stored in <fred_directory>/<experiment_ID>/split/<splitlog ID>
@@ -189,27 +189,27 @@ ruby fred.rb --task|-t split --expfile|-e <e> --logID|-i <i>
 
   --logID <l>   Use <l> as the ID for storing this new split
 
-  --trainpercent <r> Allocate <r> percent of the data as train, 
+  --trainpercent <r> Allocate <r> percent of the data as train,
                 and 100-<r> as test.
                 default: <r>=90
-     
-ruby fred.rb --task|-t train --expfile|-e <e>  
+
+ruby fred.rb --task|-t train --expfile|-e <e>
              [--logID|-i <i> ]
   Train classifier(s) on the training data (or a split of it)
-  Classifiers are stored in 
+  Classifiers are stored in
   <fred_directory>/<experiment_ID>/classifiers/<classifier_name>
   Not available in enduser mode.
 
   --expfile <e> Use <e> as the experiment description and configuation file
 
-  --logID <l>   Train not on the whole training data but 
+  --logID <l>   Train not on the whole training data but
                 on the split with ID <l>
 
-ruby fred.rb --task|-t test --expfile|-e <e>  
+ruby fred.rb --task|-t test --expfile|-e <e>
              [--logID|-i <i>] [--baseline|-b]
              [--nooutput|-N]
   Apply classifier(s) to the test data (or a split of the training data)
-  Classification results are stored in 
+  Classification results are stored in
   <fred_directory>/<experiment_ID>/results/main or
   <fred_directory>/<experiment_ID>/results/baseline for the baseline.
   If you are using classifier combination, individual classification results
@@ -225,14 +225,14 @@ ruby fred.rb --task|-t test --expfile|-e <e>
   --baseline    Compute the baseline: Always assign most frequent sense.
                 Default: use the trained classifiers
 
-  --nooutput    Do not produce an output of the disambiguated test data 
+  --nooutput    Do not produce an output of the disambiguated test data
                 in SalsaTigerXML format. This is useful if you just want
                 to evaluate the system.
                 Default: output is produced.
 
- ruby fred.rb --task|-t eval --expfile|-e <e>  
+ ruby fred.rb --task|-t eval --expfile|-e <e>
               [--logID|-i <i>] [--printLog|-l]
-  Evaluate the performance of Fred on the test data 
+  Evaluate the performance of Fred on the test data
   (or on a split of the training data).
   Evaluation file is written to <fred_directory>/<experiment_ID>/eval/eval
   Not available in enduser mode.

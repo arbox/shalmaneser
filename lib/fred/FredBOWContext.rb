@@ -12,7 +12,7 @@ require 'common/value_restriction'
 require 'db/select_table_and_columns'
 
 require 'fred/md5'
-require "fred/fred_config_data"
+require 'common/configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require "fred/FredDetermineTargets"

@@ -18,7 +18,7 @@ require "common/Eval"
 require "common/ruby_class_extensions"
 
 # Fred packages
-require "fred/fred_config_data"
+require 'common/configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"

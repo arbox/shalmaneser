@@ -28,7 +28,7 @@ require 'common/RegXML'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 
-require 'fred/fred_config_data'
+require 'common/configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require 'common/prep_helper'
