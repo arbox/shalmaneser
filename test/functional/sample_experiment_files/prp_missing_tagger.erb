@@ -1,7 +1,8 @@
-prep_experiment_ID = prp_format_clash
+prep_experiment_ID = prp_missing_tagger
 
 directory_input = <%= File.expand_path('test/functional/input/frprep/stxml') %>
 directory_preprocessed = <%= File.expand_path('test/functional/output/frprep/trash') %>
+
 frprep_directory = <%= File.expand_path('test/functional/output/') %>
 
 language = de
@@ -10,14 +11,14 @@ encoding = utf8
 
 do_lemmatize = true
 do_postag = true
-do_parse = true
-tabformat_output = true
+do_parse = false
 
 fe_syn_repair = true
 fe_rel_repair = false
 
-pos_tagger = treetagger
-pos_tagger_path = <%= File.expand_path('tools/treetagger') %>
+# The following is commented out to test the error handling.
+# pos_tagger = treetagger
+# pos_tagger_path = <%= File.expand_path('tools/treetagger') %>
 
 lemmatizer = treetagger
 lemmatizer_path = <%= File.expand_path('tools/treetagger') %>

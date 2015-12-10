@@ -52,4 +52,14 @@ class TestFrappeConfigData < Minitest::Test
     end
     assert_match('open', e.message)
   end
+
+  def test_for_missing_tagger
+    create_exp_file(PRP_MISSING_TAGGER)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_MISSING_TAGGER)
+    end
+    assert_match('pos_tagger', e.message)
+  ensure
+    remove_exp_file(PRP_MISSING_TAGGER)
+  end
 end

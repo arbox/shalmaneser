@@ -41,10 +41,9 @@ module FrPrep
         split_dir = frprep_dirname("split", "new")
       end
 
-
       ####
+      # @todo Use standard Ruby transcoding mechanics.
       # transform data to UTF-8
-
       if %w(iso hex).include?(@exp.get('encoding'))
         # transform ISO -> UTF-8 or Hex -> UTF-8
         # write result to encoding_dir,
@@ -82,7 +81,6 @@ module FrPrep
         STDERR.puts "#{current_format} - #{done_format}"
         # after debugging
         case current_format
-
         when "BNC"
           # basically plain, plus some tags to be removed
           plain_dir = frprep_dirname("plain", "new")
@@ -120,7 +118,6 @@ module FrPrep
 
           fndata = FNDatabase.new(current_dir)
           fndata.extract_everything(tab_dir)
-          Kernel.system("chmod -R g+rx #{tab_dir}")
 
           current_dir = tab_dir
           current_format = "SalsaTab"
@@ -137,10 +134,9 @@ module FrPrep
             outfile = File.new(tab_dir + File.basename(fncorpusfilename, ".xml") + ".tab",
                                "w")
             corpus.print_conll_style(outfile)
-            outfile.close()
+            outfile.close
           }
 
-          Kernel.system("chmod -R g+rx #{tab_dir}")
           current_dir = tab_dir
           current_format = "SalsaTab"
 
@@ -266,12 +262,8 @@ module FrPrep
       ##
       # POS-Tagging
       if @exp.get("do_postag")
+        # @todo Introduct the Logger.
         $stderr.puts "Frprep: Tagging."
-
-        # AB: TODO Move it to OptionParser.
-        unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
-          raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
-        end
 
         sys_class = SynInterfaces.get_interface("pos_tagger",
                                                 @exp.get("pos_tagger"))

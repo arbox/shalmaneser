@@ -88,6 +88,11 @@ module Shalm
                 'parsed. Please set either <tabformat_output> or <do_parse> to false.'
         end
 
+        unless get("pos_tagger_path") && get("pos_tagger")
+          msg = 'POS Tagging: I need <pos_tagger> and <pos_tagger_path> '\
+                'in the experiment file.'
+        end
+
         raise(ConfigurationError, msg) if msg
       end
     end
