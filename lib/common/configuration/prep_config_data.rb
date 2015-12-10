@@ -68,13 +68,17 @@ module Shalm
       #   in combination with. This information should be stored in external
       #   resource files to easily change them.
       def validate
-        unless get("frprep_directory")
+        unless get('frprep_directory')
           msg = 'Please set <frprep_directory>, the Frappe internal data '\
                 'directory, in the experiment file.'
         end
 
         unless get('directory_input')
           msg = 'Please specify <directory_input> in the Frappe experiment file.'
+        end
+
+        unless get('directory_preprocessed')
+          msg = 'Please specify <directory_preprocessed> in the experiment file.'
         end
 
         raise(ConfigurationError, msg) if msg

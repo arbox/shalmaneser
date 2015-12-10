@@ -37,11 +37,13 @@ module FrPrep
         exit 1
       end
 =end
+=begin
       # AB: move to FRprepOptionParser
       unless @exp.get("directory_preprocessed")
         $stderr.puts "Please specify 'directory_preprocessed' in the experiment file."
         exit 1
       end
+=end
 
       ##
       # input and output directories.
@@ -54,13 +56,16 @@ module FrPrep
         $stderr.puts "Please set either 'tabformat_output' or 'do_parse' to false."
         exit 1
       end
+
       input_dir = File.existing_dir(@exp.get("directory_input"))
       output_dir = File.new_dir(@exp.get("directory_preprocessed"))
+
       if @exp.get("tabformat_output")
         split_dir = output_dir
       else
         split_dir = frprep_dirname("split", "new")
       end
+
 
       ####
       # transform data to UTF-8
