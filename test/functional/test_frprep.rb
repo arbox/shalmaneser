@@ -78,6 +78,17 @@ class TestFrprep < Minitest::Test
     remove_exp_file(PRP_TABOUTPUT)
   end
 
+  # This test has been created to ensure testing facilities for missing
+  # arguments are moved correctly to the OptionParser.
+  # @see Unit test for Frappe's OptionParser.
+  def test_missing_experiment_definitions
+    create_exp_file(PRP_MISSING_DIR)
+    # Important to put STDERR on the return string!
+    status = `ruby -I lib bin/frprep -e #{PRP_MISSING_DIR} 2>&1`
+    assert_match('frprep_dir', status, '<frprep_directory> is missing in the experiment file')
+    remove_exp_file(PRP_MISSING_DIR)
+  end
+
   private
 
   # Berkeley Parser takes a long time which is bad for testing.

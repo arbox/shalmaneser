@@ -8,6 +8,8 @@ include FrPrep
 
 class TestOptParser < Minitest::Test
 
+  include Shalm::Configuration
+
   def setup
     @exp_file = 'test/frprep/data/prp_test.salsa'
     @valid_opts = ['--expfile', @exp_file,

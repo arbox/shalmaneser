@@ -23,7 +23,7 @@
 #   config file to the appropriate class: Boolean, Float, Integer, String
 #
 # - other types:
-#   pattern:  This is a feature that may include variables in
+#   pattern:  This is a feature that  may include variables in
 #             <> brackets. When this feature is accesssed,
 #             values for these variables are given, i.e. this
 #             pattern has to be instantiated.
@@ -57,6 +57,7 @@
 #
 
 require_relative 'config_format_element'
+require_relative 'configuration_error'
 require 'common/ruby_class_extensions'
 
 #####################################################
@@ -73,6 +74,8 @@ require 'common/ruby_class_extensions'
 #   a custom ConfigData class.
 module Shalm
   module Configuration
+    # @abstract Subclass and override {#validate} to implement custom
+    #   ConfigurationData classes.
     class ConfigData
       # Input parameters: the name of the config file, a hash declaring all
       # features by mapping feature names to their types,
@@ -463,6 +466,12 @@ module Shalm
       # access to the object variables
       def get_contents
         [@features, @feature_types, @list_feature_access]
+      end
+
+      # Validate the semantics of parameters coming from the experiment files.
+      # @abstract Override this in subclasses.
+      def validate
+        raise NotImplementedError
       end
     end
   end

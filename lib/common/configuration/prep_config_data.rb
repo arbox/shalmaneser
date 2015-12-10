@@ -52,10 +52,27 @@ module Shalm
         "fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
       }
 
+      # @param filename [String]
       def initialize(filename)
         # @param filename [String] path to a config file
         # @param CONFIG_DEFS [Hash] a list of configuration definitions
         super(filename, CONFIG_DEFS, [])
+        validate
+      end
+
+      private
+
+      # Validates semantically the input values from the experiment file.
+      # @todo Rework the whole validation engine, the parameter definitions
+      #   should entails the information about: optional, obligatory,
+      #   in combination with. This information should be stored in external
+      #   resource files to easily change them.
+      def validate
+        unless get("frprep_directory")
+          msg = 'Please set <frprep_directory>, the Frappe internal data '\
+                'directory, in the experiment file.'
+          raise(ConfigurationError, msg)
+        end
       end
     end
   end

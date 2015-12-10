@@ -23,6 +23,7 @@ module FunctionalTestHelper
   PRP_TABINPUT         = "#{PREF}/prp_tabinput"
   PRP_FNXMLINPUT       = "#{PREF}/prp_fnxmlinput"
   PRP_FNCORPUSXMLINPUT = "#{PREF}/prp_fncorpusxmlinput"
+  PRP_MISSING_DIR      = "#{PREF}/prp_missing_dir"
 
   # Testing output for Preprocessor.
   PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"

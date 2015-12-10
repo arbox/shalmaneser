@@ -23,12 +23,12 @@ class SemNode < SalsaTigerXmlNode
   def initialize(xml) # RegXML object or text
     super(xml)
     # flags: array of FlagNode objects
-    @flags = Array.new()
+    @flags = []
   end
 
   ###
   def is_usp?
-    return get_attribute("usp") == "yes"
+    get_attribute("usp") == "yes"
   end
 
   ###
@@ -44,14 +44,14 @@ class SemNode < SalsaTigerXmlNode
   #############
   protected
 
-  def get_xml_embedded()
-    return super() + get_xml_offlags()
+  def get_xml_embedded
+    super() + get_xml_offlags
   end
 
-  def get_xml_offlags()
+  def get_xml_offlags
     # and add flags
-    return @flags.map { |flagname|
+    @flags.map do |flagname|
       "<flag name=\'#{xml_secure_val(flagname)}\'/>\n"
-    }.join
+    end.join
   end
 end

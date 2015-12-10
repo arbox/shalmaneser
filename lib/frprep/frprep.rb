@@ -15,19 +15,11 @@ module FrPrep
     def initialize(exp)
       @exp = exp
 
-      # AB: move to FRprepOptionParser
-      # remove previous contents of frprep internal data directory
-      unless exp.get("frprep_directory")
-        raise "Please set 'frprep_directory', the frprep internal data directory,\n"\
-              "in the experiment file."
-      end
-
       # experiment directory:
       # frprep internal data directory, subdir according to experiment ID
-      exp_dir = File.new_dir(@exp.get("frprep_directory"),
-                             @exp.get("prep_experiment_ID"))
-      # %x{rm -rf #{exp_dir}}
-
+      # @todo Move it to a separate method.
+      File.new_dir(@exp.get("frprep_directory"),
+                   @exp.get("prep_experiment_ID"))
       # suffixes for different types of output files
       @file_suffixes = {"lemma" => ".lemma",
                         "pos" => ".pos",
@@ -35,10 +27,8 @@ module FrPrep
                         "stxml" => ".xml"}
     end
 
+    # Main processing method.
     def transform
-
-      # AB: Debugging.
-      debugger if $DEBUG
 
 
       # AB: move to FRprepOptionParser
