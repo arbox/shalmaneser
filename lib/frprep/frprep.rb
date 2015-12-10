@@ -15,11 +15,6 @@ module FrPrep
     def initialize(exp)
       @exp = exp
 
-      # experiment directory:
-      # frprep internal data directory, subdir according to experiment ID
-      # @todo Move it to a separate method.
-      File.new_dir(@exp.get("frprep_directory"),
-                   @exp.get("prep_experiment_ID"))
       # suffixes for different types of output files
       @file_suffixes = {"lemma" => ".lemma",
                         "pos" => ".pos",
@@ -30,33 +25,13 @@ module FrPrep
     # Main processing method.
     # @raise [ConfigurationError]
     def transform
-=begin
-      # AB: move to FRprepOptionParser
-      unless @exp.get("directory_input")
-        $stderr.puts "Please specify 'directory_input' in the experiment file."
-        exit 1
-      end
-=end
-=begin
-      # AB: move to FRprepOptionParser
-      unless @exp.get("directory_preprocessed")
-        $stderr.puts "Please specify 'directory_preprocessed' in the experiment file."
-        exit 1
-      end
-=end
+      # experiment directory:
+      # frprep internal data directory, subdir according to experiment ID
+      # @todo Move it to a separate method.
+      File.new_dir(@exp.get("frprep_directory"), @exp.get("prep_experiment_ID"))
 
-      ##
       # input and output directories.
       #
-      # sanity check: output in tab format will not work
-      # if we also do a parse
-      if @exp.get("tabformat_output") and @exp.get("do_parse")
-        $stderr.puts "Error: Cannot do Tab format output"
-        $stderr.puts "when the input text is being parsed."
-        $stderr.puts "Please set either 'tabformat_output' or 'do_parse' to false."
-        exit 1
-      end
-
       input_dir = File.existing_dir(@exp.get("directory_input"))
       output_dir = File.new_dir(@exp.get("directory_preprocessed"))
 
@@ -70,12 +45,13 @@ module FrPrep
       ####
       # transform data to UTF-8
 
-      if ["iso", "hex"].include? @exp.get("encoding")
+      if %w(iso hex).include?(@exp.get('encoding'))
         # transform ISO -> UTF-8 or Hex -> UTF-8
         # write result to encoding_dir,
         # then set encoding_dir to be the new input_dir
 
         encoding_dir = frprep_dirname("encoding", "new")
+        # @todo Introduce here the Logger.
         $stderr.puts "Frprep: Transforming  to UTF-8."
         Dir[input_dir + "*"].each { |filename|
           unless File.file? filename
@@ -651,7 +627,7 @@ module FrPrep
         yield [filename, tempfile]
 
         # move temp file to original file location
-        tempfile.close()
+        tempfile.close
         `cp #{filename} #{filename}.bak`
         `mv #{tempfile.path()} #{filename}`
         tempfile.close(true)
@@ -672,10 +648,10 @@ module FrPrep
         infile = FilePartsParser.new(stfilename)
 
         # write header
-        tf.puts infile.head()
+        tf.puts infile.head
 
         # iterate through sentences, yield as SalsaTigerSentence objects
-        infile.scan_s() { |sent_string|
+        infile.scan_s { |sent_string|
           sent = SalsaTigerSentence.new(sent_string)
           yield sent
           # write changed sentence
@@ -683,8 +659,8 @@ module FrPrep
         } # each sentence
 
         # write footer
-        tf.puts infile.tail()
-        infile.close()
+        tf.puts infile.tail
+        infile.close
       }
     end
   end

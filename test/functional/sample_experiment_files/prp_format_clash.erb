@@ -1,0 +1,30 @@
+prep_experiment_ID = prp_format_clash
+
+directory_input = <%= File.expand_path('test/functional/input/frprep/stxml') %>
+directory_preprocessed = <%= File.expand_path('test/functional/output/frprep/trash') %>
+frprep_directory = <%= File.expand_path('test/functional/output/') %>
+
+language = de
+format = SalsaTigerXML
+encoding = utf8
+
+do_lemmatize = true
+do_postag = true
+do_parse = true
+tabformat_output = true
+
+fe_syn_repair = true
+fe_rel_repair = false
+
+
+pos_tagger = treetagger
+pos_tagger_path = <%= File.expand_path('tools/treetagger') %>
+
+lemmatizer = treetagger
+lemmatizer_path = <%= File.expand_path('tools/treetagger') %>
+
+parser = berkeley
+parser_path = <%= File.expand_path('tools/berkeleyParser') %>
+
+parser_max_sent_num = 2000
+parser_max_sent_len = 80

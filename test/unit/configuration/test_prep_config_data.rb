@@ -35,4 +35,14 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_MISSING_PRP_DIR)
   end
+
+  def test_for_format_clash
+    create_exp_file(PRP_FORMAT_CLASH)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_FORMAT_CLASH)
+    end
+    assert_match('tabformat_output', e.message)
+  ensure
+    remove_exp_file(PRP_FORMAT_CLASH)
+  end
 end

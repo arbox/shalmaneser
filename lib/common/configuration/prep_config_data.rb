@@ -81,6 +81,13 @@ module Shalm
           msg = 'Please specify <directory_preprocessed> in the experiment file.'
         end
 
+        # sanity check: output in tab format will not work
+        # if we also do a parse
+        if get('tabformat_output') && get('do_parse')
+          msg = 'Error: Cannot do Tab format output when the input text is being'\
+                'parsed. Please set either <tabformat_output> or <do_parse> to false.'
+        end
+
         raise(ConfigurationError, msg) if msg
       end
     end
