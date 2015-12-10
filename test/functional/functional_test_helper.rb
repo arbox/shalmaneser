@@ -18,12 +18,13 @@ module FunctionalTestHelper
   ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_train.salsa'
 
   # Testing input for Preprocessor.
-  PRP_PLAININPUT       = "#{PREF}/prp_plaininput"
-  PRP_STXMLINPUT       = "#{PREF}/prp_stxmlinput"
-  PRP_TABINPUT         = "#{PREF}/prp_tabinput"
-  PRP_FNXMLINPUT       = "#{PREF}/prp_fnxmlinput"
-  PRP_FNCORPUSXMLINPUT = "#{PREF}/prp_fncorpusxmlinput"
-  PRP_MISSING_DIR      = "#{PREF}/prp_missing_dir"
+  PRP_PLAININPUT        = "#{PREF}/prp_plaininput"
+  PRP_STXMLINPUT        = "#{PREF}/prp_stxmlinput"
+  PRP_TABINPUT          = "#{PREF}/prp_tabinput"
+  PRP_FNXMLINPUT        = "#{PREF}/prp_fnxmlinput"
+  PRP_FNCORPUSXMLINPUT  = "#{PREF}/prp_fncorpusxmlinput"
+  PRP_MISSING_DIR       = "#{PREF}/prp_missing_dir"
+  PRP_MISSING_INPUT_DIR = "#{PREF}/prp_missing_input_dir"
 
   # Testing output for Preprocessor.
   PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"

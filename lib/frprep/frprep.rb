@@ -28,14 +28,15 @@ module FrPrep
     end
 
     # Main processing method.
+    # @raise [ConfigurationError]
     def transform
-
-
+=begin
       # AB: move to FRprepOptionParser
       unless @exp.get("directory_input")
         $stderr.puts "Please specify 'directory_input' in the experiment file."
         exit 1
       end
+=end
       # AB: move to FRprepOptionParser
       unless @exp.get("directory_preprocessed")
         $stderr.puts "Please specify 'directory_preprocessed' in the experiment file."

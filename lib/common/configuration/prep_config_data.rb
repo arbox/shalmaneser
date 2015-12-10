@@ -71,8 +71,13 @@ module Shalm
         unless get("frprep_directory")
           msg = 'Please set <frprep_directory>, the Frappe internal data '\
                 'directory, in the experiment file.'
-          raise(ConfigurationError, msg)
         end
+
+        unless get('directory_input')
+          msg = 'Please specify <directory_input> in the Frappe experiment file.'
+        end
+
+        raise(ConfigurationError, msg) if msg
       end
     end
   end
