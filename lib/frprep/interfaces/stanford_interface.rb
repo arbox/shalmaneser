@@ -16,7 +16,7 @@ require "tempfile"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
-require "common/Counter"
+require 'frprep/counter'
 
 require "common/AbstractSynInterface"
 require "common/tiger"

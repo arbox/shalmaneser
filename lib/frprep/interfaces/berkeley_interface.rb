@@ -13,7 +13,7 @@ require "tempfile"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
-require "common/Counter"
+require 'frprep/counter'
 
 require "common/AbstractSynInterface"
 require "common/tiger"
@@ -59,7 +59,7 @@ class BerkeleyInterface < SynInterfaceSTXML
   # the maximum number of sentences that
   # Berkeley can parse in one go (i.e. that they are split)
   def process_dir(in_dir,  # string: input directory name
-		  out_dir) # string: output directory name
+                  out_dir) # string: output directory name
 
 
     parser = ENV['SHALM_BERKELEY_BIN'] || 'berkeleyParser.jar'
@@ -140,9 +140,9 @@ class BerkeleyInterface < SynInterfaceSTXML
         # PSEUDO - Original BP Grammars
         # ROOT - some english grammars
         # empty identifiers for older Tiger grammars
-	if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
+        if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
           break
-	end
+        end
         sentid +=1
 
       end
@@ -186,9 +186,9 @@ class BerkeleyInterface < SynInterfaceSTXML
                                    Array.new, Counter.new(0),
                                    Counter.new(500),
                                    SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
-	if st_sent.nil?
-	  next
-	end
+        if st_sent.nil?
+          next
+        end
         yield [st_sent, tab_sent, BerkeleyInterface.standard_mapping(st_sent, tab_sent)]
       else # i.e. when "failed"
         #raise "Hunh? This is a failed parse, but still we have a parse tree? Look again."
@@ -216,7 +216,7 @@ class BerkeleyInterface < SynInterfaceSTXML
   ###
   # write Salsa/TIGER XML output to file
   def to_stxml_file(infilename,  # string: name of parse file
-		    outfilename) # string: name of output stxml file
+                    outfilename) # string: name of output stxml file
 
     File.open(outfilename, 'w') do |outfile|
       outfile.puts SalsaTigerXMLHelper.get_header
@@ -261,7 +261,7 @@ class BerkeleyInterface < SynInterfaceSTXML
 
     when /^ *$/ # nothing -> whole sentence parsed
       if stack.length == 1
-	# sleepy always delivers one "top" node; if we don't get just one
+        # sleepy always delivers one "top" node; if we don't get just one
         # node, something has gone wrong
         node = stack.pop
         node.del_attribute("gf")

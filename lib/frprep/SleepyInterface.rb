@@ -12,7 +12,7 @@ require 'tempfile'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 require 'common/TabFormat'
-require 'common/Counter'
+require 'frprep/counter'
 
 require 'common/AbstractSynInterface'
 require 'common/tiger'
@@ -35,10 +35,10 @@ class SleepyInterface < SynInterfaceSTXML
   ###
   # initialize to set values for all subsequent processing
   def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of tab files
-		 outsuffix,     # string: suffix for parsed files
-		 stsuffix,      # string: suffix for Salsa/TIGER XML files
-		 var_hash = {}) # optional arguments in a hash
+                 insuffix,      # string: suffix of tab files
+                 outsuffix,     # string: suffix for parsed files
+                 stsuffix,      # string: suffix for Salsa/TIGER XML files
+                 var_hash = {}) # optional arguments in a hash
 
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
     unless @program_path =~ /\/$/
@@ -57,7 +57,7 @@ class SleepyInterface < SynInterfaceSTXML
   # the maximum number of sentences that
   # Sleepy can parse in one go (i.e. that they are split)
   def process_dir(in_dir,  # string: input directory name
-		  out_dir) # string: output directory name
+                  out_dir) # string: output directory name
 
     sleepy_prog = "#{@program_path}sleepy  --beam 1000 --model-file #{@program_path}negra.model --parse "
 
@@ -146,8 +146,8 @@ class SleepyInterface < SynInterfaceSTXML
           yield [sent, tab_sent, SleepyInterface.standard_mapping(sent, tab_sent)]
 
         else
-	  # this may not happen: we need some sentence for the current
-	  # TabFile sentence
+          # this may not happen: we need some sentence for the current
+          # TabFile sentence
           $stderr.puts "SleepyInterface error: premature end of parser file!"
           exit 1
         end
@@ -162,9 +162,9 @@ class SleepyInterface < SynInterfaceSTXML
             my_sent_id = File.basename(parsefilename, @outsuffix) + "_" + sentid.to_s
           end
           st_sent = build_salsatiger(" " + sentence_str + " ", 0,
-				     Array.new, Counter.new(0),
-				     Counter.new(500),
-				     SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
+                                     Array.new, Counter.new(0),
+                                     Counter.new(500),
+                                     SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
           yield [st_sent, tab_sent, SleepyInterface.standard_mapping(st_sent, tab_sent)]
 
         else # i.e. when "failed"
@@ -191,7 +191,7 @@ class SleepyInterface < SynInterfaceSTXML
   ###
   # write Salsa/TIGER XML output to file
   def to_stxml_file(infilename,  # string: name of parse file
-		    outfilename) # string: name of output stxml file
+                    outfilename) # string: name of output stxml file
 
     outfile = File.new(outfilename, "w")
     outfile.puts SalsaTigerXMLHelper.get_header()
@@ -231,7 +231,7 @@ class SleepyInterface < SynInterfaceSTXML
 
     when /^ *$/ # nothing -> whole sentence parsed
       if stack.length == 1
-	# sleepy always delivers one "top" node; if we don't get just one
+        # sleepy always delivers one "top" node; if we don't get just one
         # node, something has gone wrong
         node = stack.pop
         node.del_attribute("gf")
@@ -368,7 +368,7 @@ class SleepyInterpreter < Tiger
   # { "parser" => "collins", "lemmatizer" => "treetagger" }
   def SleepyInterpreter.systems()
     return {
-	"parser" => "sleepy"
+        "parser" => "sleepy"
     }
   end
 
