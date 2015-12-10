@@ -93,6 +93,10 @@ module Shalm
                 'in the experiment file.'
         end
 
+        unless get('lemmatizer_path') && get('lemmatizer')
+          msg = 'Lemmatization: I need <lemmatizer> and <lemmatizer_path> in the experiment file.'
+        end
+
         raise(ConfigurationError, msg) if msg
       end
     end

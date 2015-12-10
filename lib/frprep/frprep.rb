@@ -64,7 +64,6 @@ module FrPrep
         input_dir = encoding_dir
       end
 
-
       ####
       # transform data all the way to the output format,
       # which is SalsaTigerXML by default,
@@ -206,8 +205,6 @@ module FrPrep
       neu ? File.new_dir(dirname) : File.existing_dir(dirname)
     end
 
-
-
     ###############
     # transform_plain:
     #
@@ -267,7 +264,7 @@ module FrPrep
 
         sys_class = SynInterfaces.get_interface("pos_tagger",
                                                 @exp.get("pos_tagger"))
-        print "pos tagger interface: ", sys_class, "\n"
+        $stderr.puts "POS Tagger interface: #{sys_class}"
 
         # AB: TODO Remove it.
         unless sys_class
@@ -280,17 +277,11 @@ module FrPrep
         sys.process_dir(output_dir, output_dir)
       end
 
-
       ##
       # Lemmatization
       # AB: We're working on the <split> dir and writing there.
       if @exp.get("do_lemmatize")
         STDERR.puts 'Frprep: Lemmatizing.'
-
-        # AB: TODO Move it to OptionParser.
-        unless @exp.get("lemmatizer_path") and @exp.get("lemmatizer")
-          raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
-        end
 
         sys_class = SynInterfaces.get_interface("lemmatizer",
                                                 @exp.get("lemmatizer"))
@@ -314,16 +305,16 @@ module FrPrep
     # - parse
     # - Transform parser output to SalsaTigerXML
     #   If no parsing, make flat syntactic structure.
-    def transform_salsatab_dir(input_dir,        # string: input directory
-                               parse_dir,     # string: output directory for parses
-                               output_dir)       # string: global output directory
-
+    # @param [String] input_dir Input directory.
+    # @param [String] parse_dir Output directory for parses.
+    # @param [String] output_dir Global output directory.
+    def transform_salsatab_dir(input_dir, parse_dir, output_dir)
       ##
       # (Parse and) transform to SalsaTigerXML
-
       # get interpretation class for this
       # parser/lemmatizer/POS tagger combination
       interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
+
       unless interpreter_class
         raise "Shouldn't be here"
       end
@@ -335,13 +326,14 @@ module FrPrep
 
         outfilename = output_dir + parsed_file_obj.filename + ".xml"
         $stderr.puts "Writing #{outfilename}"
+
         begin
           outfile = File.new(outfilename, "w")
         rescue
           raise "Cannot write to SalsaTigerXML output file #{outfilename}"
         end
 
-        outfile.puts SalsaTigerXMLHelper.get_header()
+        outfile.puts SalsaTigerXMLHelper.get_header
         # work with triples
         # SalsaTigerSentence, FNTabSentence,
         # hash: tab sentence index(integer) -> array:SynNode
@@ -376,7 +368,7 @@ module FrPrep
 
           outfile.puts st_sent.get()
         }
-        outfile.puts SalsaTigerXMLHelper.get_footer()
+        outfile.puts SalsaTigerXMLHelper.get_footer
       }
     end
 
@@ -443,11 +435,12 @@ module FrPrep
       if @exp.get("do_parse") or @exp.get("do_lemmatize") or @exp.get("do_postag")
         $stderr.puts "Frprep: making input for syn. processing"
 
-        Dir[stxml_dir+"*"+@file_suffixes["stxml"]].each { |stxmlfilename|
+        Dir[stxml_dir + "*" + @file_suffixes["stxml"]].each do |stxmlfilename|
 
-          tabfilename = tab_dir + File.basename(stxmlfilename,@file_suffixes["stxml"]) + @file_suffixes["tab"]
+          tabfilename = tab_dir + File.basename(stxmlfilename,
+                                                @file_suffixes["stxml"]) + @file_suffixes["tab"]
           FrprepHelper.stxml_to_tab_file(stxmlfilename, tabfilename, exp)
-        }
+        end
       end
 
       ###
@@ -482,6 +475,7 @@ module FrPrep
         unless sys_class
           raise "Shouldn't be here"
         end
+
         sys = sys_class.new(@exp.get("lemmatizer_path"),
                             @file_suffixes["tab"],
                             @file_suffixes["lemma"])
@@ -493,7 +487,8 @@ module FrPrep
 
       # get interpretation class for this
       # parser/lemmatizer/POS tagger combination
-      sys_class_names = Hash.new
+      sys_class_names = {}
+
       [["do_postag", "pos_tagger"],
        ["do_lemmatize", "lemmatizer"],
        ["do_parse", "parser"]].each { |service, system_name|
@@ -501,7 +496,9 @@ module FrPrep
           sys_class_names[system_name] = @exp.get(system_name)
         end
       }
+
       interpreter_class = SynInterfaces.get_interpreter(sys_class_names)
+
       unless interpreter_class
         raise "Shouldn't be here"
       end
@@ -512,18 +509,21 @@ module FrPrep
                                "stxml_dir" => stxml_dir)
       parse_obj.each_parsed_file { |parsed_file_obj|
         outfilename = output_dir + parsed_file_obj.filename + ".xml"
+
         $stderr.puts "Writing #{outfilename}"
+
         begin
           outfile = File.new(outfilename, "w")
         rescue
           raise "Cannot write to SalsaTigerXML output file #{outfilename}"
         end
 
-
         if @exp.get("do_parse")
           # read old SalsaTigerXML file
           # so we can integrate the old file's semantics later
-          oldxml = Array.new # array of sentence strings
+          # array of sentence strings
+          oldxml = []
+
           # we assume that the old and the new file have the same name,
           # ending in .xml.
           oldxmlfile = FilePartsParser.new(stxml_dir + parsed_file_obj.filename + ".xml")
@@ -533,7 +533,7 @@ module FrPrep
           }
         end
 
-        outfile.puts SalsaTigerXMLHelper.get_header()
+        outfile.puts SalsaTigerXMLHelper.get_header
         index = 0
         # work with triples
         # SalsaTigerSentence, FNTabSentence,
@@ -548,6 +548,7 @@ module FrPrep
 
               # modified by ines, 27/08/08
               # for Berkeley => substitute ( ) for *LRB* *RRB*
+              # @note AB: Move this to the Berkeley Interface.
               if exp.get("parser") == "berkeley"
                 oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
                 oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
@@ -557,12 +558,13 @@ module FrPrep
 
               # we have both an old and a new sentence, so integrate semantics
               oldsent = SalsaTigerSentence.new(oldsent_string)
-              if st_sent.nil?
-                next
-              end
-              if (FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp) == false)
-                #print "FALSE \n";
-                #print oldsent, "\n", st_sent, "\n\n";
+
+              next if st_sent.nil?
+
+              unless FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent,
+                                                                    st_sent,
+                                                                    interpreter_class,
+                                                                    @exp)
 
                 oldsent_string = oldxml[index]
                 index += 1
@@ -570,6 +572,7 @@ module FrPrep
 
                   # modified by ines, 27/08/08
                   # for Berkeley => substitute ( ) for *LRB* *RRB*
+                  # @note AB: Duplicated code!! Move it to the Berkeley Interface.
                   if exp.get("parser") == "berkeley"
                     oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
                     oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
@@ -579,13 +582,12 @@ module FrPrep
 
                   # we have both an old and a new sentence, so integrate semantics
                   oldsent = SalsaTigerSentence.new(oldsent_string)
-                  #print oldsent, "\n", st_sent, "\n\n";
-                  FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent, st_sent, interpreter_class, @exp)
 
+                  FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent,
+                                                                    st_sent,
+                                                                    interpreter_class,
+                                                                    @exp)
                 end
-                #else
-                #print "TRUE\n";
-                #print oldsent, "\n", st_sent, "\n\n";
               end
             else
               # no corresponding old sentence for this new sentence
@@ -597,13 +599,13 @@ module FrPrep
           FrprepHelper.remove_deprecated_frames(st_sent, @exp)
 
           # repair syn/sem mapping problems?
-          if @exp.get("fe_syn_repair") or @exp.get("fe_rel_repair")
+          if @exp.get("fe_syn_repair") || @exp.get("fe_rel_repair")
             FixSynSemMapping.fixit(st_sent, @exp, interpreter_class)
           end
 
-          outfile.puts st_sent.get()
+          outfile.puts st_sent.get
         } # each ST sentence
-        outfile.puts SalsaTigerXMLHelper.get_footer()
+        outfile.puts SalsaTigerXMLHelper.get_footer
       } # each file parsed
     end
 
@@ -612,18 +614,20 @@ module FrPrep
     # general file iterators
 
     # yields pairs of [infile name, outfile stream]
-    def change_each_file_in_dir(dir,                 # string: directory name
-                                suffix)    # string: filename pattern, e.g. "*.xml"
-      Dir[dir + "*#{suffix}"].each { |filename|
+    # @param [String] dir Directory name.
+    # @param [String] suffix Filename pattern, e.g. '*.xml'.
+    def change_each_file_in_dir(dir, suffix)
+      Dir[dir + "*#{suffix}"].each do |filename|
         tempfile = Tempfile.new("FrprepHelper")
         yield [filename, tempfile]
 
         # move temp file to original file location
         tempfile.close
+        # @todo Use native Ruby methods.!!
         `cp #{filename} #{filename}.bak`
-        `mv #{tempfile.path()} #{filename}`
+        `mv #{tempfile.path} #{filename}`
         tempfile.close(true)
-      } # each file
+      end
     end
 
     #######
@@ -634,26 +638,26 @@ module FrPrep
     # and just offer individual sentences for changing
     #
     # Yields SalsaTigerSentence objects, each sentence to be changed
-    def change_each_stxml_file_in_dir(dir)            # string: directory name
-
-      change_each_file_in_dir(dir, "*.xml") { |stfilename, tf|
+    # @param [String] dir Directory name.
+    def change_each_stxml_file_in_dir(dir)
+      change_each_file_in_dir(dir, "*.xml") do |stfilename, tf|
         infile = FilePartsParser.new(stfilename)
 
         # write header
         tf.puts infile.head
 
         # iterate through sentences, yield as SalsaTigerSentence objects
-        infile.scan_s { |sent_string|
+        infile.scan_s do |sent_string|
           sent = SalsaTigerSentence.new(sent_string)
           yield sent
           # write changed sentence
-          tf.puts sent.get()
-        } # each sentence
+          tf.puts sent.get
+        end # each sentence
 
         # write footer
         tf.puts infile.tail
         infile.close
-      }
+      end
     end
   end
 end

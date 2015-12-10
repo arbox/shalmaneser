@@ -62,4 +62,14 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_MISSING_TAGGER)
   end
+
+  def test_for_missing_lemmatizer
+    create_exp_file(PRP_MISSING_LEMMATIZER)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_MISSING_LEMMATIZER)
+    end
+    assert_match('lemmatizer', e.message)
+  ensure
+    remove_exp_file(PRP_MISSING_LEMMATIZER)
+  end
 end
