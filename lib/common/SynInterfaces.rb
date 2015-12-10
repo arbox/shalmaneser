@@ -36,13 +36,13 @@ class SynInterfaces
   # class variable:
   # list of all known interface classes
   # add to it using add_interface()
-  @@interfaces = Array.new
+  @@interfaces = []
 
   ###
   # class variable:
   # list of all known interpreter classes
   # add to it using add_interpreter()
-  @@interpreters = Array.new
+  @@interpreters = []
 
   ###
   # add interface/interpreter
@@ -146,8 +146,8 @@ class SynInterfaces
     # name and service
     @@interfaces.each { |interface_class|
       if interface_class.system == system and
-	  interface_class.service == service
-	return interface_class
+          interface_class.service == service
+        return interface_class
       end
     }
 
@@ -184,22 +184,22 @@ class SynInterfaces
     @@interpreters.each { |interpreter_class|
 
       if interpreter_class.systems.to_a.big_and { |service, system|
-	  # all obligatory entries of interpreter_class
-	  # are in systems
-	  systems[service] == system
-	} and
-	  interpreter_class.optional_systems.to_a.big_and { |service, system|
-	  # all optional entries of interpreter_class are
-	  # either in systems, or the service isn't in systems at all
-	  systems[service].nil? or systems[service] == system
-	} and
-	  systems.to_a.big_and { |service, system|
-	  # all entries in names are in either
-	  # the obligatory or optional set for interpreter_class
-	  interpreter_class.systems[service] == system or
-	    interpreter_class.optional_systems[service] == system
-	}
-	return interpreter_class
+          # all obligatory entries of interpreter_class
+          # are in systems
+          systems[service] == system
+        } and
+          interpreter_class.optional_systems.to_a.big_and { |service, system|
+          # all optional entries of interpreter_class are
+          # either in systems, or the service isn't in systems at all
+          systems[service].nil? or systems[service] == system
+        } and
+          systems.to_a.big_and { |service, system|
+          # all entries in names are in either
+          # the obligatory or optional set for interpreter_class
+          interpreter_class.systems[service] == system or
+            interpreter_class.optional_systems[service] == system
+        }
+        return interpreter_class
       end
     }
 
@@ -225,19 +225,19 @@ class SynInterfaces
   #  the experiment file, and the names of the systems to be used
   #  for performing the service
   def SynInterfaces.requested_services(exp)
-    retv = Hash.new
+    retv = {}
 
     [
-      { "flag" => "do_postag", "service"=> "pos_tagger"},
-      { "flag" => "do_lemmatize", "service"=> "lemmatizer"},
-      { "flag" => "do_parse", "service" => "parser" }
+      {"flag" => "do_postag", "service" => "pos_tagger"},
+      {"flag" => "do_lemmatize", "service" => "lemmatizer"},
+      {"flag" => "do_parse", "service" => "parser"}
     ].each { |hash|
       if exp.get(hash["flag"])  # yes, perform this service
-	retv[hash["service"]] = exp.get(hash["service"])
+        retv[hash["service"]] = exp.get(hash["service"])
       end
     }
 
-    return retv
+    retv
   end
 end
 
@@ -251,29 +251,27 @@ require 'frprep/interpreters/berkeley_interpreter'
 require 'frprep/interfaces/stanford_interface'
 require 'frprep/interpreters/stanford_interpreter'
 
-require "frprep/SleepyInterface"
 require "frprep/MiniparInterface"
 require "frprep/TntInterface"
 require "frprep/TreetaggerInterface"
 
-
 class EmptyInterpreter < SynInterpreter
-  EmptyInterpreter.announce_me()
+  EmptyInterpreter.announce_me
 
   ###
   # systems interpreted by this class:
   # returns a hash service(string) -> system name (string),
   # e.g.
   # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def EmptyInterpreter.systems()
-    return {}
+  def EmptyInterpreter.systems
+    {}
   end
 
   ###
   # names of additional systems that may be interpreted by this class
   # returns a hash service(string) -> system name(string)
   # same as names()
-  def SynInterpreter.optional_systems()
-    return {}
+  def SynInterpreter.optional_systems
+    {}
   end
 end
