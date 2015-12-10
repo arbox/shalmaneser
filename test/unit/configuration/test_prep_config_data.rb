@@ -45,4 +45,11 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_FORMAT_CLASH)
   end
+
+  def test_for_nonexistent_experiment_file
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new('some_nonexistent_file.exp')
+    end
+    assert_match('open', e.message)
+  end
 end

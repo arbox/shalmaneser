@@ -110,24 +110,18 @@ module Shalm
         # open config file
         # @todo Introduce custom exceptions to handle external errors.
         begin
-          file = File.new(@filename)
-        rescue
-          $stderr.puts "Error: I could not open the experiment file " + @filename
-          exit 1
-        end
-        ##
-
-        # examine the config file contents
-
-        while (line = file.gets)
-          line = line.strip
-          # Empty lines and comments
-          if line =~ /^#/ || line.empty?
-            next
+          File.open(@filename, 'r') do |file|
+            while (line = file.gets)
+              line = line.strip
+              # Empty lines and comments.
+              next if line =~ /^#/ || line.empty?
+              feature_name, rhs = extract_def(line)
+              set_entry(feature_name, rhs)
+            end
           end
-
-          feature_name, rhs = extract_def(line)
-          set_entry(feature_name, rhs)
+        rescue => e
+          msg = "Error: I could not open the experiment file: #{@filename}"
+          raise ConfigurationError.new(msg, e)
         end
       end
 
