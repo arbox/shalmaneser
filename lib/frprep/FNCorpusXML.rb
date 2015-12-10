@@ -27,6 +27,8 @@ require 'frprep/Ampersand'
 require 'common/ISO-8859-1'
 require 'common/RegXML'
 
+# @note AB: Moved this to the proper class.
+=begin
 #####################
 # mixins to make work with RegXML a little less repetitive
 class RegXML
@@ -42,6 +44,7 @@ class RegXML
     }
   end
 end
+=end
 
 #####################
 # class to keep data for one frame

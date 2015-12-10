@@ -11,7 +11,7 @@ class RegXML
                  i_am_text = false) # boolean: xml element (false) or text (true)
 
     unless string.class == String
-      raise "First argument to RegXML.new must be string. I got #{string.class.to_s}"
+      raise "First argument to RegXML.new must be string. I got #{string.class}"
     end
     if i_am_text
       @s = string
@@ -20,20 +20,32 @@ class RegXML
       @s = string.gsub(/\n/,  " ").freeze
       @i_am_text = false
 
-      element_test()
-      dyck_test()
+      element_test
+      dyck_test
     end
   end
 
-  def to_s()
-    return xml_readable(@s)
-  end
-  
-  def text?
-    return @i_am_text
+  def first_child_matching(child_name)
+    children_and_text.detect { |c| c.name == child_name }
   end
 
-  def name()
+  def each_child_matching(child_name)
+    children_and_text.each do |c|
+      if c.name == child_name
+        yield c
+      end
+    end
+  end
+
+  def to_s
+    xml_readable(@s)
+  end
+
+  def text?
+    @i_am_text
+  end
+
+  def name
     if @i_am_text
       # text
       return nil
@@ -48,7 +60,7 @@ class RegXML
     end
   end
 
-  def attributes()
+  def attributes
     if @i_am_text
       # text
       return {}
@@ -61,16 +73,16 @@ class RegXML
       # this is a string of the form
       # - either (name=value)*
       # - or     (name=value)*/
-      unless @s =~ /^\s*<\s*#{name()}(.*)$/
+      unless @s =~ /^\s*<\s*#{name}(.*)$/
         raise "Cannot parse:\n #{xml_readable(@s)}"
       end
-      
-      retv = Hash.new
+
+      retv = {}
       elt_contents = $1
-      
+
       # repeat until only > or /> is left
       while elt_contents !~ /^\s*\/?>/
-        
+
         # shave off the next name=value pair
         # put the rest into elt_contents
         # make sure that if the value is quoted with ',
@@ -86,43 +98,43 @@ class RegXML
     end
   end
 
-  def children_and_text()
+  def children_and_text
     if @i_am_text
       return []
 
     else
-      if unary_element()
+      if unary_element
         # <bla/>, no children
         return []
       end
-      
+
       # @s has the form <bla...>  ... </bla>.
       # remove <bla ...>  from the beginning of @s,
       # place the rest up to </bla> into children_s:
-      
-      mainname = name()
+
+      mainname = name
       unless @s =~ /^\s*<\s*#{mainname}(\s+[\w-]+=(["']).*?\2)*\s*>(.*?)<\/\s*#{mainname}\s*>\s*$/
         raise "Cannot parse:\n #{xml_readable(@s)}"
       end
-      
-      retv = Array.new
+
+      retv = []
       children_s = $3
 
       # repeat until only whitespace is left
       while children_s !~ /^\s*$/
-        
+
       # shave off the next bit of text
         # put the rest into children_s
         unless children_s =~ /^\s*(.*?)(<.*$|$)/
           $stderr.puts "Whole was:\n #{xml_readable(@s)}"
-          $stderr.puts 
+          $stderr.puts
           raise "Cannot parse:\n #{xml_readable(children_s)}"
         end
         unless $1.strip.empty?
           children_s = $2
           retv << RegXML.new($1, true)
         end
-        
+
         # anything left after we've parsed text?
         if children_s =~ /^s*$/
           break
@@ -135,14 +147,14 @@ class RegXML
         # the element start tag ends with either / or >
         unless children_s =~ /^\s*(<\s*([\w-]+)(\s+[\w-]+=(["']).*?\4)*\s*)/
           $stderr.puts "Whole was:\n #{xml_readable(@s)}"
-          $stderr.puts 
+          $stderr.puts
           raise "Cannot parse:\n #{xml_readable(children_s)}"
         end
         childname = $2
         child = $1
         endofelt_ix = $&.length()
 
-        
+
         # and remove it
         case children_s[endofelt_ix..-1]
         when /^\/>(.*)$/
@@ -156,7 +168,7 @@ class RegXML
 
         else
           $stderr.puts "Whole was:\n #{xml_readable(@s)}"
-          $stderr.puts 
+          $stderr.puts
           raise "Cannot parse:\n#{xml_readable(children_s)}"
         end
       end
@@ -165,14 +177,14 @@ class RegXML
     end
   end
 
-  def RegXML.test()
-    bla = RegXML.new("  <bla blupp='a\"b' 
+  def RegXML.test
+    bla = RegXML.new("  <bla blupp='a\"b'
 lalala=\"c\">
   <lalala> </lalala>
   texttext
   <lala blupp='b'/>
   nochtext
-  <la> <l/> </la>  
+  <la> <l/> </la>
 </ bla >
 ")
     puts "name " + bla.name()
@@ -194,9 +206,9 @@ lalala=\"c\">
 
     puts "NEU"
     bla = RegXML.new("  < bla blupp='a\"'/> ")
-    puts "name " + bla.name()
+    puts "name " + bla.name
     puts
-    puts bla.to_s()
+    puts bla.to_s
     puts
     bla.attributes.each { |attr, val|
       puts "attr " + attr + "=" + val
@@ -216,7 +228,7 @@ lalala=\"c\">
   ##############
   protected
 
-  def unary_element()
+  def unary_element
     # <bla/>
     if @s =~ /^\s*<.*\/>\s*$/
       return true
@@ -225,11 +237,11 @@ lalala=\"c\">
     end
   end
 
-  def element_test()
+  def element_test
     # make sure we have a single XML element, either <bla/> or
     # <bla>...</bla>
-    
-    if unary_element()
+
+    if unary_element
       # <bla/>
     elsif @s =~ /^\s*<\s*([\w-]+)\W.*?<\/\s*\1\s*>\s*$/
       # <bla  > ... </bla>
@@ -238,7 +250,7 @@ lalala=\"c\">
     end
   end
 
-  def dyck_test()
+  def dyck_test
     # every prefix of @s must have at least as many < as >
     opening = 0
     closing = 0
@@ -261,9 +273,6 @@ lalala=\"c\">
   end
 
   def xml_readable(string)
-    return string.gsub(/>/, ">\n")
+    string.gsub(/>/, ">\n")
   end
 end
-
-# RegXML.test()
-
