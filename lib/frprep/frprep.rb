@@ -80,19 +80,6 @@ module FrPrep
         STDERR.puts "#{current_format} - #{done_format}"
         # after debugging
         case current_format
-        when "BNC"
-          # basically plain, plus some tags to be removed
-          plain_dir = frprep_dirname("plain", "new")
-
-          $stderr.puts "Frprep: Transforming BNC format text in #{current_dir} to plain format."
-          $stderr.puts "Storing the result in #{plain_dir}."
-          $stderr.puts "Expecting one sentence per line."
-
-          transform_bncformat_dir(current_dir, plain_dir)
-
-          current_dir = plain_dir
-          current_format = "Plain"
-
         when "Plain"
           # transform to tab format
 
@@ -165,7 +152,9 @@ module FrPrep
         when "SalsaTigerXML"
 
           parse_dir = frprep_dirname("parse", "new")
+
           print "Transform parser output into stxml\n"
+
           transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir, @exp)
           current_dir = output_dir
           current_format = "Done"
@@ -204,25 +193,6 @@ module FrPrep
 
       neu ? File.new_dir(dirname) : File.existing_dir(dirname)
     end
-
-    ###############
-    # transform_plain:
-    #
-    # transformation for BNC format:
-    #
-    # transform to plain format, removing <> elements
-    def transform_bncformat_dir(input_dir,  # string: input directory
-                                output_dir) # string: output directory
-
-      Dir[input_dir + "*"].each { |bncfilename|
-
-        # open input and output file
-        # end output file name in "tab" because that is, at the moment, required
-        outfilename = output_dir + File.basename(bncfilename)
-        FrprepHelper.bnc_to_plain_file(bncfilename, outfilename)
-      }
-    end
-
 
     ###############
     # transform_plain:
