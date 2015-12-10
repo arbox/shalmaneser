@@ -144,7 +144,7 @@ class XMLNode < TreeNode
   end
 
 
-  def get_xml_ofkith()
+  def get_xml_ofkith
     return @kith.map { |thing| thing.to_s + "\n" }.join()
   end
 
@@ -157,7 +157,6 @@ class XMLNode < TreeNode
 
   ###
   def xml_secure_val(value) # string: value of an attribute
-    return value.gsub(/'/, "&apos;").gsub(/"/, "&apos;&apos;")
-    return value
+    value.gsub(/'/, "&apos;").gsub(/"/, "&apos;&apos;")
   end
 end

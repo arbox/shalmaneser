@@ -6,7 +6,7 @@
 # Original: Katrin Erk, Jan 2004 for CoNLL '04 data
 # Rewrite: Sebastian Pado, Mar 2004 for Gemmas FrameNet data (no NEs etc.)
 
-# Extensions SP Jun/Jul 04 
+# Extensions SP Jun/Jul 04
 # renamed GemmaCorpus to FNTabFormat
 
 # partial rewrite SP 250804: made things cleaner & leaner: no RawFormat, for example
@@ -38,11 +38,11 @@ require "common/ruby_class_extensions"
 
 #######################
 class TabFormatFile
-  
-  
+
+
   #######
   # initialize:
-  # open files for reading. 
+  # open files for reading.
   #
   # fp is a list of pairs [filename, format]
   # where format is a list of strings that will be used
@@ -58,21 +58,21 @@ class TabFormatFile
     @no_of_read_lines = 0
     fp.each_index { |ix|
       if ix.modulo(2) == 0
-	# filename
-	begin
-	  @files << File.new(fp[ix])
-	rescue
-	  raise 'Sorry, could not read input file ' + fp[ix] + "\n"
-	end
+        # filename
+        begin
+          @files << File.new(fp[ix])
+        rescue
+          raise 'Sorry, could not read input file ' + fp[ix] + "\n"
+        end
       else
-	# pattern
-	@patterns += fp[ix]
+        # pattern
+        @patterns += fp[ix]
       end
     }
 
     @my_sentence_class = TabFormatSentence
   end
-  
+
   ########
   # each_sentence:
   # yield each sentence of the files in turn.
@@ -86,44 +86,41 @@ class TabFormatFile
   # each sentence is returned in the form of an
   # array of TabFormatSentence sentences.
   # AB: TODO Delete this nasty exception!!!
+  # @todo Change `#readline` to `#gets` to avoid Exceptions.
+  # @todo Change `#gets` to `#readlines` to read all lines at once.
   def each_sentence
     unless @read_completely
       sentence = @my_sentence_class.new(@patterns)
       begin
-	lines = Array.new
-	while true do
-	  line = ""
-	  linearray = Array.new
-	  @files.each {|f|
-	    linearray << f.readline().chomp()
-	  }	
-	#STDERR.puts linearray
-	  @no_of_read_lines += 1
-	  if linearray.detect {|x| x.strip == ""}
-	    if linearray.detect {|x| x.strip != ""}
-	      STDERR.puts "Error: Mismatching empty lines! <from lib/common>" 
-	      exit(1)
-	    else
-	      # sentence finished. yield it and start a new one
-	      unless sentence.empty?
-		yield sentence
-	      end
-	      sentence = @my_sentence_class.new(@patterns)
+        loop do
+          linearray = []
+          @files.each { |f| linearray << f.readline.chomp }
+
+          @no_of_read_lines += 1
+          if linearray.detect { |x| x.strip == '' }
+            if linearray.detect { |x| x.strip != '' }
+              STDERR.puts "Error: Mismatching empty lines! <from lib/common>"
+              exit(1)
+            else
+              # sentence finished. yield it and start a new one
+              unless sentence.empty?
+                yield sentence
+              end
+              sentence = @my_sentence_class.new(@patterns)
             end
-	    # read an empty line in each of the other files
-	    
-	  else
-	    # sentence not yet finished.
-	    # add this line to it
-	    sentence.add_line(linearray.join("\t"))
-	  end
-	end
+            # read an empty line in each of the other files
+
+          else
+            # sentence not yet finished.
+            # add this line to it
+            sentence.add_line(linearray.join("\t"))
+          end
+        end
       rescue EOFError
-	unless sentence.empty?
-	  # maybe we haven't yielded the last sentence yet.
-	  yield sentence
-	end
-	@read_completely = true
+        # maybe we haven't yielded the last sentence yet.
+        yield sentence unless sentence.empty?
+
+        @read_completely = true
       end
     end
   end
@@ -174,13 +171,13 @@ class TabFormatNamedArgs
     # record the feature names, give special attention to a group
     # if we have one
     @group_feature_names = nil
-    @feature_names = features.map { |feature| 
+    @feature_names = features.map { |feature|
       if feature.instance_of? Array
-	# found a group
-	@group_feature_names = feature
-	"GROUP"
+        # found a group
+        @group_feature_names = feature
+        "GROUP"
       else
-	feature
+        feature
       end
     }
 
@@ -194,7 +191,7 @@ class TabFormatNamedArgs
     unless group_index
       group_index = @feature_names.length()
     end
-    num_features_after_group = [0, 
+    num_features_after_group = [0,
       (@feature_names.length() - 1) - group_index].max()
     index_after_groups = values.length() - num_features_after_group
 
@@ -208,11 +205,11 @@ class TabFormatNamedArgs
       # for (group_start = group_index; group_start < index_after_groups;
       #      group_start += @group_feature_names.length())
       group_no = 0
-      group_index.step(index_after_groups - 1, 
-		       @group_feature_names.length()) { |group_start|
-	@r << TabFormatNamedArgs.new(values.slice(group_start, 
-						  @group_feature_names.length()),
-				     @group_feature_names,
+      group_index.step(index_after_groups - 1,
+                       @group_feature_names.length()) { |group_start|
+        @r << TabFormatNamedArgs.new(values.slice(group_start,
+                                                  @group_feature_names.length()),
+                                     @group_feature_names,
                                      group_no)
         group_no += 1
       }
@@ -234,7 +231,7 @@ class TabFormatNamedArgs
   # If the feature list includes a group,
   # assume zero entries for that group
   def TabFormatNamedArgs.format_str(hash,     # hash: feature -> value
-				    features) # feature list, as for new()
+                                    features) # feature list, as for new()
     if features.nil?
       return ""
     end
@@ -249,9 +246,9 @@ class TabFormatNamedArgs
       not(f.instance_of? Array)
     }.map { |feature|
       if hash[feature]
-	hash[feature]
+        hash[feature]
       else
-	"-"
+        "-"
       end
     }.join("\t")
   end
@@ -294,9 +291,9 @@ class TabFormatNamedArgs
     return @feature_names.map { |feature|
       case feature
       when "GROUP"
-	@r.map { |group_obj| group_obj.to_s }.join("\t")
+        @r.map { |group_obj| group_obj.to_s }.join("\t")
       else
-	@f[feature]
+        @f[feature]
       end
     }.join("\t")
   end
@@ -328,9 +325,9 @@ end
 class TabFormatSentence
   ############
   # initialize:
-  # the sentence will be stored one word (plus additional info 
-  # for that word) per line. Each line will be stored in a cell of 
-  # the array @lines. the 'initialize' method starts with an empty 
+  # the sentence will be stored one word (plus additional info
+  # for that word) per line. Each line will be stored in a cell of
+  # the array @lines. the 'initialize' method starts with an empty
   # array of lines.
   def initialize(pattern)
     @lines = Array.new
@@ -345,15 +342,15 @@ class TabFormatSentence
   def length
     return @lines.length
   end
-  
+
   ################3
   # add_line:
-  # add one entry to the @lines array, i.e. information for one word 
+  # add one entry to the @lines array, i.e. information for one word
   # of the sentence.
   def add_line(line)
     @lines << line
   end
-  
+
   ###################
   # empty?:
   # returns true if there are currently no lines stored in this
@@ -362,7 +359,7 @@ class TabFormatSentence
   def empty?
     return @lines.empty?
   end
-  
+
   ######################
   # empty!:
   # discards all entries to the @lines array,
@@ -371,7 +368,7 @@ class TabFormatSentence
   def empty!
     @lines.clear
   end
-  
+
   #####################
   # each_line:
   # yields each line of the sentence
@@ -379,7 +376,7 @@ class TabFormatSentence
   def each_line
     @lines.each { |l| yield l }
   end
-  
+
   ######################
   # each_line_parsed:
   # yields each line of the sentence
@@ -389,10 +386,10 @@ class TabFormatSentence
   # - the word
   # - the part of speech info for the word
   # - syntax for roles (not to be used)
-  # - target (or -) 
+  # - target (or -)
   # - gramm. function for roles (not to be used)
   # - one column with role annotation
-  # 
+  #
   # All pieces are yielded as strings, except for the argument columns, which
   # are yielded as an array of strings.
   def each_line_parsed
@@ -405,7 +402,7 @@ class TabFormatSentence
       lineno += 1
     }
   end
-  
+
   ###
   # read_one_line:
   # return a line of the sentence specified by its number
@@ -461,14 +458,14 @@ class FNTabFormatFile < TabFormatFile
 
     @my_sentence_class = FNTabSentence
   end
-  
+
 
   def FNTabFormatFile.fntab_format()
 #    return ["word", "pt", "gf", "role", "target", "frame", "lu_sent_ids"]
-    return [ 
-      "word", 
-      FNTabFormatFile.frametab_format(), 
-      "ne", "sent_id" 
+    return [
+      "word",
+      FNTabFormatFile.frametab_format(),
+      "ne", "sent_id"
     ]
   end
 
@@ -497,14 +494,14 @@ class FNTabSentence < TabFormatSentence
   ####
   def sanity_check()
     each_line_parsed {|l|
-      if l.get("sent_id").nil? 
+      if l.get("sent_id").nil?
         raise "Error: corpus file does not conform to FN format."
       else
-        return 
+        return
       end
     }
   end
-  
+
   ####
   # returns the sentence ID, a string, as set by FrameNet
   def get_sent_id()
@@ -533,35 +530,35 @@ class FNTabSentence < TabFormatSentence
   # computes a mapping from word indices to labels on these words
   #
   # returns a hash: index_list(array:integer) -> label(string)
-  # An entry il->label means that all the lines whose line 
+  # An entry il->label means that all the lines whose line
   # numbers are listed in il are labeled with label.
   #
   # Line numbers correspond to words of the sentence. Counting starts at 0.
-  # 
-  # By default, "markables" looks for role labels, i.e. labels in the 
+  #
+  # By default, "markables" looks for role labels, i.e. labels in the
   # column "role", but it can also look in another column.
   # To change the default, give the column name as a parameter.
-  def markables(use_this_column="role") 
+  def markables(use_this_column="role")
     # returns hash of {index list} -> {markup label}
 
     sanity_check()
-    
+
     idlist_to_annotation_list = Hash.new
-    
+
     # add entry for the target word
     # idlist_to_annotation_list[get_target_indices()] = "target"
-    
+
     # determine span of each frame element
     # if we find overlapping FEs, we write a warning to STDERR
-    # ignore the 2nd label and attempt to "close" the 1st label 
+    # ignore the 2nd label and attempt to "close" the 1st label
 
     ids = Array.new
     label = nil
 
     each_line_parsed { |l|
-      
+
       this_id = get_this(l, "lineno")
-      
+
       # start of FE?
       this_col = get_this(l, use_this_column)
       unless this_col
@@ -569,7 +566,7 @@ class FNTabSentence < TabFormatSentence
         next
       end
       this_fe_ann = this_col.split(":")
-      
+
       case this_fe_ann.length
       when 1 # nothing at all, or a single begin or end
         markup = this_fe_ann.first
@@ -580,13 +577,13 @@ class FNTabSentence < TabFormatSentence
         elsif markup =~ /^B-(\S+)$/
           if label # are we within a markable right now?
             $stderr.puts "[TabFormat] Warning: Markable "+$1.to_s+" starts while within markable  ", label.to_s
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
           else
             label = $1
             ids << this_id
           end
         elsif markup =~ /^E-(\S+)$/
-          if label == $1 # we close the markable we've opened before 
+          if label == $1 # we close the markable we've opened before
             ids << this_id
             # store information
             idlist_to_annotation_list[ids] = label
@@ -595,18 +592,18 @@ class FNTabSentence < TabFormatSentence
             ids = Array.new
           else
             $stderr.puts "[TabFormat] Warning: Markable "+$1.to_s+" closes while within markable "+ label.to_s
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
           end
         else
           $stderr.puts "[TabFormat] Warning: cannot analyse markup "+markup
-          $stderr.puts "Debug data: Sentence id #{get_sent_id()}"      
+          $stderr.puts "Debug data: Sentence id #{get_sent_id()}"
         end
       when 2 # this should be a one-word markable
         b_markup = this_fe_ann[0]
         e_markup = this_fe_ann[1]
         if label
           $stderr.puts "[TabFormat] Warning: Finding new markable at word #{this_id} while within markable ", label
-          $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+          $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
         else
           if b_markup =~ /^B-(\S+)$/
             b_label = $1
@@ -616,15 +613,15 @@ class FNTabSentence < TabFormatSentence
                 idlist_to_annotation_list[[this_id]] = b_label
               else
                 $stderr.puts "[TabFormat] Warning: Starting markable "+b_label+", closing markable "+e_label
-                $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+                $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
               end
             else
               $stderr.puts "[TabFormat] Warning: Unknown end markup "+e_markup
-              $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+              $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
             end
           else
             $stderr.puts "[TabFormat] Warning: Unknown start markup "+b_markup
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
           end
         end
       else
@@ -632,12 +629,12 @@ class FNTabSentence < TabFormatSentence
         $stderr.puts "Debug data: Sentence id #{get_sent_id()}"
       end
     }
-    
+
     unless label.nil?
       $stderr.puts "[TabFormat] Warning: Markable ", label, " did not end in sentence."
-      $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"      
+      $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
     end
-    
+
     return idlist_to_annotation_list
   end
 
@@ -684,9 +681,9 @@ class FNTabFrame < FNTabSentence
   # returns an array of integers: the indices of the target of
   # the frame
   # These are the line numbers, which start counting at 0
-  # 
+  #
   # a target may span more than one word
-  def get_target_indices() 
+  def get_target_indices()
     sanity_check
     idx = Array.new
     each_line_parsed {|l|
@@ -696,23 +693,23 @@ class FNTabFrame < FNTabSentence
     }
     return idx
   end
-  
+
   ####
   # returns a string: the target
-  # in the case of multiword targets, 
-  # we find the complete target at all 
+  # in the case of multiword targets,
+  # we find the complete target at all
   # indices, i.e. we can just take the first one we find
   def get_target()
     each_line_parsed {|l|
       t = l.get("target")
       unless t == "-"
-	return t
+        return t
       end
     }
   end
 
   ####
-  # get the target POS, according to FrameNet 
+  # get the target POS, according to FrameNet
   def get_target_fn_pos()
     get_target() =~ /^[^\.]+\.(\w+)$/
     return $1

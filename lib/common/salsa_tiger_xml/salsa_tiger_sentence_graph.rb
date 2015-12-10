@@ -193,13 +193,13 @@ class SalsaTigerSentenceGraph < XMLNode
     if syn_id
       new_id = sentid + "_" + syn_id
     else
-      new_id = sentid + "_" + Time.new().to_f.to_s
+      new_id = sentid + "_" + Time.new.to_f.to_s
     end
 
     elt = "<#{label}"
-    [["id", new_id], ["cat", cat], ["word", word], ["pos", pos]].each { |label, content|
+    [["id", new_id], ["cat", cat], ["word", word], ["pos", pos]].each { |lbl, content|
       if content
-        elt << " #{label}=\"#{xml_secure_val(content)}\""
+        elt << " #{lbl}=\"#{xml_secure_val(content)}\""
       end
     }
     elt << "/>"
@@ -221,27 +221,18 @@ class SalsaTigerSentenceGraph < XMLNode
     # in other words, the label of the removed node's incoming edge
     # is deleted
 
-#    STDERR.puts "Removing node #{node.id}:"
-
     pair = node.parent_with_edgelabel
     if pair
     # delete incoming edge for deleted node
       label, parent = pair
-#      STDERR.puts "  Removing link from PARENT #{parent.id}, edgelabel #{label}"
       parent.remove_child(node, label)
     end
     # delete outgoing edge for deleted node
-    node.each_child_with_edgelabel { |label, child|
-      child.remove_parent(node, label)
-#      STDERR.puts "  Removing link to child #{child.id}"
-    }
+    node.each_child_with_edgelabel { |lbl, child| child.remove_parent(node, lbl) }
     # glue deleted node's children to its parent
     if pair
-      plabel, parent = pair
-      node.each_child_with_edgelabel {|clabel,child|
-        parent.add_child(child, clabel)
-      }
-#      STDERR.puts "Parent now has children "+node.parent.children.map {|c| c.id}.join(" ")
+      _plabel, parent = pair
+      node.each_child_with_edgelabel { |clabel, child| parent.add_child(child, clabel) }
     end
   end
 
@@ -249,7 +240,7 @@ class SalsaTigerSentenceGraph < XMLNode
   protected
 
   ###
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     string = ""
 
     string << "<terminals>\n"

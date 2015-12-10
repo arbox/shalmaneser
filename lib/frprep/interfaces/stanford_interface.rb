@@ -81,7 +81,7 @@ class StanfordInterface < SynInterfaceSTXML
 
     lang_opts = '-hMarkov 1 -vMarkov 2 -vSelSplitCutOff 300 -uwm 1 -unknownSuffixSize 2 -nodeCleanup 2'
 
-    grammar1 = 'edu/stanford/nlp/models/lexparser/germanPCFG.ser.gz'
+    # grammar1 = 'edu/stanford/nlp/models/lexparser/germanPCFG.ser.gz'
     grammar2 = 'edu/stanford/nlp/models/lexparser/germanFactored.ser.gz'
 
     stanford_prog = %Q{

@@ -60,9 +60,9 @@ class SynInterface
   ###
   # initialize to set values for all subsequent processing
   def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of input files
-		 outsuffix,     # string: suffix for processed files
-		 var_hash = {}) # optional arguments in a hash
+                 insuffix,      # string: suffix of input files
+                 outsuffix,     # string: suffix for processed files
+                 var_hash = {}) # optional arguments in a hash
 
     @program_path = program_path
     @insuffix = insuffix
@@ -75,7 +75,7 @@ class SynInterface
   #
   # returns: nothing
   def process_dir(in_dir,        # string: name of input directory
-		  out_dir)       # string: name of output directory
+                  out_dir)       # string: name of output directory
 
     Dir["#{in_dir}*#{@insuffix}"].each do |infilename|
       outfilename = "#{out_dir}#{File.basename(infilename, @insuffix)}#{@outsuffix}"
@@ -88,7 +88,7 @@ class SynInterface
   #
   # returns: nothing
   def process_file(infilename,   # string: name of input file
-		   outfilename)
+                   outfilename)
     raise "Overwrite me"
   end
 
@@ -117,16 +117,16 @@ class SynInterfaceSTXML < SynInterface
   ###
   # initialize to set values for all subsequent processing
   def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of input files
-		 outsuffix,     # string: suffix for processed files
-		 stsuffix,      # string: suffix for Salsa/Tiger XML files
-		 var_hash = {}) # optional arguments in a hash
+                 insuffix,      # string: suffix of input files
+                 outsuffix,     # string: suffix for processed files
+                 stsuffix,      # string: suffix for Salsa/Tiger XML files
+                 var_hash = {}) # optional arguments in a hash
     super(program_path, insuffix, outsuffix, var_hash)
     @stsuffix = stsuffix
   end
 
   def to_stxml_dir(in_dir,   # string: name of dir with parse files
-		   out_dir)  # string: name of output dir
+                   out_dir)  # string: name of output dir
 
     Dir["#{in_dir}*#{@outsuffix}"].each do |parsefilename|
       stxmlfilename = "#{out_dir}#{File.basename(parsefilename, @outsuffix)}#{@stsuffix}"
@@ -149,7 +149,7 @@ class SynInterfaceSTXML < SynInterface
     retv = {}
 
     if sent.nil?
-	retv = nil
+        retv = nil
     else
       terminals = sent.terminals_sorted
       if tabsent
@@ -183,7 +183,7 @@ class SynInterfaceSTXML < SynInterface
   # in the processed file (may not hold e.g. if the parser leaves out
   # sentences it cannot process)
   def each_sentence(infilename,  # string: name of processed file
-		    tab_dir = nil) # string: name of dir with input files
+                    tab_dir = nil) # string: name of dir with input files
                                  # (set either here or on initialization)
     if tab_dir
       @tab_dir = tab_dir
@@ -286,17 +286,17 @@ class SynInterfaceTab < SynInterface
   # get the "word" entries and write them to a given file,
   # one word per line, as input for processing
   def SynInterfaceTab.fntab_words_to_file(infilename, # string: name of input file
-					    outfile,    # stream: output file
-					    sent_marker = "", # string: mark end of sentence how?
-					    iso = nil)  # non-nil: assume utf-8, transform to iso-8859-1
+                                            outfile,    # stream: output file
+                                            sent_marker = "", # string: mark end of sentence how?
+                                            iso = nil)  # non-nil: assume utf-8, transform to iso-8859-1
     corpusfile = FNTabFormatFile.new(infilename)
     corpusfile.each_sentence {|s|
       s.each_line_parsed {|line_obj|
-	if iso
-	  outfile.puts UtfIso.to_iso_8859_1(line_obj.get("word"))
-	else
-	  outfile.puts line_obj.get("word")
-	end
+        if iso
+          outfile.puts UtfIso.to_iso_8859_1(line_obj.get("word"))
+        else
+          outfile.puts line_obj.get("word")
+        end
       }
       outfile.puts sent_marker
     }
@@ -363,9 +363,9 @@ class Path
   ###
   # add one step to the beginning of the current path
   def add_first_step(start_node,#SynNode
-		     direction, # string: U, D
-		     gf,        # string: edge label
-		     pt)
+                     direction, # string: U, D
+                     gf,        # string: edge label
+                     pt)
     @path.unshift([direction, gf, pt, @startnode])
     set_startnode(start_node)
 
@@ -376,9 +376,9 @@ class Path
   ###
   # add one step to the end of the current path
   def add_last_step(direction, # string: U, D
-		     gf,        # string: edge label
-		     pt,        # string: node label (of end_node)
-		     end_node)  # SynNode
+                     gf,        # string: edge label
+                     pt,        # string: node label (of end_node)
+                     end_node)  # SynNode
     @path << [direction, gf, pt, end_node]
 
     return self
@@ -393,8 +393,8 @@ class Path
   ###
   #
   def print(print_direction, # boolean. true: print direction
-	    print_gf,        # boolean. true: print edgelabel
-	    print_pt)        # boolean. true: print nodelabel
+            print_gf,        # boolean. true: print edgelabel
+            print_pt)        # boolean. true: print nodelabel
 
     return print_aux(@path, print_direction, print_gf, print_pt)
   end
@@ -402,8 +402,8 @@ class Path
   ###
   # print path from roof node to end
   def print_downpart(print_direction,
-		     print_gf,
-		     print_pt)
+                     print_gf,
+                     print_pt)
 
     roof, roof_index = compute_roof()
     if roof.nil? or @path.empty?
@@ -413,7 +413,7 @@ class Path
     else
       # roof node is in the middle
       return print_aux(@path[roof_index..-1],
-		       print_direction, print_gf, print_pt)
+                       print_direction, print_gf, print_pt)
     end
   end
 
@@ -465,31 +465,30 @@ class Path
 
   ###
   def print_aux(path,
-		print_direction,
-		print_gf,
-		print_pt)
-    retv = ""
+                print_direction,
+                print_gf,
+                print_pt)
+    retv = ''
     path.each { |step|
-      direction, gf, pt, node = step.map { |entry|
-	if entry.nil?
-	  "-"
-	else
-	  entry
-	end
+      direction, gf, pt, _node = step.map { |entry|
+        if entry.nil?
+          "-"
+        else
+          entry
+        end
       }
       if print_direction
-	retv << direction + " "
+        retv << direction + " "
       end
       if print_gf
-	retv << gf + " "
+        retv << gf + " "
       end
       if print_pt
-	retv << pt + " "
+        retv << pt + " "
       end
     }
 
-    if @cutoff_last_pt and print_pt and
-        retv =~ /^(.+ )\w+ $/
+    if @cutoff_last_pt && print_pt && (retv =~ /^(.+ )\w+ $/)
       return $1
     else
       return retv
@@ -625,7 +624,7 @@ class SynInterpreter
   #
   # returns: SynNode object if successful, else nil
   def SynInterpreter.particle_of_verb(node,
-				      node_list)
+                                      node_list)
     return nil
   end
 
@@ -722,9 +721,8 @@ class SynInterpreter
 
     return node.children_with_edgelabel().map { |rel, gf_node|
 
-     if eval(self.name()).category(gf_node) == "prep"
+      if eval(self.name()).category(gf_node) == "prep"
         [rel + "-" + eval(self.name()).preposition(gf_node).to_s, gf_node]
-
       else
         [rel, gf_node]
       end
@@ -825,7 +823,7 @@ class SynInterpreter
   # returns: Path object
   def SynInterpreter.path_between(from_node, # SynNode
                                   to_node,   # SynNode
-				  use_nontree_edges = false) # boolean
+                                  use_nontree_edges = false) # boolean
 
     unless from_node.kind_of? SynNode and to_node.kind_of? SynNode
       $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
@@ -999,14 +997,14 @@ class SynInterpreter
 
     # see if we can get a headword of a single constituent
     if nodelist.length() == 1 and
-	(headword = eval(self.name()).head_terminal(nodelist.first()))
+        (headword = eval(self.name()).head_terminal(nodelist.first()))
       return headword
     end
 
     # filter out auxiliaries and modals, see if only one node remains
     nodelist2 = nodelist1.reject { |t|
       eval(self.name()).auxiliary?(t) or
-	eval(self.name()).modal?(t)
+        eval(self.name()).modal?(t)
     }
 
     # one verb, one prep or particle? then
@@ -1014,12 +1012,12 @@ class SynInterpreter
     if nodelist2.length == 2
       verbs = nodelist2.select { |t| eval(self.name()).category(t) == "verb"}
       if verbs.length() == 1
-	# found exactly one verb, so we have one verb, one other
-	if eval(self.name()).particle_of_verb(verbs.first, nodelist2)
-	  # we have found a particle/separate verb prefix
-	  # take verb as main node
-	  return verbs.first
-	end
+        # found exactly one verb, so we have one verb, one other
+        if eval(self.name()).particle_of_verb(verbs.first, nodelist2)
+          # we have found a particle/separate verb prefix
+          # take verb as main node
+          return verbs.first
+        end
       end
     end
 
@@ -1158,7 +1156,7 @@ class SynInterpreter
   # a node whose subtree we have already searched
   def SynInterpreter.search_up(from_node, # SynNode
                                to_node,   # SynNode
-			       already_covered) # SynNode
+                               already_covered) # SynNode
     # returns (1) the path from from_node to to_node,
     #         (2) just the part from the lca down to the node
     #         (3) the lowest common ancestor as node
@@ -1173,23 +1171,23 @@ class SynInterpreter
       # puts "Going up from "+from_node.id.to_s+" to "+parent.id.to_s
 
       if parent.nil?
-	# no path found
-	return nil
+        # no path found
+        return nil
 
       else
-	# search up
-	path = eval(self.name()).search_up(parent,to_node, from_node)
+        # search up
+        path = eval(self.name()).search_up(parent,to_node, from_node)
 
-	if path.nil?
-	  # no path found
-	  return nil
+        if path.nil?
+          # no path found
+          return nil
 
         else
-	  # search up was successful
+          # search up was successful
           parent_pt = eval(self.name()).simplified_pt(parent)
-	  path.add_first_step(from_node, "U", edgelabel, parent_pt)
-	  return path
-	end
+          path.add_first_step(from_node, "U", edgelabel, parent_pt)
+          return path
+        end
       end
 
     else
@@ -1201,8 +1199,8 @@ class SynInterpreter
   ###
   # search in tree
   def SynInterpreter.search_down(from_node,        # SynNode
-				 to_node,          # SynNode
-				 already_explored) # SynNode
+                                 to_node,          # SynNode
+                                 already_explored) # SynNode
 
     if from_node == to_node
       return Path.new(from_node)
@@ -1211,19 +1209,19 @@ class SynInterpreter
 
       from_node.children.each {|c|
 
-	if c == already_explored
-	  # we have done this subtree,
-	  # don't do it again
-	  next
-	end
+        if c == already_explored
+          # we have done this subtree,
+          # don't do it again
+          next
+        end
 
-	path = eval(self.name()).search_down(c, to_node, already_explored)
+        path = eval(self.name()).search_down(c, to_node, already_explored)
 
-	unless path.nil?
-	  c_pt = eval(self.name()).simplified_pt(c)
-	  path.add_first_step(from_node, "D", c.parent_label(), c_pt)
-	  return path
-	end
+        unless path.nil?
+          c_pt = eval(self.name()).simplified_pt(c)
+          path.add_first_step(from_node, "D", c.parent_label(), c_pt)
+          return path
+        end
       }
 
       # no path found for any of the children

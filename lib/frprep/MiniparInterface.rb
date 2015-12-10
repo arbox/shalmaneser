@@ -72,7 +72,7 @@ class MiniparSentence
   #         or false if matching failed
 
   def set_tabsent(tabsent, # TabFileFormat object
-		  sloppy = true) # not nil or false: allow sloppy match
+                  sloppy = true) # not nil or false: allow sloppy match
 
     # empty minipar sentence? then no match
     if @nodes.empty?
@@ -108,12 +108,12 @@ class MiniparSentence
         # minipar node with empty word, skip
         next
       end
-      new_chart = Array.new
+      new_chart = []
 
       # each partial mapping found up to now:
       # try to extend it, record results in new_chart
       old_chart.each { |partial_mapping|
-        prev_fnw_index, prev_mw_index, match_how = partial_mapping.last
+        prev_fnw_index, _prev_mw_index, match_how = partial_mapping.last
 
         # where do we start looking in tabwords? same word as before, or advance one?
         case match_how
@@ -125,8 +125,8 @@ class MiniparSentence
           raise "Shouldn't be here"
         end
 
-        fnw_minw_match(tabwords[fnw_index..tabwords.length()-1],
-                       @nodes[node_no]["word"]).each { |match_offset, match_how|
+        fnw_minw_match(tabwords[fnw_index..tabwords.length-1],
+                       @nodes[node_no]["word"]).each { |match_offset, _match_how|
           new_chart.push partial_mapping + [[fnw_index + match_offset, node_no, match_how]]
         }
       }
@@ -158,21 +158,21 @@ class MiniparSentence
     else
       chart = old_chart.select { |mapping|
 
-	mapping_ok = true
-	tabwords.each_with_index { |fnw, fnw_index|
+        mapping_ok = true
+        tabwords.each_with_index { |fnw, fnw_index|
 
-	  tuples = mapping.select { |other_fnw_index, mnode_no, match_how| other_fnw_index == fnw_index }
+          tuples = mapping.select { |other_fnw_index, mnode_no, match_how| other_fnw_index == fnw_index }
 
-	  unless tuples.empty?
-	    word = tuples.map { |fnw_index, mnode_no, match_how| @nodes[mnode_no]["word"] }.join()
+          unless tuples.empty?
+            word = tuples.map { |_fnw_index, mnode_no, match_how| @nodes[mnode_no]["word"] }.join
 
-	    unless word == fnw
-	      mapping_ok = false
-	      break
-	    end
-	  end
-	}
-	mapping_ok
+            unless word == fnw
+              mapping_ok = false
+              break
+            end
+          end
+        }
+        mapping_ok
       }
     end
 
@@ -268,9 +268,9 @@ class MiniparSentence
           end
         elsif lemma_pos.strip().split().length() == 1
           # only pos given
-	  retv["pos"] = lemma_pos.strip()
-	else
-	  $stderr.puts "cannot parse lemma_pos pair " + lemma_pos
+          retv["pos"] = lemma_pos.strip()
+        else
+          $stderr.puts "cannot parse lemma_pos pair " + lemma_pos
         end
       end
     end
@@ -527,10 +527,10 @@ class MiniparInterface < SynInterfaceSTXML
   ###
   # initialize to set values for all subsequent processing
   def initialize(program_path, # string: path to system
-		 insuffix,      # string: suffix of tab files
-		 outsuffix,     # string: suffix for parsed files
-		 stsuffix,      # string: suffix for Salsa/TIGER XML files
-		 var_hash = {}) # optional arguments in a hash
+                 insuffix,      # string: suffix of tab files
+                 outsuffix,     # string: suffix for parsed files
+                 stsuffix,      # string: suffix for Salsa/TIGER XML files
+                 var_hash = {}) # optional arguments in a hash
 
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
 
@@ -548,7 +548,7 @@ class MiniparInterface < SynInterfaceSTXML
   #
   # returns: nothing
   def process_file(infilename,    # string: name of input file
-		   outfilename)    # string: name of output file
+                   outfilename)    # string: name of output file
 
     tf = Tempfile.new("minipar")
     reader = FNTabFormatFile.new(infilename)
@@ -643,7 +643,7 @@ class MiniparInterface < SynInterfaceSTXML
   ###
   # write Salsa/TIGER XML output to file
   def to_stxml_file(infilename,  # string: name of parse file
-		    outfilename) # string: name of output stxml file
+                    outfilename) # string: name of output stxml file
 
     outfile = File.new(outfilename, "w")
     outfile.puts SalsaTigerXMLHelper.get_header()
@@ -1015,7 +1015,7 @@ class MiniparInterpreter < SynInterpreter
           node = new_node
         else
           # error. stop seeking
-          #	    $stderr.puts "Antecedent ID not matching any node: #{ant_id}"
+          #         $stderr.puts "Antecedent ID not matching any node: #{ant_id}"
           break
         end
       end
@@ -1024,8 +1024,8 @@ class MiniparInterpreter < SynInterpreter
       # then add the preposition to the edgelabel,
       # and take the node's head as head instead of the node
       if edgelabel == "mod" and
-	node.part_of_speech() == "Prep"
-	edgelabel = edgelabel + "-" + node.word().to_s
+        node.part_of_speech() == "Prep"
+        edgelabel = edgelabel + "-" + node.word().to_s
       end
 
       [edgelabel, node]
@@ -1149,17 +1149,17 @@ class MiniparInterpreter < SynInterpreter
   # returns: Path object
   def MiniparInterpreter.path_between(from_node, # SynNode
                                       to_node,   # SynNode
-				      use_nontree_edges = false) # boolean
+                                      use_nontree_edges = false) # boolean
     from_node = MiniparInterpreter.ensure_upper(from_node)
     to_node = MiniparInterpreter.ensure_upper(to_node)
 
     if use_nontree_edges
       MiniparInterpreter.each_reachable_node(from_node) { |node, ant, paths, prev|
-	if node == to_node
-	  return paths.first
-	end
-	true # each_reachable_node requires boolean to determine
-	# whether to continue the path beyond node
+        if node == to_node
+          return paths.first
+        end
+        true # each_reachable_node requires boolean to determine
+        # whether to continue the path beyond node
       }
     else
       return super(from_node, to_node)
@@ -1278,10 +1278,10 @@ class MiniparInterpreter < SynInterpreter
       }
       if minipar_node.parent
         surrounding_n.push([
-			     "U", minipar_node.parent,
-			     minipar_node.parent_label(),
-			     minipar_node.parent.part_of_speech()
-			   ])
+                             "U", minipar_node.parent,
+                             minipar_node.parent_label(),
+                             minipar_node.parent.part_of_speech()
+                           ])
       end
 
       surrounding_n.each { |direction, new_node, edgelabel, nodelabel|
@@ -1305,17 +1305,17 @@ class MiniparInterpreter < SynInterpreter
 
         # make paths for this new_node
         paths = seen[minipar_node].map { |previous_path|
-	  new_path = previous_path.deep_clone
+          new_path = previous_path.deep_clone
           if new_node.part_of_speech() == "Prep"
             # preposition? add to path too
-	    new_path.add_last_step(direction,
-				   edgelabel + "-" + new_node.get_attribute("lemma"),
-				   nodelabel,
-				   new_node)
+            new_path.add_last_step(direction,
+                                   edgelabel + "-" + new_node.get_attribute("lemma"),
+                                   nodelabel,
+                                   new_node)
           else
             new_path.add_last_step(direction, edgelabel, nodelabel, new_node)
           end
-	  new_path
+          new_path
         }
 
         # node not seen before: record
@@ -1324,7 +1324,7 @@ class MiniparInterpreter < SynInterpreter
         end
         seen[actual_new_node].concat paths
 
-	keepthisnode = yield(new_node, antecedents, paths, minipar_node)
+        keepthisnode = yield(new_node, antecedents, paths, minipar_node)
 
         if keepthisnode and not(rim.include?(actual_new_node))
           rim.push actual_new_node
@@ -1342,9 +1342,9 @@ class MiniparInterpreter < SynInterpreter
   def MiniparInterpreter.aux_or_modal?(node)
     node = MiniparInterpreter.ensure_upper(node)
 
-    if (l = node.parent_label()) and
+    if (l = node.parent_label) and
       ["be", "have", "aux"].include? l and
-      (p = node.parent()) and
+      (p = node.parent) and
       MiniparInterpreter.category(p) == "verb"
       return true
     else

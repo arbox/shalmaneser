@@ -47,12 +47,12 @@ class GraphNode
   end
 
   def self._load(string)
-    id, features_s, children_s, parents_s =
-      string.split("QQSEPVALUESQQ")
+    id, _features_s, _children_s, _parents_s = string.split("QQSEPVALUESQQ")
 
     result = GraphNode.new(id)
     result.fill_from_pickle(string)
-    return result
+
+    result
   end
 
   def fill_from_pickle(string)

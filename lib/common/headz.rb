@@ -30,9 +30,8 @@
 # require 'common/SalsaTigerRegXML'
 
 class Headz
-
   def initialize
-    @Helpers = HeadzHelpers.new
+    @helpers = HeadzHelpers.new
     @Verbose = false #KE 13.4.05: please not that many messages!
   end
 
@@ -43,10 +42,8 @@ class Headz
 
   # all headz of top-nodes covering fe
   def get_fe_heads(fe)
-    if (const = fe.children())
-      const.map { |node|
-        get_sem_head(node)
-      }
+    if (const = fe.children)
+      const.map { |node| get_sem_head(node) }
     else
       $stderr.puts "Headz.get_sem_head: no children for FE #{fe}"
       []
@@ -63,12 +60,12 @@ class Headz
     else
       case node.category
       when 'AP'
-        return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@helpers.get_dtr(node,'HD'))
 
       when 'AVP'
-        return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@helpers.get_dtr(node,'HD'))
       when 'CAP', 'CAVP', 'CNP', 'CPP', 'CS', 'CVP'
-        conjs = @Helpers.get_conjuncts(node)
+        conjs = @helpers.get_conjuncts(node)
         head = gsh(conjs.shift)
         if head
           head.update(Hash["conj"=>gsh_conjs(conjs)])
@@ -76,17 +73,17 @@ class Headz
         return head
 
       when 'NM'
-        return gsh(@Helpers.get_rightmost_dtr(node,'NMC'))
+        return gsh(@helpers.get_rightmost_dtr(node,'NMC'))
       when 'NP'
-        nk = @Helpers.get_rightmost_dtr(node,'NK')
+        nk = @helpers.get_rightmost_dtr(node,'NK')
         if nk
           return gsh(nk)
         else
-          return gsh(@Helpers.get_rightmost_dtr(node, "NN"))
+          return gsh(@helpers.get_rightmost_dtr(node, "NN"))
         end
 
       when 'PN'
-        pncs = @Helpers.get_dtrs(node,'PNC')
+        pncs = @helpers.get_dtrs(node,'PNC')
         head = gsh(pncs.last)
         if head
           head.update(Hash["pncs"=>pncs])
@@ -99,7 +96,7 @@ class Headz
       when 'S'
         return s(node)
       when 'VROOT'
-        dtrs = @Helpers.get_dtrs(node,'--')
+        dtrs = @helpers.get_dtrs(node,'--')
 
         # discourse level node with sentence nodes below?
         # or conjunction with sentence nodes below?
@@ -125,10 +122,10 @@ class Headz
         return vp(node)
 
       when 'MTA'
-        return gsh(@Helpers.get_rightmost_dtr(node,'ADC'))
+        return gsh(@helpers.get_rightmost_dtr(node,'ADC'))
 
       when 'VZ'
-        return gsh(@Helpers.get_dtr(node,'HD'))
+        return gsh(@helpers.get_dtr(node,'HD'))
       else
         if @Verbose
           $stderr.puts " Headz.gsh: no rule for #{node.category}"
@@ -145,7 +142,7 @@ class Headz
 
     conjs.each {|conj|
       current = gsh(conj)
-      @Helpers.descend(current,flat)
+      @helpers.descend(current,flat)
     }
 
     flat
@@ -161,13 +158,13 @@ class Headz
          )
     }
 
-    if (lastnk = @Helpers.get_rightmost_dtr(node,'NK'))
+    if (lastnk = @helpers.get_rightmost_dtr(node,'NK'))
       head = gsh(lastnk)
       if head and prep
         head.update(Hash['prep'=>prep])
       end
 
-    elsif (re = @Helpers.get_dtr(node,'RE'))
+    elsif (re = @helpers.get_dtr(node,'RE'))
       head = gsh(re)
       if head and prep
         head.update(Hash['prep'=>prep])
@@ -181,20 +178,19 @@ class Headz
 
   ################
   def s(node)
-    head = @Helpers.get_dtr(node,'HD')
-    if !head
-#      $stderr.puts " s: no head for #{node}"
+    head = @helpers.get_dtr(node,'HD')
+    unless head
       return Hash[]
     end
 
-    if head.outdeg() == 0
+    if head.outdeg == 0
       return gsh(head)
     end
 
-    oc = @Helpers.get_dtr(node,'OC')
+    oc = @helpers.get_dtr(node,'OC')
     case head.category
     when 'VVFIN'
-      if svp = @Helpers.get_dtr(node,'SVP') then
+      if svp = @helpers.get_dtr(node,'SVP') then
         h = gsh(head)
         if h
           return h.update(Hash['svp'=>gsh(svp), 'oc'=>gsh(oc)])
@@ -206,7 +202,7 @@ class Headz
       end
 
     when 'VAFIN'
-      if oc && headd = @Helpers.get_dtr(oc,'HD')
+      if oc && headd = @helpers.get_dtr(oc,'HD')
         h = gsh(headd)
         if h
           return h.update(Hash['oc'=>gsh(oc)])
@@ -214,7 +210,7 @@ class Headz
           return h
         end
 
-      elsif pd = @Helpers.get_dtr(node,'PD') && head = @Helpers.get_dtr(pd,'HD')
+      elsif pd = @helpers.get_dtr(node,'PD') && head = @helpers.get_dtr(pd,'HD')
         return gsh(head)
 
       else
@@ -227,12 +223,13 @@ class Headz
 
   ################
   def vp(node)
-    head = gsh(@Helpers.get_dtr(node,'HD'))
+    head = gsh(@helpers.get_dtr(node,'HD'))
     tmp = @Verbose
     @Verbose = false
-    newHash = Hash.new
+
+    newHash = {}
     ["da","oa"].each { |type|
-      if (dtr = @Helpers.get_dtr(node,type.upcase))
+      if (dtr = @helpers.get_dtr(node, type.upcase))
         newHash[type] = gsh(dtr)
       end
     }
@@ -247,23 +244,20 @@ class Headz
   ################
   # Access
   def head(h)
-    return h['head']
+    h['head']
   end
 
   def complex(h)
-    prep(h) or conj(h)
+    prep(h) || conj(h)
   end
 
   def prep(h)
-    return h['prep']
+    h['prep']
   end
 
   def conj(h)
-    return h['conj']
+    h['conj']
   end
-
-
-
 end # Class Headz
 
 
@@ -273,20 +267,19 @@ class HeadzHelpers
   # Conjunction
 
   def get_conjuncts(node)
-    conjuncts = get_dtrs(node,'CJ')
+    get_dtrs(node, 'CJ')
   end
 
   # flatten
-  def descend(current,flat)
+  def descend(current, flat)
     if current.nil?
       return flat
     end
 
-    if current.has_key?("conj") then
+    if current.key?("conj")
       tmp = current.delete("conj")
       flat.push current
-      tmp.each {|item|
-        descend(item,flat)}
+      tmp.each { |item| descend(item, flat) }
     else
       flat.push current
     end
@@ -319,16 +312,4 @@ class HeadzHelpers
       nil
     end
   end
-
-#   def l2h(list)
-#     h = Hash.new
-#     while (list.length > 1) do
-#       h[list.shift] = list.shift
-#     end
-#     if list.length == 1 then
-#       $stderr.puts "l2h: odd number of elems: " + list.join(" / ")
-#     end
-#     h
-#   end
-
 end # Class HeadzHelpers

@@ -225,12 +225,8 @@ module TigerMaxProjection
 
   ###
   def test_localtrees(path)
-
-
-#HIER WEITER: was genau passiert hier?
-
-
-    retv = Hash.new
+    # HIER WEITER: was genau passiert hier?
+    retv = {}
 
     # test each step
     path.each { |step|
@@ -1436,14 +1432,10 @@ class Tiger < SynInterpreter
       return []
     end
 
-    if ["NP", "CNP", "PP", "CPP", "PN"].include? parent.category()
+    if ["NP", "CNP", "PP", "CPP", "PN"].include? parent.category
       return [["HD", parent]]
     else
       return []
     end
   end
-
-
 end
-
-#( (TOP (S (KON_JU Und) (ADV_MO schon) (VVFIN_HD weiÃ<9f>) (NP_SB (ART_NK der) (ADJA_NK Berliner) (NN_NK Verkehrsverein)) ($, ,) (S_OC (PWS_SB was) (ADV_MO da) (PIS_MNR alles) (PP_MO (APPR_AC auf) (ART_NK die) (NN_NK Stadt) ($, ,) (PPOSAT_NK seine) (AP_NK (PP_MO (APPR_AC durch) (ART_NK eine) (NN_NK Rekonstruktion)) (ADV_MO so) (ADJA_HD prachtvoll)) (ADJA_NK markierte) (NN_NK Mitte) ($, ,) (AP_NK (PIS_HD alles))) (VVFIN_HD zukommt))) ($. .)))
