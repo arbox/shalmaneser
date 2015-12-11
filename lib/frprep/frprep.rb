@@ -44,7 +44,7 @@ module FrPrep
       ####
       # @todo Use standard Ruby transcoding mechanics.
       # transform data to UTF-8
-      if %w(iso hex).include?(@exp.get('encoding'))
+      if @exp.convert_encoding?
         # transform ISO -> UTF-8 or Hex -> UTF-8
         # write result to encoding_dir,
         # then set encoding_dir to be the new input_dir
@@ -222,7 +222,7 @@ module FrPrep
                                     output_dir) # string: output directory
       ##
       # split the TabFormatFile into chunks of max_sent_num size
-      FrprepHelper.split_dir(input_dir, output_dir,@file_suffixes["tab"],
+      FrprepHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
                              @exp.get("parser_max_sent_num"),
                              @exp.get("parser_max_sent_len"))
 

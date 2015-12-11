@@ -72,4 +72,14 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_MISSING_LEMMATIZER)
   end
+
+  def test_for_the_wrong_encoding
+    create_exp_file(PRP_WRONG_ENC)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_WRONG_ENC)
+    end
+    assert_match('encoding', e.message)
+  ensure
+    remove_exp_file(PRP_WRONG_ENC)
+  end
 end

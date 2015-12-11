@@ -60,6 +60,12 @@ module Shalm
         validate
       end
 
+      # @return [True, False]
+      # Shall we convert our input files into the target encoding?
+      def convert_encoding?
+        get('encoding') != 'utf8'
+      end
+
       private
 
       # Validates semantically the input values from the experiment file.
@@ -95,6 +101,13 @@ module Shalm
 
         unless get('lemmatizer_path') && get('lemmatizer')
           msg = 'Lemmatization: I need <lemmatizer> and <lemmatizer_path> in the experiment file.'
+        end
+
+        valide_encodings = ['hex', 'iso', 'utf8', nil]
+
+        unless valide_encodings.include?(get('encoding'))
+          msg = 'Please define a correct encoding in the configuration file: '\
+                ' "hex", "iso", "utf8" (default)!'
         end
 
         raise(ConfigurationError, msg) if msg
