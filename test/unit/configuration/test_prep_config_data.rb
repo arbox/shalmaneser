@@ -92,4 +92,14 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_WRONG_FORMAT)
   end
+
+  def test_for_the_wrong_exp_id
+    create_exp_file(PRP_WRONG_ID)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_WRONG_ID)
+    end
+    assert_match('experiment ID', e.message)
+  ensure
+    remove_exp_file(PRP_WRONG_ID)
+  end
 end

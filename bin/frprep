@@ -26,9 +26,9 @@ require 'frprep/frprep'
 require 'frprep/opt_parser'
 
 begin
-  options = FrPrep::OptParser.parse(ARGV)
+  options = Shalm::Frappe::OptParser.parse(ARGV)
 
-  preprocessor = FrPrep::FrPrep.new(options)
+  preprocessor = Shalm::Frappe::Frappe.new(options)
   preprocessor.transform
 rescue => e
   # @todo Colored output and checks for STDOUT vs. PIPE.

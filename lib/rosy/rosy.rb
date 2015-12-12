@@ -59,7 +59,6 @@ module Rosy
         raise "Shouldn't be here"
       end
 
-
       # execute task
       begin
         task_obj.perform
@@ -69,8 +68,6 @@ module Rosy
       ensure
         database.close
       end
-
-
       $stderr.puts "Rosy: done."
     end
 

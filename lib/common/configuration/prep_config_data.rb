@@ -118,6 +118,11 @@ module Shalm
                  "<#{VALID_INPUT_FORMATS.join('>, <')}>!"
         end
 
+        unless get("prep_experiment_ID") =~ /^[A-Za-z0-9_]+$/
+          msg << 'Please choose an alphanumeric experiment ID! '\
+                 "You provided: #{get('prep_experiment_ID')}"
+        end
+
         raise(ConfigurationError, msg.join("\n")) if msg.any?
       end
     end

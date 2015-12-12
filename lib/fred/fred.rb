@@ -6,42 +6,43 @@ require 'fred/FredTrain'
 require 'fred/FredTest'
 require 'fred/FredEval'
 
+require 'common/logger'
+require 'common/definitions'
+
 module Fred
   class Fred
-
     def initialize(options)
       @exp, @opts = options
       @task = @opts['--task']
     end
+
     ##
     # now perform the given task
-
     def assign
 
       # initialize task object
-      case @task
-      when "featurize"
-        task_obj = FredFeaturize.new(@exp, @opts)
-      when "refeaturize"
-        task_obj = FredFeaturize.new(@exp, @opts, "refeaturize" => true)
-      when "split"
-        task_obj = FredSplit.new(@exp, @opts)
-      when "train"
-        task_obj = FredTrain.new(@exp, @opts)
-      when "test"
-        task_obj = FredTest.new(@exp, @opts)
-      when "eval"
-        task_obj = FredEval.new(@exp, @opts)
-      else
-        raise "Shouldn't be here"
-        # @todo AB: this <else> condition should be unpossible
-        #     do in OptionParser
-      end
-      
-      task_obj.compute
-      
-      $stderr.puts "Fred: Done."
-      
+      task = case @task
+             when "featurize"
+               FredFeaturize.new(@exp, @opts)
+             when "refeaturize"
+               FredFeaturize.new(@exp, @opts, "refeaturize" => true)
+             when "split"
+               FredSplit.new(@exp, @opts)
+             when "train"
+               FredTrain.new(@exp, @opts)
+             when "test"
+               FredTest.new(@exp, @opts)
+             when "eval"
+               FredEval.new(@exp, @opts)
+             else
+               raise "Shouldn't be here"
+               # @todo AB: this <else> condition should be unpossible
+               #     do in OptionParser
+             end
+
+      task.compute
+
+      Shalm::LOGGER.info "#{Shalm::Fred::PROGRAM_NAME} finished Predicate Disambiguation!"
     end
   end # class Fred
 end # module Fred

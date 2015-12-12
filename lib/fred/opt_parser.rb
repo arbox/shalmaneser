@@ -247,4 +247,4 @@ ruby fred.rb --task|-t test --expfile|-e <e>
 "
     end
   end # class OptParser
-end # module FrPrep
+end # module Fred

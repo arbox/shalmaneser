@@ -22,7 +22,7 @@ module Shalm
         "preproc_descr_file_test" => "string",
         "directory_output" => "string", # path to Salsa/Tiger XML output directory
 
-        "verbose" => "bool" ,     # print diagnostic messages?
+        "verbose" => "bool",     # print diagnostic messages?
         "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
 
         "fred_directory" => "string",# directory for internal info
@@ -63,6 +63,7 @@ module Shalm
         "larger_corpus_dir" => "string",
         "larger_corpus_format" => "string",
         "larger_corpus_encoding" => "string",
+
         # Imported from PrepConfigData
         'do_postag' => 'bool',
         'do_lemmatize' => 'bool',
