@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require 'functional/functional_test_helper'
 #require 'fileutils' # File.delete(), File.rename(), File.symlink()
+require 'digest'
 
 class TestFrprep < Minitest::Test
 
@@ -66,13 +67,18 @@ class TestFrprep < Minitest::Test
 
   # Testing output in different formats.
   # We test only on German input assuming English input to work.
-  def test_frprep_stxmloutput
+  #
+  def test_frprep_plain2stxml
     create_exp_file(PRP_STXMLOUTPUT)
     execute("ruby -I lib bin/frprep -e #{PRP_STXMLOUTPUT}")
+    path = 'stxmloutput/0.xml'
+    d_real = Digest::SHA256.file "test/functional/output/#{path}"
+    d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
+    assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
     remove_exp_file(PRP_STXMLOUTPUT)
   end
 
-  def test_frprep_taboutput
+  def test_frprep_plain2tab
     create_exp_file(PRP_TABOUTPUT)
     execute("ruby -I lib bin/frprep -e #{PRP_TABOUTPUT}")
     remove_exp_file(PRP_TABOUTPUT)

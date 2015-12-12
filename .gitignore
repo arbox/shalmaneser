@@ -10,6 +10,8 @@ test/functional/output/rosy_test/
 test/functional/output/rosy_train/
 test/functional/output/prp_*input
 test/functional/output/prp_*output
+test/functional/output/stxmloutput
+test/functional/output/taboutput
 tmp/
 .yardoc
 ydoc

@@ -1,8 +1,8 @@
 prep_experiment_ID = prp_stxmloutput
 
 directory_input = <%= File.expand_path('test/functional/input/frprep/plain') %>
-directory_preprocessed = <%= File.expand_path('test/functional/output/frprep/trash') %>
-frprep_directory = <%= File.expand_path('test/functional/output/') %>
+directory_preprocessed = <%= File.expand_path('test/functional/output/stxmloutput') %>
+frprep_directory = <%= File.expand_path('test/functional/output/stxmloutput') %>
 
 language = de
 format = Plain
@@ -10,7 +10,7 @@ encoding = iso
 
 do_lemmatize = true
 do_postag = true
-do_parse = false
+do_parse = true
 
 fe_syn_repair = true
 fe_rel_repair = false

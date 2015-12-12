@@ -17,6 +17,7 @@ module FrPrep
     def initialize(exp)
       @exp = exp
 
+      # @todo Implement the logger as a mixin for all classes.
       @logger = Logger.new($stderr)
       @logger.level = Logger.const_get(ENV.fetch('LOG_LEVEL', 'INFO'))
 
