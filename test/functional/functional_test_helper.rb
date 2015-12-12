@@ -30,6 +30,7 @@ module FunctionalTestHelper
   PRP_MISSING_TAGGER     = "#{PREF}/prp_missing_tagger"
   PRP_MISSING_LEMMATIZER = "#{PREF}/prp_missing_lemmatizer"
   PRP_WRONG_ENC          = "#{PREF}/prp_wrong_enc"
+  PRP_WRONG_FORMAT       = "#{PREF}/prp_wrong_format"
 
   # Testing output for Preprocessor.
   PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"

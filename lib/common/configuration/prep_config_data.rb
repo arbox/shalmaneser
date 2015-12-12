@@ -14,6 +14,8 @@ require_relative 'config_data'
 module Shalm
   module Configuration
     class FrPrepConfigData < ConfigData
+      VALID_ENCODINGS = ['hex', 'iso', 'utf8', nil]
+      VALID_INPUT_FORMATS = %w(Plain SalsaTab FNXml FNCorpusXml SalsaTigerXML)
       CONFIG_DEFS = {
         "prep_experiment_ID" => "string", # experiment identifier
         "frprep_directory" => "string", # dir for frprep internal data
@@ -73,44 +75,50 @@ module Shalm
       #   should entails the information about: optional, obligatory,
       #   in combination with. This information should be stored in external
       #   resource files to easily change them.
+      #  @todo Accumulate error messages.
       def validate
+        msg = []
+
         unless get('frprep_directory')
-          msg = 'Please set <frprep_directory>, the Frappe internal data '\
+          msg << 'Please set <frprep_directory>, the Frappe internal data '\
                 'directory, in the experiment file.'
         end
 
         unless get('directory_input')
-          msg = 'Please specify <directory_input> in the Frappe experiment file.'
+          msg << 'Please specify <directory_input> in the Frappe experiment file.'
         end
 
         unless get('directory_preprocessed')
-          msg = 'Please specify <directory_preprocessed> in the experiment file.'
+          msg << 'Please specify <directory_preprocessed> in the experiment file.'
         end
 
         # sanity check: output in tab format will not work
         # if we also do a parse
         if get('tabformat_output') && get('do_parse')
-          msg = 'Error: Cannot do Tab format output when the input text is being'\
+          msg << 'Error: Cannot do Tab format output when the input text is being'\
                 'parsed. Please set either <tabformat_output> or <do_parse> to false.'
         end
 
         unless get("pos_tagger_path") && get("pos_tagger")
-          msg = 'POS Tagging: I need <pos_tagger> and <pos_tagger_path> '\
+          msg << 'POS Tagging: I need <pos_tagger> and <pos_tagger_path> '\
                 'in the experiment file.'
         end
 
         unless get('lemmatizer_path') && get('lemmatizer')
-          msg = 'Lemmatization: I need <lemmatizer> and <lemmatizer_path> in the experiment file.'
+          msg << 'Lemmatization: I need <lemmatizer> and <lemmatizer_path> in the experiment file.'
         end
 
-        valide_encodings = ['hex', 'iso', 'utf8', nil]
-
-        unless valide_encodings.include?(get('encoding'))
-          msg = 'Please define a correct encoding in the configuration file: '\
-                ' "hex", "iso", "utf8" (default)!'
+        unless VALID_ENCODINGS.include?(get('encoding'))
+          msg << 'Please define a correct encoding in the configuration file: '\
+                "<#{VALID_ENCODINGS.join('>, <')}>!"
         end
 
-        raise(ConfigurationError, msg) if msg
+        unless VALID_INPUT_FORMATS.include?(get('format'))
+          msg << 'Please define a correct input format in the configuration file: '\
+                 "<#{VALID_INPUT_FORMATS.join('>, <')}>!"
+        end
+
+        raise(ConfigurationError, msg.join("\n")) if msg.any?
       end
     end
   end

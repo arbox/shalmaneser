@@ -82,4 +82,14 @@ class TestFrappeConfigData < Minitest::Test
   ensure
     remove_exp_file(PRP_WRONG_ENC)
   end
+
+  def test_for_the_wrong_input_format
+    create_exp_file(PRP_WRONG_FORMAT)
+    e = assert_raises(ConfigurationError) do
+      FrPrepConfigData.new(PRP_WRONG_FORMAT)
+    end
+    assert_match('format', e.message)
+  ensure
+    remove_exp_file(PRP_WRONG_FORMAT)
+  end
 end

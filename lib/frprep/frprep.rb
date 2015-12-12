@@ -7,6 +7,8 @@ require 'frprep/FNDatabase'
 
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 
+require 'logger'
+
 ##############################
 # The class that does all the work
 module FrPrep
@@ -14,6 +16,9 @@ module FrPrep
     # @param exp [FrprepConfigData] Configuration object
     def initialize(exp)
       @exp = exp
+
+      @logger = Logger.new($stderr)
+      @logger.level = Logger.const_get(ENV.fetch('LOG_LEVEL', 'INFO'))
 
       # suffixes for different types of output files
       @file_suffixes = {"lemma" => ".lemma",
@@ -50,8 +55,9 @@ module FrPrep
         # then set encoding_dir to be the new input_dir
 
         encoding_dir = frprep_dirname("encoding", "new")
-        # @todo Introduce here the Logger.
-        $stderr.puts "Frprep: Transforming  to UTF-8."
+
+        @logger.info "Frprep: Transforming  to UTF-8."
+
         Dir[input_dir + "*"].each { |filename|
           unless File.file? filename
             # not a file? then skip
@@ -71,23 +77,23 @@ module FrPrep
       # Tab format.
       current_dir = input_dir
 
-      done_format = @exp.get("tabformat_output") ? 'SalsaTabWithPos' : 'Done'
+      # done_format = @exp.get("tabformat_output") ? 'SalsaTabWithPos' : 'Done'
 
       current_format = @exp.get("format")
 
-      while current_format != done_format
-        # AB: DEBUG Remove it
-        STDERR.puts "#{current_format} - #{done_format}"
-        # after debugging
+      # while current_format != done_format
+      # @todo Change the configuration to input_format vs. output_format.
+      #   Input Formats:
+      #   Output Formats: STXML (default), TABULAR
+      loop do
         case current_format
         when "Plain"
-          # transform to tab format
-
           tab_dir = frprep_dirname("tab", "new")
 
-          $stderr.puts "Frprep: Transforming plain text in #{current_dir} to SalsaTab format."
-          $stderr.puts "Storing the result in #{tab_dir}."
-          $stderr.puts "Expecting one sentence per line."
+          @logger.info "Frappe: Transforming plain text to SalsaTab format."
+          @logger.debug "Frappe: Transforming plain text in #{current_dir} to SalsaTab format.\n"\
+                        "Storing the result in #{tab_dir}.\n"\
+                        "Expecting one sentence per line.\n"
 
           transform_plain_dir(current_dir, tab_dir)
 
@@ -99,8 +105,9 @@ module FrPrep
 
           tab_dir = frprep_dirname("tab", "new")
 
-          $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
-          $stderr.puts "Storing the result in " + tab_dir
+          @logger.info 'Frappe: Transforming FN Data to the tabular format.'
+          @logger.debug "Frappe: Transforming FN data in #{current_dir} to the "\
+                        "tabular format. Storing the result in #{tab_dir}"
 
           fndata = FNDatabase.new(current_dir)
           fndata.extract_everything(tab_dir)
@@ -112,42 +119,49 @@ module FrPrep
           # transform to tab format
           tab_dir = frprep_dirname("tab", "new")
 
-          $stderr.puts "Frprep: Transforming FN data in #{current_dir} to tabular format."
-          $stderr.puts "Storing the result in " + tab_dir
+          @logger.info 'Frappe: Transforming FrameNet data to the tabular format.'
+          @logger.debug "Frprep: Transforming FN data in #{current_dir} to tabular format.\n"\
+                        "Storing the result in: #{tab_dir}.\n"
+
           # assuming that all XML files in the current directory are FN Corpus XML files
-          Dir[current_dir + "*.xml"].each { |fncorpusfilename|
+          Dir[current_dir + "*.xml"].each do |fncorpusfilename|
             corpus = FNCorpusXMLFile.new(fncorpusfilename)
-            outfile = File.new(tab_dir + File.basename(fncorpusfilename, ".xml") + ".tab",
-                               "w")
-            corpus.print_conll_style(outfile)
-            outfile.close
-          }
+            output_file = "#{tab_dir}#{File.basename(fncorpusfilename, '.xml')}.tab"
+            File.open(output_file, 'w') do |f|
+              corpus.print_conll_style(f)
+            end
+          end
 
           current_dir = tab_dir
           current_format = "SalsaTab"
 
         when "SalsaTab"
-          # lemmatize and POStag
+          @logger.info "Frappe: I'm Lemmatizing and Parsing texts."
+          @logger.debug "Frprep: Lemmatizing and parsing text in #{current_dir}.\n"\
+                        "Storing the result in #{split_dir}.\n"
 
-          $stderr.puts "Frprep: Lemmatizing and parsing text in #{current_dir}."
-          $stderr.puts "Storing the result in #{split_dir}."
           transform_pos_and_lemmatize(current_dir, split_dir)
 
           current_dir = split_dir
-          current_format = "SalsaTabWithPos"
+          # current_format = "SalsaTabWithPos"
+          if @exp.get("tabformat_output")
+            break
+          else
+            current_format = 'SalsaTabWithPos'
+          end
 
         when "SalsaTabWithPos"
-          # parse
-
           parse_dir = frprep_dirname("parse", "new")
 
-          $stderr.puts "Frprep: Transforming tabular format text in #{current_dir} to SalsaTigerXML format."
-          $stderr.puts "Storing the result in #{parse_dir}."
+          @logger.info 'Frappe: Trasforming the tabular format into the STXML format.'
+          @logger.debug "Frprep: Transforming tabular format text in #{current_dir} to SalsaTigerXML format. "\
+                        "Storing the result in #{parse_dir}."
 
           transform_salsatab_dir(current_dir, parse_dir, output_dir)
 
           current_dir = output_dir
-          current_format = "Done"
+          # current_format = "Done"
+          break
 
         when "SalsaTigerXML"
 
@@ -157,17 +171,12 @@ module FrPrep
 
           transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir, @exp)
           current_dir = output_dir
-          current_format = "Done"
-
-        else
-          STDERR.puts "Done format is: #{done_format}"
-          $stderr.puts "Unknown data format #{current_format}"
-          $stderr.puts "Please check the 'format' entry in your experiment file."
-          raise "Experiment file problem"
+          # current_format = "Done"
+          break
         end
       end
 
-      STDERR.puts "FrPrep: Done preprocessing."
+      @logger.info 'Frappe is ready! Preprocessing of all the texts is finished.'
     end
 
     ############################################################################
@@ -336,7 +345,7 @@ module FrPrep
           # handle Unknown frame names
           FrprepHelper.handle_unknown_framenames(st_sent, interpreter_class)
 
-          outfile.puts st_sent.get()
+          outfile.puts st_sent.get
         }
         outfile.puts SalsaTigerXMLHelper.get_footer
       }
@@ -417,9 +426,6 @@ module FrPrep
       # POS-tagging
       if @exp.get("do_postag")
         $stderr.puts "Frprep: Tagging."
-        unless @exp.get("pos_tagger_path") and @exp.get("pos_tagger")
-          raise "POS-tagging: I need 'pos_tagger' and 'pos_tagger_path' in the experiment file."
-        end
 
         sys_class = SynInterfaces.get_interface("pos_tagger",
                                                 @exp.get("pos_tagger"))
@@ -436,9 +442,6 @@ module FrPrep
       # Lemmatization
       if @exp.get("do_lemmatize")
         $stderr.puts "Frprep: Lemmatizing."
-        unless @exp.get("lemmatizer_path") and @exp.get("lemmatizer")
-          raise "Lemmatization: I need 'lemmatizer' and 'lemmatizer_path' in the experiment file."
-        end
 
         sys_class = SynInterfaces.get_interface("lemmatizer",
                                                 @exp.get("lemmatizer"))
@@ -561,7 +564,7 @@ module FrPrep
               end
             else
               # no corresponding old sentence for this new sentence
-              $stderr.puts "Warning: transporting semantics -- missing source sentence, skipping"
+              @logger.warn "Warning: Transporting semantics - missing source sentence, skipping"
             end
           end
 
