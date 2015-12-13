@@ -78,21 +78,15 @@ You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http:
 
 ## Documentation
 
-The project documentation can be found in our [doc](https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md) folder.
+The project documentation can be found in our [doc](https://github.com/arbox/shalmaneser/blob/master/doc/index.md) folder.
 
 ## Development
 
-We are working now on two branches:
-
-- ``dev`` - our development branch incorporating actual changes, for now pointing to ``1.2``;
-
-- ``1.2`` - intermediate target;
-
-- ``2.0`` - final target.
+We are working now only on the `master` branch. For different intermediate versions see corresponding tags.
 
 ## Installation
 
-See the installation instructions in the [doc](https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md#installation) folder.
+See the installation instructions in the [doc](https://github.com/arbox/shalmaneser/blob/master/doc/index.md#installation) folder.
 
 ### Tokenizers
 
@@ -119,8 +113,10 @@ See the installation instructions in the [doc](https://github.com/arbox/shalmane
 
 ## License
 
-See the `LICENSE` file.
+Shalmaneser is released under the `GPL v. 2.0` license as of the initial authors.
+
+For a local copy of the full license text see the [LICENSE](LICENSE.md) file.
 
 ## Contributing
 
-See the `CONTRIBUTING` file.
+Feel free to contact me via Github. Open an issue if you see problems or need help.
