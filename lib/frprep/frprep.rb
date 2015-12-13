@@ -20,7 +20,7 @@ module Shalm
         @exp = exp
 
         # @todo Implement the logger as a mixin for all classes.
-        @logger = Shalm::LOGGER
+        @logger = LOGGER
 
         # suffixes for different types of output files
         @file_suffixes = {"lemma" => ".lemma",
@@ -178,7 +178,7 @@ module Shalm
           end
         end
 
-        @logger.info "#{Shalm::Frappe::PROGRAM_NAME} is ready! Preprocessing of all the texts is finished."
+        @logger.info "#{PROGRAM_NAME} is ready! Preprocessing of all the texts is finished."
       end
 
       ############################################################################

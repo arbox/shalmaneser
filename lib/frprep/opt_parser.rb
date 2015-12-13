@@ -17,7 +17,7 @@ module Shalm
       # Main class method.
       # OP expects cmd_args to be an array like ARGV.
       def self.parse(cmd_args)
-        @prg_name = Shalm::Frappe::PROGRAM_NAME
+        @prg_name = PROGRAM_NAME
         @options = {}
         parser = create_parser
 
@@ -48,7 +48,7 @@ module Shalm
         end
 
         # @todo Rename the config data class.
-        exp = Shalm::Configuration::FrPrepConfigData.new(@options[:exp_file])
+        exp = ::Shalm::Configuration::FrPrepConfigData.new(@options[:exp_file])
 
         SynInterfaces.check_interfaces_abort_if_missing(exp)
 
