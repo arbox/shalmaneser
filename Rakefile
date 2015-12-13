@@ -163,7 +163,7 @@ namespace :build do
 
   desc 'Make Frappe.'
   task :frappe => :java do
-    sh 'bundle exec gem build shalmaneser-prep.gemspec'
+    sh 'bundle exec gem build shalmaneser-frappe.gemspec'
   end
 
   desc 'Make Fred.'

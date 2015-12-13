@@ -3,7 +3,7 @@ lib_path = File.expand_path(File.dirname(__FILE__) + '/lib')
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'rake'
-require 'shalmaneser/version'
+require 'common/definitions'
 
 # Define a constant here to use this spec in the Rakefile.
 Gem::Specification.new do |s|
@@ -23,12 +23,11 @@ Project at the University of Saarbrücken.
   s.email = 'arbox@yandex.ru'
   s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
   s.bindir = 'bin'
-  s.executables = %w(shalmaneser frprep fred rosy)
-
+  s.executables = %w(shalmaneser frappe fred rosy)
   s.extra_rdoc_files = ['README.md', 'LICENSE.md', 'CHANGELOG.md'] +
-    FileList['doc/**/*.md']
+                       FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
-#  s.platform = Gem::Platform::CURRENT
+  # s.platform = Gem::Platform::CURRENT
   s.required_ruby_version = '2.0'
   s.files = FileList['lib/**/*.rb',
                      'lib/**/*.class',
@@ -38,8 +37,8 @@ Project at the University of Saarbrücken.
                      'CHANGELOG.md',
                      '.yardopts'
                     ].to_a
-# This is executed if we run <gem test>.
-# s.test_files = FileList['test/**/*.rb'].to_a
+  # This is executed if we run <gem test>.
+  # s.test_files = FileList['test/**/*.rb'].to_a
   s.license = 'GPL-2.0'
   s.post_install_message = <<-EOS
 
