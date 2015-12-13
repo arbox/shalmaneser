@@ -192,7 +192,7 @@ class RosyTest < RosyTask
   # perform
   #
   # apply trained classifiers to the given (test) data
-  def perform()
+  def perform
     if @step == "both"
       # both? then do first argrec, then arglab
       $stderr.puts "Rosy testing step argrec"
@@ -201,29 +201,16 @@ class RosyTest < RosyTask
       @produce_output = false  # when performing both steps in a row
 
       @step = "argrec"
-      perform_aux()
+      perform_aux
 
       $stderr.puts "Rosy testing step arglab"
       @produce_output = previous_produce_output
       @step = "arglab"
-      perform_aux()
+      perform_aux
     else
       # not both? then just do one
       $stderr.puts "Rosy testing step " + @step
-      perform_aux()
-    end
-
-    ####
-    # Enduser mode: remove DB table with test data
-    if $ENDUSER_MODE
-      $stderr.puts "---"
-      $stderr.puts "Cleanup: Removing DB table with test data."
-
-      unless @testID
-        raise "Shouldn't be here"
-      end
-
-      @ttt_obj.remove_test_table(@testID)
+      perform_aux
     end
   end
 

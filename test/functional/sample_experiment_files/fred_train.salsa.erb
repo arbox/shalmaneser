@@ -8,14 +8,7 @@ experiment_ID = fred_train
 # when performing task "test" (i.e. applying trained classifiers)
 apply_to_all_known_targets = true
 
-# Enduser mode?
-# The idea is that the enduser will only _apply_
-# pre-trained classifiers. So in enduser mode many 
-# options are disallowed.
-enduser_mode = false
-
-
-# print warnings and 
+# print warnings and
 # give detailed progress reports
 verbose = true
 
@@ -23,9 +16,9 @@ verbose = true
 ############################
 # Paths
 # - fred_directory: directory where Fred puts its internal data
-# - directory_output: 
+# - directory_output:
 #   redirect system output of disambiguated text (in SalsaTigerXML)
-#   to another directory. 
+#   to another directory.
 #   If you do not set anything here, output is to
 #   <fred_directory>/<experiment_ID>/output/stxml
 # - classifier_dir:
@@ -57,7 +50,7 @@ fred_directory = <%= File.expand_path('test/functional/output') %>
 # - encoding: same possibilities as for frprep encoding
 
 noncontiguous_input = false
-#larger_corpus_dir = 
+#larger_corpus_dir =
 larger_corpus_format = SalsaTigerXML
 #larger_corpus_encoding = iso
 
@@ -84,9 +77,9 @@ feature = syntax
 
 # How to handle training data that is labeled
 # with multiple sense labels?
-# - binarize (default): This works only with binary classifiers. 
-#   When featurizing for the binary classifiers, consider an item 
-#   positive if its set of assigned labels includes the 
+# - binarize (default): This works only with binary classifiers.
+#   When featurizing for the binary classifiers, consider an item
+#   positive if its set of assigned labels includes the
 #   label for this binary classifier.
 # - repeat: Repeat the instance, once for each
 #   sense label that has been assigned. (Basically, treat it
@@ -106,7 +99,7 @@ handle_multilabel = repeat
 #   use N binary features
 # - bin: use a fixed number of bins, e.g. 5, then
 #   if feature value > 20: set all bins to 1,
-#   if feature value > 10: set the first four bins to 1, 
+#   if feature value > 10: set the first four bins to 1,
 #   etc.
 #   default: bin.
 #numerical_features = bin
@@ -124,14 +117,14 @@ binary_classifiers = false
 # format:
 # <classifier type> <path> <optionally another path>
 #
-# for maxent, give first the path where maxent resides, 
+# for maxent, give first the path where maxent resides,
 # then <where_shalmaneser_resides>/program/tools/maxent
 classifier = maxent <%= File.expand_path('tools/maxent/maxent-2.4.0') %>
 
 
 # for binary classifiers, you can set the pseudolabel
 # on the 'negative' sense.
-# Default is 'NONE'      
+# Default is 'NONE'
 negsense = NONE
 
 ###

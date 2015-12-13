@@ -1,47 +1,41 @@
 #################################################
 # This is a sample experiment file
-# with explanations of all features 
+# with explanations of all features
 # that can be set for the ROSY system.
 #
 # To start your own experiment,
-# replace all occurrences of 
+# replace all occurrences of
 # %SOMETHING% or %PATH% or %PARAMETERS%
 # by values of your choice.
 #
 # Experiment file lines that start with '#'
-# are comments and are ignored. Empty lines are ignored as well. 
+# are comments and are ignored. Empty lines are ignored as well.
 
 ########################
 # Experiment description
 #
 
 ##
-# Experiment ID: 
+# Experiment ID:
 # Uniquely identifies files and database tables
 # of this experiment.
-# The experiment ID is a word (no spaces) of 
+# The experiment ID is a word (no spaces) of
 # letters in [A-Za-z_].
 experiment_ID = rosy_test
 
-# Enduser mode?
-# The idea is that the enduser will only _apply_
-# pre-trained classifiers. So in enduser mode many 
-# options are disallowed.
-enduser_mode = false
-
 # directories
 # - data directory: where Rosy puts its internal data
-# - input directory: 
+# - input directory:
 #   where Rosy reads its input SalsaTigerXML data.
 #   One directory each for the training and the test data
 # - output directory:
 #   where Rosy writes its output SalsaTigerXML data:
 #   same frames as in the input data, but frame elements newly
 #   assigned.
-#   If no output directory is given, output is to 
+#   If no output directory is given, output is to
 #   <data_dir>/<experiment_ID>/output/
 # - classifier_dir: If present, this is where trained classifiers
-#   are written. 
+#   are written.
 #   Otherwise they are written to <data_dir>/<experiment_id>/classif_dir
 data_dir = <%= File.expand_path('test/functional/output') %>
 directory_input_test = <%= File.expand_path('test/functional/input/rosy/test.salsa') %>
@@ -58,14 +52,14 @@ preproc_descr_file_test = <%= File.expand_path('test/functional/sample_experimen
 # features
 #
 # Please specify all features that you would like
-# Rosy to compute. 
+# Rosy to compute.
 # Note: The system distinguishes between features to be
 #   computed and features to be included in the model,
 #   so you can compute features once and then vary features
 #   included in the model.
 #
 # Format for each feature specification:
-#  feature = <feature_name> [dontuse | argrec | arglab | onestep] 
+#  feature = <feature_name> [dontuse | argrec | arglab | onestep]
 #
 # dontuse: the feature is computed but not included in the model.
 # argrec, arglab, onestep: the feature is used only in this
@@ -126,7 +120,7 @@ feature = prune
 #   classifier = <classifier_name> <path> [<parameters>]
 #
 # Possible values for <classifier_name> at the moment:
-#   timbl (memory-based learning), 
+#   timbl (memory-based learning),
 #   maxent (openlp maxent system)
 #
 # Samples:
@@ -139,7 +133,7 @@ classifier = maxent <%= File.expand_path('tools/maxent/maxent-2.4.0') %>
 # further settings
 
 # Pruning: Identify constituents that are very unlikely
-# to instantiate a semantic role, and prune them prior 
+# to instantiate a semantic role, and prune them prior
 # to the training/application of classifiers?
 #
 # Pruning methods available at the moment:
@@ -165,7 +159,7 @@ fe_rel_repair = false
 # - by frame (frame)
 # - by target part of speech or (target_pos)
 # - by target lemma. (target)
-# 
+#
 # these three settings can be combined, e.g.
 #   xwise_argrec = target_pos frame
 # to train argrec frame-wise and split each frame by target POS.
@@ -178,7 +172,7 @@ xwise_onestep = frame
 
 # assume_argrec_perfect: by default, this is false.
 #
-#   Set this to true 
+#   Set this to true
 #   to perform the arglab (argument labeling) step
 #   on all instances that actually are FEs
 #   rather than on all instances that the argrec step
@@ -227,13 +221,13 @@ host = localhost
 user = shalm
 passwd = 12345
 dbname = shalm11
- 
+
 # classifier output columns in the tables all start
 # with this prefix
 classif_column_name = classif
 
 # pattern for constructing the names
-# of the DB tables with training data (main_table_name) 
+# of the DB tables with training data (main_table_name)
 # and test data (test_table_name)
 main_table_name = rosy_<exp_ID>_main
 test_table_name = rosy_<exp_ID>_<test_ID>

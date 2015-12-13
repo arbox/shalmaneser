@@ -59,12 +59,10 @@ module Shalm
 
       def self.create_parser
         OptionParser.new do |opts|
-          opts.banner = <<STOP
-Fred Preprocessor <FrPrep>. Preprocessing stage before Fred and Rosy
-for further frame/word sense assignment and semantic role assignment.
-
-Usage: frprep -h|-e FILENAME'
-STOP
+          opts.banner = "Fred and Rosy Preprocessor <Frappe>. Preprocessing stage before Fred and Rosy\n"\
+                        "for further frame/word sense assignment and semantic role assignment."\
+                        "\n"\
+                        "Usage: frprep -h|-e FILENAME"
           opts.separator ''
           opts.separator 'Program specific options:'
 

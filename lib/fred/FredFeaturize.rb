@@ -109,16 +109,9 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
                  options, # hash: runtime option name (string) => value(string)
                  varhash = {}) # optional parameter: "refeaturize"
 
-    ##
-    # evaluate runtime options
-    if $ENDUSER_MODE
-      # only possible dataset: test
-      @dataset = "test"
-    else
-      @dataset = nil
-    end
     @append_rather_than_overwrite = false
 
+    # @todo Move this to FredConfigData.
     options.each_pair do |opt, arg|
       case opt
       when '--dataset'
@@ -130,12 +123,10 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
 
       when '--append'
         @append_rather_than_overwrite = true
-
-      else
-        # case of unknown arguments has been dealt with by fred.rb
       end
     end
 
+    # @todo Move this to FredConfigData.
     # further sanity checks
     if @dataset.nil?
       $stderr.puts  "Please set --dataset: one of 'train', 'test'"
@@ -420,9 +411,8 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
                                 target_senses,
                                 feature_hash)
     }
-    feature_writer.flush()
+    feature_writer.flush
   end
-
 
   ####
   # given a list of sense hashes, format

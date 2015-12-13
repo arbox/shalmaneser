@@ -34,13 +34,6 @@ class RosyFeaturize < RosyTask
     @exp = exp
     @ttt_obj = ttt_obj
 
-    ##
-    # check runtime options
-    if $ENDUSER_MODE
-      @dataset = "test"
-    else
-      @dataset = nil
-    end
     @testID = Rosy.default_test_ID
     @splitID = nil
     @append_rather_than_overwrite = false
@@ -58,8 +51,6 @@ class RosyFeaturize < RosyTask
         @testID = arg
       when "--append"
         @append_rather_than_overwrite = true
-      else
-        # this is an option that is okay but has already been read and used by rosy.rb
       end
     end
 

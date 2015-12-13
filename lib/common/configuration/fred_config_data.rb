@@ -5,6 +5,8 @@
 # access to a configuration and experiment description file
 
 require_relative 'config_data'
+require 'common/definitions'
+require 'common/logger'
 
 ##############################
 # Class FredConfigData
@@ -14,14 +16,14 @@ require_relative 'config_data'
 module Shalm
   module Configuration
     class FredConfigData < ConfigData
+      VALID_TASKS = %w(featurize refeaturize split test eval)
       CONFIG_DEFS = {
         "experiment_ID" => "string", # experiment ID
-        "enduser_mode" => "bool", # work in enduser mode? (disallowing many things)
-
         "preproc_descr_file_train" => "string", # path to preprocessing files
         "preproc_descr_file_test" => "string",
         "directory_output" => "string", # path to Salsa/Tiger XML output directory
 
+        # @todo Verbosity should be handled by the Logger and only via cmd switches.
         "verbose" => "bool",     # print diagnostic messages?
         "apply_to_all_known_targets" => "bool", # apply to all known targets rather than the ones with a frame?
 
@@ -77,10 +79,10 @@ module Shalm
 
       def initialize(filename)
         super(filename, CONFIG_DEFS, ["train", "exp_ID"])
-
         # set access functions for list features
         set_list_feature_access("classifier", method("access_classifier"))
         set_list_feature_access("feature", method("access_feature"))
+        validate
       end
 
       ###
@@ -178,6 +180,19 @@ module Shalm
             [cl_descr_tuple.first, cl_descr_tuple[1..-1]]
           end
         end
+      end
+
+      private
+
+      def validate
+        msg = []
+=begin
+        unless VALID_TASKS.include?(get('encoding'))
+          msg << 'Please define a correct encoding in the configuration file: '\
+                 "<#{VALID_ENCODINGS.join('>, <')}>!"
+        end
+=end
+        raise(ConfigurationError, msg.join("\n")) if msg.any?
       end
     end
   end

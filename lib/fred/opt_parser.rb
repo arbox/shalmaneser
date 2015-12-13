@@ -12,47 +12,66 @@ module Fred
   class OptParser
     def self.parse(cmd_opts)
       tasks = {
-        "featurize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
-                         [ "--append", "-A", GetoptLong::NO_ARGUMENT]
-                       ],
-        "refeaturize" => [ [ '--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT], # set to featurize: 'train' or 'test'
-                           [ "--append", "-A", GetoptLong::NO_ARGUMENT]
-                         ],
-        "split" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],  # splitlog ID, required, no default
-                     [ '--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]      # percentage training data, default: 90
-                   ],
-        "train" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT]  # splitlog ID; if given, will train on split
-                     # rather than all training data
-                   ],
-        "test" => [ ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],   # splitlog ID: if given, test on this split of
-                    # the training data
-                    [ '--baseline', '-b', GetoptLong::NO_ARGUMENT],                # set this to compute baseline rather than
-                    # apply classifiers
-                    [ '--nooutput', '-N', GetoptLong::NO_ARGUMENT]               # set this to prevent output of disambiguated
-                    # test data
-
-                  ],
-        "eval" => [['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],    # splitlog ID: if given, evaluate this split.
-                   ['--printLog', '-l', GetoptLong::NO_ARGUMENT]
-                  ]
+        "featurize" => [
+          # set to featurize: 'train' or 'test'
+          ['--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT],
+          ["--append", "-A", GetoptLong::NO_ARGUMENT]
+        ],
+        "refeaturize" => [
+          # set to featurize: 'train' or 'test'
+          ['--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT],
+          ["--append", "-A", GetoptLong::NO_ARGUMENT]
+        ],
+        "split" => [
+          # splitlog ID, required, no default
+          ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+          # percentage training data, default: 90
+          ['--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]
+        ],
+        "train" => [
+          # splitlog ID; if given, will train on split
+          # rather than all training data
+          ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT]
+        ],
+        "test" => [
+          # splitlog ID: if given, test on this split of
+          # the training data
+          ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+          # set this to compute baseline rather than
+          # apply classifiers
+          ['--baseline', '-b', GetoptLong::NO_ARGUMENT],
+          # set this to prevent output of disambiguated
+          # test data
+          ['--nooutput', '-N', GetoptLong::NO_ARGUMENT]
+        ],
+        "eval" => [
+          # splitlog ID: if given, evaluate this split.
+          ['--logID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+          ['--printLog', '-l', GetoptLong::NO_ARGUMENT]
+        ]
       }
 
       # general options
-      optnames = [[ '--help', '-h', GetoptLong::NO_ARGUMENT],            # get help
-                  [ '--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],             # experiment file name (and path), no default
-                  [ '--task', '-t', GetoptLong::REQUIRED_ARGUMENT ],               # task to perform: one of task.keys, no default
-                 ]
+      optnames = [
+        # get help
+        ['--help', '-h', GetoptLong::NO_ARGUMENT],
+        # experiment file name (and path), no default
+        ['--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],
+        # task to perform: one of task.keys, no default
+        ['--task', '-t', GetoptLong::REQUIRED_ARGUMENT]
+      ]
+
       # append task-specific to general options
-      tasks.values.each { |more_optnames|
+      tasks.values.each do |more_optnames|
         optnames.concat more_optnames
-      }
+      end
       optnames.uniq!
 
       # asterisk: "explode" array into individual parameters
       begin
         opts = options_hash(GetoptLong.new(*optnames))
-      rescue
-        $stderr.puts "Error: unknown command line option: " + $!
+      rescue => e
+        $stderr.puts "Error: unknown command line option: #{e.message}!"
         exit 1
       end
 
@@ -61,8 +80,8 @@ module Fred
       ##
       # are we being asked for help?
       if opts['--help']
-        help()
-        exit(0)
+        help
+        exit
       end
 
       ##
@@ -70,7 +89,7 @@ module Fred
       task = opts['--task']
       # sanity checks for task
       if task.nil?
-        help()
+        help
         exit(0)
       end
       unless tasks.keys.include? task
@@ -80,7 +99,7 @@ module Fred
 
       ##
       # now evaluate the rest of the options
-      opts.each_pair { |opt,arg|
+      opts.each_pair do |opt, arg|
         case opt
         when '--help', '--task'
           # we already handled this
@@ -93,9 +112,7 @@ module Fred
             exit 1
           end
         end
-      }
-
-
+      end
 
       unless experiment_filename
         $stderr.puts "I need an experiment file name, option --expfile|-e"
@@ -104,7 +121,6 @@ module Fred
 
       ##
       # open config file
-
       exp = Shalm::Configuration::FredConfigData.new(experiment_filename)
 
       # sanity checks
@@ -112,9 +128,7 @@ module Fred
         raise "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
       end
 
-      # enduser mode?
-      $ENDUSER_MODE = exp.get("enduser_mode")
-
+      # @todo Move to FredConfigData
       # set defaults
       unless exp.get("handle_multilabel")
         if exp.get("binary_classifiers")
@@ -123,6 +137,8 @@ module Fred
           exp.set_entry("handle_multilabel", "repeat")
         end
       end
+
+      # @todo Move to FredConfigData
       # sanity check: if we're using option 'binarize' for handling items
       # with multiple labels, we have to have binary classifiers
       if exp.get("handle_multilabel") == "binarize" and not(exp.get("binary_classifiers"))
@@ -135,7 +151,9 @@ module Fred
 
       [exp, opts]
     end
+
     private
+
     ###
     # options_hash:
     #
@@ -143,16 +161,16 @@ module Fred
     # not individually, and it only allows you to cycle through the options once.
     # So we re-code the options as a hash
     def self.options_hash(opts_obj) # GetoptLong object
-      opt_hash = Hash.new
-
+      opt_hash = {}
       opts_obj.each do |opt, arg|
         opt_hash[opt] = arg
       end
 
-      return opt_hash
+      opt_hash
     end
+
     def self.help
-        $stderr.puts "
+      $stderr.puts "
 Fred: FRamE Disambiguation System Version 0.3
 
 Usage:

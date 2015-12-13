@@ -8,23 +8,17 @@ require_relative 'config_data'
 module Shalm
   module Configuration
     class RosyConfigData < ConfigData
-      CONFIG_DEFS = { # features
+      CONFIG_DEFS = {
         "feature" => "list",
         "classifier" => "list",
-
-        "verbose" => "bool" ,
-        "enduser_mode" => "bool",
-
+        "verbose" => "bool",
         "experiment_ID" => "string",
-
         "directory_input_train" => "string",
         "directory_input_test" => "string",
         "directory_output" => "string",
-
         "preproc_descr_file_train" => "string",
         "preproc_descr_file_test" => "string",
         "external_descr_file"    => "string",
-
         "dbtype" => "string",    # "mysql" or "sqlite"
 
         "host" => "string",      # DB access: sqlite only
@@ -47,15 +41,12 @@ module Shalm
         "classifier_file" => "pattern",
         "classifier_output_file" => "pattern",
         "noval" => "string",
-
-
         "split_nones" => "bool",
         "print_eval_log" => "bool",
         "assume_argrec_perfect" => "bool",
         "xwise_argrec" => "string",
         "xwise_arglab" => "string",
         "xwise_onestep" => "string",
-
         "fe_syn_repair" => "bool", # map words to constituents for FEs: idealize?
         "fe_rel_repair" => "bool", # FEs: include non-included relative clauses into FEs
         "prune" => "string", # pruning prior to argrec?
@@ -72,7 +63,7 @@ module Shalm
       def initialize(filename)
         super(filename, CONFIG_DEFS, ["exp_ID", "test_ID", "split_ID",
                                       "feature_name", "classif", "step",
-                                      "group", "dataset","mode"])
+                                      "group", "dataset", "mode"])
 
         # set access functions for list features
         set_list_feature_access("feature",
@@ -81,7 +72,7 @@ module Shalm
         # set access functions for list features
         set_list_feature_access("classifier",
                                 method("access_feature"))
-
+        validate
       end
 
       ###
@@ -115,6 +106,11 @@ module Shalm
             [feature_descr_tuple.first, feature_descr_tuple[1..-1]]
           end
         end
+      end
+
+      private
+
+      def validate
       end
     end
   end

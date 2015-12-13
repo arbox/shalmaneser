@@ -4,10 +4,8 @@ require 'minitest/autorun'
 require 'stringio' # for helper methods
 require 'frprep/opt_parser'
 
-include FrPrep
-
 class TestOptParser < Minitest::Test
-
+  include Shalm::Frappe
   include Shalm::Configuration
 
   def setup
