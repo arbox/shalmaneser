@@ -243,17 +243,17 @@ end
 
 
 # AB: TODO We should require programmatically all files in
-# <frprep/interpreters> and <frprep/interfaces>.
-require "frprep/CollinsInterface"
+# <frappe/interpreters> and <frappe/interfaces>.
+require "frappe/CollinsInterface"
 
-require 'frprep/interfaces/berkeley_interface'
-require 'frprep/interpreters/berkeley_interpreter'
-require 'frprep/interfaces/stanford_interface'
-require 'frprep/interpreters/stanford_interpreter'
+require 'frappe/interfaces/berkeley_interface'
+require 'frappe/interpreters/berkeley_interpreter'
+require 'frappe/interfaces/stanford_interface'
+require 'frappe/interpreters/stanford_interpreter'
 
-require "frprep/MiniparInterface"
-require "frprep/TntInterface"
-require "frprep/TreetaggerInterface"
+require "frappe/MiniparInterface"
+require "frappe/TntInterface"
+require "frappe/TreetaggerInterface"
 
 class EmptyInterpreter < SynInterpreter
   EmptyInterpreter.announce_me

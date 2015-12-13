@@ -2,7 +2,7 @@
 #
 # this module offers methods to extract gemma corpora from the FrameNet database#
 
-require 'frprep/FrameXML'
+require 'frappe/FrameXML'
 
 class FNDatabase
 

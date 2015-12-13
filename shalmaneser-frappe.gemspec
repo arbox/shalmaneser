@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ['-m', 'README.md']
   s.required_ruby_version = '2.0'
   s.license = 'GPL-2.0'
-  s.files = FileList['lib/frprep/**/*.rb',
+  s.files = FileList['lib/frappe/**/*.rb',
                      'README.md',
                      'LICENSE.md',
                      'CHANGELOG.md',

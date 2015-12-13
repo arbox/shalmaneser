@@ -12,7 +12,7 @@ require 'tempfile'
 require 'common/SalsaTigerRegXML'
 require 'common/SalsaTigerXMLHelper'
 require 'common/TabFormat'
-require 'frprep/counter'
+require 'frappe/counter'
 
 require 'common/AbstractSynInterface'
 require 'common/Tiger.rb'

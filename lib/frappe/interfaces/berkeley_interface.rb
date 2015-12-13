@@ -1,13 +1,10 @@
 #-*- coding: utf-8 -*-
-# @author Andrei Beliankou
-# <@date> 2013-12-26
-
 ####
 # sp 21 07 05
 #
 # modified ke 30 10 05: adapted to fit into SynInterface
 #
-# represents a file containing Stanford parses
+# represents a file containing Berkeley parses
 #
 # underlying data structure for individual sentences: SalsaTigerSentence
 require "tempfile"
@@ -16,19 +13,19 @@ require "tempfile"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
-require 'frprep/counter'
+require 'frappe/counter'
 
 require "common/AbstractSynInterface"
 require "common/tiger"
 
 ################################################
 # Interface class
-class StanfordInterface < SynInterfaceSTXML
-  STDERR.puts 'Announcing Stanford Interface' if $DEBUG
-  StanfordInterface.announce_me
+class BerkeleyInterface < SynInterfaceSTXML
+  STDERR.puts 'Announcing Berkeley Interface' if $DEBUG
+  BerkeleyInterface.announce_me
 
   def self.system
-    'stanford'
+    'berkeley'
   end
 
   def self.service
@@ -43,9 +40,9 @@ class StanfordInterface < SynInterfaceSTXML
   # @param stsuffix [String] suffix of Salsa/TigerXML files
   # @param var_hash [Hash] optional arguments
   def initialize(program_path, insuffix, outsuffix, stsuffix, var_hash = {})
-    super
+    super(program_path, insuffix, outsuffix, stsuffix, var_hash)
 
-    # @todo This should be checked in the OptionParser.
+    # @togo AB: This should be checked in the OptionParser.
     unless @program_path =~ /\/$/
       @program_path += '/'
     end
@@ -54,53 +51,31 @@ class StanfordInterface < SynInterfaceSTXML
     @pos_suffix = var_hash["pos_suffix"]
     @lemma_suffix = var_hash["lemma_suffix"]
     @tab_dir = var_hash["tab_dir"]
-
-    # sanity checks
-    # AB: @todo Move this check to the invoker!
-    unless @tab_dir
-      raise "Need to set tab directory on initialization"
-    end
   end
 
   ####
   # parse a directory with TabFormat files and write the parse trees to outputdir
   # I assume that the files in inputdir are smaller than
   # the maximum number of sentences that
-  # Stanford can parse in one go (i.e. that they are split)
-  #
-  # @param in_dir [String] input directory name
-  # @param out_dir [String] output directory name
-  def process_dir(in_dir, out_dir)
+  # Berkeley can parse in one go (i.e. that they are split)
+  def process_dir(in_dir,  # string: input directory name
+                  out_dir) # string: output directory name
 
-    # We use the old paradigm for now: the parser binary is wrapped
-    # into a shell script, we invoke this script.
-    #stanford_prog = "#{@program_path}lexparser-german.sh"
 
-    # Borrowed from <lexparser-german.sh>.
-    tlp = 'edu.stanford.nlp.parser.lexparser.NegraPennTreebankParserParams'
+    parser = ENV['SHALM_BERKELEY_BIN'] || 'berkeleyParser.jar'
+    grammar = ENV['SHALM_BERKELEY_MODEL'] || 'grammar.gr'
+    options = ENV['SHALM_BERKELEY_OPTIONS']
 
-    lang_opts = '-hMarkov 1 -vMarkov 2 -vSelSplitCutOff 300 -uwm 1 -unknownSuffixSize 2 -nodeCleanup 2'
-
-    # grammar1 = 'edu/stanford/nlp/models/lexparser/germanPCFG.ser.gz'
-    grammar2 = 'edu/stanford/nlp/models/lexparser/germanFactored.ser.gz'
-
-    stanford_prog = %Q{
-    java -cp "#{@program_path}*:" edu.stanford.nlp.parser.lexparser.LexicalizedParser -maxLength 100 \
-    -tLPP #{tlp} #{lang_opts} -tokenized \
-    -encoding UTF-8 \
-    -outputFormat "oneline" \
-    -outputFormatOptions "includePunctuationDependencies" \
-    -loadFromSerializedFile #{grammar2} \
-    }
+    berkeley_prog = "java -jar #{@program_path}#{parser} #{options} -gr #{@program_path}#{grammar}"
 
     Dir[in_dir + "*" + @insuffix].each do |inputfilename|
 
-      STDERR.puts "*** Parsing #{inputfilename} with StanfordParser."
+      STDERR.puts "*** Parsing #{inputfilename} with Berkeley"
       corpusfilename = File.basename(inputfilename, @insuffix)
       parsefilename = out_dir + corpusfilename + @outsuffix
       tempfile = Tempfile.new(corpusfilename)
 
-      # we need neither lemmata nor POS tags; stanford can do with the words
+      # we need neither lemmata nor POS tags; berkeley can do with the words
       corpusfile = FNTabFormatFile.new(inputfilename, nil, nil)
 
       corpusfile.each_sentence do |sentence|
@@ -109,13 +84,17 @@ class StanfordInterface < SynInterfaceSTXML
       end
 
       tempfile.close
+      # parse and remove comments in the parser output
+      STDERR.puts "#{berkeley_prog} < #{tempfile.path} > #{parsefilename}"
 
-      # Invoke the expternal parser.
-      invocation_str = "#{stanford_prog} #{tempfile.path} > #{parsefilename} 2>/dev/null"
-      STDERR.puts invocation_str
+      # AB: for testing we leave this step out, it takes too much time.
+      # Please keep the <parsefile> intact!!!
+      rv = system("#{berkeley_prog} < #{tempfile.path} > #{parsefilename}")
 
-      Kernel.system(invocation_str)
-
+      # AB: Testing for return value.
+      unless rv
+        fail 'Berkeley Parser failed to parse our files!'
+      end
     end
   end
 
@@ -131,76 +110,113 @@ class StanfordInterface < SynInterfaceSTXML
   # (basically just a flat structure with a failed=true attribute
   # at the sentence node)
   def each_sentence(parsefilename)
+    # sanity checks
+    unless @tab_dir
+      raise "Need to set tab directory on initialization"
+    end
 
     # get matching tab file for this parser output file
     parsefile = File.new(parsefilename)
-    tabfilename = @tab_dir + File.basename(parsefilename, @outsuffix) + @insuffix
+    tabfilename = @tab_dir+File.basename(parsefilename, @outsuffix)+ @insuffix
     tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)
 
     sentid = 0
     tabfile.each_sentence do |tab_sent| # iterate over corpus sentences
 
-      # assemble next sentence in Stanford file by reading lines from parsefile
-      # for stanford:
+      sentence_str = ""
+      status = true # error encountered?
+      # assemble next sentence in Berkeley file by reading lines from parsefile
+      # for berkeley:
       while true
-        sentence_str = parsefile.gets
-        # Sentence contains a valid or an empty parse.
-        # AB: @todo Investigate how does an empty parse look like.
-	if sentence_str =~ /\(ROOT|TOP|PSEUDO/ or sentence_str =~ /^\(\(\)/
-          sentid +=1
+        line = parsefile.gets
+
+        # search for the next "relevant" file or end of the file
+        # We expect here:
+        # - an empty line;
+        # - a failed parse;
+        # - a parse beginning with <( (>, <( (TOP>, <( (VROOT> etc.
+        # TOP - Negra Grammars
+        # VROOT - Tiger Grammars
+        # PSEUDO - Original BP Grammars
+        # ROOT - some english grammars
+        # empty identifiers for older Tiger grammars
+        if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
           break
-        # There is no parse.
-        elsif sentence_str.nil?
-          raise "Error: premature end of parser file!"
         end
+        sentid +=1
+
       end
 
-      sentence_str.chomp!.gsub!(/\)\)/, ') )').gsub!(/\)\)/, ') )')
 
-      # VAFIN_HD -> VAFIN-HD
-      # for the current german grammar not really usefull
-      #sentence_str.gsub!(/(\([A-Z]+)_/, '\1-')
-
-      if tab_sent.get_sent_id == "--"
-        my_sent_id = "#{File.basename(parsefilename, @outsuffix)}_#{sentid}"
-      else
-        my_sent_id = tab_sent.get_sent_id
+      if line.nil? # while we search a parse, the parse file is over...
+        raise "Error: premature end of parser file!"
       end
 
-      st_sent = build_salsatiger(" " + sentence_str + " ", 0,
-                                 [], Counter.new(0),
-                                 Counter.new(500),
-                                 SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
+      # Insert a top node <VROOT> if missing.
+      # Some grammars trained on older Tiger Versions
+      # expose this problem.
+      #STDERR.puts "@@@1 <#{line}>"
+      line.sub!(/^(\(\s+\()(\s+)/, '\1VROOT\2')
+      #STDERR.puts "@@@2 <#{line}>"
+      # berkeley parser output: remove brackets /(.*)/
+      # Remove leading and trailing top level brackets.
+      line.sub!(/^\( */, '')
+      line.sub!(/ *\) *$/, '')
 
-      # AB: When is it possible?
-      next unless st_sent
+      # Split consequtive closing brackets.
+      line.gsub!(/\)\)/, ') )')
+      line.gsub!(/\)\)/, ') )')
 
-      yield [st_sent, tab_sent, StanfordInterface.standard_mapping(st_sent, tab_sent)]
+      # Change CAT_FUNC delimiter from <_> to <->.
+      line.gsub!(/(\([A-Z]+)_/, '\1-')
+
+      sentence_str = line.chomp!
+
+      # if we are here, we have a sentence_str to work on
+      # hopefully, our status is OK
+      case status
+      when true
+        if tab_sent.get_sent_id() and tab_sent.get_sent_id() != "--"
+          my_sent_id = tab_sent.get_sent_id()
+        else
+          my_sent_id = File.basename(parsefilename, @outsuffix) + "_" + sentid.to_s
+        end
+
+        st_sent = build_salsatiger(" " + sentence_str + " ", 0,
+                                   Array.new, Counter.new(0),
+                                   Counter.new(500),
+                                   SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
+        if st_sent.nil?
+          next
+        end
+        yield [st_sent, tab_sent, BerkeleyInterface.standard_mapping(st_sent, tab_sent)]
+      else # i.e. when "failed"
+        #raise "Hunh? This is a failed parse, but still we have a parse tree? Look again."
+      end
+
     end
 
-    # All TabFile sentences are consumed.
-    # Now we may just encounter comments, garbage, empty lines etc.
-    while abline = parsefile.gets
-      case abline
-      when /^%/, /^\s*$/
-        # Found empty lines, comments, end of input indicate end of
-        # current parse.
-        # AB: TODO Investigate what can StanfordParser output.
+    # we don't have a sentence: hopefully, this is becase parsing has failed
+
+
+    # all TabFile sentences are consumed:
+    # now we may just encounter comments, garbage, empty lines etc.
+
+    while not parsefile.eof?
+
+      case abline = parsefile.gets
+      when nil, /^%/, /^\s*$/ # empty lines, comments, end of input indicate end of current parse
       else
-        # We found something meaningfull, a parse tree.
-        raise "Error: Premature end of tab file! Found line: #{abline}"
+        raise "Error: premature end of tab file! Found line: #{abline}"
       end
     end
-
-    parsefile.close
-  end # each_sentence()
+  end
 
 
   ###
   # write Salsa/TIGER XML output to file
-  # @param infilename [String] name of parse file
-  # @param outfilename [String] name of output stxml file
-  def to_stxml_file(infilename, outfilename)
+  def to_stxml_file(infilename,  # string: name of parse file
+                    outfilename) # string: name of output stxml file
 
     File.open(outfilename, 'w') do |outfile|
       outfile.puts SalsaTigerXMLHelper.get_header
@@ -218,22 +234,22 @@ class StanfordInterface < SynInterfaceSTXML
   private
 
   ###
-  # Recursive function for parsing a Stanford parse tree and
+  # Recursive function for parsing a Berkeley parse tree and
   # building a SalsaTigerSentence recursively
   #
   # Algorithm: manage stack which contains, for the current constituent,
   # child constituents (if a nonterminal), and the category label.
   # When the end of a constituent is reached, a new SynNode (TigerSalsa node) ist created.
   # All children and the category label are popped from the stack and integrated into the
-  # TigerSalsa data structure. The new node is re-pushed onto the
-  # stack.
-  # @param sentence [String]
-  # @param pos [Fixnum] position in string (index)
-  # @param stack [Array] stack with incomplete nodes
-  # @param termc [Counter] terminal counter
-  # @param nontc [Counter] nonterminal counter
-  # @param sent_obj [SalsaTigerSentence] SalsaTigerSentence
-  def build_salsatiger(sentence, pos, stack, termc, nontc, sent_obj)
+  # TigerSalsa data structure. The new node is re-pushed onto the stack.
+  def build_salsatiger(sentence, # string
+                    pos,      # position in string (index): integer
+                    stack,    # stack with incomplete nodes: Array
+                    termc,    # terminal counter
+                    nontc,    # nonterminal counter
+                    sent_obj) # SalsaTigerSentence
+
+
 
     if sentence =~ /\(\)/
       return nil
@@ -245,7 +261,7 @@ class StanfordInterface < SynInterfaceSTXML
 
     when /^ *$/ # nothing -> whole sentence parsed
       if stack.length == 1
-	# sleepy always delivers one "top" node; if we don't get just one
+        # sleepy always delivers one "top" node; if we don't get just one
         # node, something has gone wrong
         node = stack.pop
         node.del_attribute("gf")
@@ -263,7 +279,7 @@ class StanfordInterface < SynInterfaceSTXML
       end
 #          STDERR.puts "new const #{cat}"
       stack.push cat # throw the category label on the stack
-      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)
+      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)
 
     when /^\s*(\S+)\) /
       # match the end of a terminal constituent (something before a closing bracket + space)
@@ -283,7 +299,7 @@ class StanfordInterface < SynInterfaceSTXML
       node.set_attribute("gf", gf)
 #          STDERR.puts "completed terminal #{cat}, #{word}"
       stack.push node
-      return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)
+      return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)
 
     when /^\s*\)/ # match the end of a nonterminal (nothing before a closing bracket)
       # now collect children:
@@ -325,28 +341,31 @@ class StanfordInterface < SynInterfaceSTXML
         child.add_parent(node, child_gf)
       end
 
-      node.set_attribute("gf", gf)
+      node.set_attribute("gf",gf)
 #          STDERR.puts "Completed nonterm #{cat}, #{children.length} children."
       stack.push node
 
-      return build_salsatiger(sentence, pos + $&.length, stack,termc, nontc, sent_obj)
+      return build_salsatiger(sentence,pos+$&.length, stack,termc,nontc,sent_obj)
     else
-      raise "Error: cannot analyse sentence at pos #{pos}: #{sentence[pos..-1]}. Complete sentence: \n#{sentence}"
+      raise "Error: cannot analyse sentence at pos #{pos}: <#{sentence[pos..-1]}>. Complete sentence: \n#{sentence}"
     end
   end
 
   ###
-  # StanfordParser delivers node labels as "phrase type"-"grammatical function",
-  # but the GF may not be present.
+  # BerkeleyParser delivers node labels in different forms:
+  # - "phrase type"-"grammatical function",
+  # - "phrase type"_"grammatical function",
+  # - "prase type":"grammatical function",
+  # but the GF may be absent.
   # @param cat [String]
-  # @return [Array]
+  # @return [Array<String>]
   def split_cat(cat)
 
-    md = cat.match(/^([^-]*)(-([^-]*))?$/)
+    md = cat.match(/^([^-:_]*)([-:_]([^-:_]*))?$/)
     raise "Error: Could not identify category in #{cat}!" unless md[1]
 
     proper_cat = md[1]
-    gf = md[3] ? md[3] : ''
+    md[3] ? gf = md[3] : gf = ''
 
     [proper_cat, gf]
   end

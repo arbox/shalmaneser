@@ -1,9 +1,9 @@
-require 'frprep/do_parses'
+require 'frappe/do_parses'
 require 'common/prep_helper'
 require 'common/FixSynSemMapping'
 # For FN input.
-require 'frprep/FNCorpusXML'
-require 'frprep/FNDatabase'
+require 'frappe/FNCorpusXML'
+require 'frappe/FNDatabase'
 
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 

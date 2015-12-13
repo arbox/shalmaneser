@@ -28,7 +28,7 @@
 # write new adapted FNTab format
 # ( "word", ("pt", "gf", "role", "target", "frame", "stuff")* "ne", "sent_id" )
 
-require 'frprep/Ampersand'
+require 'frappe/Ampersand'
 require 'common/ISO-8859-1'
 require 'common/RegXML'
 

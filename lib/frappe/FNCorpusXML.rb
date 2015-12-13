@@ -23,7 +23,7 @@
 #   ne:    named entity
 #   sent_id: sentence ID
 
-require 'frprep/Ampersand'
+require 'frappe/Ampersand'
 require 'common/ISO-8859-1'
 require 'common/RegXML'
 

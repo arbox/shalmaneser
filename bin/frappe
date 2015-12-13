@@ -22,8 +22,8 @@
 # - "fn_gf": FrameNet grammatical function label, attached to the maximal
 #   constituents covering the terminals labeled with that label
 
-require 'frprep/frprep'
-require 'frprep/opt_parser'
+require 'frappe/frappe'
+require 'frappe/opt_parser'
 
 begin
   options = Shalm::Frappe::OptParser.parse(ARGV)

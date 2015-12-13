@@ -2,14 +2,14 @@
 
 require 'minitest/autorun'
 require 'stringio' # for helper methods
-require 'frprep/opt_parser'
+require 'frappe/opt_parser'
 
 class TestOptParser < Minitest::Test
   include Shalm::Frappe
   include Shalm::Configuration
 
   def setup
-    @exp_file = 'test/frprep/data/prp_test.salsa'
+    @exp_file = 'test/unit/frappe/data/prp_test.salsa'
     @valid_opts = ['--expfile', @exp_file,
                    '--help'
                   ]

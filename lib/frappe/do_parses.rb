@@ -10,7 +10,7 @@
 # a directory for putting parse files:
 # - parse, unless no parsing set in the experiment file
 # - for each parsed file: yield one OneParsedFile object
-require 'frprep/one_parsed_file'
+require 'frappe/one_parsed_file'
 
 class DoParses
   def initialize(exp,           # FrPrepConfigData object

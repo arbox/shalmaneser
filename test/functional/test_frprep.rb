@@ -12,7 +12,7 @@ class TestFrprep < Minitest::Test
     @msg        = "FrPrep is doing bad, you've just broken something!"
     @test_file  = PRP_TEST_FILE
     @train_file = PRP_TRAIN_FILE
-    @ptb        = 'lib/frprep/interfaces/berkeley_interface.rb'
+    @ptb        = 'lib/frappe/interfaces/berkeley_interface.rb'
     # link_berkeley
     ENV['SHALM_BERKELEY_MODEL'] = 'sc_dash_labeled_1_smoothing.gr'
   end

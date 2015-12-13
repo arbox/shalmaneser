@@ -95,8 +95,7 @@ namespace :test do
       t.libs << 'test'
       t.warning = true
       t.description = 'Run all Preprocessor Tests.'
-      t.test_files = FileList['test/frprep/test_*.rb',
-                              'test/unit/**/*.rb']
+      t.test_files = FileList['test/unit/**/*.rb']
     end
 
     task :fred
