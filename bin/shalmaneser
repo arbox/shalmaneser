@@ -3,11 +3,11 @@
 require 'shalmaneser/opt_parser'
 
 # Change for options to default <-h> for now.
-#cmd_args = ['-h']
+# cmd_args = ['-h']
 cmd_args = ARGV
 
 begin
-  options = Shalm::OptParser.parse(cmd_args)
+  Shalm::Shalm::OptParser.parse(cmd_args)
 rescue
   raise
 end
