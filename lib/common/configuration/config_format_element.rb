@@ -5,6 +5,9 @@
 # that can be instantiated.
 # @author Andrei Beliankou
 #
+
+require_relative 'configuration_error'
+
 module Shalm
   module Configuration
     class ConfigFormatElement
@@ -29,15 +32,14 @@ module Shalm
         # analyze string,
         # split into variables and fixed parts
         string.split(//).each { |char|
-
           case state
           when "in"
             case char
             when "<"
-              raise "Duplicate < in " + string
+              raise ConfigurationError, "Duplicate < in #{string}."
             when ">"
               unless @variables.include? item
-                raise "Unknown variable " + item
+                raise ConfigurationError, "Unknown variable #{item}."
               end
               @pattern << [item, "variable"]
               item = ""
@@ -56,21 +58,21 @@ module Shalm
               end
               state = "in"
             when ">"
-              raise "Unexpected > in " + string
+              raise ConfigurationError, "Unexpected > in #{string}."
             else
               item << char
               state = "out"
             end
 
           else
-            raise "Shouldn't be here"
+            raise ConfigurationError, "Shouldn't be here!"
           end
         }
 
         # read through the whole of "string"
         # end state has to be "out"
         unless state == "out"
-          raise "Unclosed < in " + string
+          raise ConfigurationError, "Unclosed < in #{string}."
         end
 
         # last bit still to be recorded?
@@ -95,11 +97,11 @@ module Shalm
             item
           when "variable"
             if var_hash[item].nil?
-              raise "Missing variable instantiation: " + item
+              raise ConfigurationError, "Missing variable instantiation: #{item}."
             end
             var_hash[item]
           else
-            raise "Shouldn't be here"
+            raise ConfigurationError, "Shouldn't be here!"
           end
         end.join
       end
@@ -120,13 +122,6 @@ module Shalm
         # have we been given partial info about variables?
         if fillers
           match = make_regexp(@pattern, fillers).match(string)
-        #      $stderr.print "matching " + make_regexp(@pattern, fillers).source +
-        #       " against " + string + " "
-        #      if match.nil?
-        #       $stderr.puts "no"
-        #      else
-        #       $stderr.puts "yes"
-        #      end
         else
           match = @regexp.match(string)
         end
@@ -159,7 +154,7 @@ module Shalm
           # fill from matches
 
           if match[index].nil?
-            raise "Match, but not enough matched elements? Strange."
+            raise ConfigurationError, "Match, but not enough matched elements? Strange."
           end
 
           if retv[item].nil?
@@ -173,16 +168,16 @@ module Shalm
           index += 1
         }
 
-        return retv
+        retv
       end
 
       # used_variables
       #
       # returns: an array of variable names used in @pattern
-      def used_variables()
-        return @pattern.select { |item, string_or_var|
+      def used_variables
+        @pattern.select do |_item, string_or_var|
           string_or_var == "variable"
-        }.map { |item, string_or_var| item}
+        end.map { |item, _string_or_var| item }
       end
 
       ####################
@@ -192,25 +187,23 @@ module Shalm
       # make regular expression from a pattern
       # together with some variable fillers
       #
-      # returns: Regexp object
-      def make_regexp(pattern,  # array of pairs [string, "string"] or [string, "variable"]
-                      fillers = nil) # hash variable name(string) => value(string)
-        return (Regexp.new "^" +
-                           pattern.map { |item, string_or_var|
-                  case string_or_var
-                  when "variable"
-                    if fillers and
-                      fillers[item]
-                      Regexp.escape(fillers[item])
-                    else
-                      "(.+)"
-                    end
-                  when "string"
-                    Regexp.escape(item)
-                  else
-                    raise "Shouldn't be here"
-                  end
-                }.join + "$")
+      # @return [Regexp] object
+      # @param [Array] pattern An array of pairs [string, "string"] or [string, "variable"]
+      # @param [Hash] fillers A Hash variable name(string) => value(string)
+      def make_regexp(pattern, fillers = nil)
+        pattern = pattern.map do |item, string_or_var|
+          case string_or_var
+          when "variable"
+            fillers && fillers[item] ? Regexp.escape(fillers[item]) : '(.+)'
+          when "string"
+            Regexp.escape(item)
+          else
+            # @todo Find the source of this error.
+            raise ConfiguratinError, "Shouldn't be here"
+          end
+        end.join
+
+        Regexp.new("^#{pattern}$")
       end
     end
   end
