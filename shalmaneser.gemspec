@@ -18,7 +18,7 @@ can handle any role-semantic schema (FrameNET, PropBank etc.) and use any set
 of word senses (e.g. WordNet synsets). SHALMANESER emerged as part of the SALSA
 Project at the University of Saarbrücken.
   EOS
-  s.version = Shalm::VERSION
+  s.version = Shalmaneser::Shalmaneser::VERSION
   s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
@@ -43,7 +43,7 @@ Project at the University of Saarbrücken.
   s.license = 'GPL-2.0'
   s.post_install_message = <<-EOS
 
-Thank you for installing Shalmaneser #{Shalm::VERSION}!
+Thank you for installing Shalmaneser #{Shalmaneser::Shalmaneser::VERSION}!
 
 This software package has multiple external dependencies:
 - OpenNLP Maximum Entropy Classifier;

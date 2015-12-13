@@ -9,7 +9,7 @@ require 'common/definitions'
 require 'common/SynInterfaces'
 require 'common/logger'
 
-module Shalm
+module Shalmaneser
   module Frappe
     # This class parses options for FrPrep.
     # @todo Remove explicit exits in this class.
@@ -48,7 +48,7 @@ module Shalm
         end
 
         # @todo Rename the config data class.
-        exp = ::Shalm::Configuration::FrPrepConfigData.new(@options[:exp_file])
+        exp = ::Shalmaneser::Configuration::FrPrepConfigData.new(@options[:exp_file])
 
         SynInterfaces.check_interfaces_abort_if_missing(exp)
 

@@ -237,6 +237,6 @@ class ExternalFeatureExtractor < AbstractFeatureExtractor
       return
     end
 
-    @exp_external = Shalm::Configuration::ExternalConfigData.new(@exp_rosy.get("external_descr_file"))
+    @exp_external = Shalmaneser::Configuration::ExternalConfigData.new(@exp_rosy.get("external_descr_file"))
   end
 end

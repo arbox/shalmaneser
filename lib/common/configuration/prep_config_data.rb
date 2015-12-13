@@ -11,7 +11,7 @@ require_relative 'config_data'
 #
 # inherits from ConfigData,
 # sets variable names appropriate to preprocessing task
-module Shalm
+module Shalmaneser
   module Configuration
     class FrPrepConfigData < ConfigData
       VALID_ENCODINGS = ['hex', 'iso', 'utf8', nil]

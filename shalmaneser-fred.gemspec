@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name = 'shalmaneser-fred'
   s.summary = 'FRED'
   s.description = 'FRED - Frame Disambiguation.'
-  s.version = Shalm::VERSION
+  s.version = Shalmaneser::Fred::VERSION
   s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'https://github.com/arbox/shalmaneser'

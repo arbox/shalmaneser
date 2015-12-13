@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.name = 'shalmaneser-prep'
   s.summary = 'PREP'
   s.description = 'PREP - Fred and Rosy PREProcessor.'
-  s.version = Shalmaneser::VERSION
+  s.version = Shalmaneser::Frappe::VERSION
   s.author = 'Andrei Beliankou'
   s.email = 'arbox@yandex.ru'
   s.homepage = 'https://github.com/arbox/shalmaneser'

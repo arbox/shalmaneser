@@ -12,7 +12,7 @@ require_relative 'config_data'
 #
 # inherits from ConfigData,
 # sets variable names appropriate to tasks of external knowledge sources
-module Shalm
+module Shalmaneser
   module Configuration
     class ExternalConfigData < ConfigData
       def initialize(filename)

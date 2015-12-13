@@ -1,4 +1,4 @@
-module Shalm
+module Shalmaneser
   module Configuration
     class ConfigurationError < StandardError
       # @param [String] msg A custom message for this exception.

@@ -5,7 +5,7 @@ require_relative 'config_data'
 #
 # inherits from ConfigData,
 # sets features for ROSY
-module Shalm
+module Shalmaneser
   module Configuration
     class RosyConfigData < ConfigData
       CONFIG_DEFS = {

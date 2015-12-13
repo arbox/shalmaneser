@@ -13,7 +13,7 @@ require 'common/logger'
 #
 # inherits from ConfigData,
 # sets variable names appropriate to WSD task
-module Shalm
+module Shalmaneser
   module Configuration
     class FredConfigData < ConfigData
       VALID_TASKS = %w(featurize refeaturize split test eval)

@@ -7,7 +7,7 @@ require 'shalmaneser/opt_parser'
 cmd_args = ARGV
 
 begin
-  Shalm::Shalm::OptParser.parse(cmd_args)
+  Shalmaneser::Shalmaneser::OptParser.parse(cmd_args)
 rescue
   raise
 end

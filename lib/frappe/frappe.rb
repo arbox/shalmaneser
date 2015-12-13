@@ -12,7 +12,7 @@ require 'common/definitions'
 
 ##############################
 # The class that does all the work
-module Shalm
+module Shalmaneser
   module Frappe
     class Frappe
       # @param exp [FrprepConfigData] Configuration object

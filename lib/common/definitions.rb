@@ -1,4 +1,4 @@
-module Shalm
+module Shalmaneser
   module Frappe
     PROGRAM_NAME = 'Frappe'
     VERSION = '1.2'
@@ -11,7 +11,7 @@ module Shalm
     PROGRAM_NAME = 'Rosy'
     VERSION = '1.2'
   end
-  module Shalm
+  module Shalmaneser
     PROGRAM_NAME = 'Shalmaneser'
     VERSION = '1.2'
   end

@@ -42,7 +42,7 @@ module Fred
 
       task.compute
 
-      Shalm::LOGGER.info "#{Shalm::Fred::PROGRAM_NAME} finished Predicate Disambiguation!"
+      Shalmaneser::LOGGER.info "#{Shalmaneser::Fred::PROGRAM_NAME} finished Predicate Disambiguation!"
     end
   end # class Fred
 end # module Fred

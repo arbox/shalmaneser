@@ -58,7 +58,7 @@ module TreetaggerModule
     # We need the language attribute, but we don't have the FrPrepConfigData,
     # then we'll try to find it in the ObjectSpace since we should have only one.
     lang = ''
-    ObjectSpace.each_object(Shalm::Configuration::FrPrepConfigData) do |o|
+    ObjectSpace.each_object(Shalmaneser::Configuration::FrPrepConfigData) do |o|
       lang = o.get('language')
     end
 

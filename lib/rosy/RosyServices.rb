@@ -583,7 +583,7 @@ class RosyServices < RosyTask
       $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
       exit 1
     end
-    preproc_exp = Shalm::Configuration::FrPrepConfigData.new(preproc_expname)
+    preproc_exp = Shalmaneser::Configuration::FrPrepConfigData.new(preproc_expname)
     @exp.adjoin(preproc_exp)
 
     ###

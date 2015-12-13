@@ -73,7 +73,7 @@ require 'common/logger'
 #
 # @abstract Subclass and override {#initialize} to implement
 #   a custom ConfigData class.
-module Shalm
+module Shalmaneser
   module Configuration
     # @abstract Subclass and override {#validate} to implement custom
     #   ConfigurationData classes.

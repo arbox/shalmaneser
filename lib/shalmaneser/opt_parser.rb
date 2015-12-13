@@ -1,8 +1,8 @@
 require 'optparse'
 require 'common/definitions'
 
-module Shalm
-  module Shalm
+module Shalmaneser
+  module Shalmaneser
     class OptParser
 
       # Specify a default option first.

@@ -8,7 +8,7 @@
 
 require_relative 'configuration_error'
 
-module Shalm
+module Shalmaneser
   module Configuration
     class ConfigFormatElement
 
