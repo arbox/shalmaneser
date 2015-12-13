@@ -108,7 +108,7 @@ See the installation instructions in the [doc](https://github.com/arbox/shalmane
 
 ### Parsers
 
-- [BerkeleyParser](https://code.google.com/p/berkeleyparser/downloads/list)
+- [BerkeleyParser](https://github.com/slavpetrov/berkeleyparser)
 - [Stanford Parser](http://nlp.stanford.edu/software/lex-parser.shtml)
 - [Collins Parser](http://www.cs.columbia.edu/~mcollins/code.html)
 
