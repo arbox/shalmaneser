@@ -36,6 +36,7 @@ module FunctionalTestHelper
   # Testing output for Preprocessor.
   PRP_STXMLOUTPUT = "#{PREF}/prp_stxmloutput"
   PRP_TABOUTPUT   = "#{PREF}/prp_taboutput"
+  PRP_STXML2STXML = "#{PREF}/prp_stxml2stxml"
 
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.

@@ -45,69 +45,66 @@ class SalsaTigerXmlNode < XMLNode
   # depends on whether it has an ID or an IDref
   #
   # returns: a string, the ID, or nil if none was found
-  def SalsaTigerXmlNode.xmlel_id(xml_obj) # RegXML object
+  def self.xmlel_id(xml_obj) # RegXML object
     case xml_obj.name
     when "edge", "fenode", "uspitem", "splitword", "other_edge"
       # contains ID ref
-      return xml_obj.attributes()["idref"]
+      xml_obj.attributes["idref"]
     when "part"
       #  contains ID
-      return xml_obj.attributes()["id"]
+      xml_obj.attributes["id"]
     else
       # something else
       # default: ID is in attribute "id"
-      return xml_obj.attributes()["id"]
+      xml_obj.attributes["id"]
     end
   end
 
   ###
-  def initialize(xml) # RegXML object or text
+  # RegXML object or text
+  def initialize(xml)
     if xml.text?
       # text
       super(xml, nil, nil, true)
     else
       # xml element
-      super(xml.name(), xml.attributes(), SalsaTigerXmlNode.xmlel_id(xml), false)
+      super(xml.name, xml.attributes, SalsaTigerXmlNode.xmlel_id(xml), false)
     end
   end
 
   ###
   def is_terminal?
-    return get_f("name") == "t"
+    get_f("name") == "t"
   end
 
   ###
   def is_nonterminal?
-    return get_f("name") == "nt"
+    get_f("name") == "nt"
   end
 
   ###
   def is_splitword?
-    return get_f("name") == "part"
+    get_f("name") == "part"
   end
 
   ###
   def is_syntactic?
-    if is_terminal? or is_nonterminal? or is_splitword?
-      return true
-    else
-      return false
-    end
+    is_terminal? || is_nonterminal? || is_splitword?
   end
 
   ###
   def is_frame?
-    return get_f("name") == "frame"
+    get_f("name") == "frame"
   end
 
   ###
   def is_target?
-    return get_f("name") == "target"
+    get_f("name") == "target"
   end
 
   ###
   def is_fe?
-    return get_f("name") == "fe"
+    get_f("name") == "fe"
   end
 
   ###
@@ -119,42 +116,44 @@ class SalsaTigerXmlNode < XMLNode
 
   ###
   def is_outside_sentence?
-    return false
+    false
   end
 
   ###
-  def yield_nodes()
+  def yield_nodes
     # special consideration: splitwords do not count as children!
-    if children.reject {|c| c.is_splitword? }.empty?
-      return [ self ]
+    if children.reject { |c| c.is_splitword? }.empty?
+      return [self]
     end
 
-    arr = Array.new
+    arr = []
     children.reject { |c| c.is_splitword? }.each { |c|
-      if c.children.reject {|gc| gc.is_splitword? }.empty?
+      if c.children.reject(&:is_splitword?).empty?
         arr << c
       else
-        arr.concat c.yield_nodes()
+        arr.concat c.yield_nodes
       end
     }
-    return arr
+
+    arr
   end
 
   ###
-  def yield_nodes_ordered() # legacy name
+  def yield_nodes_ordered # legacy name
     # sort_terminals_and_splitwords_... cannot deal with nonterminals
     # so remove and attach to the end of the chain
-    t, nt  = yield_nodes().distribute { |x| x.is_terminal? or x.is_splitword? }
+    t, nt  = yield_nodes.distribute { |x| x.is_terminal? || x.is_splitword? }
     return sort_terminals_and_splitwords_left_to_right(t).concat(nt)
   end
 
   ###
-  def terminals_sorted() # name parallel to the method of SalsaTigerSentence
-    return yield_nodes_ordered()
+  # name parallel to the method of SalsaTigerSentence
+  def terminals_sorted
+    return yield_nodes_ordered
   end
 
   ###
   def to_s
-    return string_for_node(self)
+    string_for_node(self)
   end
 end
