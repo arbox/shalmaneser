@@ -68,13 +68,14 @@ module TreetaggerModule
       tt_filter = ''
     when 'de'
       tt_model = Pathname.new(@program_path).join('lib').join(ENV['SHALM_TREETAGGER_MODEL'] || 'german.par')
-      tt_filter = "| #{Pathname.new(@program_path).join('cmd').join('filter-german-tags')}"
+      tt_filter = "#{Pathname.new(@program_path).join('cmd').join('filter-german-tags')}"
     end
 
     # call TreeTagger
-    tt_binary = Pathname.new(@program_path).join('bin').join(ENV['SHALM_TREETAGGER_BIN'] || 'tree-tagger')
+    tt_binary = Pathname.new(@program_path).join('bin').join(ENV.fetch('SHALM_TREETAGGER_BIN', 'tree-tagger'))
 
-    invocation_str = "#{tt_binary} -lemma -token -sgml #{tt_model} #{tempfile.path} #{tt_filter} > #{my_outfilename}"
+    invocation_str = "#{tt_binary} -lemma -token -sgml #{tt_model} "\
+                     "#{tempfile.path} 2>/dev/null | #{tt_filter} > #{my_outfilename}"
 
     STDERR.puts "*** Tagging and lemmatizing #{tempfile.path} with TreeTagger."
     STDERR.puts invocation_str
@@ -85,16 +86,14 @@ module TreetaggerModule
     # external problem: sometimes, the treetagger keeps the last <EOS> for itself,
     # resulting on a .tagged file missing the last (blank) line
 
-    original_length = `cat #{infilename} | wc -l`.strip.to_i
-    puts infilename
-    lemmatised_length = `cat #{my_outfilename} | wc -l`.strip.to_i
+    original_length = File.readlines(infilename).size
+    lemmatised_length = File.readlines(infilename).size
 
-#    `cp #{tempfile2.path()} /tmp/lout`
-
-    case original_length - lemmatised_length
+    case (original_length - lemmatised_length)
     when 0
       # everything ok, don't do anything
     when 1
+      # @todo Add here a Logger Warning.
       # add one more newline to the .tagged file
       `echo "" >> #{my_outfilename}`
     else
@@ -130,10 +129,8 @@ class TreetaggerInterface < SynInterfaceTab
   # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
   # @todo AB: Generalize this method to work with different parsers.
   def convert_to_berkeley(line)
-      line.chomp!
-      return line.gsub(/\(/,"-LRB-").gsub(/\)/,"-RRB-").gsub(/''/,"\"").gsub(/\`\`/,"\"")
+    line.chomp.gsub(/\(/,"-LRB-").gsub(/\)/,"-RRB-").gsub(/''/,"\"").gsub(/\`\`/,"\"")
   end
-
 
   ###
   def process_file(infilename,  # string: name of input file
@@ -145,12 +142,12 @@ class TreetaggerInterface < SynInterfaceTab
     # write all output to tempfile2 first, then
     # change ISO to UTF-8 into outputfile
     tempfile2 = Tempfile.new("treetagger")
-    tempfile2.close()
+    tempfile2.close
 
     # 2. use cut to get the actual lemmtisation
 
     Kernel.system("cat " + ttfilename +
-		  ' | sed -e\'s/<EOS>//\' | cut -f3 > '+tempfile2.path())
+                  ' | sed -e\'s/<EOS>//\' | cut -f3 > ' + tempfile2.path)
 
     # transform ISO-8859-1 back to UTF-8,
     # write to 'outfilename'
@@ -166,18 +163,16 @@ class TreetaggerInterface < SynInterfaceTab
     # process the text and convert it back to utf-8.
     #
     while line = tempfile2.gets
-	#outfile.puts UtfIso.from_iso_8859_1(line)
+        #outfile.puts UtfIso.from_iso_8859_1(line)
       utf8line = UtfIso.from_iso_8859_1(line)
       outfile.puts convert_to_berkeley(utf8line)
     end
 
     # remove second tempfile, finalize output file
     tempfile2.close(true)
-    outfile.close()
-
+    outfile.close
   end
 end
-
 
 # sp 30 11 06
 #
@@ -230,7 +225,7 @@ class TreetaggerPOSInterface < SynInterfaceTab
     # 2. use cut to get the actual lemmtisation
 
     Kernel.system("cat " + tt_filename +
-		  ' | sed -e\'s/<EOS>//\' | cut -f2 > '+tempfile2.path())
+                  ' | sed -e\'s/<EOS>//\' | cut -f2 > '+tempfile2.path())
 
     # transform ISO-8859-1 back to UTF-8,
     # write to 'outfilename'
