@@ -30,7 +30,7 @@ module TreetaggerModule
   # WARNING: this method assumes that outfilename contains a suffix
   # that can be replaced by .TreeTagger
   def really_process_file(infilename, # string: name of input file
-                          outfilename,# string: name of file that the caller is to produce
+                          outfilename, # string: name of file that the caller is to produce
                           make_new_outfile_anyway = false) # Boolean: run TreeTagger in any case?
 
     # fabricate the filename in which the
@@ -38,13 +38,13 @@ module TreetaggerModule
     # <directory> + <outfilename minus last suffix> + ".TreeTagger"
     current_suffix = outfilename[outfilename.rindex(".")..-1]
     my_outfilename = File.dirname(outfilename) + "/" +
-      File.basename(outfilename, current_suffix) +
-      ".TreeTagger"
+                     File.basename(outfilename, current_suffix) +
+                     ".TreeTagger"
 
     ##
     # does it exist? then just return it
-    if not(make_new_outfile_anyway) and File.exists?(my_outfilename)
-      return my_outfilename
+    if !make_new_outfile_anyway && File.exist?(my_outfilename)
+      my_outfilename
     end
 
     ##
@@ -104,14 +104,13 @@ module TreetaggerModule
       raise
     end
 
-
-    return my_outfilename
+    my_outfilename
   end
 end
 
 #######################################
 class TreetaggerInterface < SynInterfaceTab
-  TreetaggerInterface.announce_me()
+  TreetaggerInterface.announce_me
 
   include TreetaggerModule
 
@@ -129,14 +128,13 @@ class TreetaggerInterface < SynInterfaceTab
   # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
   # @todo AB: Generalize this method to work with different parsers.
   def convert_to_berkeley(line)
-    line.chomp.gsub(/\(/,"-LRB-").gsub(/\)/,"-RRB-").gsub(/''/,"\"").gsub(/\`\`/,"\"")
+    line.chomp.gsub(/\(/, "-LRB-").gsub(/\)/, "-RRB-").gsub(/''/, "\"").gsub(/\`\`/, "\"")
   end
 
   ###
-  def process_file(infilename,  # string: name of input file
-                   outfilename) # string: name of output file
-
-    # KE change here
+  # @param [String] infilename The name of the input file.
+  # @param [String] outfilename The name of the output file.
+  def process_file(infilename, outfilename)
     ttfilename = really_process_file(infilename, outfilename)
 
     # write all output to tempfile2 first, then
@@ -157,13 +155,13 @@ class TreetaggerInterface < SynInterfaceTab
       raise "Could not write to #{outfilename}"
     end
     tempfile2.open
+
     # AB: Internally all the flow is an utf-8 encoded stream.
     # TreeTagger consumes one byte encodings (but we should provide a
     # utf-8 model for German). So we convert utf-8 to latin1, then
     # process the text and convert it back to utf-8.
     #
-    while line = tempfile2.gets
-        #outfile.puts UtfIso.from_iso_8859_1(line)
+    while (line = tempfile2.gets)
       utf8line = UtfIso.from_iso_8859_1(line)
       outfile.puts convert_to_berkeley(utf8line)
     end
@@ -189,43 +187,42 @@ end
 # and both POS tags and lemma are read from the same files,
 # rather than calling the tagger twice
 class TreetaggerPOSInterface < SynInterfaceTab
-  TreetaggerPOSInterface.announce_me()
   include TreetaggerModule
 
+  TreetaggerPOSInterface.announce_me
+
   ###
-  def TreetaggerPOSInterface.system()
-    return "treetagger"
+  def self.system
+    "treetagger"
   end
 
   ###
-  def TreetaggerPOSInterface.service()
-    return "pos_tagger"
+  def self.service
+    "pos_tagger"
   end
 
   ###
   # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
-
   def convert_to_collins(line)
-    line.chomp!
-    return line.gsub(/^PP/,"PRP").gsub(/^NP/,"NNP").gsub(/^VV/,"VB").gsub(/^VH/,"VB").gsub(/^SENT/,".")
+    line.chomp.gsub(/^PP/, "PRP").gsub(/^NP/, "NNP").gsub(/^VV/, "VB").gsub(/^VH/, "VB").gsub(/^SENT/, ".")
   end
 
   ###
-  def process_file(infilename,  # string: name of input file
-                   outfilename) # string: name of output file
-
+  # @param [String] infilename Name of input file.
+  # @param [String] outfilename Name of output file.
+  def process_file(infilename, outfilename)
     # KE change here
     tt_filename = really_process_file(infilename, outfilename, true)
 
     # write all output to tempfile2 first, then
     # change ISO to UTF-8 into outputfile
     tempfile2 = Tempfile.new("treetagger")
-    tempfile2.close()
+    tempfile2.close
 
     # 2. use cut to get the actual lemmtisation
 
     Kernel.system("cat " + tt_filename +
-                  ' | sed -e\'s/<EOS>//\' | cut -f2 > '+tempfile2.path())
+                  ' | sed -e\'s/<EOS>//\' | cut -f2 > ' + tempfile2.path)
 
     # transform ISO-8859-1 back to UTF-8,
     # write to 'outfilename'
@@ -234,41 +231,37 @@ class TreetaggerPOSInterface < SynInterfaceTab
     rescue
       raise "Could not write to #{outfilename}"
     end
-    tempfile2.open()
-    while (line = tempfile2.gets())
+    tempfile2.open
+    while (line = tempfile2.gets)
       outfile.puts UtfIso.from_iso_8859_1(convert_to_collins(line))
     end
 
     # remove second tempfile, finalize output file
     tempfile2.close(true)
-    outfile.close()
+    outfile.close
   end
 end
 
 ###############
 # an interpreter that only has Treetagger, no parser
 class TreetaggerInterpreter < SynInterpreter
-  TreetaggerInterpreter.announce_me()
+  TreetaggerInterpreter.announce_me
 
   ###
   # names of the systems interpreted by this class:
   # returns a hash service(string) -> system name (string),
   # e.g.
   # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def TreetaggerInterpreter.systems()
-    return {
-      "pos_tagger" => "treetagger",
-    }
+  def self.systems
+    {"pos_tagger" => "treetagger"}
   end
 
   ###
   # names of additional systems that may be interpreted by this class
   # returns a hash service(string) -> system name(string)
   # same as names()
-  def TreetaggerInterpreter.optional_systems()
-    return {
-      "lemmatizer" => "treetagger"
-    }
+  def self.optional_systems
+    {"lemmatizer" => "treetagger"}
   end
 
   ###
@@ -292,31 +285,42 @@ class TreetaggerInterpreter < SynInterpreter
   # nil:  something went wrong
   #
   # returns: string, or nil
-  def TreetaggerInterpreter.category(node) # SynNode
+  def self.category(node) # SynNode
     pt = TreetaggerInterpreter.pt(node)
-    if pt.nil?
-      # phrase type could not be determined
-      return nil
-    end
+    # phrase type could not be determined
+    return nil if pt.nil?
 
-    pt.to_s.strip() =~ /^([^-]*)/
-    case $1
-    when  /^JJ/ ,/(WH)?ADJP/, /^PDT/ then  return "adj"
-    when /^RB/, /(WH)?ADVP/, /^UH/ then return "adv"
-    when /^CD/, /^QP/ then  return "card"
-    when /^CC/, /^WRB/, /^CONJP/ then return "con"
-    when /^DT/, /^POS/ then  return "det"
-    when /^FW/, /^SYM/ then  return "for"
-    when /^N/, "WHAD", "WDT", /^PRP/ , /^WHNP/, /^EX/, /^WP/  then return "noun"
-    when  /^IN/ , /^TO/, /(WH)?PP/, "RP", /^PR(T|N)/ then return "prep"
-    when /^PUNC/, /LRB/, /RRB/, /[,'".:;!?\(\)]/ then  return "pun"
-    when /^S(s|bar|BAR|G|Q|BARQ|INV)?$/, /^UCP/, /^FRAG/, /^X/, /^INTJ/ then return "sent"
-    when /^TOP/ then  return "top"
-    when /^TRACE/ then  return "trace"
-    when /^V/ , /^MD/ then return "verb"
+    case pt.to_s.strip.match(/^([^-]*)/)[1]
+    when /^JJ/, /(WH)?ADJP/, /^PDT/
+      "adj"
+    when /^RB/, /(WH)?ADVP/, /^UH/
+      "adv"
+    when /^CD/, /^QP/
+      "card"
+    when /^CC/, /^WRB/, /^CONJP/
+      "con"
+    when /^DT/, /^POS/
+      "det"
+    when /^FW/, /^SYM/
+      "for"
+    when /^N/, "WHAD", "WDT", /^PRP/, /^WHNP/, /^EX/, /^WP/
+      "noun"
+    when /^IN/, /^TO/, /(WH)?PP/, "RP", /^PR(T|N)/
+      "prep"
+    when /^PUNC/, /LRB/, /RRB/, /[,'".:;!?\(\)]/
+      "pun"
+    when /^S(s|bar|BAR|G|Q|BARQ|INV)?$/, /^UCP/, /^FRAG/, /^X/, /^INTJ/
+      "sent"
+    when /^TOP/
+      "top"
+    when /^TRACE/
+      "trace"
+    when /^V/, /^MD/
+      "verb"
     else
-#      $stderr.puts "WARNING: Unknown category/POS "+c.to_s + " (English data)"
-      return nil
+      # @todo Change this to a Logger warning.
+      STDERR.puts "WARNING: Unknown category/POS " + pt.to_s + " (English data)."
+      nil
     end
   end
 end
