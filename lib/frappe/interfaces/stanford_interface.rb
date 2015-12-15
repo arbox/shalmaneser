@@ -18,7 +18,7 @@ require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
 require 'frappe/counter'
 
-require "common/AbstractSynInterface"
+# require "common/AbstractSynInterface"
 require "common/tiger"
 
 ################################################

@@ -14,7 +14,7 @@ require 'common/SalsaTigerXMLHelper'
 require 'common/TabFormat'
 require 'frappe/counter'
 
-require 'common/AbstractSynInterface'
+# require 'common/AbstractSynInterface'
 require 'common/Tiger.rb'
 
 # AB: copy a stored copy of a parse tree since we do no parsing.

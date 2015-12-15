@@ -3,8 +3,9 @@
 # require 'common/salsa_tiger_xml/syn_node'
 # require 'common/SalsaTigerXMLHelper'
 
-require 'common/AbstractSynInterface'
+# require 'common/AbstractSynInterface'
 
+require 'frappe/syn_interpreter'
 ################################################
 # Interpreter class
 class CollinsTntInterpreter < SynInterpreter

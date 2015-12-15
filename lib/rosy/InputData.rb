@@ -33,6 +33,7 @@ class InputData
     @exp = exp_object
     @dataset = dataset
     @interpreter_class = interpreter_class
+    raise 'BumBamBim!!!' if @interpreter_class.nil?
     @input_dir = input_dir
     # store information about failed parses here
     @failed_parses = FailedParses.new()

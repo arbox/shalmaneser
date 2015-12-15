@@ -31,7 +31,6 @@ require "common/ruby_class_extensions"
 # Please enter additional interfaces there.
 
 class SynInterfaces
-
   ###
   # class variable:
   # list of all known interface classes
@@ -46,22 +45,16 @@ class SynInterfaces
 
   ###
   # add interface/interpreter
-  def SynInterfaces.add_interface(class_name)
+  def self.add_interface(class_name)
     $stderr.puts "Initializing interface #{class_name}" if $DEBUG
     @@interfaces << class_name
   end
 
-  def SynInterfaces.add_interpreter(class_name)
+  def self.add_interpreter(class_name)
     $stderr.puts "Initializing interpreter #{class_name}" if $DEBUG
     @@interpreters << class_name
   end
 
-  # AB: fake method to preview the interfaces table.
-  def SynInterfaces.explore
-    $stderr.puts "Exploring..."
-    $stderr.puts @@interfaces
-    $stderr.puts @@interpreters
-  end
   ###
   # check_interfaces_abort_if_missing:
   #
@@ -111,14 +104,15 @@ class SynInterfaces
   #  where the 1st element is either 'interface' or 'interpreter',
   #  and the 2nd element is a hash mapping services to system names:
   #  the services that could not be provided
-  def SynInterfaces.some_system_missing?(exp) # FrPrepConfigData object
+  # @param [FrPrepConfigdata] exp FrPrepConfigData object
+  def self.some_system_missing?(exp)
 
     services = SynInterfaces.requested_services(exp)
 
     # check interfaces
     services.each_pair { |service, system_name|
       unless SynInterfaces.get_interface(service, system_name)
-        return ["interface", {service => system_name} ]
+        return ["interface", {service => system_name}]
       end
     }
 
@@ -139,29 +133,24 @@ class SynInterfaces
   # service: string: service, e.g. parser
   #
   # returns: SynInterface class
-  def SynInterfaces.get_interface(service,
-                                  system)
-
+  def self.get_interface(service, system)
     # try to find an interface class with the given
     # name and service
     @@interfaces.each { |interface_class|
-      if interface_class.system == system and
-          interface_class.service == service
+      if interface_class.system == system && interface_class.service == service
         return interface_class
       end
     }
 
     # at this point, detection of a suitable interface class has failed
-    return nil
+    nil
   end
 
   ###
   # helper for get_interpreter:
-  def SynInterfaces.get_interpreter_according_to_exp(exp)
+  def self.get_interpreter_according_to_exp(exp)
     return SynInterfaces.get_interpreter(SynInterfaces.requested_services(exp))
   end
-
-
 
   ###
   # given the names and services of a set of systems,
@@ -224,7 +213,7 @@ class SynInterfaces
   #  the service with the given name has been requested in
   #  the experiment file, and the names of the systems to be used
   #  for performing the service
-  def SynInterfaces.requested_services(exp)
+  def self.requested_services(exp)
     retv = {}
 
     [
@@ -241,8 +230,7 @@ class SynInterfaces
   end
 end
 
-
-# AB: TODO We should require programmatically all files in
+# @todo AB: We should require programmatically all files in
 # <frappe/interpreters> and <frappe/interfaces>.
 require 'frappe/interfaces/collins_interface'
 require 'frappe/interpreters/collins_treetagger_interpreter'
@@ -254,24 +242,4 @@ require 'frappe/interpreters/stanford_interpreter'
 require 'frappe/interfaces/treetagger_interface'
 require 'frappe/interfaces/treetagger_pos_interface'
 require 'frappe/interpreters/treetagger_interpreter'
-
-class EmptyInterpreter < SynInterpreter
-  EmptyInterpreter.announce_me
-
-  ###
-  # systems interpreted by this class:
-  # returns a hash service(string) -> system name (string),
-  # e.g.
-  # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def EmptyInterpreter.systems
-    {}
-  end
-
-  ###
-  # names of additional systems that may be interpreted by this class
-  # returns a hash service(string) -> system name(string)
-  # same as names()
-  def SynInterpreter.optional_systems
-    {}
-  end
-end
+require 'frappe/interpreters/empty_interpreter'

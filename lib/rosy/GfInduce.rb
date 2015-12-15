@@ -28,7 +28,7 @@ class GfiGfPathMapping
     # hash: POS(string) -> hash gf(string) -> hash: path_string -> frequency(int)
     @gf_to_paths = Hash.new
 
-    # hash: POS(string)-> hash: gf(string) -> hash: one edge of a path -> 
+    # hash: POS(string)-> hash: gf(string) -> hash: one edge of a path ->
     #  frequency(int) | hash: one edge of a path -> ...
     @gf_to_edgelabel = Hash.new
 
@@ -100,7 +100,7 @@ class GfiGfPathMapping
   def finish_inducing()
     # make sure gf_to_edgelabel is empty at the start
     @gf_to_edgelabel.clear()
-    
+
     @gf_to_paths.each_pair { |pos, gf_to_paths_to_freq|
       unless @gf_to_edgelabel[pos]
         @gf_to_edgelabel[pos] = Hash.new()
@@ -115,7 +115,7 @@ class GfiGfPathMapping
             $stderr.puts "found empty path for #{gf}, frequency #{freq}. Skipping."
             next
           end
-        
+
           if freq >= 5 or
               gf =~ /Head|Appositive|Quant|Protagonist/
             # path frequent enough: list it
@@ -123,7 +123,7 @@ class GfiGfPathMapping
             unless @gf_to_edgelabel[pos][gf]
               @gf_to_edgelabel[pos][gf] = Hash.new()
             end
-            
+
             enter_path(@gf_to_edgelabel[pos][gf], steps.clone(), freq)
           end
         }
@@ -151,12 +151,12 @@ class GfiGfPathMapping
 #           puts "#{path_s} freq:#{freq} len:#{@pathstring_to_path[path_s].length()}"
 #         }
 #       }
-#     }  
+#     }
     @gf_to_paths.each_key { |pos|
       @gf_to_paths[pos].each_key { |gf|
         puts "================"
         puts "POS #{pos} GF #{gf}:"
-  
+
         @gf_to_paths[pos][gf].values.uniq.sort { |a, b| b <=> a}.each { |frequency|
           sum = 0
           count = 0
@@ -167,7 +167,7 @@ class GfiGfPathMapping
             end
           }
           avg_pathlen = sum.to_f / count.to_f
-          
+
           puts "     Frequency #{frequency}: #{count} path(s)"
           puts "                  #{avg_pathlen} avg. path len"
         }
@@ -193,7 +193,7 @@ class GfiGfPathMapping
   end
 
   #########################################
-  # Restricting induced mappings 
+  # Restricting induced mappings
   # to achieve better mappings
   #########################################
 
@@ -249,7 +249,7 @@ class GfiGfPathMapping
   # by comparing paths in the parse tree
   # against the GF/path mappings stored in @gf_to_edgelabel
   #
-  # returns: 
+  # returns:
   # hash: SynNode -> tuple [GF(string), preposition(string), frequency(integer)]
   def potential_gfs_of_node(start_node,  # SynNode
                             lemma,       # string: lemma for start_node
@@ -257,7 +257,7 @@ class GfiGfPathMapping
 
 
     # determine possible GFs of a SynNode:
-    # 
+    #
     # hash: SynNode(some node in this sentence) -> list of tuples [gf label, prep, headcat, hash of steps]
     # initialize with just the entry for the start node
     potential_gfs = Hash.new
@@ -292,7 +292,7 @@ class GfiGfPathMapping
         # shouldn't be here, but never mind, just ignore
         next
       end
-      
+
       # surrounding_nodes returns a list of pairs [SynNode, Path object]
       @interpreter.surrounding_nodes(prev_node, true).each { |node, path|
         myprep = @interpreter.preposition(node)
@@ -315,7 +315,7 @@ class GfiGfPathMapping
         unless potential_gfs[node]
           potential_gfs[node] = Array.new
         end
-      
+
         path.each_step() { |step|
           # each edge from prev_node to node:
           # see whether we can walk this edge to reach some of the GFs
@@ -326,7 +326,7 @@ class GfiGfPathMapping
           potential_gfs[prev_node].each { |gf, prep, headcat, hash|
 
             if hash[step_s]
-              # yes, there is still a possibility of reaching gf 
+              # yes, there is still a possibility of reaching gf
               # from our current node
 
               if hash[step_s].kind_of? Integer
@@ -335,7 +335,7 @@ class GfiGfPathMapping
                 # this path has led to this GF in the FN data
 
                 freq = hash[step_s]
-                
+
                 # check whether node has the right preposition
                 # and the right head category
                 if myprep != prep or
@@ -351,13 +351,13 @@ class GfiGfPathMapping
                   # or the old frequency was lower than the current one:
                   # keep the new entry
                   node_to_label_and_freq[node] = [gf, prep, freq]
-                  
+
                 else
-                  # this node has been assigned a GF before, and the 
+                  # this node has been assigned a GF before, and the
                   # other frequency was higher:
                   # discard the current entry
                 end
-                
+
               else
                 # we have not yet reached gf, but we still might
                 # at the next node we meet from here
@@ -401,7 +401,7 @@ class GfiGfPathMapping
   #      direction, edgelabel, nodelabel
   #
   # returns: string, the key
-  def string_step(step) 
+  def string_step(step)
     direction = step[0]
     edgelabel = step[1]
     nodelabel = step[2]
@@ -421,7 +421,7 @@ class GfiGfPathMapping
                  frequency)  # integer: frequency of this mapping
     # take off first chain link
     key = string_step(chainlinks.shift())
-    
+
     if chainlinks.empty?
       # that was the last link, actually
       hash[key] = frequency
@@ -430,9 +430,9 @@ class GfiGfPathMapping
       unless hash[key]
         hash[key] = Hash.new()
       end
-      
+
       if hash[key].kind_of? Integer
-        # there is a shorter path for the same GF, 
+        # there is a shorter path for the same GF,
         # ending at the point where we are now.
         # which frequency is higher?
         if frequency > hash[key]
@@ -441,7 +441,7 @@ class GfiGfPathMapping
           return
         end
       end
-      
+
       enter_path(hash[key], chainlinks, frequency)
     end
   end
@@ -457,7 +457,7 @@ class GfiGfPathMapping
   def print_entries(hash, num_spaces)
     hash.each_pair { |first_link, rest|
       print " "*num_spaces, first_link
-      
+
       if rest.kind_of? Integer
         puts "  #{rest}"
       else
@@ -468,7 +468,7 @@ class GfiGfPathMapping
   end
 
   #########################################
-  # Restricting induced mappings 
+  # Restricting induced mappings
   # to achieve better mappings
   #########################################
 
@@ -498,11 +498,11 @@ class GfiGfPathMapping
 
   ###
   # recursive function:
-  # if the argument is a hash and 
+  # if the argument is a hash and
   # the remaining path length is 0, kill all entries
   # else go into recursion for all entries with reduced path length
   def restrict_pathhash_len(hash_or_val,  # path hash or integer freq
-			    n)            # restrict paths from what length?
+                            n)            # restrict paths from what length?
     if hash_or_val.kind_of? Integer
       return
     end
@@ -513,7 +513,7 @@ class GfiGfPathMapping
       hash_or_val.keys.each { |k| hash_or_val.delete(k) }
     else
       hash_or_val.each_value { |next_hash|
-	restrict_pathhash_len(next_hash, n-1)
+        restrict_pathhash_len(next_hash, n-1)
       }
     end
   end
@@ -525,9 +525,9 @@ class GfiGfPathMapping
   ###
   # given a lemma,
   # look in its list of all GFs that we have ever found for that lemma
-  # 
+  #
   # returns: array of pairs [gf label, point in gf_to_edgelabel hash]
-  #   all the labels of GFs of this word, 
+  #   all the labels of GFs of this word,
   #   and for each GF, the matching GF-to-path hash
   def potential_gfs_of_lemma(lemma, pos)
 
@@ -591,7 +591,7 @@ class GfiSubcatFrames
     unless @include_sem
       frame = nil
     end
-    
+
     unless @word_to_subcatframes[lemmapos]
       @word_to_subcatframes[lemmapos] = Array.new
     end
@@ -601,7 +601,7 @@ class GfiSubcatFrames
     #
     # multiplicity is either "one" or "many", depending on
     # the number of times the same gf/prep pair occurred.
-    # If the same gf/prep pair occurred with different FEs, they 
+    # If the same gf/prep pair occurred with different FEs, they
     # will be concatenated into a space-separated string
     # with a single subcat entry
     count_gfprep = Hash.new(0)
@@ -609,19 +609,19 @@ class GfiSubcatFrames
 
     scf.each { |gf, prep, fe|
       count_gfprep[[gf, prep]] += 1
-	unless gfprep_to_fe[[gf, prep]]
-	  gfprep_to_fe[[gf, prep]] = Array.new
-	end
-	unless gfprep_to_fe[[gf, prep]].include?(fe)
-	  gfprep_to_fe[[gf, prep]] << fe
-	end
+        unless gfprep_to_fe[[gf, prep]]
+          gfprep_to_fe[[gf, prep]] = Array.new
+        end
+        unless gfprep_to_fe[[gf, prep]].include?(fe)
+          gfprep_to_fe[[gf, prep]] << fe
+        end
     }
     subcatframe = count_gfprep.to_a.map { |gfprep, count|
       gf, prep = gfprep
       if @include_sem
-	fe = gfprep_to_fe[[gf, prep]].join(" ")
+        fe = gfprep_to_fe[[gf, prep]].join(" ")
       else
-	fe = nil
+        fe = nil
       end
       if count == 1
         [gf, prep, fe, "one"]
@@ -632,7 +632,7 @@ class GfiSubcatFrames
       if a[0] != b[0]
         # compare GF
         a[0] <=> b[0]
-      else 
+      else
         # compare prep
         a[1].to_s <=> b[1].to_s
       end
@@ -658,7 +658,7 @@ class GfiSubcatFrames
       puts word
       frames_and_mappings.each { |frame, subcatframe|
         puts "\t#{frame} "+ subcatframe.to_a.map { |gf, prep, fe, freq| "[#{gf}]:#{prep}:#{fe}:#{freq}" }.join(" ")
-	puts "\t\tfreq #{@subcat_to_freq[string_subcatframe(subcatframe)]}"
+        puts "\t\tfreq #{@subcat_to_freq[string_subcatframe(subcatframe)]}"
       }
     }
     puts
@@ -686,11 +686,11 @@ class GfiSubcatFrames
   # hash: SynNode -> tuple [GF(string), preposition(string), frequency(integer)]
   #
   # strict: boolean. If true, return only those subcat frames that exactly match
-  #   all GFs listed in node_to_gf. If false, also return subcat frames that 
+  #   all GFs listed in node_to_gf. If false, also return subcat frames that
   #   match a subset of the GFs mentioned in node_to_gf.
-  # 
-  # returns: list of tuples [frame(string), subcat frame, frequency(integer)], 
-  # where a subcat frame is an array of tuples 
+  #
+  # returns: list of tuples [frame(string), subcat frame, frequency(integer)],
+  # where a subcat frame is an array of tuples
   # [gf (string), prep(string or nil), fe(string), synnodes(array:SynNode)]
   #    and the syn_nodes are sorted by confidence, best first
   def match(start_node, # SynNode
@@ -703,8 +703,8 @@ class GfiSubcatFrames
       return []
     end
 
-#     $stderr.puts "HIER4 GFs found: " + node_to_gf.values.map { |gf, prep, freq| 
-#       "#{gf}:#{prep}" 
+#     $stderr.puts "HIER4 GFs found: " + node_to_gf.values.map { |gf, prep, freq|
+#       "#{gf}:#{prep}"
 #     }.join(" ")
 #     $stderr.puts "HIER5 GF possible: (#{@word_to_subcatframes[string_lemmapos(lemma, pos)].length()})"
 #     @word_to_subcatframes[string_lemmapos(lemma, pos)].each { |frame, scf|
@@ -714,12 +714,12 @@ class GfiSubcatFrames
 #       $stderr.puts
 #     }
 
-    # word_to_subcatframes: 
+    # word_to_subcatframes:
     # hash: lemma(string) -> array:[frame(string), subcatframe]
     #  with subcatframe: array of tuples [gf, prep, fe, multiplicity]
     scf_list = @word_to_subcatframes[string_lemmapos(lemma, pos)].map { |frame, subcatframe|
       [
-        frame, 
+        frame,
         # returns: array of tuples [gf, prep, fe, syn_nodes]
         match_subcat(subcatframe, node_to_gf, strict),
         @subcat_to_freq[string_subcatframe(subcatframe)]
@@ -745,7 +745,7 @@ class GfiSubcatFrames
   ###
   # given a subcat frame and a hash mapping each node to a gf/prep pair,
   # check whether the node/gf mapping matches the subcat frame.
-  # Match: 
+  # Match:
   # * for each node/gf mapping, the GF/prep occurs in the subcat frame
   #   (But if there are many nodes for the same GF/prep and
   #    multiplicity is "one", nodes may be discarded.)
@@ -756,7 +756,7 @@ class GfiSubcatFrames
   # node_to_gf:
   #   hash: SynNode -> tuple [GF(string), preposition(string), frequency(integer)]
   #
-  # returns: 
+  # returns:
   #  nil on mismatch.
   #  match: copy of the subcat frame, each entry minus multiplicity but plus matching syn nodes
   def match_subcat(subcatframe,  # array of tuples as described above
@@ -764,7 +764,7 @@ class GfiSubcatFrames
                    strict)       # boolean: strict match, or subseteq match?
 
     # each node of the node -> gf hash:
-    # check whether the GF of the node->gf mapping 
+    # check whether the GF of the node->gf mapping
     # occurs in the subcat frame
     # if it does, remember it in entry_to_nodes
     # if it does not, regard the match as failed
@@ -795,23 +795,23 @@ class GfiSubcatFrames
 
 
     subcatframe.each { |gf, prep, fe, multiplicity|
-    
+
       # opposite direction:
       # see if all slots of the subcat frame have been matched against at least one SynNode,
       # otherwise discard
       unless entry_to_nodes[[gf, prep]]
         return nil
       end
-      
+
       # only one node to be returned for this slot:
       # use the one with the highest frequency for its gf->path mapping
       if multiplicity == "one" and entry_to_nodes[[gf, prep]].length() > 1
-	# sort nodes by the frequency
-	# entries in node_to_gf,
-	# then keep only the <multiplicity> first ones
-	entry_to_nodes[[gf, prep]] = entry_to_nodes[[gf, prep]].sort { |node1, node2|
-	  node_to_gf[node2].last <=> node_to_gf[node1].last
-	}.slice(0, 1)
+        # sort nodes by the frequency
+        # entries in node_to_gf,
+        # then keep only the <multiplicity> first ones
+        entry_to_nodes[[gf, prep]] = entry_to_nodes[[gf, prep]].sort { |node1, node2|
+          node_to_gf[node2].last <=> node_to_gf[node1].last
+        }.slice(0, 1)
       end
     }
 
@@ -819,7 +819,7 @@ class GfiSubcatFrames
     return subcatframe.map { |gf, prep, fe, multiplicity|
       # sort "many" nodes by the frequency of their gf->path mapping
       [
-        gf, prep, fe, 
+        gf, prep, fe,
         entry_to_nodes[[gf, prep]].sort { |node1, node2|
           node_to_gf[node2].last <=> node_to_gf[node1].last
         }
@@ -850,7 +850,7 @@ class GfiSubcatFrames
 
     return subcatframe.map { |gf, prep, fes, count| "#{gf} #{prep} #{count}" }.sort.join(", ")
   end
-  
+
   # subcatframe to string
   #
   # here: we have a list of SynNodes instead of the multiplicity
@@ -879,7 +879,7 @@ class GfInduce
   # include_sem: if true, keep frame name and FE name
   # as part of the subcat frame. if false, don't keep them
   def initialize(interpreter_class, # SynInterpreter class
-		 include_sem = false)# boolean
+                 include_sem = false)# boolean
 
     @interpreter = interpreter_class
     @gf_path_map = GfiGfPathMapping.new(interpreter_class)
@@ -927,7 +927,7 @@ class GfInduce
 
   ###
   # induce path -> gf mapping from the given SalsaTigerSentence object
-  # 
+  #
   # Assumption: sent contains semantic annotation: FrameNet frames
   # and the FEs of the frames have information on grammatical function (gf)
   # and phrase type (pt) of the phrase that the FE points to
@@ -938,7 +938,7 @@ class GfInduce
     # induce GFs from each frame of the sentence
     sent.each_frame { |frame|
       unless frame.target
-        # frame without a target: 
+        # frame without a target:
         # nothing I can do
         next
       end
@@ -975,14 +975,14 @@ class GfInduce
 
           # store the mapping
           @gf_path_map.store_mapping(gfpt, path, syn_node, targetlemma, targetpos)
-        
+
           # preposition?
           prep = @interpreter.preposition(syn_node)
           if prep
             prep.downcase!
           end
 
-          # remember combination gfpt/prep/fe 
+          # remember combination gfpt/prep/fe
           # as part of the subcat frame
           subcatframe << [gfpt, prep, fe.name()]
         } # each syn node that the FE points to
@@ -1012,7 +1012,7 @@ class GfInduce
   end
 
   #########################################
-  # Restricting induced mappings 
+  # Restricting induced mappings
   # to achieve better mappings
   #########################################
 
@@ -1046,18 +1046,18 @@ class GfInduce
   ###
   # given a list of nodes (idea: they form a MWE together;
   #  may of course be a single node),
-  # determine all subcat frames, i.e. all consistent sets of grammatical functions, 
+  # determine all subcat frames, i.e. all consistent sets of grammatical functions,
   # for the main node among the nodelist.
   # For each subcat frame, potential FN frames and FE labels
   # are returned as well
   #
   # strict: boolean. If true, return only those subcat frames that exactly match
-  #   all GFs listed in node_to_gf. If false, also return subcat frames that 
+  #   all GFs listed in node_to_gf. If false, also return subcat frames that
   #   match a subset of the GFs mentioned in node_to_gf.
-  # 
   #
-  # returns: list of tuples [frame(string), subcat frame, frequency(integer)], 
-  # where a subcat frame is an array of tuples 
+  #
+  # returns: list of tuples [frame(string), subcat frame, frequency(integer)],
+  # where a subcat frame is an array of tuples
   # [gf (string), prep(string or nil), fe(string), synnodes(array:SynNode)]
   def apply(nodelist, # array:SynNode
             strict = false) # match: strict or subseteq?
@@ -1082,7 +1082,7 @@ class GfInduce
 
     return @subcat_frames.match(mainnode, lemma, pos, node_to_gf, strict)
   end
-  
+
 
   #########################################
   #########################################
@@ -1108,7 +1108,7 @@ class GfInduce
     # verb? then add the voice to the POS
     if (voice = @interpreter.voice(mainnode))
       pos = pos + "-" + voice
-    end    
+    end
     return [mainnode, lemma, pos]
   end
 

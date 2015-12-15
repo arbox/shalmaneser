@@ -14,7 +14,7 @@
 # rather than calling the tagger twice
 
 require 'tempfile'
-require 'common/AbstractSynInterface'
+# require 'common/AbstractSynInterface'
 require 'common/ISO-8859-1'
 require_relative 'treetagger_module'
 

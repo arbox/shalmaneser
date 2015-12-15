@@ -13,11 +13,11 @@ require "rosy/RosyTest"
 require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTrainingTestTable"
-require "rosy/RosyPruning"
+# require "rosy/RosyPruning"
 require "common/ML"
 
 # Frprep packages
-#require "common/prep_config_data"
+# require "common/prep_config_data"
 
 class RosyTrain < RosyTask
 

@@ -25,7 +25,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-#require "common/prep_config_data" # AB: what the fuck???
+# require "common/prep_config_data" # AB: what the fuck???
 
 ##########################################################################
 # classifier combination class

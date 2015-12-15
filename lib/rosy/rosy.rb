@@ -62,9 +62,10 @@ module Rosy
       # execute task
       begin
         task_obj.perform
-      rescue => e
-        puts e.backtrace
-        fail "Error during task execution: #{e.class}=>#{e.message}"
+      rescue
+        raise
+        # puts e.backtrace
+        # fail "Error during task execution: #{e.class}=>#{e.message}"
       ensure
         database.close
       end

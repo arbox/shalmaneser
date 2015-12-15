@@ -1,8 +1,8 @@
 # coding: utf-8
-require 'common/headz'
+
 # require 'common/SalsaTigerRegXML'
 require 'common/ruby_class_extensions'
-require 'common/AbstractSynInterface'
+# require 'common/AbstractSynInterface'
 
 # @todo Delete the module and include all methods on the class level
 #       into the Tiger class.
@@ -598,6 +598,8 @@ module TigerMaxProjection
   end
 end
 
+require 'common/headz'
+require 'frappe/syn_interpreter'
 ###########################################################3
 class Tiger < SynInterpreter
 

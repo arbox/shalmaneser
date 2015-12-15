@@ -20,13 +20,13 @@ require 'common/configuration/prep_config_data'
 
 # Rosy packages
 require "rosy/FailedParses"
-require "rosy/FeatureInfo"
+# require "rosy/FeatureInfo"
 # require "common/RosyConventions"
 require 'rosy/var_var_restriction'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
-require "rosy/RosyTrainingTestTable"
-require "rosy/View"
+# require "rosy/RosyTrainingTestTable"
+# require "rosy/View"
 
 class RosySplit < RosyTask
 
@@ -78,7 +78,9 @@ class RosySplit < RosyTask
       $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
       exit 1
     end
-    preproc_exp = Shalmaneser::Configuration::FrPrepConfigData.new(preproc_filename)
+
+    # @todo Add features for Rosy and delete this dependency.
+    preproc_exp = ::Shalmaneser::Configuration::FrPrepConfigData.new(preproc_filename)
     @exp.adjoin(preproc_exp)
 
     # announce the task

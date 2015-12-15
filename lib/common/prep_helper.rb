@@ -7,7 +7,7 @@ require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
 require "common/ruby_class_extensions"
-require "common/AbstractSynInterface"
+# require "common/AbstractSynInterface"
 
 ############################################3
 # Module FrprepHelper:

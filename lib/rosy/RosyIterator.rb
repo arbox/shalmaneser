@@ -26,11 +26,11 @@
 
 require 'common/ruby_class_extensions'
 
-require 'rosy/View'
+# require 'rosy/View'
 # require "common/RosyConventions"
 require 'common/value_restriction'
 require 'db/select_table_and_columns'
-require "rosy/RosyPruning"
+# require "rosy/RosyPruning"
 require "rosy/RosySplit"
 require "rosy/RosyTrainingTestTable"
 

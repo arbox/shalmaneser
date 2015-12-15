@@ -214,6 +214,7 @@ class RosyFeaturize < RosyTask
     # make features for each instance:
     # features that can be computed from this instance alone
 
+    # @todo AB: Change this to my logger!
     `echo "[#{Time.now().to_s}] Featurize: Start phase 1 feature extraction" >> #{log_filename}`
 
     @input_obj.each_instance_phase1 { |feature_list| # list of pairs [column_name(string), value(whatever)]

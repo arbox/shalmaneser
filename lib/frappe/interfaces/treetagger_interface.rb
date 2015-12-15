@@ -1,5 +1,5 @@
-require 'common/AbstractSynInterface'
 require_relative 'treetagger_module'
+require 'frappe/syn_interface_tab'
 require 'common/ISO-8859-1'
 require 'tempfile'
 

@@ -104,7 +104,8 @@ class FilePartsParser
 	  @readCompletely = true
 	  break
 	else
-	  @head = @head << line
+	  # @todo Edit this horror!
+          @head = @head << line
 	end
       end
     rescue EOFError
