@@ -1,4 +1,7 @@
 # AB: 2013-12-25
+
+require_relative 'tiger'
+
 class StanfordInterpreter < Tiger
   StanfordInterpreter.announce_me
 

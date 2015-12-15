@@ -6,6 +6,7 @@ require 'frappe/FNCorpusXML'
 require 'frappe/FNDatabase'
 
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
+require 'common/salsa_tiger_xml/file_parts_parser'
 
 require 'common/logger'
 require 'common/definitions'

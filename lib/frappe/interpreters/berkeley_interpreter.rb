@@ -1,4 +1,6 @@
 # AB: 2013-12-25
+require_relative 'tiger'
+
 class BerkeleyInterpreter < Tiger
   BerkeleyInterpreter.announce_me
 
@@ -18,5 +20,4 @@ class BerkeleyInterpreter < Tiger
   def self.optional_systems
     {"lemmatizer" => "treetagger", 'pos_tagger' => 'treetagger'}
   end
-
 end

@@ -1,3 +1,5 @@
+# @note AB: This interpreter is used by Rosy.
+#   Don't know what for.
 class EmptyInterpreter < SynInterpreter
   EmptyInterpreter.announce_me
 

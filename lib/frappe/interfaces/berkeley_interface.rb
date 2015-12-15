@@ -16,7 +16,7 @@ require "common/TabFormat"
 require 'frappe/counter'
 
 # require "common/AbstractSynInterface"
-require "common/tiger"
+# require "common/tiger"
 
 ################################################
 # Interface class

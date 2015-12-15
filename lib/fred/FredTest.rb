@@ -10,7 +10,6 @@
 require "tempfile"
 
 # Salsa packages
-require "common/Parser"
 require "common/RegXML"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
@@ -24,6 +23,8 @@ require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
+
+require 'common/salsa_tiger_xml/file_parts_parser'
 
 class FredTest
 

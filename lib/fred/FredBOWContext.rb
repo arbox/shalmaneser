@@ -20,6 +20,8 @@ require "fred/FredDetermineTargets"
 require 'db/db_interface'
 require 'db/sql_query'
 
+require 'common/salsa_tiger_xml/file_parts_parser'
+
 ########################################
 # Context Provider classes:
 # read in text, collecting context windows of given size

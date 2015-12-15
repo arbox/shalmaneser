@@ -1,9 +1,9 @@
 # Salsa packages
 require "common/ISO-8859-1"
-require "common/Parser"
 require "common/RegXML"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
+require 'common/salsa_tiger_xml/file_parts_parser'
 require "common/SalsaTigerXMLHelper"
 require "common/TabFormat"
 require "common/ruby_class_extensions"

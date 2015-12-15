@@ -1,5 +1,4 @@
 # coding: utf-8
-
 # require 'common/SalsaTigerRegXML'
 require 'common/ruby_class_extensions'
 # require 'common/AbstractSynInterface'
@@ -600,7 +599,9 @@ end
 
 require 'common/headz'
 require 'frappe/syn_interpreter'
-###########################################################3
+
+# @todo AB: [2015-12-16 Wed 00:05]
+#   Rename this class to TigerInterpreter.
 class Tiger < SynInterpreter
 
   extend TigerMaxProjection
@@ -1299,17 +1300,6 @@ class Tiger < SynInterpreter
     if n_arr.length() > 0
       nodes << ["SB", n_arr.first]
     end
-
-#extrem frustrierend , sondern auch schÃ¤dlich
-#sagte
-#DÃ¤ubler-Gmelin
-#&apos;&apos;
-#die gesamte SPD
-#nicht nur fÃ¼r Euch extrem frustrierend , sondern auch schÃ¤dlich fÃ¼r die gesamte SPD &apos;&apos; gewesen
-#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern
-#gewesen
-#die Streitigkeiten zwischen FÃ¼hrungsmitgliedern
-#frustrierend
 
     # direct object:
     n_arr = Tiger.direct_object(verb_node)

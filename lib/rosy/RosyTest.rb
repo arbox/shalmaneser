@@ -8,10 +8,9 @@
 require "tempfile"
 require 'fileutils'
 
-# Salsa packages
-require "common/Parser"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
+require 'common/salsa_tiger_xml/file_parts_parser'
 require "common/SynInterfaces"
 require "common/ruby_class_extensions"
 
