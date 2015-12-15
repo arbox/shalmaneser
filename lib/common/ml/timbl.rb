@@ -3,14 +3,10 @@
 
 # contract for Learner classes:
 
-
 class Timbl
-  
   def initialize(program_path, parameters)
-    
-#    @timblpath="/proj/llx/Software/MachineLearning/Timbl5/Timbl "
 
-    @timblpath = File.join(program_path,"Timbl")
+    @timblpath = File.join(program_path, "Timbl")
     unless @timblpath =~ /\s$/
       # path must end in space so we can just attach parameters
       @timblpath << " "
@@ -36,7 +32,7 @@ class Timbl
     outfile.close
   end
 
-  def train(infile,classifier_location)                  # lazy learning: for training, store the 
+  def train(infile,classifier_location)                  # lazy learning: for training, store the
                                                          # instancebase as a tree (TiMBL -I / -i option)
     # figure out how many features we have
     f = File.new(infile)
@@ -70,17 +66,17 @@ class Timbl
     %x{cp #{@instancebase} #{classifierfile}} # store training data as "modelfile"
     File.chmod(0664,classifierfile)
   end
-  
+
   def apply(infile,outfile)
     temp_outfile = outfile+".temp"
-    successfully_run(@timblpath+@params+" -i "+@instancebase+" -t "+infile+" -o "+temp_outfile)    
-    
+    successfully_run(@timblpath+@params+" -i "+@instancebase+" -t "+infile+" -o "+temp_outfile)
+
     # if we have an empty input file, timbl will not produce an output file
-    unless FileTest.exists?(temp_outfile)      
+    unless FileTest.exists?(temp_outfile)
 #      STDERR.puts "[Timbl] Warning: Timbl failed to produce an outfile."
       return false
     end
-    
+
     # no error
     timbl_out_to_malouf_out(temp_outfile,outfile)
     File.unlink(temp_outfile)
@@ -92,7 +88,7 @@ class Timbl
 #      STDERR.puts "[Timbl] Warning: Final outfile could not be produced."
       return false
     end
-      
+
   end
 
   #####
@@ -127,7 +123,7 @@ class Timbl
 
     return retv
   end
-  
+
   #########################
   private
 

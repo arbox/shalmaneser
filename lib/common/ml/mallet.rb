@@ -12,8 +12,8 @@ class Mallet
 
   ###
   def initialize(program_path,parameters)
-    
-    if parameters.empty?	
+
+    if parameters.empty?
       puts "Error: Mallet needs two paths (first the location of mallet itself and then the location of the interface, usually program/tools/mallet)."
       puts "I got only the program path."
       Kernel.exit
@@ -24,11 +24,11 @@ class Mallet
     unless @malletpath =~ /\/$/
       @malletpath = @malletpath + "/"
     end
-    
+
     @learner = "MaxEnt,gaussianPriorVariance=1.0"
 
     # classpath for mallet
-    
+
     @cp = "#{ENV["CLASSPATH"]}:#{@malletpath}class:#{@malletpath}lib/bsh.jar"
 
   end
@@ -48,8 +48,8 @@ class Mallet
     end
 
     command1 = [@malletpath+"bin/csv2vectors ",
-		    " --input ",csvfile.path,
-		    " --output ",@mallet_train_vectors].join("")
+                    " --input ",csvfile.path,
+                    " --output ",@mallet_train_vectors].join("")
 
     command2 = ["cd #{@interface_path}; ",
                 "java -cp #{@cp} -Xmx1000m Train ",
@@ -94,8 +94,8 @@ class Mallet
       return false
     end
     return true
-  end  
-  
+  end
+
   ###
   def apply(infilename,outfilename)
     unless @classifier_mallet_path and @mallet_train_vectors
@@ -122,7 +122,7 @@ class Mallet
 
     tempfile = Tempfile.new("mallet")
     tempfilename = tempfile.path
-    unless File.copy(@mallet_train_vectors,tempfilename)    
+    unless File.copy(@mallet_train_vectors,tempfilename)
       return false
     end
 
@@ -137,7 +137,7 @@ class Mallet
     end
 
     File.safe_unlink(tempfilename)
-    
+
     # some error in encoding?
     unless FileTest.exists?(test_mallet_path)
       return false
@@ -148,7 +148,7 @@ class Mallet
                 @classifier_mallet_path," ",
                 test_mallet_path," ",
                 "> ",outfilename].join("")
-    
+
     # classify
 #    $stderr.puts "Mallet classify: " + command2
     unless    successfully_run(command2)
@@ -200,7 +200,7 @@ class Mallet
     return retv
   end
 
-  
+
   ###################################
   private
 
@@ -209,7 +209,7 @@ class Mallet
   # input: features separated by comma
   # output:
   # line_number classlabel features_joined_by_spaces
-  def c45_to_csv(inpipe,outpipe) 
+  def c45_to_csv(inpipe,outpipe)
     idx = 0
     while (line = inpipe.gets)
       line.chomp!
@@ -217,7 +217,7 @@ class Mallet
       la = line.split(",")
       label = la.pop
       if label[-1,1] == "."
-	label.chop!
+        label.chop!
       end
       outpipe.puts [idx,label].join(" ")+" "+la.join(" ")
     end

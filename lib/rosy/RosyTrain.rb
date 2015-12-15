@@ -14,7 +14,7 @@ require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTrainingTestTable"
 # require "rosy/RosyPruning"
-require "common/ML"
+require 'common/ml/classifier'
 
 # Frprep packages
 # require "common/prep_config_data"

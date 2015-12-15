@@ -17,7 +17,7 @@ require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/ruby_class_extensions"
 
 # Shalmaneser packages
-require "common/ML"
+require 'common/ml/classifier'
 require "fred/Baseline"
 require 'fred/FredConventions' # !
 require "fred/FredDetermineTargets"

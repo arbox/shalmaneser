@@ -4,24 +4,29 @@
 # all you need to do is to write the appropriate learner class
 # and insert them in the initialize routine here in ML()
 #
-# available at the moment: 
-# * timbl (memory-based learner) 
+# available at the moment:
+# * timbl (memory-based learner)
 # * mallet-maxent (another maxent system)
 # * maxent (the OpenNLP maxent system)
 
 # part of contract: learner is not initialised unless it is either trained or read
 
-require "common/Optimise"
+# @note AB: This is only a remark about dynamic requirement below.
+# require_relative 'timbl'
+# require_relative 'mallet'
+# require_relative 'maxent'
+
+require_relative 'optimize'
 
 class Classifier
 
   @@learners = [
-    ["timbl", "Timbl", "Timbl"],
-#    ["mallet", "Mallet", "Mallet"],
-    ["maxent", "Maxent", "Maxent"]
+    ["timbl", "timbl", "Timbl"],
+    ["mallet", "mallet", "Mallet"],
+    ["maxent", "maxent", "Maxent"]
   ]
 
-  def initialize(learner,params)
+  def initialize(learner, params)
 
     @ready = false
 
@@ -29,7 +34,7 @@ class Classifier
       params.shift
       @optimise = true
     else
-      @optimise = false      
+      @optimise = false
     end
 
     program_path = ""
@@ -52,16 +57,17 @@ class Classifier
       exit 1
     end
 
+    # @todo AB: Investigate, why this dynamic require is necessary.
     learner_name, learner_filename, learner_classname = learner_tuple
-    require "common/#{learner_filename}"
+    require_relative "#{learner_filename}"
     @learner = eval(learner_classname).new(program_path,params)
   end
 
   # a classifier can (and has to be) either trained or read
-  def train(trainfile, classifier_file=nil)    
+  def train(trainfile, classifier_file=nil)
     # train on the training data in trainfile
     # make sure we produce a valid file name
-    
+
     # it is possible to directly specify a filename for storing the classifier
 
     trainfile.gsub!(/[<>]/,"")
@@ -76,29 +82,29 @@ class Classifier
       File.delete(optimisedfile)
     else
       STDERR.puts "[ML] no feature optimisation"
-      @learner.train(trainfile,classifier_file)      
+      @learner.train(trainfile,classifier_file)
     end
     @ready = true
   end
 
-  
+
   # returns true iff reading the classifier from the file has had success
-  
+
   def read(classifier_file)
     # make sure we produce a valid file name
     classifier_file.gsub!(/[<>]/,"")
     classifier_file.gsub!(/ /,"_")
-    
-    # read file, if present    
-    
+
+    # read file, if present
+
     status = @learner.read(classifier_file)
-    
+
     # if reading has failed, return "false"
     unless status
       STDERR.puts "reading from #{classifier_file} did not succeed"
       return status
     end
-    
+
     # read optimisation, if desired
     if @optimise
       optimisations_filename = Optimise.recommended_filename(classifier_file)
@@ -106,17 +112,17 @@ class Classifier
         STDERR.puts "[ML] Error: attempted to read stored optimisation, but file does not exist"
         return false
       else
-	@optimiser = Optimise.new
+        @optimiser = Optimise.new
         @optimiser.init_from_file(optimisations_filename)
       end
     end
-    
+
     @ready = true
     return true
-    
+
   end
 
-  # a classifier can be stored somewhere. This can be more than one file (classifier-specific), 
+  # a classifier can be stored somewhere. This can be more than one file (classifier-specific),
   # but all files start with "classifier_file"
 
   def write(classifier_file)
@@ -138,11 +144,11 @@ class Classifier
     classifier_file.gsub!(/ /,"_")
     return @learner.exists?(classifier_file)
   end
-  
-  # a classifier can be applied 
+
+  # a classifier can be applied
 
   # returns true iff application has had success
-  
+
   def apply(testfile,outfile) # test either on the training or the test data in the specified dir
     # make sure we produce a valid file name
     testfile.gsub!(/[<>]/,"")
@@ -150,20 +156,19 @@ class Classifier
     # make sure we produce a valid file name
     outfile.gsub!(/[<>]/,"")
     outfile.gsub!(/ /,"_")
-    
+
     unless @ready
       STDERR.puts "[ML] Warning: learner not ready for testing! Must be trained or read."
       return false
-    end    
-    
+    end
+
     # do we have a testfile?
-    
     unless FileTest.exists?(testfile)
       STDERR.puts "[ML] Warning: could not find testfile (maybe empty test set?)."
       return false
     end
-    
-    if @optimise      
+
+    if @optimise
       optimisedfile = testfile+".opted"
       @optimiser.apply(testfile,optimisedfile)
       return @learner.apply(optimisedfile,outfile)
@@ -171,7 +176,6 @@ class Classifier
     else
       return @learner.apply(testfile,outfile)
     end
-    
   end
 
   ###
@@ -182,5 +186,4 @@ class Classifier
   def read_resultfile(file)
     return @learner.read_resultfile(file)
   end
-
 end

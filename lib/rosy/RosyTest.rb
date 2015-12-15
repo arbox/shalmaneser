@@ -17,7 +17,7 @@ require "common/ruby_class_extensions"
 
 # Rosy packages
 require "rosy/FeatureInfo"
-require "common/ML"
+require 'common/ml/classifier'
 require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
