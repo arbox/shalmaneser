@@ -1,7 +1,6 @@
 # Salsa packages
 require "common/ISO-8859-1"
-require "common/RegXML"
-# require "common/SalsaTigerRegXML"
+require 'common/salsa_tiger_xml/reg_xml'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/file_parts_parser'
 require "common/SalsaTigerXMLHelper"
@@ -111,10 +110,10 @@ module FrprepHelper
         # for each word, one line, entries in the line tab-separated
         # the 'word' entry is the word, the 'lu_sent_ids' entry is the sentence ID sentid,
         # all other entries (gf, pt, frame etc.) are not set
-	outfile.puts FNTabFormatFile.format_str({
-						  "word" => word,
-						  "sent_id" => sentid
-						})
+        outfile.puts FNTabFormatFile.format_str({
+                                                  "word" => word,
+                                                  "sent_id" => sentid
+                                                })
       }
       outfile.puts
     end
@@ -135,10 +134,10 @@ module FrprepHelper
   # example: split_all("/tmp/in","/tmp/out",".tab",2000,80)
 
   def FrprepHelper.split_dir(indir,
-			     outdir,
-			     suffix,
-			     sent_num,
-			     sent_leng=nil)
+                             outdir,
+                             suffix,
+                             sent_num,
+                             sent_leng=nil)
 
     unless indir[-1,1] == "/"
       indir += "/"
@@ -189,8 +188,8 @@ module FrprepHelper
           end
 
         else # for any other line
-	  line_stack << line
-	end
+          line_stack << line
+        end
       end
       infile.close
     }
@@ -212,7 +211,7 @@ module FrprepHelper
   # target lemma for all frames in the file
   # record that target lemma in the <target> element of each frame
   def FrprepHelper.note_salsa_targetlemma(old_dir, # string ending in /
-					  new_dir) # string ending in /
+                                          new_dir) # string ending in /
 
 
     # each input file: extract target lemma from filename,
@@ -221,34 +220,34 @@ module FrprepHelper
       changedfilename = new_dir + File.basename(filename)
 
       if File.basename(filename) =~ /^(.*?)[_\.]/
-	lemma = $1
+        lemma = $1
 
-	infile = FilePartsParser.new(filename)
-	outfile = File.new(changedfilename, "w")
+        infile = FilePartsParser.new(filename)
+        outfile = File.new(changedfilename, "w")
 
-	# write header
-	outfile.puts infile.head()
+        # write header
+        outfile.puts infile.head()
 
-	# iterate through sentences, yield as SalsaTigerSentence objects
-	infile.scan_s() { |sent_string|
-	  sent = SalsaTigerSentence.new(sent_string)
-	  sent.each_frame { |frame|
-	    frame.target.set_attribute("lemma", lemma)
-	  }
+        # iterate through sentences, yield as SalsaTigerSentence objects
+        infile.scan_s() { |sent_string|
+          sent = SalsaTigerSentence.new(sent_string)
+          sent.each_frame { |frame|
+            frame.target.set_attribute("lemma", lemma)
+          }
 
-	  # write changed sentence
-	  outfile.puts sent.get()
-	} # each sentence
+          # write changed sentence
+          outfile.puts sent.get()
+        } # each sentence
 
-	# write footer
-	outfile.puts infile.tail()
-	infile.close()
-	outfile.close()
+        # write footer
+        outfile.puts infile.tail()
+        infile.close()
+        outfile.close()
 
       else
-	# couldn't determine lemma
-	# just copy the file
-	`cp #{filename} #{changedfilename}`
+        # couldn't determine lemma
+        # just copy the file
+        `cp #{filename} #{changedfilename}`
       end
     }
   end
@@ -266,9 +265,9 @@ module FrprepHelper
   # assumes that all files in input_dir with
   # extension .xml are SalsaTigerXMl files
   def FrprepHelper.stxml_split_dir(input_dir, # string: input directory with STXML files
-				   split_dir, # string: output directory
-				   max_sentnum, # integer: max num of sentences per file
-				   max_sentlen) # integer: max num of terminals per sentence
+                                   split_dir, # string: output directory
+                                   max_sentnum, # integer: max num of sentences per file
+                                   max_sentlen) # integer: max num of terminals per sentence
 
     filenames = Dir[input_dir+"*.xml"].to_a
 
@@ -365,7 +364,7 @@ module FrprepHelper
 
         temp_subs.each {|orig_frameid, temp_frameid|
           this_frames.map! {|frame_str|
-	#print "orig ", orig_frameid, " temp ", temp_frameid, "\n"
+        #print "orig ", orig_frameid, " temp ", temp_frameid, "\n"
             frame_str.gsub(orig_frameid,temp_frameid)
           }
 
@@ -502,15 +501,15 @@ module FrprepHelper
         # modified by ines, 27/08/08
         # for Berkeley => convert ( ) to -LRB- -RRB-
 
-	text = $&
+        text = $&
         if exp.get("parser") == "berkeley"
           text.gsub!(/word='\('/, "word='*LRB*'")
           text.gsub!(/word='\)'/, "word='*RRB*'")
- 	  text.gsub!(/word=['"]``['"]/, "word='\"'")
-	  text.gsub!(/word=['"]''['"]/,  "word='\"'")
-	  text.gsub!(/word=['"]\&apos;\&apos;['"]/,  "word='\"'")
-	  #text.gsub!(/word=['"]\(['"]/,  "word='-LRB-'")
-	  #text.gsub!(/word=['"]\)['"]/,  "word='-RRB-'")
+          text.gsub!(/word=['"]``['"]/, "word='\"'")
+          text.gsub!(/word=['"]''['"]/,  "word='\"'")
+          text.gsub!(/word=['"]\&apos;\&apos;['"]/,  "word='\"'")
+          #text.gsub!(/word=['"]\(['"]/,  "word='-LRB-'")
+          #text.gsub!(/word=['"]\)['"]/,  "word='-RRB-'")
 
         end
       terminals = text
@@ -525,9 +524,9 @@ module FrprepHelper
 
 
         outfile.puts FNTabFormatFile.format_str({
-						  "word" => SalsaTigerXMLHelper.unescape(terminal.attributes["word"]),
-						  "sent_id" => sentid
-						})
+                                                  "word" => SalsaTigerXMLHelper.unescape(terminal.attributes["word"]),
+                                                  "sent_id" => sentid
+                                                })
       } # each terminal
       outfile.puts
     } # each sentence
@@ -544,7 +543,7 @@ module FrprepHelper
   # - FrameNet grammatical functions
   # - FrameNet POS of target
   def FrprepHelper.add_semantics_from_tab(st_sent,  # SalsaTigerSentence object
-					  tab_sent, # FNTabFormatSentence object
+                                          tab_sent, # FNTabFormatSentence object
                                           mapping,  # hash: tab lineno -> array:SynNode
                                           interpreter_class, # SynInterpreter class
                                           exp)      # FrprepConfigData
@@ -560,10 +559,10 @@ module FrprepHelper
       frame_name = tab_frame_obj.get_frame() # string
 
       if frame_name.nil? or frame_name =~ /^-*$/
-	# weird: a frame without a frame
-	$stderr.puts "Warning: frame entry without a frame in tab sentence #{st_sent.id}."
-	$stderr.puts "Skipping"
-	next
+        # weird: a frame without a frame
+        $stderr.puts "Warning: frame entry without a frame in tab sentence #{st_sent.id}."
+        $stderr.puts "Skipping"
+        next
       end
 
       frame_node = st_sent.add_frame(frame_name, tab_sent.get_sent_id() + "_f#{frame_index}")
@@ -572,24 +571,24 @@ module FrprepHelper
       # target
       target_nodes = Array.new
       tab_frame_obj.get_target_indices.each {|terminal_id|
-	if mapping[terminal_id]
-	  target_nodes.concat mapping[terminal_id]
-	end
+        if mapping[terminal_id]
+          target_nodes.concat mapping[terminal_id]
+        end
       }
 
       # let the interpreter class decide on how to determine the maximum constituents
       target_maxnodes = interpreter_class.max_constituents(target_nodes, st_sent)
       if target_maxnodes.empty?
-	# HIEr
-	STDERR.puts  "Warning: no target in frame entry, sentence #{st_sent.id}."
-	$stderr.puts "frame is #{frame_name}, frame no #{frame_index}"
-	$stderr.puts "Skipping."
-	$stderr.puts "target indices: " + tab_frame_obj.get_target_indices.join(", ")
+        # HIEr
+        STDERR.puts  "Warning: no target in frame entry, sentence #{st_sent.id}."
+        $stderr.puts "frame is #{frame_name}, frame no #{frame_index}"
+        $stderr.puts "Skipping."
+        $stderr.puts "target indices: " + tab_frame_obj.get_target_indices.join(", ")
         #tab_sent.each_line { |line|
         #  $stderr.puts line
-	#  $stderr.puts "--"
+        #  $stderr.puts "--"
         #}
-	next
+        next
       end
       frame_node.add_fe("target",target_maxnodes)
 
@@ -597,16 +596,16 @@ module FrprepHelper
       target_lemma = tab_frame_obj.get_target()
       target_pos = nil
       if target_lemma
-	if exp.get("origin") == "FrameNet"
-	  # FrameNet data: here the lemma in the tab file has the form
-	  # <lemma>.<POS>
-	  # separate the two
-	  if target_lemma =~ /^(.*)\.(.*)$/
-	    target_lemma = $1
-	    target_pos = $2
-	  end
-	end
-	frame_node.target.set_attribute("lemma", target_lemma)
+        if exp.get("origin") == "FrameNet"
+          # FrameNet data: here the lemma in the tab file has the form
+          # <lemma>.<POS>
+          # separate the two
+          if target_lemma =~ /^(.*)\.(.*)$/
+            target_lemma = $1
+            target_pos = $2
+          end
+        end
+        frame_node.target.set_attribute("lemma", target_lemma)
         if target_pos
           frame_node.target.set_attribute("pos", target_pos)
         end
@@ -617,28 +616,28 @@ module FrprepHelper
       #   hash "role" | "gf" | "pt" -> SynNode -> array: label(string)
       layer_synnode_label = Hash.new
       ["gf", "pt", "role"].each {|layer|
-	termids2labels = tab_frame_obj.markables(layer)
+        termids2labels = tab_frame_obj.markables(layer)
 
-	unless layer_synnode_label[layer]
-	  layer_synnode_label[layer] = Hash.new
-	end
+        unless layer_synnode_label[layer]
+          layer_synnode_label[layer] = Hash.new
+        end
 
-	termids2labels.each {|terminal_indices, label|
-	  terminal_indices.each { |t_i|
+        termids2labels.each {|terminal_indices, label|
+          terminal_indices.each { |t_i|
 
-	    if (nodes = mapping[t_i])
+            if (nodes = mapping[t_i])
 
-	      nodes.each { |node|
-		unless layer_synnode_label[layer][node]
-		  layer_synnode_label[layer][node] = Array.new
-		end
+              nodes.each { |node|
+                unless layer_synnode_label[layer][node]
+                  layer_synnode_label[layer][node] = Array.new
+                end
 
-		layer_synnode_label[layer][node] << label
-	      } # each node that t_i maps to
-	    end # if t_i maps to anything
+                layer_synnode_label[layer][node] << label
+              } # each node that t_i maps to
+            end # if t_i maps to anything
 
-	  } # each terminal index
-	} # each mapping terminal indices -> label
+          } # each terminal index
+        } # each mapping terminal indices -> label
       } # each layer
 
       # 'stuff' (Support and other things)
@@ -665,17 +664,17 @@ module FrprepHelper
       # will be lost
       role2nodes_labels = Hash.new
       layer_synnode_label["role"].each_pair { |synnode, labels|
-	labels.each { | rolelabel|
-	  unless role2nodes_labels[rolelabel]
-	    role2nodes_labels[rolelabel] = Array.new
-	  end
+        labels.each { | rolelabel|
+          unless role2nodes_labels[rolelabel]
+            role2nodes_labels[rolelabel] = Array.new
+          end
 
-	  role2nodes_labels[rolelabel] << [
-	    synnode,
-	    layer_synnode_label["gf"][synnode],
-	    layer_synnode_label["pt"][synnode]
-	  ]
-	} # each role label
+          role2nodes_labels[rolelabel] << [
+            synnode,
+            layer_synnode_label["gf"][synnode],
+            layer_synnode_label["pt"][synnode]
+          ]
+        } # each role label
       } # each pair SynNode/role labels
 
       # reencode "stuff", but only the support cases
@@ -695,25 +694,25 @@ module FrprepHelper
       # make FeNode for the current frame
       role2nodes_labels.each_pair { |rolelabel, node_gf_pt|
 
-	# get list of syn nodes, GF and PT labels for this role
-	# shortcut for GF and PT labels: take any labels that have
-	# been assigned for _some_ Synnode of this role
-	synnodes = node_gf_pt.map { |ngp| ngp[0] }
-	gflabels = node_gf_pt.map { |ngp| ngp[1] }.compact.flatten.uniq
-	ptlabels = node_gf_pt.map { |ngp| ngp[2] }.compact.flatten.uniq
+        # get list of syn nodes, GF and PT labels for this role
+        # shortcut for GF and PT labels: take any labels that have
+        # been assigned for _some_ Synnode of this role
+        synnodes = node_gf_pt.map { |ngp| ngp[0] }
+        gflabels = node_gf_pt.map { |ngp| ngp[1] }.compact.flatten.uniq
+        ptlabels = node_gf_pt.map { |ngp| ngp[2] }.compact.flatten.uniq
 
 
-	# let the interpreter class decide on how to
-	# determine the maximum constituents
-	maxnodes = interpreter_class.max_constituents(synnodes, st_sent)
+        # let the interpreter class decide on how to
+        # determine the maximum constituents
+        maxnodes = interpreter_class.max_constituents(synnodes, st_sent)
 
-	fe_node = st_sent.add_fe(frame_node, rolelabel, maxnodes)
-	unless gflabels.empty?
-	  fe_node.set_attribute("gf", gflabels.join(","))
-	end
-	unless ptlabels.empty?
-	  fe_node.set_attribute("pt", ptlabels.join(","))
-	end
+        fe_node = st_sent.add_fe(frame_node, rolelabel, maxnodes)
+        unless gflabels.empty?
+          fe_node.set_attribute("gf", gflabels.join(","))
+        end
+        unless ptlabels.empty?
+          fe_node.set_attribute("pt", ptlabels.join(","))
+        end
       } # each role label
     } # each frame
   end
@@ -732,13 +731,13 @@ module FrprepHelper
   # each node of a group has the "other_words" attribute.
   #
   def FrprepHelper.handle_multiword_targets(sent,  # SalsaTigerSentence object
-					    interpreter, # SynInterpreter object
-					    language) # string: en, de
+                                            interpreter, # SynInterpreter object
+                                            language) # string: en, de
     ##
     # only retain the interesting words of the sentence:
     # content words and prepositions
     if sent.nil?
-	return
+        return
     end
 
     nodes = sent.terminals.select { |node|
@@ -774,17 +773,17 @@ module FrprepHelper
             # German: prepend SVP to get the real lemma of the verb
             verb.set_attribute("lemma",
                                particle.get_attribute("lemma") +
-			       verb.get_attribute("lemma"))
+                               verb.get_attribute("lemma"))
           when "en"
             # English: append particle as separate word after the lemma of the verb
             verb.set_attribute("lemma",
                                verb.get_attribute("lemma") + " " +
-			       particle.get_attribute("lemma"))
+                               particle.get_attribute("lemma"))
           else
-	    # default
-	    verb.set_attribute("lemma",
-			       verb.get_attribute("lemma") + " " +
-			       particle.get_attribute("lemma"))
+            # default
+            verb.set_attribute("lemma",
+                               verb.get_attribute("lemma") + " " +
+                               particle.get_attribute("lemma"))
           end
         end
 
@@ -807,7 +806,7 @@ module FrprepHelper
   # descr: string, "none" (no group), "part" (separate verb particle)
   # nodes: array:SynNode
   def FrprepHelper.group_words(nodes,    # array: SynNode
-			       interpreter) # SynInterpreter object
+                               interpreter) # SynInterpreter object
 
     retv = Array.new # array of groups, array:array:SynNode
     done = Array.new # remember nodes already covered
@@ -839,9 +838,9 @@ module FrprepHelper
   # For all frames with names matching Unknown\d+,
   # rename them to <lemma>_Unknown\d+
   def FrprepHelper.handle_unknown_framenames(sent,     # SalsaTigerSentence
-					     interpreter) # SynInterpreter class
+                                             interpreter) # SynInterpreter class
     if sent.nil?
-	return
+        return
     end
 
     sent.each_frame { |frame|
@@ -888,7 +887,7 @@ module FrprepHelper
                                                         interpreter_class,
                                                         exp)
     if oldsent.nil? or newsent.nil?
-	return
+        return
     end
     ##
     # match old and new sentence via terminals
@@ -896,7 +895,7 @@ module FrprepHelper
     oldterminals = oldsent.terminals_sorted()
     # sanity check: exact match on terminals?
     newterminals.interleave(oldterminals).each { |newnode, oldnode|
-	#print "old ", oldnode.word, "  ", newnode.word, "\n"
+        #print "old ", oldnode.word, "  ", newnode.word, "\n"
       # new and old word: use both unescaped and escaped variant
       if newnode
         newwords = [ newnode.word, SalsaTigerXMLHelper.escape(newnode.word) ]
@@ -954,12 +953,12 @@ module FrprepHelper
 
         # make new FE with same ID
         new_fe = newsent.add_fe(newframe, oldfe.name(), newnodes, oldfe.id())
-	# keep all attributes of the FE
-	if oldfe.get_f("attributes")
-	  oldfe.get_f("attributes").each_pair { |attr, value|
-	    new_fe.set_attribute(attr, value)
-	  }
-	end
+        # keep all attributes of the FE
+        if oldfe.get_f("attributes")
+          oldfe.get_f("attributes").each_pair { |attr, value|
+            new_fe.set_attribute(attr, value)
+          }
+        end
       }
     }
 
@@ -998,20 +997,20 @@ module FrprepHelper
   # SalsaTigerXML file in a directory
 
   def FrprepHelper.add_head_attributes(st_sent,      # SalsaTigerSentence object
-				       interpreter)  # SynInterpreter class
+                                       interpreter)  # SynInterpreter class
     st_sent.each_nonterminal {|nt_node|
      head_term = interpreter.head_terminal(nt_node)
       if head_term and head_term.word()
-	nt_node.set_attribute("head", head_term.word())
+        nt_node.set_attribute("head", head_term.word())
       else
-	nt_node.set_attribute("head", "--")
+        nt_node.set_attribute("head", "--")
       end
     } # each nonterminal
   end
 
   # add lemma information to each terminal in a given SalsaTigerSentence object
   def FrprepHelper.add_lemmas_from_tab(st_sent, # SalsaTigerSentence object
-				       tab_sent,# FNTabFormatSentence object
+                                       tab_sent,# FNTabFormatSentence object
                                        mapping) # hash: tab lineno -> array:SynNode
     if tab_sent.nil?
       # tab sentence not found

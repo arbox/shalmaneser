@@ -1,5 +1,5 @@
 require_relative 'sem_node'
-require 'common/RegXML'
+require_relative 'reg_xml'
 
 #############
 # class FeNode

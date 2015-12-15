@@ -1,6 +1,6 @@
 require_relative 'xml_node'
 require_relative 'string_terminals_in_right_order'
-require 'common/RegXML'
+require_relative 'reg_xml'
 
 #############
 class SalsaTigerSentenceGraph < XMLNode

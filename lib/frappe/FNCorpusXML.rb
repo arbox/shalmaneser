@@ -25,7 +25,7 @@
 
 require 'frappe/Ampersand'
 require 'common/ISO-8859-1'
-require 'common/RegXML'
+require 'common/salsa_tiger_xml/reg_xml'
 
 # @note AB: Moved this to the proper class.
 =begin

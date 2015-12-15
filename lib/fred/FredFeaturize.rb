@@ -22,7 +22,7 @@ require 'delegate'
 #######
 
 require 'fred/FileZipped'
-require 'common/RegXML'
+# require 'common/RegXML'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/SalsaTigerXMLHelper'
 

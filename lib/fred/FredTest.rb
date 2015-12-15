@@ -10,7 +10,7 @@
 require "tempfile"
 
 # Salsa packages
-require "common/RegXML"
+# require "common/RegXML"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require "common/ruby_class_extensions"
