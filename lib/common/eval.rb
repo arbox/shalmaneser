@@ -3,7 +3,7 @@
 #
 # Evaluate classification results
 # abstract class, has to be instantiated
-# to something that can read in 
+# to something that can read in
 # task-specific input data
 #
 # the Eval class provides access methods to all the
@@ -14,7 +14,7 @@ require "common/ruby_class_extensions"
 
 class Eval
 
-  # prec_group_class, rec_group_class, f_group_class: 
+  # prec_group_class, rec_group_class, f_group_class:
   # values for each group/class pair
   # hashes "group class"(string) => score(float)
   attr_reader :prec_group_class, :rec_group_class, :f_group_class
@@ -30,7 +30,7 @@ class Eval
 
   ###
   # new
-  # 
+  #
   # outfilename = name of file to print results to.
   #  nil: print_evaluation_result() will not do anything
   #
@@ -41,13 +41,15 @@ class Eval
   #  compute and print evaluation for only one of the class labels,
   #  the one given as this argument.
   #  In this case, overall precision/recall/f-score
-  #  is available instead of just accuracy, and 
+  #  is available instead of just accuracy, and
   #  no group-wise evaluation is done.
   #  nil: consider all classes.
-  def initialize(outfilename = nil, 
-		 logfilename = nil, # string: 
+  def initialize(outfilename = nil,
+                 logfilename = nil, # string:
                  consider_only_one_class = nil) # string/nil: evaluate only one class?
 
+    # @todo AB: [2015-12-16 Wed 00:37]
+    #   Rework logging.
     # print logfile containing
     # results for every single instance?
     if logfilename
@@ -64,7 +66,7 @@ class Eval
     #
     # num_assigned, num_truepos, num_gold:
     # hashes: [group class] (string*string) => value(integer):  number of times that...
-    #                num_assigned: ...this "group class" pair has been 
+    #                num_assigned: ...this "group class" pair has been
     #                              assigned by the classifier
     #                num_gold: ... this "group class" pair has been
     #                          annotated in the gold standard
@@ -84,22 +86,22 @@ class Eval
     @prec_group_class = Hash.new(0.0)
     @rec_group_class = Hash.new(0.0)
     @f_group_class = Hash.new(0.0)
-    
+
     @accuracy_group = Hash.new(0.0)
-    
+
     @prec = @rec = @f = @accuracy = 0.0
   end
-  
+
   ###
   # compute
   #
   # do the evaluation
   def compute(printme = true) # boolean: print evaluation results to file?
-    
-    start_printlog()
+
+    start_printlog
 
     # hash: group => value(integer): number of true positives for a group
-    num_truepos_group = Hash.new
+    num_truepos_group = {}
     # integers: overall assigned/gold/truepos/instances
     num_assigned_all = 0
     num_gold_all = 0
@@ -120,38 +122,38 @@ class Eval
         # in case the group name contains spaces
         mygroup = group.gsub(/ /, "_")
 
-	print_log(mygroup + " gold: " + goldclass.to_s + " " + "assigned: " + assigned_class.to_s)
+        print_log(mygroup + " gold: " + goldclass.to_s + " " + "assigned: " + assigned_class.to_s)
 
         # record instance
         @num_instances[mygroup] += 1
-	
-	# record gold standard class
+
+        # record gold standard class
         if goldclass and not(goldclass.empty?) and goldclass != "-"
           @num_gold[[mygroup, goldclass]] += 1
         end
-	
-	# record assigned classes (if present)
-	if assigned_class and not(assigned_class.empty?) and assigned_class != "-"
-	  # some class has been assigned:
-	  # record it
-	  @num_assigned[[mygroup, assigned_class]] += 1
-	end
 
-	# is the assigned class included in the list of gold standard classes?
-	# then count this as a match
-	if goldclass == assigned_class
-	  # gold file class matches assigned class
-	  @num_truepos[[mygroup, assigned_class]] += 1
+        # record assigned classes (if present)
+        if assigned_class and not(assigned_class.empty?) and assigned_class != "-"
+          # some class has been assigned:
+          # record it
+          @num_assigned[[mygroup, assigned_class]] += 1
+        end
 
-	  print_log(" => correct\n")
+        # is the assigned class included in the list of gold standard classes?
+        # then count this as a match
+        if goldclass == assigned_class
+          # gold file class matches assigned class
+          @num_truepos[[mygroup, assigned_class]] += 1
 
-	elsif assigned_class.nil? or assigned_class.empty? or assigned_class == "-"
-	  print_log(" => unassigned\n")
-	  
-	else
-	  print_log(" => incorrect\n")
-	end
-      } # each instance for this group 
+          print_log(" => correct\n")
+
+        elsif assigned_class.nil? or assigned_class.empty? or assigned_class == "-"
+          print_log(" => unassigned\n")
+
+        else
+          print_log(" => incorrect\n")
+        end
+      } # each instance for this group
     } # all groups
 
 
@@ -169,15 +171,15 @@ class Eval
     # the classifier output file: record it in the group_classes hash
     (@num_gold.keys.concat @num_assigned.keys).each { |group, tclass|
       if group_classes[group].nil?
-	group_classes[group] = Array.new
+        group_classes[group] = Array.new
       end
-      if @consider_only_one_class and 
+      if @consider_only_one_class and
           tclass != @consider_only_one_class
         # we are computing results for only one target class,
         # and this is not it
         next
       end
-      if tclass 
+      if tclass
         group_classes[group] << tclass
       end
     }
@@ -189,22 +191,22 @@ class Eval
     # precision, recall, f for each group/class pair
     groups.each { |group|
       if group_classes[group].nil?
-	next
+        next
       end
 
       # iterate through all classes of the group
       group_classes[group].each { |tclass|
-	
+
         key = [group, tclass]
-	
-	# compute precision, recall, f-score
-	@prec_group_class[key], @rec_group_class[key], @f_group_class[key] = 
-	  prec_rec_f(@num_assigned[key], @num_gold[key], @num_truepos[key])
+
+        # compute precision, recall, f-score
+        @prec_group_class[key], @rec_group_class[key], @f_group_class[key] =
+          prec_rec_f(@num_assigned[key], @num_gold[key], @num_truepos[key])
       }
     }
-    
-    
-    # micro-averaged accuracy for each group 
+
+
+    # micro-averaged accuracy for each group
     if @consider_only_one_class
       # we are computing results for only one target class,
       # so precision/recall/f-score group-wise would be
@@ -223,25 +225,25 @@ class Eval
         @accuracy_group[group] = accuracy(num_truepos_group[group], @num_instances[group])
       }
     end
-    
+
 
     # overall values:
     if @consider_only_one_class
       # we are computing results for only one target class,
       # so overall precision/recall/f-score (micro-average) make sense
-      
+
       # compute precision, recall, f-score, micro-averaged
-      # but only include the target class we are interested in 
+      # but only include the target class we are interested in
       num_assigned_all, num_gold_all, num_truepos_all = [@num_assigned, @num_gold, @num_truepos].map { |hash|
-        hash.keys.big_sum(0) { |group, tclass| 
+        hash.keys.big_sum(0) { |group, tclass|
           if tclass == @consider_only_one_class
-            hash[[group, tclass]] 
+            hash[[group, tclass]]
           else
             0
           end
         }
       }
-      
+
       @prec, @rec, @f = prec_rec_f(num_assigned_all, num_gold_all, num_truepos_all)
 
       # stderr output of global results
@@ -290,10 +292,10 @@ class Eval
   def start_printlog()
     if @print_log
       begin
-	@logfile = File.new(@logfilename, "w")
-	$stderr.puts "Writing evaluation log to " + @logfilename
+        @logfile = File.new(@logfilename, "w")
+        $stderr.puts "Writing evaluation log to " + @logfilename
       rescue
-	raise "Couldn't write to eval logfile"
+        raise "Couldn't write to eval logfile"
       end
     else
       @logfile = nil
@@ -347,69 +349,69 @@ class Eval
                               num_instances_all, num_assigned_all, num_gold_all, num_truepos_all) # integers
     if @outfilename.nil?
       $stderr.puts "Warning: Can't print evaluation results, got not outfile name."
-      return 
+      return
     end
 
     begin
       outfile = File.new(@outfilename, "w")
-    rescue 
+    rescue
       raise "Couldn't write to eval file " + @outfilename
     end
 
-    
+
     # print out precision, recall, f-score for each group/class pair
     outfile.puts "-----------------------------"
     outfile.puts "Evaluation per group/target class pair"
     outfile.puts "-----------------------------"
-    
+
     # iterate through all groups
     groups.each { |group|
       if group_classes[group].nil?
-	next
+        next
       end
 
       outfile.puts "=============="
       outfile.puts group
 
-      
+
       # iterate through all classes of the group
       group_classes[group].each { |tclass|
-	
-	key = [group, tclass]
-	
-	outfile.print tclass, "\t", "prec: ", sprintf("%.4f", @prec_group_class[key])
+
+        key = [group, tclass]
+
+        outfile.print tclass, "\t", "prec: ", sprintf("%.4f", @prec_group_class[key])
         outfile.print " (", @num_truepos[key], "/", @num_assigned[key], ")"
 
-	outfile.print "\trec: ", sprintf("%.4f", @rec_group_class[key])
+        outfile.print "\trec: ", sprintf("%.4f", @rec_group_class[key])
         outfile.print " (", @num_truepos[key], "/", @num_gold[key], ")"
 
-	outfile.print "\tfscore: ", sprintf("%.4f", @f_group_class[key]), "\n"
+        outfile.print "\tfscore: ", sprintf("%.4f", @f_group_class[key]), "\n"
       }
     }
-    
-    
+
+
     # print out evaluation for each group
     unless @consider_only_one_class
       outfile.puts
       outfile.puts "-----------------------------"
       outfile.puts "Evaluation per group"
       outfile.puts "-----------------------------"
-    
+
       # iterate through all groups
       groups.each { |group|
 
         # micro-averaged accuracy
-        outfile.print group, "\t", "accuracy: ", sprintf("%.4f", @accuracy_group[group]), 
+        outfile.print group, "\t", "accuracy: ", sprintf("%.4f", @accuracy_group[group]),
         " (" , num_truepos_group[group], "/", @num_instances[group], ")\n"
       }
     end
-    
+
     # print out overall evaluation
     outfile.puts
     outfile.puts "-----------------------------"
     outfile.puts "Overall evaluation"
     outfile.puts "-----------------------------"
-    
+
     if @consider_only_one_class
 
       # micro average: precision, recall, f-score
@@ -420,7 +422,7 @@ class Eval
       outfile.print " (", num_truepos_all, "/", num_gold_all, ")"
 
       outfile.print "\tfscore: ", sprintf("%.4f", @f), "\n"
-      
+
     else
 
       # overall accuracy
@@ -439,7 +441,7 @@ class Eval
   # precision: true positives / assigned positives
   # recall:    true positives / gold positives
   # f-score:  2*precision*recall / (precision + recall)
-  # 
+  #
   # return: precision, recall, f-score as floats
   def prec_rec_f(assigned, gold, truepos)
     # precision
@@ -462,7 +464,7 @@ class Eval
 
     return [precision, recall, fscore]
   end
-  
+
   ###
   # accuracy:
   #

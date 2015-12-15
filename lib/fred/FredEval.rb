@@ -14,7 +14,7 @@
 # Inherits from the Eval class that is not Fred-specific
 
 # Salsa packages
-require "common/Eval"
+require 'common/eval'
 require "common/ruby_class_extensions"
 
 # Fred packages

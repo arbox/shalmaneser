@@ -9,7 +9,7 @@
 # Builds on the general Salsa Eval package
 
 # Salsa packages
-require "common/Eval"
+require 'common/eval'
 require "common/ruby_class_extensions"
 
 # Rosy packages
