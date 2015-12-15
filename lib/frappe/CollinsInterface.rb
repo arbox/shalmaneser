@@ -15,8 +15,6 @@ require 'common/salsa_tiger_xml/syn_node'
 require 'common/SalsaTigerXMLHelper'
 require 'frappe/counter'
 
-# require 'common/AbstractSynInterface'
-
 ################################################
 # Interface class
 class CollinsInterface < SynInterfaceSTXML

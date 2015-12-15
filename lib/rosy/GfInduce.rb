@@ -7,7 +7,6 @@
 # induce a mapping from parse tree paths to grammatical functions from this information
 # and apply it to new sentences
 
-require "common/AbstractSynInterface"
 require "common/ruby_class_extensions"
 
 #####################################################################

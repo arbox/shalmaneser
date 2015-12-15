@@ -3,8 +3,6 @@
 # require 'common/salsa_tiger_xml/syn_node'
 # require 'common/SalsaTigerXMLHelper'
 
-# require 'common/AbstractSynInterface'
-
 require 'tempfile'
 require 'frappe/counter'
 require 'frappe/syn_interface_stxml'
