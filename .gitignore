@@ -9,3 +9,5 @@ ydoc
 *.gem
 SENSITIVE
 *~
+.byebug_history
+
