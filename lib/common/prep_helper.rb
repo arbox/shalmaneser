@@ -4,7 +4,7 @@ require 'common/salsa_tiger_xml/reg_xml'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/file_parts_parser'
 require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
-require "common/TabFormat"
+require 'common/tabular_format/fn_tab_format_file'
 require "common/ruby_class_extensions"
 
 ############################################3

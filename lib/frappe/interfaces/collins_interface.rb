@@ -1,10 +1,9 @@
-# require 'common/TabFormat'
-# require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-# require 'common/salsa_tiger_xml/syn_node'
-
+require 'common/salsa_tiger_xml/salsa_tiger_sentence'
+require 'common/salsa_tiger_xml/syn_node'
 require 'tempfile'
 require_relative 'counter'
 require 'frappe/syn_interface_stxml'
+require 'common/tabular_format/fn_tab_format_file'
 
 # Interface class
 class CollinsInterface < SynInterfaceSTXML
@@ -25,7 +24,7 @@ class CollinsInterface < SynInterfaceSTXML
   def initialize(program_path, # string: path to system
                  insuffix,      # string: suffix of tab files
                  outsuffix,     # string: suffix for parsed files
-                 stsuffix,      # string: suffix for Salsa/TIGER XML files
+                 stsuffix,      # string: suffix for Sals/TIGER XML files
                  var_hash = {}) # optional arguments in a hash
 
     super(program_path, insuffix, outsuffix, stsuffix, var_hash)
