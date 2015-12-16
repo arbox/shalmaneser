@@ -3,7 +3,7 @@
 # require 'common/salsa_tiger_xml/syn_node'
 
 require 'tempfile'
-require 'frappe/counter'
+require_relative 'counter'
 require 'frappe/syn_interface_stxml'
 
 # Interface class

@@ -13,7 +13,7 @@ require "tempfile"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
 require "common/TabFormat"
-require 'frappe/counter'
+require_relative 'counter'
 
 ################################################
 # Interface class
