@@ -24,7 +24,7 @@
 #   sent_id: sentence ID
 
 require 'frappe/Ampersand'
-require 'common/ISO-8859-1'
+require 'frappe/utf_iso'
 require 'common/salsa_tiger_xml/reg_xml'
 
 # @note AB: Moved this to the proper class.

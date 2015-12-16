@@ -11,7 +11,7 @@ module UtfIso
         array_enc << num
       else
         # Numeric entity (&#nnnn;); shard by  Stefan Scholl
-        #	   array_enc += to_iso_8859("&\##{num};").unpack('C*')
+        # array_enc += to_iso_8859("&\##{num};").unpack('C*')
       end
     end
     array_enc.pack('C*')

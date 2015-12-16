@@ -14,7 +14,7 @@
 # rather than calling the tagger twice
 
 require 'tempfile'
-require 'common/ISO-8859-1'
+require 'frappe/utf_iso'
 require_relative 'treetagger_module'
 
 class TreetaggerPOSInterface < SynInterfaceTab

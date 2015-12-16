@@ -1,5 +1,5 @@
 # Salsa packages
-require "common/ISO-8859-1"
+require 'frappe/utf_iso'
 require 'common/salsa_tiger_xml/reg_xml'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/file_parts_parser'

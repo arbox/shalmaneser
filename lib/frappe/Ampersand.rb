@@ -1,6 +1,6 @@
 # @note AB: This whole thing should be obsolete on Ruby 1.9
 # @note #unpack seems to work on 1.8 and 1.9 equally
-require 'common/ISO-8859-1'
+require_relative 'utf_iso'
 
 ####################3
 # Reformatting to and from
