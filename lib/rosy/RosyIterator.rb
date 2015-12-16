@@ -24,11 +24,11 @@
 # (xwise_argrec, xwise_arglab, xwise_onestep) from the experiment file is read.
 # If that hasn't been set either, the default is frame-wise.
 
-require 'common/ruby_class_extensions'
+require 'ruby_class_extensions'
 
 # require 'rosy/View'
-# require "common/RosyConventions"
-require 'common/value_restriction'
+# require "RosyConventions"
+require 'value_restriction'
 require 'db/select_table_and_columns'
 # require "rosy/RosyPruning"
 require "rosy/RosySplit"

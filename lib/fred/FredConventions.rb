@@ -4,7 +4,7 @@
 # several small things that should be uniform
 # throughout the system
 
-require 'common/monkey_patching/file.rb'
+require 'monkey_patching/file.rb'
 require 'fred/FredFeatures' # AnswerKeyAccess
 
 module Fred

@@ -1,4 +1,4 @@
-require 'common/ruby_class_extensions'
+require 'ruby_class_extensions'
 
 class RosyFeatureInfo
   ###
@@ -15,10 +15,10 @@ class RosyFeatureInfo
   def RosyFeatureInfo.add_feature(class_name) # Class object
     @@extractors << class_name
   end
-  
+
   ###
   def initialize(exp)
-    
+
     ##
     # make list of extractors that are
     # either required by the user
@@ -71,11 +71,11 @@ class RosyFeatureInfo
       # select admin features and gold feature
       ["admin", "gold"].include? e.feature_type()
     }.each { |extractor|
-      
+
       # if we have already added that extractor, remove it
       # and add it with our own options
       @current_extractors.delete_if { |descr| descr["extractor"].designator() == extractor.designator() }
-      
+
       @current_extractors << {
         "extractor"=> extractor,
         "step" => "dontuse"
@@ -93,7 +93,7 @@ class RosyFeatureInfo
     }.map { |e| e["extractor"].designator() }
     onestep_extractors = @current_extractors.find_all {|e_hash| e_hash["step"].nil? or e_hash["step"] == "onestep"
     }.map { |e| e["extractor"].designator() }
-    
+
     @current_extractors.delete_if {|extractor_hash|
       case extractor_hash["step"]
       when nil
@@ -104,7 +104,7 @@ class RosyFeatureInfo
         computable = extractor_hash["extractor"].is_computable(arglab_extractors)
       when "onestep"
         computable = extractor_hash["extractor"].is_computable(onestep_extractors)
-      when "dontuse" 
+      when "dontuse"
 	# either an admin feature or a user feature not to be used this time
         computable = true
       end
@@ -152,7 +152,7 @@ class RosyFeatureInfo
   # all features to be computed, with their SQL column formats
   def get_column_formats(phase = nil) # string: phase 1 or phase 2
     return @features.select { |feature_descr|
-      phase.nil? or 
+      phase.nil? or
         feature_descr["phase"] == phase
     }.map { |feature_descr|
       [feature_descr["feature_name"], feature_descr["sql_type"]]
@@ -166,7 +166,7 @@ class RosyFeatureInfo
   # all features to be computed
   def get_column_names(phase = nil)  # string: phase 1 or phase 2
     return @features.select { |feature_descr|
-      phase.nil? or 
+      phase.nil? or
         feature_descr["phase"] == phase
     }.map { |feature_descr|
       feature_descr["feature_name"]
@@ -181,7 +181,7 @@ class RosyFeatureInfo
   # in the experiment file or in the list of @@all_features_we_have above
   def get_index_columns()
     return @features.select { |feature_descr|
-      feature_descr["is_index"] 
+      feature_descr["is_index"]
     }.map {|feature_descr|
       feature_descr["feature_name"]
     }
@@ -209,13 +209,13 @@ class RosyFeatureInfo
     }.map { |feature_descr|
       # use just the names of the features
       feature_descr["feature_name"]
-    }      
+    }
   end
 
   ###
   # get_extractor_objects
   #
-  # returns two lists of feature extractor objects, 
+  # returns two lists of feature extractor objects,
   # covering all features of the given phase:
   # the first list contains RosyFeatureExtractor extractors,
   # the second list contains the others.
@@ -233,7 +233,7 @@ class RosyFeatureInfo
       # make objects from extractor classes
       descr["extractor"].new(@exp, interpreter_class)
     }.distribute { |extractor_obj|
-      # distribute extractors in two bins: 
+      # distribute extractors in two bins:
       # first, rosy extractors
       # second, others
       extractor_obj.class.info().include? "rosy"

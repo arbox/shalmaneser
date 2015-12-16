@@ -5,11 +5,11 @@ require_relative 'fix_syn_sem_mapping'
 require 'frappe/FNCorpusXML'
 require 'frappe/FNDatabase'
 
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/file_parts_parser'
 
-require 'common/logger'
-require 'common/definitions'
+require 'logging'
+require 'definitions'
 
 ##############################
 # The class that does all the work

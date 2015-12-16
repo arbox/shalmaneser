@@ -2,7 +2,7 @@ lib_path = File.expand_path(File.dirname(__FILE__) + '/lib')
 $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
 
 require 'rake'
-require 'common/definitions'
+require 'definitions'
 
 # Define a constant here to use this spec in the Rakefile.
 Gem::Specification.new do |s|

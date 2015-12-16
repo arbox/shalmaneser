@@ -14,11 +14,11 @@
 # Inherits from the Eval class that is not Fred-specific
 
 # Salsa packages
-require 'common/eval'
-require "common/ruby_class_extensions"
+require 'eval'
+require "ruby_class_extensions"
 
 # Fred packages
-require 'common/configuration/fred_config_data'
+require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"

@@ -6,7 +6,7 @@ require_relative 'tab_format_named_args'
 # TabFormat files containing everything that's in the FN lexunit files
 #
 # one target per sentence
-# require "common/ruby_class_extensions"
+# require "ruby_class_extensions"
 
 class FNTabFormatFile < TabFormatFile
   def initialize(filename, tag_suffix = nil, lemma_suffix = nil)

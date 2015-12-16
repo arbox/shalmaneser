@@ -31,7 +31,7 @@
 # The runlog for each DB table lists the conditions of each run
 # (which model features, argrec/arglab/onestep, etc.)
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 require 'db/db_table'
 require "rosy/FeatureInfo"

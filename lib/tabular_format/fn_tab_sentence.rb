@@ -1,6 +1,6 @@
 require_relative 'tab_format_sentence'
 # require_relative 'fn_tab_frame'
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 ############################################
 class FNTabSentence < TabFormatSentence
   ####

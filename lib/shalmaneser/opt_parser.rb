@@ -1,5 +1,5 @@
 require 'optparse'
-require 'common/definitions'
+require 'definitions'
 
 module Shalmaneser
   module Shalmaneser

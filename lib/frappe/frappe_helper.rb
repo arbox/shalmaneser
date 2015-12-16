@@ -1,11 +1,11 @@
 # Salsa packages
 require 'frappe/utf_iso'
-require 'common/salsa_tiger_xml/reg_xml'
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/file_parts_parser'
-require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
-require 'common/tabular_format/fn_tab_format_file'
-require "common/ruby_class_extensions"
+require 'salsa_tiger_xml/reg_xml'
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/salsa_tiger_xml_helper'
+require 'tabular_format/fn_tab_format_file'
+require "ruby_class_extensions"
 
 ############################################3
 # Module FrappeHelper:

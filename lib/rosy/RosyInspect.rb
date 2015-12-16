@@ -5,7 +5,7 @@
 # inspect global data and experiment-specific data of the system
 
 # Rosy packages
-# require "common/RosyConventions"
+# require "RosyConventions"
 require 'db/select_table_and_columns'
 require "rosy/RosySplit"
 require "rosy/RosyTask"
@@ -13,7 +13,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-# require 'common/configuration/prep_config_data'
+# require 'configuration/prep_config_data'
 
 class RosyInspect < RosyTask
 

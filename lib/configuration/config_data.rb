@@ -58,8 +58,8 @@
 
 require_relative 'config_format_element'
 require_relative 'configuration_error'
-require 'common/ruby_class_extensions'
-require 'common/logger'
+require 'ruby_class_extensions'
+require 'logging'
 
 #####################################################
 ####################################################

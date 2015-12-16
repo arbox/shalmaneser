@@ -12,8 +12,8 @@
 # and its value (modified or unmodified) will always be last in the array representation of a row.
 
 require 'db/sql_query'
-require "common/ruby_class_extensions"
-# require "common/RosyConventions"
+require "ruby_class_extensions"
+# require "RosyConventions"
 require 'db/select_table_and_columns'
 
 class DBView

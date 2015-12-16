@@ -1,4 +1,4 @@
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 #################################################
 # class for keeping one line,
 # parsed.

@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/spec'
 
-require 'common/monkey_patching/array'
+require 'monkey_patching/array'
 
 describe Array do
   it 'can be created with no arguments' do

@@ -1,4 +1,4 @@
-require 'common/tabular_format/fn_tab_format_file'
+require 'tabular_format/fn_tab_format_file'
 
 #############################
 # abstract class, to be inherited:

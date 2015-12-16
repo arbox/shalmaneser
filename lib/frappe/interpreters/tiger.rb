@@ -1,6 +1,6 @@
 # coding: utf-8
-# require 'common/SalsaTigerRegXML'
-require 'common/ruby_class_extensions'
+# require 'SalsaTigerRegXML'
+require 'ruby_class_extensions'
 # @todo Delete the module and include all methods on the class level
 #       into the Tiger class.
 # @note This class is used in Frappuccino, move it from the common library.

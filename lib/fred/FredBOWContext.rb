@@ -1,19 +1,19 @@
 require "tempfile"
 require 'fileutils'
 
-require 'common/salsa_tiger_xml/reg_xml'
-require 'common/syn_interfaces'
-require 'common/tabular_format/fn_tab_format_file'
-require 'common/tabular_format/tab_format_sentence'
-# require "common/SalsaTigerRegXML"
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
-# require 'common/RosyConventions'
-require 'common/value_restriction'
+require 'salsa_tiger_xml/reg_xml'
+require 'syn_interfaces'
+require 'tabular_format/fn_tab_format_file'
+require 'tabular_format/tab_format_sentence'
+# require "SalsaTigerRegXML"
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/salsa_tiger_xml_helper'
+# require 'RosyConventions'
+require 'value_restriction'
 require 'db/select_table_and_columns'
 
 require 'fred/md5'
-require 'common/configuration/fred_config_data'
+require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require "fred/FredDetermineTargets"
@@ -21,7 +21,7 @@ require "fred/FredDetermineTargets"
 require 'db/db_interface'
 require 'db/sql_query'
 
-require 'common/salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/file_parts_parser'
 
 ########################################
 # Context Provider classes:

@@ -10,13 +10,13 @@
 require "tempfile"
 
 # Salsa packages
-# require "common/RegXML"
-# require "common/SalsaTigerRegXML"
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require "common/ruby_class_extensions"
+# require "RegXML"
+# require "SalsaTigerRegXML"
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require "ruby_class_extensions"
 
 # Shalmaneser packages
-require 'common/ml/classifier'
+require 'ml/classifier'
 require "fred/Baseline"
 require 'fred/FredConventions' # !
 require "fred/FredDetermineTargets"
@@ -24,7 +24,7 @@ require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
 
-require 'common/salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/file_parts_parser'
 
 class FredTest
 

@@ -6,8 +6,8 @@ require 'fred/FredTrain'
 require 'fred/FredTest'
 require 'fred/FredEval'
 
-require 'common/logger'
-require 'common/definitions'
+require 'logging'
+require 'definitions'
 
 module Fred
   class Fred

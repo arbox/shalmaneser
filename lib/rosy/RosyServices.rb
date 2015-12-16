@@ -5,7 +5,7 @@
 # remove database tables and experiments,
 # dump experiment to files and load from files
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 # Rosy packages
 require 'rosy/rosy_conventions'
@@ -16,7 +16,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-require 'common/configuration/prep_config_data'
+require 'configuration/prep_config_data'
 
 ###################################################
 class RosyServices < RosyTask

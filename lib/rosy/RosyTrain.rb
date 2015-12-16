@@ -14,10 +14,10 @@ require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTrainingTestTable"
 # require "rosy/RosyPruning"
-require 'common/ml/classifier'
+require 'ml/classifier'
 
 # Frprep packages
-# require "common/prep_config_data"
+# require "prep_config_data"
 
 class RosyTrain < RosyTask
 

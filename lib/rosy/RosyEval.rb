@@ -9,8 +9,8 @@
 # Builds on the general Salsa Eval package
 
 # Salsa packages
-require 'common/eval'
-require "common/ruby_class_extensions"
+require 'eval'
+require "ruby_class_extensions"
 
 # Rosy packages
 require "rosy/RosyIterator"
@@ -20,7 +20,7 @@ require "rosy/RosyPruning"
 require 'rosy/rosy_conventions'
 
 # Frprep packages
-require 'common/configuration/prep_config_data'
+require 'configuration/prep_config_data'
 
 #######################################################################
 # This class is a subclass of the general evaluation class

@@ -8,12 +8,12 @@
 # Pruning currently available:
 # Both Xue/Palmer original and a modified version for FrameNet
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 require "rosy/RosyFeatureExtractors"
-# require "common/RosyConventions"
-require 'common/value_restriction'
-require 'common/configuration/rosy_config_data'
+# require "RosyConventions"
+require 'value_restriction'
+require 'configuration/rosy_config_data'
 require "rosy/RosyIterator"
 
 ###

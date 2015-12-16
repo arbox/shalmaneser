@@ -1,5 +1,5 @@
 require 'frappe/syn_interface'
-require 'common/salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/file_parts_parser'
 
 #############################
 # abstract class, to be inherited:

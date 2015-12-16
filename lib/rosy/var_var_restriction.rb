@@ -1,4 +1,4 @@
-require 'common/value_restriction'
+require 'value_restriction'
 ###
 # value restrictions saying that variable1 = variable2:
 # here, value is a variable name, and the table names

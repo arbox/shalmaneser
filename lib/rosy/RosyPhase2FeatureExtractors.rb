@@ -18,10 +18,10 @@
 
 # Salsa packages
 require 'rosy/AbstractFeatureAndExternal'
-# require 'common/SalsaTigerRegXML'
+# require 'SalsaTigerRegXML'
 
 # Fred and Rosy packages
-# require "common/RosyConventions"
+# require "RosyConventions"
 
 
 ################################

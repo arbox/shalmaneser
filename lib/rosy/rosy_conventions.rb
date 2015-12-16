@@ -1,4 +1,4 @@
-require 'common/monkey_patching/file'
+require 'monkey_patching/file'
 
 module Rosy
 

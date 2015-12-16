@@ -1,9 +1,9 @@
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/syn_node'
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/syn_node'
 require 'tempfile'
 require_relative 'counter'
 require 'frappe/syn_interface_stxml'
-require 'common/tabular_format/fn_tab_format_file'
+require 'tabular_format/fn_tab_format_file'
 
 # Interface class
 class CollinsInterface < SynInterfaceSTXML

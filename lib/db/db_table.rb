@@ -7,7 +7,7 @@
 #
 
 require 'db/sql_query'
-# require "common/RosyConventions"
+# require "RosyConventions"
 
 class DBTable
   attr_reader :index_name, :table_name

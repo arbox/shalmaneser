@@ -3,12 +3,12 @@
 #
 # Frame disambiguation system: train classifiers
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 
 # Shalmaneser packages
 require 'fred/FredConventions' # !
-require 'common/ml/classifier'
+require 'ml/classifier'
 require "fred/FredDetermineTargets"
 require "fred/FredSplitPkg"
 require "fred/FredFeatures"

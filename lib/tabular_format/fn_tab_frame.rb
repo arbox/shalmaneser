@@ -1,5 +1,5 @@
 require_relative 'fn_tab_sentence'
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 class FNTabFrame < FNTabSentence
   ############

@@ -30,7 +30,7 @@
 
 require 'frappe/Ampersand'
 require 'frappe/utf_iso'
-require 'common/salsa_tiger_xml/reg_xml'
+require 'salsa_tiger_xml/reg_xml'
 
 class FrameXMLFile #  only verified to work for FrameNet v1.1
 

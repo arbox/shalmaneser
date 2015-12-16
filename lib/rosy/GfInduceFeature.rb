@@ -6,7 +6,7 @@
 
 require "rosy/GfInduce"
 require "rosy/AbstractFeatureAndExternal"
-require 'common/monkey_patching/file'
+require 'monkey_patching/file'
 
 ################################
 # base class for all following feature extractors

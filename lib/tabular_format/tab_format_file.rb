@@ -1,6 +1,6 @@
 require_relative 'tab_format_sentence'
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 #######################
 class TabFormatFile

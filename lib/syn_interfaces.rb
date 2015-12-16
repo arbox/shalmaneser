@@ -24,7 +24,7 @@
 # Abstract classes for both interfaces and interpreters
 # are in AbstractSynInterface.rb
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 # The list of available interface packages
 # is at the end of this file.

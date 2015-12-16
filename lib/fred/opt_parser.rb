@@ -4,7 +4,7 @@
 
 #require 'optparse' # for reimplementation
 require 'getoptlong'
-require 'common/configuration/fred_config_data'
+require 'configuration/fred_config_data'
 
 module Fred
 

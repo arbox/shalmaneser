@@ -5,17 +5,17 @@
 # featurize data and store it in the database
 
 # Salsa packages
-require 'common/syn_interfaces'
-require "common/ruby_class_extensions"
+require 'syn_interfaces'
+require "ruby_class_extensions"
 
 # Frprep packages
-# require "common/prep_config_data"
+# require "prep_config_data"
 
 # Rosy packages
 require "rosy/FailedParses"
 require "rosy/FeatureInfo"
 require "rosy/InputData"
-require 'common/configuration/rosy_config_data'
+require 'configuration/rosy_config_data'
 require 'rosy/rosy_conventions'
 require "rosy/RosySplit"
 require "rosy/RosyTask"

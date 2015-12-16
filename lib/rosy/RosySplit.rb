@@ -13,15 +13,15 @@
 # Phase 2 features are trained on training features and applied to
 # test features. They need to be retrained for each split.
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 # Frprep packages
-require 'common/configuration/prep_config_data'
+require 'configuration/prep_config_data'
 
 # Rosy packages
 require "rosy/FailedParses"
 # require "rosy/FeatureInfo"
-# require "common/RosyConventions"
+# require "RosyConventions"
 require 'rosy/var_var_restriction'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"

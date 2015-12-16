@@ -5,8 +5,8 @@
 # access to a configuration and experiment description file
 
 require_relative 'config_data'
-require 'common/definitions'
-require 'common/logger'
+require 'definitions'
+require 'logging'
 
 ##############################
 # Class FredConfigData

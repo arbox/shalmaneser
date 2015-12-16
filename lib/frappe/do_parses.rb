@@ -13,7 +13,7 @@
 require_relative 'one_parsed_file'
 require_relative 'frappe_read_stxml'
 require_relative 'frappe_flat_syntax'
-require 'common/syn_interfaces'
+require 'syn_interfaces'
 
 class DoParses
   def initialize(exp,           # FrPrepConfigData object

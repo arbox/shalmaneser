@@ -22,15 +22,15 @@ require 'delegate'
 #######
 
 require 'fred/FileZipped'
-# require 'common/RegXML'
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-# require 'common/SalsaTigerXMLHelper'
+# require 'RegXML'
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+# require 'SalsaTigerXMLHelper'
 
-require 'common/configuration/fred_config_data'
+require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
-# require 'common/prep_helper'
-require 'common/syn_interfaces'
+# require 'prep_helper'
+require 'syn_interfaces'
 require 'fred/FredBOWContext'
 require 'fred/FredDetermineTargets'
 require 'fred/FredFeatures'

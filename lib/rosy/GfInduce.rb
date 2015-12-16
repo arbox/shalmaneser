@@ -7,7 +7,7 @@
 # induce a mapping from parse tree paths to grammatical functions from this information
 # and apply it to new sentences
 
-require "common/ruby_class_extensions"
+require "ruby_class_extensions"
 
 #####################################################################
 # Management of mapping from GFs to paths

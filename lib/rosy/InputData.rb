@@ -7,10 +7,10 @@
 # featurization
 
 # Salsa packages
-require 'common/salsa_tiger_xml/file_parts_parser'
-# require "common/SalsaTigerRegXML"
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require "common/ruby_class_extensions"
+require 'salsa_tiger_xml/file_parts_parser'
+# require "SalsaTigerRegXML"
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require "ruby_class_extensions"
 
 # Fred/Rosy packages
 require "rosy/FailedParses"

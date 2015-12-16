@@ -1,6 +1,6 @@
-require 'common/tabular_format/fn_tab_format_file'
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
+require 'tabular_format/fn_tab_format_file'
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/salsa_tiger_xml_helper'
 
 require_relative 'syn_interface_stxml'
 

@@ -61,12 +61,12 @@
 # A frame element underspecification is an UspNode objects, its children are
 # FeNode objects. The edges to its children are unlabeled.
 
-# require "common/Tree"
+# require "Tree"
 
 
-# require "common/RegXML"
+# require "RegXML"
 
-# require "common/ruby_class_extensions"
+# require "ruby_class_extensions"
 
 # require_relative 'salsa_tiger_xml/string_terminals_in_right_order'
 

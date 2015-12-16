@@ -2,7 +2,7 @@
 
 require 'getoptlong'
 
-require 'common/configuration/rosy_config_data'
+require 'configuration/rosy_config_data'
 
 module Rosy
   class OptParser

@@ -8,15 +8,15 @@
 require "tempfile"
 require 'fileutils'
 
-# require "common/SalsaTigerRegXML"
-require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/salsa_tiger_xml/file_parts_parser'
-require 'common/syn_interfaces'
-require "common/ruby_class_extensions"
+# require "SalsaTigerRegXML"
+require 'salsa_tiger_xml/salsa_tiger_sentence'
+require 'salsa_tiger_xml/file_parts_parser'
+require 'syn_interfaces'
+require "ruby_class_extensions"
 
 # Rosy packages
 require "rosy/FeatureInfo"
-require 'common/ml/classifier'
+require 'ml/classifier'
 require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
@@ -24,7 +24,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-# require "common/prep_config_data" # AB: what the fuck???
+# require "prep_config_data" # AB: what the fuck???
 
 ##########################################################################
 # classifier combination class

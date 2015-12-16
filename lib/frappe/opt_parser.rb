@@ -4,10 +4,10 @@
 # @date 2010-11-25
 
 require 'optparse'
-require 'common/configuration/prep_config_data'
-require 'common/definitions'
-require 'common/syn_interfaces'
-require 'common/logger'
+require 'configuration/prep_config_data'
+require 'definitions'
+require 'syn_interfaces'
+require 'logging'
 
 module Shalmaneser
   module Frappe
