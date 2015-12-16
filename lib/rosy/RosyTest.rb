@@ -11,7 +11,7 @@ require 'fileutils'
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/file_parts_parser'
-require "common/SynInterfaces"
+require 'common/syn_interfaces'
 require "common/ruby_class_extensions"
 
 # Rosy packages

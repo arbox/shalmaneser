@@ -5,7 +5,7 @@
 # featurize data and store it in the database
 
 # Salsa packages
-require "common/SynInterfaces"
+require 'common/syn_interfaces'
 require "common/ruby_class_extensions"
 
 # Frprep packages

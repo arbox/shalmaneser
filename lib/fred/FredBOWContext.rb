@@ -2,7 +2,7 @@ require "tempfile"
 require 'fileutils'
 
 require 'common/salsa_tiger_xml/reg_xml'
-require "common/SynInterfaces"
+require 'common/syn_interfaces'
 require "common/TabFormat"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'

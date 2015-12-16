@@ -30,6 +30,9 @@ require "common/ruby_class_extensions"
 # is at the end of this file.
 # Please enter additional interfaces there.
 
+# @todo AB: [2015-12-16 Wed 01:03]
+#   After decoupling in OptParser and ConfigData classes move this
+#   to Frappe.
 class SynInterfaces
   ###
   # class variable:

@@ -6,7 +6,7 @@
 require 'optparse'
 require 'common/configuration/prep_config_data'
 require 'common/definitions'
-require 'common/SynInterfaces'
+require 'common/syn_interfaces'
 require 'common/logger'
 
 module Shalmaneser

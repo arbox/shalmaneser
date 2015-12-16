@@ -30,8 +30,7 @@ require 'common/configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require 'common/prep_helper'
-require 'common/SynInterfaces'
-
+require 'common/syn_interfaces'
 require 'fred/FredBOWContext'
 require 'fred/FredDetermineTargets'
 require 'fred/FredFeatures'
