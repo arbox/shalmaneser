@@ -1,6 +1,6 @@
 require 'frappe/do_parses'
 require 'common/prep_helper'
-require 'common/FixSynSemMapping'
+require 'frappe/fix_syn_sem_mapping'
 # For FN input.
 require 'frappe/FNCorpusXML'
 require 'frappe/FNDatabase'

@@ -19,14 +19,14 @@ require "rosy/RosyFeatureExtractors"
 require "rosy/RosyPhase2FeatureExtractors"
 require "rosy/RosyPruning"
 require "rosy/GfInduceFeature"
-require "common/FixSynSemMapping"
+require 'frappe/fix_syn_sem_mapping'
 
 class InputData
 
   ###
   def initialize(exp_object,          # RosyConfigData object
                  dataset,             # train/test
-		 feature_info_object, # FeatureInfo object
+                 feature_info_object, # FeatureInfo object
                  interpreter_class,   # SynInterpreter class
                  input_dir)           # Directory with input files
 
@@ -215,7 +215,9 @@ class InputData
   # to enable better learning
   def preprocess(sent)           # SalsaTigerSentence object
 
-
+    # @todo AB: [2015-12-16 Wed 15:39]
+    #   Don't think it should be done by Rosy, do it only in Frappe.
+    #   This module will be moved to Frappe's lib.
     if @dataset == "train" and
         (@exp.get("fe_syn_repair") or @exp.get("fe_rel_repair"))
       FixSynSemMapping.fixit(sent, @exp, @interpreter_class)
@@ -273,10 +275,10 @@ class InputData
           feature_value.length() > length
 
         if feature_name == "sentid"
-	  print length;
+          print length;
           print feature_value;
-	  print feature_value.length();
-	  # if the sentence (instance) ID is too long, we cannot go on.
+          print feature_value.length();
+          # if the sentence (instance) ID is too long, we cannot go on.
           $stderr.puts "Error: Instance ID is longer than its DB column."
           $stderr.puts "Please increase the DB column size in {Tiger,Collins}FeatureExtractors.rb"
           raise "SQL entry length surpassed"
