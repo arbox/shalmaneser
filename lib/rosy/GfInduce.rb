@@ -25,18 +25,18 @@ class GfiGfPathMapping
     @interpreter = interpreter_class
 
     # hash: POS(string) -> hash gf(string) -> hash: path_string -> frequency(int)
-    @gf_to_paths = Hash.new
+    @gf_to_paths = {}
 
     # hash: POS(string)-> hash: gf(string) -> hash: one edge of a path ->
     #  frequency(int) | hash: one edge of a path -> ...
-    @gf_to_edgelabel = Hash.new
+    @gf_to_edgelabel = {}
 
     # hash: word(string) -> array: [gf, prep, head_category]
-    @word_to_gflist = Hash.new
+    @word_to_gflist = {}
 
     # hash: path as string(string) -> array of steps
     # where a step is a tuple of stringss [{U, D}, edgelabel, nodelabel}
-    @pathstring_to_path = Hash.new
+    @pathstring_to_path = {}
   end
 
   #########################################
@@ -66,7 +66,7 @@ class GfiGfPathMapping
     # remember the path as an array of triples [direction, edgelabel, nodelabel]
     # as hash value of the path-as-string
     unless @pathstring_to_path[path_s]
-      @pathstring_to_path[path_s] = Array.new
+      @pathstring_to_path[path_s] = []
       path.each_step { |direction, edgelabel, nodelabel, node|
         @pathstring_to_path[path_s] << [direction, edgelabel, nodelabel]
       }
@@ -75,7 +75,7 @@ class GfiGfPathMapping
     # store the mapping in the
     # gf -> path hash
     unless @gf_to_paths[pos]
-      @gf_to_paths[pos] = Hash.new
+      @gf_to_paths[pos] = {}
     end
     unless @gf_to_paths[pos][gf]
       @gf_to_paths[pos][gf] = Hash.new(0)
@@ -85,7 +85,7 @@ class GfiGfPathMapping
 
     # remember this gf/pt tuple as possible GF of the current lemma
     unless @word_to_gflist[lemmapos]
-      @word_to_gflist[lemmapos] = Array.new
+      @word_to_gflist[lemmapos] = []
     end
     unless @word_to_gflist[lemmapos].include? [gf, prep, headcat]
       @word_to_gflist[lemmapos] << [gf, prep, headcat]
@@ -96,13 +96,13 @@ class GfiGfPathMapping
   # finish up inducing:
   #  reencode information in a fashion
   #  that makes apply() faster
-  def finish_inducing()
+  def finish_inducing
     # make sure gf_to_edgelabel is empty at the start
-    @gf_to_edgelabel.clear()
+    @gf_to_edgelabel.clear
 
     @gf_to_paths.each_pair { |pos, gf_to_paths_to_freq|
       unless @gf_to_edgelabel[pos]
-        @gf_to_edgelabel[pos] = Hash.new()
+        @gf_to_edgelabel[pos] = {}
       end
 
       gf_to_paths_to_freq.each_pair { |gf, paths_to_freq|
@@ -120,10 +120,10 @@ class GfiGfPathMapping
             # path frequent enough: list it
 
             unless @gf_to_edgelabel[pos][gf]
-              @gf_to_edgelabel[pos][gf] = Hash.new()
+              @gf_to_edgelabel[pos][gf] = {}
             end
 
-            enter_path(@gf_to_edgelabel[pos][gf], steps.clone(), freq)
+            enter_path(@gf_to_edgelabel[pos][gf], steps.clone, freq)
           end
         }
       }
@@ -136,7 +136,7 @@ class GfiGfPathMapping
 
   ###
   # test output
-  def test_output()
+  def test_output
     # gf_to_paths:
     # sum frequencies, compare frequency against average path length
     puts "============================="
@@ -147,7 +147,7 @@ class GfiGfPathMapping
 #         puts "================"
 #         puts "POS #{pos} GF #{gf}:"
 #         @gf_to_paths[pos][gf].each_pair { |path_s, freq|
-#           puts "#{path_s} freq:#{freq} len:#{@pathstring_to_path[path_s].length()}"
+#           puts "#{path_s} freq:#{freq} len:#{@pathstring_to_path[path_s].length}"
 #         }
 #       }
 #     }
@@ -162,7 +162,7 @@ class GfiGfPathMapping
           @gf_to_paths[pos][gf].each_pair { |path_s, otherfreq|
             if otherfreq == frequency
               count += 1
-              sum += @pathstring_to_path[path_s].length()
+              sum += @pathstring_to_path[path_s].length
             end
           }
           avg_pathlen = sum.to_f / count.to_f
@@ -201,7 +201,7 @@ class GfiGfPathMapping
   # exclude all paths that include an Up edge
   #
   # changes @gf_to_edgelabel, not reversible
-  def restrict_to_downpaths()
+  def restrict_to_downpaths
     @gf_to_edgelabel.each_value { |pos_specific|
       pos_specific.each_value { |hash_or_val|
         restrict_pathhash_to_downpaths(hash_or_val)
@@ -259,7 +259,7 @@ class GfiGfPathMapping
     #
     # hash: SynNode(some node in this sentence) -> list of tuples [gf label, prep, headcat, hash of steps]
     # initialize with just the entry for the start node
-    potential_gfs = Hash.new
+    potential_gfs = {}
     potential_gfs[start_node] = potential_gfs_of_lemma(lemma, pos)
 #     $stderr.puts "HIER #{lemma} " + potential_gfs_of_lemma(lemma, pos).map { |gf, prep, hc, hash|
 #       "#{gf}:#{prep}:#{hc} "
@@ -273,7 +273,7 @@ class GfiGfPathMapping
     agenda = [start_node]
     # been_there: list of SynNode objects
     #  that have been considered already and needn't be visited again
-    been_there = Hash.new
+    been_there = {}
     been_there[start_node] = true
 
     # hash: SynNode -> tuple [GF(string), preposition(string), frequency(integer)]
@@ -281,10 +281,10 @@ class GfiGfPathMapping
     #      frequency: frequency with which the path from verb to GF has
     #                 been seen in the FN data (such that we can keep
     #                 the best path and discard others)
-    node_to_label_and_freq = Hash.new()
+    node_to_label_and_freq = {}
 
     while not(agenda.empty?)
-      prev_node = agenda.shift()
+      prev_node = agenda.shift
 
       unless potential_gfs[prev_node]
         # no further GFs to be reached from prev_node:
@@ -312,10 +312,10 @@ class GfiGfPathMapping
         been_there[node] = true
 
         unless potential_gfs[node]
-          potential_gfs[node] = Array.new
+          potential_gfs[node] = []
         end
 
-        path.each_step() { |step|
+        path.each_step { |step|
           # each edge from prev_node to node:
           # see whether we can walk this edge to reach some of the GFs
           # still to be reached
@@ -419,7 +419,7 @@ class GfiGfPathMapping
                  chainlinks, # array: string*string*string
                  frequency)  # integer: frequency of this mapping
     # take off first chain link
-    key = string_step(chainlinks.shift())
+    key = string_step(chainlinks.shift)
 
     if chainlinks.empty?
       # that was the last link, actually
@@ -427,7 +427,7 @@ class GfiGfPathMapping
     else
       # more links available
       unless hash[key]
-        hash[key] = Hash.new()
+        hash[key] = {}
       end
 
       if hash[key].kind_of? Integer
@@ -435,7 +435,7 @@ class GfiGfPathMapping
         # ending at the point where we are now.
         # which frequency is higher?
         if frequency > hash[key]
-          hash[key] = Hash.new()
+          hash[key] = {}
         else
           return
         end
@@ -565,7 +565,7 @@ class GfiSubcatFrames
   def initialize(include_sem) # boolean
     # hash: word(string) -> array:[frame(string), subcatframe]
     #  with subcatframe an array of tuples [gf, prep, fe, multiplicity]
-    @word_to_subcatframes = Hash.new
+    @word_to_subcatframes = {}
 
     # hash: <subcatframe encoded as string> -> frequency
     @subcat_to_freq = Hash.new(0)
@@ -592,7 +592,7 @@ class GfiSubcatFrames
     end
 
     unless @word_to_subcatframes[lemmapos]
-      @word_to_subcatframes[lemmapos] = Array.new
+      @word_to_subcatframes[lemmapos] = []
     end
 
     # reencode subcat frame:
@@ -604,12 +604,12 @@ class GfiSubcatFrames
     # will be concatenated into a space-separated string
     # with a single subcat entry
     count_gfprep = Hash.new(0)
-    gfprep_to_fe = Hash.new
+    gfprep_to_fe = {}
 
     scf.each { |gf, prep, fe|
       count_gfprep[[gf, prep]] += 1
         unless gfprep_to_fe[[gf, prep]]
-          gfprep_to_fe[[gf, prep]] = Array.new
+          gfprep_to_fe[[gf, prep]] = []
         end
         unless gfprep_to_fe[[gf, prep]].include?(fe)
           gfprep_to_fe[[gf, prep]] << fe
@@ -651,7 +651,7 @@ class GfiSubcatFrames
   #########################################
 
   ###
-  def test_output()
+  def test_output
     puts "WORD_TO_SUBCATFRAMES"
     @word_to_subcatframes.each_pair { |word, frames_and_mappings|
       puts word
@@ -705,7 +705,7 @@ class GfiSubcatFrames
 #     $stderr.puts "HIER4 GFs found: " + node_to_gf.values.map { |gf, prep, freq|
 #       "#{gf}:#{prep}"
 #     }.join(" ")
-#     $stderr.puts "HIER5 GF possible: (#{@word_to_subcatframes[string_lemmapos(lemma, pos)].length()})"
+#     $stderr.puts "HIER5 GF possible: (#{@word_to_subcatframes[string_lemmapos(lemma, pos)].length})"
 #     @word_to_subcatframes[string_lemmapos(lemma, pos)].each { |frame, scf|
 #       scf.each { |gf, prep, fe, mult|
 #         $stderr.print "#{gf}:#{prep} "
@@ -729,7 +729,7 @@ class GfiSubcatFrames
     # muiltiplicity "one", and the "many" has only been filled by one
     #
     # so sort by frequency, then discard duplicates using a "seen" hash
-    seen = Hash.new
+    seen = {}
     return scf_list.sort { |a, b| b.last <=> a.last }.select { |frame, subcatframe, frequency|
       sc_string = string_subcatframe_withnodes(subcatframe)
       if seen[sc_string]
@@ -767,7 +767,7 @@ class GfiSubcatFrames
     # occurs in the subcat frame
     # if it does, remember it in entry_to_nodes
     # if it does not, regard the match as failed
-    entry_to_nodes = Hash.new
+    entry_to_nodes = {}
 
     node_to_gf.each_key {|node|
       gf, prep, frequency = node_to_gf[node]
@@ -778,7 +778,7 @@ class GfiSubcatFrames
         if other_gf == gf and other_prep == prep
           # match
           unless entry_to_nodes[[gf, prep]]
-            entry_to_nodes[[gf, prep]] = Array.new
+            entry_to_nodes[[gf, prep]] = []
           end
           entry_to_nodes[[gf, prep]] << node
           match_found = true
@@ -804,7 +804,7 @@ class GfiSubcatFrames
 
       # only one node to be returned for this slot:
       # use the one with the highest frequency for its gf->path mapping
-      if multiplicity == "one" and entry_to_nodes[[gf, prep]].length() > 1
+      if multiplicity == "one" and entry_to_nodes[[gf, prep]].length > 1
         # sort nodes by the frequency
         # entries in node_to_gf,
         # then keep only the <multiplicity> first ones
@@ -900,7 +900,7 @@ class GfInduce
     end
 
     file.puts Marshal.dump(self)
-    file.close()
+    file.close
   end
 
   ###
@@ -916,7 +916,7 @@ class GfInduce
     end
 
     gfi_obj =  Marshal.load(file)
-    file.close()
+    file.close
     return gfi_obj
   end
 
@@ -943,14 +943,14 @@ class GfInduce
       end
 
       # main target node, lemma
-      maintarget, targetlemma, targetpos = mainnode_and_lemma(frame.target.children())
+      maintarget, targetlemma, targetpos = mainnode_and_lemma(frame.target.children)
       if not(maintarget) or not(targetlemma)
         # cannot count this one
         next
       end
 
       # array of tuples [gfpt, prep, fe]
-      subcatframe = Array.new
+      subcatframe = []
 
       # each FE (but not the target itself):
       frame.each_child { |fe|
@@ -983,12 +983,12 @@ class GfInduce
 
           # remember combination gfpt/prep/fe
           # as part of the subcat frame
-          subcatframe << [gfpt, prep, fe.name()]
+          subcatframe << [gfpt, prep, fe.name]
         } # each syn node that the FE points to
       } # each FE of the frame
 
       # store the subcat frame
-      @subcat_frames.store_subcatframe(subcatframe, frame.name(), targetlemma, targetpos)
+      @subcat_frames.store_subcatframe(subcatframe, frame.name, targetlemma, targetpos)
     } # each frame
   end
 
@@ -996,8 +996,8 @@ class GfInduce
   # finish up inducing:
   #  reencode information in a fashion
   #  that makes apply() faster
-  def compute_mapping()
-    @gf_path_map.finish_inducing()
+  def compute_mapping
+    @gf_path_map.finish_inducing
   end
 
   #########################################
@@ -1005,9 +1005,9 @@ class GfInduce
   #########################################
 
   ###
-  def test_output()
-    @gf_path_map.test_output()
-    @subcat_frames.test_output()
+  def test_output
+    @gf_path_map.test_output
+    @subcat_frames.test_output
   end
 
   #########################################
@@ -1018,8 +1018,8 @@ class GfInduce
   ####
   # restrict gf -> path mappings:
   # exclude all paths that include an Up edge
-  def restrict_to_downpaths()
-    @gf_path_map.restrict_to_downpaths()
+  def restrict_to_downpaths
+    @gf_path_map.restrict_to_downpaths
   end
 
   ####

@@ -79,16 +79,16 @@ module FixSynSemMapping
 
         # repair only if the FE currently
         # points to more than one syn node
-        if fe_or_target.children.length() < 2
+        if fe_or_target.children.length < 2
           next
         end
 
         if exp.get("fe_rel_repair")
-          lastfe = fe_or_target.children.last()
+          lastfe = fe_or_target.children.last
           if lastfe and interpreter_class.simplified_pt(lastfe) =~ /^(WDT)|(WP\$?)|(WRB)/
 
             # remove syn nodes that the FE points to
-            old_fe_syn = fe_or_target.children()
+            old_fe_syn = fe_or_target.children
             old_fe_syn.each { |child|
               fe_or_target.remove_child(child)
             }
@@ -100,7 +100,7 @@ module FixSynSemMapping
 
         if exp.get("fe_syn_repair")
           # remove syn nodes that the FE points to
-          old_fe_syn = fe_or_target.children()
+          old_fe_syn = fe_or_target.children
           old_fe_syn.each { |child|
             fe_or_target.remove_child(child)
           }

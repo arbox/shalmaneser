@@ -111,7 +111,7 @@ class RosyConfusability
       view.each_sentence { |sentence|
 
         # make string consisting of all FN GFs of this sentence
-        allgfs = Array.new()
+        allgfs = []
         sentence.each { |inst|
           if inst["fn_gf"] != noval
             allgfs << inst["fn_gf"]
@@ -155,7 +155,7 @@ class RosyConfusability
                 @frequent_gframes.each { |fgframe|
                   if fgframe.subsumed_by?(allgfs)
                     # fgframe is a subset of allgfs
-                    if maxfgf.nil? or fgframe.length() > maxfgf.length()
+                    if maxfgf.nil? or fgframe.length > maxfgf.length
                       maxfgf = fgframe
                     end
                   end
@@ -188,7 +188,7 @@ class RosyConfusability
       # gfe_{fr}(gf) = \sum_{fe \in fes(fr)} -p(fe|gf) log_2 p(fe|gf)
       #
       # where p(fe|gf) = f(gf, fe) / f(gf)
-      gf_entropy = Hash.new
+      gf_entropy = {}
 
       counts_gf.keys.each { |gf|
         gf_entropy[gf] = 0.0
@@ -291,7 +291,7 @@ class RosyConfusability
   # - number of events with freq 3-5
   # - number of events with freq > 5
 
-  def counts()
+  def counts
     counts = [0,0,0,0]
     @counts_gffe_glob.each_value {|freq|
       case freq

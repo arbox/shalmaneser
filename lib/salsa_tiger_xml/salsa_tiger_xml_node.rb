@@ -108,7 +108,7 @@ class SalsaTigerXmlNode < XMLNode
   end
 
   ###
-  def sid()
+  def sid
     # my node ID starts out with the sentence ID
     id =~ /^(.*?)_/
     return $1

@@ -24,13 +24,13 @@ class Baseline
     @split_id = split_id
 
     # for each lemma: remember prevalent sense
-    @lemma_to_sense = Hash.new()
+    @lemma_to_sense = {}
 
     if @split_id
       split_obj = FredSplitPkg.new(@exp)
     end
 
-    lemma_done = Hash.new()
+    lemma_done = {}
 
     # iterate through lemmas
     @target_obj = Targets.new(@exp, nil, "r")
@@ -40,7 +40,7 @@ class Baseline
       exit 1
     end
 
-    @target_obj.get_lemmas().each { |lemmapos|
+    @target_obj.get_lemmas.each { |lemmapos|
 
       if @split_id
         # read training split of answer keys
@@ -59,7 +59,7 @@ class Baseline
         }
       }
 
-      @lemma_to_sense[lemmapos] = count_senses.keys().max { |a, b|
+      @lemma_to_sense[lemmapos] = count_senses.keys.max { |a, b|
         count_senses[a] <=> count_senses[b]
       }
     }
@@ -104,7 +104,7 @@ class Baseline
     end
 
     f.each { |line|
-      retv << [[ line.chomp(), 1.0 ]]
+      retv << [[ line.chomp, 1.0 ]]
     }
 
     return retv
@@ -143,8 +143,8 @@ class Baseline
     f.each { |line|
       out_f.puts sense
     }
-    out_f.close()
-    f.close()
+    out_f.close
+    f.close
 
     return true
   end

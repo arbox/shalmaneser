@@ -109,7 +109,7 @@ class FredTest
       end
 
 
-      if @classifiers.length() > 1
+      if @classifiers.length > 1
         $stderr.puts "Warning: I'm not doing classifier combination at the moment,"
         $stderr.puts "so I'll be ignoring all but the first classifier type."
       end
@@ -147,17 +147,17 @@ class FredTest
     }
 
 
-    all_results = Array.new()
+    all_results = []
 
     ###
     # get a list of all relevant feature files: lemma, sense?
-    lemma2_sense_and_filename = Hash.new()
+    lemma2_sense_and_filename = {}
 
     FredFeatureAccess.each_feature_file(@exp, dataset) { |filename, values|
 
       # catalogue under lemma
       unless lemma2_sense_and_filename[values["lemma"]]
-        lemma2_sense_and_filename[values["lemma"]] = Array.new()
+        lemma2_sense_and_filename[values["lemma"]] = []
       end
       # catalogue only matches between chosen classifier type
       # and actually existing classifier type
@@ -182,7 +182,7 @@ class FredTest
     found = 0
     found_single_sense = 0
     lemma2_sense_and_filename.each_pair { |lemma, senses_and_filenames|
-      if @lemmas_and_senses.get_senses(lemma).length() == 1
+      if @lemmas_and_senses.get_senses(lemma).length == 1
         # lemma with only one sense? then mark as such
         found_single_sense += 1
       else
@@ -202,7 +202,7 @@ class FredTest
         }
       end
     }
-    if found == 0 and found_single_sense < lemma2_sense_and_filename.length()
+    if found == 0 and found_single_sense < lemma2_sense_and_filename.length
       # no matching classifiers found
       $stderr.puts "ERROR: no classifiers found in #{classif_dir}."
       if @exp.get("binary_classifiers")
@@ -222,8 +222,8 @@ tried to apply n-ary ones (or vice versa.)
     # each test feature set:
     # read classifier, apply
     # iterate through instance files
-    lemma2_sense_and_filename.to_a().sort { |a, b|
-      a.first() <=> b.first
+    lemma2_sense_and_filename.to_a.sort { |a, b|
+      a.first <=> b.first
     }.each { |lemma, senses_and_filenames|
       # progress report
       if @exp.get("verbose")
@@ -233,7 +233,7 @@ tried to apply n-ary ones (or vice versa.)
       # results_this_lemma: array of classifier_results
       # classifier_result: array of line_entries
       # line entry: list of pairs [sense, confidence]
-      results_this_lemma = Array.new()
+      results_this_lemma = []
 
       training_senses = Fred.determine_training_senses(lemma, @exp,
                                                        @lemmas_and_senses, @split_id)
@@ -249,14 +249,14 @@ tried to apply n-ary ones (or vice versa.)
             next
           end
 
-          filename = tempfile.path()
+          filename = tempfile.path
         end
 
-        if training_senses.length() == 1
+        if training_senses.length == 1
           # single-sense lemma: just assign that sense to all occurrences
-          assigned_sense = training_senses.first()
+          assigned_sense = training_senses.first
 
-          classifier_result = Array.new()
+          classifier_result = []
           f = File.open(filename)
 
           f.each { |line| classifier_result << [[assigned_sense, 1.0]] }
@@ -291,7 +291,7 @@ tried to apply n-ary ones (or vice versa.)
               # since we're not doing any classifier combination at the moment
               # (if we did, this would be the place to do so!)
               # discard the results of all but the first classifier
-              results_this_lemma << classifier_results.first()
+              results_this_lemma << classifier_results.first
             end
           end
 
@@ -348,16 +348,16 @@ tried to apply n-ary ones (or vice versa.)
 
     # make output file for classifiers
     tf_output = Tempfile.new("fred")
-    tf_output.close()
+    tf_output.close
 
     ###
     # apply classifiers
 
-    classifier_results = Array.new
+    classifier_results = []
 
     @classifiers.each { |classifier, classifier_name|
 
-      success = classifier.apply(filename, tf_output.path())
+      success = classifier.apply(filename, tf_output.path)
 
       # did we manage to classify the test data?
       # there may be errors on the way (eg no training data)
@@ -365,11 +365,11 @@ tried to apply n-ary ones (or vice versa.)
         # read classifier output from file
         # classifier_results: list of line entries
         # line entry: list of pairs [sense, confidence]
-        classifier_results << classifier.read_resultfile(tf_output.path())
+        classifier_results << classifier.read_resultfile(tf_output.path)
 
       else
         # error: return empty Array, so that error handling can take over
-        return Array.new
+        return []
       end
     }
 
@@ -404,7 +404,7 @@ tried to apply n-ary ones (or vice versa.)
       #   one classifier: list of lists of pairs label, confidence
       #   line: list of pairs label, confidence
       #   label: pair label, confidence
-      return resultlists.first()
+      return resultlists.first
     end
 
     # we are doing sense-specific classifiers.
@@ -417,12 +417,12 @@ tried to apply n-ary ones (or vice versa.)
 
     # retv: list of instance results
     # where an instance result is a list of pairs [label, confidence]
-    retv = Array.new()
+    retv = []
 
     # choose the sense that was assigned with highest confidence
     # how many instances? max. length of any of the instance lists
     # (we'll deal with mismatches in instance numbers later)
-    num_instances = resultlists.map { |list_one_classifier| list_one_classifier.length() }.max()
+    num_instances = resultlists.map { |list_one_classifier| list_one_classifier.length }.max
     if num_instances.nil?
       # no instances, it seems
       return nil
@@ -447,7 +447,7 @@ tried to apply n-ary ones (or vice versa.)
       joint_result_this_instance = all_results_this_instance.map { |inst_result|
         # if we have more than 2 entries here,
         # this is very weird for a binary classifier
-        if inst_result.length() > 2
+        if inst_result.length > 2
           $stderr.puts "Judgments for more than 2 senses in binary classifier? Very weird!"
           $stderr.puts inst_result.map { |label, confidence| "#{label}:#{confidence}" }.join(" ")
           $stderr.puts "Only considering the first non-negative sense."
@@ -459,7 +459,7 @@ tried to apply n-ary ones (or vice versa.)
         inst_result.detect { |label, confidence|
           label != negsense
         }
-      }.compact().sort { |a, b|
+      }.compact.sort { |a, b|
         # sort senses by confidence, highest confidence first
         b[1] <=> a[1]
       }
@@ -512,7 +512,7 @@ tried to apply n-ary ones (or vice versa.)
     # <sentencde ID>(string) -> assigned senses
     # where assigned senses are a list of tuples
     # [target IDs, sense, lemma, pos]
-    recorded_results = Hash.new
+    recorded_results = {}
 
     all_results.each { |lemma, results|
       answer_obj = AnswerKeyAccess.new(@exp, "test", lemma, "r")
@@ -522,12 +522,12 @@ tried to apply n-ary ones (or vice versa.)
         key = a_sid
 
         unless recorded_results[key]
-          recorded_results[key] = Array.new()
+          recorded_results[key] = []
         end
 
         labels_and_senses_for_this_instance = results.at(instance_index)
         if not(labels_and_senses_for_this_instance.empty?) and
-          (winning_sense = labels_and_senses_for_this_instance.first().first())
+          (winning_sense = labels_and_senses_for_this_instance.first().first)
 
           recorded_results[key] << [a_targetIDs, winning_sense, a_lemma, a_pos]
         end
@@ -543,10 +543,10 @@ tried to apply n-ary ones (or vice versa.)
     Dir[input_dir + "*.xml.gz"].each { |filename|
       # unzip input file
       tempfile = Tempfile.new("FredTest")
-      tempfile.close()
-      %x{gunzip -c #{filename} > #{tempfile.path()}}
+      tempfile.close
+      %x{gunzip -c #{filename} > #{tempfile.path}}
 
-      infile = FilePartsParser.new(tempfile.path())
+      infile = FilePartsParser.new(tempfile.path)
       if @exp.get("verbose")
         $stderr.puts "SalsaTigerXML output of " + File.basename(filename, ".gz")
       end
@@ -560,16 +560,16 @@ tried to apply n-ary ones (or vice versa.)
       end
 
       # write header
-      outfile.puts infile.head()
+      outfile.puts infile.head
 
       infile.scan_s { |sent_string|
         sent = SalsaTigerSentence.new(sent_string)
 
         # remove old semantics
-        sent.remove_semantics()
+        sent.remove_semantics
 
-        if recorded_results and recorded_results[sent.id()]
-          recorded_results[sent.id()].each { |target_ids, sense, lemma, pos|
+        if recorded_results and recorded_results[sent.id]
+          recorded_results[sent.id].each { |target_ids, sense, lemma, pos|
 
             # add frame to sentence
             new_frame = sent.add_frame(sense)
@@ -593,13 +593,13 @@ tried to apply n-ary ones (or vice versa.)
 
         # write changed sentence:
         # only if there are recorded results for this sentence!
-        outfile.puts sent.get()
+        outfile.puts sent.get
 
       } # each sentence of file
 
       # write footer
-      outfile.puts infile.tail()
-      outfile.close()
+      outfile.puts infile.tail
+      outfile.close
       tempfile.close(true)
     } # each SalsaTiger file of the input directory
 

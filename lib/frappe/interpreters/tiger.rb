@@ -194,7 +194,7 @@ module TigerMaxProjection
               'max_proj_at_level' => [node]}
     end
 
-    maxproj_at_level = Array.new
+    maxproj_at_level = []
     maxproj_at_level << parent
 
     lower = node
@@ -266,16 +266,16 @@ module TigerMaxProjection
     direction, edgelabel = path['edge']
     case direction
     when 'up'
-      label = from_node.parent_label()
+      label = from_node.parent_label
       if label =~ edgelabel
-        end_nodes = [from_node.parent()]
+        end_nodes = [from_node.parent]
       else
         end_nodes = []
       end
     when 'dn'
       end_nodes = []
       from_node.each_child { |child|
-        if child.parent_label() =~ edgelabel
+        if child.parent_label =~ edgelabel
           end_nodes << child
         end
       }
@@ -604,7 +604,7 @@ class Tiger < SynInterpreter
 
   extend TigerMaxProjection
 
-  @@heads_obj = Headz.new()
+  @@heads_obj = Headz.new
 
   ###
   # generalize over POS tags.
@@ -634,7 +634,7 @@ class Tiger < SynInterpreter
       return nil
     end
 
-    case pt.to_s.strip()
+    case pt.to_s.strip
     when /^C?ADJ/, /^PIS/, /^C?AP[^A-Za-z]?/ then return "adj"
     when /^C?ADV/, /^C?AVP/, /^PROAV/ then  return "adv"
     when /^CARD/  then return "card"
@@ -665,7 +665,7 @@ class Tiger < SynInterpreter
       return nil
     end
 
-    case pt.to_s.strip()
+    case pt.to_s.strip
     when /^PREL/, /^PWAV/,  /^PWAT/
       return true
     else
@@ -717,7 +717,7 @@ class Tiger < SynInterpreter
       node_list.include? sister
     }.select { |sister|
       # see if its incoming edge is labeled "SVP"
-      sister.parent_label() == "SVP"
+      sister.parent_label == "SVP"
     }.reject { |particle|
       # Sleepy parser problem: it often tags ")" as a separate verb particle
       particle.get_attribute("lemma") == ")" or
@@ -738,7 +738,7 @@ class Tiger < SynInterpreter
   # returns true if the given node is an auxiliary
   # default: no recognition of auxiliaries
   def Tiger.auxiliary?(node)
-    if node.part_of_speech() and
+    if node.part_of_speech and
         node.part_of_speech =~ /^VA/
       return true
     else
@@ -753,7 +753,7 @@ class Tiger < SynInterpreter
   #
   # returns: boolean
   def Tiger.modal?(node)
-    if node.part_of_speech() and
+    if node.part_of_speech and
         node.part_of_speech =~ /^VM/
       return true
     else
@@ -799,7 +799,7 @@ class Tiger < SynInterpreter
   # - or a singleton [verb]
   #   of the node of a verb without separate prefix
   def Tiger.verbs(sobj)
-    return sobj.terminals().select { |t|
+    return sobj.terminals.select { |t|
       # verbs
 
       Tiger.category(t) == "verb"
@@ -840,11 +840,11 @@ class Tiger < SynInterpreter
     end
 
     # this didn't work, try something else: first preposition among my terminals
-    pnode = node.terminals_sorted().detect { |n|
+    pnode = node.terminals_sorted.detect { |n|
       Tiger.category(n) == "prep"
     }
     if pnode
-      return pnode.word()
+      return pnode.word
     else
       return nil
     end
@@ -941,7 +941,7 @@ class Tiger < SynInterpreter
     # that HD child is a form of 'werden'
     may_be_werden = retv['to'].first
 
-    unless may_be_werden.part_of_speech() =~ /^VA/
+    unless may_be_werden.part_of_speech =~ /^VA/
       return "active"
     end
 
@@ -1002,12 +1002,12 @@ class Tiger < SynInterpreter
     end
     headlemma = Tiger.lemma_backoff(nh)
 
-    nonhead_children = node.children().reject { |n|
+    nonhead_children = node.children.reject { |n|
       nnh = Tiger.head_terminal(n)
       not(nnh) or
         Tiger.lemma_backoff(nnh) == headlemma
     }
-    if nonhead_children.length() == 1
+    if nonhead_children.length == 1
       return nonhead_children.first
     end
 
@@ -1018,12 +1018,12 @@ class Tiger < SynInterpreter
     when /^C?S/, /^C?VP/
       icont_child = nonhead_children.detect { |n|
         h = Tiger.head_terminal(n)
-        h and h.part_of_speech() =~ /^V/
+        h and h.part_of_speech =~ /^V/
       }
     when /^C?PP/
       icont_child = nonhead_children.detect { |n|
         h = Tiger.head_terminal(n)
-        h and h.part_of_speech() =~ /^N/
+        h and h.part_of_speech =~ /^N/
       }
     else
       raise "Shouldn't be here"
@@ -1048,17 +1048,17 @@ class Tiger < SynInterpreter
                               no_mwes = nil)
 
     # map nodes to terminals
-    nodelist = nodelist.map { |n| n.yield_nodes() }.flatten
+    nodelist = nodelist.map { |n| n.yield_nodes }.flatten
 
     # do we have a list of length 2,
     # one member being "zu", the other a verb, with a common parent "VZ"?
     # then return the verb
-    if nodelist.length() == 2
-      zu, verb = nodelist.distribute { |n| n.part_of_speech() == "PTKZU" }
-      if zu.length() == 1 and
+    if nodelist.length == 2
+      zu, verb = nodelist.distribute { |n| n.part_of_speech == "PTKZU" }
+      if zu.length == 1 and
           Tiger.category(verb.first) == "verb" and
           verb.first.parent == zu.first.parent and
-          verb.first.parent.category() == "VZ"
+          verb.first.parent.category == "VZ"
         return verb.first
       end
     end
@@ -1093,7 +1093,7 @@ class Tiger < SynInterpreter
                    paths_to_target, # hash: node ID -> Path object: paths from nodes to target
                    terminal_index)  # hash: terminal node -> word index in sentence
 
-    path_to_target = paths_to_target[node.id()]
+    path_to_target = paths_to_target[node.id]
 
     if not path_to_target
       # no path from target to node: suggest for pruning
@@ -1124,7 +1124,7 @@ class Tiger < SynInterpreter
       if num_up >= 1 and num_down == 1
         # case (1)
         return  1
-      elsif num_up >= 1 and num_down == 2 and CollinsTntInterpreter.category(path_to_target.lca()) =~ /^C/
+      elsif num_up >= 1 and num_down == 2 and CollinsTntInterpreter.category(path_to_target.lca) =~ /^C/
         # case (2)
         return 1
       else
@@ -1221,7 +1221,7 @@ class Tiger < SynInterpreter
       return nil
     end
 
-    parent = verb_node.parent()
+    parent = verb_node.parent
     if parent.nil?
           # verb_node seems to be the root, strangely enough
       return []
@@ -1243,7 +1243,7 @@ class Tiger < SynInterpreter
         # prepositions are AC children of PP nodes
         node.children_by_edgelabels(['AC']).map { |prep_node|
           # prepositions are terminal words
-          prep_node.word()
+          prep_node.word
           # we are interested in those that match the parameter 'preposition'
         }.include? preposition
       }
@@ -1291,23 +1291,23 @@ class Tiger < SynInterpreter
     end
 
     # construct a list of pairs [relation, node]
-    nodes = Array.new
+    nodes = []
     # subjects:
     n_arr = Tiger.subject(verb_node)
 
-    if n_arr.length() > 0
+    if n_arr.length > 0
       nodes << ["SB", n_arr.first]
     end
 
     # direct object:
     n_arr = Tiger.direct_object(verb_node)
-    if n_arr.length() > 0
+    if n_arr.length > 0
       nodes << ["OA", n_arr.first]
     end
 
     # dative object:
     n_arr = Tiger.dative_object(verb_node)
-    if n_arr.length() > 0
+    if n_arr.length > 0
       nodes << ["DA", n_arr.first]
     end
 
@@ -1345,7 +1345,7 @@ class Tiger < SynInterpreter
 
 
     # construct a list of pairs [relation, node]
-    retv = Array.new
+    retv = []
 
     ##
     # determine noun-noun relations:
@@ -1357,42 +1357,42 @@ class Tiger < SynInterpreter
     #     then: the grandparent
     #   (3) or grandparent of this node is CNP
     #     then: that CNP's other children
-    parent = noun_node.parent()
+    parent = noun_node.parent
     np_pp_labels_without_cnp = ["NP", "PP", "PN"]
     np_pp_labels = ["NP", "PP", "PN", "CNP"]
 
     if parent and
-        noun_node.parent_label() == "NK"
+        noun_node.parent_label == "NK"
       # (1)
-      parent.children().select { |n|
-        n.parent_label() != "NK"
+      parent.children.select { |n|
+        n.parent_label != "NK"
       }.each { |n|
         unless n == noun_node
 
-          retv << [n.parent_label(), n]
+          retv << [n.parent_label, n]
         end
       }
     end
 
     # (2)
     if parent
-      grandparent = parent.parent()
+      grandparent = parent.parent
     end
 
     if parent and grandparent and
-        np_pp_labels.include? parent.category() and
-        np_pp_labels_without_cnp.include? grandparent.category() and
-        parent.parent_label() != "NK"
+        np_pp_labels.include? parent.category and
+        np_pp_labels_without_cnp.include? grandparent.category and
+        parent.parent_label != "NK"
 
-        retv << [parent.parent_label(), grandparent]
+        retv << [parent.parent_label, grandparent]
     end
 
     # (3)
     if parent and grandparent and
-        grandparent.category() == "CNP"
+        grandparent.category == "CNP"
 
-      grandparent.each_child() { |n|
-        if np_pp_labels.include? n.category() and
+      grandparent.each_child { |n|
+        if np_pp_labels.include? n.category and
             n != parent
 
           retv << ["CJ", n]
@@ -1416,7 +1416,7 @@ class Tiger < SynInterpreter
   # describing the head noun
   def Tiger.gfs_adj(adj_node) # SynNode object: terminal, adjective
 
-    parent = adj_node.parent()
+    parent = adj_node.parent
 
     if parent.nil?
       return []

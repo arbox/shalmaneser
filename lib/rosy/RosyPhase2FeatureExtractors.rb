@@ -65,15 +65,15 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   # check if the current feature is computable, i.e. if all the necessary
   # Phase 1 features are in the present model..
   def RosyPhase2FeatureExtractor.is_computable(given_extractor_list)
-    return (eval(self.name()).extractor_list - given_extractor_list).empty?
+    return (eval(self.name).extractor_list - given_extractor_list).empty?
   end
 
   # this probably has to be done for each feature:
   # identify sentences and the target, and recombine into a large array
   def compute_features_on_view(view)
-    result = Array.new(eval(self.class.name()).feature_names.length)
+    result = Array.new(eval(self.class.name).feature_names.length)
     result.each_index {|i|
-      result[i] = Array.new
+      result[i] = []
     }
     view.each_sentence {|instance_features|
       sentence_result = compute_features_for_sentence(instance_features)
@@ -94,7 +94,7 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   private
 
   # list of all the Phase 1 extractors that a particular feature extractor presupposes
-  def RosyPhase2FeatureExtractor.extractor_list()
+  def RosyPhase2FeatureExtractor.extractor_list
     return []
   end
 
@@ -149,10 +149,10 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
     # also compute a hashmap index -> distance
     # so we efficiently compute, for each feature value, the index with min distance
 
-    dist_hash = Hash.new # node id -> word distance
-    pl_hash   = Hash.new # node id -> path length
-    path_hash = Hash.new # path -> node id array
-    pt_hash = Hash.new   # pt -> node id array
+    dist_hash = {} # node id -> word distance
+    pl_hash   = {} # node id -> path length
+    path_hash = {} # path -> node id array
+    pt_hash = {}   # pt -> node id array
 
     result = [Array.new(instance_features.length),
               Array.new(instance_features.length),
@@ -166,14 +166,14 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
       # record paths
       pt_path = instance_hash["pt_path"]
       unless path_hash.key? pt_path
-        path_hash[pt_path] = Array.new
+        path_hash[pt_path] = []
       end
       path_hash[pt_path] << inst_id
 
       # record pts
       pt = instance_hash["pt"]
       unless pt_hash.key? pt
-        pt_hash[pt] = Array.new
+        pt_hash[pt] = []
       end
       pt_hash[pt] << inst_id
 

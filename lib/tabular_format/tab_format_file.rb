@@ -17,8 +17,8 @@ class TabFormatFile
   # ["word", "pos", "lemma", repeat("frame", "target", "gf", "pt")]
   def initialize(fp)
     # open files
-    @files = Array.new
-    @patterns = Array.new
+    @files = []
+    @patterns = []
     @no_of_read_lines = 0
     fp.each_index { |ix|
       if ix.modulo(2) == 0

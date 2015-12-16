@@ -21,7 +21,7 @@ class FrprepReadStxml
   # pointing each tab word to one or more SalsaTigerSentence terminals
   def each_sentence(dummy)
     # read corresponding tab file?
-    tab_sents = Array.new()
+    tab_sents = []
     if File.exists? @tabfilename
       tabfile = FNTabFormatFile.new(@tabfilename,@pos_suffix,@lemma_suffix)
       tabfile.each_sentence { |tabsent|

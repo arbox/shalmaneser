@@ -13,14 +13,14 @@ module MaxConst
     #
     # 'words' is an array of node IDs that are not splitwords
     # 'splitwords' is an array of fenodes that refer to splitwords
-    words = Array.new
-    splitwords = Array.new
+    words = []
+    splitwords = []
 
     node_list.each { |node|
       if node.is_splitword?
         splitwords << node
       else
-        words.concat node.yield_nodes().reject { |t| t.is_punct? }
+        words.concat node.yield_nodes.reject { |t| t.is_punct? }
       end
     }
 
@@ -29,12 +29,12 @@ module MaxConst
     # 'constituents' contains found constituents,
     # 'nodes_to_check' contains nodes for which we still need constituents
 
-    constituents = Array.new
-    nodes_to_check = syn_roots() # (there may be more than one)
+    constituents = []
+    nodes_to_check = syn_roots # (there may be more than one)
     # this accesses the syn_roots() method of SalsaTigerSentence
 
     while(true)
-      node = nodes_to_check.shift()
+      node = nodes_to_check.shift
       # have we checked all nodes already? or are we done with all words? then stop.
       if node.nil?
         constituents.concat words
@@ -110,20 +110,20 @@ module MaxConst
     #
     # 'words' is an array of node IDs that are not splitwords
     # 'splitwords' is an array of fenodes that refer to splitwords
-    words = Array.new
-    splitwords = Array.new
+    words = []
+    splitwords = []
 
     node_list.each { |node|
       if node.is_splitword?
         splitwords << node
       else
-        words.concat node.yield_nodes().reject { |t| t.is_punct? }
+        words.concat node.yield_nodes.reject { |t| t.is_punct? }
       end
     }
 
     constituents = splitwords
 
-    syn_roots().each { |node|
+    syn_roots.each { |node|
       node_included, descendants_included = max_constituents_aux(node, words,
                                                                  include_single_missing_children,
                                                                  ignore_empty_terminals,
@@ -136,7 +136,7 @@ module MaxConst
       end
     }
     # which words remain to be added?
-    constituents.each { |c| words = words - c.yield_nodes() }
+    constituents.each { |c| words = words - c.yield_nodes }
     constituents.concat words
 
     return constituents
@@ -203,7 +203,7 @@ module MaxConst
       fully_included == "true"
     }
 
-    if res_false.empty? and res_true.length() > 0
+    if res_false.empty? and res_true.length > 0
       # all true, or all true and ignoreme
       return ["true", []]
 
@@ -211,7 +211,7 @@ module MaxConst
       # all ignoreme
       return ["ignoreme", []]
 
-    elsif res_false.length() == 1 and res_true.length() > 1 and
+    elsif res_false.length == 1 and res_true.length > 1 and
         include_single_missing_children
       # one child not covered,
       # resulting in all other children (except the ignoremes) being marked individually:

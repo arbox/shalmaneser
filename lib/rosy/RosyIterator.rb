@@ -82,7 +82,7 @@ class RosyIterator
     ##
     # open the right database table
     if @dataset == "train" or @splitID
-      @db_table = @ttt_obj.existing_train_table()
+      @db_table = @ttt_obj.existing_train_table
 
     else
       unless @testID
@@ -90,11 +90,11 @@ class RosyIterator
       end
       @db_table = @ttt_obj.existing_test_table(@testID)
     end
-    @allcolnames = @db_table.list_column_names()
+    @allcolnames = @db_table.list_column_names
 
     ##
     # make dynamic gold objects
-    @dyn_gold_objects = Array.new
+    @dyn_gold_objects = []
     @dyn_gold_objects << DynGoldBinary.new(@exp.get("noval"))
 
     ###
@@ -109,7 +109,7 @@ class RosyIterator
     # make additional restrictions on the column values
     if @splitID
       # get split table name
-      @second_table = @ttt_obj.existing_split_table(@splitID, @dataset, RosySplit.split_index_colname())
+      @second_table = @ttt_obj.existing_split_table(@splitID, @dataset, RosySplit.split_index_colname)
 
       # additional value restriction:
       # only use rows whose sentence ID also appears in the split table
@@ -121,7 +121,7 @@ class RosyIterator
 
       # additional column names:
       # those of the second table (but remove duplicates)
-      @allcolnames.concat @ttt_obj.existing_split_table(@splitID, @dataset, RosySplit.split_index_colname()).list_column_names()
+      @allcolnames.concat @ttt_obj.existing_split_table(@splitID, @dataset, RosySplit.split_index_colname).list_column_names
       @allcolnames.uniq!
 
 
@@ -131,7 +131,7 @@ class RosyIterator
       #     to take from the 2nd table
       # @second_table_colprefix is a string: all columns starting with this prefix
       #     are taken from the 2nd table
-      @use_cols_from_second_table = [ RosySplit.split_index_colname() ]
+      @use_cols_from_second_table = [ RosySplit.split_index_colname ]
       @second_table_colprefix = @exp.get("classif_column_name")
     end
 
@@ -164,7 +164,7 @@ class RosyIterator
         if run_column_name.nil?
           $stderr.puts "Missing: argrec classification results on #{@dataset} data."
           $stderr.puts "I have logs of the following runs: "
-          $stderr.puts @ttt_obj.runlog_to_s()
+          $stderr.puts @ttt_obj.runlog_to_s
           raise "Problem"
         end
 
@@ -207,7 +207,7 @@ class RosyIterator
     # xwise is a string consisting of any subset of
     # "frame", "target_pos", "target" joined by spaces.
     # transform to an array by splitting at spaces
-    @xwise = @xwise.split()
+    @xwise = @xwise.split
     @xwise.each { |xwise_entry|
       unless @ttt_obj.feature_names.include? xwise_entry
         # sanity check: valid xwise value?
@@ -230,15 +230,15 @@ class RosyIterator
   #
   # returns: an array of strings, ["frame"] or ["frame", "target"],
   # or ["target_pos"]
-  def get_xwise_column_names()
+  def get_xwise_column_names
     return @xwise
   end
 
   ####
   # num_groups
   # returns: integer
-  def num_groups()
-    return @groups.length()
+  def num_groups
+    return @groups.length
   end
 
   ####
@@ -252,7 +252,7 @@ class RosyIterator
   # - the hash describing the group, as returned by unique_values_of_column
   # - plus an ID for the group, made up of its hash values concatenated into a string
   #   (values are connected by spaces)
-  def each_group()
+  def each_group
     @groups.each { |hash|
       # hash is a hash column_name(string)-> value(object)
       # this is the unique description of the current group
@@ -373,15 +373,15 @@ class RosyIterator
   #
   # returns: a list of hashes, one for each unique set of values
   def unique_values_of_columns(columns) # array:string, several column names
-    retv = Array.new
+    retv = []
 
     view = get_a_view_aux(columns, [],
                           "distinct" => true)
 
-    view.each_hash() { |row|
+    view.each_hash { |row|
       retv << row
     }
-    view.close()
+    view.close
     return retv
   end
 
@@ -474,7 +474,7 @@ class DynGoldBinary
     end
   end
 
-  def id()
+  def id
     return "binary_gold"
   end
 end

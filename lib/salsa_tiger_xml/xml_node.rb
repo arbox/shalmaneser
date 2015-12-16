@@ -36,7 +36,7 @@ class XMLNode < TreeNode
       # use to_f to get fractions of seconds too:
       # If I make several nodes in the same second,
       # they should still have unique IDs
-      id = Time.new().to_f.to_s
+      id = Time.new.to_f.to_s
     end
 
     super(id)
@@ -79,7 +79,7 @@ class XMLNode < TreeNode
     end
 
     if get_f("attributes").nil?
-      set_f("attributes", Hash.new())
+      set_f("attributes", {})
     end
     get_f("attributes")[name] = value
   end
@@ -109,7 +109,7 @@ class XMLNode < TreeNode
   # make a tag from its name and attributes,
   # then add tags for all its children,
   # then add an end tag.
-  def get()
+  def get
     if get_f("i_am_text")
       # text rather than XML element
       return get_f("name")
@@ -119,10 +119,10 @@ class XMLNode < TreeNode
       if get_f("attributes")
         string << get_f("attributes").to_a.map { |name, value|
           " " + name + "=\'" + xml_secure_val(value) + "\'"
-        }.join()
+        }.join
       end
       string << ">\n"
-      string << get_xml_embedded()
+      string << get_xml_embedded
       string << "</#{get_f("name")}>\n"
       return string
     end
@@ -131,21 +131,21 @@ class XMLNode < TreeNode
   #############
   protected
 
-  def get_xml_embedded()
-    return get_xml_ofchildren() +
-           get_xml_ofkith()
+  def get_xml_embedded
+    return get_xml_ofchildren +
+           get_xml_ofkith
   end
 
 
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     return children.map { |child|
-      child.get()
-    }.join()
+      child.get
+    }.join
   end
 
 
   def get_xml_ofkith
-    return @kith.map { |thing| thing.to_s + "\n" }.join()
+    return @kith.map { |thing| thing.to_s + "\n" }.join
   end
 
 

@@ -71,7 +71,7 @@ class FrameNode < SemNode
   end
 
   ###
-  def each_fe_by_name()
+  def each_fe_by_name
     child_labels.uniq.each { |fe_name|
       unless fe_name == "target"
 
@@ -100,8 +100,8 @@ class FrameNode < SemNode
   ###
   def add_child(fe_node)
     if fe_node.name == "target" and not(children_by_edgelabels(["target"]).empty?)
-      $stderr.puts "Adding second target to frame #{id()}"
-      $stderr.puts "I already have: " + children_by_edgelabels(["target"]).map { |t| t.id() }.join(",")
+      $stderr.puts "Adding second target to frame #{id}"
+      $stderr.puts "I already have: " + children_by_edgelabels(["target"]).map { |t| t.id }.join(",")
       raise "More than one target."
     end
 
@@ -127,7 +127,7 @@ class FrameNode < SemNode
     # make FE node and list as this frame's child
     unless fe_id
       # no FE ID given, make one myself
-      fe_id = id() + "_fe" + Time.new().to_f.to_s
+      fe_id = id + "_fe" + Time.new.to_f.to_s
     end
 
     n = FeNode.new(fe_name, fe_id)

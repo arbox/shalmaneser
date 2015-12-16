@@ -57,7 +57,7 @@ class FNDatabase
       outdirectory += "/"
     end
 
-    outfiles = Hash.new
+    outfiles = {}
     each_matching_sentence(Proc.new{|fnfile| true},
                            Proc.new{|fnsent| true}) {|fnsent|
       frame = fnsent.get_file_obj.get_frame

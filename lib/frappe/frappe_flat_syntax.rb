@@ -30,17 +30,17 @@ class FrprepFlatSyntax
     # read tab file with lemma and POS info
     tabfile = FNTabFormatFile.new(@tabfilename, @pos_suffix, @lemma_suffix)
 
-    tabfile.each_sentence() { |tabsent|
+    tabfile.each_sentence { |tabsent|
       # start new, empty sentence with "failed" attribute (i.e. no parse)
       # and with the ID of the corresponding TabFormat sentence
-      sentid = tabsent.get_sent_id()
+      sentid = tabsent.get_sent_id
       if sentid.nil? or sentid =~ /^-*$/
         $stderr.puts "No sentence ID for sentence:"
         tabsent.each_line_parsed { |l| $stderr.print l.get("word"), " "}
         $stderr.puts
         # @todo AB: [2015-12-16 Wed 18:24]
         #   Change this!!!
-        sentid = Time.new().to_f.to_s
+        sentid = Time.new.to_f.to_s
       end
       sent = SalsaTigerSentence.new("<s id=\"#{SalsaTigerXMLHelper.escape(sentid)}\" failed=\"true\"></s>")
 
@@ -52,7 +52,7 @@ class FrprepFlatSyntax
                            single_nonterminal_id)
 
       # add terminals
-      tabsent.each_line_parsed() { |line_obj|
+      tabsent.each_line_parsed { |line_obj|
         # make terminal node with tab sent info
         node_id = sentid.to_s + "_" + line_obj.get("lineno").to_s
         word = line_obj.get("word")

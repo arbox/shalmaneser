@@ -92,7 +92,7 @@ class DBView
                                                   value_restrictions, parameters))
 
     # index_tables: Hash: table name =>  DBResult object
-    @index_tables = Hash.new
+    @index_tables = {}
     table_col_pairs.each_with_index { |tc, index|
       # read index column of this table, add all the other tables
       # with empty column lists
@@ -115,7 +115,7 @@ class DBView
     if @parameters["gold"]
       @map_gold = true
       # remember which column in the DB table is the gold column
-      @gold_index = column_names().index(@parameters["gold"])
+      @gold_index = column_names.index(@parameters["gold"])
     else
       @map_gold = false
     end
@@ -126,10 +126,10 @@ class DBView
   #
   # to be called when the view is no longer needed:
   # frees the DBResult objects underlying this view
-  def close()
+  def close
     unless @view_empty
-      @main_table.free()
-      @index_tables.each_value { |t| t.free() }
+      @main_table.free
+      @index_tables.each_value { |t| t.free }
     end
   end
 
@@ -193,7 +193,7 @@ class DBView
     if @map_gold
       dyn_gold_obj = fetch_dyn_gold_obj(dyn_gold_id)
     end
-    @main_table.reset()
+    @main_table.reset
 
     @main_table.each_hash { |row_hash|
       if @map_gold
@@ -225,7 +225,7 @@ class DBView
     if @map_gold
       dyn_gold_obj = fetch_dyn_gold_obj(dyn_gold_id)
     end
-    @main_table.reset()
+    @main_table.reset
 
     @main_table.each {|row|
       if @gold_index
@@ -266,21 +266,21 @@ class DBView
     # and update that column
     @table_col_pairs.each { |tc|
       if (tc.columns.class.to_s == "Array" and tc.columns.include? name) or
-          (tc.columns == "*" and tc.table_obj.list_column_names().include? name)
+          (tc.columns == "*" and tc.table_obj.list_column_names.include? name)
 
         table_name = tc.table_obj.table_name
 
         # sanity check: number of update entries must match
         # number of entries in this view
-        unless values.length() == @index_tables[table_name].num_rows()
+        unless values.length == @index_tables[table_name].num_rows
           $stderr.puts "Error: length of value array (#{values.length}) is not equal to length of view (#{@index_tables[table_name].num_rows})!"
           exit 1
         end
 
-        @index_tables[tc.table_obj.table_name].reset()
+        @index_tables[tc.table_obj.table_name].reset
 
         values.each { |value|
-          index = @index_tables[table_name].fetch_row().first
+          index = @index_tables[table_name].fetch_row.first
           tc.table_obj.update_row(index, [[name, value]])
         }
 
@@ -308,20 +308,20 @@ class DBView
 
     # sanity check 1: need to know what the sentence ID is
     unless @parameters["sentence_id_feature"]
-      raise "I need the name of the sentence ID feature for each_sentence()"
+      raise "I need the name of the sentence ID feature for each_sentence"
     end
     # sanity check 2: the view needs to include the sentence ID
-    unless column_names().include? @parameters["sentence_id_feature"]
+    unless column_names.include? @parameters["sentence_id_feature"]
       raise "View.each_sentence: Cannot do this without sentence ID in the view"
     end
 
     last_sent_id = nil
-    sentence = Array.new
+    sentence = []
     each_hash(dyn_gold_id) {|row_hash|
       if last_sent_id != row_hash[@parameters["sentence_id_feature"]] and
           (!(last_sent_id.nil?))
         yield sentence
-        sentence = Array.new
+        sentence = []
       end
       last_sent_id = row_hash[@parameters["sentence_id_feature"]]
       sentence << row_hash
@@ -335,7 +335,7 @@ class DBView
   # length
   #
   # returns the length of the view: the number of its rows
-  def length()
+  def length
     return @index_tables[@table_col_pairs.first.table_obj.table_name].num_rows
   end
 
@@ -348,11 +348,11 @@ class DBView
   # returns: array:string
   #   the list of column names for this view
   #   in the right order
-  def column_names()
+  def column_names
     if @view_empty
       return []
     else
-      return @main_table.list_column_names()
+      return @main_table.list_column_names
     end
   end
 
@@ -382,7 +382,7 @@ class DBView
       end
 
       dyn_gold_obj = @parameters["dynamic_feature_list"].detect { |obj|
-        obj.id() == dyn_gold_id
+        obj.id == dyn_gold_id
       }
       if dyn_gold_obj.nil?
         $stderr.puts "View.rb: Unknown DynGold ID " + dyn_gold_id
@@ -397,7 +397,7 @@ class DBView
         def make(x)
           x
         end
-        def id()
+        def id
           return "gold"
         end
       end

@@ -21,7 +21,7 @@ class Targets
 
     # keep recorded targets here.
     # try to read old list now.
-    @targets = Hash.new()
+    @targets = {}
 
     # write target info in the classifier directory.
     # This is _not_ dependent on a potential split ID
@@ -44,7 +44,7 @@ class Targets
         line.chomp!
         if line =~ /^LEMMA (.+) SENSES (.+)$/
           lemmapos = $1
-          senses = $2.split()
+          senses = $2.split
           lemmapos.gsub!(/ /, '_')
           #lemmapos.gsub!(/\.[A-Z]\./, '.')
           @targets[lemmapos] = senses
@@ -88,8 +88,8 @@ class Targets
 
   ##
   # returns a list of lemma-pos combined strings
-  def get_lemmas()
-    return @targets.keys()
+  def get_lemmas
+    return @targets.keys
   end
 
   ##
@@ -106,7 +106,7 @@ class Targets
 
   ##
   # write file
-  def done_reading_targets()
+  def done_reading_targets
     begin
       file = FileZipped.new(@dir + "targets.txt.gz", "w")
     rescue
@@ -156,7 +156,7 @@ class FindTargetsFromFrames < Targets
   #  "lex":   lemma, or multiword expression in canonical form
   #  "sid": sentence ID
   def determine_targets(st_sent) #SalsaTigerSentence object
-    retv = Hash.new()
+    retv = {}
     st_sent.each_frame { |frame_obj|
       # instance-specific computation:
       # target and target positions
@@ -171,28 +171,28 @@ class FindTargetsFromFrames < Targets
 
       elsif @exp.get("language") == "de"
         # don't consider true multiword targets for German
-        all_targets = frame_obj.target.children()
+        all_targets = frame_obj.target.children
         term = @interpreter_class.main_node_of_expr(all_targets, "no_mwe")
 
       else
         # for all other languages: try to figure out the head target word
         # anyway
-        all_targets = frame_obj.target.children()
+        all_targets = frame_obj.target.children
         term = @interpreter_class.main_node_of_expr(all_targets)
       end
 
       if term and term.is_splitword?
         # don't use parts of a word as main node
-        term = term.parent()
+        term = term.parent
       end
       if term and term.is_terminal?
-        key = [all_targets.map { |t| t.id() }, term.id()]
+        key = [all_targets.map { |t| t.id }, term.id]
 
         unless retv[key]
-          retv[key] = Array.new()
+          retv[key] = []
         end
 
-        pos = frame_obj.target().get_attribute("pos")
+        pos = frame_obj.target.get_attribute("pos")
         # gold POS available, may be in wrong form,
         # i.e. not the same strings that @interpreter_class.category()
         # would return
@@ -208,12 +208,12 @@ class FindTargetsFromFrames < Targets
         end
 
         target_info = {
-          "sense" => frame_obj.name(),
+          "sense" => frame_obj.name,
           "obj" => frame_obj,
-          "all_targets" => frame_obj.target.children().map { |ch| ch.id() },
-          "lex" => frame_obj.target().get_attribute("lemma"),
+          "all_targets" => frame_obj.target.children.map { |ch| ch.id },
+          "lex" => frame_obj.target.get_attribute("lemma"),
           "pos" => pos,
-          "sid" => st_sent.id()
+          "sid" => st_sent.id
         }
         #print "lex ", frame_obj.target(), " und ",frame_obj.target().get_attribute("lemma"), "\n"
         retv[key] << target_info
@@ -235,7 +235,7 @@ class FindAllTargets < Targets
                  interpreter_class)
     # read target info from file
     super(exp, interpreter_class, "r")
-    @training_lemmapos_pairs = get_lemma_pos()
+    @training_lemmapos_pairs = get_lemma_pos
 
     get_senses(@training_lemmapos_pairs)
     # list of words to exclude from assignment, for now
@@ -264,7 +264,7 @@ class FindAllTargets < Targets
     # map target IDs to list of senses, in our case always [ nil ]
     # because we assume that the senses of the targets we point out
     # are unknown
-    retv = Hash.new()
+    retv = {}
     # iterate through terminals of the sentence, check for inclusion
     # of their lemma in @training_lemmas
     sent.each_terminal { |node|
@@ -294,17 +294,17 @@ class FindAllTargets < Targets
           not(@interpreter_class.auxiliary?(node)) and
           not(@stoplemmas.include? lemma) and
           not(pos == "prep"))
-        key = [ [ node.id() ], node.id() ]
+        key = [ [ node.id ], node.id ]
 
         # take this as a target.
         retv[ key ] = [
           {
             "sense" => nil,
             "obj" => nil,
-            "all_targets" => [ node.id() ],
+            "all_targets" => [ node.id ],
             "lex" => lemma,
             "pos" => pos,
-            "sid" => sent.id()
+            "sid" => sent.id
           } ]
         # no recording of target info,
         # since we haven't determined anything new

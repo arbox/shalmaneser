@@ -190,7 +190,7 @@ class StanfordInterface < SynInterfaceSTXML
     end
 
     parsefile.close
-  end # each_sentence()
+  end # each_sentence
 
 
   ###

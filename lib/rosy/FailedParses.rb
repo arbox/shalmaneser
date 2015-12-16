@@ -2,23 +2,23 @@
 #
 # SP May 05
 #
-# Administration of information about failed parses; 
+# Administration of information about failed parses;
 # - sentence ID
 # - frame
 # - missed FE markables
 #
-# this class is pretty much a gloriefied hash table with methods to 
+# this class is pretty much a gloriefied hash table with methods to
 # - read FailedParses from a file and to write them to a file
 # - access info in a frame-specific way
 
 class FailedParses
-  
+
   ###
   # initialize
   #
   # nothing much happens here
-  def initialize()
-    @failed_parses = Array.new
+  def initialize
+    @failed_parses = []
   end
 
   ###
@@ -28,7 +28,7 @@ class FailedParses
   # - its sentence id (any object)
   # - its frame (String)
   # - its FE list (String Array)
-  
+
   def register(sent_id, # object
                frame,   # string: frame name
                target,  # string?
@@ -54,8 +54,8 @@ class FailedParses
     unless train_percentage.class < Integer and train_percentage >= 0 and train_percentage <= 100
       raise "Need Integer between 0 and 100 as training percentage."
     end
-    train_failed = FailedParses.new()
-    test_failed = FailedParses.new()
+    train_failed = FailedParses.new
+    test_failed = FailedParses.new
     @failed_parses.each {|sent_id,frame,target,target_pos,fe_list|
       if rand(100) > train_percentage
         test_failed.register(sent_id,frame,target,target_pos,fe_list)
@@ -70,17 +70,17 @@ class FailedParses
   # Access information
   #
   # failed_sent: number of failed sentences
-  # failed_fes:  Hash that maps FE names [String] onto numbers of failed FEs [Int] 
+  # failed_fes:  Hash that maps FE names [String] onto numbers of failed FEs [Int]
   #
-  # optional parameters: frame, target, target_pos : if not specified or nil, marginal 
+  # optional parameters: frame, target, target_pos : if not specified or nil, marginal
   #                      frequencies are counted (sum over all values)
-  
 
-  def failed_sent(frame_spec=nil,target_spec=nil,target_pos_spec=nil)    
+
+  def failed_sent(frame_spec=nil,target_spec=nil,target_pos_spec=nil)
     counter = 0
     @failed_parses.each {|sent_id,frame,target,target_pos,fe_list|
-      if ((frame_spec.nil? or frame_spec == frame) and 
-	  (target_spec.nil? or target_spec == target) and 
+      if ((frame_spec.nil? or frame_spec == frame) and
+	  (target_spec.nil? or target_spec == target) and
 	  (target_pos_spec.nil? or target_pos_spec == target_pos))
 	counter += 1
       end
@@ -91,8 +91,8 @@ class FailedParses
   def failed_fes(frame_spec=nil,target_spec=nil,target_pos_spec=nil)
     fe_hash = Hash.new(0)
     @failed_parses.each {|sent_id,frame,target,target_pos,fe_list|
-      if ((frame_spec.nil? or frame_spec == frame) and 
-	  (target_spec.nil? or target_spec == target) and 
+      if ((frame_spec.nil? or frame_spec == frame) and
+	  (target_spec.nil? or target_spec == target) and
 	  (target_pos_spec.nil? or target_pos_spec == target))
 	fe_list.each {|fe_label|
 	  fe_hash[fe_label] += 1
@@ -102,7 +102,7 @@ class FailedParses
     return fe_hash
   end
 
-  
+
   ###
   # Marshalling:
   #
@@ -125,6 +125,6 @@ class FailedParses
       $stderr.puts "I'll assume that there are no failed parses."
     end
   end
- 
-   
+
+
 end

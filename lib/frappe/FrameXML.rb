@@ -51,11 +51,11 @@ class FrameXMLFile #  only verified to work for FrameNet v1.1
     end
     # found lexunit
     string = line
-    while (line = file.gets())
+    while (line = file.gets)
       string << line
     end
     @lexunit = RegXML.new(string)
-    attributes = @lexunit.attributes()
+    attributes = @lexunit.attributes
     @id = attributes["ID"]
     attributes["name"] =~ /^([^.]+).([^.]+)$/
     @lu = $1
@@ -92,8 +92,8 @@ class FrameXMLFile #  only verified to work for FrameNet v1.1
   end
 
   def each_sentence
-    @lexunit.children_and_text().each { |subcorpus|
-      subcorpus.children_and_text().each { |annotationSet|
+    @lexunit.children_and_text.each { |subcorpus|
+      subcorpus.children_and_text.each { |annotationSet|
         if annotationSet.name == "annotationSet"
           # sentence found
           yield FrameXMLSentence.new(annotationSet,self)
@@ -111,31 +111,31 @@ class FrameXMLSentence
     #  name: name of the element, string
     #  start: start character, integer
     #  stop:  end character, integer
-    @layers = Hash.new
+    @layers = {}
 
-    annotationSet.children_and_text().each { |sentence_or_layer_elt|
+    annotationSet.children_and_text.each { |sentence_or_layer_elt|
 
       case sentence_or_layer_elt.name
       when "sentence"
         # sentence: has ID, its child is <text>[text]</text>
         @sent_id = sentence_or_layer_elt.attributes["ID"]
-        text_elt = sentence_or_layer_elt.children_and_text().detect { |child|
+        text_elt = sentence_or_layer_elt.children_and_text.detect { |child|
           child.name == "text"
         }
         if text_elt
           # found the text element. its only child should be the text
-          @orig_text = text_elt.children_and_text().detect { |child|
+          @orig_text = text_elt.children_and_text.detect { |child|
             child.text?
           }
           if @orig_text
             # take text out of RegXMl object
-            @orig_text = @orig_text.to_s()
+            @orig_text = @orig_text.to_s
           end
         end
 
       when "layers"
         # contains annotation layers
-        sentence_or_layer_elt.children_and_text().each { |layer|
+        sentence_or_layer_elt.children_and_text.each { |layer|
           unless layer.name == "layer"
             # additional material, ignore
             next
@@ -156,11 +156,11 @@ class FrameXMLSentence
     @text = Ampersand.utf8_to_hex(@orig_text).split(" ")  # text with special characters replaced by &...; sequences
 
     # all text and pos_text have the same number of elements!
-    @start_is = Hash.new # map char indices (start of words) onto word indices
-    @stop_is = Hash.new   # map char indices (end of words) onto word indices
-    @charidx = Array.new # maps word indices on [start,stop]
+    @start_is = {} # map char indices (start of words) onto word indices
+    @stop_is = {}   # map char indices (end of words) onto word indices
+    @charidx = [] # maps word indices on [start,stop]
 
-    @double_space = Array.new
+    @double_space = []
     pos = 0
     while (match = @orig_text.index(/(\s\s+)/,pos))
       @double_space << match
@@ -278,13 +278,13 @@ class FrameXMLSentence
     # labels for one span [i.e. in one value of the
     # {gf,fe,pt} hashes], we only ever record one
 
-    gf = Hash.new
+    gf = {}
     add_all_to_hash(gf,"GF")
-    fe = Hash.new
+    fe = {}
     add_all_to_hash(fe,"FE")
-    pt = Hash.new
+    pt = {}
     add_all_to_hash(pt,"PT")
-    target = Hash.new
+    target = {}
     add_all_to_hash(target,"Target")
 
     in_target = false
@@ -292,7 +292,7 @@ class FrameXMLSentence
     @pos_text.each_index {|i|
       # write format:
       #  "word" "pt", "gf", "role", "target", "frame", "stuff" "ne", "sent_id"
-      line = Array.new
+      line = []
       # word
       word = @pos_text[i]
       line << word
@@ -300,7 +300,7 @@ class FrameXMLSentence
       start, stop = @charidx[i]
       # "pt", "gf", "role",
       [pt,gf,fe].each {|hash|
-        token = Array.new
+        token = []
         if hash.key?([start,"start"])
           markables = hash.delete([start,"start"])
           markables.each {|element|
@@ -387,13 +387,13 @@ class FrameXMLSentence
 
   def markable_as_string(layername,markup_name) # returns an array of all markables with this name
 
-    result = Array.new
+    result = []
 
     festart = nil
     festop = nil
     @layers[layername].each {|name,start,stop|
       if markup_name == name
-        fe = Array.new
+        fe = []
         infe = false
         @charidx.each_index {|i|
           startidx,stopidx = @charidx[i]
@@ -421,7 +421,7 @@ class FrameXMLSentence
     if hash.key?(key)
       exists = true
     else
-      hash[key] = Array.new
+      hash[key] = []
       hash[key] << name
     end
     return exists
@@ -446,8 +446,8 @@ class FrameXMLSentence
     end
 
     # thisLayer, retv: array:[name(string), start(integer), end(integer)]
-    thisLayer = Array.new
-    retv = Array.new
+    thisLayer = []
+    retv = []
 
     labels_elt = layer_elt.children_and_text.detect { |child| child.name == "labels"}
     unless labels_elt
@@ -461,7 +461,7 @@ class FrameXMLSentence
         next
       end
 
-      attributes = label.attributes()
+      attributes = label.attributes
       if attributes["itype"]
         # null instantiation, don't retain
         next
@@ -476,7 +476,7 @@ class FrameXMLSentence
     # sanity check: verify that
     # 1. we don't have overlapping labels
 
-    deleteHash = Hash.new # keep track of the labels which are to be deleted
+    deleteHash = {} # keep track of the labels which are to be deleted
     # i -> Boolean
 
     thisLayer.each_index {|i|
@@ -487,7 +487,7 @@ class FrameXMLSentence
       this_label, this_from , this_to = thisLayer[i]
 
       # compare with all remaining labels
-      (i+1..thisLayer.length()-1).to_a.each { |other_i|
+      (i+1..thisLayer.length-1).to_a.each { |other_i|
         other_label,other_from,other_to = thisLayer[other_i]
 
         # overlap? Throw out the later FE

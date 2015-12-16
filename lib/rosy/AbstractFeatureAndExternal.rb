@@ -150,11 +150,11 @@ class AbstractFeatureExtractor
   ######
   protected
 
-  def AbstractFeatureExtractor.announce_me()
+  def AbstractFeatureExtractor.announce_me
     # AB: In 1.9 constants are symbols.
     if Module.constants.include?("RosyFeatureInfo") or Module.constants.include?(:RosyFeatureInfo)
       # yup, we have a class to which we can announce ourselves
-      RosyFeatureInfo.add_feature(eval(self.name()))
+      RosyFeatureInfo.add_feature(eval(self.name))
     else
       # no interface collector class
 #      $stderr.puts "Feature #{self.name()} not announced: no RosyFeatureInfo."

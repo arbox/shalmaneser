@@ -37,7 +37,7 @@ class SynInterfaceSTXML < SynInterface
   # standard mapping:
   #
   # to be used as the mapping from tab sentence words to
-  # SalsaTigerSentence nodes returned by each_sentence():
+  # SalsaTigerSentence nodes returned by each_sentence:
   # map the n-th word of the tab sentence to the n-th terminal of
   # the SalsaTigerSentence
   def self.standard_mapping(sent, tabsent)

@@ -3,7 +3,7 @@ class FredFeatureInfo
   # class variable:
   # list of all known extractors
   # add to it using add_feature()
-  @@extractors = Array.new
+  @@extractors = []
 
   # boolean. set to true after warning messages have been given once
   @@warned = false
@@ -20,14 +20,14 @@ class FredFeatureInfo
     ##
     # make list of extractors that are
     # required by the user
-    @features = Array.new
+    @features = []
     @exp = exp
 
     # user-chosen extractors:
     # returns array of pairs [feature group designator(string), options(array:string)]
     exp.get_lf("feature").each { |extractor_name, *options|
 
-      extractor = @@extractors.detect { |e| e.feature_name() == extractor_name }
+      extractor = @@extractors.detect { |e| e.feature_name == extractor_name }
       unless extractor
         # no extractor found matching the given designator
         unless @@warned
@@ -49,7 +49,7 @@ class FredFeatureInfo
   # get_extractor_objects
   #
   # returns a list of feature extractor objects
-  def get_extractor_objects()
+  def get_extractor_objects
 
     return @features.map{ |feature_class|
       feature_class.new(@exp)
@@ -63,7 +63,7 @@ class FredFeatureExtractor
   # feature name:
   # name by which you choose this feature
   # in the experiment file
-  def FredFeatureExtractor.feature_name()
+  def FredFeatureExtractor.feature_name
     raise "Overwrite me."
   end
 
@@ -104,9 +104,9 @@ end
 #####
 # context feature
 class FredContextFeatureExtractor < FredFeatureExtractor
-  FredContextFeatureExtractor.announce_me()
+  FredContextFeatureExtractor.announce_me
 
-  def FredContextFeatureExtractor.feature_name()
+  def FredContextFeatureExtractor.feature_name
     return "context"
   end
 
@@ -117,9 +117,9 @@ class FredContextFeatureExtractor < FredFeatureExtractor
     # cxsizes: list of context sizes chosen as features,
     # encoded in metafeature labels
     # written in a hash for fast access
-    @cxsizes = Hash.new()
+    @cxsizes = {}
     @exp.get_lf("feature", "context").each { |cxsize|
-      @cxsizes[ "CX" + cxsize.to_s() ] = true
+      @cxsizes[ "CX" + cxsize.to_s ] = true
     }
   end
 
@@ -145,9 +145,9 @@ end
 #####
 # context feature: POS separately, small contexts only
 class FredContextPOSFeatureExtractor < FredFeatureExtractor
-  FredContextPOSFeatureExtractor.announce_me()
+  FredContextPOSFeatureExtractor.announce_me
 
-  def FredContextPOSFeatureExtractor.feature_name()
+  def FredContextPOSFeatureExtractor.feature_name
     return "context_pos"
   end
 
@@ -158,10 +158,10 @@ class FredContextPOSFeatureExtractor < FredFeatureExtractor
     # cxsizes: list of context sizes chosen as features,
     # encoded in metafeature labels
     # written in a hash for fast access
-    @cxsizes = Hash.new()
+    @cxsizes = {}
     @exp.get_lf("feature", "context").each { |cxsize|
       if cxsize <= 10
-        @cxsizes[ "CX" + cxsize.to_s() ] = true
+        @cxsizes[ "CX" + cxsize.to_s ] = true
       end
     }
     if @cxsizes.empty?
@@ -191,9 +191,9 @@ end
 #####
 # bigram/trigram feature
 class FredNgramFeatureExtractor < FredFeatureExtractor
-  FredNgramFeatureExtractor.announce_me()
+  FredNgramFeatureExtractor.announce_me
 
-  def FredNgramFeatureExtractor.feature_name()
+  def FredNgramFeatureExtractor.feature_name
     return "ngram"
   end
 
@@ -220,7 +220,7 @@ class FredNgramFeatureExtractor < FredFeatureExtractor
     pos_index = 2
 
     feature_hash.each { |ftype, fvalues|
-      if ftype == "CX" + @cxsize.to_s()
+      if ftype == "CX" + @cxsize.to_s
         # compute the ngram features from this context
         # |fvalues| = 2*cxsize, that is, cxsize describes
         # the length of a one-sided context window
@@ -235,10 +235,10 @@ class FredNgramFeatureExtractor < FredFeatureExtractor
           [[-2, -1, 0], "TLEM", lemma_index], # trigram of lemmas
           [[-2, -1, 0], "TPOS", pos_index] # trigram of POSs
         ].each { |f_indices, label, subindex|
-          fs = f_indices.map { |i| fvalues[@cxsize+i] }.compact()
-          if fs.length() == f_indices.length()
+          fs = f_indices.map { |i| fvalues[@cxsize+i] }.compact
+          if fs.length == f_indices.length
             # we successfully extracted entries for all the given indices
-            yield label + fs.map { |f| f.split("#")[subindex] }.join()
+            yield label + fs.map { |f| f.split("#")[subindex] }.join
           end
         }
       end
@@ -250,9 +250,9 @@ end
 #####
 # syntax feature
 class FredSynFeatureExtractor < FredFeatureExtractor
-  FredSynFeatureExtractor.announce_me()
+  FredSynFeatureExtractor.announce_me
 
-  def FredSynFeatureExtractor.feature_name()
+  def FredSynFeatureExtractor.feature_name
     return "syntax"
   end
 
@@ -290,9 +290,9 @@ end
 #####
 # syntax-plus-headword feature
 class FredSynsemFeatureExtractor < FredFeatureExtractor
-  FredSynsemFeatureExtractor.announce_me()
+  FredSynsemFeatureExtractor.announce_me
 
-  def FredSynsemFeatureExtractor.feature_name()
+  def FredSynsemFeatureExtractor.feature_name
     return "synsem"
   end
 

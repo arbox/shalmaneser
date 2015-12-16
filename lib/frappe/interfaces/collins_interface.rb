@@ -104,7 +104,7 @@ class CollinsInterface < SynInterfaceSTXML
 
     corpusfile.each_sentence {|tab_sent| # iterate over corpus sentences
 
-      my_sent_id = tab_sent.get_sent_id()
+      my_sent_id = tab_sent.get_sent_id
 
       while true # find next matching line in parse file
         line = parserfile.gets
@@ -158,12 +158,12 @@ class CollinsInterface < SynInterfaceSTXML
                     outfilename) # string: name of output stxml file
 
     outfile = File.new(outfilename, "w")
-    outfile.puts SalsaTigerXMLHelper.get_header()
+    outfile.puts SalsaTigerXMLHelper.get_header
     each_sentence(infilename) { |st_sent, tabsent|
-      outfile.puts st_sent.get()
+      outfile.puts st_sent.get
     }
-    outfile.puts SalsaTigerXMLHelper.get_footer()
-    outfile.close()
+    outfile.puts SalsaTigerXMLHelper.get_footer
+    outfile.close
   end
 
 
@@ -179,7 +179,7 @@ class CollinsInterface < SynInterfaceSTXML
     t_c = Counter.new(0)
 
     position = 0
-    stack = Array.new
+    stack = []
 
     while position < string.length
       if string[position,1] == "(" # push nonterminal
@@ -188,7 +188,7 @@ class CollinsInterface < SynInterfaceSTXML
         stack.push nonterminal
         position = nextspace+1
       elsif string[position,1] == ")" # reduce stack
-        tempstack = Array.new
+        tempstack = []
         while true
           # get all Nodes from the stack and put them on a tempstack,
           # until you find a String, which is a not-yet existing nonterminal
@@ -204,7 +204,7 @@ class CollinsInterface < SynInterfaceSTXML
             nt_a = object.split("~")
             unless nt_a.length == 4
               # something went wrong. maybe it's about character encoding
-              if nt_a.length() > 4
+              if nt_a.length > 4
                 # yes, assume it's about character encoding
                 nt_a = [nt_a[0], nt_a[1..-3].join("~"), nt_a[-2], nt_a[-1]]
               else
@@ -269,7 +269,7 @@ class CollinsInterface < SynInterfaceSTXML
   #
   def CollinsInterface.produce_collins_input(corpusfile,tempfile)
     corpusfile.each_sentence {|s|
-      words = Array.new
+      words = []
       s.each_line_parsed {|line_obj|
         word = line_obj.get("word")
         tag = line_obj.get("pos")

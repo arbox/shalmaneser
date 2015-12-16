@@ -19,7 +19,7 @@ class CollinsTntInterpreter < SynInterpreter
   ###
   # names of additional systems that may be interpreted by this class
   # returns a hash service(string) -> system name(string)
-  # same as names()
+  # same as names
   def self.optional_systems
     {"lemmatizer" => "treetagger"}
   end
@@ -180,10 +180,10 @@ class CollinsTntInterpreter < SynInterpreter
     end
 
     unless (parent = node.parent) and
-          parent.category() == "VP"
+          parent.category == "VP"
       return false
     end
-    unless (vpa_node = parent.children.detect { |other_child| other_child.category() == "VP-A" })
+    unless (vpa_node = parent.children.detect { |other_child| other_child.category == "VP-A" })
       return false
     end
     unless vpa_node.children.detect { |other_node| CollinsTntInterpreter.category(other_node) == "verb" }
@@ -247,7 +247,7 @@ class CollinsTntInterpreter < SynInterpreter
       return nil
     end
 
-    #    other_verbs = Array.new
+    #    other_verbs = []
     #
     #    current_node = node
     #    while current_node = current_node.parent
@@ -333,7 +333,7 @@ class CollinsTntInterpreter < SynInterpreter
       else
         nil
       end
-    }.compact()
+    }.compact
   end
 
   ###
@@ -356,12 +356,12 @@ class CollinsTntInterpreter < SynInterpreter
     end
     headlemma = CollinsTntInterpreter.lemma_backoff(nh)
 
-    nonhead_children = node.children().reject { |n|
+    nonhead_children = node.children.reject { |n|
       nnh = CollinsTntInterpreter.head_terminal(n)
       not(nnh) or
         CollinsTntInterpreter.lemma_backoff(nnh) == headlemma
     }
-    if nonhead_children.length() == 1
+    if nonhead_children.length == 1
       return nonhead_children.first
     end
 
@@ -372,12 +372,12 @@ class CollinsTntInterpreter < SynInterpreter
     when "SBAR", "VP"
       icont_child = nonhead_children.detect { |n|
         h = CollinsTntInterpreter.head_terminal(n)
-        h and h.part_of_speech() =~ /^VB/
+        h and h.part_of_speech =~ /^VB/
       }
     when "PP"
       icont_child = nonhead_children.detect { |n|
         h = CollinsTntInterpreter.head_terminal(n)
-        h and h.part_of_speech() =~ /^NN/
+        h and h.part_of_speech =~ /^NN/
       }
     else
       raise "Shouldn't be here"
@@ -417,7 +417,7 @@ class CollinsTntInterpreter < SynInterpreter
                                    paths_to_target, # hash: node ID -> Path object: paths from target to node
                                    terminal_index)  # hash: terminal node -> word index in sentence
 
-    path_to_target = paths_to_target[node.id()]
+    path_to_target = paths_to_target[node.id]
 
     if not path_to_target
       # no path from target to node: suggest for pruning
@@ -463,7 +463,7 @@ class CollinsTntInterpreter < SynInterpreter
         return  1
 
       elsif num_up >= 1 and num_down == 2 and
-           (p = node.parent()) and CollinsTntInterpreter.category(p) == "prep"
+           (p = node.parent) and CollinsTntInterpreter.category(p) == "prep"
 
         # case (2)
         return 1
@@ -685,7 +685,7 @@ class CollinsTntInterpreter < SynInterpreter
                                                  ti)  # hash: terminal node -> word index in sentence
 
     # does node have sisters that represent coordination?
-    unless (p = node.parent())
+    unless (p = node.parent)
       return false
     end
 
@@ -709,8 +709,8 @@ class CollinsTntInterpreter < SynInterpreter
     sisters_closer_to_target = p.children.select { |sib|
       sib != node and
         not(conj_sisters.include? sib) and
-        paths_to_target[sib.id()] and
-        paths_to_target[sib.id()].length() < paths_to_target[node.id()].length
+        paths_to_target[sib.id] and
+        paths_to_target[sib.id].length < paths_to_target[node.id].length
     }.map { |n|
       [n, CollinsTntInterpreter.lti(n, ti), CollinsTntInterpreter.rti(n, ti)]
     }

@@ -88,9 +88,9 @@ class RosyTrainingTestTable
     @maintable_name = @exp.instantiate("main_table_name",
 				       "exp_ID" => @exp.get("experiment_ID"))
     # list of pairs [name, mysql format] for each feature (string*string)
-    @feature_columns = @feature_info.get_column_formats()
+    @feature_columns = @feature_info.get_column_formats
     # list of feature names (strings)
-    @feature_names = @feature_info.get_column_names()
+    @feature_names = @feature_info.get_column_names
     # make empty columns for classification results:
     # list of pairs [name, mysql format] for each classifier column (string*string)
     @classif_columns = Range.new(0,10).map {|id|
@@ -111,11 +111,11 @@ class RosyTrainingTestTable
     # test and split IDs, classification run logs etc.
     # test whether there is a pickle file.
     # if so, read it
-    success = from_file()
+    success = from_file
     unless success
       # pickle file couldn't be read
       # initialize to empty object
-      @log_obj = TttLog.new(Array.new, Array.new, Hash.new)
+      @log_obj = TttLog.new([], [], {})
     end
   end
 
@@ -130,7 +130,7 @@ class RosyTrainingTestTable
       return
     end
     Marshal.dump(@log_obj, file)
-    file.close()
+    file.close
   end
 
   def from_file(dir = nil)
@@ -149,7 +149,7 @@ class RosyTrainingTestTable
       if dir
         # load from a different file than the normal one?
         # then save this log to the normal file too
-        to_file()
+        to_file
       end
 
       return true
@@ -166,7 +166,7 @@ class RosyTrainingTestTable
   def testtable_name(testID)
     # no test ID given? use default
     unless testID
-      testID = Rosy::default_test_ID()
+      testID = Rosy::default_test_ID
     end
 
     return @exp.instantiate("test_table_name",
@@ -185,13 +185,13 @@ class RosyTrainingTestTable
 
   ###
   # returns: test IDs for the current experiment (list of strings)
-  def testIDs()
+  def testIDs
     return @log_obj.testIDs
   end
 
   ###
   # returns: test IDs for the current experiment (list of strings)
-  def splitIDs()
+  def splitIDs
     return @log_obj.splitIDs
   end
 
@@ -232,7 +232,7 @@ class RosyTrainingTestTable
       # So we have to extend the table.
       # First find out the complete list of used column names:
       # all table columns starting with @addcol_prefix
-      used_classif_columns = Hash.new
+      used_classif_columns = {}
       @database.list_column_names(table_name).each { |column_name|
         if column_name =~ /^#{@addcol_prefix}/
           used_classif_columns[column_name] = true
@@ -300,7 +300,7 @@ class RosyTrainingTestTable
     if rl
       rl.okay = true
     end
-    to_file()
+    to_file
   end
 
 
@@ -310,7 +310,7 @@ class RosyTrainingTestTable
                     column_name) # string: name of the run column
     loglist = get_runlogs(table_name)
     loglist.delete_if { |rl| rl.column == column_name }
-    to_file()
+    to_file
   end
 
   ###
@@ -319,8 +319,8 @@ class RosyTrainingTestTable
   # for all tables of this experiment
   #
   # If all runlogs are empty, returns "none known"
-  def runlog_to_s()
-    hashes = runlog_to_s_list()
+  def runlog_to_s
+    hashes = runlog_to_s_list
 
     # join text from hashes into a string, omit tables without runs
     string = ""
@@ -347,18 +347,18 @@ class RosyTrainingTestTable
   # the DB tables of this experiment,
   # and runlist is a list of pairs [ column_name, text],
   # where text describes the classification run in the column column_name
-  def runlog_to_s_list()
-    retv = Array.new
+  def runlog_to_s_list
+    retv = []
 
     # main table
     retv << one_runlog_to_s("train", nil, nil)
 
     # test tables
-    testIDs().each { |testID|
+    testIDs.each { |testID|
       retv << one_runlog_to_s("test", testID, nil)
     }
     # split tables
-    splitIDs().each { |splitID|
+    splitIDs.each { |splitID|
       ["train", "test"].each { |dataset|
         retv  << one_runlog_to_s(dataset, nil, splitID)
       }
@@ -369,7 +369,7 @@ class RosyTrainingTestTable
 
   #######
   # create new training/test/split table
-  def new_train_table()
+  def new_train_table
 
     # remove old runlogs, if they exist
     del_runlogs(@maintable_name)
@@ -378,7 +378,7 @@ class RosyTrainingTestTable
     return DBTable.new(@database, @maintable_name,
  		       "new",
  		       "col_formats" => @feature_columns + @classif_columns,
- 		       "index_cols" => @feature_info.get_index_columns(),
+ 		       "index_cols" => @feature_info.get_index_columns,
  		       "addcol_prefix" => @addcol_prefix)
   end
 
@@ -391,7 +391,7 @@ class RosyTrainingTestTable
     # remember test ID
     unless @log_obj.testIDs.include? testID
       @log_obj.testIDs << testID
-      to_file()
+      to_file
     end
 
     # make table
@@ -399,7 +399,7 @@ class RosyTrainingTestTable
                        testtable_name(testID),
 		       "new",
 		       "col_formats" => @feature_columns + @classif_columns,
-		       "index_cols" => @feature_info.get_index_columns(),
+		       "index_cols" => @feature_info.get_index_columns,
 		       "addcol_prefix" => @addcol_prefix)
 
   end
@@ -415,11 +415,11 @@ class RosyTrainingTestTable
     # remember split ID
     unless @log_obj.splitIDs.include? splitID
       @log_obj.splitIDs << splitID
-      to_file()
+      to_file
     end
 
     # determine the type of the index column
-    maintable = existing_train_table()
+    maintable = existing_train_table
     index_name_and_type = maintable.list_column_formats.assoc(maintable.index_name)
     if index_name_and_type
       split_index_type = index_name_and_type.last
@@ -441,7 +441,7 @@ class RosyTrainingTestTable
 
   #######
   # open existing training or test table
-  def existing_train_table()
+  def existing_train_table
     return DBTable.new(@database, @maintable_name,
 		       "open",
 		       "col_names" => @feature_names,
@@ -473,26 +473,26 @@ class RosyTrainingTestTable
   # table existence tests
 
   ###
-  def train_table_exists?()
-    return @database.list_tables().include?(@maintable_name)
+  def train_table_exists?
+    return @database.list_tables.include?(@maintable_name)
   end
 
   ###
   def test_table_exists?(testID) # string
-    return @database.list_tables().include?(testtable_name(testID))
+    return @database.list_tables.include?(testtable_name(testID))
   end
 
   ###
   def split_table_exists?(splitID,  # string
                           dataset)  # string: train/test
-    return @database.list_tables().include?(splittable_name(splitID, dataset))
+    return @database.list_tables.include?(splittable_name(splitID, dataset))
   end
 
   ##################3
   # remove tables
 
   ###
-  def remove_train_table()
+  def remove_train_table
     if train_table_exists?
       del_runlogs(@maintable_name)
       remove_table(@maintable_name)
@@ -503,7 +503,7 @@ class RosyTrainingTestTable
   def remove_test_table(testID) # string
     # remove ID from log
     @log_obj.testIDs.delete(testID)
-    to_file()
+    to_file
 
     # remove DB table
     if test_table_exists?(testID)
@@ -517,7 +517,7 @@ class RosyTrainingTestTable
                          dataset) # string: train/test
     # remove ID from log
     @log_obj.splitIDs.delete(splitID)
-    to_file()
+    to_file
 
     # remove DB table
     if split_table_exists?(splitID, dataset)
@@ -570,7 +570,7 @@ class RosyTrainingTestTable
   # returns: an Array of RunLog objects
   def get_runlogs(table_name) # string: DB table name
     unless @log_obj.runlogs[table_name]
-      @log_obj.runlogs[table_name] = Array.new
+      @log_obj.runlogs[table_name] = []
     end
 
     return @log_obj.runlogs[table_name]
@@ -582,7 +582,7 @@ class RosyTrainingTestTable
   # Saves the changed @log_obj to file.
   def del_runlogs(table_name) # string: DB table name
     @log_obj.runlogs.delete(table_name)
-    to_file()
+    to_file
   end
 
   ###
@@ -591,7 +591,7 @@ class RosyTrainingTestTable
   def add_to_runlog(table_name, # string: DB table name
                     runlog)
     get_runlogs(table_name) << runlog
-    to_file()
+    to_file
   end
 
   ###
@@ -692,7 +692,7 @@ class RosyTrainingTestTable
   def encode_model_features(step) # string: train/test
     # list model features as hash
     temp = @feature_info.get_model_features(step)
-    model_features = Hash.new
+    model_features = {}
     temp.each { |feature_name|
       model_features[feature_name] = true
     }
@@ -712,7 +712,7 @@ class RosyTrainingTestTable
   # returns: a list of strings, the model features
   def decode_model_features(num) # integer: result of encode_model_features
 
-    model_features = Array.new
+    model_features = []
     @feature_names.sort.each_with_index { |feature_name, ix|
       if num[ix] == 1
         model_features << feature_name
@@ -750,7 +750,7 @@ class RosyTrainingTestTable
     end
     header << "of experiment '#{@exp.get("experiment_ID")}'\n\n"
 
-    descr = Array.new
+    descr = []
     loglist.each { |rl|
       unless rl.okay
         next

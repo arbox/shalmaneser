@@ -241,7 +241,7 @@ class FredParameters
     # evaluate runtime options:
     # record the slide variable (if any) plus all toggle variables
     @slide = SlideVar.new("", @exp)
-    @toggle = Array.new
+    @toggle = []
     @outfile_prefix = "fred_parameters"
 
     options.each_pair do |opt, arg|
@@ -271,7 +271,7 @@ class FredParameters
   end
 
   ####
-  def compute()
+  def compute
     ##
     # make a split of the training data
     begin
@@ -281,14 +281,14 @@ class FredParameters
       exit 1
     end
     # make new split ID from system time, and make a split with 80% training, 20% test data
-    splitID = Time.new().to_f.to_s
+    splitID = Time.new.to_f.to_s
     task_obj = FredSplit.new(@exp,
                              { "--logID" => splitID,
                               "--trainpercent" => "80",
                              },
                              true  # ignore unambiguous
                              )
-    task_obj.compute()
+    task_obj.compute
 
     ##
     # start recording results:
@@ -302,7 +302,7 @@ class FredParameters
 
     # values_to_score: hash toggle_values_descr(string) =>
     #                        hash slide_value(float) => score(float)
-    values_to_score = Hash.new()
+    values_to_score = {}
 
     # max_score: float, describing maximum score achieved
     # max_setting: string, describing values for maximum score
@@ -311,7 +311,7 @@ class FredParameters
 
     ##
     # for each value of the toggle variables
-    0.upto(2**@toggle.length() - 1) { |binary|
+    0.upto(2**@toggle.length - 1) { |binary|
 
       textout_line = ""
 
@@ -326,7 +326,7 @@ class FredParameters
         end
       }
 
-      values_to_score[textout_line] = Hash.new()
+      values_to_score[textout_line] = {}
 
 
       ##
@@ -342,12 +342,12 @@ class FredParameters
         # slide and toggle variables.
         # Now train, test, evaluate on the split we have constructed
         task_obj = FredTrain.new(@exp, { "--logID" => splitID})
-        task_obj.compute()
+        task_obj.compute
         task_obj = FredTest.new(@exp,
                                 { "--logID" => splitID,
                                  "--nooutput"=> true
                                 })
-        task_obj.compute()
+        task_obj.compute
         task_obj = FredEval.new(@exp, {"--logID" => splitID})
         task_obj.compute(false)  # don't print evaluation results to file
 
@@ -356,7 +356,7 @@ class FredParameters
         score = task_obj.f
 
         textout_file.puts textout_line + slide_value_description + " : " + score.to_s
-        textout_file.flush()
+        textout_file.flush
         values_to_score[textout_line][slide_value] = score
 
         if score > max_score

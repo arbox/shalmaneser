@@ -106,10 +106,10 @@ class RosyFeaturize < RosyTask
   # perform
   #
   # compute features and write them to the DB table
-  def perform()
+  def perform
     if @dataset
       # compute features for main or test table
-      perform_main_featurization()
+      perform_main_featurization
     end
   end
 
@@ -168,11 +168,11 @@ class RosyFeaturize < RosyTask
 
       if @append_rather_than_overwrite
         # add to existing DB table
-        @db_table = @ttt_obj.existing_train_table()
+        @db_table = @ttt_obj.existing_train_table
 
       else
         # start new DB table
-        @db_table = @ttt_obj.new_train_table()
+        @db_table = @ttt_obj.new_train_table
       end
 
     when "test"
@@ -215,7 +215,7 @@ class RosyFeaturize < RosyTask
     # features that can be computed from this instance alone
 
     # @todo AB: Change this to my logger!
-    `echo "[#{Time.now().to_s}] Featurize: Start phase 1 feature extraction" >> #{log_filename}`
+    `echo "[#{Time.now.to_s}] Featurize: Start phase 1 feature extraction" >> #{log_filename}`
 
     @input_obj.each_instance_phase1 { |feature_list| # list of pairs [column_name(string), value(whatever)]
 
@@ -226,7 +226,7 @@ class RosyFeaturize < RosyTask
     # during featurisation, an Object with info about failed parses has been created
     # now get this object and store it in a file in the datadir
 
-    failed_parses_obj = @input_obj.get_failed_parses()
+    failed_parses_obj = @input_obj.get_failed_parses
 
     failed_parses_filename =
       File.new_filename(@exp.instantiate("rosy_dir",
@@ -243,7 +243,7 @@ class RosyFeaturize < RosyTask
     #
     # based on all features from Phase 1, make additional features
 
-    `echo "[#{Time.now().to_s}] Featurize: Start phase 2 feature extraction" >> #{log_filename}`
+    `echo "[#{Time.now.to_s}] Featurize: Start phase 2 feature extraction" >> #{log_filename}`
 
     iterator = RosyIterator.new(@ttt_obj, @exp, @dataset,
                                 "testID" => @testID,
@@ -256,13 +256,13 @@ class RosyFeaturize < RosyTask
         view.update_column(feature_name, feature_values)
       }
 
-      view.close()
+      view.close
     }
 
     #########
     # finished!!
     #
-    `echo "[#{Time.now().to_s}] Featurize: Finished" >> #{log_filename}`
+    `echo "[#{Time.now.to_s}] Featurize: Finished" >> #{log_filename}`
 
   end
 end

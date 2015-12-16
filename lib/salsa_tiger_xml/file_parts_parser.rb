@@ -38,7 +38,7 @@ class FilePartsParser
           # empty corpus
           @head = @head << $1
           @tail = $2
-          while (line = @file.readline())
+          while (line = @file.readline)
             @tail << "\n" + line
           end
           @readCompletely = true

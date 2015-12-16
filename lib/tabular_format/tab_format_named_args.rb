@@ -36,8 +36,8 @@ require "ruby_class_extensions"
 class TabFormatNamedArgs
   ############
   def initialize(values, features, group = nil)
-    @f = Hash.new
-    @r = Array.new
+    @f = {}
+    @r = []
     @group = group
 
     # record the feature names, give special attention to a group
@@ -61,11 +61,11 @@ class TabFormatNamedArgs
     # group_index: position of group in overall feature list
     group_index = @feature_names.index("GROUP")
     unless group_index
-      group_index = @feature_names.length()
+      group_index = @feature_names.length
     end
     num_features_after_group = [0,
-      (@feature_names.length() - 1) - group_index].max()
-    index_after_groups = values.length() - num_features_after_group
+      (@feature_names.length - 1) - group_index].max
+    index_after_groups = values.length - num_features_after_group
 
 
     # features before group: put feature/value pairs in @f hash
@@ -78,9 +78,9 @@ class TabFormatNamedArgs
       #      group_start += @group_feature_names.length())
       group_no = 0
       group_index.step(index_after_groups - 1,
-                       @group_feature_names.length()) { |group_start|
+                       @group_feature_names.length) { |group_start|
         @r << TabFormatNamedArgs.new(values.slice(group_start,
-                                                  @group_feature_names.length()),
+                                                  @group_feature_names.length),
                                      @group_feature_names,
                                      group_no)
         group_no += 1
@@ -89,7 +89,7 @@ class TabFormatNamedArgs
 
     # features after group: put feature/value pairs in @f hash
     feature_index = group_index + 1
-    index_after_groups.upto(values.length() - 1) { |i|
+    index_after_groups.upto(values.length - 1) { |i|
       @f[features[feature_index]] = values[i]
       feature_index += 1
     }
@@ -109,7 +109,7 @@ class TabFormatNamedArgs
     end
 
     # sanity check: does the hash contain keys that are not in the feature list?
-    hash.keys().reject { |f| features.include? f }.each { |bad_feature|
+    hash.keys.reject { |f| features.include? f }.each { |bad_feature|
       $stderr.puts "Error: unknown feature #{bad_feature} in format_str: ignoring."
     }
 
@@ -152,14 +152,14 @@ class TabFormatNamedArgs
   end
 
   #############
-  def num_groups()
-    return @r.length()
+  def num_groups
+    return @r.length
   end
 
   #############
   # return line as string, entries connected by tab,
   # in the order that the entries were in originally
-  def to_s()
+  def to_s
     return @feature_names.map { |feature|
       case feature
       when "GROUP"
@@ -181,7 +181,7 @@ class TabFormatNamedArgs
   # get feature from one of the groups
   # return: feature value (string)
   def get_from_group(name, group_no)
-    if not(group_no) or group_no >= @r.length()
+    if not(group_no) or group_no >= @r.length
       # no group with that number
       return nil
     else

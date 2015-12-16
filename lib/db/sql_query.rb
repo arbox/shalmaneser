@@ -123,7 +123,7 @@ class SQLQuery
       string += " WHERE "+row_restrictions.map { |restr_obj|
         # get the actual restriction out of its object
         # form: name(string) eqsymb(string: =, !=) value(object)
-        name, eqsymb, value = restr_obj.get()
+        name, eqsymb, value = restr_obj.get
         if value.nil?
           raise "SQL query construction error: Nil value for column " + name
         end
@@ -136,7 +136,7 @@ class SQLQuery
           name + eqsymb + value
         else
           # prepend name of first table in table_col_pairs
-          SQLQuery.prepend_tablename(table_col_pairs.first.table_obj.table_name(), name) + eqsymb + value
+          SQLQuery.prepend_tablename(table_col_pairs.first.table_obj.table_name, name) + eqsymb + value
         end
       }.join(" AND ")
     end
@@ -175,7 +175,7 @@ class SQLQuery
              " WHERE "+row_restrictions.map {|restr_obj|
       # get the actual restriction out of its object
       # form: name(string) eqsymb(string: =, !=) value(object)
-      name, eqsymb, value = restr_obj.get()
+      name, eqsymb, value = restr_obj.get
       if value.nil?
         raise "SQL query construction error: Nil value for column " + name
       end

@@ -56,18 +56,18 @@ end
 ####################
 # HIER changeme
 class TigerPruneFeature < RosySingleFeatureExtractor
-  TigerPruneFeature.announce_me()
+  TigerPruneFeature.announce_me
 
-  def TigerPruneFeature.feature_name()
+  def TigerPruneFeature.feature_name
     return "tiger_prune"
   end
-  def TigerPruneFeature.sql_type()
+  def TigerPruneFeature.sql_type
     return "TINYINT"
   end
-  def TigerPruneFeature.feature_type()
+  def TigerPruneFeature.feature_type
     return "syn"
   end
-  def TigerPruneFeature.info()
+  def TigerPruneFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -75,7 +75,7 @@ class TigerPruneFeature < RosySingleFeatureExtractor
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     if @@changeme_tiger_include.include? @@node
       return 1
     else
@@ -157,13 +157,13 @@ class Pruning
                                                    [ValueRestriction.new(Pruning.colname(exp), 0)]
                                                    )
       # make a list of column values that are all noval
-      all_noval = Array.new
+      all_noval = []
       view.each_instance_s { |inst|
         all_noval << exp.get("noval")
       }
       # and set all selected instances to noval
       view.update_column(run_column, all_noval)
-      view.close()
+      view.close
     }
   end
 end

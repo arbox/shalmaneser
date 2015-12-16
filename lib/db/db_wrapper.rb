@@ -21,8 +21,8 @@ class DBWrapper
 
   ###
   # close DB access
-  def close()
-    @database.close()
+  def close
+    @database.close
   end
 
   ####
@@ -44,7 +44,7 @@ class DBWrapper
   # no default here
   #
   # returns: list of strings
-  def list_tables()
+  def list_tables
     raise "Overwrite me"
   end
 
@@ -55,7 +55,7 @@ class DBWrapper
   def create_table(table_name, # string
                    column_formats, # array: array: string*string [column_name,column_format]
                    index_column_names, # array: string: column_name
-                   indexname)  # string: name of automatically created index column    
+                   indexname)  # string: name of automatically created index column
     raise "overwrite me"
   end
 
@@ -101,12 +101,12 @@ class DBWrapper
                       index_column_names, # array: string: column_name
                       indexname)  # string: name of autoincrement primary index
 
-    temp_obj = self.clone()
+    temp_obj = self.clone
     temp_obj.initialize_temp_table(column_formats, index_column_names, indexname)
     return temp_obj
   end
 
-  def drop_temp_table()
+  def drop_temp_table
     unless @table_name
       raise "can only do drop_temp_table() for objects that have a temp table"
     end
@@ -117,7 +117,7 @@ class DBWrapper
   protected
 
   def initialize_temp_table(column_formats, index_column_names, indexname)
-    @table_name = "t" + Time.new().to_f().to_s().gsub(/\./, "")
+    @table_name = "t" + Time.new.to_f.to_s.gsub(/\./, "")
     create_table(@table_name, column_formats, index_column_names, indexname)
   end
 end
@@ -138,39 +138,38 @@ class DBResult
   end
 
   # column names: NO DEFAULT
-  def list_column_names()
+  def list_column_names
     raise "Overwrite me"
   end
 
   # number of rows: returns an integer
-  def num_rows()
+  def num_rows
     return @result.num_rows
   end
 
   # yields each row as an array of values
-  def each()
+  def each
     @result.each { |row| yield row }
   end
 
   # yields each row as a hash: column name=> column value
-  def each_hash()
+  def each_hash
     @result.each_hash { |row_hash| yield row_hash }
   end
 
   # reset object, such that each() can be run again
   # DEFAULT DOES NOTHING, PLEASE OVERWRITE
-  def reset()
+  def reset
   end
 
   # free result object
-  def free()
-    @result.free()
+  def free
+    @result.free
   end
 
   # returns row as an array of column contents
-  def fetch_row()
-    return @result.fetch_row()
+  def fetch_row
+    return @result.fetch_row
   end
 
 end
-

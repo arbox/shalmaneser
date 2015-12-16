@@ -34,7 +34,7 @@ class FeNode < SemNode
     when "RegXML"
       super(name_or_xml)
 
-      if name_or_xml.name() == "target"
+      if name_or_xml.name == "target"
         @i_am_target = true
       else
         @i_am_target = false
@@ -46,7 +46,7 @@ class FeNode < SemNode
     # child_attr: keep additional attributes of <fenode> elements,
     # if there are any
     # child_attr: hash syn_node_id(string) -> attributes(hash)
-    @child_attr = Hash.new()
+    @child_attr = {}
   end
 
   ###
@@ -84,18 +84,18 @@ class FeNode < SemNode
   #############
   protected
 
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     return children.map { |child|
-      if @child_attr[child.id()]
-        "<fenode idref=\'#{xml_secure_val(child.id())}\'" +
-        @child_attr[child.id()].to_a.map { |attr, val|
+      if @child_attr[child.id]
+        "<fenode idref=\'#{xml_secure_val(child.id)}\'" +
+        @child_attr[child.id].to_a.map { |attr, val|
           " #{attr}=\'#{xml_secure_val(val)}\'"
-        }.join() +
+        }.join +
         "/>\n"
 
       else
-        "<fenode idref=\'#{xml_secure_val(child.id())}\'/>\n"
+        "<fenode idref=\'#{xml_secure_val(child.id)}\'/>\n"
       end
-    }.join()
+    }.join
   end
 end

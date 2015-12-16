@@ -97,7 +97,7 @@ class FredTrain
       # only one sense? then just assign that
       num_senses = Fred.determine_training_senses(values["lemma"], @exp,
                                              @lemmas_and_senses,
-                                             @split_id).length()
+                                             @split_id).length
 
       if num_senses > 1
         # more than one sense: train
@@ -111,7 +111,7 @@ class FredTrain
             next
           end
 
-          filename = tempfile.path()
+          filename = tempfile.path
         end
 
         @classifiers.each { |classifier, classifier_name|

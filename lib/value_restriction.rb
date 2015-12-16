@@ -43,7 +43,7 @@ class ValueRestriction
 
   ###
   # get(): returns a triple [column name(string), eq(string), value(object)]
-  def get()
+  def get
     return [@column, @posneg, @value]
   end
 end

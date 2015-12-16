@@ -55,7 +55,7 @@ class RosyTrain < RosyTask
     ##
     # check: if this is about a split, do we have it?
     if @splitID
-      unless @ttt_obj.splitIDs().include?(@splitID)
+      unless @ttt_obj.splitIDs.include?(@splitID)
         $stderr.puts "Sorry, I have no data for split ID #{@splitID}."
         exit 0
       end
@@ -105,20 +105,20 @@ class RosyTrain < RosyTask
   # perform
   #
   # do each of the inspection tasks set as options
-  def perform()
+  def perform
 
     if @step == "both"
       # both? then do first argrec, then arglab
       $stderr.puts "Rosy training step argrec"
       @step = "argrec"
-      perform_aux()
+      perform_aux
       $stderr.puts "Rosy training step arglab"
       @step = "arglab"
-      perform_aux()
+      perform_aux
     else
       # not both? then just do one
       $stderr.puts "Rosy training step #{@step}"
-      perform_aux()
+      perform_aux
     end
   end
 
@@ -128,7 +128,7 @@ class RosyTrain < RosyTask
   # perform_aux: do the actual work of the perform() method
   # moved here because of the possibility of having @step=="both",
   # which makes it necessary to perform two training steps one after the other
-  def perform_aux()
+  def perform_aux
 
     if @step == "arglab" and not(@exp.get("assume_argrec_perfect"))
 
@@ -145,7 +145,7 @@ class RosyTrain < RosyTask
                                @ttt_obj,
                                true) # argrec_apply: see above
 
-      apply_obj.perform()
+      apply_obj.perform
     end
 
     # hand all the info to the RosyIterator object
@@ -160,7 +160,7 @@ class RosyTrain < RosyTask
                                  "splitID" => @splitID,
                                  "prune" => true)
 
-    if @iterator.num_groups() == 0
+    if @iterator.num_groups == 0
       # no groups:
       # may have been a problem with pruning.
       $stderr.puts
@@ -179,7 +179,7 @@ class RosyTrain < RosyTask
     # remove the feature that describes the unit by which we train,
     # since it is going to be constant throughout the training file
     @features = @ttt_obj.feature_info.get_model_features(@step) -
-                @iterator.get_xwise_column_names()
+                @iterator.get_xwise_column_names
     # but add the gold feature
     unless @features.include? "gold"
       @features << "gold"
@@ -208,7 +208,7 @@ class RosyTrain < RosyTask
         # because otherwise some classifiers may spit
         tf.puts Rosy::prepare_output_for_classifiers(instance_string)
       }
-      tf.close()
+      tf.close
 
       # train classifiers
       @classifiers.each { |classifier, classifier_name|
@@ -217,12 +217,12 @@ class RosyTrain < RosyTask
         output_name = classif_dir + @exp.instantiate("classifier_file",
                                                      "classif" => classifier_name,
                                                      "group" => group.gsub(/ /, "_"))
-        classifier.train(tf.path(), output_name)
+        classifier.train(tf.path, output_name)
       }
 
       # clean up
       tf.close(true)
-      view.close()
+      view.close
     }
 
   end

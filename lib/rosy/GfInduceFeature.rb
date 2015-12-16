@@ -97,7 +97,7 @@ class GfInduceFeatureExtractor < ExternalFeatureExtractor
       end
 
       # change into a mapping node(SynNode) -> GF(string)
-      @@node_to_gf = Hash.new
+      @@node_to_gf = {}
       subcatframe.each { |gf, prep, fe, synnodes|
         synnodes.each { |node|
           @@node_to_gf[node] = "#{gf} #{prep}"

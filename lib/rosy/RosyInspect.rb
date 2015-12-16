@@ -30,7 +30,7 @@ class RosyInspect < RosyTask
     ##
     # check runtime options
 
-    @tasks = Array.new
+    @tasks = []
     @test_id = nil
 
     opts.each do |opt,arg|
@@ -79,22 +79,22 @@ class RosyInspect < RosyTask
   # perform
   #
   # do each of the inspection tasks set as options
-  def perform()
+  def perform
     @tasks.each { |opt, arg|
       case opt
       when "--tables"
-        inspect_tables()
+        inspect_tables
       when "--tablecont"
         inspect_tablecont(arg)
       when "--runs"
-        inspect_runs()
+        inspect_runs
       when "--split"
         inspect_split(arg)
       end
     }
 
     if @tasks.empty?
-      inspect_experiment()
+      inspect_experiment
     end
   end
 
@@ -104,14 +104,14 @@ class RosyInspect < RosyTask
   # print to stdout:
   # name and column names of each table
   # in this database
-  def inspect_tables()
+  def inspect_tables
     puts
     puts "-----------------------------------------------"
     puts "List of all tables in the database"
     puts "-----------------------------------------------"
     puts
 
-    @ttt_obj.database.list_tables().each { | table_name|
+    @ttt_obj.database.list_tables.each { | table_name|
       puts "Table " + table_name
       puts "\tColumns: "
       print "\t"
@@ -150,7 +150,7 @@ class RosyInspect < RosyTask
           # both table ID and number of lines
           # last part: number of lines. Rest: table ID
           # (re-join in case the table ID includes a ':')
-          num_lines = parts.pop()
+          num_lines = parts.pop
           table_id = parts.join(":")
         end
       elsif not(id_numlines.empty?)
@@ -160,7 +160,7 @@ class RosyInspect < RosyTask
     end
 
     # sanity check: existing table ID?
-    if table_id and not(@ttt_obj.database.list_tables().include?(table_id))
+    if table_id and not(@ttt_obj.database.list_tables.include?(table_id))
       $stderr.puts "Error: I don't know a table with ID #{table_id}"
       return
     end
@@ -191,7 +191,7 @@ class RosyInspect < RosyTask
       puts
 
       if @ttt_obj.train_table_exists?
-        db_table = @ttt_obj.existing_train_table()
+        db_table = @ttt_obj.existing_train_table
         inspect_tablecont_aux(db_table, num_lines)
       else
         $stderr.puts "(No main table.)"
@@ -242,12 +242,12 @@ class RosyInspect < RosyTask
 
     # and print them
     view.write_to_file($stdout)
-    view.close()
+    view.close
   end
 
   # print to stdout: all classification runs for the current experiment ID
-  def inspect_runs()
-    puts @ttt_obj.runlog_to_s()
+  def inspect_runs
+    puts @ttt_obj.runlog_to_s
   end
 
   # print to stdout: train, test sentence ID for given split
@@ -265,7 +265,7 @@ class RosyInspect < RosyTask
       puts "==========="
       puts
 
-      table = @ttt_obj.existing_split_table(splitID, dataset, RosySplit.split_index_colname())
+      table = @ttt_obj.existing_split_table(splitID, dataset, RosySplit.split_index_colname)
       view = DBView.new([SelectTableAndColumns.new(table, "*")], [], @ttt_obj.database)
       index = 1
       view.each_array { |row|
@@ -279,7 +279,7 @@ class RosyInspect < RosyTask
     }
   end
 
-  def inspect_experiment()
+  def inspect_experiment
     puts "------------------------------------"
     puts "Experiment #{@exp.get("experiment_ID").to_s}"
     puts "------------------------------------"
@@ -318,7 +318,7 @@ class RosyInspect < RosyTask
     puts "Classifier runs for this experiment:"
     puts "-----------------------"
     puts
-    puts @ttt_obj.runlog_to_s()
+    puts @ttt_obj.runlog_to_s
     puts
   end
 

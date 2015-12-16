@@ -48,14 +48,14 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
   # computed for the training set
   #
   # Here: all features in this packages are phase 1
-  def RosyFeatureExtractor.phase()
+  def RosyFeatureExtractor.phase
     return "phase 1"
   end
 
   ###
   # returns an array of strings, providing information about
   # the feature extractor
-  def RosyFeatureExtractor.info()
+  def RosyFeatureExtractor.info
     return super().concat(["rosy"])
   end
 
@@ -76,9 +76,9 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 					frame) # FrameNode object
     super(sent, frame)
 
-    root = @@sent.syn_roots.first()
+    root = @@sent.syn_roots.first
     word_index_counter = 1
-    @@terminals_ordered = Hash.new
+    @@terminals_ordered = {}
     root.yield_nodes_ordered.each {|yield_node|
       @@terminals_ordered[yield_node] = word_index_counter
       word_index_counter += 1
@@ -93,7 +93,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
       @@target = nil
       return false
     end
-    @@target = @@interpreter_class.main_node_of_expr(frame.target.children(), "no_mwe")
+    @@target = @@interpreter_class.main_node_of_expr(frame.target.children, "no_mwe")
 
     unless @@target
       return false
@@ -113,7 +113,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 
     # governing verb of target.
     # If something goes wrong, this will remain unset
-    @@gv_paths = Hash.new
+    @@gv_paths = {}
     if (targetlemma = RosyFeatureExtractor.headlemma(@@target))
       # determine governing verb
       parent = @@target
@@ -174,12 +174,12 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
   # compute_feature_value: first check if instance is OK
   #
   # returns: list of features
-  def compute_features()
+  def compute_features
     unless @@instance_ok
       return nil
     end
 
-    return make_features_safe_for_sql(compute_features_instanceOK())
+    return make_features_safe_for_sql(compute_features_instanceOK)
   end
 
   ############
@@ -187,7 +187,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 
 
   # returns: list of features
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     raise "Overwrite me"
   end
 
@@ -229,7 +229,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 
     h = @@interpreter_class.head_terminal(n)
     if h
-      return h.part_of_speech()
+      return h.part_of_speech
     else
       return nil
     end
@@ -247,20 +247,20 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
                                           hash = nil)  # Hash: nodeID(string) => Path object
     # initial step of all: no hash existing yet
     if hash.nil?
-      hash = Hash.new
-      hash[n.id()] = Path.new(n)
+      hash = {}
+      hash[n.id] = Path.new(n)
     end
 
     # invariant at this point: n must be listed in hash
-    unless hash[n.id()]
+    unless hash[n.id]
       raise "Shouldn't be here"
     end
 
     # for each child c of n: compute its path from the path of n,
     # and explore paths below c
     n.each_child_with_edgelabel { |label, c|
-      if hash[c.id()].nil?
-        hash[c.id()] = hash[n.id()].deep_clone().add_last_step("D",
+      if hash[c.id].nil?
+        hash[c.id] = hash[n.id].deep_clone.add_last_step("D",
                                                                label,
                                                                @@interpreter_class.simplified_pt(c),
                                                                c)
@@ -270,10 +270,10 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
 
     # compute the path from n's parent p from the path of n,
     # and explore paths beyond p
-    if (p = n.parent) and hash[p.id()].nil?
+    if (p = n.parent) and hash[p.id].nil?
       # node has a parent, and it is not listed in the path hash
       # make a new path for parent: n's path, plus one up-step
-      hash[p.id()] = hash[n.id()].deep_clone().add_last_step("U",
+      hash[p.id] = hash[n.id].deep_clone.add_last_step("U",
                                                              n.parent_label,
                                                              @@interpreter_class.simplified_pt(p),
                                                              p)
@@ -297,31 +297,31 @@ class RosySingleFeatureExtractor < RosyFeatureExtractor
   #  in the experiment file it is chosen by a single designator)
   #
   # here: single feature, and the feature name is the designator
-  def RosySingleFeatureExtractor.designator()
-    return eval(self.name()).feature_name()
+  def RosySingleFeatureExtractor.designator
+    return eval(self.name).feature_name
   end
 
   ###
-  def RosySingleFeatureExtractor.feature_names()
-    return [eval(self.name()).feature_name()]
+  def RosySingleFeatureExtractor.feature_names
+    return [eval(self.name).feature_name]
   end
 
   ###
   # compute_feature_value: first check if instance is OK
   #
   # returns: list of features
-  def compute_features()
+  def compute_features
     unless @@instance_ok
       return nil
     end
 
-    return make_features_safe_for_sql([compute_feature_instanceOK()])
+    return make_features_safe_for_sql([compute_feature_instanceOK])
   end
 
   ############
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     raise "Overwrite me"
   end
 
@@ -334,18 +334,18 @@ end
 ####################
 # gold role label
 class GoldlabelFeature < RosySingleFeatureExtractor
-  GoldlabelFeature.announce_me()
+  GoldlabelFeature.announce_me
 
-  def GoldlabelFeature.feature_name()
+  def GoldlabelFeature.feature_name
     return "gold"
   end
-  def GoldlabelFeature.sql_type()
+  def GoldlabelFeature.sql_type
     return "VARCHAR(30)"
   end
-  def GoldlabelFeature.feature_type()
+  def GoldlabelFeature.feature_type
     return "gold"
   end
-  def GoldlabelFeature.info()
+  def GoldlabelFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -353,7 +353,7 @@ class GoldlabelFeature < RosySingleFeatureExtractor
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     @@frame.each_fe_by_name {|fe|
       if fe.children.include? @@node
         return fe.name
@@ -374,21 +374,21 @@ end
 ####################
 # path features
 class AbstractPathFeature < RosySingleFeatureExtractor
-  def AbstractPathFeature.sql_type()
+  def AbstractPathFeature.sql_type
     return "VARCHAR(80)"
   end
-  def AbstractPathFeature.feature_type()
+  def AbstractPathFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@paths[@@node.id].nil?
       path = nil
     else
-      path = my_path_computation()
+      path = my_path_computation
     end
 
     if path.nil? or path.empty?
@@ -398,7 +398,7 @@ class AbstractPathFeature < RosySingleFeatureExtractor
     end
   end
 
-  def my_path_computation()
+  def my_path_computation
     raise "overwrite me"
   end
 end
@@ -407,24 +407,24 @@ end
 ####################
 # path consisting of nodelabels, dependencies and directions
 class PathFeature < AbstractPathFeature
-  PathFeature.announce_me()
+  PathFeature.announce_me
 
-  def PathFeature.sql_type()
+  def PathFeature.sql_type
     return "VARCHAR(120)"
   end
-  def PathFeature.feature_name()
+  def PathFeature.feature_name
     return "path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(true, true, true)
+    return @@paths[@@node.id].print(true, true, true)
   end
 end
 
@@ -433,63 +433,63 @@ end
 ####################
 # path consisting of phrase type and directions
 class NodelabelPathFeature < AbstractPathFeature
-  NodelabelPathFeature.announce_me()
+  NodelabelPathFeature.announce_me
 
-  def NodelabelPathFeature.feature_name()
+  def NodelabelPathFeature.feature_name
     return "pt_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(true, false, true)
+    return @@paths[@@node.id].print(true, false, true)
   end
 end
 
 ####################
 # path consisting of dependencies and directions
 class EdgelabelPathFeature < AbstractPathFeature
-  EdgelabelPathFeature.announce_me()
+  EdgelabelPathFeature.announce_me
 
-  def EdgelabelPathFeature.feature_name()
+  def EdgelabelPathFeature.feature_name
     return "gf_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(true, true, false)
+    return @@paths[@@node.id].print(true, true, false)
   end
 end
 
 ####################
 # features: path from governing verb
 class AbstractGVPathFeature < RosySingleFeatureExtractor
-  def AbstractGVPathFeature.sql_type()
+  def AbstractGVPathFeature.sql_type
     return "VARCHAR(80)"
   end
-  def AbstractGVPathFeature.feature_type()
+  def AbstractGVPathFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@gv_paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@gv_paths[@@node.id].nil?
       path = nil
     else
-      path = my_path_computation()
+      path = my_path_computation
     end
 
     if path.nil? or path.empty?
@@ -499,7 +499,7 @@ class AbstractGVPathFeature < RosySingleFeatureExtractor
     end
   end
 
-  def my_path_computation()
+  def my_path_computation
     raise "overwrite me"
   end
 end
@@ -508,20 +508,20 @@ end
 ####################
 # path from governing verb consisting of nodelabels, dependencies and directions
 class GVPathFeature < AbstractGVPathFeature
-  GVPathFeature.announce_me()
+  GVPathFeature.announce_me
 
-  def GVPathFeature.sql_type()
+  def GVPathFeature.sql_type
     return "VARCHAR(120)"
   end
-  def GVPathFeature.feature_name()
+  def GVPathFeature.feature_name
     return "gvpath"
   end
 
   ################
   private
 
-  def my_path_computation()
-    return @@gv_paths[@@node.id()].print(true, true, true)
+  def my_path_computation
+    return @@gv_paths[@@node.id].print(true, true, true)
   end
 end
 
@@ -529,60 +529,60 @@ end
 ####################
 # gov. verb path consisting of phrase type and directions
 class GVNodelabelPathFeature < AbstractGVPathFeature
-  GVNodelabelPathFeature.announce_me()
+  GVNodelabelPathFeature.announce_me
 
-  def GVNodelabelPathFeature.feature_name()
+  def GVNodelabelPathFeature.feature_name
     return "pt_gvpath"
   end
 
   ################
   private
 
-  def my_path_computation()
-    return @@gv_paths[@@node.id()].print(true, false, true)
+  def my_path_computation
+    return @@gv_paths[@@node.id].print(true, false, true)
   end
 end
 
 ####################
 # gov. verb path consisting of dependencies and directions
 class GVEdgelabelPathFeature < AbstractGVPathFeature
-  GVEdgelabelPathFeature.announce_me()
+  GVEdgelabelPathFeature.announce_me
 
-  def GVEdgelabelPathFeature.feature_name()
+  def GVEdgelabelPathFeature.feature_name
     return "gf_gvpath"
   end
 
   ################
   private
 
-  def my_path_computation()
-    return @@gv_paths[@@node.id()].print(true, true, false)
+  def my_path_computation
+    return @@gv_paths[@@node.id].print(true, true, false)
   end
 end
 
 ####################
 # path length
 class PathLengthFeature < RosySingleFeatureExtractor
-  PathLengthFeature.announce_me()
+  PathLengthFeature.announce_me
 
-  def PathLengthFeature.feature_name()
+  def PathLengthFeature.feature_name
     return "path_length"
   end
-  def PathLengthFeature.sql_type()
+  def PathLengthFeature.sql_type
     return "TINYINT"
   end
-  def PathLengthFeature.feature_type()
+  def PathLengthFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@paths[@@node.id].nil?
       return nil
     else
-      return @@paths[@@node.id()].length()
+      return @@paths[@@node.id].length
     end
   end
 end
@@ -593,27 +593,27 @@ end
 # info on whether the target is passive
 class AbstractCombinedPathFeature < RosySingleFeatureExtractor
 
-  def AbstractCombinedPathFeature.sql_type()
+  def AbstractCombinedPathFeature.sql_type
     return "VARCHAR(90)"
   end
-  def AbstractCombinedPathFeature.feature_type()
+  def AbstractCombinedPathFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@paths[@@node.id].nil?
       path = ""
     else
-      path = my_path_computation()
+      path = my_path_computation
     end
     return path + "--" + @@target_pos.to_s + "--" + @@target_voice.to_s
   end
 
   ###
-  def my_path_computation()
+  def my_path_computation
     raise "Overwrite me"
   end
 end
@@ -622,42 +622,42 @@ end
 ####################
 # combined path based on nodelabels
 class NodelabelCombinedPathFeature < AbstractCombinedPathFeature
-  NodelabelCombinedPathFeature.announce_me()
+  NodelabelCombinedPathFeature.announce_me
 
-  def NodelabelCombinedPathFeature.feature_name()
+  def NodelabelCombinedPathFeature.feature_name
     return "pt_combined_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(false, false, true)
+    return @@paths[@@node.id].print(false, false, true)
   end
 end
 
 ####################
 # combined path based on edgelabels
 class EdgelabelCombinedPathFeature < AbstractCombinedPathFeature
-  EdgelabelCombinedPathFeature.announce_me()
+  EdgelabelCombinedPathFeature.announce_me
 
-  def EdgelabelCombinedPathFeature.feature_name()
+  def EdgelabelCombinedPathFeature.feature_name
     return "gf_combined_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(false, true, false)
+    return @@paths[@@node.id].print(false, true, false)
   end
 end
 
@@ -665,24 +665,24 @@ end
 ####################
 # combined path based on nodelabels and edgelabels
 class CombinedPathFeature < AbstractCombinedPathFeature
-  CombinedPathFeature.announce_me()
+  CombinedPathFeature.announce_me
 
-  def CombinedPathFeature.sql_type()
+  def CombinedPathFeature.sql_type
     return "VARCHAR(130)"
   end
-  def CombinedPathFeature.feature_name()
+  def CombinedPathFeature.feature_name
     return "combined_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print(false, true, true)
+    return @@paths[@@node.id].print(false, true, true)
   end
 end
 
@@ -693,21 +693,21 @@ end
 # the lowest common ancestor of current node and target
 class AbstractPartialPathFeature < RosySingleFeatureExtractor
 
-  def AbstractPartialPathFeature.sql_type()
+  def AbstractPartialPathFeature.sql_type
     return "VARCHAR(70)"
   end
-  def AbstractPartialPathFeature.feature_type()
+  def AbstractPartialPathFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@paths[@@node.id].nil?
       path = nil
     else
-      path = my_path_computation()
+      path = my_path_computation
     end
     if path.nil? or path.empty?
       return nil
@@ -720,66 +720,66 @@ end
 ####
 # partial path based on node labels
 class NodelabelPartialPathFeature < AbstractPartialPathFeature
-  NodelabelPartialPathFeature.announce_me()
+  NodelabelPartialPathFeature.announce_me
 
-  def NodelabelPartialPathFeature.feature_name()
+  def NodelabelPartialPathFeature.feature_name
     return "pt_partial_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print_downpart(true, false, true)
+    return @@paths[@@node.id].print_downpart(true, false, true)
   end
 end
 
 ####
 # partial path based on edge labels
 class EdgelabelPartialPathFeature < AbstractPartialPathFeature
-  EdgelabelPartialPathFeature.announce_me()
+  EdgelabelPartialPathFeature.announce_me
 
-  def EdgelabelPartialPathFeature.feature_name()
+  def EdgelabelPartialPathFeature.feature_name
     return "gf_partial_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print_downpart(true, true, false)
+    return @@paths[@@node.id].print_downpart(true, true, false)
   end
 end
 
 ####
 # partial path based on node and edge labels
 class PartialPathFeature < AbstractPartialPathFeature
-  PartialPathFeature.announce_me()
+  PartialPathFeature.announce_me
 
-  def PartialPathFeature.sql_type()
+  def PartialPathFeature.sql_type
     return "VARCHAR(110)"
   end
-  def PartialPathFeature.feature_name()
+  def PartialPathFeature.feature_name
     return "partial_path"
   end
 
   ################
   private
 
-  def my_path_computation()
-    if @@paths[@@node.id()].nil?
+  def my_path_computation
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    return @@paths[@@node.id()].print_downpart(true, true, true)
+    return @@paths[@@node.id].print_downpart(true, true, true)
   end
 end
 
@@ -789,27 +789,27 @@ end
 # ancestor rule: grammar rule
 # expanding lowest common ancestor of current node and target
 class AncestorRuleFeature < RosySingleFeatureExtractor
-  AncestorRuleFeature.announce_me()
+  AncestorRuleFeature.announce_me
 
-  def AncestorRuleFeature.feature_name()
+  def AncestorRuleFeature.feature_name
     return "ancestor_rule"
   end
-  def AncestorRuleFeature.sql_type()
+  def AncestorRuleFeature.sql_type
     return "VARCHAR(50)"
   end
-  def AncestorRuleFeature.feature_type()
+  def AncestorRuleFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
-    if @@paths[@@node.id()].nil?
+  def compute_feature_instanceOK
+    if @@paths[@@node.id].nil?
       return nil
     end
 
-    lca = @@paths[@@node.id()].lca()
+    lca = @@paths[@@node.id].lca
     unless lca
       return nil
     end
@@ -823,22 +823,22 @@ end
 ##################
 # relative position to target: left, right, including target
 class RelativePositionFeature < RosySingleFeatureExtractor
-  RelativePositionFeature.announce_me()
+  RelativePositionFeature.announce_me
 
-  def RelativePositionFeature.feature_name()
+  def RelativePositionFeature.feature_name
     return "relpos"
   end
-  def RelativePositionFeature.sql_type()
+  def RelativePositionFeature.sql_type
     return "CHAR(5)"
   end
-  def RelativePositionFeature.feature_type()
+  def RelativePositionFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@relpos
   end
 end
@@ -847,22 +847,22 @@ end
 ################
 # phrase type of the instance node
 class PhraseTypeFeature < RosySingleFeatureExtractor
-  PhraseTypeFeature.announce_me()
+  PhraseTypeFeature.announce_me
 
-  def PhraseTypeFeature.feature_name()
+  def PhraseTypeFeature.feature_name
     return "pt"
   end
-  def PhraseTypeFeature.sql_type()
+  def PhraseTypeFeature.sql_type
     return "VARCHAR(15)"
   end
-  def PhraseTypeFeature.feature_type()
+  def PhraseTypeFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@interpreter_class.simplified_pt(@@node)
   end
 end
@@ -870,22 +870,22 @@ end
 ################
 # grammatical function that this instance node fills for the target
 class GFFeature < RosySingleFeatureExtractor
-  GFFeature.announce_me()
+  GFFeature.announce_me
 
-  def GFFeature.feature_name()
+  def GFFeature.feature_name
     return "gf"
   end
-  def GFFeature.sql_type()
+  def GFFeature.sql_type
     return "VARCHAR(20)"
   end
-  def GFFeature.feature_type()
+  def GFFeature.feature_type
     return "syn"
   end
 
   ################
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     unless @@target_gfs
       return nil
     end
@@ -903,22 +903,22 @@ end
 ##################
 # phrase type of parent of this node
 class FatherPhraseTypeFeature < RosySingleFeatureExtractor
-  FatherPhraseTypeFeature.announce_me()
+  FatherPhraseTypeFeature.announce_me
 
-  def FatherPhraseTypeFeature.feature_name()
+  def FatherPhraseTypeFeature.feature_name
     return "father_pt"
   end
-  def FatherPhraseTypeFeature.sql_type()
+  def FatherPhraseTypeFeature.sql_type
     return "VARCHAR(15)"
   end
-  def FatherPhraseTypeFeature.feature_type()
+  def FatherPhraseTypeFeature.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     if @@node.parent
       return @@interpreter_class.simplified_pt(@@node.parent)
     else
@@ -930,18 +930,18 @@ end
 ################
 # target lemma
 class TargetLemmaFeature < RosySingleFeatureExtractor
-  TargetLemmaFeature.announce_me()
+  TargetLemmaFeature.announce_me
 
-  def TargetLemmaFeature.feature_name()
+  def TargetLemmaFeature.feature_name
     return "target"
   end
-  def TargetLemmaFeature.sql_type()
+  def TargetLemmaFeature.sql_type
     return "VARCHAR(20)"
   end
-  def TargetLemmaFeature.feature_type()
+  def TargetLemmaFeature.feature_type
     return "ubiq"
   end
-  def TargetLemmaFeature.info()
+  def TargetLemmaFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -949,7 +949,7 @@ class TargetLemmaFeature < RosySingleFeatureExtractor
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@interpreter_class.lemma_backoff(@@target)
   end
 end
@@ -957,18 +957,18 @@ end
 ################
 # part of speech of target lemma
 class TargetPOSFeature < RosySingleFeatureExtractor
-  TargetPOSFeature.announce_me()
+  TargetPOSFeature.announce_me
 
-  def TargetPOSFeature.feature_name()
+  def TargetPOSFeature.feature_name
     return "target_pos"
   end
-  def TargetPOSFeature.sql_type()
+  def TargetPOSFeature.sql_type
     return "VARCHAR(10)"
   end
-  def TargetPOSFeature.feature_type()
+  def TargetPOSFeature.feature_type
     return "ubiq"
   end
-  def TargetPOSFeature.info()
+  def TargetPOSFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -977,7 +977,7 @@ class TargetPOSFeature < RosySingleFeatureExtractor
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@target_pos
   end
 end
@@ -985,15 +985,15 @@ end
 ################
 # part of speech of target lemma
 class TargetFineGrainedPOSFeature < RosySingleFeatureExtractor
-  TargetFineGrainedPOSFeature.announce_me()
+  TargetFineGrainedPOSFeature.announce_me
 
-  def TargetFineGrainedPOSFeature.feature_name()
+  def TargetFineGrainedPOSFeature.feature_name
     return "finegrained_target_pos"
   end
-  def TargetFineGrainedPOSFeature.sql_type()
+  def TargetFineGrainedPOSFeature.sql_type
     return "VARCHAR(20)"
   end
-  def TargetFineGrainedPOSFeature.feature_type()
+  def TargetFineGrainedPOSFeature.feature_type
     return "ubiq"
   end
 
@@ -1001,7 +1001,7 @@ class TargetFineGrainedPOSFeature < RosySingleFeatureExtractor
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@interpreter_class.pt(@@target)
   end
 end
@@ -1009,22 +1009,22 @@ end
 ################
 # voice of the target lemma
 class TargetVoiceFeature < RosySingleFeatureExtractor
-  TargetVoiceFeature.announce_me()
+  TargetVoiceFeature.announce_me
 
-  def TargetVoiceFeature.feature_name()
+  def TargetVoiceFeature.feature_name
     return "target_voice"
   end
-  def TargetVoiceFeature.sql_type()
+  def TargetVoiceFeature.sql_type
     return "CHAR(4)"
   end
-  def TargetVoiceFeature.feature_type()
+  def TargetVoiceFeature.feature_type
     return "ubiq"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     voice = @@interpreter_class.voice(@@target)
     if voice
       return voice.slice(0,4)
@@ -1037,22 +1037,22 @@ end
 ################
 # the governing verb of the target
 class GoverningVerbOfTargetFeature < RosySingleFeatureExtractor
-  GoverningVerbOfTargetFeature.announce_me()
+  GoverningVerbOfTargetFeature.announce_me
 
-  def GoverningVerbOfTargetFeature.feature_name()
+  def GoverningVerbOfTargetFeature.feature_name
     return "gov_verb"
   end
-  def GoverningVerbOfTargetFeature.sql_type()
+  def GoverningVerbOfTargetFeature.sql_type
     return "VArCHAR(20)"
   end
-  def GoverningVerbOfTargetFeature.feature_type()
+  def GoverningVerbOfTargetFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     if @@governing_verb
       return RosyFeatureExtractor.headlemma(@@governing_verb)
     else
@@ -1064,22 +1064,22 @@ end
 ################c
 # preposition for this constituent
 class PrepFeature < RosySingleFeatureExtractor
-  PrepFeature.announce_me()
+  PrepFeature.announce_me
 
-  def PrepFeature.feature_name()
+  def PrepFeature.feature_name
     return "prep"
   end
-  def PrepFeature.sql_type()
+  def PrepFeature.sql_type
     return "VARCHAR(20)"
   end
-  def PrepFeature.feature_type()
+  def PrepFeature.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return @@interpreter_class.preposition(@@node)
   end
 end
@@ -1087,22 +1087,22 @@ end
 ################
 # head lemma of this constituent
 class HeadFeature < RosySingleFeatureExtractor
-  HeadFeature.announce_me()
+  HeadFeature.announce_me
 
-  def HeadFeature.feature_name()
+  def HeadFeature.feature_name
     return "const_head"
   end
-  def HeadFeature.sql_type()
+  def HeadFeature.sql_type
     return "VARCHAR(20)"
   end
-  def HeadFeature.feature_type()
+  def HeadFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return RosyFeatureExtractor.headlemma(@@node)
   end
 end
@@ -1110,22 +1110,22 @@ end
 ################
 # part of speech of the head of this constituent
 class HeadPosFeature < RosySingleFeatureExtractor
-  HeadPosFeature.announce_me()
+  HeadPosFeature.announce_me
 
-  def HeadPosFeature.feature_name()
+  def HeadPosFeature.feature_name
     return "const_head_pos"
   end
-  def HeadPosFeature.sql_type()
+  def HeadPosFeature.sql_type
     return "VARCHAR(10)"
   end
-  def HeadPosFeature.feature_type()
+  def HeadPosFeature.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     return RosyFeatureExtractor.headpos(@@node)
   end
 end
@@ -1133,25 +1133,25 @@ end
 ################
 # informative content word (see AbstractSynFeature): lemma and POS
 class IcontLemmaFeature < RosyFeatureExtractor
-  IcontLemmaFeature.announce_me()
+  IcontLemmaFeature.announce_me
 
-  def IcontLemmaFeature.designator()
+  def IcontLemmaFeature.designator
     return "icont_word"
   end
-  def IcontLemmaFeature.feature_names()
+  def IcontLemmaFeature.feature_names
     return ["icont_lemma", "icont_pos"]
   end
-  def IcontLemmaFeature.sql_type()
+  def IcontLemmaFeature.sql_type
     return "VARCHAR(20)"
   end
-  def IcontLemmaFeature.feature_type()
+  def IcontLemmaFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     icont_node = @@interpreter_class.informative_content_node(@@node)
     if icont_node
       return [RosyFeatureExtractor.headlemma(icont_node), RosyFeatureExtractor.headpos(icont_node)]
@@ -1165,25 +1165,25 @@ end
 ################
 # leftmost terminal of this constituent
 class FirstWordFeature < RosyFeatureExtractor
-  FirstWordFeature.announce_me()
+  FirstWordFeature.announce_me
 
-  def FirstWordFeature.designator()
+  def FirstWordFeature.designator
     return "firstword"
   end
-  def FirstWordFeature.feature_names()
+  def FirstWordFeature.feature_names
     return ["firstword", "firstword_pos"]
   end
-  def FirstWordFeature.sql_type()
+  def FirstWordFeature.sql_type
     return "VARCHAR(20)"
   end
-  def FirstWordFeature.feature_type()
+  def FirstWordFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     if @@node_leftmost_terminal
       return [RosyFeatureExtractor.headlemma(@@node_leftmost_terminal), RosyFeatureExtractor.headpos(@@node_leftmost_terminal)]
     else
@@ -1196,25 +1196,25 @@ end
 ################
 # rightmost terminal of this constituent
 class LastWordFeature < RosyFeatureExtractor
-  LastWordFeature.announce_me()
+  LastWordFeature.announce_me
 
-  def LastWordFeature.designator()
+  def LastWordFeature.designator
     return "lastword"
   end
-  def LastWordFeature.feature_names()
+  def LastWordFeature.feature_names
     return ["lastword", "lastword_pos"]
   end
-  def LastWordFeature.sql_type()
+  def LastWordFeature.sql_type
     return "VARCHAR(30)"
   end
-  def LastWordFeature.feature_type()
+  def LastWordFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     if @@node_rightmost_terminal
       return [RosyFeatureExtractor.headlemma(@@node_rightmost_terminal), RosyFeatureExtractor.headpos(@@node_rightmost_terminal)]
     else
@@ -1226,25 +1226,25 @@ end
 ################
 # left sibling of the current node
 class LeftSiblingFeature < RosyFeatureExtractor
-  LeftSiblingFeature.announce_me()
+  LeftSiblingFeature.announce_me
 
-  def LeftSiblingFeature.designator()
+  def LeftSiblingFeature.designator
     return "leftsib"
   end
-  def LeftSiblingFeature.feature_names()
+  def LeftSiblingFeature.feature_names
     return ["leftsib_pt", "leftsib_lemma"]
   end
-  def LeftSiblingFeature.sql_type()
+  def LeftSiblingFeature.sql_type
     return "VARCHAR(20)"
   end
-  def LeftSiblingFeature.feature_type()
+  def LeftSiblingFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     # leftsib, rightsib (node)
     # siblings with max lastword/firstword among those with lastword/firstword index
     # smaller/greater than firstword/lastword index of self
@@ -1298,22 +1298,22 @@ end
 ################
 # distance between head word of constituent and target (in words)
 class WordDistanceFeature < RosySingleFeatureExtractor
-  WordDistanceFeature.announce_me()
+  WordDistanceFeature.announce_me
 
-  def WordDistanceFeature.feature_name()
+  def WordDistanceFeature.feature_name
     return "worddistance"
   end
-  def WordDistanceFeature.sql_type()
+  def WordDistanceFeature.sql_type
     return "TINYINT"
   end
-  def WordDistanceFeature.feature_type()
+  def WordDistanceFeature.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
 
     head_term = @@interpreter_class.head_terminal(@@node)
     targ_term = @@interpreter_class.head_terminal(@@target)
@@ -1334,23 +1334,23 @@ end
 # is the current node a maximal projection?
 # heuristic: is my category the same as my parent's?
 class IsMaxProj < RosySingleFeatureExtractor
-  IsMaxProj.announce_me()
+  IsMaxProj.announce_me
 
-  def IsMaxProj.feature_name()
+  def IsMaxProj.feature_name
     return "ismaxproj"
   end
-  def IsMaxProj.sql_type()
+  def IsMaxProj.sql_type
     return "TINYINT"
   end
-  def IsMaxProj.feature_type()
+  def IsMaxProj.feature_type
     return "syn"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
-    unless @@node.parent()
+  def compute_feature_instanceOK
+    unless @@node.parent
       return 1
     end
     my_cat = @@interpreter_class.category(@@node)
@@ -1366,25 +1366,25 @@ end
 ################
 # right sibling of the current node
 class RightSiblingFeature < RosyFeatureExtractor
-  RightSiblingFeature.announce_me()
+  RightSiblingFeature.announce_me
 
-  def RightSiblingFeature.designator()
+  def RightSiblingFeature.designator
     return "rightsib"
   end
-  def RightSiblingFeature.feature_names()
+  def RightSiblingFeature.feature_names
     return ["rightsib_pt", "rightsib_lemma"]
   end
-  def RightSiblingFeature.sql_type()
+  def RightSiblingFeature.sql_type
     return "VARCHAR(20)"
   end
-  def RightSiblingFeature.feature_type()
+  def RightSiblingFeature.feature_type
     return "sem"
   end
 
   #####
   private
 
-  def compute_features_instanceOK()
+  def compute_features_instanceOK
     # leftsib, rightsib (node)
     # siblings with max lastword/firstword among those with lastword/firstword index
     # smaller/greater than firstword/lastword index of self
@@ -1475,22 +1475,22 @@ end
 # admin feature: my node ID and my father's, separated by a space
 # the highest node (topnode) has ID 0, and no father ID.
 class NodeIDFeature < RosySingleFeatureExtractor
-  NodeIDFeature.announce_me()
+  NodeIDFeature.announce_me
 
-  def NodeIDFeature.feature_name()
+  def NodeIDFeature.feature_name
     return "nodeID"
   end
-  def NodeIDFeature.sql_type()
+  def NodeIDFeature.sql_type
     return "VARCHAR(100)"
   end
-  def NodeIDFeature.feature_type()
+  def NodeIDFeature.feature_type
     return "admin"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
 
     if @@node.parent
       return @@node.id.to_s+ " " + @@node.parent.id.to_s
@@ -1503,18 +1503,18 @@ end
 ################
 # admin feature: sentence ID
 class SentidFeature < RosySingleFeatureExtractor
-  SentidFeature.announce_me()
+  SentidFeature.announce_me
 
-  def SentidFeature.feature_name()
+  def SentidFeature.feature_name
     return "sentid"
   end
-  def SentidFeature.sql_type()
+  def SentidFeature.sql_type
     return "VARCHAR(100)"
   end
-  def SentidFeature.feature_type()
+  def SentidFeature.feature_type
     return "admin"
   end
-  def SentidFeature.info()
+  def SentidFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -1522,8 +1522,8 @@ class SentidFeature < RosySingleFeatureExtractor
   #####
   private
 
-  def compute_feature_instanceOK()
-    return Rosy::construct_instance_id(@@sent.id(), @@frame.id())
+  def compute_feature_instanceOK
+    return Rosy::construct_instance_id(@@sent.id, @@frame.id)
   end
 end
 
@@ -1553,18 +1553,18 @@ end
 ################
 # admin feature: frame assigned by FN
 class FrameFeature < RosySingleFeatureExtractor
-  FrameFeature.announce_me()
+  FrameFeature.announce_me
 
-  def FrameFeature.feature_name()
+  def FrameFeature.feature_name
     return "frame"
   end
-  def FrameFeature.sql_type()
+  def FrameFeature.sql_type
     return "VARCHAR(35)"
   end
-  def FrameFeature.feature_type()
+  def FrameFeature.feature_type
     return "ubiq"
   end
-  def FrameFeature.info()
+  def FrameFeature.info
     # additional info: I am an index feature
     return super().concat(["index"])
   end
@@ -1572,9 +1572,9 @@ class FrameFeature < RosySingleFeatureExtractor
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     if @@frame
-      return @@frame.name()
+      return @@frame.name
     else
       return nil
     end
@@ -1584,22 +1584,22 @@ end
 ################
 # admin feature: is this node a terminal?
 class TerminalFeature < RosySingleFeatureExtractor
-  TerminalFeature.announce_me()
+  TerminalFeature.announce_me
 
-  def TerminalFeature.feature_name()
+  def TerminalFeature.feature_name
     return "term"
   end
-  def TerminalFeature.sql_type()
+  def TerminalFeature.sql_type
     return "TINYINT"
   end
-  def TerminalFeature.feature_type()
+  def TerminalFeature.feature_type
     return "admin"
   end
 
   #####
   private
 
-  def compute_feature_instanceOK()
+  def compute_feature_instanceOK
     if @@node.is_terminal?
       return 1
     else

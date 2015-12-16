@@ -48,9 +48,9 @@ class ClassifierCombination
   # one string (=assigned class) for each instance
   def combine(classifier_results) #array:array:string, list of classifier results
 
-    if classifier_results.length() == 1
+    if classifier_results.length == 1
       return classifier_results.first
-    elsif classifier_results.length() == 0
+    elsif classifier_results.length == 0
       raise "Can't do classification with zero classifiers."
     else
       raise "True classifier combination not implemented yet"
@@ -89,7 +89,7 @@ class RosyTest < RosyTask
     # defaults:
     @step = "both"
     @splitID = nil
-    @testID = Rosy.default_test_ID()
+    @testID = Rosy.default_test_ID
     @produce_output = true
 
     opts.each { |opt,arg|
@@ -118,12 +118,12 @@ class RosyTest < RosyTask
     # check: if this is about a split, do we have it?
     # if it is about a test, do we have it?
     if @splitID
-      unless @ttt_obj.splitIDs().include?(@splitID)
+      unless @ttt_obj.splitIDs.include?(@splitID)
         $stderr.puts "Sorry, I have no data for split ID #{@splitID}."
         exit 1
       end
     else
-      if not(@argrec_apply) and not(@ttt_obj.testIDs().include?(@testID))
+      if not(@argrec_apply) and not(@ttt_obj.testIDs.include?(@testID))
         $stderr.puts "Sorry, I have no data for test ID #{@testID}."
         exit 1
       end
@@ -219,7 +219,7 @@ class RosyTest < RosyTask
   # returns the column name for the current run,
   # i.e. the name of the column where this object's perform method
   # writes its data
-  def get_result_column_name()
+  def get_result_column_name
     return @run_column
   end
 
@@ -229,7 +229,7 @@ class RosyTest < RosyTask
   # perform_aux: do the actual work of the perform() method
   # moved here because of the possibility of having @step=="both",
   # which makes it necessary to perform two test steps one after the other
-  def perform_aux()
+  def perform_aux
 
     @iterator, @run_column = get_iterator(true)
 
@@ -239,7 +239,7 @@ class RosyTest < RosyTask
     # since they are going to be constant throughout the training file
 
     @features = @ttt_obj.feature_info.get_model_features(@step) -
-                @iterator.get_xwise_column_names()
+                @iterator.get_xwise_column_names
 
     # but add the gold feature
     unless @features.include? "gold"
@@ -262,9 +262,9 @@ class RosyTest < RosyTask
       # make a view: model features
       feature_view = @iterator.get_a_view_for_current_group(@features)
 
-        if feature_view.length() == 0
+        if feature_view.length == 0
         # no test data in this view: next group
-        feature_view.close()
+        feature_view.close
         next
       end
 
@@ -290,14 +290,14 @@ class RosyTest < RosyTask
 
       }
 
-      classification_result = Array.new
+      classification_result = []
 
       if classifiers_read_okay
         # apply classifiers, write result to database
         classification_result = apply_classifiers(feature_view, group, "test")
       end
 
-      if classification_result == Array.new
+      if classification_result == []
         # either classifiers did not read OK, or some problem during classification:
         # label everything with NONE
         result_view.each_instance_s {|inst|
@@ -307,13 +307,13 @@ class RosyTest < RosyTask
 
       result_view.update_column(@run_column,
                                 classification_result)
-      feature_view.close()
-      result_view.close()
+      feature_view.close
+      result_view.close
     }
 
     # pruning? then set the result for pruned nodes to "noval"
     # if we are doing argrec or onestep
-    integrate_pruning_into_argrec_result()
+    integrate_pruning_into_argrec_result
 
     # postprocessing:
     # remove superfluous role labels, i.e. labels on nodes
@@ -332,7 +332,7 @@ class RosyTest < RosyTask
 
         # remove superfluous labels, write the result back to the DB
         postprocess_classification(view, @run_column)
-        view.close()
+        view.close
       }
     end
 
@@ -351,7 +351,7 @@ class RosyTest < RosyTask
     # If we are being asked to produce SalsaTigerXML output:
     # produce it.
     if @produce_output
-      write_stxml_output()
+      write_stxml_output
     end
   end
 
@@ -393,7 +393,7 @@ class RosyTest < RosyTask
 
   #########################
   # integrate pruning result into argrec result
-  def integrate_pruning_into_argrec_result()
+  def integrate_pruning_into_argrec_result
     if ["argrec", "onestep"].include? @step
       # we only need to integrate pruning results into argument recognition
 
@@ -416,17 +416,17 @@ class RosyTest < RosyTask
       # because otherwise some classifiers may spit
       tf_input.puts Rosy::prepare_output_for_classifiers(instance_string)
     }
-    tf_input.close()
+    tf_input.close
     # make output file for classifiers
     tf_output = Tempfile.new("rosy")
-    tf_output.close()
+    tf_output.close
 
     ###
     # apply classifiers
 
     # classifier_results: array:array of strings, a list of classifier results,
     # each result a list of assigned classes(string), one class for each instance of the view
-    classifier_results = Array.new
+    classifier_results = []
 
     @classifiers.each { |classifier, classifier_name|
 
@@ -434,12 +434,12 @@ class RosyTest < RosyTask
       # did we manage to classify the test data?
       # there may be errors on the way (eg no training data)
 
-      success = classifier.apply(tf_input.path(), tf_output.path())
+      success = classifier.apply(tf_input.path, tf_output.path)
 
       if success
 
         # read classifier output from file
-        classifier_results << classifier.read_resultfile(tf_output.path()).map { |instance_result|
+        classifier_results << classifier.read_resultfile(tf_output.path).map { |instance_result|
           # instance_result is a list of pairs [label, confidence]
           # such that the label with the highest confidence is first
           if instance_result.empty?
@@ -447,13 +447,13 @@ class RosyTest < RosyTask
             nil
           else
             # label of the first label/confidence pair
-            instance_result.first().first()
+            instance_result.first.first
           end
-        }.compact()
+        }.compact
 
       else
         # error: return empty Array, so that error handling can take over in perform_aux()
-        return Array.new
+        return []
       end
     }
 
@@ -491,9 +491,9 @@ class RosyTest < RosyTask
 
     # keep new values for run_column for all rows in view
     # will be used for update in the end
-    result = Array.new()
+    result = []
 
-    view.each_sentence() { |sentence|
+    view.each_sentence { |sentence|
 
       # returns hash:
       # node index -> array of node indices: ancestors of the given node
@@ -575,15 +575,15 @@ class RosyTest < RosyTask
   def make_ancestor_hash(sentence) # array:hash: column_name(string) -> column_value(object)
     # for each instance: find the parent
     # and store it in the parent_index hash
-    parent_index = Hash.new
+    parent_index = {}
 
 
     # first make hash mapping each node ID to its index in the
     # 'sentence' array
-    id_to_index = Hash.new()
+    id_to_index = {}
     sentence.each_with_index { |instance, index|
       if instance["nodeID"]
-        myID, parentID = instance["nodeID"].split()
+        myID, parentID = instance["nodeID"].split
         id_to_index[myID] = index
       else
         $stderr.puts "WARNING: no node ID for instance:\n"
@@ -594,7 +594,7 @@ class RosyTest < RosyTask
     # now make hash mapping each node index to its parent index
     sentence.each { |instance|
       if instance["nodeID"]
-        myID, parentID = instance["nodeID"].split()
+        myID, parentID = instance["nodeID"].split
         if parentID # root has no parent ID
 
           # sanity check: do I know the indices?
@@ -612,10 +612,10 @@ class RosyTest < RosyTask
 
     # for each instance: gather ancestor IDs
     # and store them in the ancestor_index hash
-    ancestor_index = Hash.new
+    ancestor_index = {}
 
     parent_index.each_key { |node_index|
-      ancestor_index[node_index] = Array.new
+      ancestor_index[node_index] = []
       ancestor = parent_index[node_index]
 
       while ancestor
@@ -642,7 +642,7 @@ class RosyTest < RosyTask
   # taking over the frames from the input data
   # and supplanting any FEs that might be set in the input data
   # by the ones newly assigned by Rosy.
-  def write_stxml_output()
+  def write_stxml_output
 
     ##
     # determine input and output directory
@@ -676,7 +676,7 @@ class RosyTest < RosyTask
     ###
     # read in all FEs that have been assigned
     # sentid_to_assigned: hash <sent ID, frame ID> (string) -> array of pairs [FE, node ID]
-    sentid_to_assigned = Hash.new
+    sentid_to_assigned = {}
     @iterator.each_group { |group_descr_hash, group|
       view = @iterator.get_a_view_for_current_group([@run_column, "nodeID", "sentid"])
 
@@ -685,7 +685,7 @@ class RosyTest < RosyTask
         # its hash entry will at least be nonnil, even if no
         # FEs have been assigned for it
         unless sentid_to_assigned[inst_hash["sentid"]]
-          sentid_to_assigned[inst_hash["sentid"]] = Array.new
+          sentid_to_assigned[inst_hash["sentid"]] = []
         end
 
         # if nothing has been assigned to this instance, don't record it
@@ -696,7 +696,7 @@ class RosyTest < RosyTask
         # record instance
         sentid_to_assigned[inst_hash["sentid"]] << [inst_hash[@run_column], inst_hash["nodeID"]]
       }
-      view.close()
+      view.close
     }
 
     ###
@@ -708,11 +708,11 @@ class RosyTest < RosyTask
 
       # unpack input file
       tempfile = Tempfile.new("RosyTest")
-      tempfile.close()
-      %x{gunzip -c #{infilename} > #{tempfile.path()}}
+      tempfile.close
+      %x{gunzip -c #{infilename} > #{tempfile.path}}
 
       # open input and output file
-      infile = FilePartsParser.new(tempfile.path())
+      infile = FilePartsParser.new(tempfile.path)
       outfilename = output_directory + File.basename(infilename, ".gz")
       begin
         outfile = File.new(outfilename, "w")
@@ -721,7 +721,7 @@ class RosyTest < RosyTask
       end
 
       # write header to output file
-      outfile.puts infile.head()
+      outfile.puts infile.head
 
       ##
       # each input sentence: integrate newly assigned roles
@@ -747,9 +747,9 @@ class RosyTest < RosyTask
           end
 
           # remove old roles, but do not remove target
-          old_fes = frame.children()
+          old_fes = frame.children
           old_fes.each { |old_fe|
-            unless old_fe.name() == "target"
+            unless old_fe.name == "target"
               frame.remove_child(old_fe)
             end
           }
@@ -773,7 +773,7 @@ class RosyTest < RosyTask
             }.map { |other_fe_name, nodeid_plus_parent_id|
               # map the node ID / parentnode ID pair to an actual node
 
-              node_id, parent_id = nodeid_plus_parent_id.split()
+              node_id, parent_id = nodeid_plus_parent_id.split
               if node_id == @exp.get("noval")
                 $stderr.puts "Warning: got NONE for a node ID"
                 node = nil
@@ -796,15 +796,15 @@ class RosyTest < RosyTask
         # write changed sentence to output file
         # if we are working on a split of the training data,
         # write the sentence only if there are frames in it
-        if sent.frames.length() == 0 and @splitID
+        if sent.frames.length == 0 and @splitID
           # split of the training data, and no frames
         else
-          outfile.puts sent.get()
+          outfile.puts sent.get
         end
       } # each sentence
 
       # write footer to output file
-      outfile.puts infile.tail()
+      outfile.puts infile.tail
       tempfile.close(true)
     } # each input file
   end

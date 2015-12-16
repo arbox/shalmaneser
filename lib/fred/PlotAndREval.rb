@@ -18,13 +18,13 @@ module PlotAndREval
                                   data_style = "linespoints") # data style
 
     # for each score label: write x_axis/y_axis pairs to a separate tempfile
-    score_file = Hash.new
+    score_file = {}
     scores.each_pair { |score_label, score_values|
       score_file[score_label] = Tempfile.new("PlotAndREval")
       score_values.to_a.sort { |a, b|  a.first <=> b.first}.each { |x_val, y_val|
         score_file[score_label].puts "#{x_val} #{y_val}"
       }
-      score_file[score_label].close()
+      score_file[score_label].close
     }
 
     # write command file for gnuplot
@@ -43,12 +43,12 @@ module PlotAndREval
     gf.print "plot "
     gf.puts score_file.to_a.map { |score_label, tempfile|
       # plot "<filename>" using "<title>", "<filename>" using "<title>",...
-      "\"" + tempfile.path() + "\"" + " title \"" + score_label + "\""
+      "\"" + tempfile.path + "\"" + " title \"" + score_label + "\""
     }.join(", ")
     # finalize tempfile
-    gf.close()
+    gf.close
 
-    %x{gnuplot #{gf.path()}}
+    %x{gnuplot #{gf.path}}
   end
 
   #################
@@ -64,12 +64,12 @@ module PlotAndREval
                                    bin_size) # float: size of one bin
 
     # sort scores into bins
-    bin = Hash.new()
+    bin = {}
 
     scores.each { |xval, yval|
       bin_no = (xval - min_value / bin_size).floor
       unless bin[bin_no]
-        bin[bin_no] = Array.new
+        bin[bin_no] = []
       end
       bin[bin_no] << yval
     }
@@ -78,15 +78,15 @@ module PlotAndREval
     tf = Tempfile.new("plot_and_r")
 
     bin.keys.sort.each { |bin_no|
-      if bin[bin_no].length() > 0
-        avg = (bin[bin_no].big_sum(0.0) { |yval| yval }) / bin[bin_no].length().to_f
+      if bin[bin_no].length > 0
+        avg = (bin[bin_no].big_sum(0.0) { |yval| yval }) / bin[bin_no].length.to_f
       else
         avg = 0.0
       end
       val = min_value + (bin_no.to_f * bin_size)
       tf.print val, "\t", avg, "\n"
     }
-    tf.close()
+    tf.close
 
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
@@ -98,13 +98,13 @@ module PlotAndREval
     gf.puts "set grid"
     gf.puts "set output \"" + plotoutfile + "\""
     gf.puts "set terminal postscript color"
-    gf.print "plot \"#{tf.path()}\" title \"#{y_label}\""
+    gf.print "plot \"#{tf.path}\" title \"#{y_label}\""
     gf.puts
     gf.puts
-    gf.close()
+    gf.close
 
     # now gnuplot it
-    %x{gnuplot #{gf.path()}}
+    %x{gnuplot #{gf.path}}
 
     # and remove temp files
     tf.close(true)
@@ -177,7 +177,7 @@ module PlotAndREval
                       num_in_range[rangeno], "\n"
       }
 
-      textout.close()
+      textout.close
     end
 
     # document number of scores in each range
@@ -188,7 +188,7 @@ module PlotAndREval
       range_lower = interval * rangeno.to_f
       tf.print range_lower, "\t", num_in_range[rangeno], "\n"
     }
-    tf.close()
+    tf.close
 
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
@@ -201,13 +201,13 @@ module PlotAndREval
     gf.puts "set grid"
     gf.puts "set output \"" + plotoutfile + "\""
     gf.puts "set terminal postscript color"
-    gf.print "plot \"" + tf.path() + "\" title \"" + score_name + "\" with boxes"
+    gf.print "plot \"" + tf.path + "\" title \"" + score_name + "\" with boxes"
     gf.puts
     gf.puts
-    gf.close()
+    gf.close
 
     # now gnuplot it
-    %x{gnuplot #{gf.path()}}
+    %x{gnuplot #{gf.path}}
 
     # and remove temp files
     tf.close(true)
@@ -266,7 +266,7 @@ module PlotAndREval
         $stderr.puts "no comparison scores for " + label
       end
     }
-    tf.close()
+    tf.close
 
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
@@ -278,12 +278,12 @@ module PlotAndREval
     gf.puts "set grid"
     gf.puts "set output \"" + plotoutfile + "\""
     gf.puts "set terminal postscript color"
-    gf.puts "plot \"" + tf.path() + "\""
+    gf.puts "plot \"" + tf.path + "\""
     gf.puts
-    gf.close()
+    gf.close
 
     # now gnuplot it
-    %x{gnuplot #{gf.path()}}
+    %x{gnuplot #{gf.path}}
     tf.close(true)
     gf.close(true)
   end
@@ -332,7 +332,7 @@ module PlotAndREval
           textout.print "-", "\n"
         end
       }
-      textout.close()
+      textout.close
     end
 
     # document number of scores in each mapping
@@ -351,8 +351,8 @@ module PlotAndREval
       index += 1.0
     }
 
-    tf1.close()
-    tf2.close()
+    tf1.close
+    tf2.close
 
     # make gnuplot main infile
     gf = Tempfile.new("plot_and_r")
@@ -364,14 +364,14 @@ module PlotAndREval
     gf.puts "set grid"
     gf.puts "set output \"" + plotoutfile + "\""
     gf.puts "set terminal postscript color"
-    gf.print "plot \"" + tf1.path() + "\" title \"score 1\" with boxes fs solid 0.9,"
-    gf.puts "\"" + tf2.path() + "\" title \"score 2\" with boxes fs solid 0.6"
+    gf.print "plot \"" + tf1.path + "\" title \"score 1\" with boxes fs solid 0.9,"
+    gf.puts "\"" + tf2.path + "\" title \"score 2\" with boxes fs solid 0.6"
     gf.puts
     gf.puts
-    gf.close()
+    gf.close
 
     # now gnuplot it
-    %x{gnuplot #{gf.path()}}
+    %x{gnuplot #{gf.path}}
 
     # and remove temp files
     tf1.close(true)
@@ -417,23 +417,23 @@ module PlotAndREval
         $stderr.puts "no comparison scores for " + label
       end
     }
-    tf_e.close()
-    tf_f.close()
+    tf_e.close
+    tf_f.close
     if confound_scores
-      tf_c.close()
+      tf_c.close
     end
 
     # write the R script to rf
     rf = Tempfile.new("plot_and_r")
     # write the output to rfout
     rfout = Tempfile.new("plot_and_r")
-    rfout.close()
+    rfout.close
 
 
     if confound_scores # perform partial correlation analysis
-      rf.puts "base <- read.table(\"#{tf_f.path()}\")"
-      rf.puts "comparison <- read.table(\"#{tf_e.path()}\")"
-      rf.puts "confuse <- read.table(\"#{tf_c.path()}\")"
+      rf.puts "base <- read.table(\"#{tf_f.path}\")"
+      rf.puts "comparison <- read.table(\"#{tf_e.path}\")"
+      rf.puts "confuse <- read.table(\"#{tf_c.path}\")"
       # adapted from https://stat.ethz.ch/pipermail/r-help/2001-August/012820.html
       # compute partial correlation coefficient for comparison, with confuse excluded
       rf.puts "cor(lm(base[[1]]~confuse[[1]])$resid,lm(comparison[[1]]~confuse[[1]])$resid,method=\"kendall\")"
@@ -444,13 +444,13 @@ module PlotAndREval
       # compute significance of partial correlation
       rf.puts "summary(lm(base[[1]] ~ comparison[[1]] + confuse[[1]]))"
     else # perform normal correlation analysis
-      rf.puts "base <- read.table(\"#{tf_f.path()}\")"
-      rf.puts "comparison <- read.table(\"#{tf_e.path()}\")"
+      rf.puts "base <- read.table(\"#{tf_f.path}\")"
+      rf.puts "comparison <- read.table(\"#{tf_e.path}\")"
       rf.puts "cor.test(base[[1]], comparison[[1]], method=\"kendall\", exact=FALSE)"
     end
-    rf.close()
-    %x{/proj/contrib/R/R-1.8.0/bin/R --vanilla < #{rf.path()} > #{rfout.path()}}
-    rfout.open()
+    rf.close
+    %x{/proj/contrib/R/R-1.8.0/bin/R --vanilla < #{rf.path} > #{rfout.path}}
+    rfout.open
 
     # output of R results: to stderr and to textout file
     begin
@@ -463,7 +463,7 @@ module PlotAndREval
     textout.puts "Correlation of " + base_name + " and " + comparison_name + " by Kendall's tau:"
     textout.puts "-----------------------"
 
-    while (line = rfout.gets())
+    while (line = rfout.gets)
       $stderr.puts "R output: " + line
       textout.puts "R output: " + line
     end
@@ -472,6 +472,6 @@ module PlotAndREval
     tf_f.close(true)
     rf.close(true)
     rfout.close(true)
-    textout.close()
+    textout.close
   end
 end

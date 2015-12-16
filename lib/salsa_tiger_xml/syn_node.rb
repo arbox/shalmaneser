@@ -32,8 +32,8 @@ class SynNode < SalsaTigerXmlNode
   def initialize(xml)
     super(xml)
 
-    @sem = Array.new
-    @other_links = Array.new
+    @sem = []
+    @other_links = []
   end
 
   ###
@@ -72,7 +72,7 @@ class SynNode < SalsaTigerXmlNode
   end
 
   ###
-  def word()
+  def word
     if get_attribute("word")
       return get_attribute("word").strip
     else
@@ -81,7 +81,7 @@ class SynNode < SalsaTigerXmlNode
   end
 
   ###
-  def is_punct?()
+  def is_punct?
     if is_nonterminal?
       # only terminals can be punctuation signs
       return false
@@ -111,7 +111,7 @@ class SynNode < SalsaTigerXmlNode
   end
 
   ###
-  def to_s()
+  def to_s
     if is_terminal?
       return word
     else
@@ -120,8 +120,8 @@ class SynNode < SalsaTigerXmlNode
   end
 
   ###
-  def get_sem()
-    return @sem.clone()
+  def get_sem
+    return @sem.clone
   end
 
   ###
@@ -136,7 +136,7 @@ class SynNode < SalsaTigerXmlNode
   #############
   protected
 
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     string = ""
 
     each_child_with_edgelabel { |label, child|

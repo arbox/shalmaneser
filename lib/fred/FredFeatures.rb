@@ -26,7 +26,7 @@ class AbstractFredFeatureAccess
   end
 
   ####
-  def AbstractFredFeatureAccess.remove_feature_files()
+  def AbstractFredFeatureAccess.remove_feature_files
     raise "overwrite me"
   end
 
@@ -41,7 +41,7 @@ class AbstractFredFeatureAccess
   end
 
 
-  def flush()
+  def flush
     raise "overwrite me"
   end
 end
@@ -102,7 +102,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
   # - target SID: string, sentence ID
   # - target_senses: array:string
   # - feature_hash: feature_type->values, string->array:string
-  def each_item()
+  def each_item
     unless @mode == "r"
       $stderr.puts "MetaFeatureAccess error: cannot read file not opened for reading"
       exit 1
@@ -110,7 +110,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
 
     lemma = pos = sid = ids = senses = nil
 
-    feature_hash = Hash.new()
+    feature_hash = {}
 
     @f.each { |line|
       line.chomp!
@@ -129,7 +129,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
           next
         end
 
-        feature_type, *features = line.split()
+        feature_type, *features = line.split
 
         unless feature_type =~ /^(.*):$/
           # feature type should end in ":"
@@ -157,12 +157,12 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
         end
 
         # then start new item:
-        lemma, pos, ids_s, sid, senses_s = line.split()
+        lemma, pos, ids_s, sid, senses_s = line.split
         ids = ids_s.split("::").map { |i| i.gsub(/COLON/, ":") }
         senses = senses_s.split("::").map { |s| s.gsub(/COLON/, ":") }
 
         # reset feature hash
-        feature_hash.clear()
+        feature_hash.clear
       end
     }
 
@@ -206,13 +206,13 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
     senses_s = senses.map { |s| s.gsub(/:/, "COLON") }.join("::")
     @f.puts "#{lemma} #{pos} #{ids_s} #{sid} #{senses_s}"
     features.each_pair { |feature_type, f_list|
-      @f.puts "   #{feature_type}: " + f_list.map { |f| f.to_s() }.join(" ")
+      @f.puts "   #{feature_type}: " + f_list.map { |f| f.to_s }.join(" ")
     }
-    @f.flush()
+    @f.flush
   end
 
   ###
-  def flush()
+  def flush
     unless ["w", "a"].include? @mode
       $stderr.puts "MetaFeatureAccess error: cannot write to feature file opened for reading"
       exit 1
@@ -239,11 +239,11 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
     # write to auxiliary files first,
     # to sort items by lemma
-    @w_tmp = AuxKeepWriters.new()
+    @w_tmp = AuxKeepWriters.new
 
     # which features has the user requested?
     feature_info_obj = FredFeatureInfo.new(@exp)
-    @feature_extractors = feature_info_obj.get_extractor_objects()
+    @feature_extractors = feature_info_obj.get_extractor_objects
 
   end
 
@@ -279,7 +279,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
   # available in read and write mode
   def FredFeatureAccess.each_feature_file(exp, dataset)
     feature_dir = FredFeatureAccess.feature_dir(exp, dataset)
-    Dir[feature_dir + "*"].sort().each { |filename|
+    Dir[feature_dir + "*"].sort.each { |filename|
       if (values = Fred.deconstruct_fred_feature_filename(filename))
         yield [filename, values]
       end
@@ -341,11 +341,11 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       }
     }
     writer.puts
-    writer.flush()
+    writer.flush
   end
 
   ###
-  def flush()
+  def flush
     unless ["w", "a"].include? @mode
       $stderr.puts "FredFeatureAccess error: cannot write to feature file opened for reading"
       exit 1
@@ -365,7 +365,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
     # now really write features
     @w_tmp.flush
-    @w_tmp.get_lemmas().sort().each { |lemmapos|
+    @w_tmp.get_lemmas.sort.each { |lemmapos|
 
       # inform user
       $stderr.puts "Writing #{lemmapos}..."
@@ -387,7 +387,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
         end
         f.puts feature_list.map { |x| x.gsub(/,/, "COMMA") }.join(",")
         f.puts sense_list.map { |x| x.gsub(/,/, "COMMA") }.join(",")
-        f.close()
+        f.close
 
       when "test"
         # test data:
@@ -400,8 +400,8 @@ class FredFeatureAccess < AbstractFredFeatureAccess
           $stderr.puts "Skipping this lemma."
           next
         end
-        feature_list = f.gets().chomp().split(",").map { |x| x.gsub(/COMMA/, ",") }
-        sense_list = f.gets().chomp().split(",").map { |x| x.gsub(/COMMA/, ",") }
+        feature_list = f.gets.chomp.split(",").map { |x| x.gsub(/COMMA/, ",") }
+        sense_list = f.gets.chomp.split(",").map { |x| x.gsub(/COMMA/, ",") }
       end
 
       # write
@@ -430,8 +430,8 @@ class FredFeatureAccess < AbstractFredFeatureAccess
                                  senses_for_item)
         } # each sensegroup
       } # each input line
-      obj_out.close()
-      answer_obj.close()
+      obj_out.close
+      answer_obj.close
       @w_tmp.discard(lemmapos)
     } # each lemma
 
@@ -453,7 +453,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     # senses: binary.
     # features: keep the max. number of times a given feature occurred
     #         in an instance
-    all_senses = Hash.new()
+    all_senses = {}
     all_features = Hash.new(0)
     features_this_instance = Hash.new(0)
     # record how often each feature occurred all in all
@@ -466,19 +466,19 @@ class FredFeatureAccess < AbstractFredFeatureAccess
       unless lemma
         # something went wrong in parsing the line
         # print out the file contents for reference, then leave
-        $stderr.puts "Could not read temporary feature file #{f.path()} for #{lemmapos}."
+        $stderr.puts "Could not read temporary feature file #{f.path} for #{lemmapos}."
         exit 1
       end
       num_lines += 1
       senses.each { |s| all_senses[s] = true }
-      features_this_instance.clear()
+      features_this_instance.clear
       features.each { |fea|
         features_this_instance[fea] += 1
         num_occ[fea] += 1
       }
 
       features_this_instance.each_pair { |feature, value|
-        all_features[feature] = [ all_features[feature], features_this_instance[feature] ].max()
+        all_features[feature] = [ all_features[feature], features_this_instance[feature] ].max
       }
     }
 
@@ -497,36 +497,36 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     when "keep"
       # leave numerical features as they are, or
       # don't do numerical features
-      return [ all_features.keys().sort(),
-               all_senses.keys().sort()
+      return [ all_features.keys.sort,
+               all_senses.keys.sort
              ]
 
     when "repeat"
       # repeat: turn numerical feature with max. value N
       # into N binary features
-      feature_list = Array.new()
-      all_features.keys().sort().each { |feature|
-        all_features[feature].times() { |index|
+      feature_list = []
+      all_features.keys.sort.each { |feature|
+        all_features[feature].times { |index|
           feature_list << feature + " #{index}/#{all_features[feature]}"
         }
       }
       return [ feature_list,
-               all_senses.keys().sort()
+               all_senses.keys.sort
              ]
 
     when "bin"
       # make bins:
       # number of bins = (max. number of occurrences of a feature per item) / 10
-      feature_list = Array.new()
-      all_features.keys().sort().each { |feature|
-        num_bins_this_feature = (all_features[feature].to_f() / 10.0).ceil().to_i()
+      feature_list = []
+      all_features.keys.sort.each { |feature|
+        num_bins_this_feature = (all_features[feature].to_f / 10.0).ceil.to_i
 
         num_bins_this_feature.times { |index|
           feature_list << feature  + " #{index}/#{num_bins_this_feature}"
         }
       }
       return [ feature_list,
-               all_senses.keys().sort()
+               all_senses.keys.sort
              ]
     else
       raise "Shouldn't be here"
@@ -564,7 +564,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     when "keep"
       # leave numerical features as numerical features
       return full.map { |x|
-        occ_hash[x].to_s()
+        occ_hash[x].to_s
       }
 
     when "repeat"
@@ -576,8 +576,8 @@ class FredFeatureAccess < AbstractFredFeatureAccess
         end
 
         feature = $1
-        current_count = $2.to_i()
-        max_num = $3.to_i()
+        current_count = $2.to_i
+        max_num = $3.to_i
 
         if occ_hash[feature] > current_count
           1
@@ -597,8 +597,8 @@ class FredFeatureAccess < AbstractFredFeatureAccess
         end
 
         feature = $1
-        current_count = $2.to_i()
-        max_num = $3.to_i()
+        current_count = $2.to_i
+        max_num = $3.to_i
 
         if occ_hash[feature] % 10 > (10 * current_count)
           1
@@ -645,7 +645,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
 
   ###
   def parse_temp_itemline(line)
-    lemma, pos, ids_s, sid, senses_s, *features = line.split()
+    lemma, pos, ids_s, sid, senses_s, *features = line.split
     # fix me! senses is empty, takes context features instead
     unless senses_s
       # features may be empty, but we need senses
@@ -700,7 +700,7 @@ class AnswerKeyAccess
         # the split_dataset part of the split doesn't contain any data
         $stderr.puts "Warning: no #{split_dataset} data for lemma #{lemmapos}"
       else
-        @f.open()
+        @f.open
       end
 
     else
@@ -748,7 +748,7 @@ class AnswerKeyAccess
   ###
   # yield one line at a time:
   # tuple (lemma, POS, ids, sentence_ID, all_assigned_senses, transformed_senses_for_this_item)
-  def each()
+  def each
     unless @mode == "r"
       $stderr.puts "FredFeatures error: AnsewrKeyAccess: cannot read in write mode"
     end
@@ -760,7 +760,7 @@ class AnswerKeyAccess
 
     @f.each { |line|
 
-      lemma, pos, id_s, sid, senses_s, senses_this_item_s = line.split()
+      lemma, pos, id_s, sid, senses_s, senses_this_item_s = line.split
       ids = id_s.split("::").map { |i| i.gsub(/COLON/, ":") }
       senses = senses_s.split(",").map { |s| s.gsub(/COMMA/, ",") }
 
@@ -792,23 +792,23 @@ end
 # write to several files at a time
 # in tempfiles
 class AuxKeepWriters
-  def initialize()
-    @lemma2temp = Hash.new()
+  def initialize
+    @lemma2temp = {}
     @size = 50
-    @writers = Array.new()
+    @writers = []
   end
 
 
   ##
-  def flush()
+  def flush
     @writers.each { |lemmapos, writer|
-      writer.close()
+      writer.close
     }
   end
 
   ##
-  def get_lemmas()
-    return @lemma2temp.keys()
+  def get_lemmas
+    return @lemma2temp.keys
   end
 
   ##
@@ -816,8 +816,8 @@ class AuxKeepWriters
     if @lemma2temp[lemmapos]
       # we have a writer for this
 
-      @lemma2temp[lemmapos].close()
-      @lemma2temp[lemmapos].open()
+      @lemma2temp[lemmapos].close
+      @lemma2temp[lemmapos].open
       return @lemma2temp[lemmapos]
 
     else
@@ -841,19 +841,19 @@ class AuxKeepWriters
     # is there a temp file for this lemma/pos combination?
     unless @lemma2temp[lemmapos]
       @lemma2temp[lemmapos] = Tempfile.new("fred_features")
-      @lemma2temp[lemmapos].close()
+      @lemma2temp[lemmapos].close
     end
 
     # is there an open temp file for this lemma/pos combination?
     pair = @writers.assoc(lemmapos)
     if pair
-      return pair.last()
+      return pair.last
     end
 
     # no: open the temp file, kick some other temp file out of the
     # @writers list
     writer = @lemma2temp[lemmapos]
-    writer.open()
+    writer.open
 
 
     # writer: open for appending
@@ -861,16 +861,16 @@ class AuxKeepWriters
 
 
     @writers << [lemmapos, writer]
-    if @writers.length() > @size
+    if @writers.length > @size
       # close file associated with first writer
-      @writers.first.last.close()
-      @writers.shift()
+      @writers.first.last.close
+      @writers.shift
     end
     return writer
   end
 
   ###
-  def remove_files()
+  def remove_files
     @lemma2temp.each_value { |x|
       x.close(true)
     }
@@ -902,7 +902,7 @@ class WriteFeaturesNary
   def write_instance(features, senses)
 
     @f.print features.map { |x|
-      x.to_s().gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
+      x.to_s.gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
     }.join(",")
 
     # possibly more than one sense? then use semicolon to separate
@@ -912,17 +912,17 @@ class WriteFeaturesNary
       # and hope that the classifier knows this
       @f.print ";"
       @f.puts senses.map {|x|
-        x.to_s().gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
+        x.to_s.gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
       }.join(",")
     else
       # one sense: just separate by comma
       @f.print ","
-      @f.puts senses.first().to_s().gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
+      @f.puts senses.first.to_s.gsub(/,/, "COMMA").gsub(/;/, "SEMICOLON")
     end
   end
 
-  def close()
-    @f.close()
+  def close
+    @f.close
   end
 end
 
@@ -943,11 +943,11 @@ class WriteFeaturesBinary
     end
 
     # files: sense-> filename
-    @files = Hash.new()
+    @files = {}
 
     # keep all instances such that, when a new sense comes around,
     # we can write them for that sense
-    @instances = Array.new()
+    @instances = []
   end
 
 
@@ -967,8 +967,8 @@ class WriteFeaturesBinary
 
 
   ###
-  def close()
-    @files.each_value { |f| f.close() }
+  def close
+    @files.each_value { |f| f.close }
   end
 
   ######
@@ -1000,7 +1000,7 @@ class WriteFeaturesBinary
 
     # print features
     f.print features.map { |x|
-      x.to_s().gsub(/,/, "COMMA")
+      x.to_s.gsub(/,/, "COMMA")
     }.join(",")
 
     f.print ","
@@ -1008,7 +1008,7 @@ class WriteFeaturesBinary
     # binarize target class
     if senses.include? sense_of_file
       # $stderr.puts "writing POS #{sense_of_file}"
-      f.puts sense_of_file.to_s()
+      f.puts sense_of_file.to_s
     else
       # $stderr.puts "writing NEG #{negsense}"
       f.puts @negsense

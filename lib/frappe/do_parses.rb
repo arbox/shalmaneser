@@ -52,7 +52,7 @@ class DoParses
       unless sys_class
         raise "Shouldn't be here"
       end
-      parse_suffix = "." + sys_class.name()
+      parse_suffix = "." + sys_class.name
       sys = sys_class.new(@exp.get("parser_path"),
                           @file_suffixes["tab"],
                           parse_suffix,
@@ -64,7 +64,7 @@ class DoParses
       if @parsed_files
         # reuse old parses
 
-        $stderr.puts "Frprep: using pre-computed parses in " + @parsed_files.to_s()
+        $stderr.puts "Frprep: using pre-computed parses in " + @parsed_files.to_s
         $stderr.puts "Frprep: Postprocessing SalsaTigerXML data"
 
         Dir[@parsed_files + "*"].each { |parsefilename|

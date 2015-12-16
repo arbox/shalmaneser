@@ -25,7 +25,7 @@ module FrappeHelper
       raise "Could not read #{input_filename}, or could not write to #{output_filename}."
     end
 
-    while (line = infile.gets())
+    while (line = infile.gets)
       case encoding
       when "iso"
         outfile.puts UtfIso.from_iso_8859_1(line)
@@ -35,8 +35,8 @@ module FrappeHelper
         raise "Shouldn't be here."
       end
     end
-    infile.close()
-    outfile.close()
+    infile.close
+    outfile.close
   end
 
   ####
@@ -147,8 +147,8 @@ module FrappeHelper
     end
 
     outfile_counter = 0
-    line_stack = Array.new
-    sent_stack = Array.new
+    line_stack = []
+    sent_stack = []
 
     Dir[indir+"*#{suffix}"].each {|infilename|
       STDERR.puts "Now splitting #{infilename}"
@@ -171,7 +171,7 @@ module FrappeHelper
           unless line_stack.empty?
             sent_stack << line_stack
             # reset line_stack
-            line_stack = Array.new
+            line_stack = []
           end
 
 
@@ -184,7 +184,7 @@ module FrappeHelper
             }
             outfile.close
             outfile_counter += 1
-            sent_stack = Array.new
+            sent_stack = []
           end
 
         else # for any other line
@@ -226,23 +226,23 @@ module FrappeHelper
         outfile = File.new(changedfilename, "w")
 
         # write header
-        outfile.puts infile.head()
+        outfile.puts infile.head
 
         # iterate through sentences, yield as SalsaTigerSentence objects
-        infile.scan_s() { |sent_string|
+        infile.scan_s { |sent_string|
           sent = SalsaTigerSentence.new(sent_string)
           sent.each_frame { |frame|
             frame.target.set_attribute("lemma", lemma)
           }
 
           # write changed sentence
-          outfile.puts sent.get()
+          outfile.puts sent.get
         } # each sentence
 
         # write footer
-        outfile.puts infile.tail()
-        infile.close()
-        outfile.close()
+        outfile.puts infile.tail
+        infile.close
+        outfile.close
 
       else
         # couldn't determine lemma
@@ -271,10 +271,10 @@ module FrappeHelper
 
     filenames = Dir[input_dir+"*.xml"].to_a
 
-    graph_hash = Hash.new # for each sentence id, keep <s...</graph>
-    frame_hash = Hash.new # for each sentence id , keep the <frame...  </frame> string
-    uspfes_hash = Hash.new # for each sentence id, keep the uspfes stuff
-    uspframes_hash = Hash.new # for each sentence id, keep the uspframes stuff
+    graph_hash = {} # for each sentence id, keep <s...</graph>
+    frame_hash = {} # for each sentence id , keep the <frame...  </frame> string
+    uspfes_hash = {} # for each sentence id, keep the uspfes stuff
+    uspframes_hash = {} # for each sentence id, keep the uspframes stuff
 
     ########################
     # Traverse of file(s): compute an index of all frames for each sentence, with unique identifiers
@@ -302,10 +302,10 @@ module FrappeHelper
         # therefore, we substitute temporary identifiers until we have substituted
         # all ids with temporary ones, and re-substitute final ones at the end.
 
-        this_frames = Array.new
+        this_frames = []
 
-        temp_subs = Array.new
-        final_subs = Array.new
+        temp_subs = []
+        final_subs = []
 
         sent = RegXML.new(sent_str)
         sentid = sent.attributes["id"].to_s
@@ -317,13 +317,13 @@ module FrappeHelper
         end
 
         unless frame_hash.key? sentid
-          frame_hash[sentid] = Array.new
-          uspfes_hash[sentid] = Array.new
-          uspframes_hash[sentid] = Array.new
+          frame_hash[sentid] = []
+          uspfes_hash[sentid] = []
+          uspframes_hash[sentid] = []
         end
 
         # find everything up to and including the graph
-        sent_children = sent.children_and_text()
+        sent_children = sent.children_and_text
         graph = sent_children.detect { |child| child.name == "graph" }
         graph_hash[sentid] = "<s " +
                                sent.attributes.to_a.map { |at, val| "#{at}=\'#{val}\'" }.join(" ") +
@@ -413,7 +413,7 @@ module FrappeHelper
     filecounter = 0
     sentcounter = 0
     outfile = nil
-    sent_stack = Array.new
+    sent_stack = []
 
     graph_hash.sort {|a,b| a[0].to_i <=> b[0].to_i}.each {|sentid,graph_str|
 
@@ -430,7 +430,7 @@ module FrappeHelper
         sentcounter = 0
       end
 
-      xml = Array.new
+      xml = []
       xml << graph_str
       xml << "<sem>"
       xml << "<globals>"
@@ -487,7 +487,7 @@ module FrappeHelper
       unless sentid
         $stderr.puts "No sentence ID in sentence:\n "+ sent_string
         $stderr.puts "Making a new one up."
-        sentid = Time.new().to_f.to_s
+        sentid = Time.new.to_f.to_s
       end
 
       # find terminals and process them
@@ -556,7 +556,7 @@ module FrappeHelper
     # iterate through frames in the tabsent
     frame_index = 0
     tab_sent.each_frame { |tab_frame_obj|
-      frame_name = tab_frame_obj.get_frame() # string
+      frame_name = tab_frame_obj.get_frame # string
 
       if frame_name.nil? or frame_name =~ /^-*$/
         # weird: a frame without a frame
@@ -565,11 +565,11 @@ module FrappeHelper
         next
       end
 
-      frame_node = st_sent.add_frame(frame_name, tab_sent.get_sent_id() + "_f#{frame_index}")
+      frame_node = st_sent.add_frame(frame_name, tab_sent.get_sent_id + "_f#{frame_index}")
       frame_index += 1
 
       # target
-      target_nodes = Array.new
+      target_nodes = []
       tab_frame_obj.get_target_indices.each {|terminal_id|
         if mapping[terminal_id]
           target_nodes.concat mapping[terminal_id]
@@ -593,7 +593,7 @@ module FrappeHelper
       frame_node.add_fe("target",target_maxnodes)
 
       # set features on target: target lemma, target POS
-      target_lemma = tab_frame_obj.get_target()
+      target_lemma = tab_frame_obj.get_target
       target_pos = nil
       if target_lemma
         if exp.get("origin") == "FrameNet"
@@ -614,12 +614,12 @@ module FrappeHelper
       # roles, GF, PT
       # synnode_markable_label:
       #   hash "role" | "gf" | "pt" -> SynNode -> array: label(string)
-      layer_synnode_label = Hash.new
+      layer_synnode_label = {}
       ["gf", "pt", "role"].each {|layer|
         termids2labels = tab_frame_obj.markables(layer)
 
         unless layer_synnode_label[layer]
-          layer_synnode_label[layer] = Hash.new
+          layer_synnode_label[layer] = {}
         end
 
         termids2labels.each {|terminal_indices, label|
@@ -629,7 +629,7 @@ module FrappeHelper
 
               nodes.each { |node|
                 unless layer_synnode_label[layer][node]
-                  layer_synnode_label[layer][node] = Array.new
+                  layer_synnode_label[layer][node] = []
                 end
 
                 layer_synnode_label[layer][node] << label
@@ -641,13 +641,13 @@ module FrappeHelper
       } # each layer
 
       # 'stuff' (Support and other things)
-      layer_synnode_label["stuff"] = Hash.new
+      layer_synnode_label["stuff"] = {}
       tab_frame_obj.each_line_parsed { |line_obj|
         if (label = line_obj.get("stuff")) != "-"
           if (nodes = mapping[line_obj.get("lineno")])
             nodes.each { |node|
               unless layer_synnode_label["stuff"][node]
-                layer_synnode_label["stuff"][node] = Array.new
+                layer_synnode_label["stuff"][node] = []
               end
               layer_synnode_label["stuff"][node] << label
             }
@@ -662,11 +662,11 @@ module FrappeHelper
       # note that in this step, any gf or pt labels that have been
       # assigned to a SynNode that has not also been assigned a role
       # will be lost
-      role2nodes_labels = Hash.new
+      role2nodes_labels = {}
       layer_synnode_label["role"].each_pair { |synnode, labels|
         labels.each { | rolelabel|
           unless role2nodes_labels[rolelabel]
-            role2nodes_labels[rolelabel] = Array.new
+            role2nodes_labels[rolelabel] = []
           end
 
           role2nodes_labels[rolelabel] << [
@@ -678,7 +678,7 @@ module FrappeHelper
       } # each pair SynNode/role labels
 
       # reencode "stuff", but only the support cases
-      role2nodes_labels["Support"] = Array.new()
+      role2nodes_labels["Support"] = []
 
       layer_synnode_label["stuff"].each_pair { |synnode, labels|
         labels.each { |stufflabel|
@@ -764,8 +764,8 @@ module FrappeHelper
         # group_of_nodes is a pair [verb, particle]
         verb, particle = group_of_nodes
 
-        verb.set_attribute("other_words", particle.id())
-        particle.set_attribute("other_words", verb.id())
+        verb.set_attribute("other_words", particle.id)
+        particle.set_attribute("other_words", verb.id)
 
         if verb.get_attribute("lemma") and particle.get_attribute("lemma")
           case language
@@ -808,8 +808,8 @@ module FrappeHelper
   def FrappeHelper.group_words(nodes,    # array: SynNode
                                interpreter) # SynInterpreter object
 
-    retv = Array.new # array of groups, array:array:SynNode
-    done = Array.new # remember nodes already covered
+    retv = [] # array of groups, array:array:SynNode
+    done = [] # remember nodes already covered
 
     nodes.each { |terminal_node|
       if done.include? terminal_node
@@ -844,14 +844,14 @@ module FrappeHelper
     end
 
     sent.each_frame { |frame|
-      if frame.name() =~ /^Unknown/
+      if frame.name =~ /^Unknown/
         if frame.target
-          maintarget = interpreter.main_node_of_expr(frame.target.children(), "no_mwe")
+          maintarget = interpreter.main_node_of_expr(frame.target.children, "no_mwe")
         else
           maintarget = nil
         end
         unless maintarget
-          $stderr.puts "Warning: Unknown frame, and I could not determine the target lemma: Frame #{frame.id()}"
+          $stderr.puts "Warning: Unknown frame, and I could not determine the target lemma: Frame #{frame.id}"
           $stderr.puts "Cannot repair frame name, leaving it as is."
           return
         end
@@ -862,13 +862,13 @@ module FrappeHelper
         lemma = interpreter.lemma_backoff(maintarget)
         if lemma
           # we have a lemma
-          frame.set_name(lemma + "_" + frame.name())
+          frame.set_name(lemma + "_" + frame.name)
         else
           # the main target word has no lemma attribute,
           # and somehow I couldn't even get the target word
           $stderr.puts "Warning: Salsa 'Unknown' frame."
           $stderr.puts "Trying to make its lemma-specificity explicit, but"
-          $stderr.puts "I could not determine the target lemma nor the target word: frame #{frame.id()}"
+          $stderr.puts "I could not determine the target lemma nor the target word: frame #{frame.id}"
           $stderr.puts "Leaving 'Unknown' as it is."
         end
       end
@@ -891,8 +891,8 @@ module FrappeHelper
     end
     ##
     # match old and new sentence via terminals
-    newterminals = newsent.terminals_sorted()
-    oldterminals = oldsent.terminals_sorted()
+    newterminals = newsent.terminals_sorted
+    oldterminals = oldsent.terminals_sorted
     # sanity check: exact match on terminals?
     newterminals.interleave(oldterminals).each { |newnode, oldnode|
         #print "old ", oldnode.word, "  ", newnode.word, "\n"
@@ -911,7 +911,7 @@ module FrappeHelper
       if (newwords & oldwords).empty?
         # old and new word don't match, either escaped or non-escaped
 
-        $stderr.puts "Warning: could not match terminals of sentence #{newsent.id()}"
+        $stderr.puts "Warning: could not match terminals of sentence #{newsent.id}"
         $stderr.puts "This means that I cannot match the semantic annotation"
         $stderr.puts "to the newly parsed sentence. Skipping."
         #$stderr.puts "Old sentence: "
@@ -935,7 +935,7 @@ module FrappeHelper
     # copy frames
     oldsent.each_frame { |oldframe|
       # make new frame with same ID
-      newframe = newsent.add_frame(oldframe.name, oldframe.id())
+      newframe = newsent.add_frame(oldframe.name, oldframe.id)
       # copy FEs
       oldframe.each_child { |oldfe|
         # new nodes: map old terminals to new terminals,
@@ -952,7 +952,7 @@ module FrappeHelper
         newnodes = interpreter_class.max_constituents(newnodes, newsent)
 
         # make new FE with same ID
-        new_fe = newsent.add_fe(newframe, oldfe.name(), newnodes, oldfe.id())
+        new_fe = newsent.add_fe(newframe, oldfe.name, newnodes, oldfe.id)
         # keep all attributes of the FE
         if oldfe.get_f("attributes")
           oldfe.get_f("attributes").each_pair { |attr, value|
@@ -970,22 +970,22 @@ module FrappeHelper
     oldsent.each_usp_frameblock { |olduspframe|
       newuspframe = newsent.add_usp("frame")
       olduspframe.each_child { |oldnode|
-        newnode = newsent.sem_node_with_id(oldnode.id())
+        newnode = newsent.sem_node_with_id(oldnode.id)
         if newnode
           newuspframe.add_child(newnode)
         else
-          $stderr.puts "Error: unknown frame with ID #{oldnode.id()}"
+          $stderr.puts "Error: unknown frame with ID #{oldnode.id}"
         end
       }
     }
     oldsent.each_usp_feblock { |olduspfe|
       newuspfe = newsent.add_usp("fe")
       olduspfe.each_child { |oldnode|
-        newnode = newsent.sem_node_with_id(oldnode.id())
+        newnode = newsent.sem_node_with_id(oldnode.id)
         if newnode
           newuspfe.add_child(newnode)
         else
-          $stderr.puts "Error: unknown FE with ID #{oldnode.id()}"
+          $stderr.puts "Error: unknown FE with ID #{oldnode.id}"
         end
       }
     }
@@ -1000,8 +1000,8 @@ module FrappeHelper
                                        interpreter)  # SynInterpreter class
     st_sent.each_nonterminal {|nt_node|
      head_term = interpreter.head_terminal(nt_node)
-      if head_term and head_term.word()
-        nt_node.set_attribute("head", head_term.word())
+      if head_term and head_term.word
+        nt_node.set_attribute("head", head_term.word)
       else
         nt_node.set_attribute("head", "--")
       end
@@ -1018,7 +1018,7 @@ module FrappeHelper
     end
 
     # produce list with word, lemma pairs
-    lemmat = Array.new
+    lemmat = []
     tab_sent.each_line_parsed {|line|
       word = line.get("word")
       lemma = line.get("lemma")
@@ -1029,10 +1029,10 @@ module FrappeHelper
     # KE Jan 07: if word mismatch,
     # set to Lemmatizer file version,
     # but count mismatches
-    word_mismatches = Array.new()
+    word_mismatches = []
 
     st_sent.each_terminal_sorted {|t|
-      matching_lineno = (0..lemmat.length()-1).to_a.detect { |tab_lineno|
+      matching_lineno = (0..lemmat.length-1).to_a.detect { |tab_lineno|
         mapping[tab_lineno].include? t
       }
       unless matching_lineno
@@ -1043,7 +1043,7 @@ module FrappeHelper
       # transform characters to XML-friendly form
       # for comparison with st_word, which is also escaped
       word = SalsaTigerXMLHelper.escape(word)
-      st_word = t.word()
+      st_word = t.word
       if word != st_word and
           word != SalsaTigerXMLHelper.escape(st_word)
         # true mismatch.
@@ -1088,8 +1088,8 @@ module FrappeHelper
     end
 
     sent.frames.each { |frame_obj|
-      if frame_obj.name() == "Boulder" or
-          frame_obj.name() =~ /^Test/
+      if frame_obj.name == "Boulder" or
+          frame_obj.name =~ /^Test/
         sent.remove_frame(frame_obj)
       end
     }

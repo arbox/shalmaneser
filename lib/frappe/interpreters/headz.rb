@@ -103,9 +103,9 @@ class Headz
         discourselevel_dtr = dtrs.detect { |n| n.category == "DL"}
         co_dtr = dtrs.detect { |n| n.category == "CO" }
         if discourselevel_dtr
-          dtrs = discourselevel_dtr.children()
+          dtrs = discourselevel_dtr.children
         elsif co_dtr
-          dtrs = co_dtr.children()
+          dtrs = co_dtr.children
         end
 
 
@@ -114,7 +114,7 @@ class Headz
         if sent_dtr
           return gsh(sent_dtr)
         else
-#          $stderr.puts "headz Warning: no sentence found below VROOT! Node #{node.id()}"
+#          $stderr.puts "headz Warning: no sentence found below VROOT! Node #{node.id}"
           return nil
         end
 
@@ -138,7 +138,7 @@ class Headz
   # flatten the processed conjs to a list of (head) Hashes
   # containing no conj features themselves
   def gsh_conjs(conjs)
-    flat = Array.new
+    flat = []
 
     conjs.each {|conj|
       current = gsh(conj)
@@ -150,8 +150,8 @@ class Headz
 
   #####################################3
   def pp(node)
-    prep = node.terminals_sorted().detect { |n|
-      (pt = n.part_of_speech()) and
+    prep = node.terminals_sorted.detect { |n|
+      (pt = n.part_of_speech) and
         (pt =~ /^APPR/ or
            pt =~ /^PWAV/ or
            pt =~ /^C?PP/

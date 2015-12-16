@@ -1,9 +1,9 @@
 module TargetsMostFrequentSc
-  def determine_target_most_frequent_sc(view, 
-                                        noval, 
+  def determine_target_most_frequent_sc(view,
+                                        noval,
                                         with_frame_default = nil)
-    target_subcat = Hash.new()
-    frame_subcat = Hash.new()
+    target_subcat = {}
+    frame_subcat = {}
 
     view.each_sentence { |sentence|
 
@@ -35,8 +35,8 @@ module TargetsMostFrequentSc
     } # each sentence of view
 
     # most frequent subcat for each target:
-    retv = Hash.new()
-    retv2 = Hash.new()
+    retv = {}
+    retv2 = {}
     [[retv, target_subcat], [retv2, frame_subcat]].each { |out_hash, in_hash|
 
       in_hash.each_pair { |key, subcats|
@@ -53,8 +53,8 @@ module TargetsMostFrequentSc
   end
 
   def tmf_target_key(instance)
-    return instance["frame"] + "." + 
-           instance["target"] + "." + 
-           instance["target_pos"] 
+    return instance["frame"] + "." +
+           instance["target"] + "." +
+           instance["target_pos"]
   end
 end

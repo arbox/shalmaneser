@@ -2,7 +2,7 @@
 
 require 'minitest/autorun'
 require 'functional/functional_test_helper'
-# require 'fileutils' # File.delete(), File.rename(), File.symlink()
+# require 'fileutils' # File.delete, File.rename, File.symlink
 require 'digest'
 
 class TestFrprep < Minitest::Test

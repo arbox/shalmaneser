@@ -45,8 +45,8 @@ module StringTerminalsInRightOrder
   #   if all splitwords of a terminal are in the yield,
   #   then use the terminal rather than its splitwords
   def right_level_terminals_for_nodes(nodes)
-    a = nodes.map { |n| n.yield_nodes()}.flatten
-    b = Array.new
+    a = nodes.map { |n| n.yield_nodes}.flatten
+    b = []
     a.each { |n|
       if n.is_splitword?
         # see if a contains all parts of this splitword

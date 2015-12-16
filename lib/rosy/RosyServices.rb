@@ -34,7 +34,7 @@ class RosyServices < RosyTask
     ##
     # check runtime options
 
-    @tasks = Array.new
+    @tasks = []
     # defaults:
     @step = "onestep"
     @splitID = nil
@@ -73,17 +73,17 @@ class RosyServices < RosyTask
   # perform
   #
   # do each of the inspection tasks set as options
-  def perform()
+  def perform
     @tasks.each { |opt, arg|
       case opt
       when "--deltable"
         del_table(arg)
       when "--deltables"
-        del_tables()
+        del_tables
       when "--delexp"
-        del_experiment()
+        del_experiment
       when "--delruns"
-        del_runs()
+        del_runs
       when "--delsplit"
         del_split(arg)
       when "--dump"
@@ -107,14 +107,14 @@ class RosyServices < RosyTask
   # If the user gives an answer starting in "y", the table is deleted.
   def del_table(table_name) # string: name of DB table
     # check if we have this table
-    unless @ttt_obj.database.list_tables().include? table_name
+    unless @ttt_obj.database.list_tables.include? table_name
       $stderr.puts "Cannot find DB table #{table_name}."
       return
     end
 
     # really delete?
     $stderr.print "Really delete DB table #{table_name}? [y/n] "
-    answer = gets().chomp()
+    answer = gets.chomp
     unless answer =~ /^y/
       return
     end
@@ -137,11 +137,11 @@ class RosyServices < RosyTask
   # and ask if it should be deleted.
   # this is good for cleaning up!
 
-  def del_tables()
-    @ttt_obj.database.list_tables().each { |table_name|
+  def del_tables
+    @ttt_obj.database.list_tables.each { |table_name|
 
       STDERR.print "Delete table #{table_name} (num. rows #{@ttt_obj.database.num_rows(table_name)})? [y/n] "
-      answer = gets().chomp()
+      answer = gets.chomp
 
       if answer =~ /^y/
         deletion_worked = false
@@ -166,13 +166,13 @@ class RosyServices < RosyTask
   # remove the experiment described by the experiment file @exp
   # The method verifies whether the experiment should be deleted.
   # If the user gives an answer starting in "y", the experiment is deleted.
-  def del_experiment()
+  def del_experiment
     data_dir = File.new_dir(@exp.instantiate("rosy_dir", "exp_ID" => @exp.get("experiment_ID")))
 
     # no data? then don't do anything
     if not(@ttt_obj.train_table_exists?) and
-        @ttt_obj.testIDs().empty? and
-        @ttt_obj.splitIDs().empty? and
+        @ttt_obj.testIDs.empty? and
+        @ttt_obj.splitIDs.empty? and
         Dir[data_dir + "*"].empty?
       $stderr.puts "No data to delete for experiment #{@exp.get("experiment_ID")}."
       # we have just made the directory data_dir by calling @exp.new_dir
@@ -184,13 +184,13 @@ class RosyServices < RosyTask
 
     # really delete?
     $stderr.print "Really delete experiment #{@exp.get("experiment_ID")}? [y/n] "
-    answer = gets().chomp()
+    answer = gets.chomp
     unless answer =~ /^y/
       return
     end
 
     # remove main table
-    @ttt_obj.remove_train_table()
+    @ttt_obj.remove_train_table
 
     # remove test tables
     @ttt_obj.testIDs.each { |testID|
@@ -215,9 +215,9 @@ class RosyServices < RosyTask
   # del_runs
   #
   # interactively remove runs from the current experiment
-  def del_runs()
+  def del_runs
     # iterate through all tables and runs
-    @ttt_obj.runlog_to_s_list().each { |table_descr|
+    @ttt_obj.runlog_to_s_list.each { |table_descr|
       unless table_descr["runlist"].empty?
         # print description of the table
         $stderr.puts table_descr["header"]
@@ -225,7 +225,7 @@ class RosyServices < RosyTask
         table_descr["runlist"].each { |run_id, run_descr|
           $stderr.puts run_descr
           $stderr.puts "Delete this run? [y/n] "
-          answer = gets().chomp()
+          answer = gets.chomp
           if answer =~ /^[yY]/
             @ttt_obj.delete_runlog(table_descr["table_name"], run_id)
           end
@@ -250,7 +250,7 @@ class RosyServices < RosyTask
 
     # really delete?
     $stderr.print "Really delete split #{splitID} of experiment #{@exp.get("experiment_ID")}? [y/n] "
-    answer = gets().chomp()
+    answer = gets.chomp
     unless answer =~ /^y/
       return
     end
@@ -289,7 +289,7 @@ class RosyServices < RosyTask
     ##
     # check: if this is about a split, do we have it?
     if @splitID
-      unless @ttt_obj.splitIDs().include?(@splitID)
+      unless @ttt_obj.splitIDs.include?(@splitID)
         $stderr.puts "Sorry, I have no data for split ID #{@splitID}."
         exit 1
       end
@@ -301,7 +301,7 @@ class RosyServices < RosyTask
       $stderr.puts "Writing data according to split '#{@splitID}'"
     elsif @testID
       # do we have this test set? else write only training set
-      if @ttt_obj.testIDs().include?(@testID)
+      if @ttt_obj.testIDs.include?(@testID)
         $stderr.puts "Writing training data, and test data with ID '#{@testID}'"
       else
         $stderr.puts "Warning: no data for test ID '#{@testID}', writing only training data."
@@ -324,7 +324,7 @@ class RosyServices < RosyTask
     # remove the features that describe the unit by which we train,
     # since they are going to be constant throughout the training file
     features = @ttt_obj.feature_info.get_model_features(@step) -
-      iterator.get_xwise_column_names()
+      iterator.get_xwise_column_names
 
     # but add the gold feature
     unless features.include? "gold"
@@ -379,8 +379,8 @@ class RosyServices < RosyTask
         # because otherwise some classifiers may spit
         file.puts Rosy::prepare_output_for_classifiers(instance_string)
       }
-      file.close()
-      view.close()
+      file.close
+      view.close
     }
   end
 
@@ -429,7 +429,7 @@ class RosyServices < RosyTask
 
     if @ttt_obj.train_table_exists?
       iterator = RosyIterator.new(@ttt_obj, @exp, "train", "xwise" => "frame")
-      table_obj = @ttt_obj.existing_train_table()
+      table_obj = @ttt_obj.existing_train_table
       aux_dump(iterator, file, table_obj)
     end
 
@@ -478,7 +478,7 @@ class RosyServices < RosyTask
 
         if @ttt_obj.split_table_exists?(splitID, dataset)
           iterator = RosyIterator.new(@ttt_obj, @exp, dataset, "splitID" => splitID, "xwise" => "frame")
-          table_obj = @ttt_obj.existing_split_table(splitID, dataset, RosySplit.split_index_colname())
+          table_obj = @ttt_obj.existing_split_table(splitID, dataset, RosySplit.split_index_colname)
           aux_dump(iterator, file, table_obj)
         end
       }
@@ -502,7 +502,7 @@ class RosyServices < RosyTask
 
     # write all columns except the autoincrement index
     # columns_to_write: array:string*string column name, column SQL type
-    columns_to_write = Array.new()
+    columns_to_write = []
     @ttt_obj.database.list_column_formats(table_obj.table_name).each { |column_name, column_type|
       unless column_name == table_obj.index_name
         # check: when loading we make assumptions on the field types that can happen.
@@ -537,7 +537,7 @@ class RosyServices < RosyTask
           entry.to_s.gsub(/,/, "COMMA")
         }.join(",")
       }
-      view.close()
+      view.close
     }
   end
 
@@ -564,7 +564,7 @@ class RosyServices < RosyTask
     $stderr.puts "Load experiment data from files into the current experiment:"
     $stderr.puts "This will overwrite existing data of experiment #{@exp.get("experiment_ID")}."
     $stderr.print "Proceed? [y/n] "
-    answer = gets().chomp()
+    answer = gets.chomp
     unless answer =~ /^y/
       return
     end
@@ -637,7 +637,7 @@ class RosyServices < RosyTask
 
         file = File.new(dir + filename)
         col_names, col_types = aux_read_colnames(file, nil)
-        table_obj = @ttt_obj.new_split_table(splitID, dataset, RosySplit.split_index_colname())
+        table_obj = @ttt_obj.new_split_table(splitID, dataset, RosySplit.split_index_colname)
         # write file contents to the DB table
         aux_transfer_to_table(file, table_obj, col_names, col_types)
 
@@ -670,11 +670,11 @@ class RosyServices < RosyTask
     # sanity check: features here the same as in the experiment file?
     if exp_colnames
       feature_colnames = colnames.select { |c| c !~ /^#{@exp.get("classif_column_name")}/ }
-      unless feature_colnames.sort() == exp_colnames.sort()
+      unless feature_colnames.sort == exp_colnames.sort
         raise "Feature name mismatch!\nIn the experiment file, you have specified:\n" +
-            exp_colnames.sort().join(",") +
+            exp_colnames.sort.join(",") +
             "\nIn the table I'm reading from file I got:\n" +
-            feature_colnames.sort().join(",")
+            feature_colnames.sort.join(",")
       end
     else
       # no check of column name match requested
@@ -691,7 +691,7 @@ class RosyServices < RosyTask
   # read a line from file, split it at commas
   #   to arrive at the contents
   def aux_read_columns(file) # stream: file
-    line = file.gets()
+    line = file.gets
     if line.nil?
       return nil
     end
@@ -722,9 +722,9 @@ class RosyServices < RosyTask
     }
 
     # write file contents to the DB table
-    names_and_values = Array.new
+    names_and_values = []
     while row =  aux_read_columns(file)
-      names_and_values.clear()
+      names_and_values.clear
       col_names.each_with_index { |name, ix|
         unless row[ix].nil?
           if col_types[ix] =~ /^(TINYINT|tinyint)/

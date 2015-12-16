@@ -36,8 +36,8 @@ class Timbl
                                                          # instancebase as a tree (TiMBL -I / -i option)
     # figure out how many features we have
     f = File.new(infile)
-    line = f.gets().chomp()
-    num_features = line.split(",").length() - 1
+    line = f.gets.chomp
+    num_features = line.split(",").length - 1
 
     # and train
     if classifier_location then
@@ -100,17 +100,17 @@ class Timbl
       return nil
     end
 
-    retv = Array.new()
+    retv = []
 
     f.each { |line|
-      line_results = Array.new()
-      pieces = line.split()
+      line_results = []
+      pieces = line.split
 
       while not(pieces.empty?)
-        label = pieces.shift()
+        label = pieces.shift
 
         begin
-          confidence = pieces.shift().to_f()
+          confidence = pieces.shift.to_f
         rescue
           $stderr.puts "Error reading mallet output: invalid line: #{line}"
           confidence = 0

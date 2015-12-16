@@ -161,7 +161,7 @@ class GraphNode
 
     # and vice versa: add self as child to parent
     unless varhash["pointer_insteadof_edge"]
-      unless parent.children_with_edgelabel().include? [edgelabel, self]
+      unless parent.children_with_edgelabel.include? [edgelabel, self]
         parent.add_child(self, edgelabel)
       end
     end
@@ -175,7 +175,7 @@ class GraphNode
 
     # and vice versa: remove self as child from parent
     unless varhash["pointer_insteadof_edge"]
-      if parent.children_with_edgelabel().include? [edgelabel, self]
+      if parent.children_with_edgelabel.include? [edgelabel, self]
         parent.remove_child(self, edgelabel)
       end
     end
@@ -238,7 +238,7 @@ class GraphNode
 
     # and vice versa: add self as parent to child
     unless varhash["pointer_insteadof_edge"]
-      unless child.parents_with_edgelabel().include? [edgelabel, self]
+      unless child.parents_with_edgelabel.include? [edgelabel, self]
         child.add_parent(self, edgelabel)
       end
     end
@@ -252,7 +252,7 @@ class GraphNode
 
     # and vice versa: remove self as parent from child
     unless varhash["pointer_insteadof_edge"]
-      if child.parents_with_edgelabel().include? [edgelabel, self]
+      if child.parents_with_edgelabel.include? [edgelabel, self]
         child.remove_parent(self, edgelabel)
       end
     end
@@ -279,8 +279,8 @@ class GraphNode
     @children = list
   end
 
-  def outdeg()
-    return @children.length()
+  def outdeg
+    return @children.length
   end
 
   def yield_nodes
@@ -309,7 +309,7 @@ class GraphNode
   protected
 
   def descendants_noduplicates(nodes, labels)
-    each_child_with_edgelabel() { |l_c|
+    each_child_with_edgelabel { |l_c|
       if labels.empty? or labels.include? l_c[0]
         unless nodes.include? l_c[1]
           nodes = l_c[1].descendants_noduplicates(nodes << l_c[1], labels)
@@ -320,7 +320,7 @@ class GraphNode
   end
 
   def ancestors_noduplicates(nodes, labels)
-    each_parent_with_edgelabel() { |l_p|
+    each_parent_with_edgelabel { |l_p|
       if labels.empty? or labels.include? l_p[0]
         unless nodes.include? l_p[1]
           nodes = l_p[1].ancestors_noduplicates(nodes << l_p[1], labels)

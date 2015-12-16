@@ -33,12 +33,12 @@ require 'salsa_tiger_xml/reg_xml'
 # mixins to make work with RegXML a little less repetitive
 class RegXML
   def first_child_matching(child_name)
-    return children_and_text().detect { |c| c.name() == child_name }
+    return children_and_text.detect { |c| c.name == child_name }
   end
 
   def each_child_matching(child_name)
-    children_and_text().each { |c|
-      if c.name() == child_name
+    children_and_text.each { |c|
+      if c.name == child_name
         yield c
       end
     }
@@ -64,12 +64,12 @@ class FNCorpusAset
   def initialize(aset, #RegXML object
                  charidx) # array of pairs [start index, stop index] int*int
 
-    @layers = Hash.new()
+    @layers = {}
     @frame_name = nil
     @lu = nil
     @aset_type = nil
 
-    attributes = aset.attributes()
+    attributes = aset.attributes
 
     @aset_id = attributes["ID"]
 
@@ -77,7 +77,7 @@ class FNCorpusAset
       # all of these seem to be frames. store in 'frames' array
       unless attributes["luName"]
         $stderr.puts "FNCorpusAset warning: cannot determine LU name"
-        $stder.puts aset.to_s()
+        $stder.puts aset.to_s
         return
       end
       @aset_type = "frame"
@@ -86,7 +86,7 @@ class FNCorpusAset
 
       unless (layers = aset.first_child_matching("layers"))
         $stderr.puts "FNCorpusAset warning: unexpectedly no layers found"
-        $stderr.puts aset.to_s()
+        $stderr.puts aset.to_s
         return
       end
 
@@ -98,18 +98,18 @@ class FNCorpusAset
 
       unless (layers = aset.first_child_matching("layers"))
         $stderr.puts "FNCorpusAset Warning: unexpectedly no layers found"
-        $stderr.puts aset.to_s()
+        $stderr.puts aset.to_s
         return
       end
       unless (layer = layers.first_child_matching("layer"))
         $stderr.puts "FNCorpusAset Warning: unexpectedly no layers found"
-        $stderr.puts aset.to_s()
+        $stderr.puts aset.to_s
         return
       end
 
-      unless layer.attributes()["name"] == "NER"
-        $stderr.puts "FNCorpusAset Warning: unexpected layer #{layer.attributes()["name"]}, was expecting only an NER layer."
-        $stderr.puts aset.to_s()
+      unless layer.attributes["name"] == "NER"
+        $stderr.puts "FNCorpusAset Warning: unexpected layer #{layer.attributes["name"]}, was expecting only an NER layer."
+        $stderr.puts aset.to_s
         return
       end
 
@@ -124,7 +124,7 @@ class FNCorpusAset
   # analyze this, put into @layers data structure
   def analyze_layer(layer, # RegXML object
                     charidx) # array:int*int pairs start/end index of words
-    layer_name = layer.attributes()["name"]
+    layer_name = layer.attributes["name"]
     unless layer_name
       $stderr.puts "FNCorpusAset warning: cannot determine layer name"
       $stderr.puts layer.to_s
@@ -132,12 +132,12 @@ class FNCorpusAset
     end
 
     # FN-specific: skip 2nd layer FEs for now
-    if layer_name == "FE" and layer.attributes()["rank"] == "2"
+    if layer_name == "FE" and layer.attributes["rank"] == "2"
       return
     end
 
     unless @layers[layer_name]
-      @layers[layer_name] = Hash.new()
+      @layers[layer_name] = {}
     end
 
     unless (labels = layer.first_child_matching("labels"))
@@ -146,11 +146,11 @@ class FNCorpusAset
     end
 
 
-    # taking over much of analyse_layer() from class FrameXML
-    thisLayer = Array.new()
+    # taking over much of analyse_layer from class FrameXML
+    thisLayer = []
 
     labels.each_child_matching("label") { |label|
-      attributes = label.attributes()
+      attributes = label.attributes
       if attributes["itype"] =~ /NI/
         # null instantiation, ignore
         next
@@ -170,7 +170,7 @@ class FNCorpusAset
     # sanity check: verify that
     # we don't have overlapping labels
 
-    deleteHash = Hash.new # keep track of the labels which are to be deleted
+    deleteHash = {} # keep track of the labels which are to be deleted
     # i -> Boolean
 
     thisLayer.each_index {|i|
@@ -181,7 +181,7 @@ class FNCorpusAset
       this_label, this_from , this_to = thisLayer[i]
 
       # compare with all remaining labels
-      (i+1..thisLayer.length()-1).to_a.each { |other_i|
+      (i+1..thisLayer.length-1).to_a.each { |other_i|
         other_label,other_from,other_to = thisLayer[other_i]
 
         # overlap? Throw out the later FE
@@ -200,7 +200,7 @@ class FNCorpusAset
       else
         [ [this_from, "start"], [this_to, "stop"]].each { |offset, start_or_stop|
           unless @layers[layer_name].has_key?([offset, start_or_stop])
-            @layers[layer_name][[offset, start_or_stop]] = Array.new()
+            @layers[layer_name][[offset, start_or_stop]] = []
           end
           @layers[layer_name][ [offset, start_or_stop] ] << this_label
         }
@@ -272,7 +272,7 @@ class FNCorpusXMLFile
   ###
   # yield each  document in this corpus
   # as a string
-  def each_document_string()
+  def each_document_string
     # read each <document> element and yield it
 
     doc_string = ""
@@ -308,7 +308,7 @@ class FNCorpusXMLFile
   ###
   # yield each sentence
   # as a FNCorpusXMLSentence object
-  def each_sentence()
+  def each_sentence
     # read each <document> element and yield it
 
     sent_string = ""
@@ -335,7 +335,7 @@ class FNCorpusXMLFile
         inside_sent_elem = false
       elsif inside_sent_elem
         # within <sentence>
-        sent_string << line.chomp()
+        sent_string << line.chomp
       end
     }
   end
@@ -343,7 +343,7 @@ class FNCorpusXMLFile
   ###
   # print whole FN file in tab format
   def print_conll_style(file = $stdout)
-    each_sentence() { |s_obj|
+    each_sentence { |s_obj|
       s_obj.print_conll_style(file)
     }
   end
@@ -358,7 +358,7 @@ class FNCorpusXMLSentence
   #########
   def initialize(sent_string)
     @sent = RegXML.new(sent_string)
-    @sent_id = @sent.attributes()["ID"]
+    @sent_id = @sent.attributes["ID"]
   end
 
   ##############
@@ -379,22 +379,22 @@ class FNCorpusXMLSentence
   #   ne:    named entity
   #   sent_id: sentence ID
   def print_conll_style(file = $stdout)
-    pos_text, charidx = read_sentence()
+    pos_text, charidx = read_sentence
     asets = read_annotation_sets(charidx)
 
     # aset -> are we inside the target or not?
     in_target = Hash.new(false)
     # aset -> are we in all sorts of other annotations, like Support?
-    in_stuff = Hash.new()
+    in_stuff = {}
     # are we inside a named entity?
     in_ne = nil
 
     # record every opening and closing label we recognize,
     # to check later
-    recognized_labels = Hash.new()
+    recognized_labels = {}
 
     pos_text.each_index {|i|
-      line = Array.new
+      line = []
       word = pos_text[i]
 
       # add: word
@@ -412,7 +412,7 @@ class FNCorpusXMLSentence
 
         # pt, gf, role
         ["PT", "GF", "FE"].each { |layer|
-          token = Array.new
+          token = []
           hash = aset.layers[layer]
           if hash.has_key?([start,"start"])
             recognized_labels[[layer, start, "start"]] = true
@@ -459,7 +459,7 @@ class FNCorpusXMLSentence
 
         # stuff
         unless in_stuff.has_key?(aset)
-          in_stuff[aset] = Array.new()
+          in_stuff[aset] = []
         end
         aset.layers.each_key { |layer|
           if ["PT", "GF", "FE", "Target"].include? layer
@@ -513,10 +513,10 @@ class FNCorpusXMLSentence
       # row format:
       # word (pt gf role target frame stuff)* ne sent_id
       # so number of columns must be 3 + 6x for some x >= 0
-      unless (line.length() - 3)%6 == 0
+      unless (line.length - 3)%6 == 0
         $stderr.puts "Something wrong with the line length."
-        $stderr.puts "I have #{asets.length() - 1} frames plus NEs, "
-        $stderr.puts "but #{line.length()} columns."
+        $stderr.puts "I have #{asets.length - 1} frames plus NEs, "
+        $stderr.puts "but #{line.length} columns."
         raise
       end
 
@@ -527,10 +527,10 @@ class FNCorpusXMLSentence
     # sanity check:
     # now count all labels,
     # to see if we've printed them all
-    lost_labels = Array.new()
+    lost_labels = []
     asets.each { |aset|
       aset.layers.each_key { |layer|
-        aset.layers[layer].each_key() { |offset, start_or_stop|
+        aset.layers[layer].each_key { |offset, start_or_stop|
           unless recognized_labels[[layer, offset, start_or_stop]]
             lost_labels << [layer, offset, start_or_stop,
                             aset.layers[layer][[offset, start_or_stop]]]
@@ -545,7 +545,7 @@ class FNCorpusXMLSentence
       }
       #       $stderr.puts "Recognized:"
       #       recognized_labels.each_key { |k|
-      #         $stderr.puts "\t" + k.to_s()
+      #         $stderr.puts "\t" + k.to_s
       #       }
       lost_labels.each { |layer, offset, start_or_stop, labels|
         $stderr.puts "FNCorpusXML warning: lost label"
@@ -573,7 +573,7 @@ class FNCorpusXMLSentence
     end
 
     # return values
-    frames = Array.new()
+    frames = []
 
     annotation_sets.each_child_matching("annotationSet") { |aset|
       frames << FNCorpusAset.new(aset, charidx)
@@ -588,9 +588,9 @@ class FNCorpusXMLSentence
   # return as: sentence, indices
   # - sentence as array of strings, one word per string
   # - indices: array of pairs [word start char.index, word end char.index] int*int
-  def read_sentence()
+  def read_sentence
     # all text and pos_text have the same number of elements!
-    charidx = Array.new # maps word indices on [start,stop]
+    charidx = [] # maps word indices on [start,stop]
     pos_text = []
 
     unless (text_elt = @sent.first_child_matching("text"))
@@ -598,17 +598,17 @@ class FNCorpusXMLSentence
       return [pos_text, charidx]
     end
 
-    orig_text = text_elt.children_and_text().detect { |child|
+    orig_text = text_elt.children_and_text.detect { |child|
       child.text?
     }
     if orig_text
       # take text out of RegXMl object
-      orig_text = orig_text.to_s()
+      orig_text = orig_text.to_s
     end
 
     pos_text = UtfIso.to_iso_8859_1(orig_text).split(" ") # text with special char.s replaced by iso8859 char.s
 
-    double_space = Array.new
+    double_space = []
     pos = 0
     while (match = orig_text.index(/(\s\s+)/,pos))
       double_space << match

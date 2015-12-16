@@ -14,7 +14,7 @@ class SalsaTigerSentenceGraph < XMLNode
     # global data:
     # node: hash node_id -> XMLNode object
     #       maps node IDs to the nodes with that ID
-    @node = Hash.new
+    @node = {}
     @sentence_id = sentence_id
 
     if xml_obj
@@ -73,7 +73,7 @@ class SalsaTigerSentenceGraph < XMLNode
       # children named "splitword", each of which describes a split
       # for one of the terminals we already know
       xml_obj.children_and_text.each { |splitword|
-        unless splitword.name() == "splitword"
+        unless splitword.name == "splitword"
           warn_child_ignored("s/sem/splitwords/", splitword)
           next
         end
@@ -90,14 +90,14 @@ class SalsaTigerSentenceGraph < XMLNode
 
   ###
   def to_s
-    string_for_nodes(syn_roots())
+    string_for_nodes(syn_roots)
   end
 
   ###
-  def get()
+  def get
     # make sure that the graph element has a 'root' attribute
     # since the Salsa tool needs this
-    set_attribute("root", syn_roots().first.id())
+    set_attribute("root", syn_roots.first.id)
     super()
   end
 
@@ -113,7 +113,7 @@ class SalsaTigerSentenceGraph < XMLNode
 
   ###
   def nodes
-    return @node.values()
+    return @node.values
   end
 
   ###
@@ -159,7 +159,7 @@ class SalsaTigerSentenceGraph < XMLNode
   ###
   def syn_roots
     return @node.values.select { |node|
-      node.parent().nil?
+      node.parent.nil?
     }
   end
   ###
@@ -245,13 +245,13 @@ class SalsaTigerSentenceGraph < XMLNode
 
     string << "<terminals>\n"
     each_terminal_sorted { |t|
-      string << t.get()
+      string << t.get
     }
     string << "</terminals>\n"
 
     string << "<nonterminals>\n"
     each_nonterminal { |nt|
-      string << nt.get()
+      string << nt.get
     }
     string << "</nonterminals>\n"
 
@@ -293,27 +293,27 @@ class SalsaTigerSentenceGraph < XMLNode
 
     xml_obj.children_and_text.each { |edge|
 
-      if ["edge", "part"].include? edge.name()
+      if ["edge", "part"].include? edge.name
 
         # add an edge to this child,
         # retrieve the node with the given ID from id_to_node
         child = @node[SalsaTigerXmlNode.xmlel_id(edge)]
         unless child
-          raise "Sentence #{@sentence_id}: I cannot find a node for " + edge.to_s()
+          raise "Sentence #{@sentence_id}: I cannot find a node for " + edge.to_s
         end
 
-        edgelabel = edge.attributes()["label"]
+        edgelabel = edge.attributes["label"]
         node.add_child(child, edgelabel)
 
-      elsif edge.name() == "other_edge"
+      elsif edge.name == "other_edge"
         # add link to this node,
         # retrieve the node with the given ID from id_to_node
         child = @node[SalsaTigerXmlNode.xmlel_id(edge)]
         unless child
-          raise "Sentence #{@sentence_id}: I cannot find a node for other_edge #{SalsaTigerXmlNode.xmlel_id(edge)} : " + edge.to_s()
+          raise "Sentence #{@sentence_id}: I cannot find a node for other_edge #{SalsaTigerXmlNode.xmlel_id(edge)} : " + edge.to_s
         end
 
-        attributes = edge.attributes()
+        attributes = edge.attributes
         if attributes
           edgelabel = attributes.delete("label")
         else

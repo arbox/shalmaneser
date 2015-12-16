@@ -111,7 +111,7 @@ class DBTable
             col == @index_name
         }
 
-        unless existing_fields.sort() == hash["col_names"].sort()
+        unless existing_fields.sort == hash["col_names"].sort
           raise "[DBTable] Column names in the DB table #{table_name}\n" +
                 "don't match feature specification in the experiment file.\n" +
                 "Table:\n\t" + existing_fields.sort.join(", ") +
@@ -133,7 +133,7 @@ class DBTable
   # list column names of this table
   #
   # returns: array:string, list of column names
-  def list_column_names()
+  def list_column_names
     return @db_obj.list_column_names(@table_name)
   end
 
@@ -143,7 +143,7 @@ class DBTable
   # list column names and column types of this table
   #
   # returns: array:string*string, list of pairs [column name, column format]
-  def list_column_formats()
+  def list_column_formats
     return @db_obj.list_column_formats(@table_name)
   end
 

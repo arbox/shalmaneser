@@ -59,12 +59,12 @@ class FredSplitPkg
       unless File.exist?(filename)
         # try lemma+sense-specific feature file
         file_pattern = Fred.fred_feature_filename(lemma, "*", true)
-        filename = Dir[feature_dir + file_pattern].first()
+        filename = Dir[feature_dir + file_pattern].first
 
         unless filename
           # no lemma+sense-specific feature file
           $stderr.puts "Warning: split: no feature file found for #{lemma}, skipping."
-          splitfile.close()
+          splitfile.close
           next
         end
       end
@@ -77,10 +77,10 @@ class FredSplitPkg
       end
 
       if ignore_unambiguous and
-          lemmas_and_senses.get_senses(lemma).length() < 2
+          lemmas_and_senses.get_senses(lemma).length < 2
         # unambiguous: ignore
 
-        while file.gets()
+        while file.gets
           splitfile.puts "ignore"
         end
 
@@ -89,8 +89,8 @@ class FredSplitPkg
         # as train or test,
         # write result to splitfile
 
-        while file.gets()
-          if rand() < trainpercent
+        while file.gets
+          if rand < trainpercent
             splitfile.puts "train"
           else
             splitfile.puts "test"
@@ -98,7 +98,7 @@ class FredSplitPkg
         end
       end
 
-      splitfile.close()
+      splitfile.close
     }
   end
 
@@ -143,14 +143,14 @@ class FredSplitPkg
 
     f_feat.each { |line|
       begin
-        split_part = f_split.readline().chomp()
+        split_part = f_split.readline.chomp
       rescue
         $stderr.puts "FredSplit error: split file too short."
         $stderr.puts "skipping rest of featurization data."
         $stderr.puts "Split file: #{split_filename}"
         $stderr.puts "Feature file: #{filename}"
         raise "HIER"
-        f_out.close()
+        f_out.close
         if num_yes > 0
           return f_out
         else
@@ -166,9 +166,9 @@ class FredSplitPkg
         num_yes += 1
       end
     }
-    f_out.close()
-    f_feat.close()
-    f_split.close()
+    f_out.close
+    f_feat.close
+    f_split.close
 
     if num_yes > 0
       return f_out

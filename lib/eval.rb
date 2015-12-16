@@ -32,7 +32,7 @@ class Eval
   # new
   #
   # outfilename = name of file to print results to.
-  #  nil: print_evaluation_result() will not do anything
+  #  nil: print_evaluation_result will not do anything
   #
   # logfilename: name of file to print instance-wise results to
   #  nil: no logfile output
@@ -117,7 +117,7 @@ class Eval
       each_instance(group) { |goldclass, assigned_class|
 
         # make sure that there are no spaces in the group name:
-        # later on we assume that by doing "group class".split()
+        # later on we assume that by doing "group class".split
         # we can recover the group and the class, which won't work
         # in case the group name contains spaces
         mygroup = group.gsub(/ /, "_")
@@ -165,13 +165,13 @@ class Eval
     # group_classes: hash group(string) -> array of classes(strings)
     #  if @consider_only_one_class has been set, only that class will be listed
     groups = @num_gold.keys.map { |group, tclass| group }.uniq.sort
-    group_classes = Hash.new
+    group_classes = {}
 
     # for all group/class pairs occurring either in the gold file or
     # the classifier output file: record it in the group_classes hash
     (@num_gold.keys.concat @num_assigned.keys).each { |group, tclass|
       if group_classes[group].nil?
-        group_classes[group] = Array.new
+        group_classes[group] = []
       end
       if @consider_only_one_class and
           tclass != @consider_only_one_class
@@ -269,7 +269,7 @@ class Eval
       print_evaluation_result(groups, group_classes, num_truepos_group, num_instances_all, num_assigned_all, num_gold_all, num_truepos_all)
     end
 
-    end_printlog()
+    end_printlog
   end
 
   #####
@@ -289,7 +289,7 @@ class Eval
 
   ###
   # print log? if so, start logfile
-  def start_printlog()
+  def start_printlog
     if @print_log
       begin
         @logfile = File.new(@logfilename, "w")
@@ -305,9 +305,9 @@ class Eval
 
   ###
   # print log? if so, end logfile
-  def end_printlog()
+  def end_printlog
     if @print_log
-      @logfile.close()
+      @logfile.close
     end
   end
 
@@ -324,7 +324,7 @@ class Eval
   # each_group
   #
   # yield each group name in turn
-  def each_group()
+  def each_group
     raise "Abstract, please instantiate"
   end
 
@@ -429,7 +429,7 @@ class Eval
       outfile.print "accuracy: ", sprintf("%.4f", @accuracy)
       outfile.print " (", num_truepos_all, "/", num_instances_all, ")\n"
     end
-    outfile.flush()
+    outfile.flush
   end
 
   ###

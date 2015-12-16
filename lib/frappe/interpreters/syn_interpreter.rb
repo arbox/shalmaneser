@@ -9,7 +9,7 @@ class SynInterpreter
   # returns a hash service(string) -> system name (string),
   # e.g.
   # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def SynInterpreter.systems()
+  def SynInterpreter.systems
     raise "Overwrite me"
   end
 
@@ -17,7 +17,7 @@ class SynInterpreter
   # names of additional systems that may be interpreted by this class
   # returns a hash service(string) -> system name(string)
   # same as names()
-  def SynInterpreter.optional_systems()
+  def SynInterpreter.optional_systems
     raise "Overwrite me"
   end
 
@@ -50,7 +50,7 @@ class SynInterpreter
       return nil
     end
 
-    return eval(self.name()).pt(node)
+    return eval(self.name).pt(node)
   end
 
   ###
@@ -77,7 +77,7 @@ class SynInterpreter
     lemma = node.get_attribute("lemma")
     if (lemma.nil? or lemma =~ /unknown/) and
         node.is_terminal?
-      return node.word()
+      return node.word
     else
       return lemma
     end
@@ -110,7 +110,7 @@ class SynInterpreter
   #
   # returns: string or nil
   def SynInterpreter.simplified_pt(node)
-    return eval(self.name()).pt(node)
+    return eval(self.name).pt(node)
   end
 
   ###
@@ -194,7 +194,7 @@ class SynInterpreter
       return nil
     end
 
-    if eval(self.name()).category(node) == "verb"
+    if eval(self.name).category(node) == "verb"
       return "active"
     else
       return nil
@@ -219,10 +219,10 @@ class SynInterpreter
       return nil
     end
 
-    return node.children_with_edgelabel().map { |rel, gf_node|
+    return node.children_with_edgelabel.map { |rel, gf_node|
 
-      if eval(self.name()).category(gf_node) == "prep"
-        [rel + "-" + eval(self.name()).preposition(gf_node).to_s, gf_node]
+      if eval(self.name).category(gf_node) == "prep"
+        [rel + "-" + eval(self.name).preposition(gf_node).to_s, gf_node]
       else
         [rel, gf_node]
       end
@@ -244,12 +244,12 @@ class SynInterpreter
       return nil
     end
 
-    headlemma = eval(self.name()).lemma_backoff(node)
+    headlemma = eval(self.name).lemma_backoff(node)
 
-    first_nonhead_child = node.children().detect { |n|
-      nnh = eval(self.name()).head_terminal(n)
+    first_nonhead_child = node.children.detect { |n|
+      nnh = eval(self.name).head_terminal(n)
       nnh and
-        eval(self.name()).lemma_backoff(nnh) != headlemma
+        eval(self.name).lemma_backoff(nnh) != headlemma
     }
 
     return first_nonhead_child
@@ -268,7 +268,7 @@ class SynInterpreter
   def SynInterpreter.verbs(sent)
 
     return sent.syn_nodes.select { |node|
-      eval(self.name()).category(node) == "verb"
+      eval(self.name).category(node) == "verb"
     }.map { |node|
       [node]
     }
@@ -288,15 +288,15 @@ class SynInterpreter
       return nil
     end
 
-    retv = Array.new
+    retv = []
 
     # each verb of the sentence:
-    eval(self.name()).verbs(sent).each { |verb_node, prefix_node|
+    eval(self.name).verbs(sent).each { |verb_node, prefix_node|
       # each gf of this verb:
-      eval(self.name()).gfs(verb_node, sent).each { |rel, other_node|
+      eval(self.name).gfs(verb_node, sent).each { |rel, other_node|
         # if it points to the given node, record
         if other_node == node or
-            eval(self.name()).informative_content_node(other_node) == node
+            eval(self.name).informative_content_node(other_node) == node
           retv << [rel, verb_node]
           break
         end
@@ -330,7 +330,7 @@ class SynInterpreter
       return nil
     end
 
-    path = eval(self.name()).search_up(from_node,to_node, nil)
+    path = eval(self.name).search_up(from_node,to_node, nil)
 
     if path.nil?
       # no path found
@@ -357,14 +357,14 @@ class SynInterpreter
       return nil
     end
 
-    retv = Array.new
+    retv = []
 
     # parent
     if (p = node.parent)
       retv << [
         p,
-        Path.new(node).add_last_step("U", node.parent_label(),
-                                     eval(self.name()).simplified_pt(p), p)
+        Path.new(node).add_last_step("U", node.parent_label,
+                                     eval(self.name).simplified_pt(p), p)
       ]
     end
 
@@ -373,7 +373,7 @@ class SynInterpreter
       retv << [
         c,
         Path.new(node).add_last_step("D", label,
-                                     eval(self.name()).simplified_pt(c), c)
+                                     eval(self.name).simplified_pt(c), c)
       ]
     }
 
@@ -394,18 +394,18 @@ class SynInterpreter
 
     # compute up to a root node
     root = node
-    while (p = root.parent())
+    while (p = root.parent)
       root = p
     end
 
     # determine position of {leftmost, rightmost} terminal of
     # {node, anchor_node} in the list of all terminals
-    all_yieldnodes = root.yield_nodes_ordered()
+    all_yieldnodes = root.yield_nodes_ordered
 
-    pos_nodefirst = all_yieldnodes.index(eval(self.name()).leftmost_terminal(node))
-    pos_anchorfirst = all_yieldnodes.index(eval(self.name()).leftmost_terminal(anchor_node))
-    pos_nodelast = all_yieldnodes.index(eval(self.name()).rightmost_terminal(node))
-    pos_anchorlast = all_yieldnodes.index(eval(self.name()).rightmost_terminal(anchor_node))
+    pos_nodefirst = all_yieldnodes.index(eval(self.name).leftmost_terminal(node))
+    pos_anchorfirst = all_yieldnodes.index(eval(self.name).leftmost_terminal(anchor_node))
+    pos_nodelast = all_yieldnodes.index(eval(self.name).rightmost_terminal(node))
+    pos_anchorlast = all_yieldnodes.index(eval(self.name).rightmost_terminal(anchor_node))
 
     # determine relative position
     if pos_nodefirst and pos_anchorfirst and pos_nodefirst < pos_anchorfirst
@@ -423,9 +423,9 @@ class SynInterpreter
   # given a constituent, determine its leftmost terminal,
   # excluding punctuation
   def SynInterpreter.leftmost_terminal(node)
-    leftmost = node.yield_nodes_ordered().detect {|n| eval(self.name()).category(n) != "pun"}
+    leftmost = node.yield_nodes_ordered.detect {|n| eval(self.name).category(n) != "pun"}
     unless leftmost
-      leftmost = node.yield_nodes_ordered().first
+      leftmost = node.yield_nodes_ordered.first
     end
     return leftmost
   end
@@ -436,9 +436,9 @@ class SynInterpreter
   # given a constituent, determine its rightmost terminal,
   # excluding punctuation
   def SynInterpreter.rightmost_terminal(node)
-    rightmost = node.yield_nodes_ordered().reverse.detect {|n| eval(self.name()).category(n) != "pun"}
+    rightmost = node.yield_nodes_ordered.reverse.detect {|n| eval(self.name).category(n) != "pun"}
     unless rightmost
-      rightmost = node.yield_nodes_ordered().last
+      rightmost = node.yield_nodes_ordered.last
     end
     return rightmost
   end
@@ -457,17 +457,17 @@ class SynInterpreter
     end
 
     # preposition as lemma of this node?
-    if eval(self.name()).category(node) == "prep" and
-        (lemma = eval(self.name()).lemma_backoff(node)) and
+    if eval(self.name).category(node) == "prep" and
+        (lemma = eval(self.name).lemma_backoff(node)) and
         not(lemma.empty?)
       return lemma
     end
 
     # head terminal is preposition and has a lemma?
-    hl = eval(self.name()).head_terminal(node)
+    hl = eval(self.name).head_terminal(node)
     if hl and
-        eval(self.name()).category(hl) == "prep" and
-        (lemma = eval(self.name()).lemma_backoff(hl)) and
+        eval(self.name).category(hl) == "prep" and
+        (lemma = eval(self.name).lemma_backoff(hl)) and
         not(lemma.empty?)
       return lemma
     end
@@ -486,7 +486,7 @@ class SynInterpreter
                                        no_mwes = nil) # non-nil: don't handle multiword expressions beyond verbs with separate particles
 
     # map nodes to terminals
-    nodelist1 = nodelist.map { |n| n.yield_nodes() }.flatten
+    nodelist1 = nodelist.map { |n| n.yield_nodes }.flatten
 
     # single node? return it
     if nodelist1.length == 1
@@ -496,24 +496,24 @@ class SynInterpreter
     # more than one word
 
     # see if we can get a headword of a single constituent
-    if nodelist.length() == 1 and
-        (headword = eval(self.name()).head_terminal(nodelist.first()))
+    if nodelist.length == 1 and
+        (headword = eval(self.name).head_terminal(nodelist.first))
       return headword
     end
 
     # filter out auxiliaries and modals, see if only one node remains
     nodelist2 = nodelist1.reject { |t|
-      eval(self.name()).auxiliary?(t) or
-        eval(self.name()).modal?(t)
+      eval(self.name).auxiliary?(t) or
+        eval(self.name).modal?(t)
     }
 
     # one verb, one prep or particle? then
     # assume we have a separate verb prefix, and take the lemma of the verb
     if nodelist2.length == 2
-      verbs = nodelist2.select { |t| eval(self.name()).category(t) == "verb"}
-      if verbs.length() == 1
+      verbs = nodelist2.select { |t| eval(self.name).category(t) == "verb"}
+      if verbs.length == 1
         # found exactly one verb, so we have one verb, one other
-        if eval(self.name()).particle_of_verb(verbs.first, nodelist2)
+        if eval(self.name).particle_of_verb(verbs.first, nodelist2)
           # we have found a particle/separate verb prefix
           # take verb as main node
           return verbs.first
@@ -538,18 +538,18 @@ class SynInterpreter
     lca = nodelist2.first
     lca_found = false
     while lca and not(lca_found)
-      yn = lca.yield_nodes()
+      yn = lca.yield_nodes
       # lca's yield nodes include all nodes in nodelist2?
       # then lca is indeed the lowest common ancestor
       if nodelist2.big_and { |t| yn.include? t }
         lca_found = true
       else
-        lca = lca.parent()
+        lca = lca.parent
       end
     end
     # nodelist2 includes lca's head terminal? then return that
     if lca_found and
-        (h = eval(self.name()).head_terminal(lca)) and
+        (h = eval(self.name).head_terminal(lca)) and
         nodelist2.include? h
       return h
     end
@@ -558,7 +558,7 @@ class SynInterpreter
     # try first verb, then first noun, then first adjective
     ["verb", "noun", "adj"].each { |cat|
       nodelist.each { |t|
-        if eval(self.name()).category(t) == cat
+        if eval(self.name).category(t) == cat
           return t
         end
       }
@@ -636,13 +636,13 @@ class SynInterpreter
   ####################3
   protected
 
-  def SynInterpreter.announce_me()
+  def SynInterpreter.announce_me
     if defined?(SynInterfaces)
       # yup, we have a class to which we can announce ourselves
-      SynInterfaces.add_interpreter(eval(self.name()))
+      SynInterfaces.add_interpreter(eval(self.name))
     else
       # no interface collector class
-      $stderr.puts "Interface #{self.name()} not announced: no SynInterfaces."
+      $stderr.puts "Interface #{self.name} not announced: no SynInterfaces."
     end
   end
 
@@ -661,7 +661,7 @@ class SynInterpreter
     #         (2) just the part from the lca down to the node
     #         (3) the lowest common ancestor as node
 
-    path = eval(self.name()).search_down(from_node,to_node, already_covered)
+    path = eval(self.name).search_down(from_node,to_node, already_covered)
 
     if path.nil?
       # search down unsuccessful
@@ -676,7 +676,7 @@ class SynInterpreter
 
       else
         # search up
-        path = eval(self.name()).search_up(parent,to_node, from_node)
+        path = eval(self.name).search_up(parent,to_node, from_node)
 
         if path.nil?
           # no path found
@@ -684,7 +684,7 @@ class SynInterpreter
 
         else
           # search up was successful
-          parent_pt = eval(self.name()).simplified_pt(parent)
+          parent_pt = eval(self.name).simplified_pt(parent)
           path.add_first_step(from_node, "U", edgelabel, parent_pt)
           return path
         end
@@ -715,11 +715,11 @@ class SynInterpreter
           next
         end
 
-        path = eval(self.name()).search_down(c, to_node, already_explored)
+        path = eval(self.name).search_down(c, to_node, already_explored)
 
         unless path.nil?
-          c_pt = eval(self.name()).simplified_pt(c)
-          path.add_first_step(from_node, "D", c.parent_label(), c_pt)
+          c_pt = eval(self.name).simplified_pt(c)
+          path.add_first_step(from_node, "D", c.parent_label, c_pt)
           return path
         end
       }

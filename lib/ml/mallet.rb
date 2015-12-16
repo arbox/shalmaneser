@@ -176,17 +176,17 @@ class Mallet
       return nil
     end
 
-    retv = Array.new()
+    retv = []
 
     f.each { |line|
-      line_results = Array.new()
-      pieces = line.split()
+      line_results = []
+      pieces = line.split
 
       while not(pieces.empty?)
-        label = pieces.shift()
+        label = pieces.shift
 
         begin
-          confidence = pieces.shift().to_f()
+          confidence = pieces.shift.to_f
         rescue
           $stderr.puts "Error reading mallet output: invalid line: #{line}"
           confidence = 0

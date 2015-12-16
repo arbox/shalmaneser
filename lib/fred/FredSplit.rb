@@ -74,7 +74,7 @@ class FredSplit
   # compute
   #
   # do the splitting
-  def compute()
+  def compute
     FredSplit.remove_split(@exp, @split_id)
     @split_obj.make_new_split(@split_id, @trainpercent,
                               @ignore_unambiguous)

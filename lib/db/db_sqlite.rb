@@ -23,24 +23,24 @@ class DBSQLiteResult < DBResult
 
   ###
   # column names: list of strings
-  def list_column_names()
+  def list_column_names
     return @result.columns
   end
 
   # number of rows: returns an integer
-  def num_rows()
+  def num_rows
     # remember where we were in iterating over items
     tmp_counter = @counter
 
     # reset, and iterate over all rows to count
-    reset()
+    reset
     retv = 0
     each { |x| retv += 1}
 
     # return to where we were in iterating over items
-    reset()
+    reset
     while @counter < tmp_counter
-      @result.next()
+      @result.next
       @counter += 1
     end
 
@@ -50,21 +50,21 @@ class DBSQLiteResult < DBResult
 
 
   # yields each row as an array of values
-  def each()
+  def each
     @result.each { |row|
       @counter += 1
-      yield row.map { |x| x.to_s() }
+      yield row.map { |x| x.to_s }
     }
   end
 
   # yields each row as a hash: column name=> column value
-  def each_hash()
+  def each_hash
     @result.each { |row|
       @counter += 1
 
-      row_hash = Hash.new()
+      row_hash = {}
       row.fields.each_with_index { |key, index|
-        row_hash[key] = row[index].to_s()
+        row_hash[key] = row[index].to_s
       }
       yield row_hash
     }
@@ -73,20 +73,20 @@ class DBSQLiteResult < DBResult
 
   ###
   # reset such that each() can be run again on the result object
-  def reset()
-    @result.reset()
+  def reset
+    @result.reset
     @counter = 0
   end
 
   # free object
-  def free()
-    @result.close()
+  def free
+    @result.close
   end
 
   # returns row as an array of column contents
-  def fetch_row()
+  def fetch_row
     @counter += 1
-    return @result.next()
+    return @result.next
   end
 end
 
@@ -173,10 +173,10 @@ class DBSQLite < DBWrapper
   # list all tables in the database
   #
   # array of strings
-  def list_tables()
+  def list_tables
     if @database
       return @database.execute("select name from sqlite_master;").map { |t|
-        t.to_s()
+        t.to_s
       }
     else
       return nil
@@ -204,7 +204,7 @@ class DBSQLite < DBWrapper
       $stderr.puts "SQLite error: could not read description of table #{table_name}"
       exit 1
     end
-    create_index = (0..field_names.length()).detect { |ix| field_names[ix] == 'sql' }
+    create_index = (0..field_names.length).detect { |ix| field_names[ix] == 'sql' }
 
     # try to parse column names out of the 'create' statement
     if table_descr[0][create_index] =~ /^\s*create table \S+\s*\((.*)\)\s*$/i
@@ -212,10 +212,10 @@ class DBSQLite < DBWrapper
       # split at the comma, remove whitespace at beginning and end
       # then split again to get pairs [column name, column format]
       return $1.split(",").map { |col_descrip|
-        pieces = col_descrip.strip().split().reject { |entry|
+        pieces = col_descrip.strip.split.reject { |entry|
           entry =~ /^key$/i or  entry =~ /^primary$/i
         }
-        if pieces.length() > 2
+        if pieces.length > 2
           $stderr.puts "Warning: problematic column format in #{col_descrip}, may be parsed wrong."
         end
         pieces
@@ -238,7 +238,7 @@ class DBSQLite < DBWrapper
 
     rows_s = @database.get_first_value( "select count(*) from #{table_name}" )
     if rows_s
-      return rows_s.to_i()
+      return rows_s.to_i
     else
       return nil
     end
@@ -261,7 +261,7 @@ class DBSQLite < DBWrapper
   #     return temp_obj
   #   end
 
-  def drop_temp_table()
+  def drop_temp_table
     @tf.close(true)
     @database = nil
   end
@@ -272,8 +272,8 @@ class DBSQLite < DBWrapper
   def initialize_temp_table(column_formats, index_column_names, indexname)
     @table_name = "temptable"
     @tf = Tempfile.new("temp_table")
-    @tf.close()
-    @database = SQLite3::Database.new(@tf.path())
+    @tf.close
+    @database = SQLite3::Database.new(@tf.path)
     create_table(@table_name, column_formats, index_column_names, indexname)
   end
 

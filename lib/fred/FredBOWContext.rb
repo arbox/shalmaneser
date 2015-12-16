@@ -98,7 +98,7 @@ class AbstractContextProvider
       each_window_for_tabsent(sent) { |result | yield result }
 
     else
-      $stderr.puts "Error: got #{sent.class()}, expected SalsaTigerSentence or TabFormatSentence."
+      $stderr.puts "Error: got #{sent.class}, expected SalsaTigerSentence or TabFormatSentence."
       exit 1
     end
   end
@@ -132,8 +132,8 @@ class AbstractContextProvider
     # reencode, make hashes:
     # main target ID -> list of senses,
     # main target ID -> all target IDs
-    maintarget_to_senses = Hash.new()
-    main_to_all_targets = Hash.new()
+    maintarget_to_senses = {}
+    main_to_all_targets = {}
     original_targets.each_key { |alltargets, maintarget|
 
       main_to_all_targets[maintarget] = alltargets
@@ -148,10 +148,10 @@ class AbstractContextProvider
       # add new word to end of context array
       @context.push(word_lemma_pos_ne(term_obj, @interpreter_class))
 
-      if maintarget_to_senses.has_key? term_obj.id()
-        @is_target.push( [ term_obj.id(),
-                           main_to_all_targets[term_obj.id()],
-                           maintarget_to_senses[term_obj.id()]
+      if maintarget_to_senses.has_key? term_obj.id
+        @is_target.push( [ term_obj.id,
+                           main_to_all_targets[term_obj.id],
+                           maintarget_to_senses[term_obj.id]
                          ]  )
       else
         @is_target.push(nil)
@@ -160,9 +160,9 @@ class AbstractContextProvider
       @sentence.push(sent)
 
       # remove first word from context array
-      @context.shift()
-      @is_target.shift()
-      @sentence.shift()
+      @context.shift
+      @is_target.shift
+      @sentence.shift
 
       # check for target at center
       if @is_target[@window_size]
@@ -191,20 +191,20 @@ class AbstractContextProvider
   # Whenever this brings a target (from another sentence, necessarily)
   # to the center of the context window, yield it.
   def each_window_for_tabsent(sent)
-    sent.each_line_parsed() { |line_obj|
+    sent.each_line_parsed { |line_obj|
       # push onto the context array:
       # [word, lemma, pos, ne], all lowercase
-      @context.push([ line_obj.get("word").downcase(),
-                      line_obj.get("lemma").downcase(),
-                      line_obj.get("pos").downcase(),
+      @context.push([ line_obj.get("word").downcase,
+                      line_obj.get("lemma").downcase,
+                      line_obj.get("pos").downcase,
                       nil])
       @is_target.push(nil)
       @sentence.push(nil)
 
       # remove first word from context array
-      @context.shift()
-      @is_target.shift()
-      @sentence.shift()
+      @context.shift
+      @is_target.shift
+      @sentence.shift
 
       # check for target at center
       if @is_target[@window_size]
@@ -225,7 +225,7 @@ class AbstractContextProvider
   ############################
   # each remaining target:
   # call this to empty the context window after everything has been shifted in
-  def each_remaining_target()
+  def each_remaining_target
     while @context.detect { |entry| not(entry.nil?) }
       # push nil on the context array
       @context.push(nil)
@@ -233,9 +233,9 @@ class AbstractContextProvider
       @sentence.push(nil)
 
       # remove first word from context array
-      @context.shift()
-      @is_target.shift()
-      @sentence.shift()
+      @context.shift
+      @is_target.shift
+      @sentence.shift
 
       # check for target at center
       if @is_target[@window_size]
@@ -280,7 +280,7 @@ class ContextProvider < AbstractContextProvider
     # Try sorting filenames numerically, since this is
     # what frprep mostly does with filenames
     Dir[dir + "*.xml"].sort { |a, b|
-      File.basename(a, ".xml").to_i() <=> File.basename(b, ".xml").to_i()
+      File.basename(a, ".xml").to_i <=> File.basename(b, ".xml").to_i
     }.each { |filename|
 
       # progress bar
@@ -293,7 +293,7 @@ class ContextProvider < AbstractContextProvider
       }
     }
     # and empty the context array
-    each_remaining_target() { |result| yield result }
+    each_remaining_target { |result| yield result }
   end
 
   ##################################
@@ -304,7 +304,7 @@ class ContextProvider < AbstractContextProvider
   # same as each_window, but only for a single file
   # (to be called from each_window())
   def each_window_for_file(fpp) # FilePartsParser object: Salsa/Tiger XMl data
-    fpp.scan_s() { |sent_string|
+    fpp.scan_s { |sent_string|
       sent = SalsaTigerSentence.new(sent_string)
       each_window_for_sent(sent) { |result| yield result }
     }
@@ -329,7 +329,7 @@ class SingleSentContextProvider < AbstractContextProvider
     # Try sorting filenames numerically, since this is
     # what frprep mostly does with filenames
     Dir[dir + "*.xml"].sort { |a, b|
-      File.basename(a, ".xml").to_i() <=> File.basename(b, ".xml").to_i()
+      File.basename(a, ".xml").to_i <=> File.basename(b, ".xml").to_i
     }.each { |filename|
       # progress bar
       if @exp.get("verbose")
@@ -351,7 +351,7 @@ class SingleSentContextProvider < AbstractContextProvider
   # same as each_window, but only for a single file
   # (to be called from each_window())
   def each_window_for_file(fpp) # FilePartsParser object: Salsa/Tiger XMl data
-    fpp.scan_s() { |sent_string|
+    fpp.scan_s { |sent_string|
       sent = SalsaTigerSentence.new(sent_string)
 
       each_window_for_sent(sent) { |result|
@@ -371,12 +371,12 @@ class SingleSentContextProvider < AbstractContextProvider
       each_window_for_tabsent(sent) { |result | yield result }
 
     else
-      $stderr.puts "Error: got #{sent.class()}, expected SalsaTigerSentence or TabFormatSentence."
+      $stderr.puts "Error: got #{sent.class}, expected SalsaTigerSentence or TabFormatSentence."
       exit 1
     end
 
     # clear the context
-    each_remaining_target() { |result| yield result }
+    each_remaining_target { |result| yield result }
   end
 end
 
@@ -427,7 +427,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # check for each sentence whether it is also in the input corpus
     # and yield it if it does.
     # larger corpus may contain subdirectories
-    initialize_match_check()
+    initialize_match_check
 
     each_infile(@exp.get("larger_corpus_dir")) { |filename|
       $stderr.puts "Larger corpus: reading #{filename}"
@@ -469,7 +469,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       $stderr.puts "Computing context features from frprep output."
       Dir[frprep_out + "*.tab"].each { |tabfilename|
         tabfile = FNTabFormatFile.new(tabfilename, ".pos", ".lemma")
-        tabfile.each_sentence() { |tabsent|
+        tabfile.each_sentence { |tabsent|
 
           # get as Salsa/Tiger XML sentence, or TabSentence
           sent = get_stxml_sent(tabsent, sentkeys, temptable_obj)
@@ -484,11 +484,11 @@ class NoncontiguousContextProvider < AbstractContextProvider
     } # each infile from the larger corpus
 
     # empty the context array
-    each_remaining_target() { |result| yield result }
+    each_remaining_target { |result| yield result }
     each_unmatched(sentkeys, temptable_obj) { |result| yield result }
 
     # remove temporary data
-    temptable_obj.drop_temp_table()
+    temptable_obj.drop_temp_table
 
     # @todo AB: TODO Rewrite this passage using pure Ruby.
     %x{rm -rf #{frprep_in}}
@@ -524,7 +524,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
                                                                        "autoinc_index")
 
     # and hash table for the keys
-    retv_keys = Hash.new()
+    retv_keys = {}
 
     # iterate through files in the directory,
     # make an index for each sentence, and store
@@ -532,25 +532,25 @@ class NoncontiguousContextProvider < AbstractContextProvider
     Dir[dir + "*.xml"].each { |filename|
       $stderr.puts "\t#{filename}"
       f = FilePartsParser.new(filename)
-      f.scan_s() { |sent_string|
+      f.scan_s { |sent_string|
 
         xml_obj = RegXML.new(sent_string)
 
         # make hash key from words of sentence
-        graph = xml_obj.children_and_text().detect { |c| c.name() == "graph" }
+        graph = xml_obj.children_and_text.detect { |c| c.name == "graph" }
         unless graph
           next
         end
-        terminals = graph.children_and_text().detect { |c| c.name() == "terminals" }
+        terminals = graph.children_and_text.detect { |c| c.name == "terminals" }
         unless terminals
           next
         end
         # in making a hash key, use special characters
         # rather than their escaped &..; form
         # $stderr.puts "HIER calling checksum for noncontig"
-        hashkey = checksum(terminals.children_and_text().select { |c| c.name() == "t"
+        hashkey = checksum(terminals.children_and_text.select { |c| c.name == "t"
                            }.map { |t|
-                             SalsaTigerXMLHelper.unescape(t.attributes()["word"].to_s() )
+                             SalsaTigerXMLHelper.unescape(t.attributes["word"].to_s )
                            })
         # HIER
         # $stderr.puts "HIER " + terminals.children_and_text().select { |c| c.name() == "t"
@@ -559,18 +559,18 @@ class NoncontiguousContextProvider < AbstractContextProvider
         # sanity check: if the sentence is longer than
         # the space currently allotted to sentence strings,
         # we won't be able to recover it.
-        if SQLQuery.stringify_value(hashkey).length() > space_for_hashkey
+        if SQLQuery.stringify_value(hashkey).length > space_for_hashkey
           $stderr.puts "Warning: sentence checksum too long, cannot store it."
           $stderr.print "Max length: #{space_for_hashkey}. "
-          $stderr.puts "Required: #{SQLQuery.stringify_value(hashkey).length()}."
+          $stderr.puts "Required: #{SQLQuery.stringify_value(hashkey).length}."
           $stderr.puts "Skipping."
           next
         end
 
-        if SQLQuery.stringify_value(sent_string).length() > space_for_sentstring
+        if SQLQuery.stringify_value(sent_string).length > space_for_sentstring
           $stderr.puts "Warning: sentence too long, cannot store it."
           $stderr.print "Max length: #{space_for_sentstring}. "
-          $stderr.puts "Required: #{SQLQuery.stringify_value(sent_string).length()}."
+          $stderr.puts "Required: #{SQLQuery.stringify_value(sent_string).length}."
           $stderr.puts "Skipping."
           next
         end
@@ -739,7 +739,7 @@ class NoncontiguousContextProvider < AbstractContextProvider
       end
     }
     # finalize frprep experiment file
-    tf_exp_frprep.close()
+    tf_exp_frprep.close
 
     return [frprep_in, frprep_out, frprep_dir]
   end
@@ -760,8 +760,8 @@ class NoncontiguousContextProvider < AbstractContextProvider
     sent = nil
 
     # make checksum
-    words = Array.new()
-    words2 = Array.new()
+    words = []
+    words2 = []
     tabsent.each_line_parsed { |line_obj|
       words << SalsaTigerXMLHelper.unescape(line_obj.get("word"))
       words2 << line_obj.get("word")
@@ -788,14 +788,14 @@ class NoncontiguousContextProvider < AbstractContextProvider
                                                          [ ValueRestriction.new("hashkey", hashkey_this_sentence) ]))
       query_result.each { |row|
 
-        sent_string = SQLQuery.unstringify_value(row.first().to_s())
+        sent_string = SQLQuery.unstringify_value(row.first.to_s)
         begin
           sent = SalsaTigerSentence.new(sent_string)
         rescue
           $stderr.puts "Error reading Salsa/Tiger XML sentence."
           $stderr.puts
           $stderr.puts "SQL-stored sentence was:"
-          $stderr.puts row.first().to_s()
+          $stderr.puts row.first.to_s
           $stderr.puts
           $stderr.puts "==================="
           $stderr.puts "With restored quotes:"
@@ -819,8 +819,8 @@ class NoncontiguousContextProvider < AbstractContextProvider
   ###
   # Keep track of which sentences from the smaller, noncontiguous corpus
   # have been matched in the larger corpus
-  def initialize_match_check()
-    @index_matched = Hash.new()
+  def initialize_match_check
+    @index_matched = {}
   end
 
   ###
@@ -856,18 +856,18 @@ class NoncontiguousContextProvider < AbstractContextProvider
         # report and yield
         query_result.each { |row|
 
-          sent_string = SQLQuery.unstringify_value(row.first().to_s())
+          sent_string = SQLQuery.unstringify_value(row.first.to_s)
           begin
             # report on unmatched sentence
             sent = SalsaTigerSentence.new(sent_string)
             $stderr.puts "Unmatched sentence from noncontiguous input:\n" +
-                         sent.id().to_s() + " " + sent.to_s()
+                         sent.id.to_s + " " + sent.to_s
 
             # push the sentence through the context window,
             # filling it up with "nil",
             # and yield when we reach the target at center position.
             each_window_for_stsent(sent) { |result| yield result }
-            each_remaining_target() { |result| yield result }
+            each_remaining_target { |result| yield result }
 
           rescue
             # Couldn't turn it into a SalsaTigerSentence object:

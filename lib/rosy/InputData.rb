@@ -36,7 +36,7 @@ class InputData
     raise 'BumBamBim!!!' if @interpreter_class.nil?
     @input_dir = input_dir
     # store information about failed parses here
-    @failed_parses = FailedParses.new()
+    @failed_parses = FailedParses.new
 
     # feature_extractors_phase1: array of AbstractFeatureExtractor objects
     @extractors_p1_rosy, @extractors_p1_other = feature_info_object.get_extractor_objects("phase 1",
@@ -49,7 +49,7 @@ class InputData
 
 #     # nothing to set here for now, so deactivated
 #     @extractors_p1_other.each { |extractor_obj|
-#       unless extractor_obj.class.set()
+#       unless extractor_obj.class.set
 #         raise "Some grave problem during feature extractor initialization"
 #       end
 #     }
@@ -71,7 +71,7 @@ class InputData
   #
   # yields: pairs [feature_name(string), feature_value(object)]
 
-  def each_instance_phase1()
+  def each_instance_phase1
     Dir[@input_dir+"*.xml"]. each {|parsefilename|
 
       xmlFile = FilePartsParser.new(parsefilename)
@@ -128,21 +128,21 @@ class InputData
             end
 
             # features: array of pairs: [feature_name(string), feature_value(object)]
-            features = Array.new
+            features = []
             (@extractors_p1_rosy + @extractors_p1_other).each { |extractor|
               # compute features
-              feature_names = extractor.class.feature_names()
+              feature_names = extractor.class.feature_names
               feature_index = 0
 
               # append new features to features array
-              features.concat extractor.compute_features().map { |feature_value|
+              features.concat extractor.compute_features.map { |feature_value|
                 feature_name = feature_names[feature_index]
                 feature_index += 1
 
                 # sanity check: feature value longer than the allotted space in the DB?
                 check_feature_length(feature_name, feature_value, extractor)
 
-                [feature_name, nonnil_feature(feature_value, extractor.class.sql_type()) ]
+                [feature_name, nonnil_feature(feature_value, extractor.class.sql_type) ]
               }
             }
             yield features
@@ -171,7 +171,7 @@ class InputData
       feature_columns = extractor.compute_features_on_view(view)
       # interleave with feature values and yield
       feature_index = 0
-      feature_names = extractor.class.feature_names()
+      feature_names = extractor.class.feature_names
       feature_columns.each { |feature_values|
         yield [
           feature_names[feature_index],
@@ -186,7 +186,7 @@ class InputData
   # get_failed_parses
   #
   # returns the FailedParses object in which the info about failed parses has been stored
-  def get_failed_parses()
+  def get_failed_parses
     return @failed_parses
   end
 
@@ -230,8 +230,8 @@ class InputData
                           frame) # FrameNode
 
     # target POS
-    if frame.target()
-      main_target = @interpreter_class.main_node_of_expr(frame.target.children(), "no_mwe")
+    if frame.target
+      main_target = @interpreter_class.main_node_of_expr(frame.target.children, "no_mwe")
     else
       main_target = nil
     end
@@ -240,8 +240,8 @@ class InputData
     else
       target_pos = nil
     end
-    if frame.target()
-      target_str = frame.target().yield_nodes_ordered().map { |t_node|
+    if frame.target
+      target_str = frame.target.yield_nodes_ordered.map { |t_node|
         if t_node.is_syntactic?
           @interpreter_class.lemma_backoff(t_node)
         else
@@ -253,8 +253,8 @@ class InputData
       target_str = ""
     end
 
-    @failed_parses.register(Rosy::construct_instance_id(sent.id(), frame.id()),
-                            frame.name(),
+    @failed_parses.register(Rosy::construct_instance_id(sent.id, frame.id),
+                            frame.name,
                             target_str,
                             target_pos,
                             frame.children.map { |fe| fe.name })
@@ -267,17 +267,17 @@ class InputData
                            feature_value, # object
                            extractor_obj) # AbstractFeatureExtractor object
 
-    if extractor_obj.class.sql_type() =~ /(\d+)/
+    if extractor_obj.class.sql_type =~ /(\d+)/
       # sql type contains some statement about the length.
       # just crudely compare to feature length
       length = $1.to_i
       if feature_value.class == String and
-          feature_value.length() > length
+          feature_value.length > length
 
         if feature_name == "sentid"
           print length;
           print feature_value;
-          print feature_value.length();
+          print feature_value.length;
           # if the sentence (instance) ID is too long, we cannot go on.
           $stderr.puts "Error: Instance ID is longer than its DB column."
           $stderr.puts "Please increase the DB column size in {Tiger,Collins}FeatureExtractors.rb"
@@ -288,7 +288,7 @@ class InputData
           # this is just too frequent
           # for other features, we just issue a warning, and only if we are verbose
 
-          # $stderr.puts "Warning: feature #{feature_name} longer than its DB column (#{length.to_s} vs #{feature_value.length()}): #{feature_value}"
+          # $stderr.puts "Warning: feature #{feature_name} longer than its DB column (#{length.to_s} vs #{feature_value.length}): #{feature_value}"
         end # feature name check
       end # length surpassed
     end # length found in sql type

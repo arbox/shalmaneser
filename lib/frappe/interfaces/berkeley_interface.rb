@@ -173,14 +173,14 @@ class BerkeleyInterface < SynInterfaceSTXML
       # hopefully, our status is OK
       case status
       when true
-        if tab_sent.get_sent_id() and tab_sent.get_sent_id() != "--"
-          my_sent_id = tab_sent.get_sent_id()
+        if tab_sent.get_sent_id and tab_sent.get_sent_id != "--"
+          my_sent_id = tab_sent.get_sent_id
         else
           my_sent_id = File.basename(parsefilename, @outsuffix) + "_" + sentid.to_s
         end
 
         st_sent = build_salsatiger(" " + sentence_str + " ", 0,
-                                   Array.new, Counter.new(0),
+                                   [], Counter.new(0),
                                    Counter.new(500),
                                    SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
         if st_sent.nil?

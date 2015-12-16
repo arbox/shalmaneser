@@ -19,15 +19,15 @@ require 'fileutils'
 # Interface class
 class BerkeleyInterface < SynInterfaceSTXML
   $stderr.puts 'Announcing Berkeley Interface' if $DEBUG
-  BerkeleyInterface.announce_me()
+  BerkeleyInterface.announce_me
 
   ###
-  def BerkeleyInterface.system()
+  def BerkeleyInterface.system
     return "berkeley"
   end
 
   ###
-  def BerkeleyInterface.service()
+  def BerkeleyInterface.service
     return "parser"
   end
 
@@ -155,14 +155,14 @@ class BerkeleyInterface < SynInterfaceSTXML
       # hopefully, our status is OK
       case status
       when true
-        if tab_sent.get_sent_id() and tab_sent.get_sent_id() != "--"
-          my_sent_id = tab_sent.get_sent_id()
+        if tab_sent.get_sent_id and tab_sent.get_sent_id != "--"
+          my_sent_id = tab_sent.get_sent_id
         else
           my_sent_id = File.basename(parsefilename, @outsuffix) + "_" + sentid.to_s
         end
 
         st_sent = build_salsatiger(" " + sentence_str + " ", 0,
-                                   Array.new, Counter.new(0),
+                                   [], Counter.new(0),
                                    Counter.new(500),
                                    SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
         if st_sent.nil?
@@ -199,12 +199,12 @@ class BerkeleyInterface < SynInterfaceSTXML
 
     outfile = File.new(outfilename, "w")
 
-    outfile.puts SalsaTigerXMLHelper.get_header()
+    outfile.puts SalsaTigerXMLHelper.get_header
     each_sentence(infilename) { |st_sent, tabsent|
-      outfile.puts st_sent.get()
+      outfile.puts st_sent.get
     }
-    outfile.puts SalsaTigerXMLHelper.get_footer()
-    outfile.close()
+    outfile.puts SalsaTigerXMLHelper.get_footer
+    outfile.close
   end
 
 
@@ -283,7 +283,7 @@ class BerkeleyInterface < SynInterfaceSTXML
     when /^\s*\)/ # match the end of a nonterminal (nothing before a closing bracket)
       # now collect children:
       # pop items from the stack until you find the category
-      children = Array.new
+      children = []
       while true
         if stack.empty?
           raise "Error: stack empty; cannot find more children"
@@ -357,14 +357,14 @@ end
 ################################################
 # Interpreter class
 class BerkeleyInterpreter < Tiger
-  BerkeleyInterpreter.announce_me()
+  BerkeleyInterpreter.announce_me
 
   ###
   # names of the systems interpreted by this class:
   # returns a hash service(string) -> system name (string),
   # e.g.
   # { "parser" => "collins", "lemmatizer" => "treetagger" }
-  def BerkeleyInterpreter.systems()
+  def BerkeleyInterpreter.systems
     return {
         "parser" => "berkeley"
     }
@@ -373,8 +373,8 @@ class BerkeleyInterpreter < Tiger
   ###
   # names of additional systems that may be interpreted by this class
   # returns a hash service(string) -> system name(string)
-  # same as names()
-  def BerkeleyInterpreter.optional_systems()
+  # same as names
+  def BerkeleyInterpreter.optional_systems
     return {
       "lemmatizer" => "treetagger"
     }

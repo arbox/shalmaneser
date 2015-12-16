@@ -152,7 +152,7 @@ class RegXML
         end
         childname = $2
         child = $1
-        endofelt_ix = $&.length()
+        endofelt_ix = $&.length
 
 
         # and remove it
@@ -187,9 +187,9 @@ lalala=\"c\">
   <la> <l/> </la>
 </ bla >
 ")
-    puts "name " + bla.name()
+    puts "name " + bla.name
     puts
-    puts bla.to_s()
+    puts bla.to_s
     puts
     bla.attributes.each { |attr, val|
       puts "attr " + attr + "=" + val

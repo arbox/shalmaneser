@@ -162,8 +162,8 @@ class Maxent
     retv = []
 
     f.each do |line|
-      line_results = Array.new()
-      pieces = line.split() # split at whitespace
+      line_results = []
+      pieces = line.split # split at whitespace
 
       pieces.each {|piece|
         piece =~ /(\S+)\[(.+)\]/
@@ -198,7 +198,7 @@ class Maxent
         label.chop!
       end
       la.each_index {|i|
-        la[i] = i.to_s() + "=" + la[i]
+        la[i] = i.to_s + "=" + la[i]
       }
       la.push(label)
       outpipe.puts la.join(" ")

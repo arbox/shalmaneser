@@ -30,11 +30,11 @@ class SalsaTigerSentenceSem < XMLNode
     #   listing all frame nodes, frame underspecification nodes,
     #   and FE underspecification nodes respectively
     # globals: array of RegXML objects, each representing one sentence flag
-    @node = Hash.new
-    @frame_id = Array.new
-    @uspframe_id = Array.new
-    @uspfe_id = Array.new
-    @globals = Array.new
+    @node = {}
+    @frame_id = []
+    @uspframe_id = []
+    @uspfe_id = []
+    @globals = []
 
     if xml_obj
       # we actually have semantic information.
@@ -67,7 +67,7 @@ class SalsaTigerSentenceSem < XMLNode
       # index frames
       if frames_obj
         frames_obj.children_and_text.each { |frame|
-          unless frame.name() == "frame"
+          unless frame.name == "frame"
             warn_child_ignored("s/sem/frames/", frame)
             next
           end
@@ -128,7 +128,7 @@ class SalsaTigerSentenceSem < XMLNode
   end
 
   ###
-  def usp_frameblocks()
+  def usp_frameblocks
     return @uspframe_id.map { |node_id| @node[node_id] }
   end
 
@@ -140,7 +140,7 @@ class SalsaTigerSentenceSem < XMLNode
   end
 
   ###
-  def usp_feblocks()
+  def usp_feblocks
     return @uspfe_id.map { |node_id| @node[node_id] }
   end
 
@@ -166,7 +166,7 @@ class SalsaTigerSentenceSem < XMLNode
     if sem_id
       frameid = sem_id
     else
-      frameid = sentid + "_f" + Time.new().to_f.to_s
+      frameid = sentid + "_f" + Time.new.to_f.to_s
     end
     n = FrameNode.new(RegXML.new("<frame id=\"#{frameid}\" name=\"#{name}\"/>"))
     @node[n.id] = n
@@ -290,7 +290,7 @@ class SalsaTigerSentenceSem < XMLNode
   ############################3
   protected
 
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     string = ""
 
     # globals
@@ -303,7 +303,7 @@ class SalsaTigerSentenceSem < XMLNode
     # frames
     string << "<frames>\n"
     each_frame { |frame_node|
-      string << frame_node.get()
+      string << frame_node.get
     }
     string << "</frames>\n"
 
@@ -311,12 +311,12 @@ class SalsaTigerSentenceSem < XMLNode
     string << "<usp>\n"
     string << "<uspframes>\n"
     each_usp_frameblock { |block|
-      string << block.get()
+      string << block.get
     }
     string << "</uspframes>\n"
     string << "<uspfes>\n"
     each_usp_feblock { |block|
-      string << block.get()
+      string << block.get
     }
     string << "</uspfes>\n"
     string << "</usp>\n"

@@ -5,7 +5,7 @@ class RosyFeatureInfo
   # class variable:
   # list of all known extractors
   # add to it using add_feature()
-  @@extractors = Array.new
+  @@extractors = []
 
   # boolean. set to true after warning messages have been given once
   @@warned = false
@@ -23,13 +23,13 @@ class RosyFeatureInfo
     # make list of extractors that are
     # either required by the user
     # or needed by the system
-    @current_extractors = Array.new
+    @current_extractors = []
     @exp = exp
 
     # user-chosen extractors:
     # returns array of pairs [feature group designator(string), options(array:string)]
     exp.get_lf("feature").each { |extractor_name, options|
-      extractor = @@extractors.detect { |e| e.designator() == extractor_name }
+      extractor = @@extractors.detect { |e| e.designator == extractor_name }
       unless extractor
         # no extractor found matching the given designator
         unless @@warned
@@ -69,12 +69,12 @@ class RosyFeatureInfo
     # extractors needed by the system
     @@extractors.select { |e|
       # select admin features and gold feature
-      ["admin", "gold"].include? e.feature_type()
+      ["admin", "gold"].include? e.feature_type
     }.each { |extractor|
 
       # if we have already added that extractor, remove it
       # and add it with our own options
-      @current_extractors.delete_if { |descr| descr["extractor"].designator() == extractor.designator() }
+      @current_extractors.delete_if { |descr| descr["extractor"].designator == extractor.designator }
 
       @current_extractors << {
         "extractor"=> extractor,
@@ -86,13 +86,13 @@ class RosyFeatureInfo
     # (i.e. check dependencies)
 
     allstep_extractors = @current_extractors.find_all {|e_hash| e_hash["step"].nil?
-    }.map { |e| e["extractor"].designator() }
+    }.map { |e| e["extractor"].designator }
     argrec_extractors = @current_extractors.find_all {|e_hash| e_hash["step"].nil? or e_hash["step"] == "argrec"
-    }.map { |e| e["extractor"].designator() }
+    }.map { |e| e["extractor"].designator }
     arglab_extractors = @current_extractors.find_all {|e_hash| e_hash["step"].nil? or e_hash["step"] == "arglab"
-    }.map { |e| e["extractor"].designator() }
+    }.map { |e| e["extractor"].designator }
     onestep_extractors = @current_extractors.find_all {|e_hash| e_hash["step"].nil? or e_hash["step"] == "onestep"
-    }.map { |e| e["extractor"].designator() }
+    }.map { |e| e["extractor"].designator }
 
     @current_extractors.delete_if {|extractor_hash|
       case extractor_hash["step"]
@@ -113,7 +113,7 @@ class RosyFeatureInfo
         false # i.e. don't delete
       else
         unless @@warned
-          $stderr.puts "Warning: Feature extractor #{extractor_hash["extractor"].designator()} cannot be computed: skipping."
+          $stderr.puts "Warning: Feature extractor #{extractor_hash["extractor"].designator} cannot be computed: skipping."
         end
         true
       end
@@ -126,17 +126,17 @@ class RosyFeatureInfo
     # "step" -> string: argrec, arglab, onestep, or nil
     # "type" -> string
     # "phase" -> string: phase 1 or phase 2
-    @features = Array.new
+    @features = []
     @current_extractors.each { |descr|
       extractor = descr["extractor"]
       extractor.feature_names.each { |feature_name|
         @features << {
           "feature_name" => feature_name,
-          "sql_type"     => extractor.sql_type(),
-          "is_index"     => extractor.info().include?("index"),
+          "sql_type"     => extractor.sql_type,
+          "is_index"     => extractor.info.include?("index"),
           "step"         => descr["step"],
-          "type"         => extractor.feature_type(),
-          "phase"        => extractor.phase()
+          "type"         => extractor.feature_type,
+          "phase"        => extractor.phase
         }
       }
     }
@@ -179,7 +179,7 @@ class RosyFeatureInfo
   # returns a list of feature (column) names as Strings
   # consisting of all features that have been requested as index features
   # in the experiment file or in the list of @@all_features_we_have above
-  def get_index_columns()
+  def get_index_columns
     return @features.select { |feature_descr|
       feature_descr["is_index"]
     }.map {|feature_descr|
@@ -227,7 +227,7 @@ class RosyFeatureInfo
 
     return @current_extractors.select { |descr|
       # select extractors of the right phase
-      descr["extractor"].phase() == phase
+      descr["extractor"].phase == phase
     }.map { |descr|
 
       # make objects from extractor classes
@@ -236,7 +236,7 @@ class RosyFeatureInfo
       # distribute extractors in two bins:
       # first, rosy extractors
       # second, others
-      extractor_obj.class.info().include? "rosy"
+      extractor_obj.class.info.include? "rosy"
     }
   end
 end

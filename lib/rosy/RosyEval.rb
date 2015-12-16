@@ -163,7 +163,7 @@ class RosyEval < Eval
       @xwise = ["frame"]
     else
       # evaluate as you have trained and tested
-      @xwise = @iterator.get_xwise_column_names()
+      @xwise = @iterator.get_xwise_column_names
     end
 
     ##
@@ -171,7 +171,7 @@ class RosyEval < Eval
     # in count of gold labels
     if splitID
       # get a FailedParses object for this split
-      @failed_parses_split = FailedParses.new()
+      @failed_parses_split = FailedParses.new
       fp_filename = File.new_filename(@exp.instantiate("rosy_dir",
                                                   "exp_ID" => @exp.get("experiment_ID")),
                                  @exp.instantiate("failed_file",
@@ -199,7 +199,7 @@ class RosyEval < Eval
   # each_group
   #
   # yield each group name in turn
-  def each_group()
+  def each_group
 
     @view = nil
 
@@ -225,7 +225,7 @@ class RosyEval < Eval
 
       # for each value sequence for normal_xwise_cols: find out how many values
       # of extra xwise col.s there are
-      @iterator.each_group() { |group_descr_hash, group_name|
+      @iterator.each_group { |group_descr_hash, group_name|
 
         # make the hash key
         key = normal_xwise_cols.sort.map { |col_name|
@@ -237,7 +237,7 @@ class RosyEval < Eval
       }
     end
 
-    @iterator.each_group() { |group_descr_hash, group_name|
+    @iterator.each_group { |group_descr_hash, group_name|
 
       if @exp.get("verbose")
         $stderr.puts group_name
@@ -256,7 +256,7 @@ class RosyEval < Eval
 
       # get a description of this group, array of pairs [column name, value]
       # where column name is the name of one database column
-      @xwise.interleave(group_name.split()).each { |col_name, col_value|
+      @xwise.interleave(group_name.split).each { |col_name, col_value|
         case col_name
         when "frame"
           frame = col_value
@@ -300,7 +300,7 @@ class RosyEval < Eval
 
       # yield the name of the group to the Eval object for evaluation
       yield group_name
-      @view.close()
+      @view.close
     }
   end
 
@@ -367,7 +367,7 @@ class RosyEvalTask < RosyTask
     # check runtime options
     @step = "both"
     @splitID = nil
-    @testID = Rosy.default_test_ID()
+    @testID = Rosy.default_test_ID
 
     opts.each do |opt,arg|
       case opt
@@ -386,7 +386,7 @@ class RosyEvalTask < RosyTask
     end
   end
 
-  def perform()
+  def perform
     dont_adjoin_frprep_exp = nil
     original_step = @step
 
@@ -395,7 +395,7 @@ class RosyEvalTask < RosyTask
       # evaluate pruning
       $stderr.puts "Rosy evaluating pruning"
       @step = "prune"
-      perform_aux()
+      perform_aux
       dont_adjoin_frprep_exp = "dont_adjoin_frprep_exp"
     end
 
@@ -457,6 +457,6 @@ class RosyEvalTask < RosyTask
     @eval_obj = RosyEval.new(@exp, @ttt_obj, @step, @splitID, @testID,
                              @outfilename, @logfilename,
                              dont_adjoin_frprep_exp)
-    @eval_obj.compute()
+    @eval_obj.compute
   end
 end

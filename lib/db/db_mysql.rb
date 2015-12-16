@@ -105,8 +105,8 @@ class DBMySQL < DBWrapper
   # list all tables in the database
   #
   # array of strings
-  def list_tables()
-    return @database.list_tables()
+  def list_tables
+    return @database.list_tables
   end
 
 
@@ -117,7 +117,7 @@ class DBMySQL < DBWrapper
   #
   # returns: array:string*string, list of pairs [column name, column format]
   def list_column_formats(table_name)
-    retv = Array.new
+    retv = []
     @database.query("DESCRIBE #{table_name}").each_hash { |field|
       retv << [field["Field"], field["Type"]]
     }

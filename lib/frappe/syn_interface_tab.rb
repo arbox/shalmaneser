@@ -37,14 +37,14 @@ end
 #
 # provides access and output facilities for different aspects of the path
 #
-# this is the return value of SynInterpreter.path_between()
+# this is the return value of SynInterpreter.path_between
 class Path
   attr_reader :startnode
 
   ###
   # initialize to empty path
   def initialize(startnode)
-    @path = Array.new
+    @path = []
     @cutoff_last_pt = false
     set_startnode(startnode)
   end
@@ -53,9 +53,9 @@ class Path
   # deep_clone:
   # return clone of this path object,
   #  with clone of this path rather than the same path
-  def deep_clone()
-    new_path = self.clone()
-    new_path.set_path(@path.clone())
+  def deep_clone
+    new_path = self.clone
+    new_path.set_path(@path.clone)
 
     return new_path
   end
@@ -76,7 +76,7 @@ class Path
   #  edgelabel: string
   #  nodelabel: string
   #  endnode:   SynNode
-  def each_step()
+  def each_step
     @path.each { |step|
       yield step
     }
@@ -115,8 +115,8 @@ class Path
 
   ###
   # path length
-  def length()
-    return @path.length()
+  def length
+    return @path.length
   end
 
   ###
@@ -134,7 +134,7 @@ class Path
                      print_gf,
                      print_pt)
 
-    roof, roof_index = compute_roof()
+    roof, roof_index = compute_roof
     if roof.nil? or @path.empty?
       # no roof set
       return ""
@@ -147,12 +147,12 @@ class Path
   end
 
   ###
-  def lca()
-    return compute_roof().first
+  def lca
+    return compute_roof.first
   end
 
   ###
-  # cut off last node label in print() and print_downpart()?
+  # cut off last node label in print and print_downpart?
   def set_cutoff_last_pt_on_printing(bool) # Boolean
     @cutoff_last_pt = bool
   end
@@ -173,7 +173,7 @@ class Path
   # when direction starts to go "D", take current node as roof node
   #
   # returns: pair [roof node, roof node index] (SynNode, integer)
-  def compute_roof()
+  def compute_roof
     node = @startnode
     index = 0
 

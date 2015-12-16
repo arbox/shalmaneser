@@ -332,7 +332,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       end
       target_count += 1
       # determine features
-      feature_hash = Hash.new()
+      feature_hash = {}
       compute_target_features(context, max_context_size, feature_hash)
       compute_context_features(context, max_context_size, context_sizes, feature_hash)
       compute_syn_features(main_target_id, sent, feature_hash)
@@ -352,17 +352,17 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     }
     # finalize writers
     writers.each { |writer_obj|
-      writer_obj.flush()
+      writer_obj.flush
     }
 
     # record the targets that have been read
-    target_obj.done_reading_targets()
+    target_obj.done_reading_targets
 
   end
 
   #####
   # reuse of meta-features, recompute CSV features
-  def refeaturize()
+  def refeaturize
 
     ##
     # remove old features:
@@ -529,7 +529,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
                            sent,       # SalsaTigerRegXML object
                            feature_hash) # hash: feature_type -> array:feature, enter features here
 
-    target = sent.terminals().detect { |t| t.id() == main_target_id }
+    target = sent.terminals.detect { |t| t.id == main_target_id }
     unless target
       $stderr.puts "Featurization error: cannot find target with ID #{main_target_id}, skipping."
       return

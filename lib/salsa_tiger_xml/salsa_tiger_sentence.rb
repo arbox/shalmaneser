@@ -111,7 +111,7 @@ class SalsaTigerSentence < XMLNode
     # find XML element "graph",
     # which contains the syntactic info of the sentence.
     # It is a child of the <s> element.
-    xml_syn_obj = xml_obj.children_and_text().detect { |thing|
+    xml_syn_obj = xml_obj.children_and_text.detect { |thing|
       thing.name == "graph"
     }
 
@@ -125,7 +125,7 @@ class SalsaTigerSentence < XMLNode
     # find XML element "sem"
     # which contains the semantic info of the sentence.
     # It is a child of the <s> element.
-    xml_sem_obj = xml_obj.children_and_text().detect { |thing|
+    xml_sem_obj = xml_obj.children_and_text.detect { |thing|
       thing.name == "sem"
     }
 
@@ -183,12 +183,12 @@ class SalsaTigerSentence < XMLNode
 
   ###
   def terminals
-    return @syn.terminals()
+    return @syn.terminals
   end
 
   ###
   def terminals_sorted
-    return @syn.terminals_sorted()
+    return @syn.terminals_sorted
   end
 
   ###
@@ -198,7 +198,7 @@ class SalsaTigerSentence < XMLNode
 
   ###
   def nonterminals
-    return @syn.nonterminals()
+    return @syn.nonterminals
   end
 
   ###
@@ -210,12 +210,12 @@ class SalsaTigerSentence < XMLNode
 
   ###
   def syn_nodes
-    return @syn.nodes()
+    return @syn.nodes
   end
 
   ###
   def syn_roots
-    return @syn.syn_roots()
+    return @syn.syn_roots
   end
   ###
 
@@ -245,8 +245,8 @@ class SalsaTigerSentence < XMLNode
   end
 
   ###
-  def usp_frameblocks()
-    return @sem.usp_frameblocks()
+  def usp_frameblocks
+    return @sem.usp_frameblocks
   end
 
   ###
@@ -255,13 +255,13 @@ class SalsaTigerSentence < XMLNode
   end
 
   ###
-  def usp_feblocks()
-    return @sem.usp_feblocks()
+  def usp_feblocks
+    return @sem.usp_feblocks
   end
 
   ###
   def flags
-    return @sem.flags()
+    return @sem.flags
   end
 
   ###################################
@@ -276,7 +276,7 @@ class SalsaTigerSentence < XMLNode
               word = nil,# string: word
               pos = nil, # string: part of speech
               syn_id = nil)  # string: ID for the new node
-    return @syn.add_node(id(), label, cat, word, pos, syn_id)
+    return @syn.add_node(id, label, cat, word, pos, syn_id)
   end
 
   ###
@@ -287,7 +287,7 @@ class SalsaTigerSentence < XMLNode
   ###
   def add_frame(name,    # string: name of the frame
                 sem_id = nil) # string: ID for the new node
-    return @sem.add_frame(id(), name, sem_id)
+    return @sem.add_frame(id, name, sem_id)
   end
 
   ###
@@ -329,22 +329,22 @@ class SalsaTigerSentence < XMLNode
   end
 
   ###
-  def remove_semantics()
+  def remove_semantics
     empty_sem = RegXML.new("<sem/>")
-    @sem = SalsaTigerSentenceSem.new(empty_sem, id(), @syn.node)
+    @sem = SalsaTigerSentenceSem.new(empty_sem, id, @syn.node)
   end
 
   #################33
   # output
-  def get_syn()
-    return @syn.get()
+  def get_syn
+    return @syn.get
   end
 
   ############################3
   protected
 
-  def get_xml_ofchildren()
-    return @syn.get() + @sem.get()
+  def get_xml_ofchildren
+    return @syn.get + @sem.get
   end
 end
 

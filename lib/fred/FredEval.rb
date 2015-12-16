@@ -182,7 +182,7 @@ class FredEval < Eval
     # Only yield them once to avoid re-evaluating multi-label instances
     #
     # instance_ids_seen: hash target_ids -> true/nil
-    instance_ids_seen = Hash.new()
+    instance_ids_seen = {}
 
     # read gold file and classifier output file in parallel
     @goldreader.each { |lemma, pos, target_ids, sid, senses_gold, transformed_gold_senses|
@@ -192,7 +192,7 @@ class FredEval < Eval
       # such that the label with the highest confidence is first
       classline = nil
       if @classfile
-        classline = @classfile.gets()
+        classline = @classfile.gets
       end
       if classline.nil?
         classline = ""
@@ -211,10 +211,10 @@ class FredEval < Eval
       # determine all sense/confidence pairs
       # senses assigned: list of pairs [senselist, confidence]
       # where senselist is an array of sense strings
-      senses_assigned = Array.new()
+      senses_assigned = []
       current_sense = nil
 
-      classline.split().each_with_index { |entry, index|
+      classline.split.each_with_index { |entry, index|
         if index % 2 == 0
           # we have a sense label
           if @handle_multilabel == "join"
@@ -226,7 +226,7 @@ class FredEval < Eval
 
         else
           # we have a confidence level
-          senses_assigned << [current_sense, entry.to_f()]
+          senses_assigned << [current_sense, entry.to_f]
         end
       }
 
@@ -238,14 +238,14 @@ class FredEval < Eval
         # transform senses_assigned:
         # in the case of "join", one sense may have several confidence levels,
         # one on its own and one in a joined sense
-        senses_assigned_hash = Hash.new()
+        senses_assigned_hash = {}
         senses_assigned.each { |senses, confidence|
           senses.each { |s|
             # assign to each sense the maximum of its previous confidence
             # and this one.
             # watch out: confidence may be smaller than zero
             if senses_assigned_hash[s]
-              senses_assigned_hash[s] = [senses_assigned_hash[s], confidence].max()
+              senses_assigned_hash[s] = [senses_assigned_hash[s], confidence].max
             else
               senses_assigned_hash[s] = confidence
             end
@@ -253,7 +253,7 @@ class FredEval < Eval
         }
 
         # select all sense/confidence pairs where confidence is above threshold
-        senses_assigned = senses_assigned_hash.to_a().select { |sense, confidence|
+        senses_assigned = senses_assigned_hash.to_a.select { |sense, confidence|
           confidence >= @threshold
         }.map { |sense, confidence|
           # then retain only the sense, not the confidence
@@ -271,8 +271,8 @@ class FredEval < Eval
         # a string of either 'true' or 'false'
         # assignment is accurate if both are the same
         @all_senses.each { |sense_of_lemma|
-          gold_class = (senses_gold.include? sense_of_lemma).to_s()
-          assigned_class = (senses_assigned.include? sense_of_lemma).to_s()
+          gold_class = (senses_gold.include? sense_of_lemma).to_s
+          assigned_class = (senses_assigned.include? sense_of_lemma).to_s
           yield [gold_class, assigned_class]
         }
 
@@ -292,12 +292,12 @@ class FredEval < Eval
         else
 
           max_senselist = senses_assigned.max { |a, b|
-            a.last() <=> b.last()
-          }.first()
+            a.last <=> b.last
+          }.first
 
 
           max_senselist.each { |single_sense|
-            gold_class = (senses_gold.include? single_sense).to_s()
+            gold_class = (senses_gold.include? single_sense).to_s
             yield [gold_class, "true"]
           }
         end

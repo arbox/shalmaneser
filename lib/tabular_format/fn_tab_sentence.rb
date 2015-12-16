@@ -96,7 +96,7 @@ class FNTabSentence < TabFormatSentence
         elsif markup =~ /^B-(\S+)$/
           if label # are we within a markable right now?
             $stderr.puts "[TabFormat] Warning: Markable "+$1.to_s+" starts while within markable  ", label.to_s
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+            $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
           else
             label = $1
             ids << this_id
@@ -108,21 +108,21 @@ class FNTabSentence < TabFormatSentence
             idlist_to_annotation_list[ids] = label
             # reset memory
             label = nil
-            ids = Array.new
+            ids = []
           else
             $stderr.puts "[TabFormat] Warning: Markable "+$1.to_s+" closes while within markable "+ label.to_s
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+            $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
           end
         else
           $stderr.puts "[TabFormat] Warning: cannot analyse markup "+markup
-          $stderr.puts "Debug data: Sentence id #{get_sent_id()}"
+          $stderr.puts "Debug data: Sentence id #{get_sent_id}"
         end
       when 2 # this should be a one-word markable
         b_markup = this_fe_ann[0]
         e_markup = this_fe_ann[1]
         if label
           $stderr.puts "[TabFormat] Warning: Finding new markable at word #{this_id} while within markable ", label
-          $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+          $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
         else
           if b_markup =~ /^B-(\S+)$/
             b_label = $1
@@ -132,26 +132,26 @@ class FNTabSentence < TabFormatSentence
                 idlist_to_annotation_list[[this_id]] = b_label
               else
                 $stderr.puts "[TabFormat] Warning: Starting markable "+b_label+", closing markable "+e_label
-                $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+                $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
               end
             else
               $stderr.puts "[TabFormat] Warning: Unknown end markup "+e_markup
-              $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+              $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
             end
           else
             $stderr.puts "[TabFormat] Warning: Unknown start markup "+b_markup
-            $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+            $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
           end
         end
       else
         $stderr.puts "Warning: cannot analyse markup with more than two colon-separated parts like "+this_fee_ann.join(":")
-        $stderr.puts "Debug data: Sentence id #{get_sent_id()}"
+        $stderr.puts "Debug data: Sentence id #{get_sent_id}"
       end
     }
 
     unless label.nil?
       $stderr.puts "[TabFormat] Warning: Markable ", label, " did not end in sentence."
-      $stderr.puts "Debug data: Sentence id #{get_sent_id()}, current ID list #{ids.join(" ")}"
+      $stderr.puts "Debug data: Sentence id #{get_sent_id}, current ID list #{ids.join(" ")}"
     end
 
     return idlist_to_annotation_list
@@ -160,7 +160,7 @@ class FNTabSentence < TabFormatSentence
   #######
   def to_s
     sanity_check
-    array = Array.new
+    array = []
     each_line_parsed {|l|
       array << l.get("word")
     }

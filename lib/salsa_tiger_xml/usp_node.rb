@@ -63,10 +63,10 @@ class UspNode <  SalsaTigerXmlNode
   #############
   protected
 
-  def get_xml_ofchildren()
+  def get_xml_ofchildren
     return children.map { |child|
       "<uspitem idref=\'#{xml_secure_val(child.id)}\'/>\n"
-    }.join()
+    }.join
   end
 
 end

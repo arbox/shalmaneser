@@ -13,23 +13,23 @@ class Optimise
   end
 
   def init_from_data(infile) # find new optimisation
-    
+
     STDERR.puts "[Optimise] computing new feature optimisation"
 
     infile = File.new(infile)
-    labels = Array.new    
+    labels = []
     features = nil
-    @replacements = Array.new # for each feature, store the list of replacements
-    
+    @replacements = [] # for each feature, store the list of replacements
+
     # read data from infile into hash and initialise replacements array
     while (line = infile.gets)
       f_l = line.chomp.split(",")
-      
+
       if features.nil? # first line: initialisation
-	features = Array.new # for each feature: array of feature values from file
+	features = [] # for each feature: array of feature values from file
 	f_l.each_index {|i|
-	  features[i] = Array.new
-	  @replacements[i] = Hash.new
+	  features[i] = []
+	  @replacements[i] = {}
 	}
       end
       labels << f_l.pop
@@ -40,12 +40,12 @@ class Optimise
     infile.close
 
     features.each_index {|findex| # traverse all features
-      
+
       # for each feature *value*, find all label indices
-      
+
       fvalues = features[findex]
-      
-      fval_to_label = Hash.new # record fval -> label mappings
+
+      fval_to_label = {} # record fval -> label mappings
                                   # no label : nil
                                   # one label: <label>
                                   # two labels: false
@@ -62,8 +62,8 @@ class Optimise
       } # at the end, all fvals should be mapped to either <label> or false
 
       # construct new feature value names
-      
-      new_fvals = Hash.new
+
+      new_fvals = {}
       labels.each {|label|
 	new_fvals[label] = "f"+findex.to_s+"_"+label.gsub(/\./,"")
       }
@@ -79,28 +79,28 @@ class Optimise
 	  @replacements[findex][fval] = new_fvals[label]
 	end
       }
-    
+
     #   fvalues = features[findex]
-      
-#       l_to_v = Hash.new # label -> array of feature values
-#       v_to_l = Hash.new # feature value -> array of labels
-      
-#       fvalues.each_index {|inst| # traverse all instances 
+
+#       l_to_v = {} # label -> array of feature values
+#       v_to_l = {} # feature value -> array of labels
+
+#       fvalues.each_index {|inst| # traverse all instances
 # 	fval = fvalues[inst]
 # 	label = labels[inst]
-	
-	
+
+
 # 	unless v_to_l.key?(fval) # add entry to v_to_l
-# 	  v_to_l[fval] = Array.new
+# 	  v_to_l[fval] = []
 #           end
 # 	v_to_l[fval] << label
-	
+
 # 	unless l_to_v.key?(label) # add entry to l_to_v
-# 	  l_to_v[label] = Array.new
+# 	  l_to_v[label] = []
 # 	end
-# 	l_to_v[label] << fval          
+# 	l_to_v[label] << fval
 #       }
-        
+
 #       l_to_v.each_pair {|label,values|
 # 	newvalue = "f"+findex.to_s+"_"+label.gsub(/\./,"")
 # 	values.each {|value|
@@ -112,19 +112,19 @@ class Optimise
      }
     @ready = true
   end
-  
+
   def init_from_file(optsfile) # use old optimisation
     optsinfile = File.new(optsfile)
-    @replacements = read(optsinfile) 
+    @replacements = read(optsinfile)
     optsinfile.close
     @ready = true
   end
-  
+
   def store(outfilename) # store data necessary to recreate optimisation
     unless @ready
       raise "[Optimise] Error: Cannot store un-initialised optimisation"
     end
-    outfile = File.new(outfilename,"w") 
+    outfile = File.new(outfilename,"w")
     @replacements.each_index {|i| # for each feature
       reps = @replacements[i]
       outfile.puts "<"+i.to_s+">"
@@ -136,26 +136,26 @@ class Optimise
     outfile.close
   end
 
-  def apply(infilename,outfilename)    
+  def apply(infilename,outfilename)
     unless @ready
       raise "[Optimise] Error: Cannot apply un-initialised optimisation"
     end
 
     STDERR.puts "[Optimise] applying feature optimisation"
-    
+
     infile = File.new(infilename)
     outfile = File.new(outfilename,"w")
-    features = Array.new
-    labels = Array.new
-    
+    features = []
+    labels = []
+
 
     while (line = infile.gets)
       tokens = line.chomp.split(",")
-      
+
       unless tokens.length == @replacements.length
 	raise "[Optimise] Error: trying to optimise incompatible feature file!\nFile has "+features.length.to_s+" features, and we know replacements for "+@replacements.length.to_s+" features."
       end
-      
+
       label = tokens.pop
       tokens.each_index {|f_idx|
 	fval = tokens[f_idx]
@@ -166,17 +166,17 @@ class Optimise
       tokens.push label
       outfile.puts tokens.join(",")
     end
-    outfile.close    
+    outfile.close
   end
-  
+
   private
-  
+
   def read(infile)
-    @replacements = Array.new
+    @replacements = []
     while line = infile.gets
       line.chomp!
       if line =~ /<(\d+)>/
-	reps = Hash.new
+	reps = {}
       elsif line =~ /<\/(\d+)>/
 	@replacements[$1.to_i] = reps
       else
@@ -191,5 +191,5 @@ class Optimise
   def Optimise.recommended_filename(basefile)
     return basefile+".optimisations"
   end
-  
+
 end
