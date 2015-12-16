@@ -595,8 +595,8 @@ module TigerMaxProjection
   end
 end
 
-require 'common/headz'
-require 'frappe/syn_interpreter'
+require_relative 'headz'
+require_relative 'syn_interpreter'
 
 # @todo AB: [2015-12-16 Wed 00:05]
 #   Rename this class to TigerInterpreter.

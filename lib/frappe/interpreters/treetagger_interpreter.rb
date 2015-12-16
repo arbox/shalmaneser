@@ -1,7 +1,7 @@
 ###############
 # an interpreter that only has Treetagger, no parser
 
-require 'frappe/syn_interpreter'
+require_relative 'syn_interpreter'
 
 class TreetaggerInterpreter < SynInterpreter
   TreetaggerInterpreter.announce_me
