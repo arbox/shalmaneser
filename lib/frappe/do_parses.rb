@@ -10,7 +10,10 @@
 # a directory for putting parse files:
 # - parse, unless no parsing set in the experiment file
 # - for each parsed file: yield one OneParsedFile object
-require 'frappe/one_parsed_file'
+require_relative 'one_parsed_file'
+require_relative 'frappe_read_stxml'
+require_relative 'frappe_flat_syntax'
+require 'common/syn_interfaces'
 
 class DoParses
   def initialize(exp,           # FrPrepConfigData object

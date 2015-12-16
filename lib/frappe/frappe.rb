@@ -1,6 +1,6 @@
 require 'frappe/do_parses'
-require 'common/prep_helper'
-require 'frappe/fix_syn_sem_mapping'
+require_relative 'frappe_helper'
+require_relative 'fix_syn_sem_mapping'
 # For FN input.
 require 'frappe/FNCorpusXML'
 require 'frappe/FNDatabase'
@@ -67,7 +67,7 @@ module Shalmaneser
               next
             end
             outfilename = encoding_dir + File.basename(filename)
-            FrprepHelper.to_utf8_file(filename, outfilename, @exp.get("encoding"))
+            FrappeHelper.to_utf8_file(filename, outfilename, @exp.get("encoding"))
           }
 
           input_dir = encoding_dir
@@ -219,7 +219,7 @@ module Shalmaneser
           # open input and output file
           # end output file name in "tab" because that is, at the moment, required
           outfilename = output_dir + File.basename(plainfilename) + @file_suffixes["tab"]
-          FrprepHelper.plain_to_tab_file(plainfilename, outfilename)
+          FrappeHelper.plain_to_tab_file(plainfilename, outfilename)
         end
       end
 
@@ -234,7 +234,7 @@ module Shalmaneser
                                       output_dir) # string: output directory
         ##
         # split the TabFormatFile into chunks of max_sent_num size
-        FrprepHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
+        FrappeHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
                                @exp.get("parser_max_sent_num"),
                                @exp.get("parser_max_sent_len"))
 
@@ -323,30 +323,30 @@ module Shalmaneser
 
             # parsed: add headwords using parse tree
             if @exp.get("do_parse")
-              FrprepHelper.add_head_attributes(st_sent, interpreter_class)
+              FrappeHelper.add_head_attributes(st_sent, interpreter_class)
             end
 
             # add lemmas, if they are there. If they are not, don't print out a warning.
             if @exp.get("do_lemmatize")
-              FrprepHelper.add_lemmas_from_tab(st_sent, tabformat_sent, mapping)
+              FrappeHelper.add_lemmas_from_tab(st_sent, tabformat_sent, mapping)
             end
 
             # add semantics
             # we can use the method in SalsaTigerXMLHelper
             # that reads semantic information from the tab file
             # and combines all targets of a sentence into one frame
-            FrprepHelper.add_semantics_from_tab(st_sent, tabformat_sent, mapping,
+            FrappeHelper.add_semantics_from_tab(st_sent, tabformat_sent, mapping,
                                                 interpreter_class, @exp)
 
             # remove pseudo-frames from FrameNet data
-            FrprepHelper.remove_deprecated_frames(st_sent, @exp)
+            FrappeHelper.remove_deprecated_frames(st_sent, @exp)
 
             # handle multiword targets
-            FrprepHelper.handle_multiword_targets(st_sent,
+            FrappeHelper.handle_multiword_targets(st_sent,
                                                   interpreter_class, @exp.get("language"))
 
             # handle Unknown frame names
-            FrprepHelper.handle_unknown_framenames(st_sent, interpreter_class)
+            FrappeHelper.handle_unknown_framenames(st_sent, interpreter_class)
 
             outfile.puts st_sent.get
           }
@@ -384,7 +384,7 @@ module Shalmaneser
         #     if @exp.get("origin") == "SalsaTiger"
         #       $stderr.puts "Frprep: noting target lemmas"
         #       changed_input_dir = frprep_dirname("salsalemma", "new")
-        #       FrprepHelper.note_salsa_targetlemmas(input_dir, changed_input_dir)
+        #       FrappeHelper.note_salsa_targetlemmas(input_dir, changed_input_dir)
 
         #       # remember changed input dir as input dir
         #       input_dir = changed_input_dir
@@ -400,7 +400,7 @@ module Shalmaneser
           stxml_dir = stxml_splitdir
 
           $stderr.puts "Frprep: splitting data"
-          FrprepHelper.stxml_split_dir(input_dir, stxml_splitdir,
+          FrappeHelper.stxml_split_dir(input_dir, stxml_splitdir,
                                        @exp.get("parser_max_sent_num"),
                                        @exp.get("parser_max_sent_len"))
         else
@@ -421,7 +421,7 @@ module Shalmaneser
 
             tabfilename = tab_dir + File.basename(stxmlfilename,
                                                   @file_suffixes["stxml"]) + @file_suffixes["tab"]
-            FrprepHelper.stxml_to_tab_file(stxmlfilename, tabfilename, exp)
+            FrappeHelper.stxml_to_tab_file(stxmlfilename, tabfilename, exp)
           end
         end
 
@@ -537,7 +537,7 @@ module Shalmaneser
 
                 next if st_sent.nil?
 
-                unless FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent,
+                unless FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
                                                                          st_sent,
                                                                          interpreter_class,
                                                                          @exp)
@@ -559,7 +559,7 @@ module Shalmaneser
                     # we have both an old and a new sentence, so integrate semantics
                     oldsent = SalsaTigerSentence.new(oldsent_string)
 
-                    FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent,
+                    FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
                                                                       st_sent,
                                                                       interpreter_class,
                                                                       @exp)
@@ -572,7 +572,7 @@ module Shalmaneser
             end
 
             # remove pseudo-frames from FrameNet data
-            FrprepHelper.remove_deprecated_frames(st_sent, @exp)
+            FrappeHelper.remove_deprecated_frames(st_sent, @exp)
 
             # repair syn/sem mapping problems?
             if @exp.get("fe_syn_repair") || @exp.get("fe_rel_repair")
@@ -594,7 +594,7 @@ module Shalmaneser
       # @param [String] suffix Filename pattern, e.g. '*.xml'.
       def change_each_file_in_dir(dir, suffix)
         Dir[dir + "*#{suffix}"].each do |filename|
-          tempfile = Tempfile.new("FrprepHelper")
+          tempfile = Tempfile.new("FrappeHelper")
           yield [filename, tempfile]
 
           # move temp file to original file location

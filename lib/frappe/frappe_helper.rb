@@ -8,14 +8,14 @@ require 'common/tabular_format/fn_tab_format_file'
 require "common/ruby_class_extensions"
 
 ############################################3
-# Module FrprepHelper:
+# Module FrappeHelper:
 # diverse transformation methods for frprep.rb
 # moved over here to make the main file less crowded
-module FrprepHelper
+module FrappeHelper
 
   ####
   # transform a file to UTF-8 from a given encoding
-  def FrprepHelper.to_utf8_file(input_filename, # string: name of input file
+  def FrappeHelper.to_utf8_file(input_filename, # string: name of input file
                            output_filename, # string: name of output file
                            encoding) # string: "iso", "hex"
     begin
@@ -41,7 +41,7 @@ module FrprepHelper
 
   ####
   # transform plaintext file to Tab format file
-  def FrprepHelper.plain_to_tab_file(input_filename,# string: name of input file
+  def FrappeHelper.plain_to_tab_file(input_filename,# string: name of input file
                                      output_filename)    # string: name of output file
     begin
       infile = File.new(input_filename)
@@ -133,7 +133,7 @@ module FrprepHelper
   #
   # example: split_all("/tmp/in","/tmp/out",".tab",2000,80)
 
-  def FrprepHelper.split_dir(indir,
+  def FrappeHelper.split_dir(indir,
                              outdir,
                              suffix,
                              sent_num,
@@ -210,7 +210,7 @@ module FrprepHelper
   # old_dir contains xml files whose name starts with the
   # target lemma for all frames in the file
   # record that target lemma in the <target> element of each frame
-  def FrprepHelper.note_salsa_targetlemma(old_dir, # string ending in /
+  def FrappeHelper.note_salsa_targetlemma(old_dir, # string ending in /
                                           new_dir) # string ending in /
 
 
@@ -264,7 +264,7 @@ module FrprepHelper
   #
   # assumes that all files in input_dir with
   # extension .xml are SalsaTigerXMl files
-  def FrprepHelper.stxml_split_dir(input_dir, # string: input directory with STXML files
+  def FrappeHelper.stxml_split_dir(input_dir, # string: input directory with STXML files
                                    split_dir, # string: output directory
                                    max_sentnum, # integer: max num of sentences per file
                                    max_sentlen) # integer: max num of terminals per sentence
@@ -470,7 +470,7 @@ module FrprepHelper
 
   ####
   # transform SalsaTigerXML file to Tab format file
-  def FrprepHelper.stxml_to_tab_file(input_filename,   # string: name of input file
+  def FrappeHelper.stxml_to_tab_file(input_filename,   # string: name of input file
                                      output_filename,  # string: name of output file
                                      exp)              # FrprepConfigData
     infile = FilePartsParser.new(input_filename)
@@ -542,7 +542,7 @@ module FrprepHelper
   # - roles
   # - FrameNet grammatical functions
   # - FrameNet POS of target
-  def FrprepHelper.add_semantics_from_tab(st_sent,  # SalsaTigerSentence object
+  def FrappeHelper.add_semantics_from_tab(st_sent,  # SalsaTigerSentence object
                                           tab_sent, # FNTabFormatSentence object
                                           mapping,  # hash: tab lineno -> array:SynNode
                                           interpreter_class, # SynInterpreter class
@@ -730,7 +730,7 @@ module FrprepHelper
   # group, node IDs separated by spaces, and that
   # each node of a group has the "other_words" attribute.
   #
-  def FrprepHelper.handle_multiword_targets(sent,  # SalsaTigerSentence object
+  def FrappeHelper.handle_multiword_targets(sent,  # SalsaTigerSentence object
                                             interpreter, # SynInterpreter object
                                             language) # string: en, de
     ##
@@ -750,7 +750,7 @@ module FrprepHelper
     # group:
     # group verbs with their separate particles
     # (at a later point, other types of grouping can be inserted here)
-    groups = FrprepHelper.group_words(nodes, interpreter)
+    groups = FrappeHelper.group_words(nodes, interpreter)
 
     ##
     # record grouping information as attributes on the terminals.
@@ -805,7 +805,7 @@ module FrprepHelper
   # returns: list of pairs [descr, nodes]
   # descr: string, "none" (no group), "part" (separate verb particle)
   # nodes: array:SynNode
-  def FrprepHelper.group_words(nodes,    # array: SynNode
+  def FrappeHelper.group_words(nodes,    # array: SynNode
                                interpreter) # SynInterpreter object
 
     retv = Array.new # array of groups, array:array:SynNode
@@ -837,7 +837,7 @@ module FrprepHelper
   #
   # For all frames with names matching Unknown\d+,
   # rename them to <lemma>_Unknown\d+
-  def FrprepHelper.handle_unknown_framenames(sent,     # SalsaTigerSentence
+  def FrappeHelper.handle_unknown_framenames(sent,     # SalsaTigerSentence
                                              interpreter) # SynInterpreter class
     if sent.nil?
         return
@@ -882,7 +882,7 @@ module FrprepHelper
   # into the corresponding new sentence
   # At the same time, integrate the lemma information from the
   # old sentence into the new sentence
-  def FrprepHelper.integrate_stxml_semantics_and_lemmas(oldsent,
+  def FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
                                                         newsent,
                                                         interpreter_class,
                                                         exp)
@@ -996,7 +996,7 @@ module FrprepHelper
   # add head attributes to each nonterminal in each
   # SalsaTigerXML file in a directory
 
-  def FrprepHelper.add_head_attributes(st_sent,      # SalsaTigerSentence object
+  def FrappeHelper.add_head_attributes(st_sent,      # SalsaTigerSentence object
                                        interpreter)  # SynInterpreter class
     st_sent.each_nonterminal {|nt_node|
      head_term = interpreter.head_terminal(nt_node)
@@ -1009,7 +1009,7 @@ module FrprepHelper
   end
 
   # add lemma information to each terminal in a given SalsaTigerSentence object
-  def FrprepHelper.add_lemmas_from_tab(st_sent, # SalsaTigerSentence object
+  def FrappeHelper.add_lemmas_from_tab(st_sent, # SalsaTigerSentence object
                                        tab_sent,# FNTabFormatSentence object
                                        mapping) # hash: tab lineno -> array:SynNode
     if tab_sent.nil?
@@ -1080,7 +1080,7 @@ module FrprepHelper
   # given a SalsaTigerSentence,
   # look for FrameNet frames that are
   # test frames, and remove them
-  def FrprepHelper.remove_deprecated_frames(sent,  # SalsaTigerSentence
+  def FrappeHelper.remove_deprecated_frames(sent,  # SalsaTigerSentence
                                             exp)   # FrprepConfigData
 
     unless exp.get("origin") == "FrameNet"
@@ -1095,125 +1095,4 @@ module FrprepHelper
     }
   end
 
-end
-
-############################################3
-# Class FrprepFlatSyntax:
-#
-# given a FNTabFormat file,
-# yield each of its sentences in SalsaTigerXML,
-# constructing a flat syntax
-class FrprepFlatSyntax
-  def initialize(tabfilename, # string: name of tab file
-                 postag_suffix, # postag file suffix (or nil)
-                 lemma_suffix)  # lemmatisation file suffix (or nil)
-
-    @tabfilename = tabfilename
-    @pos_suffix = postag_suffix
-    @lemma_suffix = lemma_suffix
-  end
-
-  # yield each non-parse sentence as a tuple
-  # [ salsa/tiger xml sentence, tab format sentence, mapping]
-  # of a SalsaTigerSentence object, a FNTabSentence object,
-  # and a hash: FNTab sentence lineno(integer) -> array:SynNode
-  # pointing each tab word to one or more SalsaTigerSentence terminals
-  def each_sentence(dummy)
-
-    # read tab file with lemma and POS info
-    tabfile = FNTabFormatFile.new(@tabfilename, @pos_suffix, @lemma_suffix)
-
-    tabfile.each_sentence() { |tabsent|
-      # start new, empty sentence with "failed" attribute (i.e. no parse)
-      # and with the ID of the corresponding TabFormat sentence
-      sentid = tabsent.get_sent_id()
-      if sentid.nil? or sentid =~ /^-*$/
-        $stderr.puts "No sentence ID for sentence:"
-        tabsent.each_line_parsed { |l| $stderr.print l.get("word"), " "}
-        $stderr.puts
-        sentid = Time.new().to_f.to_s
-      end
-      sent = SalsaTigerSentence.new("<s id=\"#{SalsaTigerXMLHelper.escape(sentid)}\" failed=\"true\"></s>")
-
-      # add single nonterminal node, category "S"
-      single_nonterminal_id = SalsaTigerXMLHelper.escape(sentid.to_s + "_NT")
-      vroot = sent.add_syn("nt", "S", # category
-                           nil,  # word
-                           nil,  # pos
-                           single_nonterminal_id)
-
-      # add terminals
-      tabsent.each_line_parsed() { |line_obj|
-        # make terminal node with tab sent info
-        node_id = sentid.to_s + "_" + line_obj.get("lineno").to_s
-        word = line_obj.get("word")
-        unless word
-          word = ""
-        end
-        word = SalsaTigerXMLHelper.escape(word)
-        pos = line_obj.get("pos")
-        unless pos
-          pos = ""
-        end
-        pos = SalsaTigerXMLHelper.escape(pos)
-        terminal = sent.add_syn("t", nil, # category
-                                word, pos,
-                                node_id)
-
-        if line_obj.get("lemma")
-          # lemma
-          terminal.set_attribute("lemma", SalsaTigerXMLHelper.escape(line_obj.get("lemma")))
-        end
-
-        # add new terminal as child of vroot
-        vroot.add_child(terminal, nil)
-        terminal.add_parent(vroot, nil)
-      } # each line of tab file
-
-      # yield newly constructed SalsaTigerXMl sentence plus tab sentence
-      yield [sent, tabsent, SynInterfaceSTXML.standard_mapping(sent, tabsent)]
-    }
-  end
-end
-
-############################################3
-# Class FrprepReadStxml
-#
-# given a STXML file,
-# yield each of its sentences
-class FrprepReadStxml
-  def initialize(stxmlfilename, # string: name of SalsaTigerXML file
-                 tabfilename,   # string: name of corresponding tab file (or nil)
-                 postag_suffix,    #  POS tag file suffix (or nil)
-                 lemma_suffix)     #  lemmatization file suffix (or nil)
-
-    @stxmlfilename = stxmlfilename
-    @tabfilename = tabfilename
-    @pos_suffix = postag_suffix
-    @lemma_suffix = lemma_suffix
-  end
-  # yield each non-parse sentence as a tuple
-  # [ salsa/tiger xml sentence, tab format sentence, mapping]
-  # of a SalsaTigerSentence object, a FNTabSentence object,
-  # and a hash: FNTab sentence lineno(integer) -> array:SynNode
-  # pointing each tab word to one or more SalsaTigerSentence terminals
-  def each_sentence(dummy)
-    # read corresponding tab file?
-    tab_sents = Array.new()
-    if File.exists? @tabfilename
-      tabfile = FNTabFormatFile.new(@tabfilename,@pos_suffix,@lemma_suffix)
-      tabfile.each_sentence { |tabsent|
-        tab_sents << tabsent
-      }
-    end
-
-    # read STXML file
-    infile = FilePartsParser.new(@stxmlfilename)
-    index = 0
-    infile.scan_s { |sent_string|
-      sent = SalsaTigerSentence.new(sent_string)
-      yield [sent, tab_sents.at(index), SynInterfaceSTXML.standard_mapping(sent, tab_sents.at(index))]
-      index += 1
-    }
-  end
 end

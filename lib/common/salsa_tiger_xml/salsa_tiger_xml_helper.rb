@@ -6,7 +6,7 @@
 # - escape and unescape HTML entities
 #
 # changed KE nov 05:
-# many methods moved to FrprepHelper
+# many methods moved to FrappeHelper
 
 class SalsaTigerXMLHelper
   ###
