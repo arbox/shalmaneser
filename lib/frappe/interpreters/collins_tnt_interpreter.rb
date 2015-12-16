@@ -1,7 +1,6 @@
 # require 'common/TabFormat'
 # require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 # require 'common/salsa_tiger_xml/syn_node'
-# require 'common/SalsaTigerXMLHelper'
 
 require_relative 'syn_interpreter'
 ################################################

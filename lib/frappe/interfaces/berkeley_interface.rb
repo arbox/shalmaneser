@@ -11,7 +11,7 @@ require "tempfile"
 
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require "common/SalsaTigerXMLHelper"
+require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
 require "common/TabFormat"
 require 'frappe/counter'
 

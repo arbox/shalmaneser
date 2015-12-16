@@ -6,7 +6,7 @@ require 'common/syn_interfaces'
 require "common/TabFormat"
 # require "common/SalsaTigerRegXML"
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require "common/SalsaTigerXMLHelper"
+require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
 # require 'common/RosyConventions'
 require 'common/value_restriction'
 require 'db/select_table_and_columns'

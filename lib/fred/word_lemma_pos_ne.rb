@@ -1,4 +1,4 @@
-require 'common/SalsaTigerXMLHelper'
+require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
 
 ########################################
 # given a SynNode object representing a terminal,

@@ -24,7 +24,7 @@ require 'delegate'
 require 'fred/FileZipped'
 # require 'common/RegXML'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
-require 'common/SalsaTigerXMLHelper'
+# require 'common/SalsaTigerXMLHelper'
 
 require 'common/configuration/fred_config_data'
 require 'fred/FredConventions' # !

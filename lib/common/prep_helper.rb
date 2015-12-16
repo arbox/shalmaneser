@@ -3,7 +3,7 @@ require "common/ISO-8859-1"
 require 'common/salsa_tiger_xml/reg_xml'
 require 'common/salsa_tiger_xml/salsa_tiger_sentence'
 require 'common/salsa_tiger_xml/file_parts_parser'
-require "common/SalsaTigerXMLHelper"
+require 'common/salsa_tiger_xml/salsa_tiger_xml_helper'
 require "common/TabFormat"
 require "common/ruby_class_extensions"
 

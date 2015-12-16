@@ -8,38 +8,31 @@
 # changed KE nov 05:
 # many methods moved to FrprepHelper
 
-# require "common/SalsaTigerRegXML"
-# require "common/headz"
-# require "common/Parser"
-# require "tempfile"
-
 class SalsaTigerXMLHelper
   ###
   # get header of SalsaTigerXML files (as string)
   def self.get_header
-
     header = <<ENDOFHEADER
 <?xml version="1.0" encoding="UTF-8"?>
   <corpus corpusname="corpus" target="">
-        <head>
-                <meta>
-                        <format>
-                        NeGra format, version 3</format>
-                </meta>
-                <frames xmlns="http://www.clt-st.de/framenet/frame-database">
-                </frames>
-                <wordtags xmlns="http://www.clt-st.de/salsa/wordtags">
-                </wordtags>
-                <flags>
-                </flags>
-                <annotation>
-                        <edgelabel>
-                        </edgelabel>
-                        <secedgelabel>
-                        </secedgelabel>
-                </annotation>
-        </head>
-        <body>
+    <head>
+      <meta>
+        <format>NeGra format, version 3</format>
+      </meta>
+      <frames xmlns="http://www.clt-st.de/framenet/frame-database">
+      </frames>
+      <wordtags xmlns="http://www.clt-st.de/salsa/wordtags">
+      </wordtags>
+      <flags>
+      </flags>
+      <annotation>
+        <edgelabel>
+        </edgelabel>
+        <secedgelabel>
+        </secedgelabel>
+      </annotation>
+    </head>
+    <body>
 ENDOFHEADER
 
     header
@@ -48,13 +41,12 @@ ENDOFHEADER
   ###
   # get footer of SALSATigerXML files (as string)
   def self.get_footer
-
     footer = <<ENDOFFOOTER
         </body>
 </corpus>
 ENDOFFOOTER
 
-    return footer
+    footer
   end
 
   # escape and unescape strings for representation in XML
