@@ -2,8 +2,8 @@ require 'frappe/do_parses'
 require_relative 'frappe_helper'
 require_relative 'fix_syn_sem_mapping'
 # For FN input.
-require 'frappe/FNCorpusXML'
-require 'frappe/FNDatabase'
+require 'framenet_format/fn_corpus_xml_file'
+require 'framenet_format/fn_database'
 
 require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'salsa_tiger_xml/file_parts_parser'
