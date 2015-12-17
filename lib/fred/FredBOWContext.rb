@@ -91,10 +91,10 @@ class AbstractContextProvider
   # - senses: array:string, the senses for the target
   # - sent: SalsaTigerSentence object
   def each_window_for_sent(sent)  # SalsaTigerSentence object or TabSentence object
-    if sent.kind_of? SalsaTigerSentence
+    if sent.is_a? SalsaTigerSentence
       each_window_for_stsent(sent) { |result| yield result }
 
-    elsif sent.kind_of? TabFormatSentence
+    elsif sent.is_a? TabFormatSentence
       each_window_for_tabsent(sent) { |result | yield result }
 
     else
@@ -364,10 +364,10 @@ class SingleSentContextProvider < AbstractContextProvider
   ###
   # each_window_for_sent: empty context after each sentence
   def each_window_for_sent(sent)
-    if sent.kind_of? SalsaTigerSentence
+    if sent.is_a? SalsaTigerSentence
       each_window_for_stsent(sent) { |result| yield result }
 
-    elsif sent.kind_of? TabFormatSentence
+    elsif sent.is_a? TabFormatSentence
       each_window_for_tabsent(sent) { |result | yield result }
 
     else

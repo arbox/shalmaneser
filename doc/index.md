@@ -8,6 +8,7 @@ You need the following items installed on your system:
 - a MySQL database server, your database must be large enough to hold the test data (in end user mode) plus any training data (for training new models in manual mode), e.g. training on the complete FrameNet 1.2 dataset requires about 1.5 GB of free space.
 - if you don't want to train classifiers from you own data, you need to download suitable classifiers from our homepage for available configurations (see for links later).
 - preprocessing tools for your language, at least the ones required for the use of pre-trained classifiers. Currently Shalmaneser provides interfaces for the following systems:
+
 <table>
 <tr>
 <th>System</th><th>Version</th>

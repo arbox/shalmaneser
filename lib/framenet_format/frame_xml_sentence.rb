@@ -50,8 +50,8 @@ class FrameXMLSentence
       end
     }
 
-    @pos_text = UtfIso.to_iso_8859_1(@orig_text).split(" ") # text with special characters replaced by iso8859 characters
-    @text = Ampersand.utf8_to_hex(@orig_text).split(" ")  # text with special characters replaced by &...; sequences
+    @pos_text = ::Shalmaneser::Frappe::UtfIso.to_iso_8859_1(@orig_text).split(" ") # text with special characters replaced by iso8859 characters
+    @text = ::Shalmaneser::Frappe::Ampersand.utf8_to_hex(@orig_text).split(" ")  # text with special characters replaced by &...; sequences
 
     # all text and pos_text have the same number of elements!
     @start_is = {} # map char indices (start of words) onto word indices

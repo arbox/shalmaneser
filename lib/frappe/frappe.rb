@@ -1,4 +1,4 @@
-require 'frappe/do_parses'
+require_relative 'do_parses'
 require_relative 'frappe_helper'
 require_relative 'fix_syn_sem_mapping'
 # For FN input.

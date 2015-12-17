@@ -5,8 +5,8 @@ require 'stringio' # for helper methods
 require 'frappe/opt_parser'
 
 class TestOptParser < Minitest::Test
-  include Shalmaneser::Frappe
-  include Shalmaneser::Configuration
+  include ::Shalmaneser::Frappe
+  include ::Shalmaneser::Configuration
 
   def setup
     @exp_file = 'test/unit/frappe/data/prp_test.salsa'

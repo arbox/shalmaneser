@@ -196,7 +196,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
   # replace "," by COMMA in order not to confuse SQL
   def make_features_safe_for_sql(feature_list)
     return feature_list.map { |feature|
-      if feature.kind_of? String
+      if feature.is_a? String
         feature.gsub(/,/, "COMMA").gsub(/\\/, "BACK")
       else
         feature

@@ -259,7 +259,7 @@ class FNCorpusXMLSentence
       orig_text = orig_text.to_s
     end
 
-    pos_text = UtfIso.to_iso_8859_1(orig_text).split(" ") # text with special char.s replaced by iso8859 char.s
+    pos_text = ::Shalmaneser::Frappe::UtfIso.to_iso_8859_1(orig_text).split(" ") # text with special char.s replaced by iso8859 char.s
 
     double_space = []
     pos = 0

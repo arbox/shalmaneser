@@ -12,63 +12,69 @@
 # change interface such that TreeTagger is called only once
 # and both POS tags and lemma are read from the same files,
 # rather than calling the tagger twice
-
-require 'tempfile'
-require 'frappe/utf_iso'
 require_relative 'treetagger_module'
 
-class TreetaggerPOSInterface < SynInterfaceTab
-  include TreetaggerModule
+require 'frappe/utf_iso'
 
-  TreetaggerPOSInterface.announce_me
+require 'tempfile'
 
-  ###
-  def self.system
-    "treetagger"
-  end
+module Shalmaneser
+  module Frappe
 
-  ###
-  def self.service
-    "pos_tagger"
-  end
+    class TreetaggerPOSInterface < SynInterfaceTab
+      include TreetaggerModule
 
-  ###
-  # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
-  def convert_to_collins(line)
-    line.chomp.gsub(/^PP/, "PRP").gsub(/^NP/, "NNP").gsub(/^VV/, "VB").gsub(/^VH/, "VB").gsub(/^SENT/, ".")
-  end
+      TreetaggerPOSInterface.announce_me
 
-  ###
-  # @param [String] infilename Name of input file.
-  # @param [String] outfilename Name of output file.
-  def process_file(infilename, outfilename)
-    # KE change here
-    tt_filename = really_process_file(infilename, outfilename, true)
+      ###
+      def self.system
+        "treetagger"
+      end
 
-    # write all output to tempfile2 first, then
-    # change ISO to UTF-8 into outputfile
-    tempfile2 = Tempfile.new("treetagger")
-    tempfile2.close
+      ###
+      def self.service
+        "pos_tagger"
+      end
 
-    # 2. use cut to get the actual lemmtisation
+      ###
+      # convert TreeTagger's penn tagset into Collins' penn tagset *argh*
+      def convert_to_collins(line)
+        line.chomp.gsub(/^PP/, "PRP").gsub(/^NP/, "NNP").gsub(/^VV/, "VB").gsub(/^VH/, "VB").gsub(/^SENT/, ".")
+      end
 
-    Kernel.system("cat " + tt_filename +
-                  ' | sed -e\'s/<EOS>//\' | cut -f2 > ' + tempfile2.path)
+      ###
+      # @param [String] infilename Name of input file.
+      # @param [String] outfilename Name of output file.
+      def process_file(infilename, outfilename)
+        # KE change here
+        tt_filename = really_process_file(infilename, outfilename, true)
 
-    # transform ISO-8859-1 back to UTF-8,
-    # write to 'outfilename'
-    begin
-      outfile = File.new(outfilename, "w")
-    rescue
-      raise "Could not write to #{outfilename}"
+        # write all output to tempfile2 first, then
+        # change ISO to UTF-8 into outputfile
+        tempfile2 = Tempfile.new("treetagger")
+        tempfile2.close
+
+        # 2. use cut to get the actual lemmtisation
+
+        Kernel.system("cat " + tt_filename +
+                      ' | sed -e\'s/<EOS>//\' | cut -f2 > ' + tempfile2.path)
+
+        # transform ISO-8859-1 back to UTF-8,
+        # write to 'outfilename'
+        begin
+          outfile = File.new(outfilename, "w")
+        rescue
+          raise "Could not write to #{outfilename}"
+        end
+        tempfile2.open
+        while (line = tempfile2.gets)
+          outfile.puts UtfIso.from_iso_8859_1(convert_to_collins(line))
+        end
+
+        # remove second tempfile, finalize output file
+        tempfile2.close(true)
+        outfile.close
+      end
     end
-    tempfile2.open
-    while (line = tempfile2.gets)
-      outfile.puts UtfIso.from_iso_8859_1(convert_to_collins(line))
-    end
-
-    # remove second tempfile, finalize output file
-    tempfile2.close(true)
-    outfile.close
   end
 end

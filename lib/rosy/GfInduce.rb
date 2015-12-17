@@ -328,7 +328,7 @@ class GfiGfPathMapping
               # yes, there is still a possibility of reaching gf
               # from our current node
 
-              if hash[step_s].kind_of? Integer
+              if hash[step_s].is_a? Integer
                 # actually, we have reached gf,
                 # and hash[last_edge] is the frequency with which
                 # this path has led to this GF in the FN data
@@ -430,7 +430,7 @@ class GfiGfPathMapping
         hash[key] = {}
       end
 
-      if hash[key].kind_of? Integer
+      if hash[key].is_a? Integer
         # there is a shorter path for the same GF,
         # ending at the point where we are now.
         # which frequency is higher?
@@ -457,7 +457,7 @@ class GfiGfPathMapping
     hash.each_pair { |first_link, rest|
       print " "*num_spaces, first_link
 
-      if rest.kind_of? Integer
+      if rest.is_a? Integer
         puts "  #{rest}"
       else
         puts
@@ -477,7 +477,7 @@ class GfiGfPathMapping
   # kill all entries whose keys describe an Up step in the path,
   # go into recursion for remaining entries
   def restrict_pathhash_to_downpaths(hash_or_val) # path hash or integer freq
-    if hash_or_val.kind_of? Integer
+    if hash_or_val.is_a? Integer
       return
     end
 
@@ -502,7 +502,7 @@ class GfiGfPathMapping
   # else go into recursion for all entries with reduced path length
   def restrict_pathhash_len(hash_or_val,  # path hash or integer freq
                             n)            # restrict paths from what length?
-    if hash_or_val.kind_of? Integer
+    if hash_or_val.is_a? Integer
       return
     end
 
