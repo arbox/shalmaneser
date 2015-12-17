@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'mysql', '~> 2.9'
 gem 'sqlite3', '~> 1.3'
+gem 'pastel', '~> 0.5'
 
 group :development do
   gem 'yard', '~> 0.8'
