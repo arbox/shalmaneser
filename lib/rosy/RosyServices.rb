@@ -16,7 +16,7 @@ require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
 # Frprep packages
-require 'configuration/prep_config_data'
+require 'configuration/frappe_config_data'
 
 ###################################################
 class RosyServices < RosyTask
@@ -584,7 +584,7 @@ class RosyServices < RosyTask
       exit 1
     end
     # @note Remove this dependency.
-    preproc_exp = ::Shalmaneser::Configuration::FrPrepConfigData.new(preproc_expname)
+    preproc_exp = ::Shalmaneser::Configuration::FrappeConfigData.new(preproc_expname)
     @exp.adjoin(preproc_exp)
 
     ###

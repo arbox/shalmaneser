@@ -23,7 +23,7 @@ class TestOptParser < Minitest::Test
   def test_parse_method
     input = ['-e', @exp_file]
     return_value = OptParser.parse(input)
-    assert(return_value.instance_of?(FrPrepConfigData))
+    assert(return_value.instance_of?(FrappeConfigData))
   end
 
   # It should reject the empty input and exit.

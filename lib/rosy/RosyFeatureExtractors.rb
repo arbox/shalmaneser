@@ -19,6 +19,7 @@ require 'rosy/AbstractFeatureAndExternal'
 # Fred and Rosy packages
 require 'rosy/rosy_conventions'
 
+require 'frappe/path'
 
 ################################
 # base class for all following feature extractors
@@ -248,7 +249,7 @@ class RosyFeatureExtractor < AbstractFeatureExtractor
     # initial step of all: no hash existing yet
     if hash.nil?
       hash = {}
-      hash[n.id] = Path.new(n)
+      hash[n.id] = ::Shalmaneser::Frappe::Path.new(n)
     end
 
     # invariant at this point: n must be listed in hash

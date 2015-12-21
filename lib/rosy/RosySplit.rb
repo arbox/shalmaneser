@@ -16,7 +16,7 @@
 require "ruby_class_extensions"
 
 # Frprep packages
-require 'configuration/prep_config_data'
+require 'configuration/frappe_config_data'
 
 # Rosy packages
 require "rosy/FailedParses"
@@ -80,7 +80,7 @@ class RosySplit < RosyTask
     end
 
     # @todo Add features for Rosy and delete this dependency.
-    preproc_exp = ::Shalmaneser::Configuration::FrPrepConfigData.new(preproc_filename)
+    preproc_exp = ::Shalmaneser::Configuration::FrappeConfigData.new(preproc_filename)
     @exp.adjoin(preproc_exp)
 
     # announce the task

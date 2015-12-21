@@ -2,6 +2,8 @@
 # abstract class, to be inherited:
 #
 # interpretation for a POS tagger/lemmatizer/parser combination
+require 'frappe/path'
+
 module Shalmaneser
   module Frappe
     class SynInterpreter
@@ -111,7 +113,7 @@ module Shalmaneser
       #
       # returns: string or nil
       def SynInterpreter.simplified_pt(node)
-        return eval(self.name).pt(node)
+        self.pt(node)
       end
 
       ###
@@ -497,24 +499,22 @@ module Shalmaneser
         # more than one word
 
         # see if we can get a headword of a single constituent
-        if nodelist.length == 1 and
-          (headword = eval(self.name).head_terminal(nodelist.first))
+        if nodelist.length == 1 && (headword = self.head_terminal(nodelist.first))
           return headword
         end
 
         # filter out auxiliaries and modals, see if only one node remains
-        nodelist2 = nodelist1.reject { |t|
-          eval(self.name).auxiliary?(t) or
-            eval(self.name).modal?(t)
-        }
+        nodelist2 = nodelist1.reject do |t|
+          self.auxiliary?(t) || self.modal?(t)
+        end
 
         # one verb, one prep or particle? then
         # assume we have a separate verb prefix, and take the lemma of the verb
         if nodelist2.length == 2
-          verbs = nodelist2.select { |t| eval(self.name).category(t) == "verb"}
+          verbs = nodelist2.select { |t| self.category(t) == "verb"}
           if verbs.length == 1
             # found exactly one verb, so we have one verb, one other
-            if eval(self.name).particle_of_verb(verbs.first, nodelist2)
+            if self.particle_of_verb(verbs.first, nodelist2)
               # we have found a particle/separate verb prefix
               # take verb as main node
               return verbs.first
@@ -637,13 +637,13 @@ module Shalmaneser
       ####################3
       protected
 
-      def SynInterpreter.announce_me
+      def self.announce_me
         if defined?(SynInterfaces)
           # yup, we have a class to which we can announce ourselves
-          SynInterfaces.add_interpreter(eval(self.name))
+          SynInterfaces.add_interpreter(self)
         else
           # no interface collector class
-          $stderr.puts "Interface #{self.name} not announced: no SynInterfaces."
+          $stderr.puts "Interface #{self} not announced: no SynInterfaces."
         end
       end
 

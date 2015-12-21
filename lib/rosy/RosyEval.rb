@@ -19,8 +19,7 @@ require "rosy/RosyTask"
 require "rosy/RosyPruning"
 require 'rosy/rosy_conventions'
 
-# Frprep packages
-require 'configuration/prep_config_data'
+require 'configuration/frappe_config_data'
 
 #######################################################################
 # This class is a subclass of the general evaluation class
@@ -74,7 +73,7 @@ class RosyEval < Eval
         $stderr.puts "Parameter preproc_descr_file_train has to be a readable file."
         exit 1
       end
-      preproc_exp = ::Shalmaneser::Configuration::FrPrepConfigData.new(preproc_expname)
+      preproc_exp = ::Shalmaneser::Configuration::FrappeConfigData.new(preproc_expname)
       @exp.adjoin(preproc_exp)
     end
 

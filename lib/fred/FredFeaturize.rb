@@ -158,12 +158,12 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     #   $stderr.puts "Parameter preproc_descr_file_#{@dataset} has to be a readable file."
     #   exit 1
     # end
-    # preproc_exp = FrPrepConfigData.new(preproc_expname)
+    # preproc_exp = FrappeConfigData.new(preproc_expname)
     # @exp.adjoin(preproc_exp)
 
     # get the right syntactic interface
-    SynInterfaces.check_interfaces_abort_if_missing(@exp)
-    @interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
+    ::Shalmaneser::SynInterfaces.check_interfaces_abort_if_missing(@exp)
+    @interpreter_class = ::Shalmaneser::SynInterfaces.get_interpreter_according_to_exp(@exp)
 
     # initialize grammatical function object (delegating)
     grf_obj = GrammaticalFunctionAccess.new(@interpreter_class)

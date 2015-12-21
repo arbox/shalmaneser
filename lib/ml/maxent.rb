@@ -26,7 +26,7 @@ class Maxent
     #   It assumes <Maxent.rb> ist in <lib/common> and
     #   <Classify.class> is in <lib/ext/maxent>.
     # @todo AB: This assumption should be changed. ENV[]???
-    @interface_path = File.expand_path('../../ext/maxent', File.dirname(__FILE__))
+    @interface_path = File.expand_path('../ext/maxent', File.dirname(__FILE__))
 
     @maxentpath = program_path
 

@@ -33,6 +33,7 @@ require "ruby_class_extensions"
 # @todo AB: [2015-12-16 Wed 01:03]
 #   After decoupling in OptParser and ConfigData classes move this
 #   to Frappe.
+module Shalmaneser
 class SynInterfaces
   ###
   # class variable:
@@ -64,7 +65,8 @@ class SynInterfaces
   # Given an experiment file, use some_system_missing? to
   # determine whether the system can be run with the requested
   # syntactic processing, exit with an error message if that is not possible
-  def SynInterfaces.check_interfaces_abort_if_missing(exp) #FrPrepConfigData object
+  # @param [FrappeConfigData] exp Experiment description.
+  def self.check_interfaces_abort_if_missing(exp)
     if (missing = SynInterfaces.some_system_missing?(exp))
       interwhat, services = missing
 
@@ -107,7 +109,7 @@ class SynInterfaces
   #  where the 1st element is either 'interface' or 'interpreter',
   #  and the 2nd element is a hash mapping services to system names:
   #  the services that could not be provided
-  # @param [FrPrepConfigdata] exp FrPrepConfigData object
+  # @param [FrPrepConfigdata] exp FrappeConfigData object
   def self.some_system_missing?(exp)
 
     services = SynInterfaces.requested_services(exp)
@@ -231,6 +233,7 @@ class SynInterfaces
 
     retv
   end
+end
 end
 
 # @todo AB: We should require programmatically all files in

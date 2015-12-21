@@ -12,9 +12,6 @@ require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
-# Frprep packages
-# require 'configuration/prep_config_data'
-
 class RosyInspect < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
@@ -66,7 +63,7 @@ class RosyInspect < RosyTask
 #       $stderr.puts "Parameter #{preproc_parameter} has to be a readable file."
 #       exit 1
 #     end
-#     preproc_exp = FrPrepConfigData.new(preproc_expname)
+#     preproc_exp = FrappeConfigData.new(preproc_expname)
 #     @exp.adjoin(preproc_exp)
 
     # announce the task

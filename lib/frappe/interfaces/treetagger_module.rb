@@ -54,10 +54,10 @@ module Shalmaneser
 
         # @todo AB: Remove it by my shame :(
         # AB: A very dirty hack of mine:
-        # We need the language attribute, but we don't have the FrPrepConfigData,
+        # We need the language attribute, but we don't have the FrappeConfigData,
         # then we'll try to find it in the ObjectSpace since we should have only one.
         lang = ''
-        ObjectSpace.each_object(::Shalmaneser::Configuration::FrPrepConfigData) do |o|
+        ObjectSpace.each_object(::Shalmaneser::Configuration::FrappeConfigData) do |o|
           lang = o.get('language')
         end
 

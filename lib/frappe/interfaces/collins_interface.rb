@@ -1,16 +1,18 @@
 require_relative 'counter'
 
+require 'frappe/syn_interface_stxml'
 require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'salsa_tiger_xml/syn_node'
-require 'frappe/syn_interface_stxml'
 require 'tabular_format/fn_tab_format_file'
 
 require 'tempfile'
 
 # Interface class
+# p self.class.constants
 module Shalmaneser
+  # p self.constants
   module Frappe
-
+    # p self.constants
     class CollinsInterface < SynInterfaceSTXML
       CollinsInterface.announce_me
 

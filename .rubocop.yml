@@ -20,3 +20,10 @@ Style/DotPosition:
   SupportedStyles:
     - leading
     - trailing
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+  SupportedStyles:
+    - only_raise
+    - only_fail
+    - semantic

@@ -8,10 +8,6 @@
 require 'syn_interfaces'
 require "ruby_class_extensions"
 
-# Frprep packages
-# require "prep_config_data"
-
-# Rosy packages
 require "rosy/FailedParses"
 require "rosy/FeatureInfo"
 require "rosy/InputData"
@@ -84,12 +80,12 @@ class RosyFeaturize < RosyTask
     #   $stderr.puts "Parameter #{preproc_parameter} has to be a readable file."
     #   exit 1
     # end
-    # preproc_exp = FrPrepConfigData.new(preproc_expname)
+    # preproc_exp = FrappeConfigData.new(preproc_expname)
     # @exp.adjoin(preproc_exp)
 
     ###
     # find appropriate class for interpreting syntactic structures
-    @interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
+    @interpreter_class = ::Shalmaneser::SynInterfaces.get_interpreter_according_to_exp(@exp)
 
     ###
     # prepare featurization

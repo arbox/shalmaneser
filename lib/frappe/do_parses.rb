@@ -18,7 +18,7 @@ require 'syn_interfaces'
 module Shalmaneser
   module Frappe
     class DoParses
-      def initialize(exp,           # FrPrepConfigData object
+      def initialize(exp,           # FrappeConfigData object
                      file_suffixes, # hash: file type(string) -> suffix(string)
                      parse_dir,     # string: name of directory to put parses
                      var_hash = {}) # further directories

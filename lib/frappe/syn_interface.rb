@@ -3,10 +3,14 @@
 #
 # tabular format or SalsaTigerXML interface for modules
 # offering POS tagging, lemmatization, parsing etc.
+
+# Leave this commented until we've reworked SynInterfaces
+# since in causes circular requirements.
+# require 'syn_interfaces'
+
 module Shalmaneser
   module Frappe
     class SynInterface
-
       ###
       # returns a string: the name of the system
       # e.g. "Collins" or "TNT"
@@ -56,16 +60,15 @@ module Shalmaneser
         raise NotImplementedError, "Overwrite me"
       end
 
-      ######
       protected
 
       def self.announce_me
         if defined?(SynInterfaces)
-          # yup, we have a class to which we can announce ourselves
-          SynInterfaces.add_interface(eval(self.name))
+          # Yup, we have a class to which we can announce ourselves.
+          SynInterfaces.add_interface(self)
         else
           # no interface collector class
-          LOGGER.warn "Interface #{self.name} not announced: no SynInterfaces."
+          LOGGER.warn "Interface #{self} not announced: no SynInterfaces."
         end
       end
     end

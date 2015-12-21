@@ -23,9 +23,6 @@ require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
 require "rosy/View"
 
-# Frprep packages
-# require "prep_config_data" # AB: what the fuck???
-
 ##########################################################################
 # classifier combination class
 class ClassifierCombination
@@ -171,7 +168,7 @@ class RosyTest < RosyTask
       #   $stderr.puts "Parameter #{preproc_param} has to be a readable file."
       #   exit 1
       # end
-      # preproc_exp = FrPrepConfigData.new(preproc_expname)
+      # preproc_exp = FrappeConfigData.new(preproc_expname)
       # @exp.adjoin(preproc_exp)
 
       # announce the task
@@ -668,7 +665,7 @@ class RosyTest < RosyTask
 
     ###
     # find appropriate class for interpreting syntactic structures
-    interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
+    interpreter_class = ::Shalmaneser::SynInterfaces.get_interpreter_according_to_exp(@exp)
 
 
     $stderr.puts "Writing SalsaTigerXML output to #{output_directory}"

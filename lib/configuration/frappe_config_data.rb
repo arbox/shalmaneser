@@ -7,13 +7,13 @@
 require_relative 'config_data'
 
 ##############################
-# Class FrPrepConfigData
+# Class FrappeConfigData
 #
 # inherits from ConfigData,
 # sets variable names appropriate to preprocessing task
 module Shalmaneser
   module Configuration
-    class FrPrepConfigData < ConfigData
+    class FrappeConfigData < ConfigData
       VALID_ENCODINGS = ['hex', 'iso', 'utf8', nil]
       VALID_INPUT_FORMATS = %w(Plain SalsaTab FNXml FNCorpusXml SalsaTigerXML)
       CONFIG_DEFS = {
