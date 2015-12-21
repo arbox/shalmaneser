@@ -30,7 +30,7 @@ require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 # require 'prep_helper'
-require 'syn_interfaces'
+require 'external_systems'
 require 'fred/FredBOWContext'
 require 'fred/FredDetermineTargets'
 require 'fred/FredFeatures'
@@ -162,8 +162,8 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
     # @exp.adjoin(preproc_exp)
 
     # get the right syntactic interface
-    ::Shalmaneser::SynInterfaces.check_interfaces_abort_if_missing(@exp)
-    @interpreter_class = ::Shalmaneser::SynInterfaces.get_interpreter_according_to_exp(@exp)
+    ::Shalmaneser::ExternalSystems.check_interfaces_abort_if_missing(@exp)
+    @interpreter_class = ::Shalmaneser::ExternalSystems.get_interpreter_according_to_exp(@exp)
 
     # initialize grammatical function object (delegating)
     grf_obj = GrammaticalFunctionAccess.new(@interpreter_class)

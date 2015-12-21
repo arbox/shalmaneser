@@ -4,9 +4,9 @@
 # tabular format or SalsaTigerXML interface for modules
 # offering POS tagging, lemmatization, parsing etc.
 
-# Leave this commented until we've reworked SynInterfaces
+# Leave this commented until we've reworked ExternalSystems
 # since in causes circular requirements.
-# require 'syn_interfaces'
+# require 'external_systems'
 
 module Shalmaneser
   module Frappe
@@ -63,12 +63,12 @@ module Shalmaneser
       protected
 
       def self.announce_me
-        if defined?(SynInterfaces)
+        if defined?(ExternalSystems)
           # Yup, we have a class to which we can announce ourselves.
-          SynInterfaces.add_interface(self)
+          ExternalSystems.add_interface(self)
         else
           # no interface collector class
-          LOGGER.warn "Interface #{self} not announced: no SynInterfaces."
+          LOGGER.warn "Interface #{self} not announced: no ExternalSystems."
         end
       end
     end

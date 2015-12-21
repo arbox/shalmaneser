@@ -6,7 +6,7 @@
 require 'optparse'
 require 'configuration/frappe_config_data'
 require 'definitions'
-require 'syn_interfaces'
+require 'external_systems'
 require 'logging'
 
 module Shalmaneser
@@ -50,7 +50,7 @@ module Shalmaneser
         # @todo Rename the config data class.
         exp = ::Shalmaneser::Configuration::FrappeConfigData.new(@options[:exp_file])
 
-        SynInterfaces.check_interfaces_abort_if_missing(exp)
+        ExternalSystems.check_interfaces_abort_if_missing(exp)
 
         exp
       end

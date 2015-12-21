@@ -13,7 +13,7 @@
 require_relative 'one_parsed_file'
 require_relative 'frappe_read_stxml'
 require_relative 'frappe_flat_syntax'
-require 'syn_interfaces'
+require 'external_systems'
 
 module Shalmaneser
   module Frappe
@@ -49,7 +49,7 @@ module Shalmaneser
         if @exp.get("do_parse")
 
           # get parser interface
-          sys_class = SynInterfaces.get_interface("parser",
+          sys_class = ExternalSystems.get_interface("parser",
                                                   @exp.get("parser"))
           unless sys_class
             raise "Shouldn't be here"

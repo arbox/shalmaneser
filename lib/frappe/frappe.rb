@@ -244,7 +244,7 @@ module Shalmaneser
           # @todo Introduct the Logger.
           $stderr.puts "Frprep: Tagging."
 
-          sys_class = SynInterfaces.get_interface("pos_tagger",
+          sys_class = ExternalSystems.get_interface("pos_tagger",
                                                   @exp.get("pos_tagger"))
           $stderr.puts "POS Tagger interface: #{sys_class}"
 
@@ -265,7 +265,7 @@ module Shalmaneser
         if @exp.get("do_lemmatize")
           STDERR.puts 'Frprep: Lemmatizing.'
 
-          sys_class = SynInterfaces.get_interface("lemmatizer",
+          sys_class = ExternalSystems.get_interface("lemmatizer",
                                                   @exp.get("lemmatizer"))
           # AB: TODO make this exception explicit.
           unless sys_class
@@ -295,7 +295,7 @@ module Shalmaneser
         # (Parse and) transform to SalsaTigerXML
         # get interpretation class for this
         # parser/lemmatizer/POS tagger combination
-        interpreter_class = SynInterfaces.get_interpreter_according_to_exp(@exp)
+        interpreter_class = ExternalSystems.get_interpreter_according_to_exp(@exp)
 
         unless interpreter_class
           raise "Shouldn't be here"
@@ -430,7 +430,7 @@ module Shalmaneser
         if @exp.get("do_postag")
           $stderr.puts "Frprep: Tagging."
 
-          sys_class = SynInterfaces.get_interface("pos_tagger",
+          sys_class = ExternalSystems.get_interface("pos_tagger",
                                                   @exp.get("pos_tagger"))
           unless sys_class
             raise "Shouldn't be here"
@@ -446,7 +446,7 @@ module Shalmaneser
         if @exp.get("do_lemmatize")
           $stderr.puts "Frprep: Lemmatizing."
 
-          sys_class = SynInterfaces.get_interface("lemmatizer",
+          sys_class = ExternalSystems.get_interface("lemmatizer",
                                                   @exp.get("lemmatizer"))
           unless sys_class
             raise "Shouldn't be here"
@@ -473,7 +473,7 @@ module Shalmaneser
           end
         }
 
-        interpreter_class = SynInterfaces.get_interpreter(sys_class_names)
+        interpreter_class = ExternalSystems.get_interpreter(sys_class_names)
 
         unless interpreter_class
           raise "Shouldn't be here"

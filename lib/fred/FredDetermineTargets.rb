@@ -1,7 +1,7 @@
 require "fred/FileZipped"
 
 require 'configuration/fred_config_data'
-# require "SynInterfaces"
+# require "ExternalSystems"
 require 'fred/FredConventions' # !
 
 ########################################

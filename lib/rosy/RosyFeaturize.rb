@@ -5,7 +5,7 @@
 # featurize data and store it in the database
 
 # Salsa packages
-require 'syn_interfaces'
+require 'external_systems'
 require "ruby_class_extensions"
 
 require "rosy/FailedParses"
@@ -85,7 +85,7 @@ class RosyFeaturize < RosyTask
 
     ###
     # find appropriate class for interpreting syntactic structures
-    @interpreter_class = ::Shalmaneser::SynInterfaces.get_interpreter_according_to_exp(@exp)
+    @interpreter_class = ::Shalmaneser::ExternalSystems.get_interpreter_according_to_exp(@exp)
 
     ###
     # prepare featurization

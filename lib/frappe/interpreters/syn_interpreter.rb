@@ -638,12 +638,12 @@ module Shalmaneser
       protected
 
       def self.announce_me
-        if defined?(SynInterfaces)
+        if defined?(ExternalSystems)
           # yup, we have a class to which we can announce ourselves
-          SynInterfaces.add_interpreter(self)
+          ExternalSystems.add_interpreter(self)
         else
           # no interface collector class
-          $stderr.puts "Interface #{self} not announced: no SynInterfaces."
+          $stderr.puts "Interface #{self} not announced: no ExternalSystems."
         end
       end
 
