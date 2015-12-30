@@ -8,6 +8,8 @@
 # all task classes should have a perform() method that actually
 # performs the task.
 
+module Shalmaneser
+module Rosy
 class RosyTask
   def initialize
     raise "Shouldn't be here! I'm an abstract class"
@@ -16,4 +18,6 @@ class RosyTask
   def perform
     raise "Should be overwritten by the inheriting class!"
   end
+end
+end
 end

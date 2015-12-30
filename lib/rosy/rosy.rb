@@ -9,6 +9,7 @@ require 'rosy/RosyInspect'
 require 'rosy/RosyEval'
 require 'rosy/RosyServices'
 
+module Shalmaneser
 module Rosy
   class Rosy
 
@@ -74,3 +75,4 @@ module Rosy
 
   end # class Rosy
 end # module Rosy
+end

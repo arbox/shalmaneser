@@ -92,7 +92,7 @@ class FredFeatureExtractor
     # AB: In 1.9 constants are symbols.
     if Module.constants.include?("FredFeatureInfo") or Module.constants.include?(:FredFeatureInfo)
       # yup, we have a class to which we can announce ourselves
-      FredFeatureInfo.add_feature(eval(self.name))
+      FredFeatureInfo.add_feature(self)
     else
       # no interface collector class
       #      $stderr.puts "Feature #{self.name()} not announced: no RosyFeatureInfo."

@@ -17,7 +17,7 @@
 
 
 # Salsa packages
-require 'rosy/AbstractFeatureAndExternal'
+require 'rosy/abstract_feature_extractor'
 # require 'SalsaTigerRegXML'
 
 # Fred and Rosy packages
@@ -26,7 +26,8 @@ require 'rosy/AbstractFeatureAndExternal'
 
 ################################
 # base class for all following feature extractors
-
+module Shalmaneser
+module Rosy
 class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
 
   ###
@@ -65,13 +66,13 @@ class RosyPhase2FeatureExtractor < AbstractFeatureExtractor
   # check if the current feature is computable, i.e. if all the necessary
   # Phase 1 features are in the present model..
   def RosyPhase2FeatureExtractor.is_computable(given_extractor_list)
-    return (eval(self.name).extractor_list - given_extractor_list).empty?
+    (extractor_list - given_extractor_list).empty?
   end
 
   # this probably has to be done for each feature:
   # identify sentences and the target, and recombine into a large array
   def compute_features_on_view(view)
-    result = Array.new(eval(self.class.name).feature_names.length)
+    result = Array.new(self.class.feature_names.length)
     result.each_index {|i|
       result[i] = []
     }
@@ -224,4 +225,6 @@ class NearestNodeFeature < RosyPhase2FeatureExtractor
 
     return result
   end
+end
+end
 end

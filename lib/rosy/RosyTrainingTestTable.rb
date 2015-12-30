@@ -37,6 +37,8 @@ require 'db/db_table'
 require "rosy/FeatureInfo"
 require 'rosy/rosy_conventions'
 
+module Shalmaneser
+module Rosy
 # @note AB: Possibly this file belongs to <lib/db>. Check it!
 ######################
 class RosyTrainingTestTable
@@ -75,7 +77,7 @@ class RosyTrainingTestTable
 
   ###
   def initialize(exp,      # RosyConfigData object
-		 database) # Mysql object
+                 database) # Mysql object
     @exp = exp
     @feature_info = RosyFeatureInfo.new(@exp)
     @database = database
@@ -86,7 +88,7 @@ class RosyTrainingTestTable
     @addcol_prefix = @exp.get("classif_column_name")
     # name of the main table
     @maintable_name = @exp.instantiate("main_table_name",
-				       "exp_ID" => @exp.get("experiment_ID"))
+                                       "exp_ID" => @exp.get("experiment_ID"))
     # list of pairs [name, mysql format] for each feature (string*string)
     @feature_columns = @feature_info.get_column_formats
     # list of feature names (strings)
@@ -95,8 +97,8 @@ class RosyTrainingTestTable
     # list of pairs [name, mysql format] for each classifier column (string*string)
     @classif_columns = Range.new(0,10).map {|id|
       [
-	classifcolumn_name(id),
-	"VARCHAR(20)"
+        classifcolumn_name(id),
+        "VARCHAR(20)"
       ]
     }
     # columns for split tables:
@@ -376,10 +378,10 @@ class RosyTrainingTestTable
 
     # make table
     return DBTable.new(@database, @maintable_name,
- 		       "new",
- 		       "col_formats" => @feature_columns + @classif_columns,
- 		       "index_cols" => @feature_info.get_index_columns,
- 		       "addcol_prefix" => @addcol_prefix)
+                       "new",
+                       "col_formats" => @feature_columns + @classif_columns,
+                       "index_cols" => @feature_info.get_index_columns,
+                       "addcol_prefix" => @addcol_prefix)
   end
 
   ###
@@ -397,10 +399,10 @@ class RosyTrainingTestTable
     # make table
     return DBTable.new(@database,
                        testtable_name(testID),
-		       "new",
-		       "col_formats" => @feature_columns + @classif_columns,
-		       "index_cols" => @feature_info.get_index_columns,
-		       "addcol_prefix" => @addcol_prefix)
+                       "new",
+                       "col_formats" => @feature_columns + @classif_columns,
+                       "index_cols" => @feature_info.get_index_columns,
+                       "addcol_prefix" => @addcol_prefix)
 
   end
 
@@ -443,18 +445,18 @@ class RosyTrainingTestTable
   # open existing training or test table
   def existing_train_table
     return DBTable.new(@database, @maintable_name,
-		       "open",
-		       "col_names" => @feature_names,
-		       "addcol_prefix" => @addcol_prefix)
+                       "open",
+                       "col_names" => @feature_names,
+                       "addcol_prefix" => @addcol_prefix)
   end
 
   ###
   def existing_test_table(testID = "apply")
     return DBTable.new(@database,
                        testtable_name(testID),
-		       "open",
-		       "col_names" => @feature_names,
-		       "addcol_prefix" => @addcol_prefix)
+                       "open",
+                       "col_names" => @feature_names,
+                       "addcol_prefix" => @addcol_prefix)
   end
 
   ###
@@ -767,9 +769,9 @@ class RosyTrainingTestTable
         if count % 5 !=  0
           string << ", "
         end
-	count += 1
+        count += 1
         string << feature_name
-	if count % 5 == 0
+        if count % 5 == 0
           string << "\n\t"
         end
       }
@@ -782,7 +784,6 @@ class RosyTrainingTestTable
       "runlist" => descr
     }
   end
-
-
-
+end
+end
 end

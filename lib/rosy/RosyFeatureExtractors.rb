@@ -13,7 +13,7 @@
 
 
 # Salsa packages
-require 'rosy/AbstractFeatureAndExternal'
+require 'rosy/abstract_feature_extractor'
 # require 'SalsaTigerRegXML'
 
 # Fred and Rosy packages
@@ -21,6 +21,8 @@ require 'rosy/rosy_conventions'
 
 require 'frappe/path'
 
+module Shalmaneser
+module Rosy
 ################################
 # base class for all following feature extractors
 class RosyFeatureExtractor < AbstractFeatureExtractor
@@ -299,12 +301,12 @@ class RosySingleFeatureExtractor < RosyFeatureExtractor
   #
   # here: single feature, and the feature name is the designator
   def RosySingleFeatureExtractor.designator
-    return eval(self.name).feature_name
+    feature_name
   end
 
   ###
   def RosySingleFeatureExtractor.feature_names
-    return [eval(self.name).feature_name]
+    [feature_name]
   end
 
   ###
@@ -1524,7 +1526,7 @@ class SentidFeature < RosySingleFeatureExtractor
   private
 
   def compute_feature_instanceOK
-    return Rosy::construct_instance_id(@@sent.id, @@frame.id)
+    return ::Shalmaneser::Rosy::construct_instance_id(@@sent.id, @@frame.id)
   end
 end
 
@@ -1607,4 +1609,6 @@ class TerminalFeature < RosySingleFeatureExtractor
       return 0
     end
   end
+end
+end
 end

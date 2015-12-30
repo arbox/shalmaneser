@@ -10,7 +10,8 @@
 # this class is pretty much a gloriefied hash table with methods to
 # - read FailedParses from a file and to write them to a file
 # - access info in a frame-specific way
-
+module Shalmaneser
+module Rosy
 class FailedParses
 
   ###
@@ -126,5 +127,6 @@ class FailedParses
     end
   end
 
-
+end
+end
 end

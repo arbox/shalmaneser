@@ -28,6 +28,8 @@ require "rosy/RosyTask"
 # require "rosy/RosyTrainingTestTable"
 # require "rosy/View"
 
+module Shalmaneser
+module Rosy
 class RosySplit < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
@@ -227,4 +229,6 @@ class RosySplit < RosyTask
     }
   end
 
+end
+end
 end

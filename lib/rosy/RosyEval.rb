@@ -35,6 +35,8 @@ require 'configuration/frappe_config_data'
 #
 # When step == argrec or prune, evaluate _only_ the target class FE
 # Otherwise, evaluate all target classes
+module Shalmaneser
+module Rosy
 class RosyEval < Eval
   def initialize(exp,      # RosyConfigData object: experiment file
                  ttt_obj,  # RosyTrainingTestTable object
@@ -458,4 +460,6 @@ class RosyEvalTask < RosyTask
                              dont_adjoin_frprep_exp)
     @eval_obj.compute
   end
+end
+end
 end

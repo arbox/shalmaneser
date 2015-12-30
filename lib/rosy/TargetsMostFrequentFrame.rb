@@ -1,3 +1,5 @@
+module Shalmaneser
+module Rosy
 module TargetsMostFrequentSc
   def determine_target_most_frequent_sc(view,
                                         noval,
@@ -57,4 +59,6 @@ module TargetsMostFrequentSc
            instance["target"] + "." +
            instance["target_pos"]
   end
+end
+end
 end

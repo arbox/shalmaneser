@@ -1,5 +1,7 @@
 require 'ruby_class_extensions'
 
+module Shalmaneser
+module Rosy
 class RosyFeatureInfo
   ###
   # class variable:
@@ -239,4 +241,6 @@ class RosyFeatureInfo
       extractor_obj.class.info.include? "rosy"
     }
   end
+end
+end
 end

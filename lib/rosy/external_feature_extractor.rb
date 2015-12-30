@@ -1,6 +1,8 @@
 require_relative 'abstract_feature_extractor'
 require 'configuration/external_config_data'
 
+module Shalmaneser
+module Rosy
 class ExternalFeatureExtractor < AbstractFeatureExtractor
 
   @@warning_uttered = false
@@ -28,4 +30,6 @@ class ExternalFeatureExtractor < AbstractFeatureExtractor
 
     @exp_external = Shalmaneser::Configuration::ExternalConfigData.new(@exp_rosy.get("external_descr_file"))
   end
+end
+end
 end

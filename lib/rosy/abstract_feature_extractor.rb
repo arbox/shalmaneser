@@ -6,6 +6,8 @@
 
 require 'configuration/external_config_data'
 
+module Shalmaneser
+module Rosy
 ####
 # Feature Extractor:
 # computes one or more features for a node (a SynNode object) out of
@@ -154,10 +156,12 @@ class AbstractFeatureExtractor
     # AB: In 1.9 constants are symbols.
     if Module.constants.include?("RosyFeatureInfo") or Module.constants.include?(:RosyFeatureInfo)
       # yup, we have a class to which we can announce ourselves
-      RosyFeatureInfo.add_feature(eval(self.name))
+      RosyFeatureInfo.add_feature(self)
     else
       # no interface collector class
 #      $stderr.puts "Feature #{self.name()} not announced: no RosyFeatureInfo."
     end
   end
+end
+end
 end

@@ -10,8 +10,10 @@ require 'db/select_table_and_columns'
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
-require "rosy/View"
+require 'db/db_view'
 
+module Shalmaneser
+module Rosy
 class RosyInspect < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
@@ -332,3 +334,5 @@ class RosyInspect < RosyTask
   end
 
  end
+end
+end

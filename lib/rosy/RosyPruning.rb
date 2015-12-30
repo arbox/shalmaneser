@@ -20,6 +20,8 @@ require "rosy/RosyIterator"
 # Pruning, derived from the Xue/Palmer algorithm
 #
 # implemented in the Interpreter Class of each individual parser
+module Shalmaneser
+module Rosy
 class PruneFeature < RosySingleFeatureExtractor
   PruneFeature.announce_me
 
@@ -166,4 +168,6 @@ class Pruning
       view.close
     }
   end
+end
+end
 end

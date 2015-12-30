@@ -29,8 +29,12 @@ require "RosyIterator"
 require "RosyConventions"
 require "TargetsMostFrequentFrame"
 
+# This is WRONG!!!!
+# @todo Remove this!
 require "mysql"
 
+module Shalmaneser
+module Rosy
 class RosyConfusability
   include TargetsMostFrequentSc
 
@@ -336,4 +340,6 @@ class RosyConfusability
     @frame_confusability = hash["frame_confusability"]
     @overall_confusability =  hash["overall_confusability"]
   end
+end
+end
 end

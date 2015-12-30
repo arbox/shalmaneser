@@ -21,6 +21,8 @@ require "rosy/RosyPruning"
 require "rosy/GfInduceFeature"
 require 'frappe/fix_syn_sem_mapping'
 
+module Shalmaneser
+module Rosy
 class InputData
 
   ###
@@ -295,4 +297,6 @@ class InputData
 
   end
 
+end
+end
 end

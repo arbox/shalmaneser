@@ -1,17 +1,24 @@
 #!/usr/bin/env ruby
 # -*- encoding: utf-8 -*-
 
-# AB: 2011-11-14
+# @author Andrei Beliankou
+# 2011-11-14
 # rosy.rb
-# KE, SP April 05
+# @author KE, SP April 05
 #
 # Main file of the Rosy role assignment system.
 
-
-require 'rosy/opt_parser'
 require 'rosy/rosy'
+require 'rosy/opt_parser'
 
-options = Rosy::OptParser.parse(ARGV)
+begin
+  options = ::Shalmaneser::Rosy::OptParser.parse(ARGV)
 
-rosy = Rosy::Rosy.new(options)
-rosy.assign
+  rosy = ::Shalmaneser::Rosy::Rosy.new(options)
+  # @todo Rename the assing method.
+  rosy.assign
+rescue => e
+  $stderr.puts 'Rosy cannot serve you!'
+  $stderr.puts e.message, e.backtrace
+  exit(1)
+end

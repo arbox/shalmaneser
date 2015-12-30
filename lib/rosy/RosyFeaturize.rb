@@ -16,8 +16,10 @@ require 'rosy/rosy_conventions'
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
-require "rosy/View"
+# require "rosy/View"
 
+module Shalmaneser
+module Rosy
 class RosyFeaturize < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
@@ -30,7 +32,7 @@ class RosyFeaturize < RosyTask
     @exp = exp
     @ttt_obj = ttt_obj
 
-    @testID = Rosy.default_test_ID
+    @testID = ::Shalmaneser::Rosy.default_test_ID
     @splitID = nil
     @append_rather_than_overwrite = false
 
@@ -261,4 +263,6 @@ class RosyFeaturize < RosyTask
     `echo "[#{Time.now.to_s}] Featurize: Finished" >> #{log_filename}`
 
   end
+end
+end
 end

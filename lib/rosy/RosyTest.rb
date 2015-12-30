@@ -21,8 +21,10 @@ require 'rosy/rosy_conventions'
 require "rosy/RosyIterator"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
-require "rosy/View"
+# require "rosy/View"
 
+module Shalmaneser
+module Rosy
 ##########################################################################
 # classifier combination class
 class ClassifierCombination
@@ -86,7 +88,7 @@ class RosyTest < RosyTask
     # defaults:
     @step = "both"
     @splitID = nil
-    @testID = Rosy.default_test_ID
+    @testID = ::Shalmaneser::Rosy.default_test_ID
     @produce_output = true
 
     opts.each { |opt,arg|
@@ -248,7 +250,7 @@ class RosyTest < RosyTask
     # apply the group-specific classifier,
     # write the result into the database, into
     # the column named @run_column
-    classif_dir = Rosy::classifier_directory_name(@exp, @step, @splitID)
+    classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp, @step, @splitID)
 
     @iterator.each_group { |group_descr_hash, group|
 
@@ -411,7 +413,7 @@ class RosyTest < RosyTask
       # change punctuation to _PUNCT_
       # and change empty space to _
       # because otherwise some classifiers may spit
-      tf_input.puts Rosy::prepare_output_for_classifiers(instance_string)
+      tf_input.puts ::Shalmaneser::Rosy::prepare_output_for_classifiers(instance_string)
     }
     tf_input.close
     # make output file for classifiers
@@ -730,7 +732,7 @@ class RosyTest < RosyTask
         sent.frames.each { |frame|
 
           # this corresponds to the sentid feature in the database
-          sent_frame_id = Rosy::construct_instance_id(sent.id, frame.id)
+          sent_frame_id = ::Shalmaneser::Rosy::construct_instance_id(sent.id, frame.id)
 
           if sentid_to_assigned[sent_frame_id].nil? and @splitID
             # we are using a split of the training data, and
@@ -805,4 +807,6 @@ class RosyTest < RosyTask
       tempfile.close(true)
     } # each input file
   end
+end
+end
 end

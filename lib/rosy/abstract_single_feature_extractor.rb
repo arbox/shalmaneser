@@ -1,5 +1,7 @@
 require_relative 'abstract_feature_extractor'
 
+module Shalmaneser
+module Rosy
 ################################################################
 # Wrapper class for extractors that compute a single feature
 class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
@@ -11,12 +13,12 @@ class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
   #
   # here: single feature, and the feature name is the designator
   def self.designator
-    eval(self.name).feature_name
+    feature_name
   end
 
   ###
   def self.feature_names
-    [eval(self.name).feature_name]
+    [feature_name]
   end
 
   ###
@@ -45,4 +47,6 @@ class AbstractSingleFeatureExtractor < AbstractFeatureExtractor
   def compute_feature_on_view(view) # DBView object
     raise "Overwrite me"
   end
+end
+end
 end

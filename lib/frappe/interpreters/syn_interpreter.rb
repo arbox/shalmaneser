@@ -53,7 +53,8 @@ module Shalmaneser
           return nil
         end
 
-        return eval(self.name).pt(node)
+        # return eval(self.name).
+        pt(node)
       end
 
       ###
@@ -92,7 +93,7 @@ module Shalmaneser
       # part of speech for terminals
       #
       # returns: string
-      def SynInterpreter.pt(node)
+      def self.pt(node)
         unless node.is_a?(SynNode)
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
@@ -112,7 +113,7 @@ module Shalmaneser
       # default: just the same as pt()
       #
       # returns: string or nil
-      def SynInterpreter.simplified_pt(node)
+      def self.simplified_pt(node)
         self.pt(node)
       end
 
@@ -126,7 +127,7 @@ module Shalmaneser
       # default: no recognition of separate particles
       #
       # returns: SynNode object if successful, else nil
-      def SynInterpreter.particle_of_verb(node,
+      def self.particle_of_verb(node,
                                           node_list)
         return nil
       end
@@ -138,7 +139,7 @@ module Shalmaneser
       # default: no recognition of auxiliaries
       #
       # returns: boolean
-      def SynInterpreter.auxiliary?(node)
+      def self.auxiliary?(node)
         return false
       end
 
@@ -149,8 +150,8 @@ module Shalmaneser
       # default: no recognition of modals
       #
       # returns: boolean
-      def SynInterpreter.modal?(node)
-        return false
+      def self.modal?(node)
+        false
       end
 
       ###
@@ -163,7 +164,7 @@ module Shalmaneser
       #   find the first node in my yield corresponding to my head attribute..
       #
       # returns: a SynNode object if successful, else nil
-      def SynInterpreter.head_terminal(node)
+      def self.head_terminal(node)
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
@@ -191,13 +192,13 @@ module Shalmaneser
       # - nil, else
       #
       # default: treat all as active
-      def SynInterpreter.voice(node)
+      def self.voice(node)
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
 
-        if eval(self.name).category(node) == "verb"
+        if category(node) == "verb"
           return "active"
         else
           return nil
@@ -215,7 +216,7 @@ module Shalmaneser
       #
       # default: children of this node, with edge labels as relations,
       # prepositions tacked on for pps
-      def SynInterpreter.gfs(node,    # SynNode
+      def self.gfs(node,    # SynNode
                              sent)    # SalsaTigerSentence
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
@@ -224,8 +225,8 @@ module Shalmaneser
 
         return node.children_with_edgelabel.map { |rel, gf_node|
 
-          if eval(self.name).category(gf_node) == "prep"
-            [rel + "-" + eval(self.name).preposition(gf_node).to_s, gf_node]
+          if category(gf_node) == "prep"
+            [rel + "-" + preposition(gf_node).to_s, gf_node]
           else
             [rel, gf_node]
           end
@@ -241,18 +242,17 @@ module Shalmaneser
       # for a VP, the embedded VP
       #
       # Default: returns the first non-head child
-      def SynInterpreter.informative_content_node(node)
+      def self.informative_content_node(node)
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
 
-        headlemma = eval(self.name).lemma_backoff(node)
+        headlemma = lemma_backoff(node)
 
         first_nonhead_child = node.children.detect { |n|
-          nnh = eval(self.name).head_terminal(n)
-          nnh and
-            eval(self.name).lemma_backoff(nnh) != headlemma
+          nnh = head_terminal(n)
+          nnh and lemma_backoff(nnh) != headlemma
         }
 
         return first_nonhead_child
@@ -268,10 +268,10 @@ module Shalmaneser
       #   and the node of its separate prefix
       # - or a singleton [verb]
       #   of the node of a verb without separate prefix
-      def SynInterpreter.verbs(sent)
+      def self.verbs(sent)
 
         return sent.syn_nodes.select { |node|
-          eval(self.name).category(node) == "verb"
+          category(node) == "verb"
         }.map { |node|
           [node]
         }
@@ -284,7 +284,7 @@ module Shalmaneser
       # such that the given node fills the grammatical function rel
       # for this verb_node
       # or an empty list if there is no such verb
-      def SynInterpreter.governing_verbs(node,
+      def self.governing_verbs(node,
                                          sent)
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
@@ -294,12 +294,11 @@ module Shalmaneser
         retv = []
 
         # each verb of the sentence:
-        eval(self.name).verbs(sent).each { |verb_node, prefix_node|
+        verbs(sent).each { |verb_node, prefix_node|
           # each gf of this verb:
-          eval(self.name).gfs(verb_node, sent).each { |rel, other_node|
+          gfs(verb_node, sent).each { |rel, other_node|
             # if it points to the given node, record
-            if other_node == node or
-              eval(self.name).informative_content_node(other_node) == node
+            if other_node == node or informative_content_node(other_node) == node
               retv << [rel, verb_node]
               break
             end
@@ -324,7 +323,7 @@ module Shalmaneser
       # does not produce any non-tree edges.)
       #
       # returns: Path object
-      def SynInterpreter.path_between(from_node, # SynNode
+      def self.path_between(from_node, # SynNode
                                       to_node,   # SynNode
                                       use_nontree_edges = false) # boolean
 
@@ -333,14 +332,13 @@ module Shalmaneser
           return nil
         end
 
-        path = eval(self.name).search_up(from_node,to_node, nil)
-
+        path = search_up(from_node, to_node, nil)
         if path.nil?
           # no path found
           #      STDERR.puts "Warning: no path found between #{to_node.id} and #{from_node.id}"
         end
 
-        return path
+        path
       end
 
       ###
@@ -352,7 +350,7 @@ module Shalmaneser
       # use_nontree_edges: again, same as in path_between
       #
       # returns: list of pairs [neighbor(SynNode), path(Path)]
-      def SynInterpreter.surrounding_nodes(node, # SynNode
+      def self.surrounding_nodes(node, # SynNode
                                            use_nontree_edges = false) # boolean
 
         unless node.is_a? SynNode
@@ -366,8 +364,7 @@ module Shalmaneser
         if (p = node.parent)
           retv << [
             p,
-            Path.new(node).add_last_step("U", node.parent_label,
-                                         eval(self.name).simplified_pt(p), p)
+            Path.new(node).add_last_step("U", node.parent_label, simplified_pt(p), p)
           ]
         end
 
@@ -376,7 +373,7 @@ module Shalmaneser
           retv << [
             c,
             Path.new(node).add_last_step("D", label,
-                                         eval(self.name).simplified_pt(c), c)
+                                         simplified_pt(c), c)
           ]
         }
 
@@ -387,7 +384,7 @@ module Shalmaneser
       # relative_position
       # of a node with respect to an (anchor) node:
       # left, right, dom
-      def SynInterpreter.relative_position(node,        # SynNode
+      def self.relative_position(node,        # SynNode
                                            anchor_node) # SynNode
 
         unless node.is_a? SynNode and anchor_node.is_a? SynNode
@@ -405,10 +402,10 @@ module Shalmaneser
         # {node, anchor_node} in the list of all terminals
         all_yieldnodes = root.yield_nodes_ordered
 
-        pos_nodefirst = all_yieldnodes.index(eval(self.name).leftmost_terminal(node))
-        pos_anchorfirst = all_yieldnodes.index(eval(self.name).leftmost_terminal(anchor_node))
-        pos_nodelast = all_yieldnodes.index(eval(self.name).rightmost_terminal(node))
-        pos_anchorlast = all_yieldnodes.index(eval(self.name).rightmost_terminal(anchor_node))
+        pos_nodefirst = all_yieldnodes.index(leftmost_terminal(node))
+        pos_anchorfirst = all_yieldnodes.index(leftmost_terminal(anchor_node))
+        pos_nodelast = all_yieldnodes.index(rightmost_terminal(node))
+        pos_anchorlast = all_yieldnodes.index(rightmost_terminal(anchor_node))
 
         # determine relative position
         if pos_nodefirst and pos_anchorfirst and pos_nodefirst < pos_anchorfirst
@@ -425,8 +422,8 @@ module Shalmaneser
       #
       # given a constituent, determine its leftmost terminal,
       # excluding punctuation
-      def SynInterpreter.leftmost_terminal(node)
-        leftmost = node.yield_nodes_ordered.detect {|n| eval(self.name).category(n) != "pun"}
+      def self.leftmost_terminal(node)
+        leftmost = node.yield_nodes_ordered.detect {|n| category(n) != "pun"}
         unless leftmost
           leftmost = node.yield_nodes_ordered.first
         end
@@ -438,8 +435,8 @@ module Shalmaneser
       #
       # given a constituent, determine its rightmost terminal,
       # excluding punctuation
-      def SynInterpreter.rightmost_terminal(node)
-        rightmost = node.yield_nodes_ordered.reverse.detect {|n| eval(self.name).category(n) != "pun"}
+      def self.rightmost_terminal(node)
+        rightmost = node.yield_nodes_ordered.reverse.detect {|n| category(n) != "pun"}
         unless rightmost
           rightmost = node.yield_nodes_ordered.last
         end
@@ -453,24 +450,22 @@ module Shalmaneser
       #
       # default: assume that either the PP node will have the preposition as its lemma,
       # or that the head terminal of the PP will be the preposition
-      def SynInterpreter.preposition(node)
+      def self.preposition(node)
         unless node.is_a? SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
 
         # preposition as lemma of this node?
-        if eval(self.name).category(node) == "prep" and
-          (lemma = eval(self.name).lemma_backoff(node)) and
-          not(lemma.empty?)
+        if category(node) == "prep" and
+          (lemma = lemma_backoff(node)) and not(lemma.empty?)
           return lemma
         end
 
         # head terminal is preposition and has a lemma?
-        hl = eval(self.name).head_terminal(node)
-        if hl and
-          eval(self.name).category(hl) == "prep" and
-          (lemma = eval(self.name).lemma_backoff(hl)) and
+        hl = head_terminal(node)
+        if hl and category(hl) == "prep" and
+          (lemma = lemma_backoff(hl)) and
           not(lemma.empty?)
           return lemma
         end
@@ -485,7 +480,7 @@ module Shalmaneser
       #
       # returns: SynNode, main node, if found
       # else nil
-      def SynInterpreter.main_node_of_expr(nodelist,
+      def self.main_node_of_expr(nodelist,
                                            no_mwes = nil) # non-nil: don't handle multiword expressions beyond verbs with separate particles
 
         # map nodes to terminals
@@ -550,7 +545,7 @@ module Shalmaneser
         end
         # nodelist2 includes lca's head terminal? then return that
         if lca_found and
-          (h = eval(self.name).head_terminal(lca)) and
+          (h = head_terminal(lca)) and
           nodelist2.include? h
           return h
         end
@@ -559,7 +554,7 @@ module Shalmaneser
         # try first verb, then first noun, then first adjective
         ["verb", "noun", "adj"].each { |cat|
           nodelist.each { |t|
-            if eval(self.name).category(t) == cat
+            if category(t) == cat
               return t
             end
           }
@@ -593,7 +588,7 @@ module Shalmaneser
       #
       #
       # default: use the SalsaTigerSentence method for this
-      def SynInterpreter.max_constituents(nodeset, # Array:SynNode
+      def self.max_constituents(nodeset, # Array:SynNode
                                           sent,    # SalsaTigerSentence
                                           idealize_maxconst = false, # boolean
                                           accept_anyway_proc = nil)  # procedure
@@ -621,7 +616,7 @@ module Shalmaneser
       # Since the implementation is highly parser-specific,
       # all that we can do in the default method is
       # always to return false.
-      def SynInterpreter.prune?(node, # SynNode
+      def self.prune?(node, # SynNode
                                 paths_to_target, # hash: node ID -> Path object: paths from nodes to target
                                 terminal_index)  # hash: terminal node -> word index in sentence
 
@@ -655,14 +650,14 @@ module Shalmaneser
       # look for path from from_node to to_node
       # already_covered is either nil or
       # a node whose subtree we have already searched
-      def SynInterpreter.search_up(from_node, # SynNode
+      def self.search_up(from_node, # SynNode
                                    to_node,   # SynNode
                                    already_covered) # SynNode
         # returns (1) the path from from_node to to_node,
         #         (2) just the part from the lca down to the node
         #         (3) the lowest common ancestor as node
 
-        path = eval(self.name).search_down(from_node,to_node, already_covered)
+        path = search_down(from_node,to_node, already_covered)
 
         if path.nil?
           # search down unsuccessful
@@ -677,7 +672,7 @@ module Shalmaneser
 
           else
             # search up
-            path = eval(self.name).search_up(parent,to_node, from_node)
+            path = search_up(parent,to_node, from_node)
 
             if path.nil?
               # no path found
@@ -685,7 +680,7 @@ module Shalmaneser
 
             else
               # search up was successful
-              parent_pt = eval(self.name).simplified_pt(parent)
+              parent_pt = simplified_pt(parent)
               path.add_first_step(from_node, "U", edgelabel, parent_pt)
               return path
             end
@@ -699,31 +694,29 @@ module Shalmaneser
 
       ###
       # search in tree
-      def SynInterpreter.search_down(from_node,        # SynNode
-                                     to_node,          # SynNode
-                                     already_explored) # SynNode
+      # @param [SynNode] from_node
+      # @param [SynNode] to_node
+      # @param [SynNode] already_explored
+      def self.search_down(from_node, to_node, already_explored)
 
         if from_node == to_node
           return Path.new(from_node)
-
         else
-
-          from_node.children.each {|c|
-
+          from_node.children.each do |c|
             if c == already_explored
               # we have done this subtree,
               # don't do it again
               next
             end
 
-            path = eval(self.name).search_down(c, to_node, already_explored)
+            path = search_down(c, to_node, already_explored)
 
             unless path.nil?
-              c_pt = eval(self.name).simplified_pt(c)
+              c_pt = simplified_pt(c)
               path.add_first_step(from_node, "D", c.parent_label, c_pt)
               return path
             end
-          }
+          end
 
           # no path found for any of the children
           return nil

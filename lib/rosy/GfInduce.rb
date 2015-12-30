@@ -12,7 +12,8 @@ require "ruby_class_extensions"
 #####################################################################
 # Management of mapping from GFs to paths
 #####################################################################
-
+module Shalmaneser
+module Rosy
 class GfiGfPathMapping
 
   #########################################
@@ -1111,4 +1112,6 @@ class GfInduce
     return [mainnode, lemma, pos]
   end
 
+end
+end
 end

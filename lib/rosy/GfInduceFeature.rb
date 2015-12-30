@@ -5,9 +5,11 @@
 # feature for Rosy
 
 require "rosy/GfInduce"
-require "rosy/AbstractFeatureAndExternal"
+require 'rosy/external_feature_extractor'
 require 'monkey_patching/file'
 
+module Shalmaneser
+module Rosy
 ################################
 # base class for all following feature extractors
 class GfInduceFeatureExtractor < ExternalFeatureExtractor
@@ -159,4 +161,6 @@ class GfInduceFeatureExtractor < ExternalFeatureExtractor
 
     output_dir
   end
+end
+end
 end

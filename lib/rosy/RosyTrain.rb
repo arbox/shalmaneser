@@ -16,6 +16,8 @@ require "rosy/RosyTrainingTestTable"
 # require "rosy/RosyPruning"
 require 'ml/classifier'
 
+module Shalmaneser
+module Rosy
 class RosyTrain < RosyTask
 
   def initialize(exp,      # RosyConfigData object: experiment description
@@ -184,7 +186,7 @@ class RosyTrain < RosyTask
 
     ####
     #for each frame/ for each target POS:
-    classif_dir = Rosy::classifier_directory_name(@exp,@step, @splitID)
+    classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp,@step, @splitID)
 
     @iterator.each_group { |group_descr_hash, group|
 
@@ -223,4 +225,6 @@ class RosyTrain < RosyTask
     }
 
   end
+end
+end
 end

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 require 'getoptlong'
-
+require 'definitions'
 require 'configuration/rosy_config_data'
+
+module Shalmaneser
 
 module Rosy
   class OptParser
@@ -100,9 +102,7 @@ module Rosy
         ['--task', '-t', GetoptLong::REQUIRED_ARGUMENT]
       ]
 
-      tasks.values.each { |more_optnames|
-        optnames.concat more_optnames
-      }
+      tasks.values.each { |more_optnames| optnames.concat more_optnames }
 
       optnames.uniq!
 
@@ -174,6 +174,7 @@ module Rosy
     end
 
     private
+
     def self.help
       $stderr.puts "
 ROSY: semantic ROle assignment SYstem Version 0.2
@@ -205,7 +206,7 @@ ruby rosy.rb --task|-t featurize --expfile|-e <e>
                   Use at least one of --logID, --dataset.
 
   --testID <i>    Use <i> as the ID for the table to store the test data.
-                  necessary only with '--dataset test'. default: #{default_test_ID}.
+                  necessary only with '--dataset test'. default: #{::Rosy.default_test_ID}.
 
   --append        Do not overwrite previously computed features
                   for this experiment.
@@ -387,7 +388,7 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
 
   --testID <i>    Use with --writefeatures: write features
                   for the test set with ID <i>.
-                  default: #{default_test_ID}.
+                  default: #{::Rosy.default_test_ID}.
 "
     end
 
@@ -409,3 +410,4 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
 
   end # class OptParser
 end # module Rosy
+end

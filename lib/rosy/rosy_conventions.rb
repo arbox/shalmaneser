@@ -1,5 +1,6 @@
 require 'monkey_patching/file'
 
+module Shalmaneser
 module Rosy
 
   module_function
@@ -61,4 +62,5 @@ module Rosy
   def default_test_ID
     "apply"
   end
+end
 end

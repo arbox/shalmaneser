@@ -50,6 +50,8 @@ module Shalmaneser
         # @todo Rename the config data class.
         exp = ::Shalmaneser::Configuration::FrappeConfigData.new(@options[:exp_file])
 
+        # @todo AB: [2015-12-28 Mon 19:22]
+        #   Move this to ConfigData.
         ExternalSystems.check_interfaces_abort_if_missing(exp)
 
         exp

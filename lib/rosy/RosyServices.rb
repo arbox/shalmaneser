@@ -13,11 +13,12 @@ require "rosy/RosyIterator"
 require "rosy/RosySplit"
 require "rosy/RosyTask"
 require "rosy/RosyTrainingTestTable"
-require "rosy/View"
+# require "rosy/View"
 
 # Frprep packages
 require 'configuration/frappe_config_data'
-
+module Shalmaneser
+module Rosy
 ###################################################
 class RosyServices < RosyTask
 
@@ -740,3 +741,5 @@ class RosyServices < RosyTask
     end
   end
  end
+end
+end

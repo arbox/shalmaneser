@@ -30,10 +30,12 @@ require 'ruby_class_extensions'
 # require "RosyConventions"
 require 'value_restriction'
 require 'db/select_table_and_columns'
-# require "rosy/RosyPruning"
+require 'db/db_view'
 require "rosy/RosySplit"
 require "rosy/RosyTrainingTestTable"
 
+module Shalmaneser
+module Rosy
 class RosyIterator
 
   ###
@@ -477,4 +479,6 @@ class DynGoldBinary
   def id
     return "binary_gold"
   end
+end
+end
 end
