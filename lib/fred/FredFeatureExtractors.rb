@@ -1,3 +1,5 @@
+module Shalmaneser
+module Fred
 class FredFeatureInfo
   ###
   # class variable:
@@ -319,4 +321,6 @@ class FredSynsemFeatureExtractor < FredFeatureExtractor
       end
     }
   end
+end
+end
 end

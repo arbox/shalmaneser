@@ -25,7 +25,8 @@ require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
 
 require 'salsa_tiger_xml/file_parts_parser'
-
+module Shalmaneser
+module Fred
 class FredTest
 
   ###
@@ -78,7 +79,7 @@ class FredTest
       if @exp.get("directory_output")
         $stderr.puts @exp.get("directory_output")
       else
-        $stderr.puts Fred.fred_dirname(@exp, "output", "stxml", "new")
+        $stderr.puts ::Shalmaneser::Fred.fred_dirname(@exp, "output", "stxml", "new")
       end
     end
     $stderr.puts "---------"
@@ -135,8 +136,8 @@ class FredTest
       dataset = "test"
     end
 
-    output_dir = Fred.fred_dirname(@exp, "output", "tab", "new")
-    classif_dir = Fred.fred_classifier_directory(@exp, @split_id)
+    output_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "output", "tab", "new")
+    classif_dir = ::Shalmaneser::Fred.fred_classifier_directory(@exp, @split_id)
 
     ###
     # remove old classifier output files
@@ -190,11 +191,11 @@ class FredTest
         senses_and_filenames.each { |sense, filename|
           @classifiers.each { |classifier, classifier_name|
             if @exp.get("binary_classifiers") and \
-               classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
+               classifier.exists? classif_dir + ::Shalmaneser::Fred.fred_classifier_filename(classifier_name,
                                                                               lemma, sense)
               found += 1
             elsif not(@exp.get("binary_classifiers")) and\
-                 classifier.exists? classif_dir + Fred.fred_classifier_filename(classifier_name,
+                 classifier.exists? classif_dir + ::Shalmaneser::Fred.fred_classifier_filename(classifier_name,
                                                                                 lemma)
               found += 1
             end
@@ -235,7 +236,7 @@ tried to apply n-ary ones (or vice versa.)
       # line entry: list of pairs [sense, confidence]
       results_this_lemma = []
 
-      training_senses = Fred.determine_training_senses(lemma, @exp,
+      training_senses = ::Shalmaneser::Fred.determine_training_senses(lemma, @exp,
                                                        @lemmas_and_senses, @split_id)
 
       senses_and_filenames.each { |sense, filename|
@@ -270,7 +271,7 @@ tried to apply n-ary ones (or vice versa.)
           classifiers_read_okay = true
           @classifiers.each { |classifier, classifier_name|
 
-            stored_classifier = classif_dir + Fred.fred_classifier_filename(classifier_name,
+            stored_classifier = classif_dir + ::Shalmaneser::Fred.fred_classifier_filename(classifier_name,
                                                                             lemma, sense)
             status = classifier.read(stored_classifier)
             unless status
@@ -305,7 +306,7 @@ tried to apply n-ary ones (or vice versa.)
       # if we have binary classifiers, join.
       results_this_lemma = join_binary_classifier_results(results_this_lemma)
 
-      outfilename = output_dir + Fred.fred_result_filename(lemma)
+      outfilename = output_dir + ::Shalmaneser::Fred.fred_result_filename(lemma)
       begin
         outfile = File.new(outfilename, "w")
       rescue
@@ -489,7 +490,7 @@ tried to apply n-ary ones (or vice versa.)
     if @exp.get("directory_output")
       output_dir = File.new_dir(@exp.get("directory_output"))
     else
-      output_dir = Fred.fred_dirname(@exp, "output", "stxml", "new")
+      output_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "output", "stxml", "new")
     end
 
     $stderr.puts "Writing SalsaTigerXML output to #{output_dir}"
@@ -503,7 +504,7 @@ tried to apply n-ary ones (or vice versa.)
     }
 
     # input directory: where we stored the zipped input files
-    input_dir = Fred.fred_dirname(@exp, "test", "input_data")
+    input_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "test", "input_data")
 
     ##
     # map results to target IDs, using answer key files
@@ -605,4 +606,6 @@ tried to apply n-ary ones (or vice versa.)
 
   end
 
+end
+end
 end

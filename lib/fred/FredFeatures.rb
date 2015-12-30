@@ -5,6 +5,8 @@ require "delegate"
 require "fred/FredFeatureExtractors"
 require 'fred/FredConventions' # !
 
+module Shalmaneser
+module Fred
 ########################################
 ########################################
 # Feature access classes:
@@ -79,7 +81,7 @@ class MetaFeatureAccess < AbstractFredFeatureAccess
 
   ####
   def MetaFeatureAccess.filename(exp, dataset, mode="new")
-    return Fred.fred_dirname(exp, dataset, "meta_features", mode) +
+    return ::Shalmaneser::Fred.fred_dirname(exp, dataset, "meta_features", mode) +
       "meta_features.txt.gz"
   end
 
@@ -280,7 +282,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
   def FredFeatureAccess.each_feature_file(exp, dataset)
     feature_dir = FredFeatureAccess.feature_dir(exp, dataset)
     Dir[feature_dir + "*"].sort.each { |filename|
-      if (values = Fred.deconstruct_fred_feature_filename(filename))
+      if (values = ::Shalmaneser::Fred.deconstruct_fred_feature_filename(filename))
         yield [filename, values]
       end
     }
@@ -324,7 +326,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
         senses = "NONE"
     end
 
-    writer = @w_tmp.get_writer_for(Fred.fred_lemmapos_combine(lemma, pos))
+    writer = @w_tmp.get_writer_for(::Shalmaneser::Fred.fred_lemmapos_combine(lemma, pos))
     ids_s = ids.map { |i| i.gsub(/:/, "COLON") }.join("::")
 
     # AB: Ines modified <senses> and it can be a String.
@@ -356,10 +358,10 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     # get stored in feature_legend_dir
     case @dataset
     when "train"
-      feature_legend_dir = File.new_dir(Fred.fred_classifier_directory(@exp),
+      feature_legend_dir = File.new_dir(::Shalmaneser::Fred.fred_classifier_directory(@exp),
                                         "legend")
     when "test"
-      feature_legend_dir= File.existing_dir(Fred.fred_classifier_directory(@exp),
+      feature_legend_dir= File.existing_dir(::Shalmaneser::Fred.fred_classifier_directory(@exp),
                                         "legend")
     end
 
@@ -627,7 +629,7 @@ class FredFeatureAccess < AbstractFredFeatureAccess
     when "keep"
       yield [senses, senses]
     when "join"
-      yield [ [Fred.fred_join_senses(senses)], senses]
+      yield [[::Shalmaneser::Fred.fred_join_senses(senses)], senses]
     when "repeat"
       senses.each { |s|
         yield [ [s], senses]
@@ -680,8 +682,8 @@ class AnswerKeyAccess
 
     @mode = mode
 
-    answer_filename = Fred.fred_dirname(exp, dataset, "keys", "new") +
-      Fred.fred_answerkey_filename(lemmapos)
+    answer_filename = ::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") +
+      ::Shalmaneser::Fred.fred_answerkey_filename(lemmapos)
 
     # are we reading the whole answer key file, or only the test part
     # of a split of it?
@@ -778,7 +780,7 @@ class AnswerKeyAccess
 
   ###
   def AnswerKeyAccess.remove_files(exp, dataset)
-    Dir[Fred.fred_dirname(exp, dataset, "keys", "new") + Fred.fred_answerkey_filename("*")].each { |filename|
+    Dir[::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") + ::Shalmaneser::Fred.fred_answerkey_filename("*")].each { |filename|
       if File.exists?(filename)
         File.delete(filename)
       end
@@ -894,7 +896,7 @@ class WriteFeaturesNary
                  dataset,
                  feature_dir)
 
-    @filename = feature_dir + Fred.fred_feature_filename(lemma)
+    @filename = feature_dir + ::Shalmaneser::Fred.fred_feature_filename(lemma)
     @f = File.new(@filename, "w")
     @handle_multilabel = exp.get("handle_multilabel")
   end
@@ -979,7 +981,7 @@ class WriteFeaturesBinary
       # do we have a sense file for this sense?
       unless @files[sense]
         # open new file for this sense
-        @files[sense] = File.new(@feature_dir + Fred.fred_feature_filename(@lemma, sense, true), "w")
+        @files[sense] = File.new(@feature_dir + ::Shalmaneser::Fred.fred_feature_filename(@lemma, sense, true), "w")
         # filename = @feature_dir + Fred.fred_feature_filename(@lemma, sense, true)
         # $stderr.puts "Starting new feature file #{filename}"
 
@@ -1046,17 +1048,19 @@ class WriteFeaturesNaryOrBinary < SimpleDelegator
 
   def WriteFeaturesNaryOrBinary.feature_dir(exp, dataset,
                                             mode = "existing")
-    return Fred.fred_dirname(exp, dataset, "features", mode)
+    return ::Shalmaneser::Fred.fred_dirname(exp, dataset, "features", mode)
   end
 
   ###
   def WriteFeaturesNaryOrBinary.remove_files(exp, dataset)
     feature_dir = WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
 
-    Dir[feature_dir + Fred.fred_feature_filename("*")].each { |filename|
+    Dir[feature_dir + ::Shalmaneser::Fred.fred_feature_filename("*")].each { |filename|
       if File.exists? filename
         File.delete(filename)
       end
     }
   end
+end
+end
 end

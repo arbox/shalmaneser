@@ -14,7 +14,8 @@
 
 # Fred packages
 require "fred/FredSplitPkg"
-
+module Shalmaneser
+module Fred
 class FredSplit
 
   ###
@@ -79,4 +80,6 @@ class FredSplit
     @split_obj.make_new_split(@split_id, @trainpercent,
                               @ignore_unambiguous)
   end
+end
+end
 end

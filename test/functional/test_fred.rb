@@ -46,7 +46,7 @@ class TestFred < Minitest::Test
     remove_exp_file(PRP_TRAIN_FILE_FRED_STD)
   end
 
-  def atest_fred_training_split
+  def test_fred_training_split
     create_exp_file(@train_file)
     create_exp_file(PRP_TRAIN_FILE_FRED_STD)
     execute("ruby -I lib bin/fred -t split -e #{@train_file} --logID myLog --trainpercent 80")

@@ -1,3 +1,5 @@
+module Shalmaneser
+module Fred
 class FileZipped
 
   # @todo Rewrite this class using stdlib.
@@ -29,4 +31,6 @@ class FileZipped
       raise "Error opening file #{filename}."
     end
   end
+end
+end
 end

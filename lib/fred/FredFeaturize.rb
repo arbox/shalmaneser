@@ -35,6 +35,8 @@ require 'fred/FredBOWContext'
 require 'fred/FredDetermineTargets'
 require 'fred/FredFeatures'
 
+module Shalmaneser
+module Fred
 ####################################
 # grammatical function computation:
 # given a sentence, keep all grammatical function relations in a hash
@@ -263,7 +265,7 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
                                         @interpreter_class, target_obj, @dataset)
     end
 
-    zipped_input_dir = Fred.fred_dirname(@exp, @dataset, "input_data", "new")
+    zipped_input_dir = ::Shalmaneser::Fred.fred_dirname(@exp, @dataset, "input_data", "new")
 
     ##
     # make writer object(s)
@@ -570,4 +572,6 @@ class FredFeaturize < DelegateClass(GrammaticalFunctionAccess)
       end
     end
   end
+end
+end
 end

@@ -23,6 +23,8 @@ require 'db/sql_query'
 
 require 'salsa_tiger_xml/file_parts_parser'
 
+module Shalmaneser
+module Fred
 ########################################
 # Context Provider classes:
 # read in text, collecting context windows of given size
@@ -676,9 +678,9 @@ class NoncontiguousContextProvider < AbstractContextProvider
     # make unique experiment ID
     experiment_id = "larger_corpus"
     # input and output directory for frprep
-    frprep_in = Fred.fred_dirname(@exp, "temp", "in", "new")
-    frprep_out = Fred.fred_dirname(@exp, "temp", "out", "new")
-    frprep_dir = Fred.fred_dirname(@exp, "temp", "frprep", "new")
+    frprep_in = ::Shalmaneser::Fred.fred_dirname(@exp, "temp", "in", "new")
+    frprep_out = ::Shalmaneser::Fred.fred_dirname(@exp, "temp", "out", "new")
+    frprep_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "temp", "frprep", "new")
 
     # write file:
 
@@ -883,4 +885,6 @@ class NoncontiguousContextProvider < AbstractContextProvider
     $stderr.puts "Unmatched sentences: #{num_unmatched} all in all."
   end
 
+end
+end
 end

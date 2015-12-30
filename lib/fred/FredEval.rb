@@ -22,7 +22,8 @@ require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"
-
+module Shalmaneser
+module Fred
 class FredEval < Eval
 
   ###
@@ -45,7 +46,7 @@ class FredEval < Eval
 
         @split_id = arg
       when "--printLog"
-        logfilename = Fred.fred_dirname(@exp, "eval", "log", "new") +
+        logfilename = ::Shalmaneser::Fred.fred_dirname(@exp, "eval", "log", "new") +
                       "eval_logfile.txt"
 
       else
@@ -55,7 +56,7 @@ class FredEval < Eval
 
     ###
     # make outfile name
-    outfilename =  Fred.fred_dirname(@exp, "eval", "eval", "new") +
+    outfilename =  ::Shalmaneser::Fred.fred_dirname(@exp, "eval", "eval", "new") +
                    "eval.txt"
 
     ###
@@ -104,7 +105,7 @@ class FredEval < Eval
       $stderr.puts "Allowing for the assignment of multiple senses,"
       $stderr.puts "computing precision and recall against the full sense list of a lemma."
     end
-    $stderr.puts "Writing result to #{Fred.fred_dirname(@exp, "eval", "eval")}"
+    $stderr.puts "Writing result to #{::Shalmaneser::Fred.fred_dirname(@exp, "eval", "eval")}"
     $stderr.puts "---------"
   end
 
@@ -122,7 +123,7 @@ class FredEval < Eval
   def each_group
 
     # access to classifier output files
-    output_dir = Fred.fred_dirname(@exp, "output", "tab")
+    output_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "output", "tab")
     # access to answer key files
 
     if @split_id
@@ -141,7 +142,7 @@ class FredEval < Eval
 
       # file with classification results
       begin
-        @classfile = File.new(output_dir + Fred.fred_result_filename(lemma))
+        @classfile = File.new(output_dir + ::Shalmaneser::Fred.fred_result_filename(lemma))
       rescue
         # no classification results
         @classfile = nil
@@ -219,7 +220,7 @@ class FredEval < Eval
           # we have a sense label
           if @handle_multilabel == "join"
             # split up joined senses
-            current_sense = Fred.fred_split_sense(entry)
+            current_sense = ::Shalmaneser::Fred.fred_split_sense(entry)
           else
             current_sense = [entry]
           end
@@ -305,5 +306,6 @@ class FredEval < Eval
       end
     }
   end
-
+end
+end
 end

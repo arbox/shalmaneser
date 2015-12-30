@@ -8,7 +8,8 @@ require "tempfile"
 
 require "fred/FredDetermineTargets"
 require 'fred/FredConventions' # !
-
+module Shalmaneser
+module Fred
 class FredSplitPkg
   ###
   def initialize(exp)
@@ -17,7 +18,7 @@ class FredSplitPkg
 
   ###
   def FredSplitPkg.split_dir(exp, split_id, mode = "existing")
-    return Fred.fred_dirname(exp, "split", split_id, mode)
+    return ::Shalmaneser::Fred.fred_dirname(exp, "split", split_id, mode)
   end
 
   ###
@@ -41,11 +42,11 @@ class FredSplitPkg
     #
     # Do the split only once per lemma,
     # even if we have sense-specific feature files
-    feature_dir =  Fred.fred_dirname(@exp, "train", "features")
+    feature_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "train", "features")
 
     lemmas_and_senses.get_lemmas.each { |lemma|
       # construct split file
-      splitfilename = split_dir + Fred.fred_split_filename(lemma)
+      splitfilename = split_dir + ::Shalmaneser::Fred.fred_split_filename(lemma)
       begin
         splitfile = File.new(splitfilename, "w")
       rescue
@@ -54,11 +55,11 @@ class FredSplitPkg
 
       # find lemma-specific  feature file
 
-      filename = feature_dir + Fred.fred_feature_filename(lemma)
+      filename = feature_dir + ::Shalmaneser::Fred.fred_feature_filename(lemma)
 
       unless File.exist?(filename)
         # try lemma+sense-specific feature file
-        file_pattern = Fred.fred_feature_filename(lemma, "*", true)
+        file_pattern = ::Shalmaneser::Fred.fred_feature_filename(lemma, "*", true)
         filename = Dir[feature_dir + file_pattern].first
 
         unless filename
@@ -131,7 +132,7 @@ class FredSplitPkg
 
 
     split_filename = FredSplitPkg.split_dir(@exp, split_id) +
-      Fred.fred_split_filename(lemma)
+      ::Shalmaneser::Fred.fred_split_filename(lemma)
 
     # read feature file and split file at the same time
     # write to tempfile.
@@ -177,4 +178,6 @@ class FredSplitPkg
     end
 
   end
+end
+end
 end

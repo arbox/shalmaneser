@@ -11,6 +11,8 @@ require 'salsa_tiger_xml/salsa_tiger_xml_helper'
 # as a tuple
 #
 # WARNING: word and lemma are turned to lowercase
+module Shalmaneser
+module Fred
 module WordLemmaPosNe
   # @param syn_obj [SynNode]
   # @param i [SynInterpreter]
@@ -44,4 +46,6 @@ module WordLemmaPosNe
 
     [word, lemma, pos, ne]
   end
+end
+end
 end

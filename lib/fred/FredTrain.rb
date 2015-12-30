@@ -14,6 +14,8 @@ require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
 
+module Shalmaneser
+module Fred
 class FredTrain
 
   ###
@@ -86,7 +88,7 @@ class FredTrain
       split_obj = nil
     end
 
-    classif_dir = Fred.fred_classifier_directory(@exp, @split_id)
+    classif_dir = ::Shalmaneser::Fred.fred_classifier_directory(@exp, @split_id)
     # iterate through instance files
     FredFeatureAccess.each_feature_file(@exp, "train") { |filename, values|
       # progress report
@@ -95,7 +97,7 @@ class FredTrain
       end
 
       # only one sense? then just assign that
-      num_senses = Fred.determine_training_senses(values["lemma"], @exp,
+      num_senses = ::Shalmaneser::Fred.determine_training_senses(values["lemma"], @exp,
                                              @lemmas_and_senses,
                                              @split_id).length
 
@@ -116,7 +118,7 @@ class FredTrain
 
         @classifiers.each { |classifier, classifier_name|
           # where do we write the classifier?
-          output_name = classif_dir + Fred.fred_classifier_filename(classifier_name,
+          output_name = classif_dir + ::Shalmaneser::Fred.fred_classifier_filename(classifier_name,
                                                                values["lemma"],
                                                                values["sense"])
           # HIER
@@ -137,4 +139,6 @@ class FredTrain
 
     } # each feature file
   end
+end
+end
 end

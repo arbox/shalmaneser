@@ -3,8 +3,12 @@
 # $RoughId: md5.rb,v 1.4 2001/07/13 15:38:27 knu Exp $
 # $Id: md5.rb 12008 2007-03-06 10:12:12Z knu $
 
+
 require 'digest/md5'
 
+module Shalmaneser
+module Fred
+# @todo Ivestigate if this modification is required.
 class MD5 < Digest::MD5
   class << self
     alias orig_new new
@@ -20,4 +24,6 @@ class MD5 < Digest::MD5
       new(*args)
     end
   end
+end
+end
 end

@@ -9,6 +9,8 @@ require 'fred/FredConventions' # !
 # either determine targets from existing annotation
 # with frames,
 # or use all known targets.
+module Shalmaneser
+module Fred
 class Targets
   attr_reader :targets_okay
 
@@ -25,7 +27,7 @@ class Targets
 
     # write target info in the classifier directory.
     # This is _not_ dependent on a potential split ID
-    @dir = File.new_dir(Fred.fred_classifier_directory(@exp), "targets")
+    @dir = File.new_dir(::Shalmaneser::Fred.fred_classifier_directory(@exp), "targets")
 
     @targets_okay = true
     case mode
@@ -95,7 +97,7 @@ class Targets
   ##
   # access to lemmas and POS, returns a list of pairs [lemma, pos] (string*string)
   def get_lemma_pos
-    @targets.keys.map { |lemmapos| Fred.fred_lemmapos_separate(lemmapos) }
+    @targets.keys.map { |lemmapos| ::Shalmaneser::Fred.fred_lemmapos_separate(lemmapos) }
   end
 
   ##
@@ -128,7 +130,7 @@ class Targets
   # record: record occurrence of a lemma/sense pair
   # <@targets> data structure
   def record(target_info)
-    lemmapos = Fred.fred_lemmapos_combine(target_info["lex"], target_info["pos"])
+    lemmapos = ::Shalmaneser::Fred.fred_lemmapos_combine(target_info["lex"], target_info["pos"])
     unless @targets[lemmapos]
       @targets[lemmapos] = []
     end
@@ -313,4 +315,6 @@ class FindAllTargets < Targets
 
     return retv
   end
+end
+end
 end

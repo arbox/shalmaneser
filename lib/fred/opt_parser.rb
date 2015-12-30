@@ -6,6 +6,7 @@
 require 'getoptlong'
 require 'configuration/fred_config_data'
 
+module Shalmaneser
 module Fred
 
   # This class parses options for Fred.
@@ -121,7 +122,7 @@ module Fred
 
       ##
       # open config file
-      exp = Shalmaneser::Configuration::FredConfigData.new(experiment_filename)
+      exp = ::Shalmaneser::Configuration::FredConfigData.new(experiment_filename)
 
       # sanity checks
       unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
@@ -266,3 +267,4 @@ ruby fred.rb --task|-t test --expfile|-e <e>
     end
   end # class OptParser
 end # module Fred
+end

@@ -10,6 +10,8 @@ require "fred/FredSplitPkg"
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"
 
+module Shalmaneser
+module Fred
 class Baseline
   ###
   # new
@@ -85,7 +87,7 @@ class Baseline
   end
 
   def read(classifier_file)
-    values = Fred.deconstruct_fred_classifier_filename(File.basename(classifier_file))
+    values = ::Shalmaneser::Fred.deconstruct_fred_classifier_filename(File.basename(classifier_file))
     @lemma = values["lemma"]
     if @lemma
       return true
@@ -148,4 +150,6 @@ class Baseline
 
     return true
   end
+end
+end
 end

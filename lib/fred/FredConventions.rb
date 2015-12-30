@@ -7,6 +7,7 @@
 require 'monkey_patching/file.rb'
 require 'fred/FredFeatures' # AnswerKeyAccess
 
+module Shalmaneser
 module Fred
 
   module_function
@@ -235,4 +236,5 @@ module Fred
       return [lemmapos, nil]
     end
   end
+end
 end

@@ -9,6 +9,7 @@ require 'fred/FredEval'
 require 'logging'
 require 'definitions'
 
+module Shalmaneser
 module Fred
   class Fred
     def initialize(options)
@@ -42,7 +43,8 @@ module Fred
 
       task.compute
 
-      Shalmaneser::LOGGER.info "#{Shalmaneser::Fred::PROGRAM_NAME} finished Predicate Disambiguation!"
+      ::Shalmaneser::LOGGER.info "#{::Shalmaneser::Fred::PROGRAM_NAME} finished Predicate Disambiguation!"
     end
   end # class Fred
 end # module Fred
+end

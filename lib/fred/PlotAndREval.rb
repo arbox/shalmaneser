@@ -1,6 +1,9 @@
 require "tempfile"
 require "StandardPkgExtensions"
 
+module Shalmaneser
+module Fred
+# @todo Ivestigate where this module is used.
 module PlotAndREval
 
   ############
@@ -474,4 +477,6 @@ module PlotAndREval
     rfout.close(true)
     textout.close
   end
+end
+end
 end

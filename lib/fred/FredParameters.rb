@@ -35,6 +35,8 @@ require 'fred/FredEval'
 #
 # <var>:<start>-<end>:<slide>
 #       with var in { smoothing_lambda, window_size }
+module Shalmaneser
+module Fred
 class SlideVar
   attr_reader :var_name
 
@@ -275,7 +277,7 @@ class FredParameters
     ##
     # make a split of the training data
     begin
-      feature_dir =  Fred.fred_dirname(@exp, "train", "features")
+      feature_dir = ::Shalmaneser::Fred.fred_dirname(@exp, "train", "features")
     rescue
       $stderr.puts "To experiment with system parameters, please first featurize training data."
       exit 1
@@ -396,4 +398,6 @@ class FredParameters
     end
   end
 
+end
+end
 end

@@ -10,7 +10,12 @@
 require 'fred/opt_parser'
 require 'fred/fred'
 
-options = Fred::OptParser.parse(ARGV)
+begin
+  options = ::Shalmaneser::Fred::OptParser.parse(ARGV)
 
-fred = Fred::Fred.new(options)
-fred.assign
+  fred = ::Shalmaneser::Fred::Fred.new(options)
+  fred.assign
+rescue => e
+  $stderr.puts 'Fred cannot serve you!'
+  $stderr.puts e.message, e.backtrace
+end
