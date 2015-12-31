@@ -1,0 +1,263 @@
+#################################################
+# This is a sample experiment file
+# with explanations of all features
+# that can be set for the ROSY system.
+#
+# To start your own experiment,
+# replace all occurrences of
+# %SOMETHING% or %PATH% or %PARAMETERS%
+# by values of your choice.
+#
+# Experiment file lines that start with '#'
+# are comments and are ignored. Empty lines are ignored as well.
+
+########################
+# Experiment description
+#
+
+##
+# Experiment ID:
+# Uniquely identifies files and database tables
+# of this experiment.
+# The experiment ID is a word (no spaces) of
+# letters in [A-Za-z_].
+# Setting this to a wrong value.
+experiment_ID = wrong#value!
+
+# directories
+# - data directory: where Rosy puts its internal data
+# - input directory:
+#   where Rosy reads its input SalsaTigerXML data.
+#   One directory each for the training and the test data
+# - output directory:
+#   where Rosy writes its output SalsaTigerXML data:
+#   same frames as in the input data, but frame elements newly
+#   assigned.
+#   If no output directory is given, output is to
+#   <data_dir>/<experiment_ID>/output/
+# - classifier_dir: If present, this is where trained classifiers
+#   are written.
+#   Otherwise they are written to <data_dir>/<experiment_id>/classif_dir
+data_dir = <%= File.expand_path('test/functional/output') %>
+directory_input_test = <%= File.expand_path('test/functional/input/rosy/test.salsa') %>
+classifier_dir = <%= File.expand_path('test/functional/input/rosy/cls') %>
+
+##
+# Preprocessing settings:
+# frprep experiment files for training and test data.
+preproc_descr_file_train = <%= File.expand_path('test/functional/sample_experiment_files/prp_train.salsa.rosy.standalone') %>
+preproc_descr_file_test = <%= File.expand_path('test/functional/sample_experiment_files/prp_test.salsa.rosy.standalone') %>
+
+
+########################
+# features
+#
+# Please specify all features that you would like
+# Rosy to compute.
+# Note: The system distinguishes between features to be
+#   computed and features to be included in the model,
+#   so you can compute features once and then vary features
+#   included in the model.
+#
+# Format for each feature specification:
+#  feature = <feature_name> [dontuse | argrec | arglab | onestep]
+#
+# dontuse: the feature is computed but not included in the model.
+# argrec, arglab, onestep: the feature is used only in this
+#          processing step
+#
+#
+# The set of features computed must stay the same throughout
+# an experiment (or the match of experiment file and
+# database table will fail), but the set of features included
+# in the model can be varied.
+#
+# See below for a list of all features currently available in the system.
+
+feature = pt_path
+feature = gf_path
+feature = path
+feature = path_length
+feature = pt_combined_path
+feature = gf_combined_path
+feature = combined_path
+feature = pt_partial_path
+feature = gf_partial_path
+feature = partial_path
+feature = pt_gvpath
+feature = gf_gvpath
+feature = gvpath
+feature = ancestor_rule
+feature = relpos
+feature = pt
+feature = gf
+feature = father_pt
+feature = frame
+feature = target
+feature = target_pos
+feature = target_voice
+feature = gov_verb
+feature = prep
+feature = const_head
+feature = const_head_pos
+feature = icont_word
+feature = firstword
+feature = lastword
+feature = leftsib
+feature = rightsib
+feature = worddistance
+feature = ismaxproj
+feature = nearest_node
+feature = prune
+
+########################
+# classifiers
+#
+# Please specify each classifier type you want to use.
+# If you specify more than one classifier, classifier combination
+# is used.
+#
+# Format for each classifier specification:
+#   classifier = <classifier_name> <path> [<parameters>]
+#
+# Possible values for <classifier_name> at the moment:
+#   timbl (memory-based learning),
+#   maxent (openlp maxent system)
+#
+# Samples:
+# classifier = timbl /prog/MachineLearning/Timbl5/
+# classifier = maxent /prog/maxent-2.4.0 /prog/shalmaneser/program/tools/maxent
+
+classifier = maxent <%= File.expand_path('tools/maxent/maxent-2.4.0') %>
+
+########################
+# further settings
+
+# Pruning: Identify constituents that are very unlikely
+# to instantiate a semantic role, and prune them prior
+# to the training/application of classifiers?
+#
+# Pruning methods available at the moment:
+#   prune: Xue/Palmer EMNLP 2004, adapted to fit each individual parser
+#
+# To enable pruning, set "prune" to the pruning method of your choice,
+# and also compute the feature of the same name -- see
+# feature list below.
+# To disable pruning, comment out the next line.
+prune = prune
+
+# verbose mode
+verbose = true
+
+# data adaptation:
+# correct training labels to
+# match syntax better?
+fe_syn_repair = true
+fe_rel_repair = false
+
+# xwise: For each classification step (argrec, arglab, onestep)
+# you can set the granularity of training:
+# - by frame (frame)
+# - by target part of speech or (target_pos)
+# - by target lemma. (target)
+#
+# these three settings can be combined, e.g.
+#   xwise_argrec = target_pos frame
+# to train argrec frame-wise and split each frame by target POS.
+#
+# If no value is given for xwise_<step>, the default is "frame".
+xwise_argrec = frame
+xwise_arglab = frame
+xwise_onestep = frame
+
+
+# assume_argrec_perfect: by default, this is false.
+#
+#   Set this to true
+#   to perform the arglab (argument labeling) step
+#   on all instances that actually are FEs
+#   rather than on all instances that the argrec step
+#   has judged to be FEs.
+assume_argrec_perfect = false
+
+# split_nones: set to true
+#   to split the NONE target class into:
+#     NONE left of target,
+#     NONE right of target
+#   because the NONE class has so many more instances
+#   than any other.
+split_nones = true
+
+
+# print_eval_log: set to true to print individual correctness
+# judgments for each instance evaluated
+print_eval_log = true
+
+# External data source:
+#
+# Rosy can integrate data computed by additional systems
+# provided that they all use a common experiment file
+# for external data to determine where they put their data.
+# Rosy needs the path to that experiment file.
+#
+# (May be left unset when no external data is used)
+#external_descr_file = %PATH%
+
+
+########################
+# rosy internal data - please don't change
+
+# Database access:
+# dbtype: type of database, either mysql
+#   for a MySQL server, or sqlite for SQLite.
+#
+# if dbtype == mysql, set access parameters:
+#   host: database server
+#   user: user name to use
+#   passwd: password for user
+#   dbname: database where all Rosy's tables will be stored
+
+dbtype = mysql
+host = localhost
+user = shalm
+passwd = 12345
+dbname = shalm11
+
+# classifier output columns in the tables all start
+# with this prefix
+classif_column_name = classif
+
+# pattern for constructing the names
+# of the DB tables with training data (main_table_name)
+# and test data (test_table_name)
+main_table_name = rosy_<exp_ID>_main
+test_table_name = rosy_<exp_ID>_<test_ID>
+
+# string to use for "no value for this feature"
+# as well as "no FE for this instance"
+noval = NONE
+
+# pattern for constructing the names
+# of classifier files and classifier output files
+classifier_file = classif.<classif>.<group>
+classifier_output_file = classout.<classif>.<group>.<dataset>
+
+# pattern for constructing the names
+# of the evaluation file and the evaluation log file
+eval_file = eval.<exp_ID>.<step>.<test_ID>
+log_file = eval_log.<exp_ID>.<step>.<test_ID>
+
+# pattern for constructing the names
+# of the files with failed parses
+failed_file = parsefail.<exp_ID>.<split_ID>.<dataset>
+
+# Added from <preproc_descr_file_test>.
+do_lemmatize = true
+do_postag = false
+do_parse = true
+
+pos_tagger = treetagger
+lemmatizer = treetagger
+parser = berkeley
+
+#language = de

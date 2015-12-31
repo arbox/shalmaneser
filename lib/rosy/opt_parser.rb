@@ -107,7 +107,7 @@ module Rosy
       optnames.uniq!
 
       begin
-        opts = options_hash(GetoptLong.new(*optnames))
+        opts = GetoptLong.new(*optnames)
       rescue => e
         $stderr.puts "Error: unknown command line option: #{e.message}!"
         exit 1
@@ -115,8 +115,10 @@ module Rosy
 
       experiment_filename = nil
 
+      opts = options_hash(opts)
       ##
       # are we being asked for help?
+      # @ todo work with the empty case
       if opts['--help']
         help
         exit(0)
@@ -130,14 +132,15 @@ module Rosy
         help
         exit(0)
       end
-      unless tasks.keys.include? task
-        $stderr.puts "Sorry, I don't know the task '#{task}'. Do 'ruby rosy.rb -h' for a list of tasks."
+
+      unless tasks.keys.include?(task)
+        $stderr.puts "Sorry, I don't know the task '#{task}'. Do 'rosy -h' for a list of tasks."
         exit 1
       end
 
       ##
       # now evaluate the rest of the options
-      opts.each_pair { |opt,arg|
+      opts.each_pair do |opt, arg|
         case opt
         when '--help', '--task'
           # we already handled this
@@ -151,8 +154,7 @@ module Rosy
             exit 1
           end
         end
-      }
-
+      end
 
       if experiment_filename.nil?
         $stderr.puts "I need an experiment file name, option --expfile|-e"
@@ -164,12 +166,6 @@ module Rosy
 
       exp = ::Shalmaneser::Configuration::RosyConfigData.new(experiment_filename)
 
-      # sanity checks
-      unless exp.get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
-        $stderr.puts "Please choose an experiment ID consisting only of the letters A-Za-z0-9_."
-        exit 1
-      end
-
       [exp, opts]
     end
 
@@ -177,7 +173,7 @@ module Rosy
 
     def self.help
       $stderr.puts "
-ROSY: semantic ROle assignment SYstem Version 0.2
+ROSY: semantic ROle assignment SYstem, Version #{VERSION}
 
 Usage:
 
@@ -388,7 +384,7 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
 
   --testID <i>    Use with --writefeatures: write features
                   for the test set with ID <i>.
-                  default: #{::Rosy.default_test_ID}.
+                  default: #{::Shalmaneser::Rosy.default_test_ID}.
 "
     end
 
