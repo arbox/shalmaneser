@@ -36,12 +36,12 @@ module Shalmaneser
           parser.parse(cmd_args)
         rescue OptionParser::InvalidArgument => e
           arg = e.message.split.last
-          $stderr.puts "The provided argument #{arg} is currently not supported!"
-          $stderr.puts "Please colsult <#{@prg_name} --help>."
+          $stderr.puts "The provided argument #{arg} is currently not supported!\n"\
+                       "Please consult <#{@prg_name} --help>."
           exit(1)
         rescue OptionParser::InvalidOption => e
-          $stderr.puts "You have provided an #{e.message}."
-          $stderr.puts "Please colsult <#{@prg_name} --help>."
+          $stderr.puts "You have provided an #{e.message}.\n"\
+                       "Please consult <#{@prg_name} --help>."
           exit(1)
         rescue
           raise
@@ -62,15 +62,15 @@ module Shalmaneser
       def self.create_parser
         OptionParser.new do |opts|
           opts.banner = "Fred and Rosy Preprocessor <Frappe>. Preprocessing stage before Fred and Rosy\n"\
-                        "for further frame/word sense assignment and semantic role assignment."\
+                        "for further frame/word sense disambiguation and semantic role assignment."\
                         "\n"\
-                        "Usage: frprep -h|-e FILENAME"
+                        "Usage: #{PROGRAM_NAME.downcase} -h|-e FILENAME"
           opts.separator ''
           opts.separator 'Program specific options:'
 
           opts.on('-e', '--expfile FILENAME',
                   'Provide the path to an experiment file.',
-                  'FrPrep will preprocess data according to the specifications',
+                  "#{PROGRAM_NAME} will preprocess data according to the specifications",
                   'given in your experiment file.',
                   'This option is required!',
                   'Also consider the documentation on format and features.'

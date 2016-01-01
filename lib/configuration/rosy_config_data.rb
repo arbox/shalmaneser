@@ -1,4 +1,5 @@
 require_relative 'config_data'
+require_relative 'configuration_error'
 
 ##############################
 # Class RosyConfigData
@@ -111,6 +112,14 @@ module Shalmaneser
       private
 
       def validate
+        msg = []
+
+        unless get("experiment_ID") =~ /^[A-Za-z0-9_]+$/
+          msg << 'Please choose an alphanumeric experiment ID! '\
+                 "You provided: #{get('experiment_ID')}"
+        end
+
+        raise(ConfigurationError, msg.join("\n")) if msg.any?
       end
     end
   end

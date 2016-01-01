@@ -5,174 +5,174 @@ require 'definitions'
 require 'configuration/rosy_config_data'
 
 module Shalmaneser
+  module Rosy
+    class OptParser
+      def self.parse(cmd_args)
+        ##############################
+        # main starts here
+        ##############################
 
-module Rosy
-  class OptParser
-    def self.parse(cmd_args)
-      ##############################
-      # main starts here
-      ##############################
+        ##
+        # evaluate runtime arguments
 
-      ##
-      # evaluate runtime arguments
+        tasks = {
+          "featurize" => [
+            # test table ID, required for test, no default
+            ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+            # set to featurize: 'train' or 'test', no default
+            ['--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT],
+            # splitlog ID: if given, featurize this split. Cannot use both this and -d
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
+            ['--append', '-A', GetoptLong::NO_ARGUMENT]
+          ],
+          "split" => [
+            # splitlog ID, required, no default
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
+            # percentage training data, default: 90
+            ['--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]
+          ],
+          "train" => [
+            # splitlog ID; if given, will train on split rather than all of main table
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
+            # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
+            ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT]
+          ],
+          "test" => [
+            # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
+            ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
+            # test table ID: if given, test on this table
+            ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+            # splitlog ID: if given, test on this split. Cannot use both this and -i
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
+            # set this to prevent output of disambiguated test data
+            ['--nooutput', '-N', GetoptLong::NO_ARGUMENT]
+          ],
+          "eval" => [
+            # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
+            ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
+            # test table ID: if given, test on this table
+            ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]
+          ],
+          "inspect" => [
+            # describe all tables
+            ['--tables', GetoptLong::NO_ARGUMENT],
+            # describe table contents for current experiment
+            ['--tablecont', GetoptLong::OPTIONAL_ARGUMENT],
+            # test table ID: if given, describe contents of this table
+            ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+            # describe classification runs for current experiment
+            ['--runs', GetoptLong::NO_ARGUMENT],
+            # list sentence IDs for given splitlog
+            ['--split', GetoptLong::REQUIRED_ARGUMENT]
+          ],
+          "services" => [
+            # delete database table
+            ['--deltable', GetoptLong::REQUIRED_ARGUMENT],
+            # delete experiment tables and files
+            ['--delexp', GetoptLong::NO_ARGUMENT],
+            # delete tables interactively
+            ['--deltables', GetoptLong::NO_ARGUMENT],
+            # delete runs
+            ['--delruns', GetoptLong::NO_ARGUMENT],
+            # delete split
+            ['--delsplit', GetoptLong::REQUIRED_ARGUMENT],
+            # dump experiment to files
+            ['--dump', GetoptLong::OPTIONAL_ARGUMENT],
+            # load experiment from files
+            ['--load', GetoptLong::OPTIONAL_ARGUMENT],
+            # write feature files
+            ['--writefeatures', GetoptLong::OPTIONAL_ARGUMENT],
+            # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
+            ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
+            # test table ID: if given, test on this table
+            ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
+            # splitlog ID: if given, test on this split. Cannot use both this and -i
+            ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]
+          ]
+        }
 
-      tasks = {
-        "featurize" => [
-          # test table ID, required for test, no default
-          ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
-          # set to featurize: 'train' or 'test', no default
-          ['--dataset', '-d', GetoptLong::REQUIRED_ARGUMENT],
-          # splitlog ID: if given, featurize this split. Cannot use both this and -d
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
-          ['--append', '-A', GetoptLong::NO_ARGUMENT]
-        ],
-        "split" => [
-          # splitlog ID, required, no default
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
-          # percentage training data, default: 90
-          ['--trainpercent', '-r', GetoptLong::REQUIRED_ARGUMENT]
-        ],
-        "train" => [
-          # splitlog ID; if given, will train on split rather than all of main table
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
-          # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
-          ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT]
-        ],
-        "test" => [
-          # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
-          ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
-          # test table ID: if given, test on this table
-          ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
-          # splitlog ID: if given, test on this split. Cannot use both this and -i
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT],
-          # set this to prevent output of disambiguated test data
-          ['--nooutput', '-N', GetoptLong::NO_ARGUMENT]
-        ],
-        "eval" => [
-          # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
-          ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
-          # test table ID: if given, test on this table
-          ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]
-        ],
-        "inspect" => [
-          # describe all tables
-          ['--tables', GetoptLong::NO_ARGUMENT],
-          # describe table contents for current experiment
-          ['--tablecont', GetoptLong::OPTIONAL_ARGUMENT],
-          # test table ID: if given, describe contents of this table
-          ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
-          # describe classification runs for current experiment
-          ['--runs', GetoptLong::NO_ARGUMENT],
-          # list sentence IDs for given splitlog
-          ['--split', GetoptLong::REQUIRED_ARGUMENT]
-        ],
-        "services" => [
-          # delete database table
-          ['--deltable', GetoptLong::REQUIRED_ARGUMENT],
-          # delete experiment tables and files
-          ['--delexp', GetoptLong::NO_ARGUMENT],
-          # delete tables interactively
-          ['--deltables', GetoptLong::NO_ARGUMENT],
-          # delete runs
-          ['--delruns', GetoptLong::NO_ARGUMENT],
-          # delete split
-          ['--delsplit', GetoptLong::REQUIRED_ARGUMENT],
-          # dump experiment to files
-          ['--dump', GetoptLong::OPTIONAL_ARGUMENT],
-          # load experiment from files
-          ['--load', GetoptLong::OPTIONAL_ARGUMENT],
-          # write feature files
-          ['--writefeatures', GetoptLong::OPTIONAL_ARGUMENT],
-          # classification step: 'argrec', 'arglab', 'both' (default) or 'onestep'
-          ['--step', '-s', GetoptLong::REQUIRED_ARGUMENT],
-          # test table ID: if given, test on this table
-          ['--testID', '-i', GetoptLong::REQUIRED_ARGUMENT],
-          # splitlog ID: if given, test on this split. Cannot use both this and -i
-          ['--logID', '-l', GetoptLong::REQUIRED_ARGUMENT]
+        optnames = [
+          # get help
+          ['--help', '-h', GetoptLong::NO_ARGUMENT],
+          # experiment file name (and path), no default
+          ['--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],
+          # task to perform: one of task.keys, no default
+          ['--task', '-t', GetoptLong::REQUIRED_ARGUMENT]
         ]
-      }
 
-      optnames = [
-        # get help
-        ['--help', '-h', GetoptLong::NO_ARGUMENT],
-        # experiment file name (and path), no default
-        ['--expfile', '-e', GetoptLong::REQUIRED_ARGUMENT],
-        # task to perform: one of task.keys, no default
-        ['--task', '-t', GetoptLong::REQUIRED_ARGUMENT]
-      ]
+        tasks.values.each { |more_optnames| optnames.concat more_optnames }
 
-      tasks.values.each { |more_optnames| optnames.concat more_optnames }
+        optnames.uniq!
 
-      optnames.uniq!
+        begin
+          opts = GetoptLong.new(*optnames)
+        rescue => e
+          $stderr.puts "Error: unknown command line option: #{e.message}!"
+          exit 1
+        end
 
-      begin
-        opts = GetoptLong.new(*optnames)
-      rescue => e
-        $stderr.puts "Error: unknown command line option: #{e.message}!"
-        exit 1
-      end
+        experiment_filename = nil
 
-      experiment_filename = nil
+        opts = options_hash(opts)
+        ##
+        # are we being asked for help?
+        # @ todo work with the empty case
+        if opts['--help']
+          help
+          exit(0)
+        end
 
-      opts = options_hash(opts)
-      ##
-      # are we being asked for help?
-      # @ todo work with the empty case
-      if opts['--help']
-        help
-        exit(0)
-      end
+        ##
+        # now find the task
+        task = opts['--task']
+        # sanity checks for task
+        if task.nil?
+          help
+          exit(0)
+        end
 
-      ##
-      # now find the task
-      task = opts['--task']
-      # sanity checks for task
-      if task.nil?
-        help
-        exit(0)
-      end
+        unless tasks.keys.include?(task)
+          $stderr.puts "Sorry, I don't know the task '#{task}'. Do 'rosy -h' for a list of tasks."
+          exit 1
+        end
 
-      unless tasks.keys.include?(task)
-        $stderr.puts "Sorry, I don't know the task '#{task}'. Do 'rosy -h' for a list of tasks."
-        exit 1
-      end
-
-      ##
-      # now evaluate the rest of the options
-      opts.each_pair do |opt, arg|
-        case opt
-        when '--help', '--task'
+        ##
+        # now evaluate the rest of the options
+        opts.each_pair do |opt, arg|
+          case opt
+          when '--help', '--task'
           # we already handled this
-        when '--expfile'
-          experiment_filename = arg
-        else
-          # do we know this option?
-          unless tasks[task].assoc(opt)
-            $stderr.puts "Sorry, I don't know the option " + opt + " for task " + task
-            $stderr.puts "Do 'ruby rosy.rb -h' for a list of tasks and options."
-            exit 1
+          when '--expfile'
+            experiment_filename = arg
+          else
+            # do we know this option?
+            unless tasks[task].assoc(opt)
+              $stderr.puts "Sorry, I don't know the option " + opt + " for task " + task
+              $stderr.puts "Do 'ruby rosy.rb -h' for a list of tasks and options."
+              exit 1
+            end
           end
         end
+
+        # @todo This case is irreal since this restriction is set by the parser itself.
+        if experiment_filename.nil?
+          $stderr.puts "I need an experiment file name, option --expfile|-e"
+          exit 1
+        end
+
+        ##
+        # open config file
+
+        exp = ::Shalmaneser::Configuration::RosyConfigData.new(experiment_filename)
+
+        [exp, opts]
       end
 
-      if experiment_filename.nil?
-        $stderr.puts "I need an experiment file name, option --expfile|-e"
-        exit 1
-      end
+      private
 
-      ##
-      # open config file
-
-      exp = ::Shalmaneser::Configuration::RosyConfigData.new(experiment_filename)
-
-      [exp, opts]
-    end
-
-    private
-
-    def self.help
-      $stderr.puts "
+      def self.help
+        $stderr.puts "
 ROSY: semantic ROle assignment SYstem, Version #{VERSION}
 
 Usage:
@@ -386,24 +386,24 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
                   for the test set with ID <i>.
                   default: #{::Shalmaneser::Rosy.default_test_ID}.
 "
-    end
-
-    ###
-    # options_hash:
-    #
-    # GetoptLong only allows you to access options via each(),
-    # not individually, and it only allows you to cycle through the options once.
-    # So we re-code the options as a hash
-    def self.options_hash(opts_obj) # GetoptLong object
-      opt_hash = {}
-
-      opts_obj.each do |opt, arg|
-        opt_hash[opt] = arg
       end
 
-      opt_hash
-    end
+      ###
+      # options_hash:
+      #
+      # GetoptLong only allows you to access options via each(),
+      # not individually, and it only allows you to cycle through the options once.
+      # So we re-code the options as a hash
+      def self.options_hash(opts_obj) # GetoptLong object
+        opt_hash = {}
 
-  end # class OptParser
-end # module Rosy
+        opts_obj.each do |opt, arg|
+          opt_hash[opt] = arg
+        end
+
+        opt_hash
+      end
+
+    end # class OptParser
+  end # module Rosy
 end

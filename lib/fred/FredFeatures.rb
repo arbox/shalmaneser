@@ -58,6 +58,8 @@ end
 #   <feature_type>: <features>
 #
 # where feature_type is a word, and features is a list of words, space-separated
+require 'fred/FileZipped'
+
 class MetaFeatureAccess < AbstractFredFeatureAccess
   ###
   def initialize(exp, dataset, mode)

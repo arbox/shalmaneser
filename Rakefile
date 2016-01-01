@@ -98,8 +98,40 @@ namespace :test do
       t.test_files = FileList['test/unit/**/*.rb']
     end
 
-    task :fred
-    task :rosy
+    Rake::TestTask.new(:frappe) do |t|
+      t.libs << 'test'
+      t.warning = true
+      t.description = 'Run all Frappe Unit Tests.'
+      t.test_files = FileList['test/unit/frappe/**/*.rb']
+    end
+
+    Rake::TestTask.new(:fred) do |t|
+      t.libs << 'test'
+      t.warning = true
+      t.description = 'Run all Fred Unit Tests.'
+      t.test_files = FileList['test/unit/fred/**/*.rb']
+    end
+
+    Rake::TestTask.new(:rosy) do |t|
+      t.libs << 'test'
+      t.warning = true
+      t.description = 'Run all Rosy Unit Tests.'
+      t.test_files = FileList['test/unit/rosy/**/*.rb']
+    end
+
+    Rake::TestTask.new(:configuration) do |t|
+      t.libs << 'test'
+      t.warning = true
+      t.description = 'Run all Configuration Unit Tests.'
+      t.test_files = FileList['test/unit/configuration/**/*.rb']
+    end
+
+    Rake::TestTask.new(:other) do |t|
+      t.libs << 'test'
+      t.warning = true
+      t.description = 'Run all other Unit Tests not in the named tasks.'
+      t.test_files = FileList['test/unit/stxml/**/*.rb', 'test/unit/*.rb']
+    end
   end
 
   # Integration of external tools:
