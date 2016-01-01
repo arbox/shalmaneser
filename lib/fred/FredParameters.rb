@@ -12,7 +12,7 @@ require 'fred/PlotAndREval'
 # @todo This require statement is wrong. Why this file is not required?
 require 'fred/FredConfigData'
 require 'fred/FredConventions' # !
-require 'fred/FredSplit'
+require 'fred/fred_split'
 require 'fred/FredTrain'
 require 'fred/FredTest'
 require 'fred/FredEval'
