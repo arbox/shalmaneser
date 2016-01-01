@@ -20,9 +20,8 @@ require 'ml/classifier'
 require "fred/Baseline"
 require 'fred/FredConventions' # !
 require "fred/FredDetermineTargets"
-require "fred/FredSplitPkg"
+require 'fred/fred_split_pkg'
 require "fred/FredFeatures"
-# require "fred/FredNumTrainingSenses"
 
 require 'salsa_tiger_xml/file_parts_parser'
 module Shalmaneser

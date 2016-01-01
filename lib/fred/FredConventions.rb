@@ -97,13 +97,6 @@ module Fred
     end
   end
 
-  ####
-  # filenames for split files
-  # @note Used only in FredSplitPkg.
-  def fred_split_filename(lemma)
-    "fred.split.#{lemma}"
-  end
-
   ###
   # deconstruct split filename
   # returns: lemma

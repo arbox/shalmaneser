@@ -10,7 +10,7 @@ require "ruby_class_extensions"
 require 'fred/FredConventions' # !
 require 'ml/classifier'
 require "fred/FredDetermineTargets"
-require "fred/FredSplitPkg"
+require 'fred/fred_split_pkg'
 require "fred/FredFeatures"
 # require "fred/FredNumTrainingSenses"
 

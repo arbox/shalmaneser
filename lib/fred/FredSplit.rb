@@ -13,7 +13,7 @@
 # - entry in that line is either 'train' or 'test'
 
 # Fred packages
-require "fred/FredSplitPkg"
+require 'fred/fred_split_pkg'
 module Shalmaneser
 module Fred
 class FredSplit

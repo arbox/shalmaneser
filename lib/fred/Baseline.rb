@@ -6,7 +6,7 @@
 # The baseline doesn't do binary classifiers.
 
 require 'fred/FredConventions' # !
-require "fred/FredSplitPkg"
+require 'fred/fred_split_pkg'
 require "fred/FredFeatures"
 require "fred/FredDetermineTargets"
 

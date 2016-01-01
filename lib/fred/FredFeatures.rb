@@ -669,6 +669,7 @@ end
 ########################################
 # read and write access to answer key files
 # manages a single answer key file for a given lemma/POS pair
+require 'fred/fred_split_pkg'
 class AnswerKeyAccess
   ###
   def initialize(exp,      # experiment file object
