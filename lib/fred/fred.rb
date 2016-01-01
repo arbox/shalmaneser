@@ -5,6 +5,7 @@ require 'fred/fred_split'
 require 'fred/FredTrain'
 require 'fred/FredTest'
 require 'fred/FredEval'
+# require 'fred/fred_parameters'
 
 require 'logging'
 require 'definitions'
@@ -36,8 +37,8 @@ module Shalmaneser
                  FredEval.new(@exp, @opts)
                else
                  raise ArgumentError, "Wrong taks for #{PROGRAM_NAME}: #{@task}!"
-                 # @todo AB: this <else> condition should be unpossible
-                 #     do in OptionParser
+                 # @todo AB: this <else> condition should be impossible.
+                 #   Do it in OptionParser
                end
 
         task.compute
