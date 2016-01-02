@@ -9,11 +9,13 @@
 require 'fred/plot_and_r_eval'
 require 'fred/FredConventions' # !
 require 'fred/fred_split'
-require 'fred/FredTrain'
-require 'fred/FredTest'
+require 'fred/fred_train'
+require 'fred/fred_test'
 require 'fred/FredEval'
 require 'fred/toggle_var'
 require 'fred/slide_var'
+
+require 'logging'
 
 module Shalmaneser
   module Fred
@@ -27,10 +29,10 @@ module Shalmaneser
     # @todo AB: Reintroduce this task!!!
     class FredParameters
       #####
-      def initialize(exp_obj, # FredConfigData object
-                     options) # hash: runtime option name (string) => value(string)
-
-        @exp = exp_obj
+      # @param [FredConfigData] exp
+      # @param [Hash] options hash: runtime option name (string) => value(string)
+      def initialize(exp, options)
+        @exp = exp
 
         # evaluate runtime options:
         # record the slide variable (if any) plus all toggle variables
@@ -55,17 +57,11 @@ module Shalmaneser
             # case of unknown arguments has been dealt with by fred.rb
           end
         end
-
-
-        # announce the task
-        $stderr.puts "---------"
-        $stderr.puts "Fred parameter exploration, experiment #{@exp.get("experiment_ID")}"
-        $stderr.puts "---------"
-
       end
 
       ####
       def compute
+        LOGGER.info "Fred parameter exploration, experiment #{@exp.get("experiment_ID")}"
         ##
         # make a split of the training data
         begin

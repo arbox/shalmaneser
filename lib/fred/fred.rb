@@ -2,9 +2,10 @@
 # Initial import done, need to reimplement the whole interface.
 require 'fred/FredFeaturize'
 require 'fred/fred_split'
-require 'fred/FredTrain'
-require 'fred/FredTest'
+require 'fred/fred_train'
+require 'fred/fred_test'
 require 'fred/FredEval'
+# Reintroduce this task.
 # require 'fred/fred_parameters'
 
 require 'logging'
