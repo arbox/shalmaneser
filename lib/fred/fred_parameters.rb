@@ -6,7 +6,7 @@
 #  construct text and graphical output
 
 # Salsa packages
-require 'fred/PlotAndREval'
+require 'fred/plot_and_r_eval'
 require 'fred/FredConventions' # !
 require 'fred/fred_split'
 require 'fred/FredTrain'
