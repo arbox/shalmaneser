@@ -26,10 +26,14 @@ require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require 'external_systems'
-require 'fred/FredBOWContext'
+
 require 'fred/FredDetermineTargets'
 require 'fred/FredFeatures'
 require 'fred/grammatical_function_access'
+
+require 'fred/context_provider'
+require 'fred/non_contiguous_context_provider'
+require 'fred/single_sent_context_provider'
 
 module Shalmaneser
   module Fred
