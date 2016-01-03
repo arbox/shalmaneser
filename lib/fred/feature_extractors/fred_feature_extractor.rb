@@ -34,6 +34,7 @@ module Shalmaneser
       protected
 
       def FredFeatureExtractor.announce_me
+        # This check is obsolete since we require FeatureInfo.
         # AB: In 1.9 constants are symbols.
         if Module.constants.include?("FredFeatureInfo") or Module.constants.include?(:FredFeatureInfo)
           # yup, we have a class to which we can announce ourselves

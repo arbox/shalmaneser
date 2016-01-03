@@ -12,14 +12,12 @@ module Shalmaneser
 
       ###
       # add interface/interpreter
-      def FredFeatureInfo.add_feature(class_name) # Class object
+      def self.add_feature(class_name) # Class object
         @@extractors << class_name
       end
 
       ###
       def initialize(exp)
-
-        ##
         # make list of extractors that are
         # required by the user
         @features = []
@@ -27,8 +25,7 @@ module Shalmaneser
 
         # user-chosen extractors:
         # returns array of pairs [feature group designator(string), options(array:string)]
-        exp.get_lf("feature").each { |extractor_name, *options|
-
+        exp.get_lf("feature").each do |extractor_name, *options|
           extractor = @@extractors.detect { |e| e.feature_name == extractor_name }
           unless extractor
             # no extractor found matching the given designator
@@ -41,7 +38,7 @@ module Shalmaneser
           # no need to use the options here,
           # the feature extractors can get their options themselves.
           @features << extractor
-        }
+        end
 
         # do not print warnings again if another RosyFeatureInfo object is made
         @@warned = true
@@ -52,10 +49,7 @@ module Shalmaneser
       #
       # returns a list of feature extractor objects
       def get_extractor_objects
-
-        return @features.map{ |feature_class|
-          feature_class.new(@exp)
-        }
+        @features.map { |feature_class| feature_class.new(@exp) }
       end
     end
   end

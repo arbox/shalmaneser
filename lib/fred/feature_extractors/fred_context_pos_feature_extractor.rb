@@ -7,8 +7,8 @@ module Shalmaneser
     class FredContextPOSFeatureExtractor < FredFeatureExtractor
       FredContextPOSFeatureExtractor.announce_me
 
-      def FredContextPOSFeatureExtractor.feature_name
-        return "context_pos"
+      def self.feature_name
+        'context_pos'
       end
 
       ###
@@ -19,11 +19,12 @@ module Shalmaneser
         # encoded in metafeature labels
         # written in a hash for fast access
         @cxsizes = {}
-        @exp.get_lf("feature", "context").each { |cxsize|
+        @exp.get_lf("feature", "context").each do |cxsize|
           if cxsize <= 10
-            @cxsizes[ "CX" + cxsize.to_s ] = true
+            @cxsizes["CX" + cxsize.to_s] = true
           end
-        }
+        end
+
         if @cxsizes.empty?
           $stderr.puts "context_pos feature warning: will not be computed"
           $stderr.puts "as there is no context of size <= 10"
@@ -34,18 +35,14 @@ module Shalmaneser
       def each_feature(feature_hash)
         # word#lemma#pos#ne
         pos_index = 2
-
-        feature_hash.each { |ftype, fvalues|
+        feature_hash.each do |ftype, fvalues|
           if @cxsizes[ftype]
             # this is a context feature of a size chosen
             # by the user for featurization
-
-            fvalues.each { |f|
-              yield "POS" + ftype + f.split("#")[pos_index]
-            }
+            fvalues.each { |f| yield "POS" + ftype + f.split("#")[pos_index] }
           end
-        }
+        end
       end
     end
-end
+  end
 end
