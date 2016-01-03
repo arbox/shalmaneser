@@ -1,0 +1,5 @@
+require 'fred/feature_extractors/fred_context_feature_extractor'
+require 'fred/feature_extractors/fred_context_pos_feature_extractor'
+require 'fred/feature_extractors/fred_ngram_feature_extractor'
+require 'fred/feature_extractors/fred_syn_feature_extractor'
+require 'fred/feature_extractors/fred_synsem_feature_extractor'

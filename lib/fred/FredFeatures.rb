@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-require "tempfile"
-require "delegate"
-
-require "fred/FredFeatureExtractors"
-require 'fred/FredConventions' # !
-
+# coding: utf-8
 module Shalmaneser
   module Fred
     ########################################
@@ -41,7 +35,6 @@ module Shalmaneser
                      features) # features: hash feature type-> features (string-> array:string)
         raise "overwrite me"
       end
-
 
       def flush
         raise "overwrite me"
@@ -228,6 +221,9 @@ module Shalmaneser
     end
 
 
+    require 'fred/fred_feature_info'
+    require 'fred/feature_extractors'
+    require 'fred/FredConventions'
     ########################################
     # FredFeatureWriter:
     # write chosen features (according to the experiment file)
@@ -670,6 +666,7 @@ module Shalmaneser
     # read and write access to answer key files
     # manages a single answer key file for a given lemma/POS pair
     require 'fred/fred_split_pkg'
+    require 'fred/FredConventions'
     class AnswerKeyAccess
       ###
       def initialize(exp,      # experiment file object
@@ -792,6 +789,7 @@ module Shalmaneser
     end
 
 
+    require "tempfile"
     ####################3
     # keep writers: auxiliary class for FredFeatureAccess:
     # write to several files at a time
@@ -893,6 +891,7 @@ module Shalmaneser
 
     ###
     # Features for N-ary classifiers
+    require 'fred/FredConventions' # !
     class WriteFeaturesNary
       def initialize(lemma,
                      exp,
@@ -933,6 +932,7 @@ module Shalmaneser
 
     ###
     # Features for binary classifiers
+    require 'fred/FredConventions' # !
     class WriteFeaturesBinary
       def initialize(lemma,
                      exp,
@@ -1022,6 +1022,8 @@ module Shalmaneser
       end
     end
 
+    require "delegate"
+    require 'fred/FredConventions'
     ########
     # class writing features:
     # delegating to either a binary or an n-ary writer
