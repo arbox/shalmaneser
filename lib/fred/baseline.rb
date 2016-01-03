@@ -8,7 +8,7 @@
 require 'fred/FredConventions' # !
 require 'fred/fred_split_pkg'
 require "fred/FredFeatures"
-require "fred/FredDetermineTargets" # Targets
+require 'fred/targets'
 require 'fred/fred_error'
 require 'logging'
 

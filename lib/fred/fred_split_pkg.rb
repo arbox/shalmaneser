@@ -6,7 +6,7 @@
 
 require "tempfile"
 require 'fileutils'
-require "fred/FredDetermineTargets"
+require 'fred/targets'
 require 'fred/FredConventions' # !
 require 'fred/fred_error'
 

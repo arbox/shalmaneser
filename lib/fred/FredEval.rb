@@ -21,7 +21,7 @@ require "ruby_class_extensions"
 require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 require "fred/FredFeatures"
-require "fred/FredDetermineTargets"
+require 'fred/targets'
 module Shalmaneser
 module Fred
 class FredEval < Eval

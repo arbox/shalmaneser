@@ -17,7 +17,6 @@ require 'fred/md5' # !
 # require 'configuration/fred_config_data'
 require 'fred/FredConventions' # !
 # require 'fred/word_lemma_pos_ne'
-# require "fred/FredDetermineTargets"
 
 require 'db/db_interface' # !
 require 'db/sql_query' # !

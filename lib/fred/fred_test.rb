@@ -16,7 +16,7 @@ require "ruby_class_extensions"
 require 'ml/classifier'
 require 'fred/baseline'
 require 'fred/FredConventions' # !
-require "fred/FredDetermineTargets"
+require 'fred/targets'
 require 'fred/fred_split_pkg'
 require "fred/FredFeatures"
 
@@ -459,7 +459,7 @@ module Shalmaneser
         ##
         # empty output directory
         Dir[output_dir + "*"].each { |filename|
-          if File.exists?(filename)
+          if File.exist?(filename)
             File.delete(filename)
           end
         }

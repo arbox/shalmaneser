@@ -27,7 +27,11 @@ require 'fred/FredConventions' # !
 require 'fred/word_lemma_pos_ne'
 require 'external_systems'
 
-require 'fred/FredDetermineTargets'
+# require 'fred/FredDetermineTargets'
+
+require 'fred/find_all_targets'
+require 'fred/find_targets_from_frames'
+
 require 'fred/FredFeatures'
 require 'fred/grammatical_function_access'
 
