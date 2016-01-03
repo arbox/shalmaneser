@@ -32,7 +32,10 @@ require 'external_systems'
 require 'fred/find_all_targets'
 require 'fred/find_targets_from_frames'
 
-require 'fred/FredFeatures'
+# require 'fred/FredFeatures'
+require 'fred/meta_feature_access'
+require 'fred/fred_feature_access'
+
 require 'fred/grammatical_function_access'
 
 require 'fred/context_provider'

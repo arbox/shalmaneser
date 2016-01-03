@@ -1,10 +1,10 @@
 # AB: 2011-11-13
 # Initial import done, need to reimplement the whole interface.
-require 'fred/FredFeaturize'
+require 'fred/fred_featurize'
 require 'fred/fred_split'
 require 'fred/fred_train'
 require 'fred/fred_test'
-require 'fred/FredEval'
+require 'fred/fred_eval'
 # Reintroduce this task.
 # require 'fred/fred_parameters'
 

@@ -7,7 +7,7 @@
 
 require 'fred/FredConventions' # !
 require 'fred/fred_split_pkg'
-require "fred/FredFeatures"
+require 'fred/answer_key_access'
 require 'fred/targets'
 require 'fred/fred_error'
 require 'logging'

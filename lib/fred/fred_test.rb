@@ -18,7 +18,9 @@ require 'fred/baseline'
 require 'fred/FredConventions' # !
 require 'fred/targets'
 require 'fred/fred_split_pkg'
-require "fred/FredFeatures"
+# require "fred/FredFeatures"
+require 'fred/fred_feature_access'
+require 'fred/answer_key_access'
 
 require 'salsa_tiger_xml/file_parts_parser'
 

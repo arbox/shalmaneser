@@ -11,7 +11,7 @@ require 'fred/FredConventions' # !
 require 'fred/fred_split'
 require 'fred/fred_train'
 require 'fred/fred_test'
-require 'fred/FredEval'
+require 'fred/fred_eval'
 require 'fred/toggle_var'
 require 'fred/slide_var'
 

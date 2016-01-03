@@ -10,7 +10,7 @@ require 'fred/FredConventions' # !
 require 'ml/classifier'
 require 'fred/targets'
 require 'fred/fred_split_pkg'
-require "fred/FredFeatures" # FredFeatureAccess
+require 'fred/fred_feature_access'
 # require "fred/FredNumTrainingSenses"
 
 require 'logging'

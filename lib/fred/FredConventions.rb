@@ -5,7 +5,7 @@
 # throughout the system
 
 require 'monkey_patching/file.rb'
-require 'fred/FredFeatures' # AnswerKeyAccess
+require 'fred/answer_key_access'
 
 module Shalmaneser
 module Fred

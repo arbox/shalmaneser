@@ -1,4 +1,4 @@
-require "fred/FileZipped"
+require "fred/file_zipped"
 require 'fred/FredConventions' # !
 
 module Shalmaneser
