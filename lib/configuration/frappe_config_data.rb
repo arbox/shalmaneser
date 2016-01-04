@@ -72,7 +72,7 @@ module Shalmaneser
 
       # Validates semantically the input values from the experiment file.
       # @todo Rework the whole validation engine, the parameter definitions
-      #   should entails the information about: optional, obligatory,
+      #   should entail the information about: optional, obligatory,
       #   in combination with. This information should be stored in external
       #   resource files to easily change them.
       #  @todo Accumulate error messages.
