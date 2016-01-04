@@ -18,38 +18,22 @@ module Shalmaneser
     #
     # format: CSV, last entry is target class
     class FredFeatureAccess < AbstractFredFeatureAccess
-      ###
-      def initialize(exp, dataset, mode)
-        super(exp, dataset, mode)
-
-        # write to auxiliary files first,
-        # to sort items by lemma
-        @w_tmp = AuxKeepWriters.new
-
-        # which features has the user requested?
-        feature_info_obj = FredFeatureInfo.new(@exp)
-        @feature_extractors = feature_info_obj.get_extractor_objects
-
-      end
-
       ####
-      def FredFeatureAccess.remove_feature_files(exp, dataset)
-
+      def self.remove_feature_files(exp, dataset)
         # remove feature files
         WriteFeaturesNaryOrBinary.remove_files(exp, dataset)
-
         # remove key files
         AnswerKeyAccess.remove_files(exp, dataset)
       end
 
       ###
-      def  FredFeatureAccess.legend_filename(lemmapos)
-        return "fred.feature_legend.#{lemmapos}"
+      def self.legend_filename(lemmapos)
+        "fred.feature_legend.#{lemmapos}"
       end
 
       ###
-      def FredFeatureAccess.feature_dir(exp, dataset)
-        return WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
+      def self.feature_dir(exp, dataset)
+        WriteFeaturesNaryOrBinary.feature_dir(exp, dataset, "new")
       end
 
       ###
@@ -62,13 +46,25 @@ module Shalmaneser
       # filenames are sorted alphabetically before being yielded
       #
       # available in read and write mode
-      def FredFeatureAccess.each_feature_file(exp, dataset)
+      def self.each_feature_file(exp, dataset)
         feature_dir = FredFeatureAccess.feature_dir(exp, dataset)
         Dir[feature_dir + "*"].sort.each { |filename|
           if (values = ::Shalmaneser::Fred.deconstruct_fred_feature_filename(filename))
             yield [filename, values]
           end
         }
+      end
+
+      ###
+      def initialize(exp, dataset, mode)
+        super(exp, dataset, mode)
+        # write to auxiliary files first,
+        # to sort items by lemma
+        @w_tmp = AuxKeepWriters.new
+        # which features has the user requested?
+        feature_info_obj = FredFeatureInfo.new(@exp)
+        @feature_extractors = feature_info_obj.get_extractor_objects
+
       end
 
       ###
@@ -100,7 +96,7 @@ module Shalmaneser
 
         # falsch! noval nicht zulässig für fred! (nur für rosy!) - Warum steht das hier???
         unless senses
-          senses = [ @exp.get("noval") ]
+          senses = [@exp.get("noval")]
         end
 
         # modified by ines, 19.7.2010
@@ -267,17 +263,6 @@ module Shalmaneser
           }
         }
 
-        # HIER
-        # if num_lines > 2
-        #  num_occ.each_pair { |feature, num_occ|
-        #    if num_occ < 2
-        #      all_features.delete(feature)
-        #    end
-        #  }
-        # end
-
-
-
         case @exp.get("numerical_features")
         when "keep"
           # leave numerical features as they are, or
@@ -310,9 +295,7 @@ module Shalmaneser
               feature_list << feature  + " #{index}/#{num_bins_this_feature}"
             }
           }
-          return [ feature_list,
-                   all_senses.keys.sort
-                 ]
+          return [feature_list, all_senses.keys.sort]
         else
           raise "Shouldn't be here"
         end
@@ -328,17 +311,7 @@ module Shalmaneser
       #
       # Note that if partial contains items not in full,
       # they will not occur on the feature list returned!
-      def to_feature_list(partial, full,
-                          handle_numerical_features = nil)
-
-        #print "FULL: ", full, "\n"
-        #print "PART: ", partial, "\n"
-        # count occurrences of each feature in the partial list
-        occ_hash = Hash.new(0)
-        partial.each { |p|
-          occ_hash[p] += 1
-        }
-
+      def to_feature_list(partial, full, handle_numerical_features = nil)
         # what to do with our counts?
         unless handle_numerical_features
           # no pre-set value given when this function was called
@@ -348,13 +321,10 @@ module Shalmaneser
         case handle_numerical_features
         when "keep"
           # leave numerical features as numerical features
-          return full.map { |x|
-            occ_hash[x].to_s
-          }
-
+          return full.map { |x| occ_hash[x].to_s }
         when "repeat"
           # repeat each numerical feature up to a max. number of occurrences
-          return full.map { |feature_plus_count|
+          return full.map do |feature_plus_count|
             unless feature_plus_count =~ /^(.*) (\d+)\/(\d+)$/
               $stderr.puts "Error: could not parse feature: #{feature_plus_count}, bailing out."
               raise "Shouldn't be here."
@@ -369,13 +339,12 @@ module Shalmaneser
             else
               0
             end
-          }
-
+          end
         when "bin"
           # group numerical feature values into N bins.
           # number of bins varies from feature to feature
           # each bin contains 10 different counts
-          return full.map { |feature_plus_count|
+          return full.map do |feature_plus_count|
             unless feature_plus_count =~ /^(.*) (\d+)\/(\d+)$/
               $stderr.puts "Error: could not parse feature: #{feature_plus_count}, bailing out."
               raise "Shouldn't be here."
@@ -390,12 +359,11 @@ module Shalmaneser
             else
               0
             end
-          }
+          end
         else
           raise "Shouldn't be here"
         end
       end
-
 
       ###
       # how to treat instances with multiple senses?
@@ -414,11 +382,9 @@ module Shalmaneser
         when "join"
           yield [[::Shalmaneser::Fred.fred_join_senses(senses)], senses]
         when "repeat"
-          senses.each { |s|
-            yield [ [s], senses]
-          }
+          senses.each { |s| yield [[s], senses] }
         when "binarize"
-          yield [ senses, senses ]
+          yield [senses, senses]
         else
           $stderr.puts "Error: unknown setting #{exp.get("handle_multilabel")}"
           $stderr.puts "for 'handle_multilabel' in the experiment file."

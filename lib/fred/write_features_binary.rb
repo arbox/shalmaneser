@@ -3,7 +3,7 @@
 require 'fred/FredConventions' # !
 
 module Shalmaneser
-  module Shalmaneser
+  module Fred
     class WriteFeaturesBinary
       def initialize(lemma,
                      exp,

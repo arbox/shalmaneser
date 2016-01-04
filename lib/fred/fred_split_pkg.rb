@@ -1,9 +1,3 @@
-##
-# splitting package for WSD:
-# compute a split for feature files (one item a line, CSV),
-# and apply pre-computed split
-# to produce new feature files accordingly
-
 require "tempfile"
 require 'fileutils'
 require 'fred/targets'
@@ -14,6 +8,10 @@ require 'logging'
 
 module Shalmaneser
   module Fred
+    # splitting package for WSD:
+    # compute a split for feature files (one item a line, CSV),
+    # and apply pre-computed split
+    # to produce new feature files accordingly
     class FredSplitPkg
       ###
       # remove an old split
