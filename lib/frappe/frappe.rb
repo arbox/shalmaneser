@@ -140,8 +140,8 @@ module Shalmaneser
             current_format = "SalsaTab"
 
           when "SalsaTab"
-            @logger.info "Frappe: I'm Lemmatizing and Parsing texts."
-            @logger.debug "Frprep: Lemmatizing and parsing text in #{current_dir}.\n"\
+            @logger.info "#{PROGRAM_NAME}: I'm Lemmatizing and Parsing texts."
+            @logger.debug "#{PROGRAM_NAME}: Lemmatizing and parsing text in #{current_dir}.\n"\
                           "Storing the result in #{split_dir}.\n"
 
             transform_pos_and_lemmatize(current_dir, split_dir)
@@ -215,7 +215,7 @@ module Shalmaneser
         Dir[input_dir + "*"].each do |plainfilename|
           # open input and output file
           # end output file name in "tab" because that is, at the moment, required
-          outfilename = output_dir + File.basename(plainfilename) + @file_suffixes["tab"]
+          outfilename = output_dir + File.basename(plainfilename, '.*') + @file_suffixes["tab"]
           FrappeHelper.plain_to_tab_file(plainfilename, outfilename)
         end
       end
@@ -239,17 +239,17 @@ module Shalmaneser
         ##
         # POS-Tagging
         if @exp.get("do_postag")
-          $stderr.puts "Frprep: Tagging."
+          LOGGER.info "#{PROGRAM_NAME}: Tagging."
 
           sys_class = ExternalSystems.get_interface("pos_tagger",
-                                                  @exp.get("pos_tagger"))
-          $stderr.puts "POS Tagger interface: #{sys_class}"
+                                                    @exp.get("pos_tagger"))
 
           # AB: TODO Remove it.
           unless sys_class
             raise "Shouldn't be here"
           end
 
+          LOGGER.debug "POS Tagger interface: #{sys_class}."
           sys = sys_class.new(@exp.get("pos_tagger_path"),
                               @file_suffixes["tab"],
                               @file_suffixes["pos"])
@@ -260,10 +260,10 @@ module Shalmaneser
         # Lemmatization
         # AB: We're working on the <split> dir and writing there.
         if @exp.get("do_lemmatize")
-          STDERR.puts 'Frprep: Lemmatizing.'
+          LOGGER.info "#{PROGRAM_NAME}: Lemmatizing."
 
           sys_class = ExternalSystems.get_interface("lemmatizer",
-                                                  @exp.get("lemmatizer"))
+                                                    @exp.get("lemmatizer"))
           # AB: TODO make this exception explicit.
           unless sys_class
             raise 'I got a empty interface class for the lemmatizer!'
@@ -304,7 +304,7 @@ module Shalmaneser
         parse_obj.each_parsed_file { |parsed_file_obj|
 
           outfilename = output_dir + parsed_file_obj.filename + ".xml"
-          $stderr.puts "Writing #{outfilename}"
+          LOGGER.debug "Writing #{outfilename}."
 
           begin
             outfile = File.new(outfilename, "w")
@@ -477,7 +477,7 @@ module Shalmaneser
         parse_obj.each_parsed_file { |parsed_file_obj|
           outfilename = output_dir + parsed_file_obj.filename + ".xml"
 
-          $stderr.puts "Writing #{outfilename}"
+          LOGGER.debug "Writing #{outfilename}."
 
           begin
             outfile = File.new(outfilename, "w")

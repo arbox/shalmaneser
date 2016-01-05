@@ -41,6 +41,7 @@ module Shalmaneser
           # get parser interface
           sys_class = ExternalSystems.get_interface("parser", @exp.get("parser"))
 
+          # This suffix is used as extension for parsed files.
           parse_suffix = ".#{sys_class.name.split('::').last}"
 
           sys = sys_class.new(@exp.get("parser_path"),
@@ -54,7 +55,7 @@ module Shalmaneser
           if @parsed_files
             # reuse old parses
             LOGGER.info "#{PROGRAM_NAME}: Using pre-computed parses in #{@parsed_files}.\n"\
-                        "#{PROGRAM_NAME} Postprocessing SalsaTigerXML data"
+                        "#{PROGRAM_NAME} Postprocessing SalsaTigerXML data."
 
             Dir[@parsed_files + "*"].each do |parsefilename|
               if File.stat(parsefilename).ftype != "file"
@@ -69,7 +70,7 @@ module Shalmaneser
             end
           else
             # do new parses
-            LOGGER.info "#{PROGRAM_NAME}: Syntactic analysis with #{sys}."
+            LOGGER.info "#{PROGRAM_NAME}: Syntactic analysis with #{sys.class.name.split('::').last}."
 
             unless @tab_dir
               raise "Cannot parse without tab files"
@@ -79,7 +80,7 @@ module Shalmaneser
             # parse
             sys.process_dir(@tab_dir, @parse_dir)
 
-            LOGGER.info "#{PROGRAM_NAME}: Postprocessing SalsaTigerXML data"
+            LOGGER.info "#{PROGRAM_NAME}: Postprocessing SalsaTigerXML data."
 
             Dir[@parse_dir + "*" + parse_suffix].each do |parsefilename|
               filename_core = File.basename(parsefilename, parse_suffix)

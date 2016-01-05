@@ -44,18 +44,19 @@ module Shalmaneser
 
       ####
       # transform plaintext file to Tab format file
-      def FrappeHelper.plain_to_tab_file(input_filename,# string: name of input file
-                                         output_filename)    # string: name of output file
+      # string: name of input file
+      # string: name of output file
+      def FrappeHelper.plain_to_tab_file(input_filename, output_filename)
         begin
-          infile = File.new(input_filename)
-          outfile = File.new(output_filename, "w")
+          infile = File.open(input_filename)
+          outfile = File.open(output_filename, "w")
         rescue
           raise "Could not read #{input_filename}, or could not write to #{output_filename}."
         end
 
         # AB: TODO This assumes all input files have the extension <txt>.
         # Is it good?
-        filename_core = File.basename(input_filename, 'txt')
+        filename_core = File.basename(input_filename, '.*')
 
         # array(string): keep the words of each sentence
         sentence = []
@@ -74,33 +75,27 @@ module Shalmaneser
 
           # AB: TODO Remove this naive tokenizer, better to have a fully
           # tokenized input using an external tokenizer than that.
-          line.split.each { |word|
+          line.split.each do |word|
             # punctuation at the beginning of the word
-            #if word =~ /^([\(\[`'\"-]+)(.*)$/
+            # if word =~ /^([\(\[`'\"-]+)(.*)$/
             if word =~ /^([\(\[`\"-]+)(.*)$/
               punct = $1
               word = $2
-              punct.scan(/./) { |single_punct|
-                sentence << single_punct
-              }
-
+              punct.scan(/./) { |single_punct| sentence << single_punct }
             end
             # punctuation at the end of the word
-            #if word =~ /[,:;-\`?!'\"\.\)\]]+$/
+            # if word =~ /[,:;-\`?!'\"\.\)\]]+$/
             if word =~ /[,:;-\`?!\"\.\)\]]+$/
-              sentence << $`  # part before the match: the word
+              # part before the match: the word
+              sentence << $`
               punct = $&
-                        punct.scan(/./) { |single_punct|
-                sentence << single_punct
-              }
 
+              punct.scan(/./) { |single_punct| sentence << single_punct }
             else
               # no punctuation recognized
               sentence << word
             end
-          }
-
-
+          end
 
           # remove empty words
           # AB: TODO Is it possible? Remove this.
@@ -108,15 +103,13 @@ module Shalmaneser
 
           # write words to tab file
           # KE Dec 06: TabFormat changed
-          sentence.each { |word|
+          sentence.each do |word|
             # for each word, one line, entries in the line tab-separated
             # the 'word' entry is the word, the 'lu_sent_ids' entry is the sentence ID sentid,
             # all other entries (gf, pt, frame etc.) are not set
-            outfile.puts FNTabFormatFile.format_str({
-                                                      "word" => word,
-                                                      "sent_id" => sentid
-                                                    })
-          }
+            outfile.puts FNTabFormatFile.format_str("word" => word, "sent_id" => sentid)
+          end
+
           outfile.puts
         end
         outfile.close

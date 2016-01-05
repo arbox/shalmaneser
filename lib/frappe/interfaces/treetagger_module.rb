@@ -4,6 +4,7 @@
 
 require 'tempfile'
 require 'pathname'
+require 'logging'
 
 module Shalmaneser
   module Frappe
@@ -76,8 +77,8 @@ module Shalmaneser
         invocation_str = "#{tt_binary} -lemma -token -sgml #{tt_model} "\
                          "#{tempfile.path} 2>/dev/null | #{tt_filter} > #{my_outfilename}"
 
-        STDERR.puts "*** Tagging and lemmatizing #{tempfile.path} with TreeTagger."
-        STDERR.puts invocation_str
+        LOGGER.info "Tagging and lemmatizing #{tempfile.path} with TreeTagger."
+        LOGGER.debug invocation_str
 
         Kernel.system(invocation_str)
         tempfile.close(true) # delete first tempfile
@@ -97,8 +98,8 @@ module Shalmaneser
           `echo "" >> #{my_outfilename}`
         else
           # this is "real" error
-          LOGGER.fatal "Original length: #{original_length}\tLemmatised length: #{lemmatised_length}"
-          LOGGER.fatal "Error: lemmatiser/tagger output for for #{File.basename(infilename)} "\
+          LOGGER.fatal "Original length: #{original_length}\tLemmatised length: #{lemmatised_length}.\n"\
+                       "Error: lemmatiser/tagger output for for #{File.basename(infilename)} "\
                        "has different line number from corpus file!"
           raise
         end
