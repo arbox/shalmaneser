@@ -86,6 +86,7 @@ module Shalmaneser
       # @param filename [String] a name of the configuration file
       # @param feature_types [Hash] feature type definitions
       # @param variables [Array] list of variables used in pattern features
+      # @raise [ConfigurationError]
       def initialize(filename, feature_types, variables)
         @variables = variables
         @filename = filename
@@ -192,8 +193,9 @@ module Shalmaneser
       # the rhs argument can be a string or a regexp.
       # - string: each entry exactly matching the string is removed
       # - regexp: each entry matching the regexp is removed
-      # @param string: lhs feature name
-      # @param string/regexp: rhs righthand side
+      # @param [String] lhs feature name
+      # @param [String, Regexp] rhs righthand side
+      # @raise [ConfigurationError]
       def unset_list_entry(lhs, rhs)
         unless @feature_types[lhs] == "list"
           msg = "Error in experiment file.\n"\

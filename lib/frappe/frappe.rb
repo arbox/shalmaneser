@@ -1,4 +1,4 @@
-require_relative 'do_parses'
+require_relative 'file_parser'
 require_relative 'frappe_helper'
 require_relative 'fix_syn_sem_mapping'
 # For FN input.
@@ -10,6 +10,7 @@ require 'salsa_tiger_xml/file_parts_parser'
 
 require 'logging'
 require 'definitions'
+require 'fileutils'
 
 ##############################
 # The class that does all the work
@@ -167,11 +168,8 @@ module Shalmaneser
             break
 
           when "SalsaTigerXML"
-
             parse_dir = frprep_dirname("parse", "new")
-
-            print "Transform parser output into stxml\n"
-
+            @logger.info "#{PROGRAM_NAME}: Transforming parser output into STXML format."
             transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir, @exp)
             current_dir = output_dir
             # current_format = "Done"
@@ -198,7 +196,6 @@ module Shalmaneser
       # @param subdir [String] designator of a subdirectory
       # @param neu [Nil] non-nil This may be a new directory
       def frprep_dirname(subdir, neu = nil)
-
         dirname = File.new_dir(@exp.get("frprep_directory"),
                                @exp.get("prep_experiment_ID"),
                                subdir)
@@ -230,8 +227,9 @@ module Shalmaneser
       #
       # - Split into parser-size chunks
       # - POS-tag, lemmatize
-      def transform_pos_and_lemmatize(input_dir, # string: input directory
-                                      output_dir) # string: output directory
+      # string: input directory
+      # string: output directory
+      def transform_pos_and_lemmatize(input_dir, output_dir)
         ##
         # split the TabFormatFile into chunks of max_sent_num size
         FrappeHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
@@ -241,7 +239,6 @@ module Shalmaneser
         ##
         # POS-Tagging
         if @exp.get("do_postag")
-          # @todo Introduct the Logger.
           $stderr.puts "Frprep: Tagging."
 
           sys_class = ExternalSystems.get_interface("pos_tagger",
@@ -301,7 +298,7 @@ module Shalmaneser
           raise "Shouldn't be here"
         end
 
-        parse_obj = DoParses.new(@exp, @file_suffixes,
+        parse_obj = FileParser.new(@exp, @file_suffixes,
                                  parse_dir,
                                  "tab_dir" => input_dir)
         parse_obj.each_parsed_file { |parsed_file_obj|
@@ -399,23 +396,25 @@ module Shalmaneser
           stxml_splitdir = frprep_dirname("stxml_split", "new")
           stxml_dir = stxml_splitdir
 
-          $stderr.puts "Frprep: splitting data"
           FrappeHelper.stxml_split_dir(input_dir, stxml_splitdir,
                                        @exp.get("parser_max_sent_num"),
                                        @exp.get("parser_max_sent_len"))
         else
           # no parsing: copy data to split dir
           stxml_dir = parse_dir
-          $stderr.puts "Frprep: Copying data to #{stxml_dir}"
-          Dir[input_dir + "*.xml"].each { |filename|
-            `cp #{filename} #{stxml_dir}#{File.basename(filename)}`
-          }
+
+          LOGGER.info "#{PROGRAM_NAME}: Copying data to #{stxml_dir}"
+
+          Dir[input_dir + "*.xml"].each do |filename|
+            FileUtils.cp filename, stxml_dir
+            #`cp #{filename} #{stxml_dir}#{File.basename(filename)}`
+          end
         end
 
         # Some syntactic processing will take place:
         # tabify data
-        if @exp.get("do_parse") or @exp.get("do_lemmatize") or @exp.get("do_postag")
-          $stderr.puts "Frprep: making input for syn. processing"
+        if @exp.get("do_parse") || @exp.get("do_lemmatize") || @exp.get("do_postag")
+          LOGGER.info "#{PROGRAM_NAME}: Making input for syn. processing."
 
           Dir[stxml_dir + "*" + @file_suffixes["stxml"]].each do |stxmlfilename|
 
@@ -428,13 +427,9 @@ module Shalmaneser
         ###
         # POS-tagging
         if @exp.get("do_postag")
-          $stderr.puts "Frprep: Tagging."
-
+          LOGGER.info "#{PROGRAM_NAME}: Tagging."
           sys_class = ExternalSystems.get_interface("pos_tagger",
-                                                  @exp.get("pos_tagger"))
-          unless sys_class
-            raise "Shouldn't be here"
-          end
+                                                    @exp.get("pos_tagger"))
           sys = sys_class.new(@exp.get("pos_tagger_path"),
                               @file_suffixes["tab"],
                               @file_suffixes["pos"])
@@ -444,13 +439,9 @@ module Shalmaneser
         ###
         # Lemmatization
         if @exp.get("do_lemmatize")
-          $stderr.puts "Frprep: Lemmatizing."
-
+          LOGGER.info "#{PROGRAM_NAME}: Lemmatizing."
           sys_class = ExternalSystems.get_interface("lemmatizer",
-                                                  @exp.get("lemmatizer"))
-          unless sys_class
-            raise "Shouldn't be here"
-          end
+                                                    @exp.get("lemmatizer"))
 
           sys = sys_class.new(@exp.get("lemmatizer_path"),
                               @file_suffixes["tab"],
@@ -479,7 +470,7 @@ module Shalmaneser
           raise "Shouldn't be here"
         end
 
-        parse_obj = DoParses.new(@exp, @file_suffixes,
+        parse_obj = FileParser.new(@exp, @file_suffixes,
                                  parse_dir,
                                  "tab_dir" => tab_dir,
                                  "stxml_dir" => stxml_dir)

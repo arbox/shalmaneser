@@ -70,7 +70,7 @@ class TestFrprep < Minitest::Test
   def test_frprep_plain2stxml
     create_exp_file(PRP_STXMLOUTPUT)
     execute("ruby -I lib bin/frappe -e #{PRP_STXMLOUTPUT}")
-    path = 'stxmloutput/0.xml'
+    path = 'stxmloutput/sagen.txt.xml'
     d_real = Digest::SHA256.file "test/functional/output/#{path}"
     d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
     assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
@@ -80,7 +80,7 @@ class TestFrprep < Minitest::Test
   def test_frprep_stxml2stxml
     create_exp_file(PRP_STXML2STXML)
     execute("ruby -I lib bin/frappe -e #{PRP_STXML2STXML}")
-    path = 'stxml2stxml/0.xml'
+    path = 'stxml2stxml/abfragen.xml'
     d_real = Digest::SHA256.file "test/functional/output/#{path}"
     d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
     # assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')

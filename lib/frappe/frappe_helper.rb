@@ -6,6 +6,8 @@ require 'salsa_tiger_xml/file_parts_parser'
 require 'salsa_tiger_xml/salsa_tiger_xml_helper'
 require 'tabular_format/fn_tab_format_file'
 require "ruby_class_extensions"
+require 'logging'
+require 'fileutils'
 
 ############################################3
 # Module FrappeHelper:
@@ -61,8 +63,7 @@ module Shalmaneser
         # global count, over all input files
         sentno = 0
 
-        while line = infile.gets
-
+        while (line = infile.gets)
           # make a sentence ID for the next sentence: running number
           sentid = "#{filename_core}_#{sentno}"
           sentno += 1
@@ -138,7 +139,7 @@ module Shalmaneser
                                  outdir,
                                  suffix,
                                  sent_num,
-                                 sent_leng=nil)
+                                 sent_leng = nil)
 
         unless indir[-1,1] == "/"
           indir += "/"
@@ -147,15 +148,24 @@ module Shalmaneser
           outdir += "/"
         end
 
+        # @note AB: A dummy reimplementation.
+        #   Not doing splitting at all.
+        #   I want to preserve original file names.
+        Dir["#{indir}*#{suffix}"].each do |file|
+          FileUtils.cp file, outdir
+        end
+        # @note AB: Not doing splitting for now.
+=begin
         outfile_counter = 0
         line_stack = []
         sent_stack = []
 
-        Dir[indir+"*#{suffix}"].each {|infilename|
-          STDERR.puts "Now splitting #{infilename}"
+        Dir[indir + "*#{suffix}"].each do |infilename|
+          LOGGER.info "Now splitting #{infilename}."
+
           infile = File.new(infilename)
 
-          while line = infile.gets
+          while (line = infile.gets)
             line.chomp!
             case line
             when "" # end of sentence
@@ -167,42 +177,45 @@ module Shalmaneser
                 # change (sp 15 01 07): just cut off sentence at sent_leng.
 
                 STDERR.puts "Cutting off long sentence #{line_stack.last.split("\t").last}"
-                line_stack = line_stack[0..sent_leng-1]
+                line_stack = line_stack[0...sent_leng]
               end
+
               unless line_stack.empty?
                 sent_stack << line_stack
                 # reset line_stack
                 line_stack = []
               end
 
-
               # check if we have to empty the sent stack
               if sent_stack.length == sent_num # enough sentences for new outfile?
-                outfile = File.new(outdir+outfile_counter.to_s+"#{suffix}","w")
-                sent_stack.each {|l_stack|
+                outfile = File.new(outdir + outfile_counter.to_s + "#{suffix}", "w")
+
+                sent_stack.each { |l_stack|
                   outfile.puts l_stack.join("\n")
                   outfile.puts
                 }
+
                 outfile.close
                 outfile_counter += 1
                 sent_stack = []
               end
-
             else # for any other line
               line_stack << line
             end
           end
           infile.close
-        }
+        end
+
         # the last remaining sentences
         unless sent_stack.empty?
-          outfile = File.new(outdir+outfile_counter.to_s+"#{suffix}","w")
-          sent_stack.each {|l_stack|
-            l_stack << "\n"
-            outfile.puts l_stack.join("\n")
-          }
-          outfile.close
+          File.open(outdir + outfile_counter.to_s + "#{suffix}", "w") do |outfile|
+            sent_stack.each { |l_stack|
+              l_stack << "\n"
+              outfile.puts l_stack.join("\n")
+            }
+          end
         end
+=end
       end
 
       ####
@@ -270,7 +283,18 @@ module Shalmaneser
                                        max_sentnum, # integer: max num of sentences per file
                                        max_sentlen) # integer: max num of terminals per sentence
 
-        filenames = Dir[input_dir+"*.xml"].to_a
+
+        # @note AB: Effectevely copying all files.
+        Dir["#{input_dir}*.xml"].each do |file|
+          FileUtils.cp file, split_dir
+        end
+
+        # @note AB: Switch off splitting for now.
+        #   The algorithms are weird.
+=begin
+        $stderr.puts "Frprep: splitting data"
+
+        filenames = Dir[input_dir + "*.xml"].to_a
 
         graph_hash = {} # for each sentence id, keep <s...</graph>
         frame_hash = {} # for each sentence id , keep the <frame...  </frame> string
@@ -280,10 +304,10 @@ module Shalmaneser
         ########################
         # Traverse of file(s): compute an index of all frames for each sentence, with unique identifiers
 
-        filenames.each {|filename|
+        filenames.each { |filename|
 
           infile = FilePartsParser.new(filename)
-          infile.scan_s {|sent_str|
+          infile.scan_s { |sent_str|
 
             sentlen = 0
             sent_str.delete("\n").scan(/<t\s/) { |occ| sentlen += 1}
@@ -350,11 +374,11 @@ module Shalmaneser
                   end
                   frameid = frame.attributes["id"]
 
-                  temp_frameid = "#{sentid}_temp_f#{frame_hash[sentid].length+this_frames.length+1}"
-                  final_frameid = "#{sentid}_f#{frame_hash[sentid].length+this_frames.length+1}"
+                  temp_frameid = "#{sentid}_temp_f#{frame_hash[sentid].length + this_frames.length + 1}"
+                  final_frameid = "#{sentid}_f#{frame_hash[sentid].length + this_frames.length + 1}"
 
-                  temp_subs << [frameid,temp_frameid]
-                  final_subs << [temp_frameid,final_frameid]
+                  temp_subs << [frameid, temp_frameid]
+                  final_subs << [temp_frameid, final_frameid]
 
                   this_frames << frame.to_s
                 }
@@ -416,18 +440,13 @@ module Shalmaneser
         outfile = nil
         sent_stack = []
 
-        graph_hash.sort {|a,b| a[0].to_i <=> b[0].to_i}.each {|sentid,graph_str|
+        graph_hash = graph_hash.sort { |a, b| a[0].to_i <=> b[0].to_i }
 
-          if sentcounter == max_sentnum
-            outfile.puts SalsaTigerXMLHelper.get_footer
-            outfile.close
-            outfile = nil
-          end
-
+        graph_hash.each do |sentid, graph_str|
           unless outfile
-            outfile = File.new(split_dir+filecounter.to_s+".xml","w")
+            outfile = File.new(split_dir + filecounter.to_s + ".xml", "w")
             outfile.puts SalsaTigerXMLHelper.get_header
-            filecounter +=1
+            filecounter += 1
             sentcounter = 0
           end
 
@@ -437,20 +456,20 @@ module Shalmaneser
           xml << "<globals>"
           xml << "</globals>"
           xml << "<frames>"
-          frame_hash[sentid].each {|frame_str|
-            xml << frame_str
-          }
+
+          frame_hash[sentid].each { |frame_str| xml << frame_str }
+
           xml << "</frames>"
           xml << "<usp>"
           xml << "<uspframes>"
-          uspframes_hash[sentid].each {|uspblock_str|
-            xml << uspblock_str
-          }
+
+          uspframes_hash[sentid].each { |uspblock_str| xml << uspblock_str }
+
           xml << "</uspframes>"
           xml << "<uspfes>"
-          uspfes_hash[sentid].each {|uspblock_str|
-            xml << uspblock_str
-          }
+
+          uspfes_hash[sentid].each { |uspblock_str| xml << uspblock_str }
+
           xml << "</uspfes>"
           xml << "</usp>"
           xml << "</sem>"
@@ -458,16 +477,15 @@ module Shalmaneser
 
           outfile.puts xml.join("\n")
           sentcounter += 1
-        }
+        end
 
         if outfile
           outfile.puts SalsaTigerXMLHelper.get_footer
           outfile.close
           outfile = nil
         end
-
+=end
       end
-
 
       ####
       # transform SalsaTigerXML file to Tab format file

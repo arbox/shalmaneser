@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <corpus corpusname="corpus" target="">
+    <head>
+      <meta>
+        <format>NeGra format, version 3</format>
+      </meta>
+      <frames xmlns="http://www.clt-st.de/framenet/frame-database">
+      </frames>
+      <wordtags xmlns="http://www.clt-st.de/salsa/wordtags">
+      </wordtags>
+      <flags>
+      </flags>
+      <annotation>
+        <edgelabel>
+        </edgelabel>
+        <secedgelabel>
+        </secedgelabel>
+      </annotation>
+    </head>
+    <body>
+<s id='s12924'>
+<graph root='s12924_505'>
+<terminals>
+<t id='s12924_0' word='Auf' pos='KON' lemma='auf'>
+</t>
+<t id='s12924_1' word='den' pos='ART' lemma='der'>
+</t>
+<t id='s12924_2' word='Antragsformularen' pos='NN' lemma='Antragsformular'>
+</t>
+<t id='s12924_3' word='darf' pos='KOUS' lemma='dürfen'>
+</t>
+<t id='s12924_4' word='die' pos='ART' lemma='der'>
+</t>
+<t id='s12924_5' word='Nationalität' pos='NN' lemma='Nationalität'>
+</t>
+<t id='s12924_6' word='nicht' pos='PTKNEG' lemma='nicht'>
+</t>
+<t id='s12924_7' word='abgefragt' pos='PIS' lemma='abfragen'>
+</t>
+<t id='s12924_8' word='werden' pos='VAFIN' lemma='werden'>
+</t>
+<t id='s12924_9' word='.' pos='$.' lemma='--'>
+</t>
+</terminals>
+<nonterminals>
+<nt id='s12924_500' cat='NP'>
+<edge label='' idref='s12924_2'/>
+<edge label='' idref='s12924_1'/>
+</nt>
+<nt id='s12924_501' cat='NP'>
+<edge label='' idref='s12924_5'/>
+<edge label='' idref='s12924_4'/>
+</nt>
+<nt id='s12924_502' cat='NP'>
+<edge label='' idref='s12924_7'/>
+<edge label='' idref='s12924_6'/>
+</nt>
+<nt id='s12924_503' cat='S'>
+<edge label='' idref='s12924_8'/>
+<edge label='' idref='s12924_502'/>
+<edge label='' idref='s12924_501'/>
+<edge label='' idref='s12924_3'/>
+</nt>
+<nt id='s12924_504' cat='S'>
+<edge label='' idref='s12924_503'/>
+<edge label='' idref='s12924_500'/>
+<edge label='' idref='s12924_0'/>
+</nt>
+<nt id='s12924_505' cat='VROOT'>
+<edge label='' idref='s12924_9'/>
+<edge label='' idref='s12924_504'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+<frame id='abfragen_s12924_f0' name='Questioning'>
+<target id='1452019812.3890297' lemma='abfragen'>
+<fenode idref='s12924_7'/>
+</target>
+<fe name='Medium' id='abfragen_s12924_f0_e1'>
+<fenode idref='s12924_505'/>
+</fe>
+<fe name='Topic' id='abfragen_s12924_f0_e2'>
+<fenode idref='s12924_501'/>
+</fe>
+</frame>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+<s id='s27176'>
+<graph root='s27176_503'>
+<terminals>
+<t id='s27176_0' word='Risikofaktoren' pos='ADV' lemma='Risikofaktor'>
+</t>
+<t id='s27176_1' word='seien' pos='VVFIN' lemma='sein'>
+</t>
+<t id='s27176_2' word='bei' pos='KOUS' lemma='bei'>
+</t>
+<t id='s27176_3' word='Wiederholungsspendern' pos='NE' lemma='Wiederholungsspender'>
+</t>
+<t id='s27176_4' word='nicht' pos='PTKNEG' lemma='nicht'>
+</t>
+<t id='s27176_5' word='abgefragt' pos='PIS' lemma='abfragen'>
+</t>
+<t id='s27176_6' word='worden' pos='VAFIN' lemma='werden'>
+</t>
+<t id='s27176_7' word='.' pos='$.' lemma='--'>
+</t>
+</terminals>
+<nonterminals>
+<nt id='s27176_500' cat='NP'>
+<edge label='' idref='s27176_5'/>
+<edge label='' idref='s27176_4'/>
+</nt>
+<nt id='s27176_501' cat='S'>
+<edge label='' idref='s27176_6'/>
+<edge label='' idref='s27176_500'/>
+<edge label='' idref='s27176_3'/>
+<edge label='' idref='s27176_2'/>
+</nt>
+<nt id='s27176_502' cat='S'>
+<edge label='' idref='s27176_501'/>
+<edge label='' idref='s27176_1'/>
+<edge label='' idref='s27176_0'/>
+</nt>
+<nt id='s27176_503' cat='VROOT'>
+<edge label='' idref='s27176_7'/>
+<edge label='' idref='s27176_502'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+<frame id='abfragen_s27176_f0' name='Questioning'>
+<target id='1452019812.4330678' lemma='abfragen'>
+<fenode idref='s27176_5'/>
+</target>
+<fe name='Addressee' id='abfragen_s27176_f0_e1'>
+<fenode idref='s27176_3'/>
+<fenode idref='s27176_2'/>
+</fe>
+<fe name='Topic' id='abfragen_s27176_f0_e2'>
+<fenode idref='s27176_0'/>
+</fe>
+</frame>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+        </body>
+</corpus>

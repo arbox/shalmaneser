@@ -16,7 +16,6 @@ require 'logging'
 
 require "tempfile"
 
-
 ################################################
 # Interface class
 module Shalmaneser
@@ -59,10 +58,9 @@ module Shalmaneser
       # I assume that the files in inputdir are smaller than
       # the maximum number of sentences that
       # Berkeley can parse in one go (i.e. that they are split)
-      def process_dir(in_dir,  # string: input directory name
-                      out_dir) # string: output directory name
-
-
+      # string: input directory name
+      # string: output directory name
+      def process_dir(in_dir, out_dir)
         parser = ENV['SHALM_BERKELEY_BIN'] || 'berkeleyParser.jar'
         grammar = ENV['SHALM_BERKELEY_MODEL'] || 'grammar.gr'
         options = ENV['SHALM_BERKELEY_OPTIONS']
@@ -70,8 +68,7 @@ module Shalmaneser
         berkeley_prog = "java -jar #{@program_path}#{parser} #{options} -gr #{@program_path}#{grammar}"
 
         Dir[in_dir + "*" + @insuffix].each do |inputfilename|
-
-          STDERR.puts "*** Parsing #{inputfilename} with Berkeley"
+          LOGGER.info "Parsing #{inputfilename} with Berkeley Parser."
           corpusfilename = File.basename(inputfilename, @insuffix)
           parsefilename = out_dir + corpusfilename + @outsuffix
           tempfile = Tempfile.new(corpusfilename)
@@ -80,17 +77,16 @@ module Shalmaneser
           corpusfile = FNTabFormatFile.new(inputfilename, nil, nil)
 
           corpusfile.each_sentence do |sentence|
-            #puts sentence
             tempfile.puts sentence
           end
 
           tempfile.close
-          # parse and remove comments in the parser output
-          STDERR.puts "#{berkeley_prog} < #{tempfile.path} > #{parsefilename}"
 
-          # AB: for testing we leave this step out, it takes too much time.
-          # Please keep the <parsefile> intact!!!
-          rv = system("#{berkeley_prog} < #{tempfile.path} > #{parsefilename}")
+          # parse and remove comments in the parser output
+          shell_cmd = "#{berkeley_prog} < #{tempfile.path} > #{parsefilename}"
+          LOGGER.debug shell_cmd
+
+          rv = system(shell_cmd)
 
           # AB: Testing for return value.
           unless rv
@@ -118,7 +114,7 @@ module Shalmaneser
 
         # get matching tab file for this parser output file
         parsefile = File.new(parsefilename)
-        tabfilename = @tab_dir+File.basename(parsefilename, @outsuffix)+ @insuffix
+        tabfilename = @tab_dir + File.basename(parsefilename, @outsuffix) + @insuffix
         tabfile = FNTabFormatFile.new(tabfilename, @postag_suffix, @lemma_suffix)
 
         sentid = 0
@@ -128,8 +124,7 @@ module Shalmaneser
           status = true # error encountered?
           # assemble next sentence in Berkeley file by reading lines from parsefile
           # for berkeley:
-          while true
-            line = parsefile.gets
+          while (line = parsefile.gets)
 
             # search for the next "relevant" file or end of the file
             # We expect here:
@@ -144,11 +139,10 @@ module Shalmaneser
             if line.nil? or line=~/^(\( *)?\((PSEUDO|TOP|ROOT|VROOT)? / or line=~/^\(\(\)/
               break
             end
-            sentid +=1
 
+            sentid += 1
           end
-
-
+          # @todo AB: Check if this condition is valid.
           if line.nil? # while we search a parse, the parse file is over...
             raise "Error: premature end of parser file!"
           end
@@ -216,9 +210,9 @@ module Shalmaneser
 
       ###
       # write Salsa/TIGER XML output to file
-      def to_stxml_file(infilename,  # string: name of parse file
-                        outfilename) # string: name of output stxml file
-
+      # string: name of parse file
+      # string: name of output stxml file
+      def to_stxml_file(infilename, outfilename)
         File.open(outfilename, 'w') do |outfile|
           outfile.puts SalsaTigerXMLHelper.get_header
           each_sentence(infilename) do |st_sent, tabsent|
@@ -226,10 +220,7 @@ module Shalmaneser
           end
           outfile.puts SalsaTigerXMLHelper.get_footer
         end
-
       end
-
-
 
       ########################
       private
@@ -280,7 +271,7 @@ module Shalmaneser
           end
           #          STDERR.puts "new const #{cat}"
           stack.push cat # throw the category label on the stack
-          return build_salsatiger(sentence,pos+$&.length,stack,termc,nontc,sent_obj)
+          return build_salsatiger(sentence, pos + $&.length, stack, termc, nontc, sent_obj)
 
         when /^\s*(\S+)\) /
           # match the end of a terminal constituent (something before a closing bracket + space)
@@ -306,7 +297,7 @@ module Shalmaneser
           # now collect children:
           # pop items from the stack until you find the category
           children = []
-          while true
+          loop do
             if stack.empty?
               raise "Error: stack empty; cannot find more children"
             end
@@ -338,11 +329,11 @@ module Shalmaneser
           children.each do |child|
             child_gf = child.get_attribute("gf")
             child.del_attribute("gf")
-            node.add_child(child,child_gf)
+            node.add_child(child, child_gf)
             child.add_parent(node, child_gf)
           end
 
-          node.set_attribute("gf",gf)
+          node.set_attribute("gf", gf)
           #          STDERR.puts "Completed nonterm #{cat}, #{children.length} children."
           stack.push node
 
@@ -361,16 +352,14 @@ module Shalmaneser
       # @param cat [String]
       # @return [Array<String>]
       def split_cat(cat)
-
         md = cat.match(/^([^-:_]*)([-:_]([^-:_]*))?$/)
         raise "Error: Could not identify category in #{cat}!" unless md[1]
 
         proper_cat = md[1]
-        md[3] ? gf = md[3] : gf = ''
+        gf = md[3] ? md[3] : ''
 
         [proper_cat, gf]
       end
-
     end
   end
 end

@@ -110,22 +110,23 @@ module Shalmaneser
     #
     # returns: SynInterface class
     def self.get_interface(service, system)
-      # try to find an interface class with the given
-      # name and service
-      @interfaces.each { |interface_class|
-        if interface_class.system == system && interface_class.service == service
-          return interface_class
-        end
-      }
+      interfaces = @interfaces.select do |interface_class|
+        interface_class.system == system && interface_class.service == service
+      end
 
-      # at this point, detection of a suitable interface class has failed
-      nil
+      unless interfaces.any?
+        raise "I've been requested an interface for #{service} and #{system}, "\
+              'but I cannot find any. Please correct your experiment files.'
+      end
+
+      # @todo AB: Actually it's bad logic, but no idea for now how to handle it.
+      interfaces.first
     end
 
     ###
     # helper for get_interpreter:
     def self.get_interpreter_according_to_exp(exp)
-      return ExternalSystems.get_interpreter(ExternalSystems.requested_services(exp))
+      ExternalSystems.get_interpreter(ExternalSystems.requested_services(exp))
     end
 
     ###
@@ -142,7 +143,7 @@ module Shalmaneser
     # hash: service(string) -> system name(string)
     #
     # returns: SynInterpreter class
-    def ExternalSystems.get_interpreter(systems)
+    def self.get_interpreter(systems)
       # try to find an interface class with the given
       # service-name pairs
 
