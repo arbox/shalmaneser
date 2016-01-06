@@ -6,6 +6,7 @@ require_relative 'frame_node'
 require_relative 'fe_node'
 require_relative 'reg_xml'
 
+module STXML
 #############
 class SalsaTigerSentenceSem < XMLNode
 
@@ -433,4 +434,5 @@ class SalsaTigerSentenceSem < XMLNode
       }
     }
   end
+end
 end

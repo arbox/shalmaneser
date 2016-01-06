@@ -1,3 +1,4 @@
+module STXML
 # sp jul 05 05
 #
 # Static helper methods for SalsaTigerRegXML:
@@ -7,8 +8,22 @@
 #
 # changed KE nov 05:
 # many methods moved to FrappeHelper
-
 class SalsaTigerXMLHelper
+  # escape and unescape strings for representation in XML
+  @replacements = [
+    # ["&apos;&apos;","&quot;"], # added by ines (09/03/09), might cause problems for unescape???
+    ["&", "&amp;"], # must be first for escaping, last for unescaping
+    ["<", "&lt;"],
+    [">", "&gt;"],
+    ["\"", "&apos;&apos;"],
+    # ["\"","&quot;"],
+    # ["\'\'","&quot;"],
+    # ["\`\`","&quot;"],
+    ["\'", "&apos;"],
+    ["\`\`", "&apos;&apos;"],
+    # ["''","&apos;&apos;"]
+  ]
+
   ###
   # get header of SalsaTigerXML files (as string)
   def self.get_header
@@ -49,24 +64,8 @@ ENDOFFOOTER
     footer
   end
 
-  # escape and unescape strings for representation in XML
-
-  @@replacements = [
-    #  ["&apos;&apos;","&quot;"], # added by ines (09/03/09), might cause problems for unescape???
-    ["&","&amp;"], # must be first for escaping, last for unescaping
-    ["<","&lt;"],
-    [">", "&gt;"],
-    ["\"","&apos;&apos;"],
-    #  ["\"","&quot;"],
-    #  ["\'\'","&quot;"],
-    #  ["\`\`","&quot;"],
-    ["\'","&apos;"],
-    ["\`\`","&apos;&apos;"],
-    #  ["''","&apos;&apos;"]
-  ]
-
   def self.escape(string)
-    @@replacements.each do |unescaped, escaped|
+    @replacements.each do |unescaped, escaped|
       string.gsub!(unescaped, escaped)
     end
 
@@ -75,10 +74,11 @@ ENDOFFOOTER
 
   def self.unescape(string)
     # reverse replacements to replace &amp last
-    @@replacements.reverse_each do |unescaped, escaped|
+    @replacements.reverse_each do |unescaped, escaped|
       string.gsub!(escaped, unescaped)
     end
 
     string
   end
+end
 end

@@ -22,9 +22,9 @@ module Shalmaneser
       # and a hash: FNTab sentence lineno(integer) -> array:SynNode
       # pointing each tab word to one or more SalsaTigerSentence terminals
       def each_sentence
-        @obj_with_iterator.each_sentence(@complete_filename) { |st_sent, tab_sent, mapping|
+        @obj_with_iterator.each_sentence(@complete_filename) do |st_sent, tab_sent, mapping|
           yield [st_sent, tab_sent, mapping]
-        }
+        end
       end
     end
   end

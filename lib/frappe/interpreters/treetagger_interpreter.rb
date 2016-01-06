@@ -2,6 +2,7 @@
 # an interpreter that only has Treetagger, no parser
 
 require_relative 'syn_interpreter'
+require 'logging'
 
 module Shalmaneser
   module Frappe
@@ -79,8 +80,7 @@ module Shalmaneser
         when /^V/, /^MD/
           "verb"
         else
-          # @todo Change this to a Logger warning.
-          STDERR.puts "WARNING: Unknown category/POS " + pt.to_s + " (English data)."
+          LOGGER.warn "Unknown category/POS #{pt} (English data)."
           nil
         end
       end

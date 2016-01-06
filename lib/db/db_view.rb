@@ -76,7 +76,7 @@ class DBView
 
     # view empty?
     if @table_col_pairs.empty? or
-        @table_col_pairs.big_and { |tc| tc.columns.class.to_s == "Array" and tc.columns.empty? }
+        @table_col_pairs.big_and { |tc| tc.columns.is_a?(Array) and tc.columns.empty? }
       @view_empty = true
       return
     else
@@ -265,11 +265,10 @@ class DBView
     # a column with this name
     # and update that column
     @table_col_pairs.each { |tc|
-      if (tc.columns.class.to_s == "Array" and tc.columns.include? name) or
+      if (tc.columns.is_a(Array) && tc.columns.include? name) or
           (tc.columns == "*" and tc.table_obj.list_column_names.include? name)
 
         table_name = tc.table_obj.table_name
-
         # sanity check: number of update entries must match
         # number of entries in this view
         unless values.length == @index_tables[table_name].num_rows

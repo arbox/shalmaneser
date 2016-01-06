@@ -1,5 +1,6 @@
 require_relative 'salsa_tiger_xml_node'
 
+module STXML
 #############
 # class SemNode
 #
@@ -16,7 +17,6 @@ require_relative 'salsa_tiger_xml_node'
 #
 # add_flag  add or remove a frame/FE flag
 # remove_flag
-
 class SemNode < SalsaTigerXmlNode
   attr_reader :flags
 
@@ -54,4 +54,5 @@ class SemNode < SalsaTigerXmlNode
       "<flag name=\'#{xml_secure_val(flagname)}\'/>\n"
     end.join
   end
+end
 end

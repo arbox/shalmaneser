@@ -1,3 +1,4 @@
+module STXML
 #########
 # module StringTerminalsInRightOrder
 #
@@ -24,7 +25,6 @@
 #
 # string_for_nodes returns the string for the yield of a list of nodes
 #     nodes: a list of node objects
-
 module StringTerminalsInRightOrder
   def string_for_node(node)
     string_for_nodes([node])
@@ -188,5 +188,5 @@ module StringTerminalsInRightOrder
     end
     return $1.to_i       # and return it as number
   end
-
+end
 end

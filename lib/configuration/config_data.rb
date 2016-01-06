@@ -203,10 +203,10 @@ module Shalmaneser
           raise ConfigurationError, msg
         end
 
-        case rhs.class.to_s
-        when "String"
+        case rhs
+        when String
           rhs_match = Regexp.new("^" + Regexp.escape(rhs) + "$")
-        when "Regexp"
+        when Regexp
           rhs_match = rhs
         else
           raise ConfigurationError, "Shouldn't be here: #{rhs.class}."

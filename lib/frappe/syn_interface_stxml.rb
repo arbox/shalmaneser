@@ -101,11 +101,11 @@ module Shalmaneser
         tab_reader.each_sentence { |s| tab_sentences << s }
 
         # read Salsa/Tiger sentences and yield them
-        reader = FilePartsParser.new(tf.path)
+        reader = STXML::FilePartsParser.new(tf.path)
         sent_index = 0
         reader.scan_s { |sent_string|
           yield [
-            SalsaTigerSentence.new(sent_string, tab_sentences[sent_index]),
+            STXML::SalsaTigerSentence.new(sent_string, tab_sentences[sent_index]),
             tab_sentences[sent_index],
             SynInterfaceSTXML.standard_mapping(sent, tab_sentences[sent_index])
           ]
@@ -141,8 +141,8 @@ module Shalmaneser
       ###
       # provide a XML representation for a sentence that couldn't be analyzed
       # assuming a flat structure of all terminals, adding a virtual top node
-      def self.failed_sentence(tab_sent,sentid)
-        sent_obj = SalsaTigerSentence.empty_sentence(sentid.to_s)
+      def self.failed_sentence(tab_sent, sentid)
+        sent_obj = STXML::SalsaTigerSentence.empty_sentence(sentid.to_s)
 
         sent_obj.set_attribute("failed","true")
 
@@ -160,7 +160,7 @@ module Shalmaneser
           pos = line.get("pos")
           node = sent_obj.add_syn("t",
                                   nil,  # cat (doesn't matter here)
-                                  SalsaTigerXMLHelper.escape(word), # word
+                                  STXML::SalsaTigerXMLHelper.escape(word), # word
                                   pos,  # pos
                                   t_counter.to_s)
           topnode.add_child(node,nil)

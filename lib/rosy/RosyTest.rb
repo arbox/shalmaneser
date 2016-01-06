@@ -711,7 +711,7 @@ class RosyTest < RosyTask
       %x{gunzip -c #{infilename} > #{tempfile.path}}
 
       # open input and output file
-      infile = FilePartsParser.new(tempfile.path)
+      infile = STXML::FilePartsParser.new(tempfile.path)
       outfilename = output_directory + File.basename(infilename, ".gz")
       begin
         outfile = File.new(outfilename, "w")
@@ -725,7 +725,7 @@ class RosyTest < RosyTask
       ##
       # each input sentence: integrate newly assigned roles
       infile.scan_s { |sent_string|
-        sent = SalsaTigerSentence.new(sent_string)
+        sent = STXML::SalsaTigerSentence.new(sent_string)
 
         ##
         # each input frame: remove old roles, add new ones

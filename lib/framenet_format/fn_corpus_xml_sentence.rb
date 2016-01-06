@@ -10,7 +10,7 @@ class FNCorpusXMLSentence
 
   #########
   def initialize(sent_string)
-    @sent = RegXML.new(sent_string)
+    @sent = STXML::RegXML.new(sent_string)
     @sent_id = @sent.attributes["ID"]
   end
 

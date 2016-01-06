@@ -1,3 +1,4 @@
+module STXML
 # RegXML
 #
 # Katrin Erk June 2005
@@ -275,4 +276,5 @@ lalala=\"c\">
   def xml_readable(string)
     string.gsub(/>/, ">\n")
   end
+end
 end

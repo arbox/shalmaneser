@@ -164,7 +164,7 @@ class BerkeleyInterface < SynInterfaceSTXML
         st_sent = build_salsatiger(" " + sentence_str + " ", 0,
                                    [], Counter.new(0),
                                    Counter.new(500),
-                                   SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
+                                   STXML::SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
         if st_sent.nil?
           next
         end
@@ -199,11 +199,11 @@ class BerkeleyInterface < SynInterfaceSTXML
 
     outfile = File.new(outfilename, "w")
 
-    outfile.puts SalsaTigerXMLHelper.get_header
+    outfile.puts STXML::SalsaTigerXMLHelper.get_header
     each_sentence(infilename) { |st_sent, tabsent|
       outfile.puts st_sent.get
     }
-    outfile.puts SalsaTigerXMLHelper.get_footer
+    outfile.puts STXML::SalsaTigerXMLHelper.get_footer
     outfile.close
   end
 
@@ -272,7 +272,7 @@ class BerkeleyInterface < SynInterfaceSTXML
       cat,gf = split_cat(comb_cat)
       node = sent_obj.add_syn("t",
                               nil,  # cat (doesn't matter here)
-                              SalsaTigerXMLHelper.escape(word), # word
+                              STXML::SalsaTigerXMLHelper.escape(word), # word
                               cat,  # pos
                               termc.next.to_s)
       node.set_attribute("gf",gf)
@@ -289,17 +289,17 @@ class BerkeleyInterface < SynInterfaceSTXML
           raise "Error: stack empty; cannot find more children"
         end
         item = stack.pop
-        case item.class.to_s
-        when "SynNode" # this is a child
+        case item
+        when STXML::SynNode # this is a child
           children.push item
-        when "String" # this is the category label
+        when String # this is the category label
           if item.to_s == ""
             raise "Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
           end
-          cat,gf = split_cat(item)
+          cat, gf = split_cat(item)
           break
         else
-          raise "Error: unknown item class #{item.class.to_s}"
+          raise "Error: unknown item class #{item.class}."
         end
       end
       # now add a nonterminal node to the sentence object and
@@ -312,7 +312,7 @@ class BerkeleyInterface < SynInterfaceSTXML
       children.each {|child|
         child_gf = child.get_attribute("gf")
         child.del_attribute("gf")
-        node.add_child(child,child_gf)
+        node.add_child(child, child_gf)
         child.add_parent(node, child_gf)
        }
       node.set_attribute("gf",gf)

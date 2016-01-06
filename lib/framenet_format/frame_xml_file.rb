@@ -54,7 +54,7 @@ class FrameXMLFile #  only verified to work for FrameNet v1.1
     while (line = file.gets)
       string << line
     end
-    @lexunit = RegXML.new(string)
+    @lexunit = STXML::RegXML.new(string)
     attributes = @lexunit.attributes
     @id = attributes["ID"]
     attributes["name"] =~ /^([^.]+).([^.]+)$/

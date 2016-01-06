@@ -35,10 +35,10 @@ module Shalmaneser
         end
 
         # read STXML file
-        infile = FilePartsParser.new(@stxmlfilename)
+        infile = STXML::FilePartsParser.new(@stxmlfilename)
         index = 0
         infile.scan_s do |sent_string|
-          sent = SalsaTigerSentence.new(sent_string)
+          sent = STXML::SalsaTigerSentence.new(sent_string)
           yield [sent, tab_sents.at(index), SynInterfaceSTXML.standard_mapping(sent, tab_sents.at(index))]
           index += 1
         end

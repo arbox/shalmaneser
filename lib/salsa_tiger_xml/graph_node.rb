@@ -1,3 +1,4 @@
+module STXML
 # GraphNode: describes one node in a graph.
 #
 # A node may have an arbitrary number of parents (sources of incoming edges)
@@ -342,4 +343,5 @@ class GraphNode
       add_parent(label, parent)
     }
   end
+end
 end

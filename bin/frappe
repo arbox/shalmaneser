@@ -34,5 +34,6 @@ rescue => e
   # @todo Colored output and checks for STDOUT vs. PIPE.
   $stderr.puts 'Frappe cannot serve to you!'
   $stderr.puts e.message
+  $stderr.puts e.backtrace
   exit(1)
 end

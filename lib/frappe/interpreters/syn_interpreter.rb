@@ -48,7 +48,7 @@ module Shalmaneser
       #
       # returns: string or nil
       def self.category(node) # SynNode
-        unless node.is_a?(SynNode)
+        unless node.is_a?(::STXML::SynNode)
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -73,7 +73,7 @@ module Shalmaneser
       #
       # returns: string or nil
       def self.lemma_backoff(node)
-        unless node.is_a?(SynNode)
+        unless node.is_a?(::STXML::SynNode)
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -94,7 +94,7 @@ module Shalmaneser
       #
       # returns: string
       def self.pt(node)
-        unless node.is_a?(SynNode)
+        unless node.is_a?(STXML::SynNode)
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -165,7 +165,7 @@ module Shalmaneser
       #
       # returns: a SynNode object if successful, else nil
       def self.head_terminal(node)
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -193,7 +193,7 @@ module Shalmaneser
       #
       # default: treat all as active
       def self.voice(node)
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -218,7 +218,7 @@ module Shalmaneser
       # prepositions tacked on for pps
       def self.gfs(node,    # SynNode
                              sent)    # SalsaTigerSentence
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -243,7 +243,7 @@ module Shalmaneser
       #
       # Default: returns the first non-head child
       def self.informative_content_node(node)
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -286,7 +286,7 @@ module Shalmaneser
       # or an empty list if there is no such verb
       def self.governing_verbs(node,
                                          sent)
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -327,7 +327,7 @@ module Shalmaneser
                                       to_node,   # SynNode
                                       use_nontree_edges = false) # boolean
 
-        unless from_node.is_a? SynNode and to_node.is_a? SynNode
+        unless from_node.is_a? ::STXML::SynNode and to_node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -353,7 +353,7 @@ module Shalmaneser
       def self.surrounding_nodes(node, # SynNode
                                            use_nontree_edges = false) # boolean
 
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -387,7 +387,7 @@ module Shalmaneser
       def self.relative_position(node,        # SynNode
                                            anchor_node) # SynNode
 
-        unless node.is_a? SynNode and anchor_node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode and anchor_node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -451,7 +451,7 @@ module Shalmaneser
       # default: assume that either the PP node will have the preposition as its lemma,
       # or that the head terminal of the PP will be the preposition
       def self.preposition(node)
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end
@@ -620,7 +620,7 @@ module Shalmaneser
                                 paths_to_target, # hash: node ID -> Path object: paths from nodes to target
                                 terminal_index)  # hash: terminal node -> word index in sentence
 
-        unless node.is_a? SynNode
+        unless node.is_a? ::STXML::SynNode
           $stderr.puts "Warning: unexpected input class #{node.class} to SynInterpreter"
           return nil
         end

@@ -1,6 +1,7 @@
 require_relative 'xml_node'
 require_relative 'string_terminals_in_right_order'
 
+module STXML
 #############
 # class SalsaTigerXmlNode
 #
@@ -156,4 +157,5 @@ class SalsaTigerXmlNode < XMLNode
   def to_s
     string_for_node(self)
   end
+end
 end

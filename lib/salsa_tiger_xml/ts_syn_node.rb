@@ -1,6 +1,7 @@
 require_relative 'syn_node'
 require_relative 'reg_xml'
 
+module STXML
 #############
 # class TSSynNode
 #
@@ -21,7 +22,6 @@ require_relative 'reg_xml'
 # word                 returns "<unknown>"
 #
 # add_child raises an error
-
 class TSSynNode < SynNode
 
   ###
@@ -43,4 +43,5 @@ class TSSynNode < SynNode
   def add_child(arg1, arg2)
     raise "Not implemented for this class"
   end
+end
 end

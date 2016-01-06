@@ -1,5 +1,6 @@
 require_relative 'tree_node'
 
+module STXML
 #############
 # class XMLNode
 #
@@ -20,7 +21,6 @@ require_relative 'tree_node'
 # get        returns the XML object representing
 #            the same node as this node object
 #
-
 class XMLNode < TreeNode
 
   # @param name [String] element name; or, for text, the whole text
@@ -75,7 +75,7 @@ class XMLNode < TreeNode
   # @param value [String]
   def set_attribute(name, value)
     unless value.class == String
-      raise "I can only set attribute values to strings. Got: #{value.class.to_s}"
+      raise "I can only set attribute values to strings. Got: #{value.class}."
     end
 
     if get_f("attributes").nil?
@@ -159,4 +159,5 @@ class XMLNode < TreeNode
   def xml_secure_val(value) # string: value of an attribute
     value.gsub(/'/, "&apos;").gsub(/"/, "&apos;&apos;")
   end
+end
 end

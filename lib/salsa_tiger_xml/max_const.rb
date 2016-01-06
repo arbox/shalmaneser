@@ -1,3 +1,4 @@
+module STXML
 #######
 # identify the set of maximal constituents covering a set of nodes
 #
@@ -239,4 +240,5 @@ module MaxConst
       ]
     end
   end
+end
 end

@@ -180,7 +180,7 @@ module Shalmaneser
             st_sent = build_salsatiger(" " + sentence_str + " ", 0,
                                        [], Counter.new(0),
                                        Counter.new(500),
-                                       SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
+                                       STXML::SalsaTigerSentence.empty_sentence(my_sent_id.to_s))
             if st_sent.nil?
               next
             end
@@ -214,11 +214,11 @@ module Shalmaneser
       # string: name of output stxml file
       def to_stxml_file(infilename, outfilename)
         File.open(outfilename, 'w') do |outfile|
-          outfile.puts SalsaTigerXMLHelper.get_header
+          outfile.puts STXML::SalsaTigerXMLHelper.get_header
           each_sentence(infilename) do |st_sent, tabsent|
             outfile.puts st_sent.get
           end
-          outfile.puts SalsaTigerXMLHelper.get_footer
+          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
         end
       end
 
@@ -285,7 +285,7 @@ module Shalmaneser
           cat, gf = split_cat(comb_cat)
           node = sent_obj.add_syn("t",
                                   nil,  # cat (doesn't matter here)
-                                  SalsaTigerXMLHelper.escape(word), # word
+                                  STXML::SalsaTigerXMLHelper.escape(word), # word
                                   cat,  # pos
                                   termc.next.to_s)
           node.set_attribute("gf", gf)
@@ -303,18 +303,20 @@ module Shalmaneser
             end
 
             item = stack.pop
+
             # @todo Change the check from string to class instances. 'SynNode' -> SynNode
-            case item.class.to_s
-            when "SynNode" # this is a child
+            case item
+            when STXML::SynNode # this is a child
               children.push item
-            when "String" # this is the category label
+            when String
+              # this is the category label
               if item.to_s == ""
-                raise "Empty cat at position #{sentence[pos,10]}, full sentence\n#{sentence}"
+                raise "Empty cat at position #{sentence[pos, 10]}, full sentence\n#{sentence}"
               end
               cat, gf = split_cat(item)
               break
             else
-              raise "Error: unknown item class #{item.class.to_s}"
+              raise "Error: unknown item class #{item.class}."
             end
           end
 

@@ -175,10 +175,10 @@ module Shalmaneser
         # the sentence under that index
         Dir[dir + "*.xml"].each { |filename|
           $stderr.puts "\t#{filename}"
-          f = FilePartsParser.new(filename)
+          f = STXML::FilePartsParser.new(filename)
           f.scan_s { |sent_string|
 
-            xml_obj = RegXML.new(sent_string)
+            xml_obj = STXML::RegXML.new(sent_string)
 
             # make hash key from words of sentence
             graph = xml_obj.children_and_text.detect { |c| c.name == "graph" }
@@ -194,7 +194,7 @@ module Shalmaneser
             # $stderr.puts "HIER calling checksum for noncontig"
             hashkey = checksum(terminals.children_and_text.select { |c| c.name == "t"
                                }.map { |t|
-                                 SalsaTigerXMLHelper.unescape(t.attributes["word"].to_s )
+                                 STXML::SalsaTigerXMLHelper.unescape(t.attributes["word"].to_s )
                                })
             # HIER
             # $stderr.puts "HIER " + terminals.children_and_text().select { |c| c.name() == "t"
@@ -407,7 +407,7 @@ module Shalmaneser
         words = []
         words2 = []
         tabsent.each_line_parsed { |line_obj|
-          words << SalsaTigerXMLHelper.unescape(line_obj.get("word"))
+          words << STXML::SalsaTigerXMLHelper.unescape(line_obj.get("word"))
           words2 << line_obj.get("word")
         }
         # $stderr.puts "HIER calling checksum from larger corpus"
@@ -434,7 +434,7 @@ module Shalmaneser
 
             sent_string = SQLQuery.unstringify_value(row.first.to_s)
             begin
-              sent = SalsaTigerSentence.new(sent_string)
+              sent = STXML::SalsaTigerSentence.new(sent_string)
             rescue
               $stderr.puts "Error reading Salsa/Tiger XML sentence."
               $stderr.puts
@@ -503,7 +503,7 @@ module Shalmaneser
               sent_string = SQLQuery.unstringify_value(row.first.to_s)
               begin
                 # report on unmatched sentence
-                sent = SalsaTigerSentence.new(sent_string)
+                sent = STXML::SalsaTigerSentence.new(sent_string)
                 $stderr.puts "Unmatched sentence from noncontiguous input:\n" +
                              sent.id.to_s + " " + sent.to_s
 

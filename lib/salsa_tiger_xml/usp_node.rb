@@ -1,5 +1,6 @@
 require_relative 'salsa_tiger_xml_node'
 
+module STXML
 #############
 # class UspNode
 #
@@ -16,7 +17,6 @@ require_relative 'salsa_tiger_xml_node'
 #                  or "fe" for frame element underspecification
 #
 # add_child, remove_child   add, remove underspecification entry
-
 class UspNode <  SalsaTigerXmlNode
 
   attr_reader :i_am
@@ -68,5 +68,5 @@ class UspNode <  SalsaTigerXmlNode
       "<uspitem idref=\'#{xml_secure_val(child.id)}\'/>\n"
     }.join
   end
-
+end
 end

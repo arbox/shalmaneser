@@ -73,7 +73,7 @@ module Shalmaneser
       # - senses: array:string, the senses for the target
       # - sent: SalsaTigerSentence object
       def each_window_for_sent(sent)  # SalsaTigerSentence object or TabSentence object
-        if sent.is_a? SalsaTigerSentence
+        if sent.is_a? STXML::SalsaTigerSentence
           each_window_for_stsent(sent) { |result| yield result }
 
         elsif sent.is_a? TabFormatSentence

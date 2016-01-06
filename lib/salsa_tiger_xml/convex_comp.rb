@@ -1,3 +1,4 @@
+module STXML
 module ConvexComp
 
   def convex_complemented(node_set)
@@ -17,4 +18,5 @@ module ConvexComp
       return max_constituents_for_nodes(new_node_set)
     end
   end
+end
 end

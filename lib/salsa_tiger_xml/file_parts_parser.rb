@@ -11,6 +11,7 @@
 
 require "rexml/document"
 
+module STXML
 class FilePartsParser
   # <@file> = File object for the corpus
   # <@head> = string up to the first <s> tag
@@ -152,6 +153,7 @@ class FilePartsParser
     end
     return @rest
   end
+end
 end
 
 # This part seems to be obsolete, delete it!

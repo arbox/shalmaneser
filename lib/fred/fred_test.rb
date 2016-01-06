@@ -511,7 +511,7 @@ module Shalmaneser
           # @todo AB: Replace this with a native call.
           %x{gunzip -c #{filename} > #{tempfile.path}}
 
-          infile = FilePartsParser.new(tempfile.path)
+          infile = STXML::FilePartsParser.new(tempfile.path)
 
           LOGGER.debug "SalsaTigerXML output of " + File.basename(filename, ".gz")
 
@@ -527,7 +527,7 @@ module Shalmaneser
           outfile.puts infile.head
 
           infile.scan_s { |sent_string|
-            sent = SalsaTigerSentence.new(sent_string)
+            sent = STXML::SalsaTigerSentence.new(sent_string)
 
             # remove old semantics
             sent.remove_semantics

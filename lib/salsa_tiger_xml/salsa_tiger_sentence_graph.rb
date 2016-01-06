@@ -2,6 +2,7 @@ require_relative 'xml_node'
 require_relative 'string_terminals_in_right_order'
 require_relative 'reg_xml'
 
+module STXML
 #############
 class SalsaTigerSentenceGraph < XMLNode
   include StringTerminalsInRightOrder
@@ -328,4 +329,5 @@ class SalsaTigerSentenceGraph < XMLNode
       end
     }
   end
+end
 end

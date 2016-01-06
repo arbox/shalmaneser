@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <corpus corpusname="corpus" target="">
+    <head>
+      <meta>
+        <format>NeGra format, version 3</format>
+      </meta>
+      <frames xmlns="http://www.clt-st.de/framenet/frame-database">
+      </frames>
+      <wordtags xmlns="http://www.clt-st.de/salsa/wordtags">
+      </wordtags>
+      <flags>
+      </flags>
+      <annotation>
+        <edgelabel>
+        </edgelabel>
+        <secedgelabel>
+        </secedgelabel>
+      </annotation>
+    </head>
+    <body>
+<s id='sagen_1'>
+<graph root='sagen_1_509'>
+<terminals>
+<t id='sagen_1_0' word='&apos;&apos;' pos='$LRB' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_1_1' word='Die' pos='NE' lemma='d'>
+</t>
+<t id='sagen_1_2' word='Frage' pos='NE' lemma='Frage'>
+</t>
+<t id='sagen_1_3' word='ist' pos='VAFIN' lemma='sein'>
+</t>
+<t id='sagen_1_4' word='nur' pos='ADV' lemma='nur'>
+</t>
+<t id='sagen_1_5' word='&apos;&apos;' pos='ADV' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_1_6' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_1_7' word='meint' pos='ADV' lemma='meinen'>
+</t>
+<t id='sagen_1_8' word='ein' pos='ART' lemma='ein'>
+</t>
+<t id='sagen_1_9' word='Finanzexperte' pos='NN' lemma='Finanzexperte'>
+</t>
+<t id='sagen_1_10' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_1_11' word='&apos;&apos;' pos='$LRB' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_1_12' word='ob' pos='PIAT' lemma='ob'>
+</t>
+<t id='sagen_1_13' word='er' pos='NN' lemma='er'>
+</t>
+<t id='sagen_1_14' word='ins' pos='ART' lemma='ins'>
+</t>
+<t id='sagen_1_15' word='Weiße' pos='NN' lemma='weiß'>
+</t>
+<t id='sagen_1_16' word='Haus' pos='NN' lemma='Haus'>
+</t>
+<t id='sagen_1_17' word='einziehen' pos='ADV' lemma='einziehen'>
+</t>
+<t id='sagen_1_18' word='kann' pos='VMFIN' lemma='können'>
+</t>
+<t id='sagen_1_19' word=',' pos='PRF' lemma=','>
+</t>
+<t id='sagen_1_20' word='ohne' pos='PRF' lemma='ohne'>
+</t>
+<t id='sagen_1_21' word='uns' pos='ART' lemma='wir'>
+</t>
+<t id='sagen_1_22' word='vorher' pos='ADJA' lemma='vorher'>
+</t>
+<t id='sagen_1_23' word='zu' pos='NN' lemma='zu'>
+</t>
+<t id='sagen_1_24' word='sagen' pos='VVFIN' lemma='sagen'>
+</t>
+<t id='sagen_1_25' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_1_26' word='was' pos='KON' lemma='was'>
+</t>
+<t id='sagen_1_27' word='er' pos='PPER' lemma='er'>
+</t>
+<t id='sagen_1_28' word='eigentlich' pos='VAFIN' lemma='eigentlich'>
+</t>
+<t id='sagen_1_29' word='machen' pos='PRF' lemma='machen'>
+</t>
+<t id='sagen_1_30' word='will' pos='VVFIN' lemma='wollen'>
+</t>
+<t id='sagen_1_31' word='.' pos='$.' lemma='.'>
+</t>
+</terminals>
+<nonterminals>
+<nt id='sagen_1_500' cat='PN' head='--'>
+<edge label='' idref='sagen_1_2'/>
+<edge label='' idref='sagen_1_1'/>
+</nt>
+<nt id='sagen_1_501' cat='NP' head='--'>
+<edge label='' idref='sagen_1_9'/>
+<edge label='' idref='sagen_1_8'/>
+<edge label='' idref='sagen_1_7'/>
+</nt>
+<nt id='sagen_1_502' cat='NP' head='--'>
+<edge label='' idref='sagen_1_13'/>
+<edge label='' idref='sagen_1_12'/>
+</nt>
+<nt id='sagen_1_503' cat='NP' head='--'>
+<edge label='' idref='sagen_1_23'/>
+<edge label='' idref='sagen_1_22'/>
+<edge label='' idref='sagen_1_21'/>
+</nt>
+<nt id='sagen_1_504' cat='S' head='--'>
+<edge label='' idref='sagen_1_24'/>
+<edge label='' idref='sagen_1_503'/>
+<edge label='' idref='sagen_1_20'/>
+<edge label='' idref='sagen_1_19'/>
+<edge label='' idref='sagen_1_18'/>
+<edge label='' idref='sagen_1_17'/>
+</nt>
+<nt id='sagen_1_505' cat='S' head='--'>
+<edge label='' idref='sagen_1_30'/>
+<edge label='' idref='sagen_1_29'/>
+<edge label='' idref='sagen_1_28'/>
+<edge label='' idref='sagen_1_27'/>
+</nt>
+<nt id='sagen_1_506' cat='CS' head='--'>
+<edge label='' idref='sagen_1_505'/>
+<edge label='' idref='sagen_1_26'/>
+<edge label='' idref='sagen_1_25'/>
+<edge label='' idref='sagen_1_504'/>
+</nt>
+<nt id='sagen_1_507' cat='NP' head='--'>
+<edge label='' idref='sagen_1_506'/>
+<edge label='' idref='sagen_1_16'/>
+<edge label='' idref='sagen_1_15'/>
+<edge label='' idref='sagen_1_14'/>
+</nt>
+<nt id='sagen_1_508' cat='S' head='--'>
+<edge label='' idref='sagen_1_507'/>
+<edge label='' idref='sagen_1_502'/>
+<edge label='' idref='sagen_1_11'/>
+<edge label='' idref='sagen_1_10'/>
+<edge label='' idref='sagen_1_501'/>
+<edge label='' idref='sagen_1_6'/>
+<edge label='' idref='sagen_1_5'/>
+<edge label='' idref='sagen_1_4'/>
+<edge label='' idref='sagen_1_3'/>
+<edge label='' idref='sagen_1_500'/>
+</nt>
+<nt id='sagen_1_509' cat='VROOT' head='--'>
+<edge label='' idref='sagen_1_31'/>
+<edge label='' idref='sagen_1_508'/>
+<edge label='' idref='sagen_1_0'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+<s id='sagen_3'>
+<graph root='sagen_3_507'>
+<terminals>
+<t id='sagen_3_0' word='&apos;&apos;' pos='$LRB' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_3_1' word='Die' pos='NE' lemma='d'>
+</t>
+<t id='sagen_3_2' word='Bevölkerung' pos='NE' lemma='Bevölkerung'>
+</t>
+<t id='sagen_3_3' word='&apos;&apos;' pos='VAFIN' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_3_4' word=';' pos='ADV' lemma=';'>
+</t>
+<t id='sagen_3_5' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_3_6' word='sagte' pos='PIAT' lemma='sagen'>
+</t>
+<t id='sagen_3_7' word='Rafsandschani' pos='NN' lemma='&lt;unknown&gt;'>
+</t>
+<t id='sagen_3_8' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_3_9' word='&apos;&apos;' pos='$LRB' lemma='&apos;&apos;'>
+</t>
+<t id='sagen_3_10' word='ist' pos='KOUS' lemma='sein'>
+</t>
+<t id='sagen_3_11' word='mit' pos='APPR' lemma='mit'>
+</t>
+<t id='sagen_3_12' word='einer' pos='ART' lemma='ein'>
+</t>
+<t id='sagen_3_13' word='Menge' pos='NN' lemma='Menge'>
+</t>
+<t id='sagen_3_14' word='Probleme' pos='NN' lemma='Problem'>
+</t>
+<t id='sagen_3_15' word='konfrontiert' pos='PPER' lemma='konfrontieren'>
+</t>
+<t id='sagen_3_16' word='und' pos='VAFIN' lemma='und'>
+</t>
+<t id='sagen_3_17' word='daher' pos='ADV' lemma='daher'>
+</t>
+<t id='sagen_3_18' word='unzufrieden' pos='VVFIN' lemma='unzufrieden'>
+</t>
+<t id='sagen_3_19' word='.' pos='$.' lemma='.'>
+</t>
+</terminals>
+<nonterminals>
+<nt id='sagen_3_500' cat='PN' head='--'>
+<edge label='' idref='sagen_3_2'/>
+<edge label='' idref='sagen_3_1'/>
+</nt>
+<nt id='sagen_3_501' cat='NP' head='--'>
+<edge label='' idref='sagen_3_7'/>
+<edge label='' idref='sagen_3_6'/>
+</nt>
+<nt id='sagen_3_502' cat='PP' head='--'>
+<edge label='' idref='sagen_3_13'/>
+<edge label='' idref='sagen_3_12'/>
+<edge label='' idref='sagen_3_11'/>
+</nt>
+<nt id='sagen_3_503' cat='NP' head='--'>
+<edge label='' idref='sagen_3_14'/>
+</nt>
+<nt id='sagen_3_504' cat='S' head='--'>
+<edge label='' idref='sagen_3_18'/>
+<edge label='' idref='sagen_3_17'/>
+<edge label='' idref='sagen_3_16'/>
+<edge label='' idref='sagen_3_15'/>
+</nt>
+<nt id='sagen_3_505' cat='S' head='--'>
+<edge label='' idref='sagen_3_504'/>
+<edge label='' idref='sagen_3_503'/>
+<edge label='' idref='sagen_3_502'/>
+<edge label='' idref='sagen_3_10'/>
+</nt>
+<nt id='sagen_3_506' cat='S' head='--'>
+<edge label='' idref='sagen_3_505'/>
+<edge label='' idref='sagen_3_9'/>
+<edge label='' idref='sagen_3_8'/>
+<edge label='' idref='sagen_3_501'/>
+<edge label='' idref='sagen_3_5'/>
+<edge label='' idref='sagen_3_4'/>
+<edge label='' idref='sagen_3_3'/>
+<edge label='' idref='sagen_3_500'/>
+</nt>
+<nt id='sagen_3_507' cat='VROOT' head='--'>
+<edge label='' idref='sagen_3_19'/>
+<edge label='' idref='sagen_3_506'/>
+<edge label='' idref='sagen_3_0'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+<s id='sagen_4'>
+<graph root='sagen_4_513'>
+<terminals>
+<t id='sagen_4_0' word='Wir' pos='ADV' lemma='wir'>
+</t>
+<t id='sagen_4_1' word='müssen' pos='VVFIN' lemma='müssen'>
+</t>
+<t id='sagen_4_2' word='zur' pos='APPR' lemma='zur'>
+</t>
+<t id='sagen_4_3' word='Kenntnis' pos='NN' lemma='Kenntnis'>
+</t>
+<t id='sagen_4_4' word='nehmen' pos='VVFIN' lemma='nehmen'>
+</t>
+<t id='sagen_4_5' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_4_6' word='daß' pos='ADV' lemma='daß'>
+</t>
+<t id='sagen_4_7' word='die' pos='ART' lemma='d'>
+</t>
+<t id='sagen_4_8' word='Arbeitgeber' pos='NN' lemma='Arbeitgeber'>
+</t>
+<t id='sagen_4_9' word='-' pos='$LRB' lemma='-'>
+</t>
+<t id='sagen_4_10' word='besser' pos='APPR' lemma='gut'>
+</t>
+<t id='sagen_4_11' word='gesagt' pos='ART' lemma='sagen'>
+</t>
+<t id='sagen_4_12' word='die' pos='ART' lemma='d'>
+</t>
+<t id='sagen_4_13' word='Metallarbeitgeberverbände' pos='NN' lemma='Metallarbeitgeberverband'>
+</t>
+<t id='sagen_4_14' word='in' pos='APPR' lemma='in'>
+</t>
+<t id='sagen_4_15' word='den' pos='ART' lemma='d'>
+</t>
+<t id='sagen_4_16' word='Regionen' pos='NN' lemma='Region'>
+</t>
+<t id='sagen_4_17' word='-' pos='NE' lemma='-'>
+</t>
+<t id='sagen_4_18' word='unwillig' pos='APPR' lemma='unwillig'>
+</t>
+<t id='sagen_4_19' word='und' pos='ADJA' lemma='und'>
+</t>
+<t id='sagen_4_20' word='unfähig' pos='KON' lemma='unfähig'>
+</t>
+<t id='sagen_4_21' word='sind' pos='ADJA' lemma='sein'>
+</t>
+<t id='sagen_4_22' word=',' pos='$,' lemma=','>
+</t>
+<t id='sagen_4_23' word='im' pos='APPRART' lemma='im'>
+</t>
+<t id='sagen_4_24' word='Rahmen' pos='NN' lemma='Rahmen'>
+</t>
+<t id='sagen_4_25' word='von' pos='APPR' lemma='von'>
+</t>
+<t id='sagen_4_26' word='Verhandlungen' pos='NE' lemma='Verhandlung'>
+</t>
+<t id='sagen_4_27' word='nach' pos='APPR' lemma='nach'>
+</t>
+<t id='sagen_4_28' word='neuen' pos='PPOSAT' lemma='neu'>
+</t>
+<t id='sagen_4_29' word='Lösungen' pos='NE' lemma='Lösung'>
+</t>
+<t id='sagen_4_30' word='zu' pos='PTKZU' lemma='zu'>
+</t>
+<t id='sagen_4_31' word='suchen' pos='VVINF' lemma='suchen'>
+</t>
+<t id='sagen_4_32' word='.' pos='$.' lemma='.'>
+</t>
+</terminals>
+<nonterminals>
+<nt id='sagen_4_500' cat='PP' head='--'>
+<edge label='' idref='sagen_4_3'/>
+<edge label='' idref='sagen_4_2'/>
+</nt>
+<nt id='sagen_4_501' cat='NP' head='--'>
+<edge label='' idref='sagen_4_8'/>
+<edge label='' idref='sagen_4_7'/>
+<edge label='' idref='sagen_4_6'/>
+</nt>
+<nt id='sagen_4_502' cat='NP' head='--'>
+<edge label='' idref='sagen_4_13'/>
+<edge label='' idref='sagen_4_12'/>
+</nt>
+<nt id='sagen_4_503' cat='PP' head='--'>
+<edge label='' idref='sagen_4_17'/>
+<edge label='' idref='sagen_4_16'/>
+<edge label='' idref='sagen_4_15'/>
+<edge label='' idref='sagen_4_14'/>
+</nt>
+<nt id='sagen_4_504' cat='PP' head='--'>
+<edge label='' idref='sagen_4_503'/>
+<edge label='' idref='sagen_4_502'/>
+<edge label='' idref='sagen_4_11'/>
+<edge label='' idref='sagen_4_10'/>
+</nt>
+<nt id='sagen_4_505' cat='CAP' head='--'>
+<edge label='' idref='sagen_4_21'/>
+<edge label='' idref='sagen_4_20'/>
+<edge label='' idref='sagen_4_19'/>
+</nt>
+<nt id='sagen_4_506' cat='PP' head='--'>
+<edge label='' idref='sagen_4_24'/>
+<edge label='' idref='sagen_4_23'/>
+</nt>
+<nt id='sagen_4_507' cat='PP' head='--'>
+<edge label='' idref='sagen_4_506'/>
+<edge label='' idref='sagen_4_22'/>
+<edge label='' idref='sagen_4_505'/>
+<edge label='' idref='sagen_4_18'/>
+</nt>
+<nt id='sagen_4_508' cat='PP' head='--'>
+<edge label='' idref='sagen_4_26'/>
+<edge label='' idref='sagen_4_25'/>
+</nt>
+<nt id='sagen_4_509' cat='PP' head='--'>
+<edge label='' idref='sagen_4_29'/>
+<edge label='' idref='sagen_4_28'/>
+<edge label='' idref='sagen_4_27'/>
+</nt>
+<nt id='sagen_4_510' cat='VZ' head='--'>
+<edge label='' idref='sagen_4_31'/>
+<edge label='' idref='sagen_4_30'/>
+</nt>
+<nt id='sagen_4_511' cat='VP' head='--'>
+<edge label='' idref='sagen_4_510'/>
+<edge label='' idref='sagen_4_509'/>
+<edge label='' idref='sagen_4_508'/>
+</nt>
+<nt id='sagen_4_512' cat='S' head='--'>
+<edge label='' idref='sagen_4_511'/>
+<edge label='' idref='sagen_4_507'/>
+<edge label='' idref='sagen_4_504'/>
+<edge label='' idref='sagen_4_9'/>
+<edge label='' idref='sagen_4_501'/>
+<edge label='' idref='sagen_4_5'/>
+<edge label='' idref='sagen_4_4'/>
+<edge label='' idref='sagen_4_500'/>
+<edge label='' idref='sagen_4_1'/>
+<edge label='' idref='sagen_4_0'/>
+</nt>
+<nt id='sagen_4_513' cat='VROOT' head='--'>
+<edge label='' idref='sagen_4_32'/>
+<edge label='' idref='sagen_4_512'/>
+</nt>
+</nonterminals>
+</graph>
+<sem>
+<globals>
+</globals>
+<frames>
+</frames>
+<usp>
+<uspframes>
+</uspframes>
+<uspfes>
+</uspfes>
+</usp>
+</sem>
+</s>
+        </body>
+</corpus>

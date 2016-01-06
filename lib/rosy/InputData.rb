@@ -76,10 +76,10 @@ class InputData
   def each_instance_phase1
     Dir[@input_dir+"*.xml"]. each {|parsefilename|
 
-      xmlFile = FilePartsParser.new(parsefilename)
+      xmlFile = STXML::FilePartsParser.new(parsefilename)
       $stderr.puts "Processing #{parsefilename}"
       xmlFile.scan_s {|sent_string|
-        sent = SalsaTigerSentence.new(sent_string)
+        sent = STXML::SalsaTigerSentence.new(sent_string)
 
         # preprocessing: possibly change the SalsaTigerSentence object
         # before featurization
@@ -189,21 +189,17 @@ class InputData
   #
   # returns the FailedParses object in which the info about failed parses has been stored
   def get_failed_parses
-    return @failed_parses
+    @failed_parses
   end
 
-  #################################
   private
 
-
   ###
-  def nonnil_feature(feature_value,
-                     sql_type)
-
+  def nonnil_feature(feature_value, sql_type)
     # feature value nil? then change to noval
-    if feature_value.nil? and sql_type =~ /CHAR/
+    if feature_value.nil? && sql_type =~ /CHAR/
       return @exp.get("noval")
-    elsif feature_value.class.to_s == "String" and feature_value.empty?
+    elsif feature_value.is_a?(String) && feature_value.empty?
       return @exp.get("noval")
     elsif feature_value.nil?
       return 0

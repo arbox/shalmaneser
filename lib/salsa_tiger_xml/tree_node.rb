@@ -1,5 +1,6 @@
 require_relative 'graph_node'
 
+module STXML
 class TreeNode < GraphNode
 
   def initialize(id)
@@ -54,4 +55,5 @@ class TreeNode < GraphNode
       end
     end
   end
+end
 end

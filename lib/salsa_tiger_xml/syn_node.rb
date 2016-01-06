@@ -1,5 +1,6 @@
 require_relative 'salsa_tiger_xml_node'
 
+module STXML
 #############
 # class SynNode
 #
@@ -25,7 +26,6 @@ require_relative 'salsa_tiger_xml_node'
 #         the FeNode to this SynNode, so you can fetch a node's semantics directly
 #
 # add_sem add non-tree edge from this syntactic node to a FeNode
-
 class SynNode < SalsaTigerXmlNode
 
   ###
@@ -165,4 +165,5 @@ class SynNode < SalsaTigerXmlNode
 
     return string
   end
+end
 end

@@ -127,7 +127,6 @@ module Shalmaneser
       # assumes TabFormat sentences
       #
       # example: split_all("/tmp/in","/tmp/out",".tab",2000,80)
-
       def FrappeHelper.split_dir(indir,
                                  outdir,
                                  suffix,
@@ -229,7 +228,7 @@ module Shalmaneser
           if File.basename(filename) =~ /^(.*?)[_\.]/
             lemma = $1
 
-            infile = FilePartsParser.new(filename)
+            infile = STXML::FilePartsParser.new(filename)
             outfile = File.new(changedfilename, "w")
 
             # write header
@@ -237,7 +236,7 @@ module Shalmaneser
 
             # iterate through sentences, yield as SalsaTigerSentence objects
             infile.scan_s { |sent_string|
-              sent = SalsaTigerSentence.new(sent_string)
+              sent = STXML::SalsaTigerSentence.new(sent_string)
               sent.each_frame { |frame|
                 frame.target.set_attribute("lemma", lemma)
               }
@@ -299,13 +298,13 @@ module Shalmaneser
 
         filenames.each { |filename|
 
-          infile = FilePartsParser.new(filename)
+          infile = STXML::FilePartsParser.new(filename)
           infile.scan_s { |sent_str|
 
             sentlen = 0
             sent_str.delete("\n").scan(/<t\s/) { |occ| sentlen += 1}
             if sentlen > max_sentlen
-              sent = RegXML.new(sent_str)
+              sent = STXML::RegXML.new(sent_str)
               # revisit handling of long sentences
               # $stderr.puts "I would have skipped overly long sentence " + sent.attributes["id"]+" but Sebastian forbade me.".to_s
               # next
@@ -325,7 +324,7 @@ module Shalmaneser
             temp_subs = []
             final_subs = []
 
-            sent = RegXML.new(sent_str)
+            sent = STXML::RegXML.new(sent_str)
             sentid = sent.attributes["id"].to_s
             if sentid.nil?
               STDERR.puts "[frprep] Warning: cannot find sentence id, skipping sentence:"
@@ -405,7 +404,7 @@ module Shalmaneser
 
             # store uspfes in data structure
             unless usp.empty?
-              usp_elt = RegXML.new(usp)
+              usp_elt = STXML::RegXML.new(usp)
               uspfes = usp_elt.children_and_text.detect { |child| child.name == "uspfes" }
               uspfes.children_and_text.each { |child|
                 unless child.name == "uspblock"
@@ -438,7 +437,7 @@ module Shalmaneser
         graph_hash.each do |sentid, graph_str|
           unless outfile
             outfile = File.new(split_dir + filecounter.to_s + ".xml", "w")
-            outfile.puts SalsaTigerXMLHelper.get_header
+            outfile.puts STXML::SalsaTigerXMLHelper.get_header
             filecounter += 1
             sentcounter = 0
           end
@@ -473,7 +472,7 @@ module Shalmaneser
         end
 
         if outfile
-          outfile.puts SalsaTigerXMLHelper.get_footer
+          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
           outfile.close
           outfile = nil
         end
@@ -485,7 +484,7 @@ module Shalmaneser
       def FrappeHelper.stxml_to_tab_file(input_filename,   # string: name of input file
                                          output_filename,  # string: name of output file
                                          exp)              # FrprepConfigData
-        infile = FilePartsParser.new(input_filename)
+        infile = STXML::FilePartsParser.new(input_filename)
         begin
           outfile = File.new(output_filename,"w")
         rescue
@@ -495,7 +494,7 @@ module Shalmaneser
         infile.scan_s {|sent_string|
 
           # determine sentence ID
-          sentid = RegXML.new(sent_string).attributes["id"]
+          sentid = STXML::RegXML.new(sent_string).attributes["id"]
           unless sentid
             $stderr.puts "No sentence ID in sentence:\n "+ sent_string
             $stderr.puts "Making a new one up."
@@ -526,7 +525,7 @@ module Shalmaneser
                    end
           terminals = text
           #terminals = sent_string
-          terminals = RegXML.new(terminals)
+          terminals = STXML::RegXML.new(terminals)
           terminals.children_and_text.each { |terminal|
 
             unless terminal.name == "t"
@@ -536,7 +535,7 @@ module Shalmaneser
 
 
             outfile.puts FNTabFormatFile.format_str({
-                                                      "word" => SalsaTigerXMLHelper.unescape(terminal.attributes["word"]),
+                                                      "word" => STXML::SalsaTigerXMLHelper.unescape(terminal.attributes["word"]),
                                                       "sent_id" => sentid
                                                     })
           } # each terminal
@@ -909,12 +908,12 @@ module Shalmaneser
           #print "old ", oldnode.word, "  ", newnode.word, "\n"
           # new and old word: use both unescaped and escaped variant
           if newnode
-            newwords = [ newnode.word, SalsaTigerXMLHelper.escape(newnode.word) ]
+            newwords = [ newnode.word, STXML::SalsaTigerXMLHelper.escape(newnode.word) ]
           else
             newwords = [nil, nil]
           end
           if oldnode
-            oldwords = [ oldnode.word, SalsaTigerXMLHelper.escape(oldnode.word) ]
+            oldwords = [ oldnode.word, STXML::SalsaTigerXMLHelper.escape(oldnode.word) ]
           else
             oldwords = [ nil, nil]
           end
@@ -1006,23 +1005,24 @@ module Shalmaneser
       ####################
       # add head attributes to each nonterminal in each
       # SalsaTigerXML file in a directory
-
-      def FrappeHelper.add_head_attributes(st_sent,      # SalsaTigerSentence object
-                                           interpreter)  # SynInterpreter class
-        st_sent.each_nonterminal {|nt_node|
+      # @param [SalsaTigerSentence] st_sent
+      # @param [SynInterpreter] interpreter
+      def FrappeHelper.add_head_attributes(st_sent, interpreter)
+        st_sent.each_nonterminal do |nt_node|
           head_term = interpreter.head_terminal(nt_node)
-          if head_term and head_term.word
+          if head_term && head_term.word
             nt_node.set_attribute("head", head_term.word)
           else
             nt_node.set_attribute("head", "--")
           end
-        } # each nonterminal
+        end # each nonterminal
       end
 
       # add lemma information to each terminal in a given SalsaTigerSentence object
-      def FrappeHelper.add_lemmas_from_tab(st_sent, # SalsaTigerSentence object
-                                           tab_sent,# FNTabFormatSentence object
-                                           mapping) # hash: tab lineno -> array:SynNode
+      # @param [SalsaTigerSentence] st_sent
+      # @param [FNTabFormatSentence] tab_sent
+      # @param [Hash] mapping hash: tab lineno -> array:SynNode
+      def FrappeHelper.add_lemmas_from_tab(st_sent, tab_sent, mapping)
         if tab_sent.nil?
           # tab sentence not found
           return
@@ -1042,8 +1042,8 @@ module Shalmaneser
         # but count mismatches
         word_mismatches = []
 
-        st_sent.each_terminal_sorted {|t|
-          matching_lineno = (0..lemmat.length-1).to_a.detect { |tab_lineno|
+        st_sent.each_terminal_sorted { |t|
+          matching_lineno = (0...lemmat.length).to_a.detect { |tab_lineno|
             mapping[tab_lineno].include? t
           }
           unless matching_lineno
@@ -1053,10 +1053,9 @@ module Shalmaneser
 
           # transform characters to XML-friendly form
           # for comparison with st_word, which is also escaped
-          word = SalsaTigerXMLHelper.escape(word)
+          word = STXML::SalsaTigerXMLHelper.escape(word)
           st_word = t.word
-          if word != st_word and
-            word != SalsaTigerXMLHelper.escape(st_word)
+          if word != st_word && word != STXML::SalsaTigerXMLHelper.escape(st_word)
             # true mismatch.
             # use the Lemmatizer version of the word, remember the mismatch
             word_mismatches << [st_word, word]
@@ -1065,7 +1064,7 @@ module Shalmaneser
 
           if lemma
             # we actually do have lemma information
-            lemmatised_head = SalsaTigerXMLHelper.escape(lemma)
+            lemmatised_head = STXML::SalsaTigerXMLHelper.escape(lemma)
             t.set_attribute("lemma",lemmatised_head)
           end
         } # each terminal
@@ -1091,19 +1090,18 @@ module Shalmaneser
       # given a SalsaTigerSentence,
       # look for FrameNet frames that are
       # test frames, and remove them
-      def FrappeHelper.remove_deprecated_frames(sent,  # SalsaTigerSentence
-                                                exp)   # FrprepConfigData
-
+      # @param [SalsaTigerSentence] sent
+      # @param [FrprepConfigData] exp
+      def FrappeHelper.remove_deprecated_frames(sent, exp)
         unless exp.get("origin") == "FrameNet"
           return
         end
 
-        sent.frames.each { |frame_obj|
-          if frame_obj.name == "Boulder" or
-            frame_obj.name =~ /^Test/
+        sent.frames.each do |frame_obj|
+          if frame_obj.name == "Boulder" || frame_obj.name =~ /^Test/
             sent.remove_frame(frame_obj)
           end
-        }
+        end
       end
     end
   end

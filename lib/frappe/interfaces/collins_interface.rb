@@ -133,7 +133,7 @@ module Shalmaneser
           case line
           when /^\(TOP~/ # successful parse
 
-            st_sent = SalsaTigerSentence.empty_sentence(my_sent_id.to_s)
+            st_sent = STXML::SalsaTigerSentence.empty_sentence(my_sent_id.to_s)
 
             build_salsatiger(line,st_sent)
 
@@ -165,11 +165,11 @@ module Shalmaneser
                         outfilename) # string: name of output stxml file
 
         outfile = File.new(outfilename, "w")
-        outfile.puts SalsaTigerXMLHelper.get_header
+        outfile.puts STXML::SalsaTigerXMLHelper.get_header
         each_sentence(infilename) { |st_sent, tabsent|
           outfile.puts st_sent.get
         }
-        outfile.puts SalsaTigerXMLHelper.get_footer
+        outfile.puts STXML::SalsaTigerXMLHelper.get_footer
         outfile.close
       end
 
@@ -200,7 +200,7 @@ module Shalmaneser
               # get all Nodes from the stack and put them on a tempstack,
               # until you find a String, which is a not-yet existing nonterminal
               object = stack.pop
-              if object.is_a? SynNode
+              if object.is_a? ::STXML::SynNode
                 tempstack.push(object) # terminal or subtree
               else #  string (nonterminal label)
                 if tempstack.length == 1 # skip unary nodes: do nothing and write tempstack back to stack
@@ -224,11 +224,11 @@ module Shalmaneser
 
                 # construct a new nonterminal
                 node = st_sent.add_syn("nt",
-                                       SalsaTigerXMLHelper.escape(nt_a[0].strip), # cat
+                                       STXML::SalsaTigerXMLHelper.escape(nt_a[0].strip), # cat
                                        nil, # word (doesn't matter)
                                        nil, # pos (doesn't matter)
                                        nt_c.next.to_s)
-                node.set_attribute("head",SalsaTigerXMLHelper.escape(nt_a[1].strip))
+                node.set_attribute("head",STXML::SalsaTigerXMLHelper.escape(nt_a[1].strip))
                 tempstack.reverse.each {|child|
                   node.add_child(child,nil)
                   child.set_parent(node,nil)
@@ -253,8 +253,8 @@ module Shalmaneser
               # construct a new terminal
               node = st_sent.add_syn("t",
                                      nil,
-                                     SalsaTigerXMLHelper.escape(CollinsInterface.unescape(word)), # word
-                                     SalsaTigerXMLHelper.escape(pos), # pos
+                                     STXML::SalsaTigerXMLHelper.escape(CollinsInterface.unescape(word)), # word
+                                     STXML::SalsaTigerXMLHelper.escape(pos), # pos
                                      t_c.next.to_s)
               stack.push(node)
             end

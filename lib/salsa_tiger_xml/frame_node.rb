@@ -1,5 +1,6 @@
 require_relative 'sem_node'
 
+module STXML
 #############
 # class FrameNode
 #
@@ -140,4 +141,5 @@ class FrameNode < SemNode
 
     n
   end
+end
 end

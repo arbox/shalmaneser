@@ -70,7 +70,7 @@ class TestFrprep < Minitest::Test
   def test_frprep_plain2stxml
     create_exp_file(PRP_STXMLOUTPUT)
     execute("ruby -I lib bin/frappe -e #{PRP_STXMLOUTPUT}")
-    path = 'stxmloutput/sagen.txt.xml'
+    path = 'stxmloutput/sagen.xml'
     d_real = Digest::SHA256.file "test/functional/output/#{path}"
     d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
     assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
@@ -93,8 +93,6 @@ class TestFrprep < Minitest::Test
     execute("ruby -I lib bin/frappe -e #{PRP_TABOUTPUT}")
     remove_exp_file(PRP_TABOUTPUT)
   end
-
-
 
   # This test has been created to ensure testing facilities for missing
   # arguments are moved correctly to the OptionParser.

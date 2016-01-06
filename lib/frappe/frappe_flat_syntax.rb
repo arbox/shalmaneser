@@ -43,10 +43,10 @@ module Shalmaneser
             #   Change this!!!
             sentid = Time.new.to_f.to_s
           end
-          sent = SalsaTigerSentence.new("<s id=\"#{SalsaTigerXMLHelper.escape(sentid)}\" failed=\"true\"></s>")
+          sent = STXML::SalsaTigerSentence.new("<s id=\"#{STXML::SalsaTigerXMLHelper.escape(sentid)}\" failed=\"true\"></s>")
 
           # add single nonterminal node, category "S"
-          single_nonterminal_id = SalsaTigerXMLHelper.escape(sentid.to_s + "_NT")
+          single_nonterminal_id = STXML::SalsaTigerXMLHelper.escape(sentid.to_s + "_NT")
           vroot = sent.add_syn("nt", "S", # category
                                nil,  # word
                                nil,  # pos
@@ -60,19 +60,19 @@ module Shalmaneser
             unless word
               word = ""
             end
-            word = SalsaTigerXMLHelper.escape(word)
+            word = STXML::SalsaTigerXMLHelper.escape(word)
             pos = line_obj.get("pos")
             unless pos
               pos = ""
             end
-            pos = SalsaTigerXMLHelper.escape(pos)
+            pos = STXML::SalsaTigerXMLHelper.escape(pos)
             terminal = sent.add_syn("t", nil, # category
                                     word, pos,
                                     node_id)
 
             if line_obj.get("lemma")
               # lemma
-              terminal.set_attribute("lemma", SalsaTigerXMLHelper.escape(line_obj.get("lemma")))
+              terminal.set_attribute("lemma", STXML::SalsaTigerXMLHelper.escape(line_obj.get("lemma")))
             end
 
             # add new terminal as child of vroot

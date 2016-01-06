@@ -92,7 +92,7 @@ class SQLQuery
         at_least_one_column_selected = true
         SQLQuery.prepend_tablename(tc.table_obj.table_name, "*")
 
-      elsif tc.columns.class.to_s == "Array" and not(tc.columns.empty?)
+      elsif tc.columns.is_a?(Array) and not(tc.columns.empty?)
         # at least one column from this table
         at_least_one_column_selected = true
 

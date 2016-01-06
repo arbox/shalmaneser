@@ -30,7 +30,7 @@ module Shalmaneser
           if @exp.get("verbose")
             $stderr.puts "Featurizing #{File.basename(filename)}"
           end
-          f = FilePartsParser.new(filename)
+          f = STXML::FilePartsParser.new(filename)
           each_window_for_file(f) { |result| yield result }
         end
         # and empty the context array
@@ -46,7 +46,7 @@ module Shalmaneser
       # (to be called from each_window())
       def each_window_for_file(fpp) # FilePartsParser object: Salsa/Tiger XMl data
         fpp.scan_s { |sent_string|
-          sent = SalsaTigerSentence.new(sent_string)
+          sent = STXML::SalsaTigerSentence.new(sent_string)
           each_window_for_sent(sent) { |result| yield result }
         }
       end

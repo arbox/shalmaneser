@@ -28,7 +28,7 @@ module WordLemmaPosNe
     end
 
     lemma = i.lemma_backoff(syn_obj)
-    if lemma and SalsaTigerXMLHelper.unescape(lemma) == "<unknown>"
+    if lemma and STXML::SalsaTigerXMLHelper.unescape(lemma) == "<unknown>"
       lemma = nil
     end
 

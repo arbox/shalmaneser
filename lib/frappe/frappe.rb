@@ -299,10 +299,9 @@ module Shalmaneser
         end
 
         parse_obj = FileParser.new(@exp, @file_suffixes,
-                                 parse_dir,
-                                 "tab_dir" => input_dir)
+                                   parse_dir,
+                                   "tab_dir" => input_dir)
         parse_obj.each_parsed_file { |parsed_file_obj|
-
           outfilename = output_dir + parsed_file_obj.filename + ".xml"
           LOGGER.debug "Writing #{outfilename}."
 
@@ -312,7 +311,7 @@ module Shalmaneser
             raise "Cannot write to SalsaTigerXML output file #{outfilename}"
           end
 
-          outfile.puts SalsaTigerXMLHelper.get_header
+          outfile.puts STXML::SalsaTigerXMLHelper.get_header
           # work with triples
           # SalsaTigerSentence, FNTabSentence,
           # hash: tab sentence index(integer) -> array:SynNode
@@ -347,7 +346,7 @@ module Shalmaneser
 
             outfile.puts st_sent.get
           }
-          outfile.puts SalsaTigerXMLHelper.get_footer
+          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
         }
       end
 
@@ -493,14 +492,14 @@ module Shalmaneser
 
             # we assume that the old and the new file have the same name,
             # ending in .xml.
-            oldxmlfile = FilePartsParser.new(stxml_dir + parsed_file_obj.filename + ".xml")
+            oldxmlfile = STXML::FilePartsParser.new(stxml_dir + parsed_file_obj.filename + ".xml")
             oldxmlfile.scan_s { |sent_string|
               # remember this sentence by its ID
               oldxml << sent_string
             }
           end
 
-          outfile.puts SalsaTigerXMLHelper.get_header
+          outfile.puts STXML::SalsaTigerXMLHelper.get_header
           index = 0
           # work with triples
           # SalsaTigerSentence, FNTabSentence,
@@ -524,7 +523,7 @@ module Shalmaneser
                 end
 
                 # we have both an old and a new sentence, so integrate semantics
-                oldsent = SalsaTigerSentence.new(oldsent_string)
+                oldsent = STXML::SalsaTigerSentence.new(oldsent_string)
 
                 next if st_sent.nil?
 
@@ -548,7 +547,7 @@ module Shalmaneser
                     end
 
                     # we have both an old and a new sentence, so integrate semantics
-                    oldsent = SalsaTigerSentence.new(oldsent_string)
+                    oldsent = STXML::SalsaTigerSentence.new(oldsent_string)
 
                     FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
                                                                       st_sent,
@@ -572,7 +571,7 @@ module Shalmaneser
 
             outfile.puts st_sent.get
           } # each ST sentence
-          outfile.puts SalsaTigerXMLHelper.get_footer
+          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
         } # each file parsed
       end
 
@@ -608,14 +607,14 @@ module Shalmaneser
       # @param [String] dir Directory name.
       def change_each_stxml_file_in_dir(dir)
         change_each_file_in_dir(dir, "*.xml") do |stfilename, tf|
-          infile = FilePartsParser.new(stfilename)
+          infile = STXML::FilePartsParser.new(stfilename)
 
           # write header
           tf.puts infile.head
 
           # iterate through sentences, yield as SalsaTigerSentence objects
           infile.scan_s do |sent_string|
-            sent = SalsaTigerSentence.new(sent_string)
+            sent = STXML::SalsaTigerSentence.new(sent_string)
             yield sent
             # write changed sentence
             tf.puts sent.get

@@ -5,6 +5,7 @@ require_relative 'salsa_tiger_sentence_graph'
 require_relative 'salsa_tiger_sentence_sem'
 require_relative 'reg_xml'
 
+module STXML
 #############
 # class SalsaTigerSentence
 #
@@ -348,8 +349,9 @@ class SalsaTigerSentence < XMLNode
   end
 end
 
-
+# @todo AB: Move it to the right place.
 class SalsaTigerSentence
   include MaxConst
   include ConvexComp
+end
 end
