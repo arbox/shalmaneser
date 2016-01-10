@@ -298,10 +298,9 @@ module Shalmaneser
           raise "Shouldn't be here"
         end
 
-        parse_obj = FileParser.new(@exp, @file_suffixes,
-                                   parse_dir,
-                                   "tab_dir" => input_dir)
-        parse_obj.each_parsed_file { |parsed_file_obj|
+        parse_obj = FileParser.new(@exp, @file_suffixes, parse_dir, "tab_dir" => input_dir)
+
+        parse_obj.each_parsed_file do |parsed_file_obj|
           outfilename = output_dir + parsed_file_obj.filename + ".xml"
           LOGGER.debug "Writing #{outfilename}."
 
@@ -315,7 +314,7 @@ module Shalmaneser
           # work with triples
           # SalsaTigerSentence, FNTabSentence,
           # hash: tab sentence index(integer) -> array:SynNode
-          parsed_file_obj.each_sentence { |st_sent, tabformat_sent, mapping|
+          parsed_file_obj.each_sentence do |st_sent, tabformat_sent, mapping|
 
             # parsed: add headwords using parse tree
             if @exp.get("do_parse")
@@ -345,9 +344,9 @@ module Shalmaneser
             FrappeHelper.handle_unknown_framenames(st_sent, interpreter_class)
 
             outfile.puts st_sent.get
-          }
+          end
           outfile.puts STXML::SalsaTigerXMLHelper.get_footer
-        }
+        end
       end
 
       #############################################
@@ -367,7 +366,7 @@ module Shalmaneser
                               tab_dir,    # string: name of directory for split/tab data
                               input_dir,  # string: name of input directory
                               output_dir, # string: name of final output directory
-                              exp)        # FrprepConfigData
+                              exp)        # FrappeConfigData
 
         ####
         # Data preparation
@@ -386,14 +385,15 @@ module Shalmaneser
         #       input_dir = changed_input_dir
         #     end
 
-        #  If data is to be parsed, split and tabify input files
+        #  If data is to be parsed, split input files
         #    else copy data to stxml_indir.
-
         # stxml_dir: directory where SalsaTiger data is situated
         if @exp.get("do_parse")
           # split data
           stxml_splitdir = frprep_dirname("stxml_split", "new")
           stxml_dir = stxml_splitdir
+
+          LOGGER.info "#{PROGRAM_NAME}: Splitting the input data into #{stxml_dir}."
 
           FrappeHelper.stxml_split_dir(input_dir, stxml_splitdir,
                                        @exp.get("parser_max_sent_num"),
@@ -417,8 +417,7 @@ module Shalmaneser
 
           Dir[stxml_dir + "*" + @file_suffixes["stxml"]].each do |stxmlfilename|
 
-            tabfilename = tab_dir + File.basename(stxmlfilename,
-                                                  @file_suffixes["stxml"]) + @file_suffixes["tab"]
+            tabfilename = tab_dir + File.basename(stxmlfilename, @file_suffixes["stxml"]) + @file_suffixes["tab"]
             FrappeHelper.stxml_to_tab_file(stxmlfilename, tabfilename, exp)
           end
         end
@@ -574,7 +573,6 @@ module Shalmaneser
           outfile.puts STXML::SalsaTigerXMLHelper.get_footer
         } # each file parsed
       end
-
 
       ###################################
       # general file iterators
