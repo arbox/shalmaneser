@@ -70,21 +70,43 @@ class TestFrprep < Minitest::Test
   def test_frprep_plain2stxml
     create_exp_file(PRP_STXMLOUTPUT)
     execute("ruby -I lib bin/frappe -e #{PRP_STXMLOUTPUT}")
-    path = 'stxmloutput/sagen.xml'
-    d_real = Digest::SHA256.file "test/functional/output/#{path}"
-    d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
-    assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
+    etalon_files = Dir['test/functional/gold_output/stxmloutput/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p)
+    end
+    output_files = Dir['test/functional/output/stxmloutput/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p)
+    end
+    files = output_files.map { |s| s.sub(/output/, 'gold_output') }
+    assert_equal(etalon_files, files)
+    etalon_files.zip(output_files).each do |etalon_path, real_path|
+      d_gold = Digest::SHA256.file(etalon_path)
+      d_real = Digest::SHA256.file(real_path)
+      assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
+    end
     remove_exp_file(PRP_STXMLOUTPUT)
   end
 
   def test_frprep_stxml2stxml
     create_exp_file(PRP_STXML2STXML)
     execute("ruby -I lib bin/frappe -e #{PRP_STXML2STXML}")
-    path = 'stxml2stxml/abfragen.xml'
-    d_real = Digest::SHA256.file "test/functional/output/#{path}"
-    d_gold = Digest::SHA256.file "test/functional/gold_output/#{path}"
-    # assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
-    assert true
+    etalon_files = Dir['test/functional/gold_output/stxml2stxml/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p) || p =~ /[.]xml/
+    end
+    output_files = Dir['test/functional/output/stxml2stxml/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p) || p =~ /[.]xml/
+    end
+    files = output_files.map { |s| s.sub(/output/, 'gold_output') }
+    assert_equal(etalon_files, files)
+
+    etalon_files.zip(output_files).each do |etalon_path, real_path|
+      d_gold = Digest::SHA256.file(etalon_path)
+      d_real = Digest::SHA256.file(real_path)
+      assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
+    end
     remove_exp_file(PRP_STXML2STXML)
   end
 

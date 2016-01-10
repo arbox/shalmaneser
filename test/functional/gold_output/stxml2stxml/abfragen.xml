@@ -77,7 +77,7 @@
 </globals>
 <frames>
 <frame id='abfragen_s12924_f0' name='Questioning'>
-<target id='1452019812.3890297' lemma='abfragen'>
+<target id='1452462695.5871623' lemma='abfragen'>
 <fenode idref='s12924_7'/>
 </target>
 <fe name='Medium' id='abfragen_s12924_f0_e1'>
@@ -143,7 +143,7 @@
 </globals>
 <frames>
 <frame id='abfragen_s27176_f0' name='Questioning'>
-<target id='1452019812.4330678' lemma='abfragen'>
+<target id='1452462695.6388345' lemma='abfragen'>
 <fenode idref='s27176_5'/>
 </target>
 <fe name='Addressee' id='abfragen_s27176_f0_e1'>
