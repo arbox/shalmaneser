@@ -4,10 +4,6 @@ require_relative 'tab_format_named_args'
 
 ########################################################
 # TabFormat files containing everything that's in the FN lexunit files
-#
-# one target per sentence
-# require "ruby_class_extensions"
-
 class FNTabFormatFile < TabFormatFile
   def initialize(filename, tag_suffix = nil, lemma_suffix = nil)
     corpusname = File.dirname(filename) + "/" + File.basename(filename, ".tab")
@@ -26,11 +22,7 @@ class FNTabFormatFile < TabFormatFile
   end
 
   def self.fntab_format
-    return [
-      "word",
-      FNTabFormatFile.frametab_format,
-      "ne", "sent_id"
-    ]
+   ["word", FNTabFormatFile.frametab_format, "ne", "sent_id"]
   end
 
   def self.frametab_format

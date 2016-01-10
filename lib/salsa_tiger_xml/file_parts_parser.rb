@@ -12,148 +12,153 @@
 require "rexml/document"
 
 module STXML
-class FilePartsParser
-  # <@file> = File object for the corpus
-  # <@head> = string up to the first <s> tag
-  # <@tail> = string after the last </s> tag
-  # <@rest> = string starting with the latest <s> tag (complete this to
-  # a <s>...</s> structure by reading up to next </s> tag)
-  # <@readCompletely> = boolean specifying whether there's still something
-  # left to read in the file
 
-  attr_reader :head, :tail
+  class FilePartsParser
+    # <@file> = File object for the corpus
+    # <@head> = string up to the first <s> tag
+    # <@tail> = string after the last </s> tag
+    # <@rest> = string starting with the latest <s> tag (complete this to
+    # a <s>...</s> structure by reading up to next </s> tag)
+    # <@readCompletely> = boolean specifying whether there's still something
+    # left to read in the file
 
-  def initialize(filename)
-    @file = File.new(filename)
-    @readCompletely = false
-    # read stuff into @head and initialize @rest
-    @head = ''
-    begin
-      loop do
-        line = @file.readline
-        if line =~ /(.*)(<s\s.*)/ then
-          @head = @head << $1
-          @rest = $2
-          break
-        elsif line =~ /^(.*)(<\/body[\s>].*)$/
-          # empty corpus
-          @head = @head << $1
-          @tail = $2
-          while (line = @file.readline)
-            @tail << "\n" + line
+    attr_reader :head, :tail
+
+    def initialize(filename)
+      @file = File.new(filename)
+      @readCompletely = false
+      # read stuff into @head and initialize @rest
+      @head = ''
+      begin
+        loop do
+          line = @file.readline
+          if line =~ /(.*)(<s\s.*)/ then
+            @head = @head << $1
+            @rest = $2
+            break
+          elsif line =~ /^(.*)(<\/body[\s>].*)$/
+            # empty corpus
+            @head = @head << $1
+            @tail = $2
+            while (line = @file.readline)
+              @tail << "\n" + line
+            end
+            @readCompletely = true
+            break
+          else
+            # @todo Edit this horror!
+            @head = @head << line
           end
-          @readCompletely = true
-          break
-        else
-          # @todo Edit this horror!
-          @head = @head << line
         end
+      rescue EOFError
+        @readCompletely = true
       end
-    rescue EOFError
-      @readCompletely = true
-    end
-  end
-
-  def close
-    @file.close
-  end
-
-  def extractDOMs
-    allDOMs = []
-
-    process_s! do |dom|
-      allDOMs.push(dom)
-      Element.new("x")
     end
 
-    allDOMs
-  end
-
-  def each_s
-    process_s! do |dom|
-      yield(dom)
-      Element.new("x")
-    end
-  end
-
-  # This function returns the string for the modified corpus.
-  # It doesn't change the internal state of the FilePartsParser,
-  # and is much more memory (and probably time) efficient than
-  # FileParser#process_s!.
-  # The block that is called by the method is given an element
-  # as its argument and is expected to return a changed element.
-  def process_s!
-    if @readCompletely
-      return
+    def close
+      @file.close
     end
 
-    ret = ''
-    scan_s { |element|
-      # Process the <s> ... </s> element
-      doc = Document.new(element)
-      elt = doc.root
-      changedElt = yield(elt)
+    # @note AB: This method isn't used anywhere.
+    def extractDOMs
+      allDOMs = []
 
-      changedEltAsString = ''
-      changedElt.write(changedEltAsString, 0)
-      ret <<= changedEltAsString
-    }
+      process_s! do |dom|
+        allDOMs.push(dom)
+        Element.new("x")
+      end
 
-    return ret
-  end
-
-  # KE 12.6.03: scan_s :
-  # doesn't parse a sentence before yielding it
-  # doesn't allow for any changes
-  # but otherwise the same as process_s!
-  def scan_s
-    if @readCompletely
-      return
+      allDOMs
     end
 
-    begin
-      while true do
-        # Invariant: At this point, @rest always starts with an
-        # unseen <s> tag.
+    # @note AB: This method isn't used anywhere.
+    def each_s
+      process_s! do |dom|
+        yield(dom)
+        Element.new("x")
+      end
+    end
 
-        # First, we continue reading until we find the closing </s>
-        # No exception should occur in this loop if we're parsing
-        # a valid XML document.
-        while @rest !~ /^(.*<\/s>)(.*)/m do
+    # This function returns the string for the modified corpus.
+    # It doesn't change the internal state of the FilePartsParser,
+    # and is much more memory (and probably time) efficient than
+    # FileParser#process_s!.
+    # The block that is called by the method is given an element
+    # as its argument and is expected to return a changed element.
+    # @note This method isn't used anywhere.
+    def process_s!
+      if @readCompletely
+        return
+      end
+
+      ret = ''
+      scan_s { |element|
+        # Process the <s> ... </s> element
+        doc = Document.new(element)
+        elt = doc.root
+        changedElt = yield(elt)
+
+        changedEltAsString = ''
+        changedElt.write(changedEltAsString, 0)
+        ret <<= changedEltAsString
+      }
+
+      return ret
+    end
+
+    # KE 12.6.03: scan_s :
+    # doesn't parse a sentence before yielding it
+    # doesn't allow for any changes
+    # but otherwise the same as process_s!
+    # @return [String] A String with one xml encoded sentence.
+    def scan_s
+      if @readCompletely
+        return
+      end
+
+      begin
+        while true do
+          # Invariant: At this point, @rest always starts with an
+          # unseen <s> tag.
+
+          # First, we continue reading until we find the closing </s>
+          # No exception should occur in this loop if we're parsing
+          # a valid XML document.
+          while @rest !~ /^(.*<\/s>)(.*)/m do
+            @rest = @rest << @file.readline
+          end
+
+          element = $1
+          @rest = $2
+
+          yield(element) # change HERE: element not parsed!
+
+          # Read on up to the next <s>
+          while @rest !~ /(.*)(<s\s.*)/m do
+            @rest = @rest << @file.readline
+          end
+
+          @rest = $2
+        end
+      rescue EOFError
+        @tail = @rest
+        @readCompletely = true
+      end
+    end
+
+    # KE 5.11.03: get_rest: read all of the file not processed up to this point
+    # and return it as a string
+    def get_rest
+      begin
+        loop do
           @rest = @rest << @file.readline
         end
-
-        element = $1
-        @rest = $2
-
-        yield(element) # change HERE: element not parsed!
-
-        # Read on up to the next <s>
-        while @rest !~ /(.*)(<s\s.*)/m do
-          @rest = @rest << @file.readline
-        end
-
-        @rest = $2
+      rescue EOFError
+        @readCompletely = true
       end
-    rescue EOFError
-      @tail = @rest
-      @readCompletely = true
+      return @rest
     end
   end
-
-  # KE 5.11.03: get_rest: read all of the file not processed up to this point
-  # and return it as a string
-  def get_rest
-    begin
-      loop do
-        @rest = @rest << @file.readline
-      end
-    rescue EOFError
-      @readCompletely = true
-    end
-    return @rest
-  end
-end
 end
 
 # This part seems to be obsolete, delete it!

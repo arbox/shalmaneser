@@ -116,20 +116,13 @@ class TabFormatNamedArgs
     return features.select { |f|
       # remove the group feature, if it's there
       not(f.instance_of? Array)
-    }.map { |feature|
-      if hash[feature]
-        hash[feature]
-      else
-        "-"
-      end
-    }.join("\t")
+    }.map { |feature| hash.fetch(feature, '-') }.join("\t")
   end
-
 
   #############
   def add_feature(name, feature)
-    if @f.has_key? name
-      raise "Trying to add a feature twice: "+name
+    if @f.key? name
+      raise "Trying to add a feature twice: #{name}."
     end
 
     @f[name] = feature

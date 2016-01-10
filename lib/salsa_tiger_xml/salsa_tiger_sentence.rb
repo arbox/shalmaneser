@@ -1,6 +1,4 @@
 require_relative 'xml_node'
-# require_relative 'convex_comp'
-# require_relative 'max_const'
 require_relative 'salsa_tiger_sentence_graph'
 require_relative 'salsa_tiger_sentence_sem'
 require_relative 'reg_xml'
@@ -97,8 +95,16 @@ module STXML
   #          for REEXAMINE-type flags
   #   text:  optional parameter, a string, arbitrary text commenting
   #          on the flag, used mainly with INTERESTING
-
   class SalsaTigerSentence < XMLNode
+    def self.empty_sentence(sentence_id)  # string
+      sentence_id = sentence_id.gsub(/'/, "&apos;")
+      sent_string = "<s id=\'#{sentence_id}\'>\n" +
+                    "<graph/>\n" +
+                    "<sem/>\n" +
+                    "</s>"
+
+      SalsaTigerSentence.new(sent_string)
+    end
 
     def initialize(string)
       # parse string as an XML element
@@ -143,33 +149,18 @@ module STXML
       # go through the children of the <s> object again,
       # remembering all children except <graph> and <sem>
       # for later output
-      xml_obj.children_and_text.each { |child_or_text|
+      xml_obj.children_and_text.each do |child_or_text|
         case child_or_text.name
         when "graph", "sem"
         # we have handled them already
         else
           add_kith(child_or_text)
         end
-      }
-
+      end
     end
 
-    #############
-    def SalsaTigerSentence.empty_sentence(sentence_id)  # string
-      sentence_id = sentence_id.gsub(/'/, "&apos;")
-      sent_string = "<s id=\'#{sentence_id}\'>\n" +
-                    "<graph/>\n" +
-                    "<sem/>\n" +
-                    "</s>"
-      return SalsaTigerSentence.new(sent_string)
-    end
-
-    #####
-
-
-    ###
     def to_s
-      return @syn.to_s
+      @syn.to_s
     end
 
     ###
@@ -184,12 +175,12 @@ module STXML
 
     ###
     def terminals
-      return @syn.terminals
+      @syn.terminals
     end
 
     ###
     def terminals_sorted
-      return @syn.terminals_sorted
+      @syn.terminals_sorted
     end
 
     ###
@@ -199,35 +190,32 @@ module STXML
 
     ###
     def nonterminals
-      return @syn.nonterminals
+      @syn.nonterminals
     end
 
     ###
     def each_syn_node
-      @syn.each_node {  |n|
-        yield n
-      }
+      @syn.each_node { |n| yield n }
     end
 
     ###
     def syn_nodes
-      return @syn.nodes
+      @syn.nodes
     end
 
     ###
     def syn_roots
-      return @syn.syn_roots
+      @syn.syn_roots
     end
-    ###
 
     ###
     def syn_node_with_id(syn_id)
-      return @syn.node[syn_id]
+      @syn.node[syn_id]
     end
 
     ###
     def sem_node_with_id(sem_id)
-      return @sem.node[sem_id]
+      @sem.node[sem_id]
     end
 
     ###
@@ -237,7 +225,7 @@ module STXML
 
     ###
     def frames
-      return @sem.frames
+      @sem.frames
     end
 
     ###
@@ -247,7 +235,7 @@ module STXML
 
     ###
     def usp_frameblocks
-      return @sem.usp_frameblocks
+      @sem.usp_frameblocks
     end
 
     ###
@@ -257,17 +245,16 @@ module STXML
 
     ###
     def usp_feblocks
-      return @sem.usp_feblocks
+      @sem.usp_feblocks
     end
 
     ###
     def flags
-      return @sem.flags
+      @sem.flags
     end
 
     ###################################
     # adding and removing things
-
     ###
     # add syntactic node, specified as terminal(t) or nonterminal(nt)
     #
@@ -277,7 +264,8 @@ module STXML
                 word = nil,# string: word
                 pos = nil, # string: part of speech
                 syn_id = nil)  # string: ID for the new node
-      return @syn.add_node(id, label, cat, word, pos, syn_id)
+
+      @syn.add_node(id, label, cat, word, pos, syn_id)
     end
 
     ###
@@ -288,7 +276,8 @@ module STXML
     ###
     def add_frame(name,    # string: name of the frame
                   sem_id = nil) # string: ID for the new node
-      return @sem.add_frame(id, name, sem_id)
+
+      @sem.add_frame(id, name, sem_id)
     end
 
     ###
@@ -301,7 +290,8 @@ module STXML
                name,
                fe_children,
                sem_id = nil)
-      return @sem.add_fe(frame_obj, name, fe_children, sem_id)
+
+      @sem.add_fe(frame_obj, name, fe_children, sem_id)
     end
 
     ###
@@ -311,7 +301,7 @@ module STXML
 
     ###
     def add_usp(frame_or_fe)
-      return @sem.add_usp(frame_or_fe)
+      @sem.add_usp(frame_or_fe)
     end
 
     ###
@@ -320,12 +310,12 @@ module STXML
     end
 
     ###
-    def add_flag(type, param=nil, text=nil)
+    def add_flag(type, param = nil, text = nil)
       @sem.add_flag(type, param, text)
     end
 
     ###
-    def remove_flag(type, param=nil, text=nil)
+    def remove_flag(type, param = nil, text = nil)
       @sem.remove_flag(type, param, text)
     end
 
@@ -335,7 +325,7 @@ module STXML
       @sem = SalsaTigerSentenceSem.new(empty_sem, id, @syn.node)
     end
 
-    #################33
+    #################
     # output
     def get_syn
       @syn.get
@@ -360,7 +350,6 @@ module STXML
         return max_constituents_for_nodes(new_node_set)
       end
     end
-
 
     # returns: array:SynNode, list of maximal constituents covering
     # the input nodes
@@ -420,12 +409,12 @@ module STXML
         if rest.size == 0
           # whole yield of node consists of words from this FE
           constituents << node
-          words = words - node_yield
+          words -= node_yield
 
         elsif rest.size < node_yield.size
           # at least some of the words in FE appear below this node:
           # check this node's children too
-          node.children.each{ |child| nodes_to_check << child }
+          node.children.each { |child| nodes_to_check << child }
         end
       end
 
@@ -433,7 +422,7 @@ module STXML
       constituents.concat(words) # any leftover words that may not be from that sentence?
       # just keep them.
 
-      return constituents
+      constituents
     end
 
     ###
@@ -495,13 +484,12 @@ module STXML
         end
       }
       # which words remain to be added?
-      constituents.each { |c| words = words - c.yield_nodes }
+      constituents.each { |c| words -= c.yield_nodes }
       constituents.concat words
 
-      return constituents
+      constituents
     end
 
-    ##########33
     private
 
     ###
@@ -598,11 +586,11 @@ module STXML
         ]
       end
     end
-    ############################3
+
     protected
 
     def get_xml_ofchildren
-      return @syn.get + @sem.get
+      @syn.get + @sem.get
     end
   end
 end
