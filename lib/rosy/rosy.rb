@@ -65,7 +65,7 @@ module Shalmaneser
         begin
           task.perform
         rescue => e
-          raise RosyError, 'Rosy is doing bad!', e
+          raise RosyError.new 'Rosy is doing bad!', e
         ensure
           database.close
         end
