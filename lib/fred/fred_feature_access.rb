@@ -301,7 +301,6 @@ module Shalmaneser
         end
       end
 
-
       ###
       # given a full sorted list of items and a partial list of items,
       # match the partial list to the full list,
@@ -312,6 +311,12 @@ module Shalmaneser
       # Note that if partial contains items not in full,
       # they will not occur on the feature list returned!
       def to_feature_list(partial, full, handle_numerical_features = nil)
+        # print "FULL: ", full, "\n"
+        # print "PART: ", partial, "\n"
+        # count occurrences of each feature in the partial list
+        occ_hash = Hash.new(0)
+        partial.each { |p| occ_hash[p] += 1 }
+
         # what to do with our counts?
         unless handle_numerical_features
           # no pre-set value given when this function was called
