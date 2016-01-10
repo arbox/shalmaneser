@@ -440,7 +440,6 @@ module Shalmaneser
       # assigned senses are recorded as frames, the targets of which are the
       # disambiguated words
       def salsatiger_output(all_results)
-
         if @split_id
           # we're not writing Salsa/Tiger XML output for splits.
           LOGGER.warn "No Salsa/Tiger XML output for random splits of the data,"\
@@ -491,7 +490,7 @@ module Shalmaneser
 
             labels_and_senses_for_this_instance = results.at(instance_index)
             if not(labels_and_senses_for_this_instance.empty?) and
-              (winning_sense = labels_and_senses_for_this_instance.first().first)
+              (winning_sense = labels_and_senses_for_this_instance.first.first)
 
               recorded_results[key] << [a_targetIDs, winning_sense, a_lemma, a_pos]
             end

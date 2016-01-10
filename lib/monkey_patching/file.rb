@@ -49,17 +49,17 @@ class File
     dir_path, _dummy = File.make_path(pieces, true)
 
     unless File.exist?(dir_path) && File.directory?(dir_path)
-      $stderr.puts "Error: Directory #{dir_path} doesn't exist. Exiting."
-      exit(1)
+      raise "Error: Directory #{dir_path} doesn't exist."
     end
     unless File.executable? dir_path
-      $stderr.puts "Error: Cannot access directory #{dir_path}. Exiting."
-      exit(1)
+      raise "Error: Cannot access directory #{dir_path}."
     end
 
     dir_path
   end
 
+  # @note AB: This method is not used anywhere.
+=begin
   ####
   # like existing_dir, but last bit is filename
   def self.existing_filename(*pieces)
@@ -77,6 +77,7 @@ class File
 
     whole_path
   end
+=end
 
   ####
   # piece together the strings in 'pieces' to make a path,
@@ -92,6 +93,7 @@ class File
   # returns: pair of strings (directory_part, whole_path)
   # @param pieces [String, Array]
   # @param is_dir [True, False, Nil]
+  # @api private
   def self.make_path(pieces, is_dir = false)
     if pieces.is_a?(String)
       pieces = [pieces]
@@ -120,8 +122,8 @@ class File
     dir = File.expand_path(dir)
 
     # expand_path removes the final "/" again
-    unless dir =~ /\/$/
-      dir = dir + "/"
+    unless dir =~ %r{/$}
+      dir += "/"
     end
 
     is_dir ? [dir, dir] : [dir, dir + pieces[-1]]

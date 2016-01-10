@@ -264,10 +264,8 @@ class DBView
     # find the first table in @table_col_pairs that has
     # a column with this name
     # and update that column
-    @table_col_pairs.each { |tc|
-      if (tc.columns.is_a(Array) && tc.columns.include? name) or
-          (tc.columns == "*" and tc.table_obj.list_column_names.include? name)
-
+    @table_col_pairs.each do |tc|
+      if (tc.columns.is_a?(Array) && tc.columns.include?(name)) || (tc.columns == "*" && tc.table_obj.list_column_names.include?(name))
         table_name = tc.table_obj.table_name
         # sanity check: number of update entries must match
         # number of entries in this view
@@ -278,14 +276,14 @@ class DBView
 
         @index_tables[tc.table_obj.table_name].reset
 
-        values.each { |value|
+        values.each do |value|
           index = @index_tables[table_name].fetch_row.first
           tc.table_obj.update_row(index, [[name, value]])
-        }
+        end
 
         return
       end
-    }
+    end
 
     # no match found
     $stderr.puts "View.rb Error: cannot update a column that is not in this view: #{name}"
