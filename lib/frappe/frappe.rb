@@ -7,6 +7,7 @@ require 'framenet_format/fn_database'
 
 require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'salsa_tiger_xml/file_parts_parser'
+require 'salsa_tiger_xml/corpus'
 
 require 'logging'
 require 'definitions'
@@ -414,11 +415,9 @@ module Shalmaneser
         # tabify data
         if @exp.get("do_parse") || @exp.get("do_lemmatize") || @exp.get("do_postag")
           LOGGER.info "#{PROGRAM_NAME}: Making input for syn. processing."
-
           Dir[stxml_dir + "*" + @file_suffixes["stxml"]].each do |stxmlfilename|
-
             tabfilename = tab_dir + File.basename(stxmlfilename, @file_suffixes["stxml"]) + @file_suffixes["tab"]
-            FrappeHelper.stxml_to_tab_file(stxmlfilename, tabfilename, exp)
+            stxml_to_tab_file(stxmlfilename, tabfilename, exp)
           end
         end
 
@@ -426,8 +425,7 @@ module Shalmaneser
         # POS-tagging
         if @exp.get("do_postag")
           LOGGER.info "#{PROGRAM_NAME}: Tagging."
-          sys_class = ExternalSystems.get_interface("pos_tagger",
-                                                    @exp.get("pos_tagger"))
+          sys_class = ExternalSystems.get_interface("pos_tagger", @exp.get("pos_tagger"))
           sys = sys_class.new(@exp.get("pos_tagger_path"),
                               @file_suffixes["tab"],
                               @file_suffixes["pos"])
@@ -621,6 +619,40 @@ module Shalmaneser
           # write footer
           tf.puts infile.tail
           infile.close
+        end
+      end
+
+      ####
+      # transform SalsaTigerXML file to Tab format file
+      # @param [String] input_filename Name of input file.
+      # @param [String] output_filename Name of output file.
+      # @param [FrappeConfigData]
+      def stxml_to_tab_file(input_filename, output_filename, exp)
+        corpus = STXML::Corpus.new(input_filename)
+
+        File.open(output_filename, 'w') do |f|
+          corpus.each_sentence do |sentence|
+            raise 'Interface changed!!!' unless sentence.is_a?(Nokogiri::XML::Element)
+            id = sentence.attributes['id'].value
+            words = sentence.xpath('.//t')
+            # byebug
+            words.each do |word|
+              word = STXML::SalsaTigerXMLHelper.unescape(word.attributes['word'].value)
+              # @todo AB: I don't know why the Berkeley Parser wants this.
+              #   Investigate if every Grammar needs this conversion.
+              #   Try to move this convertion from FrappeHelper to BerkeleyInterface.
+              if exp.get("parser") == "berkeley"
+                word.gsub!(/\(/, "*LRB*")
+                word.gsub!(/\)/, "*RRB*")
+                word.gsub!(/``/, '"')
+                word.gsub!(/''/, '"')
+                word.gsub!(%r{\&apos;\&apos;}, '"')
+              end
+              fields = {'word' => word, 'sent_id' => id}
+              f.puts FNTabFormatFile.format_str(fields)
+            end
+            f.puts
+          end
         end
       end
     end

@@ -6,7 +6,6 @@ require 'salsa_tiger_xml/file_parts_parser'
 require 'salsa_tiger_xml/salsa_tiger_xml_helper'
 require 'tabular_format/fn_tab_format_file'
 
-require 'salsa_tiger_xml/corpus'
 
 require "ruby_class_extensions"
 require 'logging'
@@ -21,6 +20,7 @@ module Shalmaneser
     module FrappeHelper
       ####
       # transform a file to UTF-8 from a given encoding
+      # @note Is used.
       def FrappeHelper.to_utf8_file(input_filename, # string: name of input file
                                     output_filename, # string: name of output file
                                     encoding) # string: "iso", "hex"
@@ -486,63 +486,34 @@ module Shalmaneser
       # transform SalsaTigerXML file to Tab format file
       # @param [String] input_filename Name of input file.
       # @param [String] output_filename Name of output file.
-      # @param [FrprepConfigData]
+      # @param [FrappeConfigData]
       def FrappeHelper.stxml_to_tab_file(input_filename, output_filename, exp)
-        # byebug
-        infile = STXML::FilePartsParser.new(input_filename)
+        corpus = STXML::Corpus.new(input_filename)
 
-        begin
-          outfile = File.open(output_filename, "w")
-        rescue
-          raise "Stxml to tab: could not write to tab file #{output_filename}"
-        end
-
-        infile.scan_s do |sent_string|
-          # determine sentence ID
-          sentid = STXML::RegXML.new(sent_string).attributes["id"]
-
-          unless sentid
-            $stderr.puts "No sentence ID in sentence:\n " + sent_string
-            $stderr.puts "Making a new one up."
-            sentid = Time.new.to_f.to_s
-          end
-
-          # find terminals and process them
-          unless sent_string.delete("\n") =~ /<terminals[ >].+<\/terminals>/
-            $stderr.puts "Warning: could not find terminals in sentence:"
-            $stderr.puts sent_string
-            $stderr.puts "Skipping"
-            next
-          end
-
-          # modified by ines, 27/08/08
-          # for Berkeley => convert ( ) to -LRB- -RRB-
-          text = $&
-                   if exp.get("parser") == "berkeley"
-                     text.gsub!(/word='\('/, "word='*LRB*'")
-                     text.gsub!(/word='\)'/, "word='*RRB*'")
-                     text.gsub!(/word=['"]``['"]/, "word='\"'")
-                     text.gsub!(/word=['"]''['"]/, "word='\"'")
-                     text.gsub!(/word=['"]\&apos;\&apos;['"]/, "word='\"'")
-                     # text.gsub!(/word=['"]\(['"]/,  "word='-LRB-'")
-                     # text.gsub!(/word=['"]\)['"]/,  "word='-RRB-'")
-                   end
-
-          terminals = text
-          # terminals = sent_string
-          terminals = STXML::RegXML.new(terminals)
-          terminals.children_and_text.each do |terminal|
-            unless terminal.name == "t"
-              # not a terminal after all
-              next
+        File.open(output_filename, 'w') do |f|
+          corpus.each_sentence do |sentence|
+            raise 'Interface changed!!!' unless sentence.is_a?(Nokogiri::XML::Element)
+            id = sentence.attributes['id'].value
+            words = sentence.xpath('.//t')
+            # byebug
+            words.each do |word|
+              word = STXML::SalsaTigerXMLHelper.unescape(word.attributes['word'].value)
+              # @todo AB: I don't know why the Berkeley Parser wants this.
+              #   Investigate if every Grammar needs this conversion.
+              #   Try to move this convertion from FrappeHelper to BerkeleyInterface.
+              if exp.get("parser") == "berkeley"
+                word.gsub!(/\(/, "*LRB*")
+                word.gsub!(/\)/, "*RRB*")
+                word.gsub!(/``/, '"')
+                word.gsub!(/''/, '"')
+                word.gsub!(%r{\&apos;\&apos;}, '"')
+              end
+              fields = {'word' => word, 'sent_id' => id}
+              f.puts FNTabFormatFile.format_str(fields)
             end
-
-            fields = {'word' => STXML::SalsaTigerXMLHelper.unescape(terminal.attributes["word"]), 'sent_id' => sentid}
-            outfile.puts FNTabFormatFile.format_str(fields)
-          end # each terminal
-          outfile.puts
-        end # each sentence
-        outfile.close
+            f.puts
+          end
+        end
       end
 
       ###

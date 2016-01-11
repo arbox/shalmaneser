@@ -77,6 +77,19 @@ module Shalmaneser
           corpusfile = FNTabFormatFile.new(inputfilename, nil, nil)
 
           corpusfile.each_sentence do |sentence|
+            # Convert FNTabSentence to a String.
+            sentence = sentence.to_s
+
+            # @todo AB: I don't know why the Berkeley Parser wants this.
+            #   Investigate if every Grammar needs this conversion.
+            #   Try to move this convertion from FrappeHelper.
+            # sentence.gsub!(/\(/, "*LRB*")
+            # sentence.gsub!(/\)/, "*RRB*")
+            # sentence.gsub!(/``/, '"')
+            # sentence.gsub!(/''/, '"')
+            # sentence.gsub!(%r{\&apos;\&apos;}, '"')
+            ## text.gsub!(/word=['"]\(['"]/,  "word='-LRB-'")
+            ## text.gsub!(/word=['"]\)['"]/,  "word='-RRB-'")
             tempfile.puts sentence
           end
 

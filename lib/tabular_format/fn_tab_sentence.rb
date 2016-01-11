@@ -158,13 +158,12 @@ class FNTabSentence < TabFormatSentence
   end
 
   #######
+  # @return [String] A tokenized sentence.
   def to_s
     sanity_check
     array = []
-    each_line_parsed {|l|
-      array << l.get("word")
-    }
-    return array.join(" ")
-  end
+    each_line_parsed { |l| array << l.get("word") }
 
+    array.join(' ')
+  end
 end
