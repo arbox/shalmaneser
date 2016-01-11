@@ -113,6 +113,22 @@ class TestFrprep < Minitest::Test
   def test_frprep_plain2tab
     create_exp_file(PRP_TABOUTPUT)
     execute("ruby -I lib bin/frappe -e #{PRP_TABOUTPUT}")
+    etalon_files = Dir['test/functional/gold_output/taboutput/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p)
+    end
+    output_files = Dir['test/functional/output/taboutput/**/*'].reject do |p|
+      # This part with xml output is only termporary.
+      File.directory?(p)
+    end
+    files = output_files.map { |s| s.sub(/output/, 'gold_output') }
+    assert_equal(etalon_files, files)
+
+    etalon_files.zip(output_files).each do |etalon_path, real_path|
+      d_gold = Digest::SHA256.file(etalon_path)
+      d_real = Digest::SHA256.file(real_path)
+      assert_equal(d_gold, d_real, 'The Tabular Output diverges from the etalon!')
+    end
     remove_exp_file(PRP_TABOUTPUT)
   end
 
