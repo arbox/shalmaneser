@@ -105,7 +105,7 @@ class TestFrprep < Minitest::Test
     etalon_files.zip(output_files).each do |etalon_path, real_path|
       d_gold = Digest::SHA256.file(etalon_path)
       d_real = Digest::SHA256.file(real_path)
-      assert_equal(d_gold, d_real, 'The STXML output diverges from the etalon!')
+      assert_equal(d_gold, d_real, "The STXML Output diverges from the etalon for #{File.basename(real_path)}!")
     end
     remove_exp_file(PRP_STXML2STXML)
   end
@@ -127,7 +127,7 @@ class TestFrprep < Minitest::Test
     etalon_files.zip(output_files).each do |etalon_path, real_path|
       d_gold = Digest::SHA256.file(etalon_path)
       d_real = Digest::SHA256.file(real_path)
-      assert_equal(d_gold, d_real, 'The Tabular Output diverges from the etalon!')
+      assert_equal(d_gold, d_real, "The Tabular Output diverges from the etalon for #{File.basename(real_path)}!")
     end
     remove_exp_file(PRP_TABOUTPUT)
   end
