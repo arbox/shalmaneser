@@ -1,15 +1,15 @@
 require_relative 'file_parser'
-require_relative 'frappe_helper'
-require_relative 'fix_syn_sem_mapping'
+require_relative 'frappe_helper' # !
+
 # For FN input.
-require 'framenet_format/fn_corpus_xml_file'
-require 'framenet_format/fn_database'
+require 'framenet_format/fn_corpus_xml_file' # !
+require 'framenet_format/fn_database' # !
 
 require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'salsa_tiger_xml/file_parts_parser'
 require 'salsa_tiger_xml/corpus'
 
-require 'logging'
+require 'logging' # !
 require 'definitions'
 require 'fileutils'
 
@@ -204,56 +204,6 @@ module Shalmaneser
         dirname = File.new_dir(@exp.get("frprep_directory"), @exp.get("prep_experiment_ID"), subdir)
 
         neu ? File.new_dir(dirname) : File.existing_dir(dirname)
-      end
-
-      ###################################
-      # general file iterators
-
-      # yields pairs of [infile name, outfile stream]
-      # @param [String] dir Directory name.
-      # @param [String] suffix Filename pattern, e.g. '*.xml'.
-      def change_each_file_in_dir(dir, suffix)
-        Dir[dir + "*#{suffix}"].each do |filename|
-          tempfile = Tempfile.new("FrappeHelper")
-          yield [filename, tempfile]
-
-          # move temp file to original file location
-          tempfile.close
-          # @todo Use native Ruby methods.!!
-          `cp #{filename} #{filename}.bak`
-          `mv #{tempfile.path} #{filename}`
-          tempfile.close(true)
-        end
-      end
-
-      #######
-      # change_each_stxml_file_in_dir
-      #
-      # use change_each_file_in_dir, but assume that the files
-      # are SalsaTigerXML files: Keep file headers and footers,
-      # and just offer individual sentences for changing
-      #
-      # Yields SalsaTigerSentence objects, each sentence to be changed
-      # @param [String] dir Directory name.
-      def change_each_stxml_file_in_dir(dir)
-        change_each_file_in_dir(dir, "*.xml") do |stfilename, tf|
-          infile = STXML::FilePartsParser.new(stfilename)
-
-          # write header
-          tf.puts infile.head
-
-          # iterate through sentences, yield as SalsaTigerSentence objects
-          infile.scan_s do |sent_string|
-            sent = STXML::SalsaTigerSentence.new(sent_string)
-            yield sent
-            # write changed sentence
-            tf.puts sent.get
-          end # each sentence
-
-          # write footer
-          tf.puts infile.tail
-          infile.close
-        end
       end
     end
   end
