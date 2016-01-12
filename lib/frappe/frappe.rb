@@ -13,6 +13,11 @@ require 'logging'
 require 'definitions'
 require 'fileutils'
 
+require 'frappe/stxml_converter'
+require 'frappe/plain_converter'
+require 'frappe/salsa_tab_converter'
+require 'frappe/salsa_tab_with_pos_converter'
+
 ##############################
 # The class that does all the work
 module Shalmaneser
@@ -21,15 +26,10 @@ module Shalmaneser
       # @param exp [FrprepConfigData] Configuration object
       def initialize(exp)
         @exp = exp
-
         # @todo Implement the logger as a mixin for all classes.
         @logger = LOGGER
-
         # suffixes for different types of output files
-        @file_suffixes = {"lemma" => ".lemma",
-                          "pos" => ".pos",
-                          "tab" => ".tab",
-                          "stxml" => ".xml"}
+        @file_suffixes = {"lemma" => ".lemma", "pos" => ".pos", "tab" => ".tab", "stxml" => ".xml"}
       end
 
       # Main processing method.
@@ -61,16 +61,16 @@ module Shalmaneser
 
           encoding_dir = frprep_dirname("encoding", "new")
 
-          @logger.info "Frprep: Transforming  to UTF-8."
+          @logger.info "Frappe: Transforming  to UTF-8."
 
-          Dir[input_dir + "*"].each { |filename|
+          Dir[input_dir + "*"].each do |filename|
             unless File.file? filename
               # not a file? then skip
               next
             end
             outfilename = encoding_dir + File.basename(filename)
             FrappeHelper.to_utf8_file(filename, outfilename, @exp.get("encoding"))
-          }
+          end
 
           input_dir = encoding_dir
         end
@@ -100,7 +100,8 @@ module Shalmaneser
                           "Storing the result in #{tab_dir}.\n"\
                           "Expecting one sentence per line.\n"
 
-            transform_plain_dir(current_dir, tab_dir)
+            transformer = PlainConverter.new
+            transformer.transform_plain_dir(current_dir, tab_dir)
 
             current_dir = tab_dir
             current_format = "SalsaTab"
@@ -145,7 +146,8 @@ module Shalmaneser
             @logger.debug "#{PROGRAM_NAME}: Lemmatizing and parsing text in #{current_dir}.\n"\
                           "Storing the result in #{split_dir}.\n"
 
-            transform_pos_and_lemmatize(current_dir, split_dir)
+            transformer = SalsaTabConverter.new(@exp)
+            transformer.transform_pos_and_lemmatize(current_dir, split_dir)
 
             current_dir = split_dir
             # current_format = "SalsaTabWithPos"
@@ -162,7 +164,8 @@ module Shalmaneser
             @logger.debug "Frprep: Transforming tabular format text in #{current_dir} to SalsaTigerXML format. "\
                           "Storing the result in #{parse_dir}."
 
-            transform_salsatab_dir(current_dir, parse_dir, output_dir)
+            transformer = SalsaTabWithPOSConverter.new(@exp)
+            transformer.transform_salsatab_dir(current_dir, parse_dir, output_dir)
 
             current_dir = output_dir
             # current_format = "Done"
@@ -171,7 +174,9 @@ module Shalmaneser
           when "SalsaTigerXML"
             parse_dir = frprep_dirname("parse", "new")
             @logger.info "#{PROGRAM_NAME}: Transforming parser output into STXML format."
-            transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir, @exp)
+            transformer = STXMLConverter.new(@exp)
+
+            transformer.transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir)
             current_dir = output_dir
             # current_format = "Done"
             break
@@ -181,7 +186,6 @@ module Shalmaneser
         @logger.info "#{PROGRAM_NAME} is ready! Preprocessing of all the texts is finished."
       end
 
-      ############################################################################
       private
 
       ###############
@@ -197,379 +201,9 @@ module Shalmaneser
       # @param subdir [String] designator of a subdirectory
       # @param neu [Nil] non-nil This may be a new directory
       def frprep_dirname(subdir, neu = nil)
-        dirname = File.new_dir(@exp.get("frprep_directory"),
-                               @exp.get("prep_experiment_ID"),
-                               subdir)
+        dirname = File.new_dir(@exp.get("frprep_directory"), @exp.get("prep_experiment_ID"), subdir)
 
         neu ? File.new_dir(dirname) : File.existing_dir(dirname)
-      end
-
-      ###############
-      # transform_plain:
-      #
-      # transformation for plaintext:
-      #
-      # transform to Tab format, separating punctuation from adjacent words
-      # @param input_dir [String] input directory
-      # @param output_dir [String] output directory
-      def transform_plain_dir(input_dir, output_dir)
-        Dir[input_dir + "*"].each do |plainfilename|
-          # open input and output file
-          # end output file name in "tab" because that is, at the moment, required
-          outfilename = output_dir + File.basename(plainfilename, '.*') + @file_suffixes["tab"]
-          FrappeHelper.plain_to_tab_file(plainfilename, outfilename)
-        end
-      end
-
-      ###############
-      # transform_pos_and_lemmatize
-      #
-      # transformation for Tab format files:
-      #
-      # - Split into parser-size chunks
-      # - POS-tag, lemmatize
-      # string: input directory
-      # string: output directory
-      def transform_pos_and_lemmatize(input_dir, output_dir)
-        ##
-        # split the TabFormatFile into chunks of max_sent_num size
-        FrappeHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
-                               @exp.get("parser_max_sent_num"),
-                               @exp.get("parser_max_sent_len"))
-
-        ##
-        # POS-Tagging
-        if @exp.get("do_postag")
-          LOGGER.info "#{PROGRAM_NAME}: Tagging."
-
-          sys_class = ExternalSystems.get_interface("pos_tagger",
-                                                    @exp.get("pos_tagger"))
-
-          # AB: TODO Remove it.
-          unless sys_class
-            raise "Shouldn't be here"
-          end
-
-          LOGGER.debug "POS Tagger interface: #{sys_class}."
-          sys = sys_class.new(@exp.get("pos_tagger_path"),
-                              @file_suffixes["tab"],
-                              @file_suffixes["pos"])
-          sys.process_dir(output_dir, output_dir)
-        end
-
-        ##
-        # Lemmatization
-        # AB: We're working on the <split> dir and writing there.
-        if @exp.get("do_lemmatize")
-          LOGGER.info "#{PROGRAM_NAME}: Lemmatizing."
-
-          sys_class = ExternalSystems.get_interface("lemmatizer",
-                                                    @exp.get("lemmatizer"))
-          # AB: TODO make this exception explicit.
-          unless sys_class
-            raise 'I got a empty interface class for the lemmatizer!'
-          end
-
-          sys = sys_class.new(@exp.get("lemmatizer_path"),
-                              @file_suffixes["tab"],
-                              @file_suffixes["lemma"])
-          sys.process_dir(output_dir, output_dir)
-        end
-      end
-
-      ###############
-      # transform_salsatab
-      #
-      # transformation for Tab format files:
-      #
-      # - parse
-      # - Transform parser output to SalsaTigerXML
-      #   If no parsing, make flat syntactic structure.
-      # @param [String] input_dir Input directory.
-      # @param [String] parse_dir Output directory for parses.
-      # @param [String] output_dir Global output directory.
-      def transform_salsatab_dir(input_dir, parse_dir, output_dir)
-        ##
-        # (Parse and) transform to SalsaTigerXML
-        # get interpretation class for this
-        # parser/lemmatizer/POS tagger combination
-        interpreter_class = ExternalSystems.get_interpreter_according_to_exp(@exp)
-
-        unless interpreter_class
-          raise "Shouldn't be here"
-        end
-
-        parse_obj = FileParser.new(@exp, @file_suffixes, parse_dir, "tab_dir" => input_dir)
-
-        parse_obj.each_parsed_file do |parsed_file_obj|
-          outfilename = output_dir + parsed_file_obj.filename + ".xml"
-          LOGGER.debug "Writing #{outfilename}."
-
-          begin
-            outfile = File.new(outfilename, "w")
-          rescue
-            raise "Cannot write to SalsaTigerXML output file #{outfilename}"
-          end
-
-          outfile.puts STXML::SalsaTigerXMLHelper.get_header
-          # work with triples
-          # SalsaTigerSentence, FNTabSentence,
-          # hash: tab sentence index(integer) -> array:SynNode
-          parsed_file_obj.each_sentence do |st_sent, tabformat_sent, mapping|
-
-            # parsed: add headwords using parse tree
-            if @exp.get("do_parse")
-              FrappeHelper.add_head_attributes(st_sent, interpreter_class)
-            end
-
-            # add lemmas, if they are there. If they are not, don't print out a warning.
-            if @exp.get("do_lemmatize")
-              FrappeHelper.add_lemmas_from_tab(st_sent, tabformat_sent, mapping)
-            end
-
-            # add semantics
-            # we can use the method in SalsaTigerXMLHelper
-            # that reads semantic information from the tab file
-            # and combines all targets of a sentence into one frame
-            FrappeHelper.add_semantics_from_tab(st_sent, tabformat_sent, mapping,
-                                                interpreter_class, @exp)
-
-            # remove pseudo-frames from FrameNet data
-            FrappeHelper.remove_deprecated_frames(st_sent, @exp)
-
-            # handle multiword targets
-            FrappeHelper.handle_multiword_targets(st_sent,
-                                                  interpreter_class, @exp.get("language"))
-
-            # handle Unknown frame names
-            FrappeHelper.handle_unknown_framenames(st_sent, interpreter_class)
-
-            outfile.puts st_sent.get
-          end
-          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
-        end
-      end
-
-      #############################################
-      # transform_stxml
-      #
-      # transformation for SalsaTigerXML data
-      #
-      # - If the input format was SalsaTigerXML:
-      #   - Tag, lemmatize and parse, if the experiment file tells you so
-      #
-      # - If the origin is the Salsa corpus:
-      #   Change frame names from Unknown\d+ to lemma_Unknown\d+
-      #
-      # - fix multiword lemmas, or at least try
-      # - transform to UTF 8
-      def transform_stxml_dir(parse_dir,  # string: name of directory for parse data
-                              tab_dir,    # string: name of directory for split/tab data
-                              input_dir,  # string: name of input directory
-                              output_dir, # string: name of final output directory
-                              exp)        # FrappeConfigData
-
-        ####
-        # Data preparation
-
-        # Data with Salsa as origin:
-        # remember the target lemma as an attribute on the
-        # <target> elements
-        #
-        # currently deactivated: encoding problems
-        #     if @exp.get("origin") == "SalsaTiger"
-        #       $stderr.puts "Frprep: noting target lemmas"
-        #       changed_input_dir = frprep_dirname("salsalemma", "new")
-        #       FrappeHelper.note_salsa_targetlemmas(input_dir, changed_input_dir)
-
-        #       # remember changed input dir as input dir
-        #       input_dir = changed_input_dir
-        #     end
-
-        #  If data is to be parsed, split input files
-        #    else copy data to stxml_indir.
-        # stxml_dir: directory where SalsaTiger data is situated
-        if @exp.get("do_parse")
-          # split data
-          stxml_splitdir = frprep_dirname("stxml_split", "new")
-          stxml_dir = stxml_splitdir
-
-          LOGGER.info "#{PROGRAM_NAME}: Splitting the input data into #{stxml_dir}."
-
-          FrappeHelper.stxml_split_dir(input_dir, stxml_splitdir,
-                                       @exp.get("parser_max_sent_num"),
-                                       @exp.get("parser_max_sent_len"))
-        else
-          # no parsing: copy data to split dir
-          stxml_dir = parse_dir
-
-          LOGGER.info "#{PROGRAM_NAME}: Copying data to #{stxml_dir}"
-
-          Dir[input_dir + "*.xml"].each do |filename|
-            FileUtils.cp filename, stxml_dir
-            #`cp #{filename} #{stxml_dir}#{File.basename(filename)}`
-          end
-        end
-
-        # Some syntactic processing will take place:
-        # tabify data
-        if @exp.get("do_parse") || @exp.get("do_lemmatize") || @exp.get("do_postag")
-          LOGGER.info "#{PROGRAM_NAME}: Making input for syn. processing."
-          Dir[stxml_dir + "*" + @file_suffixes["stxml"]].each do |stxmlfilename|
-            tabfilename = tab_dir + File.basename(stxmlfilename, @file_suffixes["stxml"]) + @file_suffixes["tab"]
-            stxml_to_tab_file(stxmlfilename, tabfilename, exp)
-          end
-        end
-
-        ###
-        # POS-tagging
-        if @exp.get("do_postag")
-          LOGGER.info "#{PROGRAM_NAME}: Tagging."
-          sys_class = ExternalSystems.get_interface("pos_tagger", @exp.get("pos_tagger"))
-          sys = sys_class.new(@exp.get("pos_tagger_path"),
-                              @file_suffixes["tab"],
-                              @file_suffixes["pos"])
-          sys.process_dir(tab_dir, tab_dir)
-        end
-
-        ###
-        # Lemmatization
-        if @exp.get("do_lemmatize")
-          LOGGER.info "#{PROGRAM_NAME}: Lemmatizing."
-          sys_class = ExternalSystems.get_interface("lemmatizer",
-                                                    @exp.get("lemmatizer"))
-
-          sys = sys_class.new(@exp.get("lemmatizer_path"),
-                              @file_suffixes["tab"],
-                              @file_suffixes["lemma"])
-          sys.process_dir(tab_dir, tab_dir)
-        end
-
-        ###
-        # Parsing, production of SalsaTigerXML output
-
-        # get interpretation class for this
-        # parser/lemmatizer/POS tagger combination
-        sys_class_names = {}
-
-        [["do_postag", "pos_tagger"],
-         ["do_lemmatize", "lemmatizer"],
-         ["do_parse", "parser"]].each { |service, system_name|
-          if @exp.get(service)  # yes, perform this service
-            sys_class_names[system_name] = @exp.get(system_name)
-          end
-        }
-
-        interpreter_class = ExternalSystems.get_interpreter(sys_class_names)
-
-        unless interpreter_class
-          raise "Shouldn't be here"
-        end
-
-        parse_obj = FileParser.new(@exp, @file_suffixes,
-                                 parse_dir,
-                                 "tab_dir" => tab_dir,
-                                 "stxml_dir" => stxml_dir)
-        parse_obj.each_parsed_file { |parsed_file_obj|
-          outfilename = output_dir + parsed_file_obj.filename + ".xml"
-
-          LOGGER.debug "Writing #{outfilename}."
-
-          begin
-            outfile = File.new(outfilename, "w")
-          rescue
-            raise "Cannot write to SalsaTigerXML output file #{outfilename}"
-          end
-
-          if @exp.get("do_parse")
-            # read old SalsaTigerXML file
-            # so we can integrate the old file's semantics later
-            # array of sentence strings
-            oldxml = []
-
-            # we assume that the old and the new file have the same name,
-            # ending in .xml.
-            oldxmlfile = STXML::FilePartsParser.new(stxml_dir + parsed_file_obj.filename + ".xml")
-            oldxmlfile.scan_s { |sent_string|
-              # remember this sentence by its ID
-              oldxml << sent_string
-            }
-          end
-
-          outfile.puts STXML::SalsaTigerXMLHelper.get_header
-          index = 0
-          # work with triples
-          # SalsaTigerSentence, FNTabSentence,
-          # hash: tab sentence index(integer) -> array:SynNode
-          parsed_file_obj.each_sentence { |st_sent, tabformat_sent, mapping|
-
-            # parsed? then integrate semantics and lemmas from old file
-            if @exp.get("do_parse")
-              oldsent_string = oldxml[index]
-              index += 1
-              if oldsent_string
-
-                # modified by ines, 27/08/08
-                # for Berkeley => substitute ( ) for *LRB* *RRB*
-                # @note AB: Move this to the Berkeley Interface.
-                if exp.get("parser") == "berkeley"
-                  oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
-                  oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
-                  oldsent_string.gsub!(/word=\"\(\"/, "word='*LRB*'")
-                  oldsent_string.gsub!(/word=\"\)\"/, "word='*RRB*'")
-                end
-
-                # we have both an old and a new sentence, so integrate semantics
-                oldsent = STXML::SalsaTigerSentence.new(oldsent_string)
-
-                next if st_sent.nil?
-
-                unless FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
-                                                                         st_sent,
-                                                                         interpreter_class,
-                                                                         @exp)
-
-                  oldsent_string = oldxml[index]
-                  index += 1
-                  if oldsent_string
-
-                    # modified by ines, 27/08/08
-                    # for Berkeley => substitute ( ) for *LRB* *RRB*
-                    # @note AB: Duplicated code!! Move it to the Berkeley Interface.
-                    if exp.get("parser") == "berkeley"
-                      oldsent_string.gsub!(/word='\('/, "word='*LRB*'")
-                      oldsent_string.gsub!(/word='\)'/, "word='*RRB*'")
-                      oldsent_string.gsub!(/word=\"\(\"/, "word='*LRB*'")
-                      oldsent_string.gsub!(/word=\"\)\"/, "word='*RRB*'")
-                    end
-
-                    # we have both an old and a new sentence, so integrate semantics
-                    oldsent = STXML::SalsaTigerSentence.new(oldsent_string)
-
-                    FrappeHelper.integrate_stxml_semantics_and_lemmas(oldsent,
-                                                                      st_sent,
-                                                                      interpreter_class,
-                                                                      @exp)
-                  end
-                end
-              else
-                # no corresponding old sentence for this new sentence
-                @logger.warn "Warning: Transporting semantics - missing source sentence, skipping"
-              end
-            end
-
-            # remove pseudo-frames from FrameNet data
-            FrappeHelper.remove_deprecated_frames(st_sent, @exp)
-
-            # repair syn/sem mapping problems?
-            if @exp.get("fe_syn_repair") || @exp.get("fe_rel_repair")
-              FixSynSemMapping.fixit(st_sent, @exp, interpreter_class)
-            end
-
-            outfile.puts st_sent.get
-          } # each ST sentence
-          outfile.puts STXML::SalsaTigerXMLHelper.get_footer
-        } # each file parsed
       end
 
       ###################################
@@ -619,40 +253,6 @@ module Shalmaneser
           # write footer
           tf.puts infile.tail
           infile.close
-        end
-      end
-
-      ####
-      # transform SalsaTigerXML file to Tab format file
-      # @param [String] input_filename Name of input file.
-      # @param [String] output_filename Name of output file.
-      # @param [FrappeConfigData]
-      def stxml_to_tab_file(input_filename, output_filename, exp)
-        corpus = STXML::Corpus.new(input_filename)
-
-        File.open(output_filename, 'w') do |f|
-          corpus.each_sentence do |sentence|
-            raise 'Interface changed!!!' unless sentence.is_a?(Nokogiri::XML::Element)
-            id = sentence.attributes['id'].value
-            words = sentence.xpath('.//t')
-            # byebug
-            words.each do |word|
-              word = STXML::SalsaTigerXMLHelper.unescape(word.attributes['word'].value)
-              # @todo AB: I don't know why the Berkeley Parser wants this.
-              #   Investigate if every Grammar needs this conversion.
-              #   Try to move this convertion from FrappeHelper to BerkeleyInterface.
-              if exp.get("parser") == "berkeley"
-                word.gsub!(/\(/, "*LRB*")
-                word.gsub!(/\)/, "*RRB*")
-                word.gsub!(/``/, '"')
-                word.gsub!(/''/, '"')
-                word.gsub!(%r{\&apos;\&apos;}, '"')
-              end
-              fields = {'word' => word, 'sent_id' => id}
-              f.puts FNTabFormatFile.format_str(fields)
-            end
-            f.puts
-          end
         end
       end
     end

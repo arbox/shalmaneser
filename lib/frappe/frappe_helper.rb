@@ -6,7 +6,6 @@ require 'salsa_tiger_xml/file_parts_parser'
 require 'salsa_tiger_xml/salsa_tiger_xml_helper'
 require 'tabular_format/fn_tab_format_file'
 
-
 require "ruby_class_extensions"
 require 'logging'
 require 'fileutils'
@@ -42,79 +41,6 @@ module Shalmaneser
           end
         end
         infile.close
-        outfile.close
-      end
-
-      ####
-      # transform plaintext file to Tab format file
-      # string: name of input file
-      # string: name of output file
-      def FrappeHelper.plain_to_tab_file(input_filename, output_filename)
-        begin
-          infile = File.open(input_filename)
-          outfile = File.open(output_filename, "w")
-        rescue
-          raise "Could not read #{input_filename}, or could not write to #{output_filename}."
-        end
-
-        # AB: TODO This assumes all input files have the extension <txt>.
-        # Is it good?
-        filename_core = File.basename(input_filename, '.*')
-
-        # array(string): keep the words of each sentence
-        sentence = []
-        # sentence number for making the sentence ID:
-        # global count, over all input files
-        sentno = 0
-
-        while (line = infile.gets)
-          # make a sentence ID for the next sentence: running number
-          sentid = "#{filename_core}_#{sentno}"
-          sentno += 1
-
-          # read words into the sentence array,
-          # separating out punctuation attached to the beginning or end of words
-          sentence.clear
-
-          # AB: TODO Remove this naive tokenizer, better to have a fully
-          # tokenized input using an external tokenizer than that.
-          line.split.each do |word|
-            # punctuation at the beginning of the word
-            # if word =~ /^([\(\[`'\"-]+)(.*)$/
-            if word =~ /^([\(\[`\"-]+)(.*)$/
-              punct = $1
-              word = $2
-              punct.scan(/./) { |single_punct| sentence << single_punct }
-            end
-            # punctuation at the end of the word
-            # if word =~ /[,:;-\`?!'\"\.\)\]]+$/
-            if word =~ /[,:;-\`?!\"\.\)\]]+$/
-              # part before the match: the word
-              sentence << $`
-              punct = $&
-
-              punct.scan(/./) { |single_punct| sentence << single_punct }
-            else
-              # no punctuation recognized
-              sentence << word
-            end
-          end
-
-          # remove empty words
-          # AB: TODO Is it possible? Remove this.
-          sentence.reject! { |word| word.nil? or word.strip.empty? }
-
-          # write words to tab file
-          # KE Dec 06: TabFormat changed
-          sentence.each do |word|
-            # for each word, one line, entries in the line tab-separated
-            # the 'word' entry is the word, the 'lu_sent_ids' entry is the sentence ID sentid,
-            # all other entries (gf, pt, frame etc.) are not set
-            outfile.puts FNTabFormatFile.format_str("word" => word, "sent_id" => sentid)
-          end
-
-          outfile.puts
-        end
         outfile.close
       end
 
@@ -480,40 +406,6 @@ module Shalmaneser
           outfile = nil
         end
 =end
-      end
-
-      ####
-      # transform SalsaTigerXML file to Tab format file
-      # @param [String] input_filename Name of input file.
-      # @param [String] output_filename Name of output file.
-      # @param [FrappeConfigData]
-      def FrappeHelper.stxml_to_tab_file(input_filename, output_filename, exp)
-        corpus = STXML::Corpus.new(input_filename)
-
-        File.open(output_filename, 'w') do |f|
-          corpus.each_sentence do |sentence|
-            raise 'Interface changed!!!' unless sentence.is_a?(Nokogiri::XML::Element)
-            id = sentence.attributes['id'].value
-            words = sentence.xpath('.//t')
-            # byebug
-            words.each do |word|
-              word = STXML::SalsaTigerXMLHelper.unescape(word.attributes['word'].value)
-              # @todo AB: I don't know why the Berkeley Parser wants this.
-              #   Investigate if every Grammar needs this conversion.
-              #   Try to move this convertion from FrappeHelper to BerkeleyInterface.
-              if exp.get("parser") == "berkeley"
-                word.gsub!(/\(/, "*LRB*")
-                word.gsub!(/\)/, "*RRB*")
-                word.gsub!(/``/, '"')
-                word.gsub!(/''/, '"')
-                word.gsub!(%r{\&apos;\&apos;}, '"')
-              end
-              fields = {'word' => word, 'sent_id' => id}
-              f.puts FNTabFormatFile.format_str(fields)
-            end
-            f.puts
-          end
-        end
       end
 
       ###
