@@ -1,17 +1,10 @@
-require_relative 'file_parser'
 require_relative 'frappe_helper' # !
 
 # For FN input.
 require 'framenet_format/fn_corpus_xml_file' # !
 require 'framenet_format/fn_database' # !
 
-require 'salsa_tiger_xml/salsa_tiger_sentence'
-require 'salsa_tiger_xml/file_parts_parser'
-require 'salsa_tiger_xml/corpus'
-
 require 'logging' # !
-require 'definitions'
-require 'fileutils'
 
 require 'frappe/stxml_converter'
 require 'frappe/plain_converter'
@@ -26,10 +19,6 @@ module Shalmaneser
       # @param exp [FrprepConfigData] Configuration object
       def initialize(exp)
         @exp = exp
-        # @todo Implement the logger as a mixin for all classes.
-        @logger = LOGGER
-        # suffixes for different types of output files
-        @file_suffixes = {"lemma" => ".lemma", "pos" => ".pos", "tab" => ".tab", "stxml" => ".xml"}
       end
 
       # Main processing method.
@@ -61,7 +50,7 @@ module Shalmaneser
 
           encoding_dir = frprep_dirname("encoding", "new")
 
-          @logger.info "Frappe: Transforming  to UTF-8."
+          LOGGER.info "Frappe: Transforming  to UTF-8."
 
           Dir[input_dir + "*"].each do |filename|
             unless File.file? filename
@@ -82,8 +71,6 @@ module Shalmaneser
         # Tab format.
         current_dir = input_dir
 
-        # done_format = @exp.get("tabformat_output") ? 'SalsaTabWithPos' : 'Done'
-
         current_format = @exp.get("format")
 
         # while current_format != done_format
@@ -95,8 +82,8 @@ module Shalmaneser
           when "Plain"
             tab_dir = frprep_dirname("tab", "new")
 
-            @logger.info "Frappe: Transforming plain text to SalsaTab format."
-            @logger.debug "Frappe: Transforming plain text in #{current_dir} to SalsaTab format.\n"\
+            LOGGER.info "Frappe: Transforming plain text to SalsaTab format."
+            LOGGER.debug "Frappe: Transforming plain text in #{current_dir} to SalsaTab format.\n"\
                           "Storing the result in #{tab_dir}.\n"\
                           "Expecting one sentence per line.\n"
 
@@ -111,8 +98,8 @@ module Shalmaneser
 
             tab_dir = frprep_dirname("tab", "new")
 
-            @logger.info 'Frappe: Transforming FN Data to the tabular format.'
-            @logger.debug "Frappe: Transforming FN data in #{current_dir} to the "\
+            LOGGER.info 'Frappe: Transforming FN Data to the tabular format.'
+            LOGGER.debug "Frappe: Transforming FN data in #{current_dir} to the "\
                           "tabular format. Storing the result in #{tab_dir}"
 
             fndata = FNDatabase.new(current_dir)
@@ -125,8 +112,8 @@ module Shalmaneser
             # transform to tab format
             tab_dir = frprep_dirname("tab", "new")
 
-            @logger.info 'Frappe: Transforming FrameNet data to the tabular format.'
-            @logger.debug "Frprep: Transforming FN data in #{current_dir} to tabular format.\n"\
+            LOGGER.info 'Frappe: Transforming FrameNet data to the tabular format.'
+            LOGGER.debug "Frprep: Transforming FN data in #{current_dir} to tabular format.\n"\
                           "Storing the result in: #{tab_dir}.\n"
 
             # assuming that all XML files in the current directory are FN Corpus XML files
@@ -142,48 +129,41 @@ module Shalmaneser
             current_format = "SalsaTab"
 
           when "SalsaTab"
-            @logger.info "#{PROGRAM_NAME}: I'm Lemmatizing and Parsing texts."
-            @logger.debug "#{PROGRAM_NAME}: Lemmatizing and parsing text in #{current_dir}.\n"\
+            LOGGER.info "#{PROGRAM_NAME}: I'm Lemmatizing and Parsing texts."
+            LOGGER.debug "#{PROGRAM_NAME}: Lemmatizing and parsing text in #{current_dir}.\n"\
                           "Storing the result in #{split_dir}.\n"
 
             transformer = SalsaTabConverter.new(@exp)
             transformer.transform_pos_and_lemmatize(current_dir, split_dir)
 
-            current_dir = split_dir
             # current_format = "SalsaTabWithPos"
             if @exp.get("tabformat_output")
               break
             else
               current_format = 'SalsaTabWithPos'
+              current_dir = split_dir
             end
 
           when "SalsaTabWithPos"
             parse_dir = frprep_dirname("parse", "new")
 
-            @logger.info 'Frappe: Trasforming the tabular format into the STXML format.'
-            @logger.debug "Frprep: Transforming tabular format text in #{current_dir} to SalsaTigerXML format. "\
+            LOGGER.info 'Frappe: Trasforming the tabular format into the STXML format.'
+            LOGGER.debug "Frprep: Transforming tabular format text in #{current_dir} to SalsaTigerXML format. "\
                           "Storing the result in #{parse_dir}."
 
             transformer = SalsaTabWithPOSConverter.new(@exp)
             transformer.transform_salsatab_dir(current_dir, parse_dir, output_dir)
-
-            current_dir = output_dir
-            # current_format = "Done"
             break
-
           when "SalsaTigerXML"
             parse_dir = frprep_dirname("parse", "new")
-            @logger.info "#{PROGRAM_NAME}: Transforming parser output into STXML format."
+            LOGGER.info "#{PROGRAM_NAME}: Transforming parser output into STXML format."
             transformer = STXMLConverter.new(@exp)
-
             transformer.transform_stxml_dir(parse_dir, split_dir, input_dir, output_dir)
-            current_dir = output_dir
-            # current_format = "Done"
             break
           end
         end
 
-        @logger.info "#{PROGRAM_NAME} is ready! Preprocessing of all the texts is finished."
+        LOGGER.info "#{PROGRAM_NAME} is ready! Preprocessing of all the texts is finished."
       end
 
       private
