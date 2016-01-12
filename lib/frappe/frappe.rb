@@ -1,4 +1,4 @@
-require_relative 'frappe_helper' # !
+require 'frappe/utf_iso'
 
 # For FN input.
 require 'framenet_format/fn_corpus_xml_file' # !
@@ -58,14 +58,14 @@ module Shalmaneser
               next
             end
             outfilename = encoding_dir + File.basename(filename)
-            FrappeHelper.to_utf8_file(filename, outfilename, @exp.get("encoding"))
+            to_utf8_file(filename, outfilename, @exp.get("encoding"))
           end
 
           input_dir = encoding_dir
         end
 
         ####
-        # transform data all the way to the output format,
+        # transform data all the way to the output format,]
         # which is SalsaTigerXML by default,
         # except when tabformat_output has been set, in which case it's
         # Tab format.
@@ -185,6 +185,33 @@ module Shalmaneser
 
         neu ? File.new_dir(dirname) : File.existing_dir(dirname)
       end
+      ####
+      # transform a file to UTF-8 from a given encoding
+      # @note Is used.
+      def to_utf8_file(input_filename, # string: name of input file
+                                    output_filename, # string: name of output file
+                                    encoding) # string: "iso", "hex"
+        begin
+          infile = File.new(input_filename)
+          outfile = File.new(output_filename, "w")
+        rescue
+          raise "Could not read #{input_filename}, or could not write to #{output_filename}."
+        end
+
+        while (line = infile.gets)
+          case encoding
+          when "iso"
+            outfile.puts UtfIso.from_iso_8859_1(line)
+          when "hex"
+            outfile.puts UtfIso.from_iso_8859_1(Ampersand.hex_to_iso(line))
+          else
+            raise "Shouldn't be here."
+          end
+        end
+        infile.close
+        outfile.close
+      end
+
     end
   end
 end

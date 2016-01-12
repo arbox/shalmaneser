@@ -1,4 +1,5 @@
 require 'tokenizer'
+require 'tabular_format/fn_tab_format_file'
 
 module Shalmaneser
   module Frappe

@@ -1,3 +1,6 @@
+require 'logging'
+require 'external_systems'
+
 module Shalmaneser
   module Frappe
     class SalsaTabConverter
@@ -19,9 +22,7 @@ module Shalmaneser
       def transform_pos_and_lemmatize(input_dir, output_dir)
         ##
         # split the TabFormatFile into chunks of max_sent_num size
-        FrappeHelper.split_dir(input_dir, output_dir, @file_suffixes["tab"],
-                               @exp.get("parser_max_sent_num"),
-                               @exp.get("parser_max_sent_len"))
+        split_dir(input_dir, output_dir, @file_suffixes["tab"], @exp.get("parser_max_sent_num"), @exp.get("parser_max_sent_len"))
 
         ##
         # POS-Tagging
@@ -57,6 +58,96 @@ module Shalmaneser
         end
       end
 
+
+      ###########
+      #
+      # class method split_dir:
+      # read all files in one directory and produce chunk files with _suffix_ in outdir
+      # with a certain number of files in them (sent_num).
+      # Optionally, remove all sentences longer than sent_leng
+      #
+      # produces output files 1.<suffix>, 2.<suffix>, etc.
+      #
+      # assumes TabFormat sentences
+      #
+      # example: split_all("/tmp/in","/tmp/out",".tab",2000,80)
+      def split_dir(indir, outdir, suffix, sent_num, sent_leng = nil)
+        unless indir[-1,1] == "/"
+          indir += "/"
+        end
+        unless outdir[-1,1] == "/"
+          outdir += "/"
+        end
+
+        # @note AB: A dummy reimplementation.
+        #   Not doing splitting at all.
+        #   I want to preserve original file names.
+        Dir["#{indir}*#{suffix}"].each do |file|
+          FileUtils.cp file, outdir
+        end
+        # @note AB: Not doing splitting for now.
+=begin
+        outfile_counter = 0
+        line_stack = []
+        sent_stack = []
+
+        Dir[indir + "*#{suffix}"].each do |infilename|
+          LOGGER.info "Now splitting #{infilename}."
+
+          infile = File.new(infilename)
+
+          while (line = infile.gets)
+            line.chomp!
+            case line
+            when "" # end of sentence
+              if !(sent_leng.nil? or line_stack.length < sent_leng) # record sentence
+                # suppress multiple empty lines
+                # to avoid problems with lemmatiser
+                # only record sent_stack if it is not empty.
+
+                # change (sp 15 01 07): just cut off sentence at sent_leng.
+
+                STDERR.puts "Cutting off long sentence #{line_stack.last.split("\t").last}"
+                line_stack = line_stack[0...sent_leng]
+              end
+
+              unless line_stack.empty?
+                sent_stack << line_stack
+                # reset line_stack
+                line_stack = []
+              end
+
+              # check if we have to empty the sent stack
+              if sent_stack.length == sent_num # enough sentences for new outfile?
+                outfile = File.new(outdir + outfile_counter.to_s + "#{suffix}", "w")
+
+                sent_stack.each { |l_stack|
+                  outfile.puts l_stack.join("\n")
+                  outfile.puts
+                }
+
+                outfile.close
+                outfile_counter += 1
+                sent_stack = []
+              end
+            else # for any other line
+              line_stack << line
+            end
+          end
+          infile.close
+        end
+
+        # the last remaining sentences
+        unless sent_stack.empty?
+          File.open(outdir + outfile_counter.to_s + "#{suffix}", "w") do |outfile|
+            sent_stack.each { |l_stack|
+              l_stack << "\n"
+              outfile.puts l_stack.join("\n")
+            }
+          end
+        end
+=end
+      end
 
     end
   end
