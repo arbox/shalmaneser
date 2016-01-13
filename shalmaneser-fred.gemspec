@@ -15,14 +15,17 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = %w(README.md LICENSE.md CHANGELOG.md)
   s.rdoc_options = ['-m', 'README.md']
   s.required_ruby_version = '2.0'
+  s.add_runtime_dependency('shalmaneser-lib', s.version)
   s.add_runtime_dependency('mysql', '~> 2.9')
   s.executable = 'fred'
-  s.license = 'GPL-2.0'
+  s.license = ::Shalmaneser::LICENSE
   s.files = FileList['lib/fred/**/*.rb',
+                     'lib/shalmaneser/fred.rb',
+                     'lib/doc/**/*.rb',
                      'README.md',
                      'LICENSE.md',
                      'CHANGELOG.md',
                      '.yardopts'
                     ].to_a
-  s.test_files = FileList['test/**/*.rb'].to_a
+  # s.test_files = FileList['test/**/*.rb'].to_a
 end

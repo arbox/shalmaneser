@@ -2,12 +2,18 @@
 
 require 'shalmaneser/opt_parser'
 
+# require 'shalmaneser/frappe'
+# require 'shalmaneser/fred'
+# require 'shalmaneser/rosy'
+
 # Change for options to default <-h> for now.
 # cmd_args = ['-h']
 cmd_args = ARGV
 
 begin
   Shalmaneser::Shalmaneser::OptParser.parse(cmd_args)
+# No real processing for this moment. Use Frappe, Fred and Rosy directly.
+# This script is intended to replace the previous enduser mode.
 rescue
   raise
 end

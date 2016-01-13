@@ -23,23 +23,24 @@ Project at the University of Saarbrücken.
   s.email = 'arbox@yandex.ru'
   s.homepage = 'http://bu.chsta.be/projects/shalmaneser/'
   s.bindir = 'bin'
-  s.executables = %w(shalmaneser frappe fred rosy)
+  s.executables = %w(shalmaneser)
   s.extra_rdoc_files = ['README.md', 'LICENSE.md', 'CHANGELOG.md'] +
                        FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
   # s.platform = Gem::Platform::CURRENT
   s.required_ruby_version = '2.0'
-  s.files = FileList['lib/**/*.rb',
-                     'lib/**/*.class',
+  s.add_runtime_dependency('shalmaneser-frappe', ">= #{s.version}")
+  s.add_runtime_dependency('shalmaneser-fred', ">= #{s.version}")
+  s.add_runtime_dependency('shalmaneser-rosy', ">= #{s.version}")
+  s.files = FileList['bin/shalmaneser',
+                     'lib/shalmaneser/**/**.rb',
                      'doc/**/*.md',
                      'README.md',
                      'LICENSE.md',
                      'CHANGELOG.md',
                      '.yardopts'
-                    ].to_a
-  # This is executed if we run <gem test>.
-  # s.test_files = FileList['test/**/*.rb'].to_a
-  s.license = 'GPL-2.0'
+                    ].to_a.reject { |fn| fn =~ /frappe\.rb|fred\.rb|rosy\.rb|lib\.rb/ }
+  s.license = ::Shalmaneser::LICENSE
   s.post_install_message = <<-EOS
 
 Thank you for installing Shalmaneser #{Shalmaneser::Shalmaneser::VERSION}!
@@ -52,8 +53,8 @@ This software package has multiple external dependencies:
 - TreeTagger;
 - MySQL Database Server etc.
 
-Please proceede to installation instructions:
-https://github.com/arbox/shalmaneser/blob/1.2/doc/index.md
+Please proceed to installation instructions:
+https://github.com/arbox/shalmaneser/blob/master/doc/index.md
 
 If you find any bugs or have questions consider opeing a ticket:
 https://github.com/arbox/shalmaneser/issues

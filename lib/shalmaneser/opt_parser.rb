@@ -6,9 +6,9 @@ module Shalmaneser
     class OptParser
 
       # Specify a default option first.
-      ENCODINGS = %w{iso utf8 hex}
-      LANGUAGES = %w{de en}
-      PARSERS   = %w{BerkeleyParser StanfordParser CollinsParser}
+      ENCODINGS = %w(iso utf8 hex)
+      LANGUAGES = %w(de en)
+      PARSERS   = %w(BerkeleyParser StanfordParser CollinsParser)
 
       def self.parse(cmd_args)
 
