@@ -3,6 +3,8 @@ require 'tabular_format/fn_tab_format_file'
 
 module Shalmaneser
   module Frappe
+    # A converter from plain text to Salsa Tab Format.
+    # Performs tokenization.
     class PlainConverter
       def initialize
         # suffixes for different types of output files
