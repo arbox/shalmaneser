@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/arbox/shalmaneser'
   s.extra_rdoc_files = %w(README.md LICENSE.md CHANGELOG.md)
   s.rdoc_options = ['-m', 'README.md']
-  s.required_ruby_version = '2.0'
+  s.required_ruby_version = '>= 2.0'
   s.add_runtime_dependency('pastel', '~> 0.5')
   s.license = ::Shalmaneser::LICENSE
   s.files = FileList['lib/*.rb',

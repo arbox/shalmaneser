@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/arbox/shalmaneser'
   s.extra_rdoc_files = %w(README.md LICENSE.md CHANGELOG.md)
   s.rdoc_options = ['-m', 'README.md']
-  s.required_ruby_version = '2.0'
+  s.required_ruby_version = '>= 2.0'
   s.add_runtime_dependency('shalmaneser-lib', s.version)
   s.add_runtime_dependency('mysql', '~> 2.9')
   s.executable = 'rosy'

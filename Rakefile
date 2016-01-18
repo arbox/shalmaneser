@@ -189,7 +189,7 @@ end
 
 namespace :build do
   desc 'Make all.'
-  task :shalmaneser => [:frappe, :fred, :rosy] do
+  task :shalmaneser => [:lib, :frappe, :fred, :rosy] do
     sh 'bundle exec gem build shalmaneser.gemspec'
   end
 
@@ -206,6 +206,11 @@ namespace :build do
   desc 'Make Rosy.'
   task :rosy do
     sh 'bundle exec gem build shalmaneser-rosy.gemspec'
+  end
+
+  desc 'Make the Library.'
+  task :lib do
+    sh 'bundle exec gem build shalmaneser-lib.gemspec'
   end
 
   desc 'Build java extensions.'

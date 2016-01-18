@@ -28,7 +28,7 @@ Project at the University of Saarbrücken.
                        FileList['doc/**/*.md']
   s.rdoc_options = ['-m', 'README.md']
   # s.platform = Gem::Platform::CURRENT
-  s.required_ruby_version = '2.0'
+  s.required_ruby_version = '>= 2.0'
   s.add_runtime_dependency('shalmaneser-frappe', ">= #{s.version}")
   s.add_runtime_dependency('shalmaneser-fred', ">= #{s.version}")
   s.add_runtime_dependency('shalmaneser-rosy', ">= #{s.version}")
