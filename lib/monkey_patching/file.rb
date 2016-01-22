@@ -12,6 +12,7 @@ class File
   # returns: the path pieced together
   # strings, to be pieced together
   def self.new_dir(*pieces)
+    File.log_the_method_call
     dir_path, _dummy = File.make_path(pieces, true)
 
     unless File.exist?(dir_path)
@@ -26,6 +27,7 @@ class File
   ########
   # same as new_dir, but last piece is a filename
   def self.new_filename(*pieces)
+    File.log_the_method_call
     dir_path, whole_path = File.make_path(pieces, false)
 
     unless File.exist?(dir_path)
@@ -46,6 +48,7 @@ class File
   #
   # returns: the path pieced together
   def self.existing_dir(*pieces) # strings
+    File.log_the_method_call
     dir_path, _dummy = File.make_path(pieces, true)
 
     unless File.exist?(dir_path) && File.directory?(dir_path)
@@ -95,6 +98,7 @@ class File
   # @param is_dir [True, False, Nil]
   # @api private
   def self.make_path(pieces, is_dir = false)
+    File.log_the_method_call
     if pieces.is_a?(String)
       pieces = [pieces]
     end
@@ -127,5 +131,12 @@ class File
     end
 
     is_dir ? [dir, dir] : [dir, dir + pieces[-1]]
+  end
+
+  def File.log_the_method_call
+    return
+    File.open('/tmp/shalmaneser.log', 'a') do |f|
+      f.puts caller
+    end
   end
 end
