@@ -1,8 +1,8 @@
 require 'fileutils'
-
+require 'rubygems'
 # Extensions for the class File.
 class File
-  ########
+   ########
   # check whether a given path exists,
   # and if it doesn't, make sure it is created.
   #

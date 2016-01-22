@@ -1,12 +1,61 @@
-require_relative 'enumerable_bool'
-require_relative 'enumerable_distribute'
-require_relative 'subsumed'
-
 # Extensions for the class Array.
 class Array
-  include EnumerableBool
-  include EnumerableDistribute
-  include Subsumed
+  # @note This method is used by [RosyConfusability]
+  def subsumed_by?(array2)
+    temp = array2.clone
+
+    self.each { |el|
+      found = false
+      temp.each_index { |ix|
+        if el == temp[ix]
+          temp.delete_at(ix)
+          found = true
+          break
+        end
+      }
+      unless found
+        return false
+      end
+    }
+
+    return true
+  end
+
+  def distribute(&block)
+    retv1 = []
+    retv2 = []
+    each do |x|
+      if block.call(x)
+        retv1 << x
+      else
+        retv2 << x
+      end
+    end
+
+    [retv1, retv2]
+  end
+
+  ###
+  # And_(x \in X) block(x)
+  def big_and(&block)
+    each do |x|
+      unless block.call(x)
+        return false
+      end
+    end
+
+    true
+  end
+
+  ###
+  # Sum_(x \in X) block(x)
+  def big_sum(init = 0, &block)
+    sum = init
+    block = proc { |x| x } unless block_given?
+    each { |x| sum += block.call(x) }
+
+    sum
+  end
 
   ###
   # interleave N arrays:
