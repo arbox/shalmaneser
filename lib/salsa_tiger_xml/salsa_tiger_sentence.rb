@@ -96,12 +96,10 @@ module STXML
   #   text:  optional parameter, a string, arbitrary text commenting
   #          on the flag, used mainly with INTERESTING
   class SalsaTigerSentence < XMLNode
-    def self.empty_sentence(sentence_id)  # string
+    # @param [String] sentence_id Identificator for a new sentence.
+    def self.empty_sentence(sentence_id)
       sentence_id = sentence_id.gsub(/'/, "&apos;")
-      sent_string = "<s id=\'#{sentence_id}\'>\n" +
-                    "<graph/>\n" +
-                    "<sem/>\n" +
-                    "</s>"
+      sent_string = "<s id=\'#{sentence_id}\'>\n" + "<graph/>\n" + "<sem/>\n" + "</s>"
 
       SalsaTigerSentence.new(sent_string)
     end

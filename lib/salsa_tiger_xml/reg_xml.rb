@@ -5,11 +5,10 @@ module STXML
 
   # SalsaTigerRegXML: take control of the data structure, no underlying xml
   # representation anymore, re-generation of xml on demand
-
   class RegXML
-
-    def initialize(string, # string representing a single XML element
-                   i_am_text = false) # boolean: xml element (false) or text (true)
+    # string representing a single XML element
+    # boolean: xml element (false) or text (true)
+    def initialize(string, i_am_text = false)
 
       unless string.class == String
         raise "First argument to RegXML.new must be string. I got #{string.class}"
