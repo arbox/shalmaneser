@@ -51,9 +51,10 @@ module Shalmaneser
       include WordLemmaPosNe
 
       #####
-      def initialize(exp_obj, # FredConfigData object
-                     options, # hash: runtime option name (string) => value(string)
-                     varhash = {}) # optional parameter: "refeaturize"
+      # FredConfigData object
+      # hash: runtime option name (string) => value(string)
+      # optional parameter: "refeaturize"
+      def initialize(exp_obj, options, varhash = {})
 
         @append_rather_than_overwrite = false
 
@@ -131,7 +132,6 @@ module Shalmaneser
           $stderr.puts "Writing features for n-ary classifiers."
         end
         $stderr.puts "---------"
-
       end
 
       ####
@@ -217,11 +217,7 @@ module Shalmaneser
 
         ##
         # make writer object(s)
-
-        writer_classes = [
-          MetaFeatureAccess,
-          FredFeatureAccess
-        ]
+        writer_classes = [MetaFeatureAccess, FredFeatureAccess]
 
         if @append_rather_than_overwrite
           # append
@@ -234,13 +230,9 @@ module Shalmaneser
 
           $stderr.puts "Removing old features for the same experiment (if any)"
 
-          writer_classes.each { |w_class|
-            w_class.remove_feature_files(@exp, @dataset)
-          }
+          writer_classes.each { |w_class| w_class.remove_feature_files(@exp, @dataset) }
 
-          Dir[zipped_input_dir + "*gz"].each { |filename|
-            File.delete(filename)
-          }
+          Dir[zipped_input_dir + "*gz"].each { |filename| File.delete(filename) }
         end
 
         writers = writer_classes.map { |w_class|
@@ -287,33 +279,27 @@ module Shalmaneser
           compute_context_features(context, max_context_size, context_sizes, feature_hash)
           compute_syn_features(main_target_id, sent, feature_hash)
           # write
-          each_lemma_pos_and_senses(senses) { |target_lemma, target_pos, target_sid, target_senses|
-
-            writers.each { |writer_obj|
-
+          each_lemma_pos_and_senses(senses) do |target_lemma, target_pos, target_sid, target_senses|
+            writers.each do |writer_obj|
               writer_obj.write_item(target_lemma,
                                     target_pos,
                                     target_ids,
                                     target_sid,
                                     target_senses,
                                     feature_hash)
-            }
-          }
+            end
+          end
         }
         # finalize writers
-        writers.each { |writer_obj|
-          writer_obj.flush
-        }
+        writers.each { |writer_obj| writer_obj.flush }
 
         # record the targets that have been read
         target_obj.done_reading_targets
-
       end
 
       #####
       # reuse of meta-features, recompute CSV features
       def refeaturize
-
         ##
         # remove old features:
         # normal features only. Keep meta-features.
@@ -501,9 +487,7 @@ module Shalmaneser
 
         # parent
         feature_hash["PA"] = get_parents(target).map do |rel, node|
-
-          rel.to_s + "#" +
-            word_lemma_pos_ne(node, @interpreter_class).map(&:to_s).join("#").gsub(/\s/, "_")
+          rel.to_s + "#" + word_lemma_pos_ne(node, @interpreter_class).map(&:to_s).join("#").gsub(/\s/, "_")
         end
 
         # siblings
