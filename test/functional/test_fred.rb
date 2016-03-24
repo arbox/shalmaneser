@@ -5,7 +5,6 @@ require 'functional/functional_test_helper'
 
 # Functional tests on Fred for refactoring's sake.
 class TestFred < Minitest::Test
-
   include FunctionalTestHelper
 
   def setup
@@ -22,20 +21,20 @@ class TestFred < Minitest::Test
     remove_exp_file(PRP_TEST_FILE_FRED_STD)
   end
 
-  def test_fred_testing_tests
-    create_exp_file(@test_file)
-    create_exp_file(PRP_TEST_FILE_FRED_STD)
-    execute("ruby -I lib bin/fred -t test -e #{@test_file}")
-    remove_exp_file(@test_file)
-    remove_exp_file(PRP_TEST_FILE_FRED_STD)
-  end
-
   def test_fred_training_featurization
     create_exp_file(@train_file)
     create_exp_file(PRP_TRAIN_FILE_FRED_STD)
     execute("ruby -I lib bin/fred -t featurize -e #{@train_file} -d train")
     remove_exp_file(@train_file)
     remove_exp_file(PRP_TRAIN_FILE_FRED_STD)
+  end
+
+  def test_fred_testing_tests
+    create_exp_file(@test_file)
+    create_exp_file(PRP_TEST_FILE_FRED_STD)
+    execute("ruby -I lib bin/fred -t test -e #{@test_file}")
+    remove_exp_file(@test_file)
+    remove_exp_file(PRP_TEST_FILE_FRED_STD)
   end
 
   def test_fred_training_train
