@@ -10,7 +10,7 @@ gem 'tokenizer', '~> 0.2'
 group :development do
   gem 'yard', '~> 0.8'
   gem 'rdoc', '~> 4.2'
-  gem 'rake', '~> 10.4'
+  gem 'rake', '~> 11.0'
   gem 'pry', '~> 0.10'
   gem 'byebug', '~> 8.0'
   gem 'bundler', '~> 1.10'
