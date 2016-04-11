@@ -19,7 +19,7 @@ class TestOptParser < Minitest::Test
     assert_respond_to(OptParser, :parse)
   end
 
-  # It should return a FrPrepConfigData object.
+  # It should return a FrappeConfigData object.
   def test_parse_method
     input = ['-e', @exp_file]
     return_value = OptParser.parse(input)
