@@ -54,7 +54,7 @@ This software package has multiple external dependencies:
 - MySQL Database Server etc.
 
 Please proceed to installation instructions:
-https://github.com/arbox/shalmaneser/blob/master/doc/index.md
+https://github.com/arbox/shalmaneser/blob/master/doc/README.md
 
 If you find any bugs or have questions consider opeing a ticket:
 https://github.com/arbox/shalmaneser/issues

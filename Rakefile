@@ -34,7 +34,7 @@ namespace :doc do
     t.files = ['lib/**/*.rb',
                'bin/**/*',
                '-',
-               'doc/index.md',
+               'doc/README.md',
                'doc/exp_files.md']
   end
 

@@ -78,7 +78,7 @@ You can find original versions of Shalmaneser up to ``1.1`` on the [SALSA](http:
 
 ## Documentation
 
-The project documentation can be found in our [doc](https://github.com/arbox/shalmaneser/blob/master/doc/index.md) folder.
+The project documentation can be found in our [doc](https://github.com/arbox/shalmaneser/blob/master/doc/README.md) folder.
 
 ## Development
 
@@ -86,7 +86,7 @@ We are working now only on the `master` branch. For different intermediate versi
 
 ## Installation
 
-See the installation instructions in the [doc](https://github.com/arbox/shalmaneser/blob/master/doc/index.md#installation) folder.
+See the installation instructions in the [doc](https://github.com/arbox/shalmaneser/blob/master/doc/README.md#installation) folder.
 
 ### Tokenizers
 
