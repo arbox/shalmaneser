@@ -202,7 +202,7 @@ ruby rosy.rb --task|-t featurize --expfile|-e <e>
                   Use at least one of --logID, --dataset.
 
   --testID <i>    Use <i> as the ID for the table to store the test data.
-                  necessary only with '--dataset test'. default: #{::Rosy.default_test_ID}.
+                  necessary only with '--dataset test'. default: #{::Shalmaneser::Rosy.default_test_ID}.
 
   --append        Do not overwrite previously computed features
                   for this experiment.
@@ -394,6 +394,7 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
       # GetoptLong only allows you to access options via each(),
       # not individually, and it only allows you to cycle through the options once.
       # So we re-code the options as a hash
+      # @param opts_obj {GetoptLong}
       def self.options_hash(opts_obj) # GetoptLong object
         opt_hash = {}
 
