@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <!-- =======================================================================
+      XML SubSchema for the header part of the TIGER-XML format
+      http://www.ims.uni-stuttgart.de/projekte/TIGER/publicTigerXMLHeader.xsd
+      =======================================================================
+      TIGER Project, Wolfgang Lezius 
+      IMS, University of Stuttgart, 04/01/2003
+      ======================================================================= -->
+
+
+  <!-- ======================================================
+       DECLARATION OF THE HEADER
+       ====================================================== -->
+
+
+  <!-- declaration of the head element -->
+
+  <xsd:element name="head" type="headType" />
+
+
+  <!-- declaration of the header type -->
+
+  <xsd:complexType name="headType">
+
+     <xsd:sequence>
+        <xsd:element name="meta"       type="metaType"       minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="annotation" type="annotationType" minOccurs="0" maxOccurs="1"/>
+     </xsd:sequence>    
+
+     <!-- optional: reference to external header file 
+
+          The header of a TigerXML corpus can also be stored in separate file. 
+          This attribute points to the external header file. The pointer is
+          an URI. Examples: file:relative.xml or file:/path/to/absolute.xml
+
+          Note: If there is a pointer to an external file, the head
+                element must be empty. -->
+
+     <xsd:attribute name="external" type="xsd:anyURI"/>  
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the meta information type -->
+
+  <xsd:complexType name="metaType">
+
+    <xsd:sequence>
+      <xsd:element name="name"        type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="author"      type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="date"        type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="description" type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="format"      type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="history"     type="xsd:string"  minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>    
+
+  </xsd:complexType>
+  
+
+  <!-- declaration of the annotation type -->
+
+  <xsd:complexType name="annotationType">
+
+    <xsd:sequence>
+      <xsd:element name="feature"      type="featureType"   minOccurs="1" maxOccurs="unbounded"/>
+      <xsd:element name="edgelabel"    type="edgelabelType" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="secedgelabel" type="edgelabelType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the feature type -->
+
+  <xsd:complexType name="featureType">
+
+    <xsd:sequence>
+       <xsd:element name="value" type="featurevalueType"  minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    
+    <xsd:attribute name="name" type="featurenameType" use="required" />
+
+    <xsd:attribute name="domain" use="required">
+       <xsd:simpleType>
+         <xsd:restriction base="xsd:string">
+           <xsd:enumeration value="T"/>     <!-- feature for terminal nodes -->
+           <xsd:enumeration value="NT"/>    <!-- feature for nonterminal nodes -->
+           <xsd:enumeration value="FREC"/>  <!-- feature for both -->
+         </xsd:restriction>
+       </xsd:simpleType>
+    </xsd:attribute>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the (secondary) edge label type -->
+
+  <xsd:complexType name="edgelabelType">
+
+    <xsd:sequence>
+       <xsd:element name="value" type="featurevalueType"  minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    
+  </xsd:complexType>
+
+
+  <!-- declaration of the feature value type -->
+
+  <xsd:complexType name="featurevalueType">
+
+    <xsd:simpleContent>   <!-- element content: documentation of the feature value -->
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="name" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+
+
+  </xsd:complexType>
+
+
+  <!-- ======================================================
+       HEADER DECLARATIONS THAT SHOULD BE REFINED
+       ====================================================== -->
+
+  <!-- declaration of the FEATURE NAMES used in the corpus header;
+       this type is unrestricted, but should be refined by a 
+       specialised, corpus-dependent schema -->
+
+  <xsd:simpleType name="featurenameType">
+
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1" />
+      <xsd:maxLength value="20" />
+      <xsd:whiteSpace value="preserve" />
+    </xsd:restriction>
+
+  </xsd:simpleType>
+
+
+</xsd:schema>

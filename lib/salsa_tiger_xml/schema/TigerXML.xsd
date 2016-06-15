@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <!-- ==================================================================
+      XML Schema for the TIGER-XML format
+      http://www.ims.uni-stuttgart.de/projekte/TIGER/public/TigerXML.xsd
+      ==================================================================
+      TIGER Project, Wolfgang Lezius
+      IMS, University of Stuttgart, 04/01/2003
+      ================================================================== -->
+
+
+  <!-- ======================================================
+       INCLUDES DECLARATION OF THE HEADER
+       ====================================================== -->
+  <xsd:include schemaLocation="TigerXMLHeader.xsd" />
+
+
+  <!-- ======================================================
+       INCLUDES DECLARATION OF SUBCORPORA AND SENTENCES
+       ====================================================== -->
+  <xsd:include schemaLocation="TigerXMLSubcorpus.xsd" />
+
+
+  <!-- ======================================================
+       DECLARATION OF THE CORPUS DOCUMENT
+       ====================================================== -->
+
+  <!-- declaration of the root element: corpus -->
+
+  <xsd:element name="corpus">
+  
+    <xsd:complexType>
+
+      <xsd:sequence>
+
+        <xsd:choice>           
+           <!-- header of the document is optional -->
+           <xsd:element name="head" type="headType" minOccurs="0" maxOccurs="1"/>
+        </xsd:choice>
+
+        <xsd:element name="body" type="bodyType" minOccurs="1" maxOccurs="1"/>
+
+      </xsd:sequence>
+
+      <!-- corpus ID -->
+      <xsd:attribute name="id"      type="idType"     use="required" />
+
+      <!-- optional attribute: TigerXML version; used by TIGERSearch only -->
+      <xsd:attribute name="version" type="xsd:string" use="optional" />
+
+    </xsd:complexType>
+  
+  </xsd:element>
+
+
+  <!-- declaration of the body type -->
+
+  <xsd:complexType name="bodyType">
+
+    <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:element name="subcorpus" type="subcorpusType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="s" type="sentenceType" minOccurs="1" maxOccurs="1"/>
+    </xsd:choice>
+
+  </xsd:complexType>
+
+
+</xsd:schema>

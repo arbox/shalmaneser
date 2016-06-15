@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <!-- ===========================================================================
+      XML Schema for the subcorpus part of the TIGER-XML format
+      http://www.ims.uni-stuttgart.de/projekte/TIGER/public/TigerXMLSubcorpus.xsd
+      ===========================================================================
+      TIGER Project, Wolfgang Lezius
+      IMS, University of Stuttgart, 04/01/2003
+      =========================================================================== -->
+
+  <!-- ======================================================
+       DECLARATION OF SUBCORPORA AND SENTENCES
+       ====================================================== -->
+
+
+  <!-- declaration of the subcorpus element -->
+
+  <xsd:element name="subcorpus" type="subcorpusType" />
+
+
+  <!-- declaration of the subcorpus type -->
+
+  <xsd:complexType name="subcorpusType">
+
+    <!-- A subcorpus may comprise another subcorpora or sentences -->
+
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="subcorpus" type="subcorpusType" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="s" type="sentenceType" minOccurs="1" maxOccurs="1"/>
+    </xsd:choice>
+
+    <!-- required: subcorpus name -->
+ 
+    <xsd:attribute name="name" type="xsd:string" use="required" />
+
+    <!-- optional: reference to external subcorpus file 
+
+         A subcorpus of a TigerXML corpus can also be stored in separate file. 
+         This attribute points to the external subcorpus file. The pointer is
+         an URI. Examples: file:relative.xml or file:/path/to/absolute.xml 
+
+         Note: If there is a pointer to an external file, the subcorpus
+               element must be empty. -->
+
+    <xsd:attribute name="external" type="xsd:anyURI"/>  
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the sentence type -->
+
+  <xsd:complexType name="sentenceType">
+
+    <xsd:sequence>
+      <xsd:element name="graph"   type="graphType"   minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="matches" type="matchesType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="idType" use="required" />
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the graph type -->
+
+  <xsd:complexType name="graphType">
+
+    <xsd:sequence>
+      <xsd:element name="terminals"    type="terminalsType"    minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="nonterminals" type="nonterminalsType" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="root" type="idrefType" use="required" />
+
+    <!-- indicated that the exported sentence is discontinuous -->
+    <xsd:attribute name="discontinuous" type="xsd:boolean" default="false" use="optional" />
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the terminals type -->
+
+  <xsd:complexType name="terminalsType">
+
+    <xsd:sequence>
+      <xsd:element name="t" type="tType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the t element -->
+
+  <xsd:complexType name="tType">
+
+    <!-- secondary edges possible -->
+    <xsd:sequence>
+      <xsd:element name="secedge" type="secedgeType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="idType" use="required"/>    
+    <xsd:attributeGroup ref="tfeatureAttributes"/>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the nonterminals type -->
+
+  <xsd:complexType name="nonterminalsType">
+
+    <xsd:sequence>
+      <xsd:element name="nt" type="ntType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the nt element -->
+
+  <xsd:complexType name="ntType">
+
+    <!-- edge and secondary edges possible -->
+    <xsd:sequence>
+      <xsd:element name="edge"    type="edgeType"    minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="secedge" type="secedgeType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="id" type="idType" use="required"/>    
+    <xsd:attributeGroup ref="ntfeatureAttributes"/>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the edge type -->
+
+  <xsd:complexType name="edgeType">
+
+    <xsd:attribute name="idref" type="idrefType" use="required" />    
+
+    <xsd:attributeGroup ref="edgelabelAttribute" />
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the secondary edge type -->
+
+  <xsd:complexType name="secedgeType">
+
+    <xsd:attribute name="idref" type="idrefType" use="required"/>    
+
+    <xsd:attributeGroup ref="secedgelabelAttribute" />
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the matches type -->
+
+  <xsd:complexType name="matchesType">
+
+    <xsd:sequence>
+      <xsd:element name="match" type="matchType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the match type -->
+
+  <xsd:complexType name="matchType">
+
+    <xsd:sequence>
+      <xsd:element name="variable" type="varType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+
+    <xsd:attribute name="subgraph" type="idrefType" use="required"/>    
+
+  </xsd:complexType>
+
+
+  <!-- declaration of the variable type -->
+
+  <xsd:complexType name="varType">
+
+    <xsd:attribute name="name" type="xsd:string" use="required"/>    
+
+    <xsd:attribute name="idref" type="idrefType" use="required"/>    
+
+  </xsd:complexType>
+
+
+  <!-- ======================================================
+       SENTENCE DECLARATIONS THAT SHOULD BE REFINED
+       ====================================================== -->
+
+  <!-- declaration of the TERMINAL FEATURE ATTRIBUTES;
+       this group is unrestricted, but should be refined by a 
+       specialised, corpus-dependent schema -->
+
+  <xsd:attributeGroup name="tfeatureAttributes">
+  
+    <xsd:anyAttribute processContents="skip"/>
+
+  </xsd:attributeGroup>
+
+
+  <!-- declaration of the NONTERMINAL FEATURE ATTRIBUTES;
+       this group is unrestricted, but should be refined by a 
+       specialised, corpus-dependent schema -->
+
+  <xsd:attributeGroup name="ntfeatureAttributes">
+  
+    <xsd:anyAttribute processContents="skip" />
+
+  </xsd:attributeGroup>
+
+
+  <!-- declaration of the EDGE-LABEL ATTRIBUTE;
+       the label attribute is optional which should be refined by a 
+       specialised, corpus-dependent schema -->
+
+  <xsd:attributeGroup name="edgelabelAttribute">
+  
+    <xsd:attribute name="label" type="xsd:string" use="optional"/>    
+
+  </xsd:attributeGroup>
+    
+
+  <!-- declaration of the SECONDARY-EDGE-LABEL ATTRIBUTE;
+       the label attribute is optional which should be refined by a 
+       specialised, corpus-dependent schema -->
+
+  <xsd:attributeGroup name="secedgelabelAttribute">
+  
+    <xsd:attribute name="label" type="xsd:string" use="optional"/>    
+
+  </xsd:attributeGroup>
+ 
+
+  <!-- ======================================================
+       ID and IDREF TYPE DECLARATIONS
+       ====================================================== -->
+
+  <!-- Even though XML Schema are a W3C Recommendation, schema
+       support of XML parsers is still restricted. Using some
+       parsers you might have problems with the ID and IDREF
+       attributes in combination with an "anyAttribute"
+       declaration. In this case, just modify the base type 
+       of the following two declarations to "xsd:string".  -->
+
+
+  <!-- declaration of idType -->
+
+  <xsd:simpleType name="idType">
+
+    <xsd:restriction base="xsd:ID"/>
+
+  </xsd:simpleType>
+
+
+  <!-- declaration of idrefType -->
+
+  <xsd:simpleType name="idrefType">
+
+    <xsd:restriction base="xsd:IDREF"/>
+
+  </xsd:simpleType>
+
+
+</xsd:schema>
