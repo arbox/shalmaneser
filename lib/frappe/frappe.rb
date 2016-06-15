@@ -16,7 +16,7 @@ require 'frappe/salsa_tab_with_pos_converter'
 module Shalmaneser
   module Frappe
     class Frappe
-      # @param exp [FrprepConfigData] Configuration object
+      # @param exp [FrappeConfigData] Configuration object
       def initialize(exp)
         @exp = exp
       end
