@@ -100,7 +100,7 @@ module Shalmaneser
 
             LOGGER.info 'Frappe: Transforming FN Data to the tabular format.'
             LOGGER.debug "Frappe: Transforming FN data in #{current_dir} to the "\
-                          "tabular format. Storing the result in #{tab_dir}"
+                         "tabular format. Storing the result in #{tab_dir}"
 
             fndata = FNDatabase.new(current_dir)
             fndata.extract_everything(tab_dir)
