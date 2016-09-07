@@ -111,7 +111,9 @@ module Shalmaneser
         # parser/lemmatizer/POS tagger combination
         sys_class_names = {}
 
-        [["do_postag", "pos_tagger"], ["do_lemmatize", "lemmatizer"], ["do_parse", "parser"]].each do |service, system_name|
+        [["do_postag", "pos_tagger"],
+         ["do_lemmatize", "lemmatizer"],
+         ["do_parse", "parser"]].each do |service, system_name|
           # yes, perform this service
           if @exp.get(service)
             sys_class_names[system_name] = @exp.get(system_name)
