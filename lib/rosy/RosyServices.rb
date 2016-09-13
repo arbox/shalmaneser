@@ -39,7 +39,7 @@ class RosyServices < RosyTask
     # defaults:
     @step = "onestep"
     @splitID = nil
-    @testID = Rosy.default_test_ID
+    @testID = ::Shalmaneser::Rosy.default_test_ID
 
 
     opts.each do |opt,arg|
