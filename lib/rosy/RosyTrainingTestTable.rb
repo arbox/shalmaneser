@@ -248,7 +248,7 @@ class RosyTrainingTestTable
       colname = classifcolumn_name(run_id)
 
       # add a column of this name to the table
-      table = DBTable.new(@database, table_name,
+      table = DB::DBTable.new(@database, table_name,
                           "open",
                           "addcol_prefix" => @addcol_prefix)
 
@@ -377,7 +377,7 @@ class RosyTrainingTestTable
     del_runlogs(@maintable_name)
 
     # make table
-    return DBTable.new(@database, @maintable_name,
+    return DB::DBTable.new(@database, @maintable_name,
                        "new",
                        "col_formats" => @feature_columns + @classif_columns,
                        "index_cols" => @feature_info.get_index_columns,
@@ -397,7 +397,7 @@ class RosyTrainingTestTable
     end
 
     # make table
-    return DBTable.new(@database,
+    return DB::DBTable.new(@database,
                        testtable_name(testID),
                        "new",
                        "col_formats" => @feature_columns + @classif_columns,
@@ -432,7 +432,7 @@ class RosyTrainingTestTable
     end
 
     # make table
-    return DBTable.new(@database,
+    return DB::DBTable.new(@database,
                        splittable_name(splitID, dataset),
                        "new",
                        "col_formats" => @split_columns + [[split_index_colname, split_index_type]] + @classif_columns,
@@ -444,7 +444,7 @@ class RosyTrainingTestTable
   #######
   # open existing training or test table
   def existing_train_table
-    return DBTable.new(@database, @maintable_name,
+    return DB::DBTable.new(@database, @maintable_name,
                        "open",
                        "col_names" => @feature_names,
                        "addcol_prefix" => @addcol_prefix)
@@ -452,7 +452,7 @@ class RosyTrainingTestTable
 
   ###
   def existing_test_table(testID = "apply")
-    return DBTable.new(@database,
+    return DB::DBTable.new(@database,
                        testtable_name(testID),
                        "open",
                        "col_names" => @feature_names,
@@ -464,7 +464,7 @@ class RosyTrainingTestTable
                            dataset, # string: train/test
                            split_index_colname)
 
-    return DBTable.new(@database,
+    return DB::DBTable.new(@database,
                        splittable_name(splitID, dataset),
                        "open",
                        "col_names" => @split_columns.map { |name, type| name} + [split_index_colname],

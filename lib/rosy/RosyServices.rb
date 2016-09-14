@@ -17,15 +17,15 @@ require "rosy/RosyTrainingTestTable"
 
 # Frprep packages
 require 'configuration/frappe_config_data'
+
 module Shalmaneser
 module Rosy
 ###################################################
 class RosyServices < RosyTask
-
-  def initialize(exp,      # RosyConfigData object: experiment description
-                 opts,     # hash: runtime argument option (string) -> value (string)
-                 ttt_obj)  # RosyTrainingTestTable object
-
+  # RosyConfigData object: experiment description
+  # hash: runtime argument option (string) -> value (string)
+  # RosyTrainingTestTable object
+  def initialize(exp, opts, ttt_obj)
     ##
     # remember the experiment description
 
@@ -41,8 +41,7 @@ class RosyServices < RosyTask
     @splitID = nil
     @testID = ::Shalmaneser::Rosy.default_test_ID
 
-
-    opts.each do |opt,arg|
+    opts.each do |opt, arg|
       case opt
       when "--deltable", "--delexp", "--delruns", "--delsplit", "--deltables"
         @tasks << [opt, arg]
