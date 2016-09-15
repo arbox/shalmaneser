@@ -37,4 +37,20 @@ class TestRosy < Minitest::Test
     remove_exp_file(ROSY_TRAIN_FILE)
     remove_exp_file(PRP_TRAIN_FILE_ROSY_STD)
   end
+
+  def test_rosy_featurization_for_training_on_sqlite
+    create_exp_file(ROSY_TRAIN_SQLITE)
+    create_exp_file(PRP_TRAIN_FILE_ROSY_STD)
+    execute("ruby -I lib bin/rosy -t featurize -e #{ROSY_TRAIN_SQLITE} -d train")
+    remove_exp_file(ROSY_TRAIN_SQLITE)
+    remove_exp_file(PRP_TRAIN_FILE_ROSY_STD)
+  end
+
+  def test_rosy_featurization_for_testing_on_sqlite
+    create_exp_file(ROSY_TEST_SQLITE)
+    create_exp_file(PRP_TEST_FILE_ROSY_STD)
+    execute("ruby -I lib bin/rosy -t featurize -e #{ROSY_TEST_SQLITE} -d test")
+    remove_exp_file(ROSY_TEST_SQLITE)
+    remove_exp_file(PRP_TEST_FILE_ROSY_STD)
+  end
 end

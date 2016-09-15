@@ -41,6 +41,10 @@ module FunctionalTestHelper
   # Testing input for Rosy.
   ROSY_WRONG_ID = "#{PREF}/rosy_wrong_id"
 
+  # Testing SQLite with Rosy.
+  ROSY_TEST_SQLITE  = "#{PREF}/rosy_test.sqlite.salsa"
+  ROSY_TRAIN_SQLITE = "#{PREF}/rosy_train.sqlite.salsa"
+
   # Run an external process for functional testing and check the return code.
   # <system> returns <true> if the external code exposes no errors.
   # <@msg> is defined for every test object.
