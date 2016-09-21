@@ -1,12 +1,14 @@
 # Salsa packages
 require 'external_systems'
 require "ruby_class_extensions"
+require 'logging'
+require 'definitions'
 require_relative 'failed_parses'
 require_relative 'feature_info'
 require_relative 'input_data'
 require 'configuration/rosy_config_data'
-require_relative 'rosy_conventions'
-require_relative 'task'
+require_relative 'rosy_conventions' # !
+require_relative 'task' # !
 require_relative 'training_test_table'
 
 module Shalmaneser
@@ -17,21 +19,21 @@ module Shalmaneser
     # One of the main task modules of Rosy:
     # featurize data and store it in the database
     class FeaturizationTask < Task
-      def initialize(exp,      # RosyConfigData object: experiment description
-                     opts,     # hash: runtime argument option (string) -> value (string)
-                     ttt_obj)  # RosyTrainingTestTable object
-
+      # RosyConfigData object: experiment description
+      # hash: runtime argument option (string) -> value (string)
+      # RosyTrainingTestTable object
+      def initialize(exp, opts, ttt_obj)
         ##
         # remember the experiment description
 
         @exp = exp
         @ttt_obj = ttt_obj
 
-        @testID = ::Shalmaneser::Rosy.default_test_ID
-        @splitID = nil
+        @test_id = DEFAULT_TEST_ID
+        @split_id = nil
         @append_rather_than_overwrite = false
 
-        opts.each do |opt,arg|
+        opts.each do |opt, arg|
           case opt
           when "--dataset"
             unless ["train", "test"].include? arg
@@ -39,24 +41,22 @@ module Shalmaneser
             end
             @dataset = arg
           when "--logID"
-            @splitID = arg
+            @split_id = arg
           when "--testID"
-            @testID = arg
+            @test_id = arg
           when "--append"
             @append_rather_than_overwrite = true
           end
         end
 
         # further sanity checks
-        if @dataset.nil? && @splitID.nil?
+        if @dataset.nil? && @split_id.nil?
           $stderr.puts "I need either a dataset ('train' or 'test', option --dataset) or a splitID (option --logID) in the command line."
-          exit 1
+          raise
         end
 
         # announce the task
-        $stderr.puts "---------"
-        $stderr.puts "Rosy experiment #{@exp.get("experiment_ID")}: Featurization of dataset #{@dataset}"
-        $stderr.puts "---------"
+        LOGGER.info "Rosy experiment #{@exp.get("experiment_ID")}: Featurization of dataset #{@dataset}"
 
         ##
         # add preprocessing information to the experiment file object
@@ -90,8 +90,7 @@ module Shalmaneser
           unless @exp.get("directory_input_" + @dataset)
             raise "Please set 'directory_input_train' and/or 'directory_input_test' in your experiment file."
           end
-          prepare_main_featurization(File.existing_dir(@exp.get("directory_input_" + @dataset)),
-                                     @testID)
+          prepare_main_featurization(File.existing_dir(@exp.get("directory_input_" + @dataset)), @test_id)
         end
       end
 
@@ -100,10 +99,8 @@ module Shalmaneser
       #
       # compute features and write them to the DB table
       def perform
-        if @dataset
-          # compute features for main or test table
-          perform_main_featurization
-        end
+        # compute features for main or test table
+        perform_main_featurization if @dataset
       end
 
       #####################
@@ -116,15 +113,15 @@ module Shalmaneser
       # the part of the initialization that is performed
       # if we start a new main/test table,
       # but not if we only re-featurize the split tables
-      def prepare_main_featurization(datapath,# string: name of directory with SalsaTigerXML input data
-                                     testID)  # string: name of this testset, or nil for no testset
-
+      # @param datapath string: name of directory with SalsaTigerXML input data
+      # @param testID string: name of this testset, or nil for no testset
+      def prepare_main_featurization(datapath, testID)
         # sanity check
         unless datapath
           raise "No input path given in the preprocessing experiment file.\n" +
                 "Please set 'directory_preprocessed there."
         end
-        unless File.exists? datapath and File.directory? datapath
+        unless File.exist?(datapath) && File.directory?(datapath)
           raise "I cannot read the input path " + datapath
         end
 
@@ -135,15 +132,12 @@ module Shalmaneser
         @input_obj = InputData.new(@exp, @dataset, @ttt_obj.feature_info, @interpreter_class, datapath)
 
         # zip and store input data
-        rosy_dir = File.new_dir(@exp.instantiate("rosy_dir",
-                                                 "exp_ID" => @exp.get("experiment_ID")))
+        rosy_dir = File.new_dir(@exp.instantiate("rosy_dir", "exp_ID" => @exp.get("experiment_ID")))
         zipped_input_dir = File.new_dir(rosy_dir, "input_dir", @dataset)
 
         unless @append_rather_than_overwrite
           # remove old input data
-          Dir[zipped_input_dir + "*.gz"].each { |filename|
-            File.delete(filename)
-          }
+          Dir[zipped_input_dir + "*.gz"].each { |file| File.delete(file) }
         end
         # store new input data
         Dir[datapath + "*.xml"].each { |filename|
@@ -152,54 +146,39 @@ module Shalmaneser
 
         ##
         # open appropriate DB table
-
-
         case @dataset
         when "train"
           # open main table
-
-
           if @append_rather_than_overwrite
             # add to existing DB table
             @db_table = @ttt_obj.existing_train_table
-
           else
             # start new DB table
             @db_table = @ttt_obj.new_train_table
           end
-
         when "test"
-
           if @append_rather_than_overwrite
             # add to existing DB table
             @db_table = @ttt_obj.existing_test_table(testID)
-
           else
             # start new DB table
             @db_table = @ttt_obj.new_test_table(testID)
-
           end
-
         else
           raise "Shouldn't be here"
         end
-
       end
-
 
       ##########
       # helper method of perform():
       # the part of featurization that is performed
       # if we start a new main/test table,
       # but not if we only re-featurize the split tables
-      def perform_main_featurization()
-
+      def perform_main_featurization
         ###########
         # write state to log
         log_filename =
-          File.new_filename(@exp.instantiate("rosy_dir",
-                                             "exp_ID" => @exp.get("experiment_ID")),
-                            "featurize.log")
+          File.new_filename(@exp.instantiate("rosy_dir", "exp_ID" => @exp.get("experiment_ID")), "featurize.log")
 
         ##############
         # input object, compute features for **PHASE 1*:
@@ -239,8 +218,8 @@ module Shalmaneser
         `echo "[#{Time.now.to_s}] Featurize: Start phase 2 feature extraction" >> #{log_filename}`
 
         iterator = Iterator.new(@ttt_obj, @exp, @dataset,
-                                    "testID" => @testID,
-                                    "splitID" => @splitID,
+                                    "testID" => @test_id,
+                                    "splitID" => @split_id,
                                     "xwise" => "frame")
         iterator.each_group { |dummy1, dummy2|
           view = iterator.get_a_view_for_current_group("*")

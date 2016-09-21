@@ -202,7 +202,7 @@ ruby rosy.rb --task|-t featurize --expfile|-e <e>
                   Use at least one of --logID, --dataset.
 
   --testID <i>    Use <i> as the ID for the table to store the test data.
-                  necessary only with '--dataset test'. default: #{::Shalmaneser::Rosy.default_test_ID}.
+                  necessary only with '--dataset test'. default: #{DEFAULT_TEST_ID}.
 
   --append        Do not overwrite previously computed features
                   for this experiment.
@@ -384,7 +384,7 @@ ruby rosy.rb --task|-t services --expfile|-e <f> [--deltable <t>]
 
   --testID <i>    Use with --writefeatures: write features
                   for the test set with ID <i>.
-                  default: #{::Shalmaneser::Rosy.default_test_ID}.
+                  default: #{DEFAULT_TEST_ID}.
 "
       end
 

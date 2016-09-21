@@ -11,7 +11,7 @@
 # Salsa packages
 require 'eval'
 require "ruby_class_extensions"
-
+require 'definitions'
 # Rosy packages
 require_relative 'iterator'
 require_relative 'splitting_task'
@@ -41,7 +41,7 @@ module Shalmaneser
         # check runtime options
         @step = "both"
         @splitID = nil
-        @testID = Rosy.default_test_ID
+        @testID = DEFAULT_TEST_ID
 
         opts.each do |opt, arg|
           case opt

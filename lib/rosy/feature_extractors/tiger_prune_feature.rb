@@ -4,21 +4,24 @@ module Shalmaneser
   module Rosy
     ####################
     # HIER changeme
-    class TigerPruneFeature < RosySingleFeatureExtractor
+    class TigerPruneFeature < SingleFeatureExtractor
       TigerPruneFeature.announce_me
 
-      def TigerPruneFeature.feature_name
-        return "tiger_prune"
+      def self.feature_name
+        "tiger_prune"
       end
-      def TigerPruneFeature.sql_type
-        return "TINYINT"
+
+      def self.sql_type
+        "TINYINT"
       end
-      def TigerPruneFeature.feature_type
-        return "syn"
+
+      def self.feature_type
+        "syn"
       end
-      def TigerPruneFeature.info
+
+      def self.info
         # additional info: I am an index feature
-        return super().concat(["index"])
+        super().concat(["index"])
       end
 
       ################

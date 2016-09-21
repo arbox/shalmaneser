@@ -1,4 +1,4 @@
-require 'rosy/single_feature_extractoro'
+require 'rosy/single_feature_extractor'
 
 module Shalmaneser
   module Rosy

@@ -1,6 +1,7 @@
 # AB: 2011-11-14
 # Initial import done, need to reimplement the whole interface.
 
+require 'monkey_patching/file'
 require 'db/db_interface'
 require_relative 'tasks'
 require 'logging'

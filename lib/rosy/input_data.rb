@@ -7,6 +7,7 @@ require "ruby_class_extensions"
 require_relative 'failed_parses'
 require 'rosy/rosy_conventions'
 require_relative 'feature_extractor'
+require 'rosy/feature_extractors/features'
 # require "rosy/RosyPhase2FeatureExtractors"
 # require "rosy/RosyPruning"
 # require "rosy/GfInduceFeature"
@@ -22,17 +23,14 @@ module Shalmaneser
     # class for input data object
     # offers methods for preprocessing and
     # featurization
-
-
     class InputData
-
       ###
-      def initialize(exp_object,          # RosyConfigData object
-                     dataset,             # train/test
-                     feature_info_object, # FeatureInfo object
-                     interpreter_class,   # SynInterpreter class
-                     input_dir)           # Directory with input files
-
+      # RosyConfigData object
+      # train/test
+      # FeatureInfo object
+      # SynInterpreter class
+      # Directory with input files
+      def initialize(exp_object, dataset, feature_info_object, interpreter_class, input_dir)
         @exp = exp_object
         @dataset = dataset
         @interpreter_class = interpreter_class
@@ -42,8 +40,7 @@ module Shalmaneser
         @failed_parses = FailedParses.new
 
         # feature_extractors_phase1: array of AbstractFeatureExtractor objects
-        @extractors_p1_rosy, @extractors_p1_other = feature_info_object.get_extractor_objects("phase 1",
-                                                                                              @interpreter_class)
+        @extractors_p1_rosy, @extractors_p1_other = feature_info_object.get_extractor_objects("phase 1", @interpreter_class)
 
         # global settings
         unless FeatureExtractor.set("split_nones" => @exp.get("split_nones"))
@@ -57,10 +54,8 @@ module Shalmaneser
         #       end
         #     }
 
-
         # feature_extractors_phase2: array of  AbstractFeatureExtractor objects
-        extractors_p2_rosy, extractors_p2_other = feature_info_object.get_extractor_objects("phase 2",
-                                                                                            @interpreter_class)
+        extractors_p2_rosy, extractors_p2_other = feature_info_object.get_extractor_objects("phase 2", @interpreter_class)
         @feature_extractors_phase2 = extractors_p2_rosy + extractors_p2_other
       end
 
@@ -75,19 +70,17 @@ module Shalmaneser
       # yields: pairs [feature_name(string), feature_value(object)]
 
       def each_instance_phase1
-        Dir[@input_dir+"*.xml"]. each {|parsefilename|
-
-          xmlFile = STXML::FilePartsParser.new(parsefilename)
+        Dir[@input_dir + "*.xml"]. each { |parsefilename|
+          xml_file = STXML::FilePartsParser.new(parsefilename)
           $stderr.puts "Processing #{parsefilename}"
-          xmlFile.scan_s {|sent_string|
+          xml_file.scan_s { |sent_string|
             sent = STXML::SalsaTigerSentence.new(sent_string)
 
             # preprocessing: possibly change the SalsaTigerSentence object
             # before featurization
             preprocess(sent)
 
-            sent.each_frame{ |frame|
-
+            sent.each_frame { |frame|
               # skip failed parses
               if sent.get_attribute("failed")
                 handle_failed_parse(sent, frame)
@@ -145,7 +138,7 @@ module Shalmaneser
                     # sanity check: feature value longer than the allotted space in the DB?
                     check_feature_length(feature_name, feature_value, extractor)
 
-                    [feature_name, nonnil_feature(feature_value, extractor.class.sql_type) ]
+                    [feature_name, nonnil_feature(feature_value, extractor.class.sql_type)]
                   }
                 }
                 yield features

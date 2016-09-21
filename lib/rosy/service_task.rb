@@ -1,5 +1,6 @@
 require "ruby_class_extensions"
 require 'rosy/rosy_conventions'
+require 'definitions'
 require_relative 'iterator'
 require_relative 'splitting_task'
 require_relative 'task'
@@ -36,7 +37,7 @@ module Shalmaneser
         # defaults:
         @step = "onestep"
         @splitID = nil
-        @testID = ::Shalmaneser::Rosy.default_test_ID
+        @testID = DEFAULT_TEST_ID
 
         opts.each do |opt, arg|
           case opt

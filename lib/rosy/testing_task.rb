@@ -12,6 +12,7 @@ require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'salsa_tiger_xml/file_parts_parser'
 require 'external_systems'
 require "ruby_class_extensions"
+require 'definitions'
 
 # Rosy packages
 require_relative 'feature_info'
@@ -55,7 +56,7 @@ module Shalmaneser
         # defaults:
         @step = "both"
         @splitID = nil
-        @testID = ::Shalmaneser::Rosy.default_test_ID
+        @testID = DEFAULT_TEST_ID
         @produce_output = true
 
         opts.each { |opt,arg|

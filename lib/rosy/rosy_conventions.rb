@@ -53,14 +53,5 @@ module Shalmaneser
     def deconstruct_instance_id(instance_id)
       instance_id.split("---")
     end
-
-    #################################################################
-    #################################################################
-
-    # default test ID given when the user didn't specify one
-    # @note Used only under Rosy.
-    def default_test_ID
-      "apply"
-    end
   end
 end
