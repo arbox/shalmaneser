@@ -149,7 +149,7 @@ module Shalmaneser
           return nil
         end
 
-        rows_s = @database.get_first_value( "select count(*) from #{table_name}" )
+        rows_s = @database.get_first_value("select count(*) from #{table_name}")
         if rows_s
           return rows_s.to_i
         else

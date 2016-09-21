@@ -186,7 +186,7 @@ module Shalmaneser
 
         ####
         #for each frame/ for each target POS:
-        classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp,@step, @splitID)
+        classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp, @step, @splitID)
 
         @iterator.each_group { |group_descr_hash, group|
 

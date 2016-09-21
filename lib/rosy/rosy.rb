@@ -26,8 +26,8 @@ module Shalmaneser
         ##
         # open database
 
-        rosy_dir = File.new_dir(@exp.instantiate("rosy_dir",
-                                                 "exp_ID" => @exp.get("experiment_ID")))
+        rosy_dir = File.new_dir(@exp.instantiate("rosy_dir", {"exp_ID" => @exp.get("experiment_ID")}))
+
         database = DB::DBInterface.get_db_interface(@exp, rosy_dir, "features")
 
         table_obj = TrainingTestTable.new(@exp, database)

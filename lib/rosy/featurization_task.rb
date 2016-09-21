@@ -140,9 +140,9 @@ module Shalmaneser
           Dir[zipped_input_dir + "*.gz"].each { |file| File.delete(file) }
         end
         # store new input data
-        Dir[datapath + "*.xml"].each { |filename|
+        Dir[datapath + "*.xml"].each do |filename|
           %x{gzip -c #{filename} > #{zipped_input_dir}#{File.basename(filename)}.gz}
-        }
+        end
 
         ##
         # open appropriate DB table
@@ -181,19 +181,18 @@ module Shalmaneser
           File.new_filename(@exp.instantiate("rosy_dir", "exp_ID" => @exp.get("experiment_ID")), "featurize.log")
 
         ##############
-        # input object, compute features for **PHASE 1*:
+        # input object, compute features for **PHASE 1**:
         #
         # make features for each instance:
         # features that can be computed from this instance alone
 
-        # @todo AB: Change this to my logger!
-        `echo "[#{Time.now.to_s}] Featurize: Start phase 1 feature extraction" >> #{log_filename}`
+        LOGGER.info "[#{Time.now}] Featurize: Start phase 1 feature extraction."
 
-        @input_obj.each_instance_phase1 { |feature_list| # list of pairs [column_name(string), value(whatever)]
-
+        # list of pairs [column_name(string), value(whatever)]
+        @input_obj.each_instance_phase1 do |feature_list|
           # write instance to @db_table
           @db_table.insert_row(feature_list)
-        }
+        end
 
         # during featurisation, an Object with info about failed parses has been created
         # now get this object and store it in a file in the datadir
@@ -201,12 +200,8 @@ module Shalmaneser
         failed_parses_obj = @input_obj.get_failed_parses
 
         failed_parses_filename =
-          File.new_filename(@exp.instantiate("rosy_dir",
-                                             "exp_ID" => @exp.get("experiment_ID")),
-                            @exp.instantiate("failed_file",
-                                             "exp_ID" => @exp.get("experiment_ID"),
-                                             "split_ID" => "none",
-                                             "dataset" => "none"))
+          File.new_filename(@exp.instantiate("rosy_dir", {"exp_ID" => @exp.get("experiment_ID")}),
+                            @exp.instantiate("failed_file", {"exp_ID" => @exp.get("experiment_ID"), "split_ID" => "none", "dataset" => "none"}))
 
         failed_parses_obj.save(failed_parses_filename)
 
@@ -215,27 +210,24 @@ module Shalmaneser
         #
         # based on all features from Phase 1, make additional features
 
-        `echo "[#{Time.now.to_s}] Featurize: Start phase 2 feature extraction" >> #{log_filename}`
+        LOGGER.info "[#{Time.now}] Featurize: Start phase 2 feature extraction."
 
-        iterator = Iterator.new(@ttt_obj, @exp, @dataset,
-                                    "testID" => @test_id,
-                                    "splitID" => @split_id,
-                                    "xwise" => "frame")
-        iterator.each_group { |dummy1, dummy2|
+        iterator = Iterator.new(@ttt_obj, @exp, @dataset, {"testID" => @test_id, "splitID" => @split_id, "xwise" => "frame"})
+
+        iterator.each_group do |dummy1, dummy2|
           view = iterator.get_a_view_for_current_group("*")
 
-          @input_obj.each_phase2_column(view) { |feature_name, feature_values|
+          @input_obj.each_phase2_column(view) do |feature_name, feature_values|
             view.update_column(feature_name, feature_values)
-          }
+          end
 
           view.close
-        }
+        end
 
         #########
         # finished!!
         #
-        `echo "[#{Time.now.to_s}] Featurize: Finished" >> #{log_filename}`
-
+        LOGGER.info "[#{Time.now}] Featurize: Finished"
       end
     end
   end

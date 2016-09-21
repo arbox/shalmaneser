@@ -12,7 +12,6 @@ require_relative 'sql_query'
 
 module Shalmaneser
   module DB
-
     class DBTable
       attr_reader :index_name, :table_name
 
@@ -35,10 +34,11 @@ module Shalmaneser
       # these columns are not checked against the column_formats when opening an existing table;
       # this can be used to store experiment-specific data.
 
-      def initialize(db_obj, # DBWrapper object
-                     table_name, # string: name of DB table (existing/new)
-                     mode,       # new: starts new DB table, removes old if it exists. open: reopens existing DB table
-                     hash={})    # hash: parameter name => parameter value, depending on mode
+      # # DBWrapper object
+      # # string: name of DB table (existing/new)
+      # # new: starts new DB table, removes old if it exists. open: reopens existing DB table
+      # # hash: parameter name => parameter value, depending on mode
+      def initialize(db_obj, table_name, mode, hash = {})
         # mode= new needs:
         #  'col_formats': array:array len 2: string*string, [column_name, column_format]
         #  'index_cols':  array:string: column_names that should be used to index the table
@@ -104,7 +104,7 @@ module Shalmaneser
           # does a table with name table_name exist?
           unless @db_obj.list_tables.include? table_name
             require 'pp'
-            pp @db_obj.list_tables.first.class
+            pp @db_obj.list_tables
             raise "[DBTable] Sorry, I cannot find a database table named #{table_name}."
           end
 

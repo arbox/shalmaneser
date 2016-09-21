@@ -75,10 +75,10 @@ module Shalmaneser
       TttLog = Struct.new("TttLog", :testIDs, :splitIDs, :runlogs)
       RunLog = Struct.new("RunLog", :step, :learner, :modelfeatures, :xwise, :column, :okay)
 
-
       ###
-      def initialize(exp,      # RosyConfigData object
-                     database) # Mysql object
+      # @param exp       # RosyConfigData object
+      # @param database  # Mysql object
+      def initialize(exp, database)
         @exp = exp
         @feature_info = FeatureInfo.new(@exp)
         @database = database
@@ -96,7 +96,7 @@ module Shalmaneser
         @feature_names = @feature_info.get_column_names
         # make empty columns for classification results:
         # list of pairs [name, mysql format] for each classifier column (string*string)
-        @classif_columns = Range.new(0, 10).map {|id|
+        @classif_columns = Range.new(0, 10).map { |id|
           [
             classifcolumn_name(id),
             "VARCHAR(20)"
@@ -139,7 +139,7 @@ module Shalmaneser
       def from_file(dir = nil)
         filename = pickle_filename(dir)
 
-        if File.exists?(filename)
+        if File.exist?(filename)
           file = File.new(filename)
           begin
             @log_obj = Marshal.load(file)
@@ -166,24 +166,18 @@ module Shalmaneser
 
       ###
       # returns: string, name of DB table with test data
-      def testtable_name(testID)
-        # no test ID given? use default
-        unless testID
-          testID = Rosy::default_test_ID
-        end
-
-        return @exp.instantiate("test_table_name",
-                                "exp_ID" => @exp.get("experiment_ID"),
-                                "test_ID" => testID)
+      def testtable_name(test_id = DEFAULT_TEST_ID)
+        @exp.instantiate("test_table_name",
+                         "exp_ID" => @exp.get("experiment_ID"),
+                         "test_ID" => test_id)
       end
-
 
       ###
       # returns: name of a split table (string)
-      def splittable_name(splitID,  # string
-                          dataset)  # string: train/test
-
-        return "rosy_#{@exp.get("experiment_ID")}_split_#{dataset}_#{splitID}"
+      # @param split_id # string
+      # @param dataset   # string: train/test
+      def splittable_name(split_id, dataset)
+        "rosy_#{@exp.get("experiment_ID")}_split_#{dataset}_#{split_id}"
       end
 
       ###
@@ -256,10 +250,10 @@ module Shalmaneser
           begin
             table.change_format_add_columns([[colname, "VARCHAR(20)"]])
           rescue MysqlError => e
-            puts "Caught MySQL error at "+Time.now.to_s
+            puts "Caught MySQL error at " + Time.now.to_s
             raise e
           end
-          puts "Finished adding column at "+Time.now.to_s
+          puts "Finished adding column at " + Time.now.to_s
 
           # now use that column
           runlog.column = colname
@@ -278,7 +272,7 @@ module Shalmaneser
                           splitID)  # string (splitID) or nil
 
         loglist = get_runlogs(proper_table_for_runlog(step, dataset, testID, splitID))
-        if (rl = existing_runlog_aux(loglist, encode_setting_into_runlog(step,dataset)))
+        if (rl = existing_runlog_aux(loglist, encode_setting_into_runlog(step, dataset)))
           # runlog found
           return rl.column
         else
@@ -373,7 +367,6 @@ module Shalmaneser
       #######
       # create new training/test/split table
       def new_train_table
-
         # remove old runlogs, if they exist
         del_runlogs(@maintable_name)
 
