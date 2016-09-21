@@ -2,26 +2,20 @@
 # Initial import done, need to reimplement the whole interface.
 
 require 'db/db_interface'
-require 'rosy/RosyFeaturize'
-require 'rosy/RosyTest'
-require 'rosy/RosyTrain'
-require 'rosy/RosyInspect'
-require 'rosy/RosyEval'
-require 'rosy/RosyServices'
+require_relative 'tasks'
 require 'logging'
-require 'rosy/rosy_error'
+require_relative 'rosy_error'
+require_relative 'training_test_table'
 
 module Shalmaneser
   module Rosy
     class Rosy
-
       def initialize(options)
         @exp, @opts = options
         @task = @opts['--task']
       end
 
       def assign
-
         # make rosy directory pattern:
         # main rosy directory name (data_dir) plus subdirectory
         # named after the experiment ID
@@ -35,7 +29,7 @@ module Shalmaneser
                                                  "exp_ID" => @exp.get("experiment_ID")))
         database = DB::DBInterface.get_db_interface(@exp, rosy_dir, "features")
 
-        table_obj = RosyTrainingTestTable.new(@exp, database)
+        table_obj = TrainingTestTable.new(@exp, database)
 
         ##
         # start the actual processing,
@@ -44,19 +38,19 @@ module Shalmaneser
         # initialize task object
         task = case @task
                when "featurize"
-                 RosyFeaturize.new(@exp, @opts, table_obj)
+                 FeaturizationTask.new(@exp, @opts, table_obj)
                when "split"
-                 RosySplit.new(@exp, @opts, table_obj)
+                 SplittingTask.new(@exp, @opts, table_obj)
                when "train"
-                 RosyTrain.new(@exp, @opts, table_obj)
+                 TrainingTask.new(@exp, @opts, table_obj)
                when "test"
-                 RosyTest.new(@exp, @opts, table_obj)
+                 TestingTask.new(@exp, @opts, table_obj)
                when "eval"
-                 RosyEvalTask.new(@exp, @opts, table_obj)
+                 EvaluationTask.new(@exp, @opts, table_obj)
                when "inspect"
-                 RosyInspect.new(@exp, @opts, table_obj)
+                 InspectionTask.new(@exp, @opts, table_obj)
                when "services"
-                 RosyServices.new(@exp, @opts, table_obj)
+                 ServiceTask.new(@exp, @opts, table_obj)
                else
                  raise "Shouldn't be here"
                end

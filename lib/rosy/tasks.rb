@@ -1,0 +1,7 @@
+require_relative 'featurization_task'
+require_relative 'splitting_task'
+require_relative 'testing_task'
+require_relative 'training_task'
+require_relative 'inspection_task'
+require_relative 'evaluation_task'
+require_relative 'service_task'
