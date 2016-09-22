@@ -10,7 +10,6 @@ require "tempfile"
 # Rosy packages
 require_relative 'task'
 require_relative 'testing_task'
-require 'rosy/rosy_conventions'
 require_relative 'iterator'
 # require "rosy/RosyTrainingTestTable"
 # require "rosy/RosyPruning"
@@ -185,8 +184,9 @@ module Shalmaneser
         end
 
         ####
-        #for each frame/ for each target POS:
-        classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp, @step, @splitID)
+        # for each frame/ for each target POS:
+        # @note Method from RosyConventions.
+        classif_dir = classifier_directory_name(@exp, @step, @splitID)
 
         @iterator.each_group { |group_descr_hash, group|
 
@@ -205,7 +205,8 @@ module Shalmaneser
             # change punctuation to _PUNCT_
             # and change empty space to _
             # because otherwise some classifiers may spit
-            tf.puts Rosy::prepare_output_for_classifiers(instance_string)
+            # @note method from RosyConventions
+            tf.puts prepare_output_for_classifiers(instance_string)
           }
           tf.close
 

@@ -7,6 +7,7 @@ module Shalmaneser
 
     # transforming feature output to a format that classifiers can handle
     # @note Used only under Rosy.
+    # @note Moved this to Task.
     def prepare_output_for_classifiers(string)
       # change punctuation to _PUNCT_
       # and change empty space to _
@@ -20,6 +21,7 @@ module Shalmaneser
     #  then argrec/arglab/onestep, plus the splitID, if there is one
     # @note Need the extended File class.
     # @note Used only under Rosy.
+    # @note Moved this to Task.
     def classifier_directory_name(exp,     # RosyConfigData object
                                   step,    # argrec, arglab, onestep
                                   splitID) # string or nil

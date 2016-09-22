@@ -1,5 +1,4 @@
 require "ruby_class_extensions"
-require 'rosy/rosy_conventions'
 require 'definitions'
 require_relative 'iterator'
 require_relative 'splitting_task'
@@ -258,8 +257,9 @@ module Shalmaneser
         @ttt_obj.remove_split_table(splitID, "test")
 
         # remove classifiers for split
+        # @note Method from RosyConventions.
         ["argrec", "arglab", "onestep"].each { |step|
-          classif_dir = Rosy::classifier_directory_name(@exp,step, splitID)
+          classif_dir = classifier_directory_name(@exp,step, splitID)
           %x{rm -rf #{classif_dir}}
         }
       end
@@ -375,7 +375,8 @@ module Shalmaneser
             # change punctuation to _PUNCT_
             # and change empty space to _
             # because otherwise some classifiers may spit
-            file.puts Rosy::prepare_output_for_classifiers(instance_string)
+            # @note Method from RosyConventions.
+            file.puts prepare_output_for_classifiers(instance_string)
           }
           file.close
           view.close

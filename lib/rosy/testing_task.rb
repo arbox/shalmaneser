@@ -18,7 +18,6 @@ require 'definitions'
 require_relative 'feature_info'
 require 'ml/classifier'
 require 'ml/classifier_combination'
-require 'rosy/rosy_conventions'
 require_relative 'iterator'
 require_relative 'task'
 # require "rosy/RosyTrainingTestTable"
@@ -218,7 +217,8 @@ module Shalmaneser
         # apply the group-specific classifier,
         # write the result into the database, into
         # the column named @run_column
-        classif_dir = ::Shalmaneser::Rosy::classifier_directory_name(@exp, @step, @splitID)
+        # @note Method from RosyConventions
+        classif_dir = classifier_directory_name(@exp, @step, @splitID)
 
         @iterator.each_group { |group_descr_hash, group|
 
@@ -381,7 +381,8 @@ module Shalmaneser
           # change punctuation to _PUNCT_
           # and change empty space to _
           # because otherwise some classifiers may spit
-          tf_input.puts ::Shalmaneser::Rosy::prepare_output_for_classifiers(instance_string)
+          # @note Method from RosyConventions.
+          tf_input.puts prepare_output_for_classifiers(instance_string)
         }
         tf_input.close
         # make output file for classifiers
