@@ -5,7 +5,6 @@ require "ruby_class_extensions"
 
 # Fred/Rosy packages
 require_relative 'failed_parses'
-require 'rosy/rosy_conventions'
 require_relative 'feature_extractor'
 require 'rosy/feature_extractors/features'
 # require "rosy/RosyPhase2FeatureExtractors"
@@ -245,7 +244,10 @@ module Shalmaneser
           target_str = ""
         end
 
-        @failed_parses.register(Rosy::construct_instance_id(sent.id, frame.id),
+        # @note InstanceID = SentID --- FrameID
+        # @note Previously construct_instance_id from RosyConventions.
+        # @not sentence_id.to_s + "---" + frame_id.to_s
+        @failed_parses.register("#{sent.id}---#{frame.id}",
                                 frame.name,
                                 target_str,
                                 target_pos,

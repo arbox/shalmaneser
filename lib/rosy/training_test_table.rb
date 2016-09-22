@@ -2,7 +2,6 @@ require "ruby_class_extensions"
 
 require 'db/db_table'
 require_relative 'feature_info'
-require_relative 'rosy_conventions'
 
 module Shalmaneser
   module Rosy

@@ -25,7 +25,10 @@ module Shalmaneser
       private
 
       def compute_feature_instanceOK
-        return ::Shalmaneser::Rosy::construct_instance_id(@@sent.id, @@frame.id)
+        # @note InstanceID = SentID --- FrameID
+        # @note Previously construct_instance_id from RosyConventions.
+        # @note sentence_id.to_s + "---" + frame_id.to_s
+        "#{@@sent.id}---#{@@frame.id}"
       end
     end
   end

@@ -7,7 +7,6 @@ require_relative 'failed_parses'
 require_relative 'feature_info'
 require_relative 'input_data'
 require 'configuration/rosy_config_data'
-require_relative 'rosy_conventions' # !
 require_relative 'task' # !
 require_relative 'training_test_table'
 

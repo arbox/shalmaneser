@@ -701,7 +701,10 @@ module Shalmaneser
             sent.frames.each { |frame|
 
               # this corresponds to the sentid feature in the database
-              sent_frame_id = ::Shalmaneser::Rosy::construct_instance_id(sent.id, frame.id)
+              # @note InstanceID = SentID --- FrameID
+              # @note Previously construct_instance_id from RosyConventions.
+              # @not sentence_id.to_s + "---" + frame_id.to_s
+              sent_frame_id = "#{sent.id}---#{frame.id}"
 
               if sentid_to_assigned[sent_frame_id].nil? and @splitID
                 # we are using a split of the training data, and

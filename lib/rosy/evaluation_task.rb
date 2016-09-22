@@ -17,7 +17,6 @@ require_relative 'iterator'
 require_relative 'splitting_task'
 require_relative 'task'
 require_relative 'pruning'
-require 'rosy/rosy_conventions'
 
 require 'configuration/frappe_config_data'
 
