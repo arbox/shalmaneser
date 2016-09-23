@@ -21,8 +21,7 @@ module Shalmaneser
 
         @mode = mode
 
-        answer_filename = ::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") +
-                          ::Shalmaneser::Fred.fred_answerkey_filename(lemmapos)
+        answer_filename = ::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") + fred_answerkey_filename(lemmapos)
 
         # are we reading the whole answer key file, or only the test part
         # of a split of it?
@@ -119,11 +118,19 @@ module Shalmaneser
 
       ###
       def AnswerKeyAccess.remove_files(exp, dataset)
-        Dir[::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") + ::Shalmaneser::Fred.fred_answerkey_filename("*")].each { |filename|
+        Dir[::Shalmaneser::Fred.fred_dirname(exp, dataset, "keys", "new") + fred_answerkey_filename("*")].each { |filename|
           if File.exists?(filename)
             File.delete(filename)
           end
         }
+      end
+
+      ####
+      # filename for answer key files
+      # @note Used only in FredFeatures.
+      # @note Imported from FredConventions.
+      def fred_answerkey_filename(lemma)
+        return "fred.answerkey.#{lemma}"
       end
     end
   end

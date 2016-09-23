@@ -26,10 +26,11 @@ require 'salsa_tiger_xml/file_parts_parser'
 
 require 'logging'
 require 'fred/fred_error'
+require_relative 'task'
 
 module Shalmaneser
   module Fred
-    class FredTest
+    class FredTest < Task
       #
       # evaluate runtime options and announce the task
       # FredConfigData object
@@ -206,8 +207,9 @@ module Shalmaneser
           # line entry: list of pairs [sense, confidence]
           results_this_lemma = []
 
-          training_senses = ::Shalmaneser::Fred.determine_training_senses(lemma, @exp,
-                                                                          @lemmas_and_senses, @split_id)
+          training_senses = determine_training_senses(lemma, @exp,
+                                                      @lemmas_and_senses,
+                                                      @split_id)
 
           senses_and_filenames.each { |sense, filename|
 

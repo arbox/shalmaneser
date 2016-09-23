@@ -177,7 +177,6 @@ module Shalmaneser
       # relies on each_group() having set the appropriate readers
       # <@goldreader> and <@classfile>
       def each_instance(lemma) # string: lemma name
-
         # watch out for repeated instances
         # which may occur if handle_multilabel = repeat.
         # Only yield them once to avoid re-evaluating multi-label instances
@@ -261,7 +260,6 @@ module Shalmaneser
               sense
             }
 
-
             unless @all_senses
               raise "Shouldn't be here"
             end
@@ -276,8 +274,6 @@ module Shalmaneser
               assigned_class = (senses_assigned.include? sense_of_lemma).to_s
               yield [gold_class, assigned_class]
             }
-
-
           else
             # regard only one sense as assigned at a time
             # count as correct if the list of gold classes
@@ -287,24 +283,28 @@ module Shalmaneser
             # actually assigned class: only the one with the
             # maximum confidence
             # $stderr.puts "HIER5 #{senses_assigned.length()}"
-
             if senses_assigned.empty?
             # nothing to yield
             else
-
               max_senselist = senses_assigned.max { |a, b|
                 a.last <=> b.last
               }.first
-
 
               max_senselist.each { |single_sense|
                 gold_class = (senses_gold.include? single_sense).to_s
                 yield [gold_class, "true"]
               }
             end
-
           end
         }
+      end
+
+      private
+
+      # @note Used only in FredEval.
+      # @note Imported from FredConventions
+      def fred_split_sense(joined_senses)
+        joined_senses.split("++")
       end
     end
   end

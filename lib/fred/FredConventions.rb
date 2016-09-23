@@ -12,6 +12,7 @@ module Fred
 
   module_function
 
+  # @note Exported to newly created Task.
   def determine_training_senses(lemma, exp, lemmas_and_senses_obj, split_id)
     if split_id
       # oh no, we're splitting the dataset into random training and test portions.
@@ -44,11 +45,13 @@ module Fred
   ###
   # joining and breaking up senses
   # @note Used only in FredFeatures.
+  # @note Exported to FredFeatureAccess.
   def fred_join_senses(senses)
     senses.sort.join("++")
   end
 
   # @note Used only in FredEval.
+  # @note Exported to FredEval.
   def fred_split_sense(joined_senses)
     joined_senses.split("++")
   end
@@ -116,6 +119,7 @@ module Fred
   # "lemma"
   # "sense
   # @note Used only in FredFeatures.
+  # @note Exported to FredFeatureAccess.
   def deconstruct_fred_feature_filename(filename)
     basename = File.basename(filename)
     retv = {}
@@ -140,6 +144,7 @@ module Fred
   ####
   # filename for answer key files
   # @note Used only in FredFeatures.
+  # @note Exported to AnswerKeyAccess
   def fred_answerkey_filename(lemma)
     return "fred.answerkey.#{lemma}"
   end
@@ -181,6 +186,7 @@ module Fred
   end
 
   # @note Used only in Baseline.
+  # @note Exported to Baseline.
   def deconstruct_fred_classifier_filename(filename)
     retv = {}
 
@@ -207,9 +213,7 @@ module Fred
   #
   # fred_lemmapos_combine: take two strings, return combined string
   #      if POS is nil, returns lemma<separator character>
-  # fred_lemmapos_separate: take one string, return two strings
-  #      if no POS could be retrieved, returns nil as POS and the whole string as lemma
-  # @param lemma [String]
+    # @param lemma [String]
   # @param pos [String]
   # @note Used on multiple points.
   def fred_lemmapos_combine(lemma, pos)
@@ -219,6 +223,9 @@ module Fred
   ###
   # @param lemmapos [String]
   # @note Used only in FredDetermineTargets.
+  # fred_lemmapos_separate: take one string, return two strings
+  #      if no POS could be retrieved, returns nil as POS and the whole string as lemma
+  # @note Exported to Targets.
   def fred_lemmapos_separate(lemmapos)
     pieces = lemmapos.split(".")
 

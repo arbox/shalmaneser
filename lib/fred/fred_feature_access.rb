@@ -49,7 +49,7 @@ module Shalmaneser
       def self.each_feature_file(exp, dataset)
         feature_dir = FredFeatureAccess.feature_dir(exp, dataset)
         Dir[feature_dir + "*"].sort.each { |filename|
-          if (values = ::Shalmaneser::Fred.deconstruct_fred_feature_filename(filename))
+          if (values = deconstruct_fred_feature_filename(filename))
             yield [filename, values]
           end
         }
@@ -219,6 +219,34 @@ module Shalmaneser
 
       end
 
+      ###
+      # deconstruct feature file name
+      # returns: hash with keys
+      # "lemma"
+      # "sense
+      # @note Used only in FredFeatures.
+      # @note Imported from FredConventions.
+      def deconstruct_fred_feature_filename(filename)
+        basename = File.basename(filename)
+        retv = {}
+
+        # binary:
+        # fred.features.#{lemma}.SENSE.#{sense}
+        if basename =~ /^fred\.features\.(.*)\.SENSE\.(.*)$/
+          retv["lemma"] = $1
+          retv["sense"] = $2
+        elsif basename =~ /^fred\.features\.(.*)/
+          # fred.features.#{lemma}
+          retv["lemma"] = $1
+
+        else
+          # complete mismatch
+          return nil
+        end
+
+        return retv
+      end
+
       ##################
       protected
 
@@ -385,7 +413,7 @@ module Shalmaneser
         when "keep"
           yield [senses, senses]
         when "join"
-          yield [[::Shalmaneser::Fred.fred_join_senses(senses)], senses]
+          yield [[fred_join_senses(senses)], senses]
         when "repeat"
           senses.each { |s| yield [[s], senses] }
         when "binarize"
@@ -414,6 +442,16 @@ module Shalmaneser
         senses = senses_s.split("::").map { |s| s.gsub(/COLON/, ":") }
 
         return [lemma, pos, ids, sid, senses, features]
+      end
+
+      private
+
+      ###
+      # joining and breaking up senses
+      # @note Used only in FredFeatures.
+      # @note Imported from FredConventions.
+      def fred_join_senses(senses)
+        senses.sort.join("++")
       end
     end
   end

@@ -86,7 +86,7 @@ module Shalmaneser
       end
 
       def read(classifier_file)
-        values = ::Shalmaneser::Fred.deconstruct_fred_classifier_filename(File.basename(classifier_file))
+        values = deconstruct_fred_classifier_filename(File.basename(classifier_file))
         @lemma = values["lemma"]
         if @lemma
           return true
@@ -148,6 +148,22 @@ module Shalmaneser
 
         true
       end
+
+      # @note Used only in Baseline.
+      # @note Imported from FredConventions.
+      def deconstruct_fred_classifier_filename(filename)
+        retv = {}
+
+        if filename =~ /^fred\.classif\.(.*)\.LEMMA\.(.*)\.SENSE\.(.*)$/
+          retv["lemma"] = $2
+          retv["sense"] = $3
+        elsif filename =~ /^fred\.classif\.(.*)\.LEMMA\.(.*)$/
+          retv["lemma"] = $2
+        end
+
+        retv
+      end
+
     end
   end
 end

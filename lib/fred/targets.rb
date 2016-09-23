@@ -89,7 +89,7 @@ module Shalmaneser
       ##
       # access to lemmas and POS, returns a list of pairs [lemma, pos] (string*string)
       def get_lemma_pos
-        @targets.keys.map { |lemmapos| ::Shalmaneser::Fred.fred_lemmapos_separate(lemmapos) }
+        @targets.keys.map { |lemmapos| fred_lemmapos_separate(lemmapos) }
       end
 
       ##
@@ -113,6 +113,23 @@ module Shalmaneser
         }
 
         file.close
+      end
+
+      ###
+      # @param lemmapos [String]
+      # @note Used only in FredDetermineTargets.
+      # fred_lemmapos_separate: take one string, return two strings
+      #      if no POS could be retrieved, returns nil as POS and the whole string as lemma
+      # @note Imported from FredConventions.
+      def fred_lemmapos_separate(lemmapos)
+        pieces = lemmapos.split(".")
+
+        if pieces.length > 1
+          return [pieces[0..-2].join("."), pieces[-1]]
+        else
+          # no POS found, treat all of lemmapos as lemma
+          return [lemmapos, nil]
+        end
       end
 
       ###############################

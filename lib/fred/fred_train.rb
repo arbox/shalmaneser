@@ -16,9 +16,11 @@ require 'fred/fred_feature_access'
 require 'logging'
 require 'fred/fred_error'
 
+require_relative 'task'
+
 module Shalmaneser
   module Fred
-    class FredTrain
+    class FredTrain < Task
       ###
       # new
       #
@@ -80,9 +82,9 @@ module Shalmaneser
 
 
           # only one sense? then just assign that
-          num_senses = ::Shalmaneser::Fred.determine_training_senses(values["lemma"], @exp,
-                                                                     @lemmas_and_senses,
-                                                                     @split_id).length
+          num_senses = determine_training_senses(values["lemma"], @exp,
+                                                 @lemmas_and_senses,
+                                                 @split_id).length
 
           if num_senses > 1
             # more than one sense: train
