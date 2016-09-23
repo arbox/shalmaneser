@@ -14,8 +14,6 @@ module FunctionalTestHelper
 
   FRED_TEST_FILE  = 'test/functional/sample_experiment_files/fred_test.salsa'
   FRED_TRAIN_FILE = 'test/functional/sample_experiment_files/fred_train.salsa'
-  ROSY_TEST_FILE  = 'test/functional/sample_experiment_files/rosy_test.salsa'
-  ROSY_TRAIN_FILE = 'test/functional/sample_experiment_files/rosy_train.salsa'
 
   # Testing input for Preprocessor.
   PRP_PLAININPUT         = "#{PREF}/prp_plaininput"
@@ -40,6 +38,10 @@ module FunctionalTestHelper
 
   # Testing input for Rosy.
   ROSY_WRONG_ID = "#{PREF}/rosy_wrong_id"
+
+  # General Rosy tests.
+  ROSY_TEST_FILE  = "#{PREF}/rosy_test.salsa"
+  ROSY_TRAIN_FILE = "#{PREF}/rosy_train.salsa"
 
   # Testing SQLite with Rosy.
   ROSY_TEST_SQLITE  = "#{PREF}/rosy_test.sqlite.salsa"

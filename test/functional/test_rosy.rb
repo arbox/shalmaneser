@@ -10,6 +10,14 @@ class TestRosy < Minitest::Test
     @msg = "Rosy is doing bad, you've just broken something!"
   end
 
+  def test_rosy_featurization_for_testing_with_test_id
+    create_exp_file(ROSY_TEST_FILE)
+    create_exp_file(PRP_TEST_FILE_ROSY_STD)
+    execute("ruby -I lib bin/rosy -t featurize -e #{ROSY_TEST_FILE} -d test --testID FN12")
+    remove_exp_file(ROSY_TEST_FILE)
+    remove_exp_file(PRP_TEST_FILE_ROSY_STD)
+  end
+
   def test_rosy_testing
     create_exp_file(ROSY_TEST_FILE)
     create_exp_file(PRP_TEST_FILE_ROSY_STD)
