@@ -1,5 +1,5 @@
 require 'fred/fred_split_pkg'
-require 'fred/FredConventions'
+require 'fred/fred_conventions' #!!
 
 module Shalmaneser
   module Fred

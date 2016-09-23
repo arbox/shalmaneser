@@ -7,7 +7,6 @@
 
 # Salsa packages
 require 'fred/plot_and_r_eval'
-require 'fred/FredConventions' # !
 require 'fred/fred_split'
 require 'fred/fred_train'
 require 'fred/fred_test'

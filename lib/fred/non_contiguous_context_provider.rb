@@ -3,24 +3,16 @@ require 'tempfile' # !
 require 'fileutils' # !
 
 require 'salsa_tiger_xml/reg_xml' # !
-# require 'external_systems'
+
 require 'tabular_format/fn_tab_format_file' # !
-# require 'tabular_format/tab_format_sentence'
-# require "SalsaTigerRegXML"
 require 'salsa_tiger_xml/salsa_tiger_sentence' # !
 require 'salsa_tiger_xml/salsa_tiger_xml_helper' # !
-# require 'RosyConventions'
 require 'value_restriction' # !
 require 'db/select_table_and_columns' # !
-
 require 'fred/md5' # !
-# require 'configuration/fred_config_data'
-require 'fred/FredConventions' # !
-# require 'fred/word_lemma_pos_ne'
-
+require 'fred/fred_conventions' # !!
 require 'db/db_interface' # !
 require 'db/sql_query' # !
-
 require 'salsa_tiger_xml/file_parts_parser' # !
 
 module Shalmaneser

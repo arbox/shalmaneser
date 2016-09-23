@@ -5,7 +5,7 @@
 # always assign most frequent sense
 # The baseline doesn't do binary classifiers.
 
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
 require 'fred/fred_split_pkg'
 require 'fred/answer_key_access'
 require 'fred/targets'

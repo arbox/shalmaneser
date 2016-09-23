@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'fred/fred_feature_info'
 require 'fred/feature_extractors'
-require 'fred/FredConventions'
+require 'fred/fred_conventions' # !!
 require 'fred/abstract_fred_feature_access'
 require 'fred/answer_key_access'
 require 'fred/aux_keep_writers'

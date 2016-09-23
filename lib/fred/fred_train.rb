@@ -6,7 +6,7 @@
 require "ruby_class_extensions" # ???
 
 # Shalmaneser packages
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
 require 'ml/classifier'
 require 'fred/targets'
 require 'fred/fred_split_pkg'

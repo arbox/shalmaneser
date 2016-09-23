@@ -1,7 +1,7 @@
 require "tempfile"
 require 'fileutils'
 require 'fred/targets'
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
 require 'fred/fred_error'
 
 require 'logging'

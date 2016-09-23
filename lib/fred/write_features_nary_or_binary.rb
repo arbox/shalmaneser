@@ -1,5 +1,5 @@
 require "delegate"
-require 'fred/FredConventions'
+require 'fred/fred_conventions' # !!
 require 'fred/write_features_binary'
 require 'fred/write_features_nary'
 

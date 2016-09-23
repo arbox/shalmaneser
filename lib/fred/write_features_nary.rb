@@ -1,4 +1,5 @@
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
+
 module Shalmaneser
   module Fred
     ##############

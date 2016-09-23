@@ -1,6 +1,8 @@
 require 'fred/file_zipped'
 require 'fred/abstract_fred_feature_access'
 
+require 'fred/fred_conventions' # !!
+
 module Shalmaneser
   module Fred
         ########################################

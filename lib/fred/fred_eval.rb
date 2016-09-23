@@ -18,10 +18,10 @@ require 'eval'
 require "ruby_class_extensions"
 
 # Fred packages
-# require 'configuration/fred_config_data'
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
 require 'fred/answer_key_access'
 require 'fred/targets'
+
 module Shalmaneser
   module Fred
     class FredEval < Eval

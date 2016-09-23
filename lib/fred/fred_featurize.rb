@@ -23,7 +23,7 @@ require 'delegate'
 
 require 'salsa_tiger_xml/salsa_tiger_sentence'
 require 'configuration/fred_config_data'
-require 'fred/FredConventions' # !
+require 'fred/fred_conventions' # !!
 require 'fred/word_lemma_pos_ne'
 require 'external_systems'
 
