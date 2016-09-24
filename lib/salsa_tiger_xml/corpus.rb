@@ -20,5 +20,11 @@ module STXML
     def sentences
       @doc.xpath('//s')
     end
+
+    def clear_roles
+    end
+
+    def clear_targets
+    end
   end
 end

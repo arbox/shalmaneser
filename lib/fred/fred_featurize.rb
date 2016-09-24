@@ -154,6 +154,7 @@ module Shalmaneser
       def featurize
         ###
         # make objects
+        # @todo Move this to OptParser.
         unless @exp.get("directory_preprocessed")
           $stderr.puts "Shalmaneser error: could not find the directory with"
           $stderr.puts "syntactially preprocessed data."
